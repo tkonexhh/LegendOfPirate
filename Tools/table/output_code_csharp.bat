@@ -1,6 +1,6 @@
 SET WORKSPACE=%~dp0
 SET SOURCETABLEDIR=%~dp0/../../Tables/Sources/
-SET PROJECTTABLEDIR=%~dp0/../../UnityProject/March3D/Assets/Scripts/Game/Tables/
+SET PROJECTTABLEDIR=%~dp0/../../UnityProject/LegendOfPirate/Assets/Scripts/Game/Tables/
 
 cd %WORKSPACE%
 %~dp0/outputcode -i %SOURCETABLEDIR% -o %PROJECTTABLEDIR%

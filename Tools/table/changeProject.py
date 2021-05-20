@@ -12,8 +12,8 @@ list_dir = pwd.split('/')
 newProjectName = os.path.basename[pwd]
 '''
 
-oldProjectName = "Match3Animal"
-newProjectName = "Match3DressUp"
+oldProjectName = "March3D"
+newProjectName = "LegendOfPirate"
 
 print(oldProjectName,"-->",newProjectName)
 
@@ -21,8 +21,9 @@ path_csharpBat = "output_code_csharp.bat"
 path_csharpSh = "output_code_csharp.sh"
 path_txtBat = "output_txt.bat"
 path_txtSh = "output_txt.sh"
+path_txtUnixSh = "output_txt_unix.sh"
 
-paths = [path_csharpBat,path_csharpSh,path_txtBat,path_txtSh]
+paths = [path_csharpBat,path_csharpSh,path_txtBat,path_txtSh,path_txtUnixSh]
 
 for path in paths:
 	fo = open(path , "r");
