@@ -39,8 +39,6 @@ namespace GameWish.Game
 
         private void OnClickF1()
         {
-            MeasureUnitHelper.AddCount(0,0,-50,-500);
-            Log.i(MeasureUnitHelper.GetTotalCount());
         }
 
         private void OnClickF2()

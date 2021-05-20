@@ -8,7 +8,7 @@ namespace GameWish.Game
 {
     public class PlayerPrefTools
     {
-        [MenuItem("DB Tools/Clear Saved Data")]
+        [MenuItem("Tools/Clear Saved Data")]
         static public void ClearSavedData()
         {
             PlayerPrefs.DeleteAll();

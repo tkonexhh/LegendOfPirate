@@ -10,25 +10,25 @@ namespace GFrame.Editor
 
     public class PathTools
     {
-        [MenuItem("Tools/Path/Open Asset Path")]
+        [MenuItem("Tools/Open Path/Open Asset Path")]
         private static void OpenAssetPath()
         {
             Execute(Application.dataPath);
         }
 
-        [MenuItem("Tools/Path/Open Peristent Path")]
+        [MenuItem("Tools/Open Path/Open Peristent Path")]
         private static void OpenPeristentPath()
         {
             Execute(Application.persistentDataPath);
         }
 
-        [MenuItem("Tools/Path/Open StreamingAssets Path")]
+        [MenuItem("Tools/Open Path/Open StreamingAssets Path")]
         private static void OpenStreamingAssetsPath()
         {
             Execute(Application.streamingAssetsPath);
         }
 
-        [MenuItem("Tools/Path/Open TemporaryCachePath Path")]
+        [MenuItem("Tools/Open Path/Open TemporaryCachePath Path")]
         private static void OpenTemporaryCachePathPath()
         {
             Execute(Application.temporaryCachePath);
