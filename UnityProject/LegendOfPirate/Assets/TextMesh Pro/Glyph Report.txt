@@ -1,15 +1,0 @@
-Font: FZDaHei-B02S  Style: Regular
-Point Size: 189   SP/PD Ratio: 1.6%
-
-Characters included: 72/74
-Missing characters: 2
-Excluded characters: 0
-
-Characters missing from font file:
-----------------------------------------
-ID: 13	Hex: D	Char []
-ID: 10	Hex: A	Char [
-]
-
-Characters excluded from packing:
-----------------------------------------
