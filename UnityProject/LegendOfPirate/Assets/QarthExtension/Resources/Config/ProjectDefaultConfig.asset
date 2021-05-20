@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc29e3c44d6d5453e814cbfbef5f4918, type: 3}
+  m_Name: ProjectDefaultConfig
+  m_EditorClassIdentifier: 
+  m_TextConfig:
+    m_DefaultTextFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_DefaultTextColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DefaultTextRect: {x: 100, y: 50}
+    m_DefaultTextSize: 24
+  m_TMPConfig:
+    font: {fileID: 11400000, guid: 95510714052484116952359d06d42892, type: 2}
+    textAlignment: 514
+    color: {r: 1, g: 1, b: 1, a: 1}
+    fontSize: 36
