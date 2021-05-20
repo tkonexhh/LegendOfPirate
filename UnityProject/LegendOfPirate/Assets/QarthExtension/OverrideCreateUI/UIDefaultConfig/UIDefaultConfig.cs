@@ -14,7 +14,7 @@ using UnityEngine;
 namespace Qarth
 {
     [System.Serializable]
-    public class ProjectDefaultConfig : TScriptableObjectSingleton<ProjectDefaultConfig>
+    public class UIDefaultConfig : TScriptableObjectSingleton<UIDefaultConfig>
     {
         [Header("UGUI")]
         [SerializeField] private TextConfig m_TextConfig;

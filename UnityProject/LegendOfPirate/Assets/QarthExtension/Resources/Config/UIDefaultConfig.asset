@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc29e3c44d6d5453e814cbfbef5f4918, type: 3}
-  m_Name: ProjectDefaultConfig
+  m_Name: UIDefaultConfig
   m_EditorClassIdentifier: 
   m_TextConfig:
-    m_DefaultTextFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_DefaultTextFont: {fileID: 12800000, guid: 9e89422ebafd78a4abbe4966075a927a,
+      type: 3}
     m_DefaultTextColor: {r: 1, g: 1, b: 1, a: 1}
     m_DefaultTextRect: {x: 100, y: 50}
     m_DefaultTextSize: 24
