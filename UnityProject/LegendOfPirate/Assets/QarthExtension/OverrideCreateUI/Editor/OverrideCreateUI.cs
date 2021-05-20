@@ -127,27 +127,27 @@ namespace GFrame.Editor
             text.alignment = TextAnchor.MiddleCenter;
             text.text = "text";
             text.supportRichText = false;
-            if (ProjectDefaultConfig.S != null)
+            if (UIDefaultConfig.S != null)
             {
-                text.rectTransform().sizeDelta = ProjectDefaultConfig.textConfig.defaultTextRect;
-                text.font = ProjectDefaultConfig.textConfig.defaultTextFont;
-                text.color = ProjectDefaultConfig.textConfig.defaultTextColor;
+                text.rectTransform().sizeDelta = UIDefaultConfig.textConfig.defaultTextRect;
+                text.font = UIDefaultConfig.textConfig.defaultTextFont;
+                text.color = UIDefaultConfig.textConfig.defaultTextColor;
             }
-            text.fontSize = ProjectDefaultConfig.textConfig.defaultTextSize;
+            text.fontSize = UIDefaultConfig.textConfig.defaultTextSize;
         }
 
         private static void HandleTextMeshPro(TextMeshProUGUI tmp)
         {
             tmp.raycastTarget = false;
             tmp.richText = false;
-            if (ProjectDefaultConfig.textMeshProConfig.font != null)
+            if (UIDefaultConfig.textMeshProConfig.font != null)
             {
-                tmp.font = ProjectDefaultConfig.textMeshProConfig.font;
+                tmp.font = UIDefaultConfig.textMeshProConfig.font;
             }
             tmp.text = "Text";
-            tmp.alignment = ProjectDefaultConfig.textMeshProConfig.textAlignment;
-            tmp.color = ProjectDefaultConfig.textMeshProConfig.color;
-            tmp.fontSize = ProjectDefaultConfig.textMeshProConfig.fontSize;
+            tmp.alignment = UIDefaultConfig.textMeshProConfig.textAlignment;
+            tmp.color = UIDefaultConfig.textMeshProConfig.color;
+            tmp.fontSize = UIDefaultConfig.textMeshProConfig.fontSize;
         }
 
         private static void HandleImage(Image image)
