@@ -41,14 +41,10 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        private PlayerInfoTimeObserver m_TimeObserver;
 
         public void Init()
         {
             m_CoinNum = double.Parse(coinNumStr);
-
-            m_TimeObserver = new PlayerInfoTimeObserver();
-            TimeUpdateMgr.S.AddObserver(m_TimeObserver);
         }
 
         public void SetCoinNum(double num)

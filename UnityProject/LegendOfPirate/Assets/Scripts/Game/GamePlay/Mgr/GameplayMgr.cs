@@ -33,20 +33,6 @@ namespace GameWish.Game
             // Init Managers
             GameDataMgr.S.Init();
 
-            //AssetPreloaderMgr.S.Init();
-
-            //EventSystem.S.Send(EventID.OnUpdateLoadProgress, 0.2f);
-
-            //yield return null;
-
-            //EventSystem.S.Send(EventID.OnUpdateLoadProgress, 0.2f);
-
-            //yield return null;
-
-            //EventSystem.S.Send(EventID.OnUpdateLoadProgress, 0.2f);
-
-            //yield return null;
-
             AudioMgr.S.OnSingletonInit();
 
             EventSystem.S.Register(EngineEventID.OnApplicationQuit, ApplicationQuit);
@@ -57,18 +43,6 @@ namespace GameWish.Game
             //I18Mgr.S.SwitchLanguage(SystemLanguage.German);
 
             GameMgr.S.StartGuide();
-
-            //GuideObjectMgr.S.Init();
-
-            //EventSystem.S.Send(EventID.OnUpdateLoadProgress, 0.2f);
-
-            //yield return null;
-
-            //Camera.main.transform.GetComponent<MobileTouchCamera>().Init();
-
-            //OfflineRewardMgr.S.Init();
-
-            //TimeUpdateMgr.S.Start();
 
             RemoteConfigMgr.S.StartChecker(null);
 
@@ -82,11 +56,9 @@ namespace GameWish.Game
             bool pause = (bool)args[0];
             if (!pause)
             {
-                TimeUpdateMgr.S.Resume();
             }
             else
             {
-                TimeUpdateMgr.S.Pause();
             }
         }
 
@@ -127,22 +99,6 @@ namespace GameWish.Game
             else
             {
                 GameWorldMgr.S.Update();
-            }
-
-            //For test
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                GameDataMgr.S.GetPlayerInfoData().AddCoinNum(1E100);
-            }
-
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                GameDataMgr.S.GetPlayerInfoData().AddLevel(1);
-            }
-
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                GameDataMgr.S.GetPlayerInfoData().AddStarCount(3);
             }
         }
 

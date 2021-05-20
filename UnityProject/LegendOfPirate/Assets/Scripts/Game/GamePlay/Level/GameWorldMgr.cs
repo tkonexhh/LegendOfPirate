@@ -15,16 +15,6 @@ namespace GameWish.Game
         {
             Log.i("--------------World init--------------");
             m_IsInited = true;
-
-            OfflineRewardMgr.S.Init();
-
-            TimeUpdateMgr.S.Start();
-      
-            AdEffectHandleMgr.S.Init();
-
-            //LevelMgr.S.Init();
-
-            //LevelMgr.S.LoadPlayingScene();
         }
 
         public void Update()
@@ -32,7 +22,6 @@ namespace GameWish.Game
             if (m_IsInited == false)
                 return;
 
-            PopAdMgr.S.Update();
         }
 
         public void OnReset()

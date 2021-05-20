@@ -42,19 +42,10 @@ namespace GameWish.Game
             MeasureUnitHelper.AddCount(0,0,-50,-500);
             Log.i(MeasureUnitHelper.GetTotalCount());
         }
-        int adtype = (int)AdType.PowerUp;
+
         private void OnClickF2()
         {
 
-           //  EventSystem.S.Send(EventID.OnShowPopAdUI, AdType.SummonGiant);
-
-             EventSystem.S.Send(EventID.OnShowPopAdUI, AdType.SummonReinforcements);
-
-            // adtype++;
-            // UIMgrExtend.S.OpenOccupyOverPanel(TDStageTable.GetData(101));
-            // UIMgrExtend.S.OpenUnlockSoldierPanel(TDSoldierListTable.GetData(1));
-            // EventSystem.S.Send(EventID.GuideEventTrigger, 1);
-            //RateMgr.S.RequestReview();
         }
 
         private void OnClickF3()
