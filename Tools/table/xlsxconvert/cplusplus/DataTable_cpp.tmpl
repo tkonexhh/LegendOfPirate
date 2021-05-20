@@ -1,0 +1,109 @@
+\#include "${ClassName}Table.h"
+\#include "${ClassName}Item.h"
+\#include "common/common_csvparser.h"
+\#include "common/common_errordef.h"
+\#include "common/common_string.h"
+\#include "knet/knet_log.h"
+#set class_members = $ClassMembers
+#set config = $Config
+
+int32_t C${ClassName}Table::Parse(const char* szLogPrefix, const char* szFileName)
+{
+    if (NULL == szLogPrefix || NULL == szFileName)
+    {
+        return E_INVALIDARGUMENT;
+    }
+  
+    CSVFileParser csv_parser;
+    csv_parser.SetDelimiter('\t');
+    CSVFileRow csv_row;
+    if(!csv_parser.InitWithFileName(szFileName))
+    {
+        KNET::WriteLog(szLogPrefix, enmLogLevel_Error, "init file %s failed\n", szFileName);
+        return E_OPEN_CSV_FAILED;
+    }
+ 
+    m_DataCache.clear(); 
+    vector<string> membersName;
+    PROJXXMAP<string, string> filedMap;
+    C${ClassName}Item memberInstance;
+  
+    while(csv_parser.IsHasMoreLine())
+    {
+        csv_parser.GetNextRow(csv_row); 
+        int fieldCount = csv_row.size();
+        if (csv_parser.GetReadedLineCount() <= ${config.ignoreLine})
+        {
+            if (csv_parser.GetReadedLineCount() == ${config.filedNameLine})
+            {
+                for (int i = 0; i < fieldCount; i++)
+                {
+                    membersName.push_back(csv_row[i]);
+                    if (membersName[i] == "")
+                    {
+                        KNET::WriteLog(szLogPrefix, enmLogLevel_Error, "Invaild, ${ClassName}Table Header is NULL\n");
+                        return E_INVALID_CSV_HEADERFIELD;
+                    }
+                }
+
+            }
+        }
+        else
+        {       
+            filedMap.clear();           
+            for (int i = 0; i < fieldCount; i++)
+            {
+                if (filedMap.find(membersName[i]) != filedMap.end())
+                {
+                    KNET::WriteLog(szLogPrefix, enmLogLevel_Error, "Invaild,  ${ClassName}Table Header  key already exists {%s}\n", membersName[i].c_str());
+                    return E_DUPLICATE_CSV_HEADERFIELD;
+                }
+                else
+                {
+                    filedMap.insert(make_pair(membersName[i], csv_row[i]));
+                }                       
+            }
+            if (filedMap.find("Id") == filedMap.end() || filedMap["Id"] == "")
+            {
+                KNET::WriteLog(szLogPrefix, enmLogLevel_Error, "Invaild, ${ClassName}Table ID is NULL\n");
+                return E_INVALID_CSV_IDFIELD;
+            }
+            else
+            {
+                int key = String2Int(filedMap["Id"]);                                       
+                memberInstance.SetData(filedMap);           
+                if (m_DataCache.find(key) != m_DataCache.end())
+                {
+                    KNET::WriteLog(szLogPrefix, enmLogLevel_Error, "Invaild,  ${ClassName}Table Id already exists {%d}\n", key);
+                    return E_DUPLICATE_CSV_HEADERFIELD;
+                }
+                else
+                {
+                    m_DataCache.insert(make_pair(key, memberInstance));
+                }   
+            }
+        }
+    }
+    
+    return S_OK;
+}
+
+const C${ClassName}ItemContainer& C${ClassName}Table::GetDataCache()
+{
+    return m_DataCache;
+}
+
+const C${ClassName}Item* C${ClassName}Table::GetData(int key)
+{
+    if (m_DataCache.find(key) != m_DataCache.end())
+    {
+        return &(m_DataCache[key]);
+    }
+
+    return NULL;
+}
+
+void C${ClassName}Table::Clear()
+{
+    m_DataCache.clear();
+}

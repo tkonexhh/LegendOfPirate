@@ -1,0 +1,61 @@
+\#ifndef __${UpperClassName}_ITEM_H__
+\#define __${UpperClassName}_ITEM_H__
+\#include <string>
+\#include <vector>
+\#include <algorithm>
+\#include <typedef/knet_map_typedef.h>
+#set upper_class_name = $UpperClassName
+#set class_members = $ClassMembers
+#set members_comments = $MembersComments
+using namespace std;
+
+class C${ClassName}Item
+{
+#if $len($XlsxParser.GetCustomType()) > 0
+public:
+#end if
+    #for custom_type in $XlsxParser.GetCustomType()
+    struct ${custom_type["CustomType"]}
+    {
+        #for k in $range(0, $custom_type["Size"])
+        ${custom_type["ElementType"]} parm$k;
+        #end for
+        void SetData(const string& datStr)
+        {            
+            vector<${custom_type["ElementType"]}> vec;
+            String2Vector(datStr, vec);
+            #for k in $range(0, $custom_type["Size"])        
+            m_Param$k = vec[$k];            
+            #end for
+        }
+    };
+    #end for
+public:
+    #set $index = 0
+    #for member in class_members
+    ///////*${members_comments[$index]}*/
+    #if $class_members[$index]["Type"] == 'string'
+    const ${member["Type"]}& get_${member["Name"]}() const
+    #else if $XlsxParser.CheckIsBaseType($member["Type"])            
+    ${member["Type"]} get_${member["Name"]}() const
+    #else 
+    const ${member["Name"]}& get_${member["Name"]}() const
+    #end if 
+    {
+        return m_${member["Name"]};
+    }
+    
+    #set $index = $index + 1
+    #end for
+    void SetData(PROJXXMAP<string, string>& filedMap);
+    
+private:
+    #for member in class_members    
+    #if $XlsxParser.CheckIsBaseType($member["Type"])            
+    ${member["Type"]} m_${member["Name"]};
+    #else 
+    ${member["Name"]} m_${member["Name"]};
+    #end if
+    #end for
+};
+\#endif

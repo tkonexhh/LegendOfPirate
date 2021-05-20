@@ -1,0 +1,76 @@
+//Auto Generate Don't Edit it
+using UnityEngine;
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using Qarth;
+
+namespace GameWish.Game
+{
+    public partial class TD{{.ClassName}}
+    {
+      {{if .NeedCopyMethod}} 
+      public void CopyFrom(TD{{.ClassName}} from)
+      { 
+          {{range $k, $v := .Members}}
+            m_{{$v.FormatPrivateName}} = from.{{$v.FormatGetPropName}}; {{end}}
+      } {{end}}  
+      {{range $k, $v := .Members}} {{if eq $v.MemberType "int"}}
+        private EInt m_{{$v.FormatPrivateName}} = 0; {{else if eq $v.MemberType "string"}}
+        private string m_{{$v.FormatPrivateName}}; {{else if eq $v.MemberType "float"}}
+        private EFloat m_{{$v.FormatPrivateName}} = 0.0f; {{else if eq $v.MemberType "byte"}}
+        private EInt m_{{$v.FormatPrivateName}} = 0; {{else if eq $v.MemberType "bool"}}
+        private bool m_{{$v.FormatPrivateName}} = false; {{else if eq $v.MemberType "Vector2"}}
+        private Vector2 m_{{$v.FormatPrivateName}} = Vector2.zero; {{else if eq $v.MemberType "Vector3"}}
+        private Vector3 m_{{$v.FormatPrivateName}} = Vector3.zero; {{else}}
+        private {{$v.MemberType}} m_{{$v.FormatPrivateName}}; {{end}} {{end}}
+        
+        //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
+      {{range $k, $v := .Members}}
+        /// <summary>
+        /// {{$v.Comment}}
+        /// </summary>
+        public {{if $v.NeedVirtual}} virtual {{end}}{{if eq $v.MemberType "byte"}}int {{else}} {{$v.MemberType}}  {{end}}{{$v.FormatGetPropName}} {get { return m_{{$v.FormatPrivateName}}; } }
+       {{end}}
+
+        public void ReadRow(DataStreamReader dataR, int[] filedIndex)
+        {
+          //var schemeNames = dataR.GetSchemeName();
+          int col = 0;
+          while(true)
+          {
+            col = dataR.MoreFieldOnRow();
+            if (col == -1)
+            {
+              break;
+            }
+            switch (filedIndex[col])
+            { 
+            {{range $k, $v := .Members}}
+                case {{$k}}:{{if eq $v.MemberType "int"}}
+                    m_{{$v.FormatPrivateName}} = dataR.ReadInt();{{else if eq $v.MemberType "string"}}
+                    m_{{$v.FormatPrivateName}} = dataR.ReadString();{{else if eq $v.MemberType "float"}}
+                    m_{{$v.FormatPrivateName}} = dataR.ReadFloat();{{else if eq $v.MemberType "byte"}}
+                    m_{{$v.FormatPrivateName}} = dataR.ReadInt();{{else if eq $v.MemberType "bool"}}
+                    m_{{$v.FormatPrivateName}} = dataR.ReadBool();{{else if eq $v.MemberType "Vector2"}}
+                    m_{{$v.FormatPrivateName}} = dataR.ReadVector2();{{else if eq $v.MemberType "Vector3"}}
+                    m_{{$v.FormatPrivateName}} = dataR.ReadVector3();{{end}}
+                    break;{{end}}
+                default:
+                    //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
+                    break;
+            }
+          }
+
+        }
+        
+        public static Dictionary<string, int> GetFieldHeadIndex()
+        {
+          Dictionary<string, int> ret = new Dictionary<string, int>({{len .Members}});
+          {{range $k, $v := .Members}}
+          ret.Add("{{$v.Name}}", {{$k}});{{end}}
+          return ret;
+        }
+    } 
+}//namespace LR

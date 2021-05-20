@@ -1,0 +1,135 @@
+#set class_members = $ClassMembers
+#set members_comments = $MembersComments
+#set config = $Config
+//Auto Generate Don't Edit it
+using UnityEngine;
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+namespace LR
+{
+    public partial class TD$ClassName
+    {
+      #if $config.CheckNeedCopyMethod($ClassName)
+      public void CopyFrom(TD$ClassName from)
+      {
+        #for member in class_members
+            m_${member["Name"]} = from.${member["Name"]};
+        #end for
+      }
+      #end if
+      
+      #for member in class_members
+      #if $XlsxParser.CheckIsBaseType($member["Type"])
+        #if $member["Type"] == 'int'
+        private EInt $config.FormatPrivatePropName($member["Name"]) = 0;
+        #else if $member["Type"] == 'float'
+        private EFloat $config.FormatPrivatePropName($member["Name"]) = 0.0f;
+        #else if $member["Type"] == 'byte'
+        private EInt $config.FormatPrivatePropName($member["Name"]) = 0;
+        #else if $member["Type"] == 'bool'
+        private bool $config.FormatPrivatePropName($member["Name"]) = false;
+        #else if $member["Type"] == 'Vector2'
+        private Vector2 $config.FormatPrivatePropName($member["Name"]) = Vector2.zero;
+        #else if $member["Type"] == 'Vector3'
+        private Vector3 $config.FormatPrivatePropName($member["Name"]) = Vector3.zero;
+        #else
+        private ${member["Type"]} $config.FormatPrivatePropName($member["Name"]);
+        #end if
+      #else
+      #set $kuohao = "()"
+        private ${XlsxParser.ParseCustomTypeForCSharp($member["Type"])["Type"]} m_${member["Name"]} = new ${XlsxParser.ParseCustomTypeForCSharp($member["Type"])["Type"]}${kuohao};
+      #end if
+      #end for
+      
+      private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
+      #set $index = 0
+      #for member in class_members
+      
+        /// <summary>
+        /// ${members_comments[$index]}
+        /// </summary>
+      #if $XlsxParser.CheckIsBaseType($member["Type"])
+        #set $memberType = $member["Type"]
+        #if $config.CheckNeedVirtual($ClassName, $member["Name"])
+        public virtual $config.FormatGetPropName($member["Name"]) {get { return $config.FormatPrivatePropName($member["Name"]); } }
+        #else
+        public ${memberType} $config.FormatGetPropName($member["Name"]) {get { return $config.FormatPrivatePropName($member["Name"]); } }
+        #end if
+      #else
+        ${XlsxParser.ParseCustomTypeForCSharp($member["Type"])["Type"]} ${member["Name"]} {get { return m_${member["Name"]}; }}
+      #end if
+      #set $index = $index + 1
+      #end for
+
+        public void ReadRow(DataStreamReader dataR, int[] filedIndex)
+        {
+          var schemeNames = dataR.GetSchemeName();
+          int col = 0;
+          while(true)
+          {
+            col = dataR.MoreFieldOnRow();
+            if (col == -1)
+            {
+              break;
+            }
+            switch (filedIndex[col])
+            { 
+            #set $index = 0
+            #for member in class_members
+                case $index:
+                #if $class_members[$index]["Type"] == 'string'
+                    $config.FormatPrivatePropName($class_members[$index]["Name"]) = dataR.ReadString();
+                #else if $class_members[$index]["Type"] == 'int'
+                    $config.FormatPrivatePropName($class_members[$index]["Name"]) = dataR.ReadInt();
+                #else if $class_members[$index]["Type"] == 'byte'
+                    $config.FormatPrivatePropName($class_members[$index]["Name"]) = dataR.ReadInt();
+                #else if $class_members[$index]["Type"] == 'float'
+                    $config.FormatPrivatePropName($class_members[$index]["Name"]) = dataR.ReadFloat();
+                #else if $class_members[$index]["Type"] == 'bool'
+                    $config.FormatPrivatePropName($class_members[$index]["Name"]) = dataR.ReadBool();
+                #else if $class_members[$index]["Type"] == 'Vector2'
+                    $config.FormatPrivatePropName($class_members[$index]["Name"]) = dataR.ReadVector2();
+                #else if $class_members[$index]["Type"] == 'Vector3'
+                    $config.FormatPrivatePropName($class_members[$index]["Name"]) = dataR.ReadVector3();
+                #end if
+                    break;
+            #set $index = $index + 1
+            #end for
+                default:
+                    TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
+                    break;
+            }
+          }
+
+        }
+        
+        public DataStreamReader.FieldType GetFieldTypeInNew(string fieldName)
+        {
+            if (m_DataCacheNoGenerate.ContainsKey(fieldName))
+            {
+                return m_DataCacheNoGenerate[fieldName].fieldType;
+            }
+            return DataStreamReader.FieldType.Unkown;
+        }
+        
+        public static Dictionary<string, int> GetFieldHeadIndex()
+        {
+          #set $lenght = 0
+          #for member in class_members
+          #set $lenght = $lenght + 1
+          #end for
+          Dictionary<string, int> ret = new Dictionary<string, int>(${lenght});
+          #set $index = 0
+          
+          #for member in class_members
+          ret.Add("${class_members[$index]["Name"]}", ${index});
+          #set $index = $index + 1
+          #end for
+          return ret;
+        }
+        
+        
+    }
+}//namespace LR

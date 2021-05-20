@@ -1,0 +1,28 @@
+\#ifndef __${UpperClassName}_TABLE_H__
+\#define __${UpperClassName}_TABLE_H__
+#set class_members = $ClassMembers
+\#include <string>
+\#include <string.h>
+\#include <vector>
+\#include <algorithm>
+\#include <typedef/knet_map_typedef.h>
+\#include <utility>
+\#include "${ClassName}Item.h"
+
+using namespace std;
+
+typedef PROJXXMAP<int, C${ClassName}Item>	    C${ClassName}ItemContainer;
+typedef C${ClassName}ItemContainer::const_iterator	C${ClassName}ItemContainerCIt;
+
+class C${ClassName}Table
+{
+public:     
+    int32_t Parse(const char* szLogPrefix, const char* szFileName);
+    const C${ClassName}ItemContainer& GetDataCache();
+    const C${ClassName}Item* GetData(int key);
+    void    Clear();
+private:        
+    C${ClassName}ItemContainer m_DataCache;
+};
+
+\#endif

@@ -1,0 +1,23 @@
+\#include "${ClassName}Item.h"
+\#include "common/common_string.h"
+#set class_members = $ClassMembers
+#set members_comments = $MembersComments
+
+void C${ClassName}Item::SetData(PROJXXMAP<string, string>& filedMap)
+{
+    #set $index = 0                 
+    #for member in class_members                                                
+    #if $class_members[$index]["Type"] == 'string'
+    m_${class_members[$index]["Name"]} = filedMap["${class_members[$index]["Name"]}"];    
+    #else if $class_members[$index]["Type"] == 'int'            
+    m_${class_members[$index]["Name"]} = String2Int(filedMap["${class_members[$index]["Name"]}"]);
+    #else if $class_members[$index]["Type"] == 'float'
+    m_${class_members[$index]["Name"]} = String2Float(filedMap["${class_members[$index]["Name"]}"]);
+    #else if $class_members[$index]["Type"] == 'bool'           
+    m_${class_members[$index]["Name"]} = String2Bool(filedMap["${class_members[$index]["Name"]}"]);
+    #else
+    m_${class_members[$index]["Name"]}.SetData(filedMap["${class_members[$index]["Name"]}"]);
+    #end if             
+    #set $index = $index + 1
+    #end for
+}

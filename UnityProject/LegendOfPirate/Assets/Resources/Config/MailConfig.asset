@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04982b8c66fdb405a8daed9b9e2558b1, type: 3}
+  m_Name: MailConfig
+  m_EditorClassIdentifier: 
+  m_MailSender: 2011305156@qq.com
+  m_MailPWD: cuawkeruukycdhia
+  m_MailReceiver: 2011305156@qq.com
+  m_EnableSSL: 1
+  m_SmtpPort: 587
+  m_MailClient: 2
+  m_CustomSmtp: smtp.qq.com

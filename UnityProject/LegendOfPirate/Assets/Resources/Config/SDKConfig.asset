@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a30cbcb9bb3e0b41823e663504d8534, type: 3}
+  m_Name: SDKConfig
+  m_EditorClassIdentifier: 
+  bundleIDIos: 
+  bundleIDAndroid: happy.match.game
+  signatures: -1
+  iosAppID: 
+  channelID: 
+  udeskConfig:
+    domain: udesk-rd-bj-10.udesk.cn
+    appid: cc57963d6284bfe7
+    appkey: 8bcc3f04490559068bd4a894272dc588
+  buglyConfig:
+    isEnable: 1
+    isDebugMode: 0
+    priority: 1
+    buglyID_Android: 8b4ef9b541
+    buglyID_iOS: 
+  dataAnalysisConfig:
+    isEnable: 0
+    remoteConfUrl: 
+    remoteConfAppName: 
+    appsflyerConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+      appKey: DdWbxT9VRELdEsZiAcnGea
+    umengConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+      iosAppKey: 5dd3900b4ca357c5250002b1
+      androidAppKey: 5dd3900b4ca357c5250002b1
+      appChannelId: 
+    gasdkConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+    tdConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+      appId: 
+    trafficConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+      secure_key: 
+      user_id: 0
+      appid_Android: 0
+      appid_IOS: 0
+    embedsdkConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+      enableAF: 1
+      afAppKey: DdWbxT9VRELdEsZiAcnGea
+  adsConfig:
+    isEnable: 1
+    interstitialAdCoolingTime: 30
+    rewardedVideoAdCoolingTime: 30
+    dspmobAdsConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+      appid: f5228cf8-e7f8-484a-b03a-4aac7c86d411
+      token: d4cc8ab8305380d3a9149cacdfdfcac0
+      pubName: wesdk
+      domian: https://onlineapi.rtb.rtblab.net/
+    taurusXAdsConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+      appIDAndroid: dfb67438-beb2-49e5-b4fb-ae11119a4255
+      appIDIos: 
+  socialConfig:
+    isEnable: 0
+    fbConfig:
+      appLinkAndroid: 
+      appLinkiOS: 
+      previewImageAndroid: 
+      previewImageiOS: 
+      shareLink: 
+  jpushConfig:
+    isEnable: 1
+    isDebugMode: 0
+    priority: 1
+    JPushAppKey: 

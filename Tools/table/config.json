@@ -1,0 +1,24 @@
+{
+    "DontOutputCode": [
+        "const",
+        "language",
+        "language_zh",
+        "language_tw",
+		"language_de",
+        "language_pt",
+		"language_uk",
+        "language_es",
+		"language_fr",
+        "language_ro",
+		"language_ru",		
+        "guide",
+        "guide_step",
+        "social_adapter",
+        "purchase",
+        "app_config",
+        "ad_config",
+        "ad_placement",
+        "remote_config",
+        "ad_native_view"
+    ]
+}

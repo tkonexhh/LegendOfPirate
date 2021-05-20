@@ -1,0 +1,39 @@
+#set config = $Config
+using UnityEngine;
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+public static class TableParser
+{
+    public delegate void DOnAddRow(string[] filedMap, int key);
+    
+     public static void Parse(string fileData, DOnAddRow onAddRow)
+    {
+
+        TxtReader txtReader = new TxtReader();
+        txtReader.ParseData(fileData, 0);
+        int fieldCount = txtReader.GetCols();
+        for (int row = ${config.filedNameLine}; row < txtReader.GetRows(); row++)
+        {                
+            string[] rowField = txtReader.GetARow(row);
+            int key = Helper.String2Int(rowField[0]);
+            onAddRow(rowField, key);
+        }          
+    }
+    
+    public delegate void DOnAddRowWithStringKey(string[] filedMap, string key);
+    public static void Parse(string fileData, DOnAddRowWithStringKey onAddRow)
+    {
+
+        TxtReader txtReader = new TxtReader();
+        txtReader.ParseData(fileData, 0);
+        int fieldCount = txtReader.GetCols();
+        for (int row = ${config.filedNameLine}; row < txtReader.GetRows(); row++)
+        {                
+            string[] rowField = txtReader.GetARow(row);
+            string key = rowField[0];
+            onAddRow(rowField, key);
+        }          
+    }
+}
