@@ -167,7 +167,8 @@ namespace GameWish.Game
         {
             OnDraw();
             Debug.LogError("Draw");
-            m_CommandBuffer.DrawMeshInstanced(m_Group.drawMesh, 0, m_Group.material, 1, m_TRSMatrices, m_Size, m_MatPropBlock);
+            m_CommandBuffer.DrawMeshInstanced(m_Group.drawMesh, 0, m_Group.material, 0, m_TRSMatrices, m_Size, m_MatPropBlock);
+            Graphics.ExecuteCommandBuffer(m_CommandBuffer);
         }
 
         protected virtual void OnDraw()

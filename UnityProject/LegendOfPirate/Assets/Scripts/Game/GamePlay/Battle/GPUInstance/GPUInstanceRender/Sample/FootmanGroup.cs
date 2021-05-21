@@ -9,6 +9,7 @@ namespace GameWish.Game
         public static int AnimRate1ID = Shader.PropertyToID("_AnimRate1");
         public static int AnimRate2ID = Shader.PropertyToID("_AnimRate2");
         public static int AnimLerpID = Shader.PropertyToID("_AnimLerp");
+        public static int GrassInfosID = Shader.PropertyToID("_AnimInfo");
 
         public FootmanGroup(Mesh mesh, Material material, AnimDataInfo animDataInfo) : base(mesh, material, animDataInfo)
         {

@@ -8,12 +8,11 @@ namespace GameWish.Game
     public class GPUInstanceMgr : TMonoSingleton<GPUInstanceMgr>
     {
         [SerializeField] public int count;// => m_RenderGroupLst.Count;
-        private List<GPUInstanceGroup> m_RenderGroupLst;
+        private List<GPUInstanceGroup> m_RenderGroupLst = new List<GPUInstanceGroup>();
         private Dictionary<string, GPUInstanceGroup> m_RenderGroupMap;
 
         public override void OnSingletonInit()
         {
-            m_RenderGroupLst = new List<GPUInstanceGroup>();
             m_RenderGroupMap = new Dictionary<string, GPUInstanceGroup>();
         }
 
