@@ -9,9 +9,5 @@ namespace GameWish.Game
     {
         public static int MAX_CAPACITY = 1024;
 
-
     }
-
-    public delegate void OnCellCreate(GPUInstanceCell cell);
-    public delegate void OnCellDraw(MaterialPropertyBlock mpb);
 }

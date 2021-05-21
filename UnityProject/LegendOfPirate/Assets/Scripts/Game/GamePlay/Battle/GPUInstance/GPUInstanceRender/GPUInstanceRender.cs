@@ -11,20 +11,20 @@ namespace GameWish.Game
         [SerializeField] private TextAsset animInfoText;
         List<GPUInstanceGroup> m_Groups;
 
-        private void Awake()
-        {
-            m_Groups = new List<GPUInstanceGroup>();
-            AnimDataInfo animDataInfo = JsonUtility.FromJson<AnimDataInfo>(animInfoText.text);
-            GPUInstanceGroup group = new FootmanGroup(m_Mesh, material, animDataInfo);
-            m_Groups.Add(group);
-        }
+        // private void Awake()
+        // {
+        //     m_Groups = new List<GPUInstanceGroup>();
+        //     AnimDataInfo animDataInfo = JsonUtility.FromJson<AnimDataInfo>(animInfoText.text);
+        //     GPUInstanceGroup group = new FootmanGroup(m_Mesh, material, animDataInfo);
+        //     m_Groups.Add(group);
+        // }
 
-        private void Update()
-        {
-            for (int i = 0; i < m_Groups.Count; i++)
-            {
-                m_Groups[i].Draw();
-            }
-        }
+        // private void Update()
+        // {
+        //     for (int i = 0; i < m_Groups.Count; i++)
+        //     {
+        //         m_Groups[i].Draw();
+        //     }
+        // }
     }
 }

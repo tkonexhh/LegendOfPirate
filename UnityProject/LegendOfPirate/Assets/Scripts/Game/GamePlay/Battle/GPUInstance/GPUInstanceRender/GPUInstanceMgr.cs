@@ -7,9 +7,12 @@ namespace GameWish.Game
 {
     public class GPUInstanceMgr : TMonoSingleton<GPUInstanceMgr>
     {
-        [SerializeField] public int count;// => m_RenderGroupLst.Count;
+
         private List<GPUInstanceGroup> m_RenderGroupLst = new List<GPUInstanceGroup>();
         private Dictionary<string, GPUInstanceGroup> m_RenderGroupMap;
+
+
+        public List<GPUInstanceGroup> renderGroupLst => m_RenderGroupLst;
 
         public override void OnSingletonInit()
         {
@@ -46,13 +49,17 @@ namespace GameWish.Game
 
 
 
-        private void Update()
+        // private void Update()
+        // {
+        //     for (int i = 0; i < m_RenderGroupLst.Count; i++)
+        //     {
+        //         m_RenderGroupLst[i].Draw();
+        //     }
+        // }
+
+        private void OnDestroy()
         {
-            for (int i = 0; i < m_RenderGroupLst.Count; i++)
-            {
-                m_RenderGroupLst[i].Draw();
-            }
-            count = m_RenderGroupLst.Count;
+            m_RenderGroupLst.Clear();
         }
     }
 
