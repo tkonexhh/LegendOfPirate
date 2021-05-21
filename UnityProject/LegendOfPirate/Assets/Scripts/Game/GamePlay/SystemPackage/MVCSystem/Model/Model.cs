@@ -15,6 +15,11 @@ namespace GameWish.Game
 
         }
 
+        public void LoadDataFromDb()
+        {
+
+        }
+
         #endregion
 
 
