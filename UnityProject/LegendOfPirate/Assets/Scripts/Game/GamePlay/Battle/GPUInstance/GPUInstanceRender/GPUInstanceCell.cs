@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace GameWish.Game
 {
@@ -22,7 +23,7 @@ namespace GameWish.Game
         public int Size => m_Size;
         public bool isEmpty => Size == 0;
 
-
+        CommandBuffer m_CommandBuffer;
         // //==static
         // public static GPUInstanceCell CreateCell(GPUInstanceGroup group)
         // {
@@ -42,6 +43,7 @@ namespace GameWish.Game
             m_Items = new GPUInstanceCellItem[m_Capacity];
             m_TRSMatrices = new Matrix4x4[m_Capacity];
             m_MatPropBlock = new MaterialPropertyBlock();
+            m_CommandBuffer = new CommandBuffer();
             OnCellInit();
         }
 
@@ -164,7 +166,9 @@ namespace GameWish.Game
         public void Draw()
         {
             OnDraw();
-            Graphics.DrawMeshInstanced(m_Group.drawMesh, 0, m_Group.material, m_TRSMatrices, m_Size, m_MatPropBlock);
+            Debug.LogError("Draw");
+            m_CommandBuffer.DrawMeshInstanced(m_Group.drawMesh, 0, m_Group.material, 0, m_TRSMatrices, m_Size, m_MatPropBlock);
+            Graphics.ExecuteCommandBuffer(m_CommandBuffer);
         }
 
         protected virtual void OnDraw()

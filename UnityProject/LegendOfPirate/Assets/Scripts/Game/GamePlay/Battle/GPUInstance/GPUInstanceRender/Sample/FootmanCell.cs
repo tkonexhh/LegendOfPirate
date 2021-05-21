@@ -29,7 +29,6 @@ namespace GameWish.Game
 
         protected override void OnDraw()
         {
-
             for (int i = 0; i < m_Size; i++)
             {
                 var cell = m_Items[i] as FootmanCellItem;

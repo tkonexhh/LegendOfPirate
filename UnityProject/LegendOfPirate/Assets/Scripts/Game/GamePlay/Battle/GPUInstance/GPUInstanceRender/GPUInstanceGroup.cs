@@ -13,6 +13,7 @@ namespace GameWish.Game
 
         public Mesh drawMesh => m_DrawMesh;
         public Material material => m_Mat;
+        public string name { get; private set; }
 
         private int m_DrawCount;
         private int m_DrawCapacity;
@@ -25,7 +26,7 @@ namespace GameWish.Game
             m_Mat = material;
             m_AnimDataInfo = animDataInfo;
             m_Cells = new List<GPUInstanceCell>();
-            // CreateCell();
+            name = mesh.name;
         }
 
         public void AddCellItem(GPUInstanceCellItem cellItem)
