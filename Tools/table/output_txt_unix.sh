@@ -1,6 +1,6 @@
 WORKSPACE=$(cd `dirname $0`; pwd)
 SOURCETABLEDIR=$WORKSPACE/../../Tables/Sources/
-TABLERESDIR=$WORKSPACE/../../UnityProject/March3D/Assets/StreamingAssets/config
+TABLERESDIR=$WORKSPACE/../../UnityProject/LegendOfPirate/Assets/StreamingAssets/config
 
 cd $WORKSPACE
 printf $WORKSPACE

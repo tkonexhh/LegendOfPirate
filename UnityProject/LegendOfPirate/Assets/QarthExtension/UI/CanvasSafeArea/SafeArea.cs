@@ -13,7 +13,7 @@ namespace GameWish.Game
 	        var safeRect = Screen.safeArea;
 	        var canvasRect = (m_Canvas.transform as RectTransform).rect;
 	        float deltaTop = (Screen.height - safeRect.height) / Screen.height * canvasRect.height;
-	        Debug.LogError(safeRect + "-----" + canvasRect + "------" + Screen.height + "----" + deltaTop);
+	        // Debug.LogError(safeRect + "-----" + canvasRect + "------" + Screen.height + "----" + deltaTop);
 	
 	        var rectRoot = transform as RectTransform;
 	
