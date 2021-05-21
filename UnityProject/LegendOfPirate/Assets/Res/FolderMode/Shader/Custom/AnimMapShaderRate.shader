@@ -4,6 +4,7 @@
     {
         _MainTex ("Texture", 2D) = "white" { }
         _AnimMap ("AnimMap", 2D) = "white" { }
+        _AnimRate ("_AnimRate", Range(0, 1)) = 0
     }
     SubShader
     {
@@ -13,7 +14,10 @@
 
         Pass
         {
-            CGPROGRAM
+            Tags { "LightMode" = "UniversalForward" }
+            
+            Cull Back
+            HLSLPROGRAM
             
             #pragma vertex vert
             #pragma fragment frag
@@ -21,7 +25,8 @@
             #pragma multi_compile_instancing
 
 
-            #include "UnityCG.cginc"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
             struct appdata
             {
@@ -38,7 +43,7 @@
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
-            sampler2D _MainTex;float4 _MainTex_ST;
+            TEXTURE2D(_MainTex);SAMPLER(sampler_MainTex);float4 _MainTex_ST;
             sampler2D _AnimMap;float4 _AnimMap_TexelSize;//x == 1/width
 
 
@@ -71,18 +76,18 @@
 
                 v2f o;
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                o.vertex = UnityObjectToClipPos(pos);
+                o.vertex = TransformObjectToHClip(pos);
                 o.f = animLerp;
                 return o;
             }
             
-            fixed4 frag(v2f i): SV_Target
+            float4 frag(v2f i): SV_Target
             {
                 // return i.f;
-                fixed4 col = tex2D(_MainTex, i.uv);
+                float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
                 return col;
             }
-            ENDCG
+            ENDHLSL
             
         }
     }

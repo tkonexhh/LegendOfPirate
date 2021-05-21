@@ -8,6 +8,10 @@ namespace GameWish.Game
     public class RoleBase : EntityBase
     {
 
+        public RoleBase() : base()
+        {
+            AddComponent(new RoleRenderComponent());
+        }
     }
 
 }

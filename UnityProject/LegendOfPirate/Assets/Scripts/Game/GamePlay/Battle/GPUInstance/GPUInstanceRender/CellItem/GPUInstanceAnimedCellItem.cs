@@ -59,6 +59,8 @@ namespace GameWish.Game
         private static Dictionary<string, AnimMapClip> s_AnimDataMap;
         public static void SetAnimData(AnimDataInfo animDataInfo)
         {
+            if (s_AnimDataInfo != null) return;
+
             s_AnimDataInfo = animDataInfo;
             s_AnimDataMap = new Dictionary<string, AnimMapClip>();
             foreach (var animData in s_AnimDataInfo.animMapClips)

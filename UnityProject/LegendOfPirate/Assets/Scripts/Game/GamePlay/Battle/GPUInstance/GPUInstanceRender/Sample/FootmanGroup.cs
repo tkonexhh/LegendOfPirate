@@ -14,18 +14,18 @@ namespace GameWish.Game
         {
             FootmanCellItem.SetAnimData(animDataInfo);
 
-            for (int x = 0; x < 3; x++)
-            {
-                for (int y = 0; y < 3; y++)
-                {
-                    FootmanCellItem item = new FootmanCellItem();
-                    item.Play("Run", true);
-                    // item.CrossFade("Run", 1.0f, true);
-                    item.pos = new Vector3(x * 2, 0, y * 2);
-                    item.rotation = Quaternion.identity;
-                    AddCellItem(item);
-                }
-            }
+            // for (int x = 0; x < 3; x++)
+            // {
+            //     for (int y = 0; y < 3; y++)
+            //     {
+            //         FootmanCellItem item = new FootmanCellItem();
+            //         item.Play("Run", true);
+            //         // item.CrossFade("Run", 1.0f, true);
+            //         item.pos = new Vector3(x * 2, 0, y * 2);
+            //         item.rotation = Quaternion.identity;
+            //         AddCellItem(item);
+            //     }
+            // }
 
         }
 
