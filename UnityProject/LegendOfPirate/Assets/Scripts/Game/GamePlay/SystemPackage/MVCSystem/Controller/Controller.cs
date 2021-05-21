@@ -5,13 +5,25 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public abstract class Controller : IController, ICacheAble
+    public abstract class Controller : IController, ICacheAble, ICacheType
     {
         #region ICacheAble
 
-        public bool cacheFlag { get; set; }
+        public bool cacheFlag
+        {
+            get; set;
+        }
 
         public virtual void OnCacheReset()
+        {
+
+        }
+
+        #endregion
+
+        #region ICacheType
+
+        public virtual void Recycle2Cache()
         {
 
         }
@@ -22,6 +34,8 @@ namespace GameWish.Game
         {
             return ObjectPool<T>.S.Allocate();
         }
+
+
     }
 
 }

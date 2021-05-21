@@ -9,7 +9,7 @@ namespace GameWish.Game
 	{
         void Init();
 
-        void LoadDataFromDb();
+        IModel DeepCopy();
 	}
 	
 }

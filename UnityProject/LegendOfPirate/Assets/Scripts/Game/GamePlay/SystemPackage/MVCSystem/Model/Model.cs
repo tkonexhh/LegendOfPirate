@@ -12,17 +12,20 @@ namespace GameWish.Game
 
         public void Init()
         {
-
+            LoadDataFromDb();
         }
 
-        public void LoadDataFromDb()
+        public virtual IModel DeepCopy()
         {
-
+            return null;
         }
 
         #endregion
 
+        protected virtual void LoadDataFromDb()
+        {
 
+        }
     }
 
 }
