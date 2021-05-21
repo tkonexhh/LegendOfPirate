@@ -7,6 +7,15 @@ namespace GameWish.Game
 {
     public abstract class Controller : IController, ICacheAble, ICacheType
     {
+        #region IController
+
+        public virtual void Init()
+        {
+
+        }
+
+        #endregion
+
         #region ICacheAble
 
         public bool cacheFlag

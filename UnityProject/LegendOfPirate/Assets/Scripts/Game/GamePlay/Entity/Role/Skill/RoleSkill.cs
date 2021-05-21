@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public interface IController
+	public class RoleSkill
 	{
-        void Init();
+
 	}
 	
 }
