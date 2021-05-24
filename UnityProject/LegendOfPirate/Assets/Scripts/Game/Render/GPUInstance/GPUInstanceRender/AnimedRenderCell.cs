@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class GPUInstanceAnimedCellItem : GPUInstanceCellItem
+    public class AnimedRenderCell : RenderCell
     {
         private class Animation
         {

@@ -917,6 +917,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f00e3c3e7b84978902561e1d2b9fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mesh: {fileID: 1316794559948955275, guid: 0b7c4b5fe188e4598b9f228953a9d977, type: 3}
+  mat: {fileID: 2100000, guid: 8313048490a284c6b84e16733d13ca36, type: 2}
+  count: 50
+  animRate: 0
 --- !u!1 &1950002117
 GameObject:
   m_ObjectHideFlags: 0

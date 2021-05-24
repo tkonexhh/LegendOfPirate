@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class FootmanCellItem : GPUInstanceAnimedCellItem
+    public class FootmanRenderCell : AnimedRenderCell
     {
 
     }

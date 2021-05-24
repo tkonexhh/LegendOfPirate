@@ -8,7 +8,6 @@ namespace GameWish.Game
 {
     public class RoleRenderFeature : ScriptableRendererFeature
     {
-
         private RoleRenderPass m_Pass = null;
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
@@ -19,12 +18,10 @@ namespace GameWish.Game
                 renderer.EnqueuePass(m_Pass);
             }
         }
-
         public override void Create()
         {
             m_Pass = new RoleRenderPass();
         }
-
 
     }
 
@@ -44,21 +41,20 @@ namespace GameWish.Game
             try
             {
                 cmd.Clear();
-
                 foreach (var group in GPUInstanceMgr.S.renderGroupLst)
                 {
                     group.UpdateMaterialProperties();
-                    cmd.DrawMeshInstancedProcedural(group.drawMesh, 0, group.material, 0, 5, group.mpb);
+                    cmd.DrawMeshInstancedProcedural(group.mesh, 0, GPUInstanceMgr.S.mat, 0, group.size, group.mpb);
+                    // cmd.DrawMeshInstancedProcedural(group.drawMesh, 0, group.material, 0, 10, group.mpb);
+                    // cmd.DrawMeshInstanced(group.drawMesh, 0, group.material, 0, group.m_TRSMatrix, 10, group.mpb);
                 }
 
                 context.ExecuteCommandBuffer(cmd);
             }
-
             finally
             {
                 cmd.Release();
             }
         }
     }
-
 }

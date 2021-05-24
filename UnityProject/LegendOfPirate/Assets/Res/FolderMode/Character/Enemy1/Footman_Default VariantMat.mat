@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Footman_Default VariantMat
   m_Shader: {fileID: 4800000, guid: 3e13350c4e0a34631b817c59b4cdce19, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: PROCEDURAL_INSTANCING_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -32,5 +32,5 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AnimRate: 0.886
+    - _AnimRate: 0.659
     m_Colors: []

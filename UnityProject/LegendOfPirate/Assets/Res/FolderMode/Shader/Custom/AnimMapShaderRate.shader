@@ -1,4 +1,4 @@
-﻿Shader "XHH/AnimMapShader"
+﻿Shader "URP/XHH/AnimMapShader"
 {
     Properties
     {
@@ -10,13 +10,17 @@
     {
         Tags { "RenderPipeline" = "UniversalPipeline" "RenderType" = "Opaque" }
         LOD 100
-        Cull off
+        
 
         Pass
         {
+            Name "ForwardLit"
             Tags { "LightMode" = "UniversalForward" }
             
-            Cull Back
+            ZWrite On
+            ZTest On
+            Cull back
+            
             HLSLPROGRAM
             
             #pragma vertex vert
@@ -30,6 +34,7 @@
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+            // #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/UnityInstancing.hlsl"
 
             struct Attributes
             {
@@ -43,79 +48,72 @@
             {
                 float2 uv: TEXCOORD0;
                 float4 positionCS: SV_POSITION;
+                float4 positionWS: TEXCOORD2;
                 float f: TEXCOORD1;
                 // UNITY_VERTEX_INPUT_INSTANCE_ID
                 // UNITY_VERTEX_OUTPUT_STEREO
             };
 
-            TEXTURE2D(_MainTex);SAMPLER(sampler_MainTex);
+            TEXTURE2D_X(_MainTex);SAMPLER(sampler_MainTex);
             sampler2D _AnimMap;float4 _AnimMap_TexelSize;//x == 1/width
+            float4x4 _LocalToWorld;
 
+            // #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
+            struct AnimInfo
+            {
+                float4x4 trs;
+                float animRate1;
+                float animRate2;
+                float animLerp;
+            };
+            StructuredBuffer<AnimInfo> _AnimInfos;
+            // #endif
 
-            #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-                struct AnimInfo
-                {
-                    float4x4 trs;
-                    float animRate1;
-                    float animRate2;
-                    float animLerp;
-                };
-                StructuredBuffer<AnimInfo> _AnimInfo;
-            #endif
-
-            // UNITY_INSTANCING_BUFFER_START(UnityPerMaterial)
-            // UNITY_DEFINE_INSTANCED_PROP(float, _AnimRate1)
-            // UNITY_DEFINE_INSTANCED_PROP(float, _AnimRate2)
-            // UNITY_DEFINE_INSTANCED_PROP(float, _AnimLerp)
-            // UNITY_INSTANCING_BUFFER_END(UnityPerMaterial);
-            float _AnimRate;
-            
             void setup()
             {
                 
             }
+            
 
             Varyings vert(Attributes input, uint vid: SV_VertexID)//vid对应的就是
             {
-                Varyings output = (Varyings)0;
-                // UNITY_SETUP_INSTANCE_ID(input);
-                // UNITY_TRANSFER_INSTANCE_ID(input, output);
-                // UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
-
-
-                float animMap_y1 = _AnimRate;//UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _AnimRate1);
-                float animMap_y2 = 0;//UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _AnimRate2);
-                float animLerp = 0;//UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _AnimLerp);
+                Varyings output;
+                float3 positionOS = input.positionOS;
+                float4 pos;
 
                 // #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-                //     AnimInfo animInfo = _AnimInfo[instanceID];
-                //     animMap_y1 = animInfo.animRate1;
-                //     animMap_y2 = animInfo.animRate2;
-                //     animLerp = animInfo.animLerp;
-                //     input.positionOS = mul(AnimInfo.trs, float4(input.positionOS, 1)).xyz;
-                // #endif
+                uint instanceID = input.instanceID;
+                AnimInfo animInfo = _AnimInfos[instanceID];
+                float animMap_y1 = animInfo.animRate1;
+                float animMap_y2 = animInfo.animRate2;
+                float animLerp = animInfo.animLerp;
+                positionOS = mul(float3(0, 0, 0), positionOS);
 
-                
                 float animMap_x = (vid + 0.5) * _AnimMap_TexelSize.x;
                 
                 float4 pos1 = tex2Dlod(_AnimMap, float4(animMap_x, animMap_y1, 0, 0));
                 float4 pos2 = tex2Dlod(_AnimMap, float4(animMap_x, animMap_y2, 0, 0));
 
-                float4 pos = lerp(pos1, pos2, animLerp);
+                pos = lerp(pos1, pos2, animLerp);
+                positionOS = mul(animInfo.trs, float4(positionOS, 1)).xyz;
+                positionOS += pos;
+
+                // #endif
+                
+                float4 positionWS = mul(_LocalToWorld, float4(positionOS, 1));
+                positionWS /= positionWS.w;
 
                 
                 output.uv = input.uv;
-                output.positionCS = TransformObjectToHClip(input.positionOS);
-                output.f = animLerp;
+                output.positionWS = positionWS;
+                output.positionCS = TransformObjectToHClip(positionOS);
+                // output.positionCS = mul(UNITY_MATRIX_VP, positionWS);
                 return output;
             }
             
-            float4 frag(Varyings i): SV_Target
+            float4 frag(Varyings input): SV_Target
             {
-                // UNITY_SETUP_INSTANCE_ID(input);
-                // UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
-                // return i.f;
-                float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
+                float4 col = SAMPLE_TEXTURE2D_X(_MainTex, sampler_MainTex, input.uv);
                 return col;
             }
             ENDHLSL
