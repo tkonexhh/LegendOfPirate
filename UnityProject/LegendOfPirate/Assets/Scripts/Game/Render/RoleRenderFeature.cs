@@ -37,6 +37,9 @@ namespace GameWish.Game
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
+            if (!Application.isPlaying)
+                return;
+
             var cmd = CommandBufferPool.Get(NameOfCommandBuffer);
             try
             {
