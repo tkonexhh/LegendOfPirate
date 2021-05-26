@@ -16,7 +16,7 @@ namespace GameWish.Game
             Log.i("--------------World init--------------");
             m_IsInited = true;
 
-            BattleMgr.S.Init();
+            BattleMgr.S.OnInit();
 
         }
 
@@ -24,7 +24,7 @@ namespace GameWish.Game
         {
             if (m_IsInited == false)
                 return;
-
+            BattleMgr.S.OnUpdate();
         }
 
         public void OnDestroyed()

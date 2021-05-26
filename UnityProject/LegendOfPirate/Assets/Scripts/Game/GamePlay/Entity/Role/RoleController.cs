@@ -7,22 +7,29 @@ namespace GameWish.Game
 {
     public class RoleController : Controller
     {
-        protected RoleSkill m_EquipedSkill = null;
-        protected RoleRenderer m_Renderer;
+
+
+
 
         #region Override
 
         public override void OnInit()
         {
             base.OnInit();
-            m_Renderer = new RoleRenderer();
-            // m_Renderer
+        }
+
+        public override void OnUpdate()
+        {
+        }
+        public override void OnDestroyed()
+        {
         }
 
 
         public override void OnCacheReset()
         {
             base.OnCacheReset();
+            OnDestroyed();
         }
 
         public override void Recycle2Cache()
@@ -38,7 +45,7 @@ namespace GameWish.Game
 
         public RoleController EquipSkill(RoleSkill roleSkill)
         {
-            m_EquipedSkill = roleSkill;
+
 
             return this;
         }
