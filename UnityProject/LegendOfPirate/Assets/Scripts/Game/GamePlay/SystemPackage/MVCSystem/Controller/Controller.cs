@@ -39,10 +39,10 @@ namespace GameWish.Game
 
         #endregion
 
-        public static T Allocate<T>() where T : ICacheAble, new()
-        {
-            return ObjectPool<T>.S.Allocate();
-        }
+        //public static T Allocate<T>() where T : ICacheAble, new()
+        //{
+        //    return ObjectPool<T>.S.Allocate();
+        //}
 
 
     }

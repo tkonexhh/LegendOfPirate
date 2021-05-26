@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Qarth;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace GameWish.Game
 	{
         public T CreateController()
         {
-            T controller = new T();
+            T controller = ObjectPool<T>.S.Allocate();
 
             BuildController(controller);
 
