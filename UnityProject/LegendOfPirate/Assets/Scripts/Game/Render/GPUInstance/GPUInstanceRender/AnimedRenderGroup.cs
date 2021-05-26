@@ -8,11 +8,11 @@ namespace GameWish.Game
     public class AnimedRenderGroup : RenderGroup
     {
 
-        public AnimedRenderGroup(Mesh mesh, Material material, AnimDataInfo animDataInfo) : this(60, mesh, material, animDataInfo)
+        public AnimedRenderGroup(string name, Mesh mesh, Material material, AnimDataInfo animDataInfo) : this(name, 60, mesh, material, animDataInfo)
         {
         }
 
-        public AnimedRenderGroup(int capacity, Mesh mesh, Material material, AnimDataInfo animDataInfo) : base(capacity, mesh, material)
+        public AnimedRenderGroup(string name, int capacity, Mesh mesh, Material material, AnimDataInfo animDataInfo) : base(name, capacity, mesh, material)
         {
             AnimedRenderCell.SetAnimData(animDataInfo);// static 
         }

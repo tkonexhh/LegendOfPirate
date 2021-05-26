@@ -7,6 +7,7 @@ namespace GameWish.Game
 {
     public interface IBattleComponent
     {
+        void Init();
         void OnBattleInit();
         void OnBattleStart();
         void OnBattleUpdate();

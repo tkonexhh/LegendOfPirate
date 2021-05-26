@@ -35,17 +35,17 @@ namespace GameWish.Game
 
 
 
-        public RenderGroup(Mesh mesh, Material material) : this(60, mesh, material)
+        public RenderGroup(string name, Mesh mesh, Material material) : this(name, 60, mesh, material)
         {
         }
 
-        public RenderGroup(int capacity, Mesh mesh, Material material)
+        public RenderGroup(string name, int capacity, Mesh mesh, Material material)
         {
             m_Mesh = mesh;
             m_Mat = material;
             m_Capacity = capacity;
             m_ComputeBuffer = new ComputeBuffer(m_Capacity, 76);
-            name = mesh.name;
+            this.name = name;
         }
 
         public void AddRenderCell(RenderCell cell)
@@ -65,6 +65,10 @@ namespace GameWish.Game
         {
             m_RenderCellLst.Remove(cell);
             m_Size--;
+            if (m_Size == 0)
+            {
+                GPUInstanceMgr.S.RemoveRenderGroup(this);
+            }
         }
 
         public virtual void UpdateMaterialProperties()

@@ -33,6 +33,12 @@ namespace GameWish.Game
             return group;
         }
 
+        public void RemoveRenderGroup(RenderGroup group)
+        {
+            m_RenderGroupLst.Remove(group);
+            m_RenderGroupMap.Remove(group.name);
+        }
+
         public RenderGroup GetRenderGroup(string group)
         {
             if (!m_RenderGroupMap.ContainsKey(group))

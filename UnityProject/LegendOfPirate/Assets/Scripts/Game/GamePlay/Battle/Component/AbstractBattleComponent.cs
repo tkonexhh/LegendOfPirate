@@ -7,6 +7,7 @@ namespace GameWish.Game
 {
     public class AbstractBattleComponent : IBattleComponent
     {
+        public virtual void Init() { }
         public virtual void OnBattleInit() { }
         public virtual void OnBattleStart() { }
         public virtual void OnBattleUpdate() { }

@@ -18,7 +18,8 @@ namespace GameWish.Game
             m_IsInited = true;
 
             ModelMgr.S.OnInit();
-            BattleMgr.S.Init();
+
+            BattleMgr.S.OnInit();
 
         }
 
@@ -26,7 +27,7 @@ namespace GameWish.Game
         {
             if (m_IsInited == false)
                 return;
-
+            BattleMgr.S.OnUpdate();
         }
 
         public void OnDestroyed()

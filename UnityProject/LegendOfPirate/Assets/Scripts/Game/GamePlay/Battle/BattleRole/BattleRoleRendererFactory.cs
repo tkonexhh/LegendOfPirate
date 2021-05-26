@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class RoleRenderer
+    public class BattleRoleRendererFactory : ControllerFactory<BattleRoleRenderer>
     {
 
     }
