@@ -10,11 +10,15 @@ namespace GameWish.Game
         private BattleRoleControllerFactory m_RoleFactory;
         private List<BattleRoleController> m_RoleControllerLst;
 
-
-        public override void OnBattleInit()
+        public override void Init()
         {
             m_RoleFactory = new BattleRoleControllerFactory();
             m_RoleControllerLst = new List<BattleRoleController>();
+        }
+
+        public override void OnBattleInit()
+        {
+
 
             for (int i = 0; i < 10; i++)
             {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
@@ -33,6 +34,10 @@ namespace GameWish.Game
         public void OnInit()
         {
             GameObjectPoolMgr.S.AddPool("BattleRole", new GameObject(), 1000, 100);
+            for (int i = 0; i < m_BattleComponentList.Count; i++)
+            {
+                m_BattleComponentList[i].Init();
+            }
         }
 
         public void OnUpdate()
@@ -52,7 +57,6 @@ namespace GameWish.Game
             {
                 m_BattleComponentList[i].OnBattleInit();
             }
-
         }
 
         public void BattleStart()
@@ -66,6 +70,9 @@ namespace GameWish.Game
             {
                 m_BattleComponentList[i].OnBattleClean();
             }
+
+            Resources.UnloadUnusedAssets();
+            GC.Collect();
         }
 
         public void BattleUpate()
