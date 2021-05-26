@@ -11,16 +11,21 @@ namespace GameWish.Game
     {
         private bool m_IsInited = false;
 
-        public void Init()
+        public void OnInit()
         {
             Log.i("--------------World init--------------");
             m_IsInited = true;
         }
 
-        public void Update()
+        public void OnUpdate()
         {
             if (m_IsInited == false)
                 return;
+
+        }
+
+        public void OnDestroyed()
+        {
 
         }
 

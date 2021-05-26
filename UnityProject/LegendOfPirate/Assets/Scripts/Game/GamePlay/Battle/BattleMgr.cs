@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
@@ -20,14 +20,14 @@ namespace GameWish.Game
         {
             for (int i = 0; i < 10; i++)
             {
-                RoleBase role = new RoleBase();
+                RoleController role = new RoleController();
 
             }
         }
 
         private void Update()
         {
-            EntityMgr.S.Tick(Time.deltaTime);
+            //EntityMgr.S.Tick(Time.deltaTime);
         }
     }
 

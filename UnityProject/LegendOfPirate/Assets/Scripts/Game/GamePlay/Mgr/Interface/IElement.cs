@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace GameWish.Game
 {
-	public interface IMgr : IElement
+	public interface IElement 
 	{
+        void OnInit();
+        void OnUpdate();
+        void OnDestroyed();
+
 	}
 	
 }

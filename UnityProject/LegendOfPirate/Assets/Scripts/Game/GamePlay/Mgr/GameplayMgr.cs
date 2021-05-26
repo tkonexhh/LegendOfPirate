@@ -94,12 +94,12 @@ namespace GameWish.Game
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel);
 
                     MusicMgr.S.PlayBgMusic();
-                    GameWorldMgr.S.Init();
+                    GameWorldMgr.S.OnInit();
                 }
             }
             else
             {
-                GameWorldMgr.S.Update();
+                GameWorldMgr.S.OnUpdate();
             }
         }
 

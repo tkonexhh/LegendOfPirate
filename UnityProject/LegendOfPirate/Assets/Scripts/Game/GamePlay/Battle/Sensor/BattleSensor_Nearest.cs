@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ namespace GameWish.Game
     public class BattleSensor_Nearest : BattleSensor
     {
 
-        public override EntityBase PickTarget()
+        public override IElement PickTarget()
         {
             return null;
         }

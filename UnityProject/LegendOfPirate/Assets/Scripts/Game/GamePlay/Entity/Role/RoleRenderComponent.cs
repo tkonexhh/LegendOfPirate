@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,10 +12,10 @@ namespace GameWish.Game
         protected AnimedRenderCell m_RenderInfo;
         string soName = "Enemy1ConfigSO";
 
-        public override void InitComponent(EntityBase owner)
+        public override void InitComponent(IElement owner)
         {
             base.InitComponent(owner);
-            gameObject = new GameObject("Role_" + m_Owner.EntityID);
+            gameObject = new GameObject("Role_"/* + m_Owner.EntityID*/);
             transform = gameObject.transform;
             transform.SetParent(BattleMgr.S.transform);
             transform.localPosition = Random.insideUnitSphere * Random.Range(1.0f, 3.0f);

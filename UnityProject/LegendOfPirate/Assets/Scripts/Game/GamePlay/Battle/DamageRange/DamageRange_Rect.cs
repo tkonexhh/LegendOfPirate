@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +21,7 @@ namespace GameWish.Game
             m_Pos = pos;
         }
 
-        public override List<EntityBase> PickTargets() { return null; }
+        public override List<IElement> PickTargets() { return null; }
     }
 
 }

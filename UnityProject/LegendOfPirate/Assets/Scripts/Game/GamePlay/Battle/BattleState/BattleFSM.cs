@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
@@ -12,9 +12,9 @@ namespace GameWish.Game
         Fighting,
         End,
     }
-    public class BattleFSM : FSMStateMachine<EntityBase>
+    public class BattleFSM : FSMStateMachine<IElement>
     {
-        public BattleFSM(EntityBase entity) : base(entity)
+        public BattleFSM(IElement entity) : base(entity)
         {
             stateFactory.RegisterState(BattleStateEnum.PreFight, new BattleState_PrepFight());
             stateFactory.RegisterState(BattleStateEnum.Prepare, new BattleState_Prepare());

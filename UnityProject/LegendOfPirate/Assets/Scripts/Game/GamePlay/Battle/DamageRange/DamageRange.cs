@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ namespace GameWish.Game
     /// </summary>
     public abstract class DamageRange
     {
-        public abstract List<EntityBase> PickTargets();
+        public abstract List<IElement> PickTargets();
     }
 
 }

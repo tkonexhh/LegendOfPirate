@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
@@ -7,8 +7,8 @@ namespace GameWish.Game
 {
     public class BaseComponent
     {
-        protected EntityBase m_Owner;
-        public virtual void InitComponent(EntityBase owner)
+        protected IElement m_Owner;
+        public virtual void InitComponent(IElement owner)
         {
             m_Owner = owner;
         }
