@@ -5,10 +5,8 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public interface IModel
+	public interface IModel : IElement
 	{
-        void Init();
-
         IModel DeepCopy();
 	}
 	

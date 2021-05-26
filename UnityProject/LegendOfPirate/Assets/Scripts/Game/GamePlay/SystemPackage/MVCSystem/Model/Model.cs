@@ -10,9 +10,17 @@ namespace GameWish.Game
 
         #region IModel
 
-        public void Init()
+        public void OnInit()
         {
             LoadDataFromDb();
+        }
+
+        public void OnUpdate()
+        {
+        }
+
+        public void OnDestroyed()
+        {
         }
 
         public virtual IModel DeepCopy()
@@ -26,6 +34,8 @@ namespace GameWish.Game
         {
 
         }
+
+
     }
 
 }
