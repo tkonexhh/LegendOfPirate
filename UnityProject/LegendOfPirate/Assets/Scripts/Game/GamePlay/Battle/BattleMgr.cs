@@ -8,26 +8,39 @@ namespace GameWish.Game
     public class BattleMgr : TMonoSingleton<BattleMgr>
     {
         private ResLoader m_Loader;
+        private List<IBattleComponent> m_BattleComponentList;
 
         public ResLoader loader => m_Loader;
+
+
 
         public override void OnSingletonInit()
         {
             m_Loader = ResLoader.Allocate("BattleMgr");
+            AddComponent(new BattleRoleComponent());
+
+        }
+
+        private IBattleComponent AddComponent(IBattleComponent component)
+        {
+            m_BattleComponentList.Add(component);
+            return component;
         }
 
         public void Init()
         {
-            for (int i = 0; i < 10; i++)
-            {
-                RoleController role = new RoleController();
 
-            }
         }
 
-        private void Update()
+        public void BattleInit()
         {
-            //EntityMgr.S.Tick(Time.deltaTime);
+            m_BattleComponentList.ForEach(c => c.OnBattleInit());
+
+        }
+
+        public void BattleStart()
+        {
+
         }
     }
 

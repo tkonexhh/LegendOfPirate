@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public interface IController
-	{
-        void Init();
-	}
-	
+    public interface IController : IElement
+    {
+
+    }
+
 }

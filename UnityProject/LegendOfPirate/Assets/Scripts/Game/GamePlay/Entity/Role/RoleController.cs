@@ -5,15 +5,18 @@ using Qarth;
 
 namespace GameWish.Game
 {
-	public class RoleController : Controller
-	{
+    public class RoleController : Controller
+    {
         protected RoleSkill m_EquipedSkill = null;
+        protected RoleRenderer m_Renderer;
 
         #region Override
 
-        public override void Init()
+        public override void OnInit()
         {
-            base.Init();
+            base.OnInit();
+            m_Renderer = new RoleRenderer();
+            // m_Renderer
         }
 
 

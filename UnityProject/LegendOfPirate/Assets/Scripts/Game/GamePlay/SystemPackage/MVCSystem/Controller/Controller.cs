@@ -8,11 +8,9 @@ namespace GameWish.Game
     public abstract class Controller : IController, ICacheAble, ICacheType
     {
         #region IController
-
-        public virtual void Init()
-        {
-
-        }
+        public virtual void OnInit() { }
+        public virtual void OnUpdate() { }
+        public virtual void OnDestroyed() { }
 
         #endregion
 
