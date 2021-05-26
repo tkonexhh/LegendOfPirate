@@ -21,7 +21,7 @@ namespace GameWish.Game
             m_Loader = ResLoader.Allocate("BattleMgr");
 
             m_BattleComponentList = new List<IBattleComponent>();
-            AddComponent(new BattleRoleComponent());
+            AddComponent(new BattleRendererComponent());
 
         }
 

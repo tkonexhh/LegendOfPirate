@@ -5,7 +5,7 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public class BattleRoleComponent : AbstractBattleComponent
+    public class BattleRendererComponent : AbstractBattleComponent
     {
         private BattleRoleControllerFactory m_RoleFactory;
         private List<BattleRoleController> m_RoleControllerLst;
