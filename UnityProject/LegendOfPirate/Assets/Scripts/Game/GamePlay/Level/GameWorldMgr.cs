@@ -15,6 +15,9 @@ namespace GameWish.Game
         {
             Log.i("--------------World init--------------");
             m_IsInited = true;
+
+            BattleMgr.S.Init();
+
         }
 
         public void OnUpdate()

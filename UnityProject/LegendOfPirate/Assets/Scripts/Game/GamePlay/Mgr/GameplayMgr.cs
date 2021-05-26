@@ -43,7 +43,6 @@ namespace GameWish.Game
             //I18Mgr.S.SwitchLanguage(SystemLanguage.German);
 
             GameMgr.S.StartGuide();
-            BattleMgr.S.Init();
 
             RemoteConfigMgr.S.StartChecker(null);
 
