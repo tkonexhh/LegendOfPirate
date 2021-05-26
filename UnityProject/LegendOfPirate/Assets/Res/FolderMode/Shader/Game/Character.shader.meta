@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 4fab1f2430b459b4cb5b935a7f1ac5f7
+guid: a6a0c67eafe6b42848bf097b15360e7b
 ShaderImporter:
   externalObjects: {}
   defaultTextures: []
   nonModifiableTextures: []
   userData: 
-  assetBundleName: res/foldermode/shader/custom.bundle
+  assetBundleName: res/foldermode/shader/game.bundle
   assetBundleVariant: 
