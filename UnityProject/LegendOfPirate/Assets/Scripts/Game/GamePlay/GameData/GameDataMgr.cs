@@ -6,11 +6,19 @@ using System;
 
 namespace GameWish.Game
 {
+    public enum DataMode
+    {
+        Server,
+        Local
+    }
+
     /// <summary>
     /// GameData对外交互类
     /// </summary>
     public class GameDataMgr : TSingleton<GameDataMgr>
     {
+        public static DataMode s_DataMode = DataMode.Server;
+
         private PlayerInfoDataHandler m_PlayerInfoDataHandler = null;
 
         #region Public

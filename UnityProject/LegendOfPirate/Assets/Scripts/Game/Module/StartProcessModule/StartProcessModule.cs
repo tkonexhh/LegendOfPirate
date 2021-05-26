@@ -15,7 +15,7 @@ namespace GameWish.Game
             //开启加载界面
             Append(new LoadTableNode());
             Append(new InitModuleNode());
-            Append(new LoginNode());
+            Append(new LoadDataFromServerNode());
             //关闭加载界面
         }
     }

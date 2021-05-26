@@ -31,7 +31,7 @@ namespace GameWish.Game
         private IEnumerator Init()
         {
             // Init Managers
-            GameDataMgr.S.Init();
+            //GameDataMgr.S.Init();
 
             AudioMgr.S.OnSingletonInit();
 
