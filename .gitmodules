@@ -6,7 +6,7 @@
 	url = git@bitbucket.org:webeye-dev/sdkadapter.git
 [submodule "UnityProject/LegendOfPirate/Assets/Qarth"]
 	path = UnityProject/LegendOfPirate/Assets/Qarth
-	url = https://zhangwei_modooplay@bitbucket.org/webeye-dev/qarth.git
+url=git@bitbucket.org:webeye-dev/qarth.git
 [submodule "UnityProject/LegendOfPirate/Assets/SDKAdapter"]
 	path = UnityProject/LegendOfPirate/Assets/SDKAdapter
-	url = https://zhangwei_modooplay@bitbucket.org/webeye-dev/sdkadapter.git
+url=git@bitbucket.org:webeye-dev/sdkadapter.git
