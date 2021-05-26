@@ -5,6 +5,7 @@ using UniRx;
 
 namespace GameWish.Game
 {
+    [ModelAutoRegister]
 	public class RoleModel : Model
 	{
         public IntReactiveProperty hp;

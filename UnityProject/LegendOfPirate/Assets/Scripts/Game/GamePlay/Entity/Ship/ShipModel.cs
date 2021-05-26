@@ -5,7 +5,8 @@ using UniRx;
 
 namespace GameWish.Game
 {
-	public class ShipModel : Model
+    [ModelAutoRegister]
+    public class ShipModel : Model
 	{
         public IntReactiveProperty level;
 

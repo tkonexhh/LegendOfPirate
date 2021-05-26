@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
 using System;
+using System.Reflection;
 
 namespace GameWish.Game
 {
@@ -17,6 +18,7 @@ namespace GameWish.Game
         #region IMgr
         public void OnInit()
         {
+            AutoRegisterAllModels();
         }
 
         public void OnUpdate()
@@ -54,6 +56,31 @@ namespace GameWish.Game
 
         #endregion
 
+        #region Private
+
+        private void AutoRegisterAllModels()
+        {
+            //foreach (Assembly assembly in AssemblyHelper.AllAssemblies)
+            Assembly assembly = AssemblyHelper.DefaultCSharpAssembly;
+            {
+                foreach (Type type in assembly.GetTypes())
+                {
+                    if (type.GetCustomAttribute<ModelAutoRegisterAttribute>() != null)
+                    {
+                        object modelObj = Activator.CreateInstance(type);
+                        IModel model = (IModel)modelObj;
+
+                        if (!m_ModelDic.ContainsKey(type))
+                        {
+                            m_ModelDic.Add(type, model);
+                        }
+                    }
+
+                }
+            }
+        }
+
+        #endregion
     }
 
 }
