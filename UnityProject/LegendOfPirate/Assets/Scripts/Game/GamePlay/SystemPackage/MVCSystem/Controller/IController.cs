@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public interface IController : ICacheAble, ICacheType
+
+	public interface IController : IElement, ICacheAble, ICacheType
 	{
-        void Init();
 	}
-	
+
 }
