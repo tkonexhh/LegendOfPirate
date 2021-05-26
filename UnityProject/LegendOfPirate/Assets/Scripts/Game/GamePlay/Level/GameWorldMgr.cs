@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 
 namespace GameWish.Game
 {
-    public class GameWorldMgr : TSingleton<GameWorldMgr>, IMgr, IResetHandler
+    public class GameWorldMgr : TSingleton<GameWorldMgr>, IMgr
     {
         private bool m_IsInited = false;
 
+        #region IMgr
         public void OnInit()
         {
             Log.i("--------------World init--------------");
@@ -33,11 +34,9 @@ namespace GameWish.Game
 
         }
 
-        public void OnReset()
-        {
-            GameDataMgr.S.OnReset();
-        }
+        #endregion
 
+        #region Private
         private void RegisterEvents()
         {
 
@@ -52,5 +51,7 @@ namespace GameWish.Game
         {
 
         }
+
+        #endregion
     }
 }

@@ -56,7 +56,7 @@ namespace GameWish.Game
 
         private void AddDiamondCount(int count)
         {
-            GameDataMgr.S.GetPlayerInfoData().AddDiamondNum(count);
+
         }
     }
 }

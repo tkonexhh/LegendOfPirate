@@ -9,79 +9,52 @@ namespace GameWish.Game
     /// <summary>
     /// GameData对外交互类
     /// </summary>
-    public class GameDataMgr : TSingleton<GameDataMgr>,IResetHandler
+    public class GameDataMgr : TSingleton<GameDataMgr>
     {
-        private GameDataHandler m_GameDataHandler = null;
+        private PlayerInfoDataHandler m_PlayerInfoDataHandler = null;
 
-        public GameDataHandler GameDataHandler {
-            get {
-                return m_GameDataHandler;
-            }
-        }
+        #region Public
 
         public void Init()
         {
-            m_GameDataHandler = new GameDataHandler();
+            m_PlayerInfoDataHandler = new PlayerInfoDataHandler();
+            m_PlayerInfoDataHandler.LoadData();
 
             RegisterEvents();
-
-            m_GameDataHandler.GetPlayerInfodata().Init();
         }
 
-        private void RegisterEvents()
+        public static List<String> GetAllDataPaths()
         {
-            //EventSystem.S.Register(EventID.OnLevelCompleted, HandleEvent);
-            EventSystem.S.Register(EventID.OnAddCoinNum, HandleEvent);
-        }
+            List<String> pathList = new List<string>();
 
-        private void HandleEvent(int eventId, params object[] param)
-        {
-            //if (eventId == (int)EventID.OnLevelCompleted)
-            //{
-            //    int levelIndex = (int)param[0];
-            //    int starNum = (int)param[1];
+            pathList.Add(PlayerInfoDataHandler.GetDataFilePathByType(typeof(PlayerInfoDataHandler)));
 
-            //    m_GameDataHandler.GetPlayerInfodata().OnLevelCompleted(levelIndex, starNum);
-            //}
-            //if (eventId == (int)EventID.OnAddCoinNum)
-            //{
-            //    int delta = (int)param[0];
-            //    m_GameDataHandler.GetPlayerInfodata().AddCoinNum(delta);
-            //}
+            return pathList;
         }
 
         public void Save()
         {
-            m_GameDataHandler.Save();
-        }
-
-        /// <summary>
-        /// 获取所有游戏数据
-        /// </summary>
-        /// <returns></returns>
-        public GameData GetGameData()
-        {
-            return m_GameDataHandler.GetGameData();
+            m_PlayerInfoDataHandler.Save();
         }
 
         public PlayerInfoData GetPlayerInfoData()
         {
-            return m_GameDataHandler.GetPlayerInfodata();
+            return PlayerInfoDataHandler.data;
         }
+        #endregion
 
-        //public ShopData GetShopData()
-        //{
-        //    return m_GameDataHandler.GetShopData();
-        //}
-        
-        //public MainTaskData GetMainTaskData()
-        //{
-        //    return m_GameDataHandler.GetMainTaskData();
-        //}
-
-        public void OnReset()
+        #region Private
+        private void RegisterEvents()
         {
-            GetPlayerInfoData().OnReset();
+
         }
+
+        private void HandleEvent(int eventId, params object[] param)
+        {
+
+        }
+
+        #endregion
+
     }
 }

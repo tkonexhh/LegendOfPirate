@@ -13,10 +13,14 @@ namespace GameWish.Game
         {
             PlayerPrefs.DeleteAll();
 
-            string path = GameDataHandler.s_path;
-            if (File.Exists(path))
+            List<string> pathList = GameDataMgr.GetAllDataPaths();
+
+            foreach (string path in pathList)
             {
-                File.Delete(path);
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
             }
         }
     }

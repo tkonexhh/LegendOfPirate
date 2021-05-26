@@ -32,17 +32,6 @@ namespace GameWish.Game
         #endregion
 
         #region Public
-        public void RegisterModel<T>(IModel model)
-        {
-            if (!m_ModelDic.ContainsKey(typeof(T)))
-            {
-                m_ModelDic.Add(typeof(T), model);
-            }
-            else
-            {
-                Log.w("Model has been added before: " + model.ToString());
-            }
-        }
 
         public T GetModel<T>()
         {
@@ -69,10 +58,16 @@ namespace GameWish.Game
                     {
                         object modelObj = Activator.CreateInstance(type);
                         IModel model = (IModel)modelObj;
-
-                        if (!m_ModelDic.ContainsKey(type))
+                        if (model != null)
                         {
-                            m_ModelDic.Add(type, model);
+                            if (!m_ModelDic.ContainsKey(type))
+                            {
+                                m_ModelDic.Add(type, model);
+                            }
+                        }
+                        else
+                        {
+                            Log.e("IModel class not found!");
                         }
                     }
 
