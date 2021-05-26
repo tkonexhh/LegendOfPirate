@@ -4,3 +4,9 @@
 [submodule "UnityProject/March3D/Assets/SDKAdapter"]
 	path = UnityProject/March3D/Assets/SDKAdapter
 	url = git@bitbucket.org:webeye-dev/sdkadapter.git
+[submodule "UnityProject/LegendOfPirate/Assets/Qarth"]
+	path = UnityProject/LegendOfPirate/Assets/Qarth
+url=git@bitbucket.org:webeye-dev/qarth.git
+[submodule "UnityProject/LegendOfPirate/Assets/SDKAdapter"]
+	path = UnityProject/LegendOfPirate/Assets/SDKAdapter
+url=git@bitbucket.org:webeye-dev/sdkadapter.git
