@@ -9,6 +9,8 @@ namespace GameWish.Game
     {
         private BattleRoleRenderer m_Renderer;
 
+        public BattleRoleRenderer renderer => m_Renderer;
+
         #region Override
         public override void OnInit()
         {

@@ -10,6 +10,7 @@ namespace GameWish.Game
         private BattleRoleControllerFactory m_RoleFactory;
         private List<BattleRoleController> m_RoleControllerLst;
 
+        #region Override
         public override void Init()
         {
             m_RoleFactory = new BattleRoleControllerFactory();
@@ -18,14 +19,8 @@ namespace GameWish.Game
 
         public override void OnBattleInit()
         {
-
-
-            for (int i = 0; i < 10; i++)
-            {
-                BattleRoleController role = m_RoleFactory.CreateController();
-                role.OnInit();
-                m_RoleControllerLst.Add(role);
-            }
+            InitOwerRole();
+            InitEnemyRole();
         }
 
         public override void OnBattleUpdate()
@@ -47,8 +42,38 @@ namespace GameWish.Game
                 m_RoleControllerLst.RemoveAt(i);
             }
         }
+        #endregion
 
+        private void InitOwerRole()
+        {
+            Vector3 startPos = new Vector3(-70, 0, 60);
+            int width = 80;
+            for (int i = 0; i < 2000; i++)
+            {
+                BattleRoleController role = m_RoleFactory.CreateController();
+                role.OnInit();
+                int x = i % width;
+                int y = i / width;
+                role.renderer.transform.position = startPos + new Vector3(1.5f * x, 0, 1.5f * y);
+                role.renderer.transform.rotation = Quaternion.Euler(0, 180, 0);
+                m_RoleControllerLst.Add(role);
+            }
+        }
 
+        private void InitEnemyRole()
+        {
+            Vector3 startPos = new Vector3(-70, 0, -60);
+            int width = 80;
+            for (int i = 0; i < 2000; i++)
+            {
+                BattleRoleController role = m_RoleFactory.CreateController();
+                role.OnInit();
+                int x = i % width;
+                int y = i / width;
+                role.renderer.transform.position = startPos + new Vector3(1.5f * x, 0, 1.5f * y);
+                m_RoleControllerLst.Add(role);
+            }
+        }
     }
 
 }

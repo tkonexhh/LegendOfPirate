@@ -7,8 +7,8 @@ namespace GameWish.Game
 {
     public class BattleRoleRenderer : Controller
     {
-        protected GameObject gameObject;
-        protected Transform transform;
+        public GameObject gameObject;
+        public Transform transform;
         protected AnimedRenderCell m_RenderInfo;
         string soName = "Enemy1ConfigSO";
 

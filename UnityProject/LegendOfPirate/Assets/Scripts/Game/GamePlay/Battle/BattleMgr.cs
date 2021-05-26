@@ -11,6 +11,7 @@ namespace GameWish.Game
         private ResLoader m_Loader;
         private List<IBattleComponent> m_BattleComponentList;
 
+
         public ResLoader loader => m_Loader;
 
 
