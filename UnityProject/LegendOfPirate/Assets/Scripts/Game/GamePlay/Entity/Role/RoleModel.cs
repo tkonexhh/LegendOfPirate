@@ -8,7 +8,21 @@ namespace GameWish.Game
     [ModelAutoRegister]
 	public class RoleModel : Model
 	{
+        public ReactiveCollection<RoleDataItem> roleItemList = new ReactiveCollection<RoleDataItem>();
+
+        protected override void LoadDataFromDb()
+        {
+            base.LoadDataFromDb();
+        }
+    }
+
+    public class RoleDataItem
+    {
+        public IntReactiveProperty id;
+        public IntReactiveProperty level;
+
         public IntReactiveProperty hp;
+        public IntReactiveProperty def;
         //public int MaxHp;
         //public int Dog;//闪避率
         //public int Critical;//暴击率
@@ -18,11 +32,5 @@ namespace GameWish.Game
         //public int Wil;//法术防御
         //public float attackSpeed;//攻击速率
         //public float moveSpeed;//移动速度
-
-        protected override void LoadDataFromDb()
-        {
-            base.LoadDataFromDb();
-        }
     }
-
 }

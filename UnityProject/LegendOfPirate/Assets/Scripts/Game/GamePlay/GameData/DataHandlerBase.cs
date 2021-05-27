@@ -59,5 +59,33 @@ namespace GameWish.Game
         {
 
         }
+
+        protected void ParseJson(string json)
+        {
+            m_Data = JsonUtility.FromJson<T>(json);
+
+            if (m_Data == null)
+            {
+                m_Data = new T();
+                m_Data.InitWithEmptyData();
+                m_Data.SetDataDirty();
+            }
+
+            try
+            {
+                m_Data.OnDataLoadFinish();
+                return;
+            }
+            catch (Exception e)
+            {
+                Log.e(e);
+            }
+
+            m_Data = new T();
+            m_Data.InitWithEmptyData();
+            m_Data.SetDataDirty();
+
+            m_Data.OnDataLoadFinish();
+        }
     }
 }
