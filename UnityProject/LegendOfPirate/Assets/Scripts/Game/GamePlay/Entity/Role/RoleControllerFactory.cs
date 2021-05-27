@@ -7,7 +7,7 @@ namespace GameWish.Game
 {
     public class RoleControllerFactory : ControllerFactory<RoleController>
     {
-        protected override void BuildController(RoleController controller)
+        protected override void BuildController(RoleController controller, params object[] param)
         {
             base.BuildController(controller);
 

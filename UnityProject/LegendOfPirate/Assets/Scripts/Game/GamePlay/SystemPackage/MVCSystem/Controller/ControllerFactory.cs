@@ -12,11 +12,11 @@ namespace GameWish.Game
     /// <typeparam name="T"></typeparam>
 	public class ControllerFactory<T> where T : IController, new()
 	{
-        public T CreateController()
+        public T CreateController(params object[] param)
         {
             T controller = ObjectPool<T>.S.Allocate();
 
-            BuildController(controller);
+            BuildController(controller, param);
 
             return controller;
         }
@@ -25,7 +25,7 @@ namespace GameWish.Game
         /// 在这里进行Controller的组装
         /// </summary>
         /// <param name="controller"></param>
-        protected virtual void BuildController(T controller)
+        protected virtual void BuildController(T controller, params object[] param)
         {
         }
 	}
