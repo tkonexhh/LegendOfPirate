@@ -8,6 +8,8 @@ namespace GameWish.Game
 {
     public class BattleMgr : TMonoSingleton<BattleMgr>, IMgr
     {
+        [SerializeField] private GameObject m_RolePrefab;
+
         private ResLoader m_Loader;
         private List<IBattleComponent> m_BattleComponentList;
 
@@ -34,7 +36,7 @@ namespace GameWish.Game
         #region IMgr
         public void OnInit()
         {
-            GameObjectPoolMgr.S.AddPool("BattleRole", new GameObject(), 1000, 100);
+            GameObjectPoolMgr.S.AddPool("BattleRole", m_RolePrefab, 1000, 100);
             for (int i = 0; i < m_BattleComponentList.Count; i++)
             {
                 m_BattleComponentList[i].Init();

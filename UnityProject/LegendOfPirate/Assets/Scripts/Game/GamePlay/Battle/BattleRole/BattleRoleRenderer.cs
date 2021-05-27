@@ -34,7 +34,7 @@ namespace GameWish.Game
                 GPUInstanceMgr.S.AddRenderGroup(group).AddRenderCell(m_RenderInfo);
             }
 
-            m_RenderInfo.Play("Idle", true);
+
         }
 
         public override void OnUpdate()
@@ -67,6 +67,16 @@ namespace GameWish.Game
 
         }
         #endregion
+
+        public void PlayAnim(string animName, bool loop)
+        {
+            m_RenderInfo.Play(animName, loop);
+        }
+
+        public void CrossFadeAnim(string animName, float fadeTime, bool loop)
+        {
+            m_RenderInfo.CrossFade(animName, fadeTime, loop);
+        }
     }
 
 }

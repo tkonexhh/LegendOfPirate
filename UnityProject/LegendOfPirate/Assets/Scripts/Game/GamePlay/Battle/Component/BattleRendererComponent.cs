@@ -8,13 +8,15 @@ namespace GameWish.Game
     public class BattleRendererComponent : AbstractBattleComponent
     {
         private BattleRoleControllerFactory m_RoleFactory;
-        private List<BattleRoleController> m_RoleControllerLst;
+        private List<BattleRoleController> m_OurRoleControllerLst;
+        private List<BattleRoleController> m_EnemyRoleControllerLst;
 
         #region Override
         public override void Init()
         {
             m_RoleFactory = new BattleRoleControllerFactory();
-            m_RoleControllerLst = new List<BattleRoleController>();
+            m_OurRoleControllerLst = new List<BattleRoleController>();
+            m_EnemyRoleControllerLst = new List<BattleRoleController>();
         }
 
         public override void OnBattleInit()
@@ -25,21 +27,32 @@ namespace GameWish.Game
 
         public override void OnBattleUpdate()
         {
-            if (m_RoleControllerLst == null)
+            if (m_OurRoleControllerLst == null || m_EnemyRoleControllerLst == null)
                 return;
 
-            for (int i = 0; i < m_RoleControllerLst.Count; i++)
+            for (int i = 0; i < m_OurRoleControllerLst.Count; i++)
             {
-                m_RoleControllerLst[i].OnUpdate();
+                m_OurRoleControllerLst[i].OnUpdate();
+            }
+
+            for (int i = 0; i < m_EnemyRoleControllerLst.Count; i++)
+            {
+                m_EnemyRoleControllerLst[i].OnUpdate();
             }
         }
 
         public override void OnBattleClean()
         {
-            for (int i = m_RoleControllerLst.Count - 1; i >= 0; i--)
+            for (int i = m_OurRoleControllerLst.Count - 1; i >= 0; i--)
             {
-                ObjectPool<BattleRoleController>.S.Recycle(m_RoleControllerLst[i]);
-                m_RoleControllerLst.RemoveAt(i);
+                ObjectPool<BattleRoleController>.S.Recycle(m_OurRoleControllerLst[i]);
+                m_OurRoleControllerLst.RemoveAt(i);
+            }
+
+            for (int i = m_EnemyRoleControllerLst.Count - 1; i >= 0; i--)
+            {
+                ObjectPool<BattleRoleController>.S.Recycle(m_EnemyRoleControllerLst[i]);
+                m_EnemyRoleControllerLst.RemoveAt(i);
             }
         }
         #endregion
@@ -56,7 +69,7 @@ namespace GameWish.Game
                 int y = i / width;
                 role.renderer.transform.position = startPos + new Vector3(1.5f * x, 0, 1.5f * y);
                 role.renderer.transform.rotation = Quaternion.Euler(0, 180, 0);
-                m_RoleControllerLst.Add(role);
+                m_OurRoleControllerLst.Add(role);
             }
         }
 
@@ -71,7 +84,7 @@ namespace GameWish.Game
                 int x = i % width;
                 int y = i / width;
                 role.renderer.transform.position = startPos + new Vector3(1.5f * x, 0, 1.5f * y);
-                m_RoleControllerLst.Add(role);
+                m_EnemyRoleControllerLst.Add(role);
             }
         }
     }
