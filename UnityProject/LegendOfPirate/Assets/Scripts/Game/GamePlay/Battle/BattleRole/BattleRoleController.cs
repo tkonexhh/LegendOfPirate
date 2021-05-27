@@ -9,20 +9,18 @@ namespace GameWish.Game
 {
     public class BattleRoleController : RoleController
     {
-        private BattleRoleRenderer m_Renderer;
-        private BattleRoleFSM m_FSM;
-        private BattleRoleAI m_AI;
-
-
-        public BattleRoleRenderer renderer => m_Renderer;
         public GameObject gameObject { get; private set; }
         public Transform transform { get; private set; }
-        public BattleCamp camp { get; private set; }
-        public BattleRoleFSM fSM => m_FSM;
+        public BattleRoleRenderer renderer { get; private set; }
+        public BattleRoleFSM fSM { get; private set; }
+        public BattleRoleAI AI { get; private set; }
 
         //---- Mono
         public AIDestinationSetter AIDestination { get; private set; }
         //----
+
+
+        public BattleCamp camp { get; private set; }//阵营
 
 
         #region Override
@@ -32,12 +30,12 @@ namespace GameWish.Game
             transform = gameObject.transform;
             transform.SetParent(BattleMgr.S.transform);
 
-            m_Renderer = ObjectPool<BattleRoleRenderer>.S.Allocate();
-            m_Renderer.OnInit();
-            m_Renderer.SetTarget(transform);
+            renderer = ObjectPool<BattleRoleRenderer>.S.Allocate();
+            renderer.OnInit();
+            renderer.SetTarget(transform);
 
-            m_FSM = new BattleRoleFSM(this);
-            m_AI = new BattleRoleAI(this);
+            fSM = new BattleRoleFSM(this);
+            AI = new BattleRoleAI(this);
 
             base.OnInit();
         }
@@ -49,16 +47,17 @@ namespace GameWish.Game
 
         public override void OnUpdate()
         {
-            m_Renderer.OnUpdate();
-            m_FSM.OnUpdate();
-            m_AI.OnUpdate();
+            renderer.OnUpdate();
+            fSM.OnUpdate();
+            AI.OnUpdate();
         }
         public override void OnDestroyed()
         {
-            ObjectPool<BattleRoleRenderer>.S.Recycle(m_Renderer);
+            ObjectPool<BattleRoleRenderer>.S.Recycle(renderer);
             GameObjectPoolMgr.S.Recycle(gameObject);
-            m_Renderer = null;
-            m_FSM = null;
+            renderer = null;
+            fSM = null;
+            AI = null;
         }
 
         public override void Recycle2Cache()
@@ -74,8 +73,7 @@ namespace GameWish.Game
 
         public void BattleStart()
         {
-            m_AI.OnBattleStart();
-
+            AI.OnBattleStart();
         }
     }
 
