@@ -19,16 +19,31 @@ namespace GameWish.Game
     {
         public static DataMode s_DataMode = DataMode.Server;
 
+        private List<ILoadDataFromServer> m_DataHanlderList;
+
         private PlayerInfoDataHandler m_PlayerInfoDataHandler = null;
+        private RoleDataHandler m_RoleDataHandler = null;
+
+        private int m_LoadDoneCount = 0;
+        private Action m_OnLoadDoneCallback = null;
 
         #region Public
 
-        public void Init()
+        public void Init(Action callback)
         {
+            m_DataHanlderList = new List<ILoadDataFromServer>();
+
             m_PlayerInfoDataHandler = new PlayerInfoDataHandler();
-            m_PlayerInfoDataHandler.LoadData();
+            m_DataHanlderList.Add(m_PlayerInfoDataHandler);
+            m_PlayerInfoDataHandler.LoadData(OnLoadDone);
+
+            m_RoleDataHandler = new RoleDataHandler();
+            m_DataHanlderList.Add(m_RoleDataHandler);
+            m_RoleDataHandler.LoadData(OnLoadDone);
 
             RegisterEvents();
+
+            m_OnLoadDoneCallback = callback;
         }
 
         public static List<String> GetAllDataPaths()
@@ -42,13 +57,14 @@ namespace GameWish.Game
 
         public void Save()
         {
-            m_PlayerInfoDataHandler.Save();
+            m_PlayerInfoDataHandler.Save(null);
         }
 
         public PlayerInfoData GetPlayerInfoData()
         {
             return PlayerInfoDataHandler.data;
         }
+
         #endregion
 
         #region Private
@@ -62,6 +78,20 @@ namespace GameWish.Game
 
         }
 
+        private void OnLoadDone()
+        {
+            m_LoadDoneCount++;
+
+            if (m_LoadDoneCount >= m_DataHanlderList.Count)
+            {
+                Log.i("Data load done!");
+
+                if (m_OnLoadDoneCallback != null)
+                {
+                    m_OnLoadDoneCallback.Invoke();
+                }
+            }
+        }
         #endregion
 
     }

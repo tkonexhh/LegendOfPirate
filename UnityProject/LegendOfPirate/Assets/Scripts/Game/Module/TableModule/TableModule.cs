@@ -36,7 +36,7 @@ namespace GameWish.Game
 
                 // Game play table        
                 //TDMainTaskTable.metaData,
-                TDLevelConfigTable.metaData,
+                //TDLevelConfigTable.metaData,
             };
         }
     }

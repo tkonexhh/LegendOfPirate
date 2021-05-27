@@ -10,24 +10,54 @@ namespace GameWish.Game
     {
         protected DataDirtyRecorder m_DataDirtyRecorder = null;
 
-        public static string s_path { get { return dataFilePath; } }
-
         public DataHandlerBase()
         {
             m_DataDirtyRecorder = new DataDirtyRecorder();
 
         }
 
-        public virtual void LoadData()
+        public void LoadData(Action callback)
         {
-            Load();
+            if (GameDataMgr.s_DataMode == DataMode.Server)
+            {
+                LoadDataFromServer(callback);
+            }
+            else
+            {
+                Load();
 
-            // TODO: Load data from server
+                if (callback != null)
+                {
+                    callback.Invoke();
+                }
+            }
         }
 
-        public virtual void Save()
+        public void Save(Action callback)
         {
-            Save(true);
+            if (GameDataMgr.s_DataMode == DataMode.Server)
+            {
+                SaveDataToServer(callback);
+            }
+            else
+            {
+                Save(true);
+
+                if (callback != null)
+                {
+                    callback.Invoke();
+                }
+            }
+        }
+
+        public virtual void LoadDataFromServer(Action callback)
+        {
+          
+        }
+
+        public virtual void SaveDataToServer(Action callback)
+        {
+
         }
     }
 }

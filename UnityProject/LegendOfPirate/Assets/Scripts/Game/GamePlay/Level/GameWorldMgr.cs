@@ -27,6 +27,7 @@ namespace GameWish.Game
         {
             if (m_IsInited == false)
                 return;
+
             BattleMgr.S.OnUpdate();
         }
 

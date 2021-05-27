@@ -6,21 +6,27 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class PlayerInfoDataHandler : DataHandlerBase<PlayerInfoData>
+    public class PlayerInfoDataHandler : DataHandlerBase<PlayerInfoData>, ILoadDataFromServer
     {
         public PlayerInfoDataHandler()
         {
 
         }
 
-        public override void LoadData()
+        public override void LoadDataFromServer(Action callback)
         {
-            base.LoadData();
+            if (callback != null)
+            {
+                callback.Invoke();
+            }
         }
 
-        public override void Save()
+        public override void SaveDataToServer(Action callback)
         {
-            base.Save();
+            if (callback != null)
+            {
+                callback.Invoke();
+            }
         }
     }
 }
