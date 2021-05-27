@@ -8,7 +8,7 @@ namespace GameWish.Game
     [ModelAutoRegister]
 	public class RoleModel : Model
 	{
-        public ReactiveCollection<RoleDataItem> roleItemList = new ReactiveCollection<RoleDataItem>();
+        public ReactiveCollection<RoleItemModel> roleItemList = new ReactiveCollection<RoleItemModel>();
 
         protected override void LoadDataFromDb()
         {
@@ -16,7 +16,7 @@ namespace GameWish.Game
         }
     }
 
-    public class RoleDataItem
+    public class RoleItemModel : Model
     {
         public IntReactiveProperty id;
         public IntReactiveProperty level;

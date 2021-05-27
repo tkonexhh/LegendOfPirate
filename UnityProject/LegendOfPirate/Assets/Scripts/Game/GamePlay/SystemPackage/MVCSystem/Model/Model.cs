@@ -10,16 +10,16 @@ namespace GameWish.Game
 
         #region IModel
 
-        public void OnInit()
+        public virtual void OnInit()
         {
             LoadDataFromDb();
         }
 
-        public void OnUpdate()
+        public virtual void OnUpdate()
         {
         }
 
-        public void OnDestroyed()
+        public virtual void OnDestroyed()
         {
         }
 

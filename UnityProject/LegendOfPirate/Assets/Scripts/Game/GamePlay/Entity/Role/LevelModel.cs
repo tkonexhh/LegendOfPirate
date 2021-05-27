@@ -10,11 +10,26 @@ namespace GameWish.Game
 	{
         public IntReactiveProperty curLevel;
 
-        public ReactiveCollection<RoleDataItem> roleItemList = new ReactiveCollection<RoleDataItem>();
+        public ReactiveCollection<RoleItemModel> roleItemList = new ReactiveCollection<RoleItemModel>();
+
+        public override void OnInit()
+        {
+            base.OnInit();
+
+            curLevel.Subscribe((value) => 
+            {
+                RefreshEnemyRoleList();
+            });
+        }
 
         protected override void LoadDataFromDb()
         {
             base.LoadDataFromDb();
+        }
+
+        private void RefreshEnemyRoleList()
+        {
+
         }
     }
 }
