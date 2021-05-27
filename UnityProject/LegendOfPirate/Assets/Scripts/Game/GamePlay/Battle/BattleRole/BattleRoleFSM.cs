@@ -1,27 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Qarth;
+
 
 namespace GameWish.Game
 {
-    public enum BattleRoleStateEnum
+    public class BattleRoleFSM
     {
-        Idle,
-        Move,
-        Attack,
-        Dead,
-    }
-    public class BattleRoleFSM : FSMStateMachine<BattleRoleController>
-    {
-        public BattleRoleFSM(BattleRoleController entity) : base(entity)
+        private BattleRoleController m_Controller;
+        private BattleRoleFSMStateMachine m_FSM;
+
+        public BattleRoleFSM(BattleRoleController controller)
         {
-            stateFactory = new FSMStateFactory<BattleRoleController>(false);
-            stateFactory.RegisterState(BattleRoleStateEnum.Idle, new BattleRoleState_Idle());
-            stateFactory.RegisterState(BattleRoleStateEnum.Move, new BattleRoleState_Move());
-            stateFactory.RegisterState(BattleRoleStateEnum.Attack, new BattleRoleState_Attack());
-            stateFactory.RegisterState(BattleRoleStateEnum.Dead, new BattleRoleState_Dead());
+            m_Controller = controller;
+            m_FSM = new BattleRoleFSMStateMachine(controller);
+        }
+
+        public void OnUpdate()
+        {
+            m_FSM.UpdateState(Time.deltaTime);
+        }
+
+        public void SetState(BattleRoleStateEnum state)
+        {
+            m_FSM.SetCurrentStateByID(state);
+        }
+
+        public void SendMsg(int key, params object[] args)
+        {
+            m_FSM.currentState.OnMsg(m_Controller, key, args);
         }
     }
-}
 
+}

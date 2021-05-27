@@ -23,6 +23,11 @@ namespace GameWish.Game
         {
 
         }
+
+        public override void OnMsg(BattleRoleController controller, int key, params object[] args)
+        {
+
+        }
     }
 
 }

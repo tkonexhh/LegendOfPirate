@@ -25,6 +25,19 @@ namespace GameWish.Game
             InitEnemyRole();
         }
 
+        public override void OnBattleStart()
+        {
+            for (int i = 0; i < m_OurRoleControllerLst.Count; i++)
+            {
+                m_OurRoleControllerLst[i].BattleStart();
+            }
+
+            for (int i = 0; i < m_EnemyRoleControllerLst.Count; i++)
+            {
+                m_EnemyRoleControllerLst[i].BattleStart();
+            }
+        }
+
         public override void OnBattleUpdate()
         {
             if (m_OurRoleControllerLst == null || m_EnemyRoleControllerLst == null)
@@ -65,10 +78,11 @@ namespace GameWish.Game
             {
                 BattleRoleController role = m_RoleFactory.CreateController();
                 role.OnInit();
+                role.SetCamp(BattleCamp.Our);
                 int x = i % width;
                 int y = i / width;
-                role.renderer.transform.position = startPos + new Vector3(1.5f * x, 0, 1.5f * y);
-                role.renderer.transform.rotation = Quaternion.Euler(0, 180, 0);
+                role.transform.position = startPos + new Vector3(1.5f * x, 0, 1.5f * y);
+                role.transform.rotation = Quaternion.Euler(0, 180, 0);
                 m_OurRoleControllerLst.Add(role);
             }
         }
@@ -81,10 +95,24 @@ namespace GameWish.Game
             {
                 BattleRoleController role = m_RoleFactory.CreateController();
                 role.OnInit();
+                role.SetCamp(BattleCamp.Enemy);
                 int x = i % width;
                 int y = i / width;
-                role.renderer.transform.position = startPos + new Vector3(1.5f * x, 0, 1.5f * y);
+                role.transform.position = startPos + new Vector3(1.5f * x, 0, 1.5f * y);
                 m_EnemyRoleControllerLst.Add(role);
+            }
+        }
+
+
+        public BattleRoleController GetRandomController(BattleCamp camp)
+        {
+            if (camp == BattleCamp.Our)
+            {
+                return m_OurRoleControllerLst[Random.Range(0, m_OurRoleControllerLst.Count - 1)];
+            }
+            else
+            {
+                return m_EnemyRoleControllerLst[Random.Range(0, m_EnemyRoleControllerLst.Count - 1)];
             }
         }
     }

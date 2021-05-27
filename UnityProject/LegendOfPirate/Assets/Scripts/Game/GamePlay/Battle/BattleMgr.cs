@@ -15,6 +15,7 @@ namespace GameWish.Game
 
 
         public ResLoader loader => m_Loader;
+        public BattleRendererComponent BattleRendererComponent { get; private set; }
 
 
 
@@ -23,7 +24,7 @@ namespace GameWish.Game
             m_Loader = ResLoader.Allocate("BattleMgr");
 
             m_BattleComponentList = new List<IBattleComponent>();
-            AddComponent(new BattleRendererComponent());
+            BattleRendererComponent = AddComponent(new BattleRendererComponent()) as BattleRendererComponent;
 
         }
 
@@ -64,10 +65,18 @@ namespace GameWish.Game
 
         public void BattleStart()
         {
-
+            for (int i = 0; i < m_BattleComponentList.Count; i++)
+            {
+                m_BattleComponentList[i].OnBattleStart();
+            }
         }
 
         public void BattleEnd()
+        {
+
+        }
+
+        public void BattleClean()
         {
             for (int i = 0; i < m_BattleComponentList.Count; i++)
             {
@@ -85,6 +94,10 @@ namespace GameWish.Game
                 m_BattleComponentList[i].OnBattleUpdate();
             }
         }
+
+
+
+
 
 
     }
