@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
@@ -7,14 +7,14 @@ namespace GameWish.Game
 {
     public class BattleRendererComponent : AbstractBattleComponent
     {
-        private BattleRoleControllerFactory m_RoleFactory;
+        //private BattleRoleControllerFactory m_RoleFactory;
         private List<BattleRoleController> m_OurRoleControllerLst;
         private List<BattleRoleController> m_EnemyRoleControllerLst;
 
         #region Override
         public override void Init()
         {
-            m_RoleFactory = new BattleRoleControllerFactory();
+            //m_RoleFactory = new BattleRoleControllerFactory();
             m_OurRoleControllerLst = new List<BattleRoleController>();
             m_EnemyRoleControllerLst = new List<BattleRoleController>();
         }
@@ -76,7 +76,7 @@ namespace GameWish.Game
             int width = 80;
             for (int i = 0; i < 2000; i++)
             {
-                BattleRoleController role = m_RoleFactory.CreateController();
+                BattleRoleController role = BattleRoleControllerFactory.S.CreateController(null);
                 role.OnInit();
                 role.SetCamp(BattleCamp.Our);
                 int x = i % width;
@@ -93,7 +93,7 @@ namespace GameWish.Game
             int width = 80;
             for (int i = 0; i < 2000; i++)
             {
-                BattleRoleController role = m_RoleFactory.CreateController();
+                BattleRoleController role = BattleRoleControllerFactory.S.CreateController(null);
                 role.OnInit();
                 role.SetCamp(BattleCamp.Enemy);
                 int x = i % width;

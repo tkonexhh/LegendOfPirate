@@ -7,9 +7,9 @@ namespace GameWish.Game
 {
     public class RoleControllerFactory : ControllerFactory<RoleController>
     {
-        protected override void BuildController(RoleController controller, params object[] param)
+        protected override void BuildController(RoleController controller, IModel model)
         {
-            base.BuildController(controller);
+            base.BuildController(controller, model);
 
             // controller.EquipSkill(RoleSkillMgr.S.GetSkill(RoleSkillType.None)).AddBuff(1);
         }
