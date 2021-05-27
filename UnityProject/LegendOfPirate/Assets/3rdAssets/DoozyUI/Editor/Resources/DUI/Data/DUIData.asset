@@ -22,7 +22,7 @@ MonoBehaviour:
       - BoostPanel
       - EffectActivePanel
       - MagicCloudPanel
-      - MilestonePanel
+      - MainMenuPanel
       - OccupyOverPanel
       - OfflinePanel
       - OfflineRewardPanel

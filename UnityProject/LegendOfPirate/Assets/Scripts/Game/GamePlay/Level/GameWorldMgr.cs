@@ -17,6 +17,8 @@ namespace GameWish.Game
             Log.i("--------------World init--------------");
             m_IsInited = true;
 
+            InventroyMgr.S.OnInit();
+
             ModelMgr.S.OnInit();
 
             BattleMgr.S.OnInit();
