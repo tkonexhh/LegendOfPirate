@@ -31,19 +31,20 @@ namespace GameWish.Game
 
         public void Init(Action callback)
         {
+            m_OnLoadDoneCallback = callback;
+
             m_DataHanlderList = new List<ILoadDataFromServer>();
 
             m_PlayerInfoDataHandler = new PlayerInfoDataHandler();
-            m_DataHanlderList.Add(m_PlayerInfoDataHandler);
-            m_PlayerInfoDataHandler.LoadData(OnLoadDone);
-
             m_RoleDataHandler = new RoleDataHandler();
+
+            m_DataHanlderList.Add(m_PlayerInfoDataHandler);
             m_DataHanlderList.Add(m_RoleDataHandler);
+
+            m_PlayerInfoDataHandler.LoadData(OnLoadDone);
             m_RoleDataHandler.LoadData(OnLoadDone);
 
             RegisterEvents();
-
-            m_OnLoadDoneCallback = callback;
         }
 
         public static List<String> GetAllDataPaths()
