@@ -1,4 +1,4 @@
-
+﻿
 using System;
 using System.IO;
 
@@ -8,17 +8,17 @@ namespace Qarth.Extension
 {
 	using UnityEditor;
 
-	[Serializable]
+	//[Serializable]
 	public class UIKitSettingData
 	{
-		static string mConfigSavedDir
-		{
-			get { return (Application.dataPath + "/QarthExtensionData/").CreateDirIfNotExists() + "ProjectConfig/"; }
-		}
+		//static string mConfigSavedDir
+		//{
+		//	get { return (Application.dataPath + "/QarthExtensionData/").CreateDirIfNotExists() + "ProjectConfig/"; }
+		//}
 
-		private const string mConfigSavedFileName = "ProjectConfig.json";
+		//private const string mConfigSavedFileName = "ProjectConfig.json";
 
-		public string Namespace;
+		public static string Namespace = "Qarth.Extension";
 
 		public string UIScriptDir = "/Scripts";
 
@@ -33,43 +33,43 @@ namespace Qarth.Extension
 			get { return Namespace == "Qarth.Extension"; }
 		}
 		
-		public static string GetScriptsPath()
-		{
-			return Load().UIScriptDir;
-		}
+		//public static string GetScriptsPath()
+		//{
+		//	return Load().UIScriptDir;
+		//}
 		
 		public static string GetProjectNamespace()
 		{
-			return Load().Namespace;
+			return Namespace;
 		}
 		
-		public static UIKitSettingData Load()
-		{
-			mConfigSavedDir.CreateDirIfNotExists();
+		//public static UIKitSettingData Load()
+		//{
+		//	mConfigSavedDir.CreateDirIfNotExists();
 
-			if (!File.Exists(mConfigSavedDir + mConfigSavedFileName))
-			{
-				using (var fileStream = File.Create(mConfigSavedDir + mConfigSavedFileName))
-				{
-					fileStream.Close();
-				}
-			}
+		//	if (!File.Exists(mConfigSavedDir + mConfigSavedFileName))
+		//	{
+		//		using (var fileStream = File.Create(mConfigSavedDir + mConfigSavedFileName))
+		//		{
+		//			fileStream.Close();
+		//		}
+		//	}
 
-			var frameworkConfigData =
-				JsonUtility.FromJson<UIKitSettingData>(File.ReadAllText(mConfigSavedDir + mConfigSavedFileName));
+		//	var frameworkConfigData =
+		//		JsonUtility.FromJson<UIKitSettingData>(File.ReadAllText(mConfigSavedDir + mConfigSavedFileName));
 
-			if (frameworkConfigData == null || string.IsNullOrEmpty(frameworkConfigData.Namespace))
-			{
-				frameworkConfigData = new UIKitSettingData {Namespace = "Qarth.Extension"};
-			}
+		//	if (frameworkConfigData == null || string.IsNullOrEmpty(frameworkConfigData.Namespace))
+		//	{
+		//		frameworkConfigData = new UIKitSettingData {Namespace = "Qarth.Extension"};
+		//	}
 
-			return frameworkConfigData;
-		}
+		//	return frameworkConfigData;
+		//}
 
-		public void Save()
-		{
-			File.WriteAllText(mConfigSavedDir + mConfigSavedFileName,JsonUtility.ToJson(this));
-			AssetDatabase.Refresh();
-		}
+		//public void Save()
+		//{
+		//	File.WriteAllText(mConfigSavedDir + mConfigSavedFileName,JsonUtility.ToJson(this));
+		//	AssetDatabase.Refresh();
+		//}
 	}
 }

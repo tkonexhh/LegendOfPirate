@@ -1,4 +1,4 @@
-
+﻿
 using System;
 using System.IO;
 
@@ -6,8 +6,7 @@ namespace Qarth.Extension
 {
     public class UIPanelDesignerTemplate
     {
-        public static void Write(string name, string scriptsFolder, string scriptNamespace, PanelCodeInfo panelCodeInfo,
-            UIKitSettingData uiKitSettingData)
+        public static void Write(string name, string scriptsFolder, string scriptNamespace, PanelCodeInfo panelCodeInfo)
         {
             var scriptFile = scriptsFolder + "/{0}.Designer.cs".FillFormat(name);
 
@@ -20,10 +19,10 @@ namespace Qarth.Extension
                 .Using("Qarth")
                 .EmptyLine()
                 .Namespace(scriptNamespace.IsTrimNullOrEmpty()
-                    ? uiKitSettingData.Namespace
+                    ? UIKitSettingData.Namespace
                     : scriptNamespace, ns =>
                 {
-                    ns.Custom("// Generate Id:{0}".FillFormat(Guid.NewGuid().ToString()));
+                    //ns.Custom("// Generate Id:{0}".FillFormat(Guid.NewGuid().ToString()));
                     ns.Class(name, null, true, false, (classScope) =>
                     {
                         classScope.Custom("public const string Name = \"" + name + "\";");
