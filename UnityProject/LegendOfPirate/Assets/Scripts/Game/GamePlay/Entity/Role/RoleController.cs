@@ -27,7 +27,8 @@ namespace GameWish.Game
         public override void Recycle2Cache()
         {
             base.Recycle2Cache();
-            ObjectPool<RoleController>.S.Recycle(this);
+            //ObjectPool<RoleController>.S.Recycle(this);
+            RoleControllerFactory.S.RecycleController(this);
         }
 
         #endregion

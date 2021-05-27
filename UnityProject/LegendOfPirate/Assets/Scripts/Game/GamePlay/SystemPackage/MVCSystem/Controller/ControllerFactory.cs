@@ -21,6 +21,10 @@ namespace GameWish.Game
             return controller;
         }
 
+        public void RecycleController(T controller)
+        {
+            ObjectPool<T>.S.Recycle(controller);
+        }
         /// <summary>
         /// 在这里进行Controller的组装
         /// </summary>
