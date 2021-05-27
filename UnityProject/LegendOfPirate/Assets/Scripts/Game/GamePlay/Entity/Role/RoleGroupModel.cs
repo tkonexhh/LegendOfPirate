@@ -6,7 +6,7 @@ using UniRx;
 namespace GameWish.Game
 {
     [ModelAutoRegister]
-	public class RoleModel : Model
+	public class RoleGroupModel : DbModel
 	{
         public ReactiveCollection<RoleItemModel> roleItemList = new ReactiveCollection<RoleItemModel>();
 
@@ -16,7 +16,7 @@ namespace GameWish.Game
         }
     }
 
-    public class RoleItemModel : Model
+    public class RoleItemModel //:RumTimeModel
     {
         public IntReactiveProperty id;
         public IntReactiveProperty level;

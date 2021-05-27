@@ -5,25 +5,21 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class Model : IModel
+	public class DbModel : Model
 	{
 
         #region IModel
 
-        public virtual void OnInit()
+        public override void OnInit()
         {
-        }
-
-        public virtual void OnUpdate()
-        {
-        }
-
-        public virtual void OnDestroyed()
-        {
+            LoadDataFromDb();
         }
 
         #endregion
+        protected virtual void LoadDataFromDb()
+        {
 
+        }
 
     }
 

@@ -6,7 +6,7 @@ using UniRx;
 namespace GameWish.Game
 {
     [ModelAutoRegister]
-	public class LevelModel : Model
+	public class LevelModel : DbModel
 	{
         public IntReactiveProperty curLevel;
 
