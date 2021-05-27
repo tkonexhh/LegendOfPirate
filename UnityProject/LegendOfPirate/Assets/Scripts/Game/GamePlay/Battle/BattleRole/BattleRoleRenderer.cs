@@ -7,18 +7,18 @@ namespace GameWish.Game
 {
     public class BattleRoleRenderer : Controller
     {
-        public GameObject gameObject;
-        public Transform transform;
+        private Transform m_Target;
         protected AnimedRenderCell m_RenderInfo;
         string soName = "Enemy1ConfigSO";
+
+
 
         #region IElement
         public override void OnInit()
         {
-            gameObject = GameObjectPoolMgr.S.Allocate("BattleRole");
-            transform = gameObject.transform;
-            transform.SetParent(BattleMgr.S.transform);
-            transform.localPosition = Random.insideUnitSphere * Random.Range(1.0f, 3.0f);
+            // gameObject = GameObjectPoolMgr.S.Allocate("BattleRole");
+            // transform = gameObject.transform;
+            // transform.SetParent(BattleMgr.S.transform);
             m_RenderInfo = new AnimedRenderCell();
 
 
@@ -34,39 +34,53 @@ namespace GameWish.Game
                 GPUInstanceMgr.S.AddRenderGroup(group).AddRenderCell(m_RenderInfo);
             }
 
-            m_RenderInfo.Play("Idle", true);
+
         }
 
         public override void OnUpdate()
         {
-            m_RenderInfo.rotation = transform.rotation;
-            m_RenderInfo.position = transform.position;
+            if (m_Target == null)
+                return;
+            m_RenderInfo.rotation = m_Target.rotation;
+            m_RenderInfo.position = m_Target.position;
             m_RenderInfo.Update();
         }
 
         public override void OnDestroyed()
         {
             GPUInstanceMgr.S.GetRenderGroup(soName).RemoveRenderCell(m_RenderInfo);
-            GameObjectPoolMgr.S.Recycle(gameObject);
+            // GameObjectPoolMgr.S.Recycle(gameObject);
             m_RenderInfo = null;
-            transform = null;
-
+            // transform = null;
         }
 
         public override void OnCacheReset()
         {
             base.OnCacheReset();
             OnDestroyed();
-
         }
 
         public override void Recycle2Cache()
         {
             base.Recycle2Cache();
             ObjectPool<BattleRoleRenderer>.S.Recycle(this);
-
         }
         #endregion
+
+        public void SetTarget(Transform transform)
+        {
+            m_Target = transform;
+        }
+
+        public void PlayAnim(string animName, bool loop)
+        {
+            m_RenderInfo.Play(animName, loop);
+        }
+
+        public void CrossFadeAnim(string animName, float fadeTime, bool loop)
+        {
+            m_RenderInfo.CrossFade(animName, fadeTime, loop);
+        }
     }
 
 }
