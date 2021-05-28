@@ -30,20 +30,31 @@ namespace GameWish.Game
         [LabelText("百分比")] PercentAdd,
     }
 
-    [LabelText("行为禁制")]
-    public enum ActionControlType
-    {
-        [LabelText("（空）")] None = 0,
-        [LabelText("移动禁止")] MoveForbid = 1 << 1,
-        [LabelText("施法禁止")] SkillForbid = 1 << 2,
-        [LabelText("攻击禁止")] AttackForbid = 1 << 3,
 
+    [LabelText("技能类型")]
+    public enum SkillType
+    {
+        [LabelText("主动技能")] Initiative,
+        [LabelText("被动技能")] Passive,
     }
 
-    [System.Serializable]
-    public class ActionControl
+    [LabelText("释放对象")]
+    public enum PickTargetType
     {
-        public ActionControlType type;
-        public bool isOn;
+        [LabelText("自身")] Self,
+        [LabelText("己方")] Our,
+        [LabelText("地方")] Enemy,
+        [LabelText("当前目标")] Target,
     }
+
+    [LabelText("被动技能触发类型")]
+    public enum PassiveSkillTriggerType
+    {
+        [LabelText("攻击时触发")] Attack,
+        [LabelText("受击时触发")] Hurt,
+        [LabelText("时间间隔触发")] Time,
+        [LabelText("移动触发")] Move,
+        [LabelText("永久触发")] Forver,
+    }
+
 }

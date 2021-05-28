@@ -9,8 +9,11 @@ namespace GameWish.Game
     [CreateAssetMenu(menuName = "Game/BuffConfigSO", fileName = "new_BuffConfigSO")]
     public class BuffConfigSO : SerializedScriptableObject
     {
-
+        [LabelText("BuffID")]
+        public int ID = 0;
+        [LabelText("Buff名称")]
         public string Name = "BuffName";
+
         //---
         [ToggleGroup("EnabledStateModify", "状态控制")]
         public bool EnabledStateModify;

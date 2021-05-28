@@ -21,4 +21,26 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  EnabledAttributeModify: 0
+  ID: 0
+  Name: Buff1
+  EnabledStateModify: 1
+  ActionControls:
+  - type: 2
+    isOn: 1
+  - type: 4
+    isOn: 1
+  - type: 8
+    isOn: 1
+  EnabledAttributeModify: 1
+  Time: -1
+  AttributeType: 1
+  NumericValue: -20
+  ModifyType: 1
+  triggerType: 0
+  Interval: 1
+  EnabledAppend: 1
+  AppendType: 0
+  MaxAppendNum: 1
+  ParticleEffect: {fileID: 0}
+  Audio: {fileID: 0}
+  StatusDescription: "\u4E00\u4E2A\u6D4B\u8BD5Buff"

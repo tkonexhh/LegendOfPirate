@@ -8,7 +8,7 @@ namespace GameWish.Game
     [CreateAssetMenu(menuName = "Game/RoleConfigSO", fileName = "new_RoleConfigSO")]
     public class RoleConfigSO : ScriptableObject
     {
-        public AttackTypeEnum attackType;
+        public AttackType attackType;
 
 
         [Header("GPUInstance")]
