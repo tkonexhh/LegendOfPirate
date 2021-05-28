@@ -118,4 +118,17 @@ namespace GameWish.Game
         OffHand
     }
 
+
+    public enum ItemID
+    {
+        _hello,
+        _wiorld,
+        _3,
+        _4,
+        _5,
+        _6,
+        _7,
+    }
+
+
 }

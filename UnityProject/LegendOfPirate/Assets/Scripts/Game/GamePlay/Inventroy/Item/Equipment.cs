@@ -27,6 +27,11 @@ namespace GameWish.Game
         /// 装备类型
         /// </summary>
         public EquipmentType EquipType { get; set; }
+        public Equipment(ItemType itemType, ItemID id, long capacity) : base(itemType, id, capacity)
+        { }
+        public override void OnInitOtherInfo()
+        {
+        }
     }
 	
 }

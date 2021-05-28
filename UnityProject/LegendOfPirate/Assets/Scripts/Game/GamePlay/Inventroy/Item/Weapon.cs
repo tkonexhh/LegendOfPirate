@@ -19,6 +19,12 @@ namespace GameWish.Game
 		/// ´©´÷·½Ê½
 		/// </summary>
 		public WeaponType WeaponType { get; set; }
-	}
+
+		public Weapon(ItemType itemType, ItemID id, long capacity) : base(itemType, id, capacity)
+		{ }
+		public override void OnInitOtherInfo()
+        {
+        }
+    }
 	
 }

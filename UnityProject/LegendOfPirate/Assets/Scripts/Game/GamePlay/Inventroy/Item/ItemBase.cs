@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class ItemBase 
-	{
+	public abstract class ItemBase 
+    {
         /// <summary>
         /// id
         /// </summary>
-        public int ID { get; set; }
+        public ItemID ID { get; set; }
         /// <summary>
         /// 名字
         /// </summary>
@@ -30,7 +30,7 @@ namespace GameWish.Game
         /// <summary>
         /// 物品容量
         /// </summary>
-        public int Capacity { get; set; }
+        public long Capacity { get; set; }
         /// <summary>
         /// 购买价格
         /// </summary>
@@ -43,6 +43,44 @@ namespace GameWish.Game
         /// 图片名称
         /// </summary>
         public string Sprite { get; set; }
+        /// <summary>
+        /// 是否满容量
+        /// </summary>
+        public bool CapacityFull { get; set; }
+        public ItemBase() 
+        { }
+        public ItemBase(ItemType itemType, ItemID id, long capacity) {
+            this.ID = id;
+            this.Type = itemType;
+            this.Capacity = capacity;
+            CheckCapacityIsFull();
+            OnInitOtherInfo();
+        }
+
+        public abstract void OnInitOtherInfo();
+        /// <summary>
+        /// 增加数量
+        /// </summary>
+        /// <param name="number"></param>
+        public void OnAddNumber(long number)
+        {
+            Capacity += number;
+            CheckCapacityIsFull();
+        }
+        /// <summary>
+        /// 检查容器是否满了
+        /// </summary>
+        private void CheckCapacityIsFull()
+        {
+            if (Capacity >= InventroyMgr.MAXITEMNUMBER)
+            {
+                CapacityFull = true;
+            }
+            else
+            {
+                CapacityFull = false;
+            }
+        }
     }
-	
+
 }
