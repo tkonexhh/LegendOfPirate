@@ -5,26 +5,25 @@ using System;
 
 namespace GameWish.Game
 {
-    public class TimeActionNode : ITimeActionNode
+    public class ActionNode : IActionNode
     {
         public Action OnStartCallback = null;
-        public Action OnTickCallback = null;
         public Action OnEndCallback = null;
+        public Action OnTickCallback = null;
 
-        protected DateTime m_StartTime;
-        protected DateTime m_EndTime;
-        protected float m_TotalTime;
+        protected bool m_IsFinished = false;
 
-        public TimeActionNode(DateTime startTime, float totalTime)
+        public ActionNode()
         {
-            TimeSpan ts = TimeSpan.FromSeconds(totalTime);
-            m_EndTime = startTime.Add(ts);
+
         }
 
         #region IActionNode
 
         public virtual void OnStart()
         {
+            m_IsFinished = false;
+
             OnStartCallback?.Invoke();
         }
 
@@ -35,6 +34,8 @@ namespace GameWish.Game
 
         public virtual void OnEnd()
         {
+            m_IsFinished = true;
+
             OnEndCallback?.Invoke();
         }
 
@@ -47,7 +48,7 @@ namespace GameWish.Game
 
         #endregion
 
-        public void Execute()
+        public virtual void Execute()
         {
             OnStart();
         }

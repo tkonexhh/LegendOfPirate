@@ -5,11 +5,12 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public interface ITimeActionNode : System.IDisposable
+	public interface IActionNode : System.IDisposable
 	{
         void OnStart();
         void OnTick();
         void OnEnd();
+
 	}
 	
 }
