@@ -7,8 +7,6 @@ namespace GameWish.Game
 {   
     public class PlayerInfoData : IDataClass
     {
-        public string coinNumStr;
-
         public int coinNum;
 
 
@@ -25,6 +23,14 @@ namespace GameWish.Game
         public override void OnDataLoadFinish()
         {
 
+        }
+
+        public void AddCoin(int delta)
+        {
+            coinNum += delta;
+            coinNum = Math.Max(0, coinNum);
+
+            SetDataDirty();
         }
     }
 }

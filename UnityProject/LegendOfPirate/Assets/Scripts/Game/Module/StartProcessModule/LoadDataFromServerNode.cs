@@ -11,12 +11,13 @@ namespace GameWish.Game
         {
             base.OnBegin();
 
-            //if (GameDataMgr.s_DataMode == DataMode.Local)
-            {
-                GameDataMgr.S.Init();
+            Log.i("------start load data from server");
 
+            GameDataMgr.S.Init(()=> 
+            {
                 isFinish = true;
-            }
+                Log.i("------Load data from server finished");
+            });        
         }
     }
 	

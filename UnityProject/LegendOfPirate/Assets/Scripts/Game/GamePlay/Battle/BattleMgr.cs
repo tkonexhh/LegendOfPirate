@@ -8,11 +8,14 @@ namespace GameWish.Game
 {
     public class BattleMgr : TMonoSingleton<BattleMgr>, IMgr
     {
+        [SerializeField] private GameObject m_RolePrefab;
+
         private ResLoader m_Loader;
         private List<IBattleComponent> m_BattleComponentList;
 
 
         public ResLoader loader => m_Loader;
+        public BattleRendererComponent BattleRendererComponent { get; private set; }
 
 
 
@@ -21,7 +24,7 @@ namespace GameWish.Game
             m_Loader = ResLoader.Allocate("BattleMgr");
 
             m_BattleComponentList = new List<IBattleComponent>();
-            AddComponent(new BattleRoleComponent());
+            BattleRendererComponent = AddComponent(new BattleRendererComponent()) as BattleRendererComponent;
 
         }
 
@@ -34,7 +37,7 @@ namespace GameWish.Game
         #region IMgr
         public void OnInit()
         {
-            GameObjectPoolMgr.S.AddPool("BattleRole", new GameObject(), 1000, 100);
+            GameObjectPoolMgr.S.AddPool("BattleRole", m_RolePrefab, 1000, 100);
             for (int i = 0; i < m_BattleComponentList.Count; i++)
             {
                 m_BattleComponentList[i].Init();
@@ -62,10 +65,18 @@ namespace GameWish.Game
 
         public void BattleStart()
         {
-
+            for (int i = 0; i < m_BattleComponentList.Count; i++)
+            {
+                m_BattleComponentList[i].OnBattleStart();
+            }
         }
 
         public void BattleEnd()
+        {
+
+        }
+
+        public void BattleClean()
         {
             for (int i = 0; i < m_BattleComponentList.Count; i++)
             {
@@ -83,6 +94,10 @@ namespace GameWish.Game
                 m_BattleComponentList[i].OnBattleUpdate();
             }
         }
+
+
+
+
 
 
     }

@@ -12,10 +12,11 @@ namespace GameWish.Game
         Fighting,
         End,
     }
-    public class BattleFSM : FSMStateMachine<IElement>
+    public class BattleFSM : FSMStateMachine<BattleMgr>
     {
-        public BattleFSM(IElement entity) : base(entity)
+        public BattleFSM(BattleMgr entity) : base(entity)
         {
+            stateFactory = new FSMStateFactory<BattleMgr>(false);
             stateFactory.RegisterState(BattleStateEnum.PreFight, new BattleState_PrepFight());
             stateFactory.RegisterState(BattleStateEnum.Prepare, new BattleState_Prepare());
             stateFactory.RegisterState(BattleStateEnum.Fighting, new BattleState_Fighting());

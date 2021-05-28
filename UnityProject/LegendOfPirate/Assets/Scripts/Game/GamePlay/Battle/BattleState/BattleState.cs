@@ -5,7 +5,7 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public class BattleState : FSMState<IElement>
+    public class BattleState : FSMState<BattleMgr>
     {
 
     }

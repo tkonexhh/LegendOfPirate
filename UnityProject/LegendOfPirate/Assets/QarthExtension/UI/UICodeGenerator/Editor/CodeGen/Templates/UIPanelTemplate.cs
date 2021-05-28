@@ -1,12 +1,11 @@
-
+﻿
 namespace Qarth.Extension
 {
     using System.IO;
 
     public class UIPanelTemplate
     {
-        public static void Write(string name, string srcFilePath, string scriptNamespace,
-            UIKitSettingData uiKitSettingData)
+        public static void Write(string name, string srcFilePath, string scriptNamespace)
         {
             var scriptFile = srcFilePath;
 
@@ -28,7 +27,7 @@ namespace Qarth.Extension
                 .EmptyLine()
                 .Namespace(scriptNamespace, nsScope =>
                 {
-                    nsScope.Class(name + "Data", "UIPanelData", false, false, classScope => { });
+                    //nsScope.Class(name + "Data", "UIPanelData", false, false, classScope => { });
 
                     nsScope.Class(name, "AbstractAnimPanel", true, false, classScope =>
                     {

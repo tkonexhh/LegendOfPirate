@@ -8,9 +8,6 @@ namespace GameWish.Game
     public class RoleController : Controller
     {
 
-
-
-
         #region Override
 
         public override void OnInit()
@@ -18,13 +15,8 @@ namespace GameWish.Game
             base.OnInit();
         }
 
-        public override void OnUpdate()
-        {
-        }
-        public override void OnDestroyed()
-        {
-        }
-
+        public override void OnUpdate() { }
+        public override void OnDestroyed() { }
 
         public override void OnCacheReset()
         {
@@ -35,8 +27,8 @@ namespace GameWish.Game
         public override void Recycle2Cache()
         {
             base.Recycle2Cache();
-
-            ObjectPool<RoleController>.S.Recycle(this);
+            //ObjectPool<RoleController>.S.Recycle(this);
+            RoleControllerFactory.S.RecycleController(this);
         }
 
         #endregion
@@ -45,8 +37,6 @@ namespace GameWish.Game
 
         public RoleController EquipSkill(RoleSkill roleSkill)
         {
-
-
             return this;
         }
 
