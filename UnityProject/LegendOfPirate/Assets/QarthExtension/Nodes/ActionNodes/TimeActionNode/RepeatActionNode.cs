@@ -6,35 +6,36 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class RepeatActionNode : TimeActionNode
+	public class RepeatActionNode : ActionNode
 	{
-        private float m_DelayTime;
+        public RepeatActionNode() { }
+        //private float m_DelayTime;
 
-        public RepeatActionNode(MonoBehaviour executeBehavior, DateTime startTime, float delayTime) : base(executeBehavior, startTime, delayTime)
-        {
-            m_DelayTime = delayTime;
-        }
+        //public RepeatActionNode(MonoBehaviour executeBehavior, DateTime startTime, float delayTime) : base(executeBehavior, startTime, delayTime)
+        //{
+        //    m_DelayTime = delayTime;
+        //}
 
-        public override void Execute()
-        {
-            base.Execute();
+        //public override void Execute()
+        //{
+        //    base.Execute();
 
-            if (DateTime.Now > m_EndTime)
-            {
-                OnEnd();
-            }
-            else
-            {
-                m_ExecuteBehavior.StartCoroutine(RepeatCor());
-            }
-        }
+        //    if (DateTime.Now > m_EndTime)
+        //    {
+        //        OnEnd();
+        //    }
+        //    else
+        //    {
+        //        m_ExecuteBehavior.StartCoroutine(RepeatCor());
+        //    }
+        //}
 
-        private IEnumerator RepeatCor()
-        {
-            yield return new WaitForSeconds(m_DelayTime);
+        //private IEnumerator RepeatCor()
+        //{
+        //    yield return new WaitForSeconds(m_DelayTime);
 
-            OnEnd();
-        }
+        //    OnEnd();
+        //}
     }
 	
 }

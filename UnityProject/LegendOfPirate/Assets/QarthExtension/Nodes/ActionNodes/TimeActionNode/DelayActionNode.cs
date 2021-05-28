@@ -6,28 +6,40 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class DelayActionNode : TimeActionNode
+	public class DelayActionNode : ActionNode
 	{
         private float m_DelayTime;
 
-        public DelayActionNode(MonoBehaviour executeBehavior, DateTime startTime, float delayTime) : base(executeBehavior, startTime, delayTime)
+        public void Execute(MonoBehaviour executeBehavior, DateTime startTime, float delayTime)
         {
+            TimeSpan ts = TimeSpan.FromSeconds(delayTime);
+            DateTime endTime = startTime.Add(ts);
+
             m_DelayTime = delayTime;
-        }
 
-        public override void Execute()
-        {
-            base.Execute();
-
-            if (DateTime.Now > m_EndTime)
+            if (DateTime.Now > endTime)
             {
                 OnEnd();
             }
             else
             {
-                m_ExecuteBehavior.StartCoroutine(DelayCor());
+                executeBehavior.StartCoroutine(DelayCor());
             }
         }
+
+        //public override void Execute()
+        //{
+        //    base.Execute();
+
+        //    if (DateTime.Now > m_EndTime)
+        //    {
+        //        OnEnd();
+        //    }
+        //    else
+        //    {
+        //        m_ExecuteBehavior.StartCoroutine(DelayCor());
+        //    }
+        //}
 
         private IEnumerator DelayCor()
         {

@@ -5,18 +5,19 @@ using System;
 
 namespace GameWish.Game
 {
-	public class CountdownActionNode : TimeActionNode
+	public class CountdownActionNode : ActionNode
 	{
+        private DateTime m_EndTime;
         private WaitForSeconds m_WaitForSeconds = null;
 
-        public CountdownActionNode(MonoBehaviour executeBehavior, DateTime startTime, float totalTime, float tickInterval) : base(executeBehavior, startTime, totalTime)
-        {
-            m_WaitForSeconds = new WaitForSeconds(tickInterval);
-        }
+        public CountdownActionNode() { }
 
-        public override void Execute()
+        public void Execute(MonoBehaviour executeBehavior, DateTime startTime, float totalTime, float tickInterval)
         {
-            base.Execute();
+            TimeSpan ts = TimeSpan.FromSeconds(totalTime);
+            m_EndTime = startTime.Add(ts);
+
+            m_WaitForSeconds = new WaitForSeconds(tickInterval);
 
             if (DateTime.Now > m_EndTime)
             {
@@ -24,8 +25,36 @@ namespace GameWish.Game
             }
             else
             {
-                m_ExecuteBehavior.StartCoroutine(CountdownCor());
+                executeBehavior.StartCoroutine(CountdownCor());
             }
+        }
+
+        //public override void Execute()
+        //{
+        //    base.Execute();
+
+        //    if (DateTime.Now > m_EndTime)
+        //    {
+        //        OnEnd();
+        //    }
+        //    else
+        //    {
+        //        m_ExecuteBehavior.StartCoroutine(CountdownCor());
+        //    }
+        //}
+
+        public override void Recycle2Cache()
+        {
+            base.Recycle2Cache();
+
+            Recycle2Cache(this);
+        }
+
+        public override void OnCacheReset()
+        {
+            base.OnCacheReset();
+
+            m_WaitForSeconds = null;
         }
 
         private IEnumerator CountdownCor()
