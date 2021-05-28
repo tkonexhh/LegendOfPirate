@@ -62,6 +62,7 @@ namespace GameWish.Game
                         {
                             if (!m_ModelDic.ContainsKey(type))
                             {
+                                model.OnInit();
                                 m_ModelDic.Add(type, model);
                             }
                         }

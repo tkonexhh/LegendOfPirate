@@ -18,20 +18,20 @@ namespace Qarth.Extension
 
 		//private const string mConfigSavedFileName = "ProjectConfig.json";
 
-		public static string Namespace = "Qarth.Extension";
+		public static string Namespace = "GameWish.Game";
 
-		public string UIScriptDir = "/Scripts";
+		//public string UIScriptDir = "/Scripts";
 
-		public string UIPrefabDir = "/Art/UIPrefab";
+		//public string UIPrefabDir = "/Art/UIPrefab";
 
-		public string DefaultViewControllerScriptDir = "/Scripts/Game";
+		//public string DefaultViewControllerScriptDir = "/Scripts/Game";
 		
-		public string DefaultViewControllerPrefabDir = "/Art/Prefab";
+		//public string DefaultViewControllerPrefabDir = "/Art/Prefab";
 		
-		public bool IsDefaultNamespace
-		{
-			get { return Namespace == "Qarth.Extension"; }
-		}
+		//public bool IsDefaultNamespace
+		//{
+		//	get { return Namespace == "Qarth.Extension"; }
+		//}
 		
 		//public static string GetScriptsPath()
 		//{

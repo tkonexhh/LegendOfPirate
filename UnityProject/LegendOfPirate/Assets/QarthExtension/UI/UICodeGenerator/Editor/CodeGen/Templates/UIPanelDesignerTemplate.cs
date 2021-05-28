@@ -16,6 +16,7 @@ namespace Qarth.Extension
                 .Using("System")
                 .Using("UnityEngine")
                 .Using("UnityEngine.UI")
+                .Using("Qarth.Extension")
                 .Using("Qarth")
                 .EmptyLine()
                 .Namespace(scriptNamespace.IsTrimNullOrEmpty()

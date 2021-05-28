@@ -20,6 +20,7 @@ namespace Qarth.Extension
             var root = new RootCode()
                 .Using("UnityEngine")
                 .Using("UnityEngine.UI")
+                .Using("Qarth.Extension")
                 .Using("Qarth")
                 .Using("UniRx")
                 .EmptyLine()

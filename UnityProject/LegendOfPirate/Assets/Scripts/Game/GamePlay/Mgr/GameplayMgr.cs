@@ -85,7 +85,7 @@ namespace GameWish.Game
 
             if (m_IsGameStart == false)
             {
-                if (AssetPreloaderMgr.S.IsPreloaderDone())
+                //if (AssetPreloaderMgr.S.IsPreloaderDone())
                 {
                     m_IsGameStart = true;
 
