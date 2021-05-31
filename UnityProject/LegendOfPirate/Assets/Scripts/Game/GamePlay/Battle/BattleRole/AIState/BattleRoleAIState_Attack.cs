@@ -11,7 +11,6 @@ namespace GameWish.Game
         public override void Enter(BattleRoleAI ai)
         {
             base.Enter(ai);
-            Debug.LogError("Attack Enter");
             m_AttackTimer = 0;
             ai.controller.renderer.CrossFadeAnim("Idle", 0.1f, true);
         }
@@ -42,7 +41,6 @@ namespace GameWish.Game
 
         private void Attack()
         {
-            Debug.LogError("Attack");
             m_AI.controller.renderer.CrossFadeAnim("Attack02", 0.1f, false);
         }
     }

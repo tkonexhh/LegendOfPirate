@@ -85,7 +85,7 @@ namespace GameWish.Game
                 role.SetCamp(BattleCamp.Our);
                 int x = i % width;
                 int y = i / width;
-                role.transform.position = startPos + new Vector3(1.5f * x, 0, 1.5f * y);
+                role.transform.position = startPos + new Vector3(10.5f * x, 0, 1.5f * y);
                 role.transform.rotation = Quaternion.Euler(0, 180, 0);
                 m_OurRoleControllerLst.Add(role);
             }
@@ -102,7 +102,7 @@ namespace GameWish.Game
                 role.SetCamp(BattleCamp.Enemy);
                 int x = i % width;
                 int y = i / width;
-                role.transform.position = startPos + new Vector3(1.5f * x, 0, 1.5f * y);
+                role.transform.position = startPos + new Vector3(10.5f * x, 0, 1.5f * y);
                 m_EnemyRoleControllerLst.Add(role);
             }
         }

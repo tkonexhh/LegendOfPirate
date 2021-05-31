@@ -64,12 +64,12 @@ namespace GameWish.Game
         }
         #endregion
 
-        public void PlayAnim(string animName, bool loop)
+        public void PlayAnim(string animName, bool loop = false)
         {
             m_RenderInfo.Play(animName, loop);
         }
 
-        public void CrossFadeAnim(string animName, float fadeTime, bool loop)
+        public void CrossFadeAnim(string animName, float fadeTime, bool loop = false)
         {
             //TODO 攻击动画播放结束 跳回idle状态
             m_RenderInfo.CrossFade(animName, fadeTime, loop);

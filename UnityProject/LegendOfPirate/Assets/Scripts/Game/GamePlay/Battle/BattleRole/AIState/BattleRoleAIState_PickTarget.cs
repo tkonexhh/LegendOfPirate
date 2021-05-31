@@ -10,7 +10,7 @@ namespace GameWish.Game
         public override void Enter(BattleRoleAI ai)
         {
             base.Enter(ai);
-            ai.Target = ai.controller.Sensor.PickTarget();
+            ai.Target = ai.Sensor.PickTarget();
             if (ai.Target == null)
             {
                 Debug.LogError("Pick Target is Null");

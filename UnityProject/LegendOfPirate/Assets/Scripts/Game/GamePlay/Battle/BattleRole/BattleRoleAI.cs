@@ -11,11 +11,12 @@ namespace GameWish.Game
         public BattleRoleController Target { get; set; }
 
         public FSMStateMachine<BattleRoleAI> FSM { get; private set; }
+        public IBattleSensor Sensor { get; private set; }
 
         public BattleRoleAI(BattleRoleController controller)
         {
             this.controller = controller;
-            // this.controller.fSM.SetState(BattleRoleStateEnum.Idle);
+            Sensor = new BattleSensor_Nearest(controller);
             this.controller.renderer.PlayAnim("Idle", true);
 
             FSM = new FSMStateMachine<BattleRoleAI>(this);

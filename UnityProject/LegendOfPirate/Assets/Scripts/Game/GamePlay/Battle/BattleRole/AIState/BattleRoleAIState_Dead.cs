@@ -10,6 +10,7 @@ namespace GameWish.Game
         public override void Enter(BattleRoleAI ai)
         {
             base.Enter(ai);
+            ai.controller.renderer.PlayAnim("Dead");
         }
     }
 

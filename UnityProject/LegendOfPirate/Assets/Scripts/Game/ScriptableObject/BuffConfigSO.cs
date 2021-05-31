@@ -52,7 +52,7 @@ namespace GameWish.Game
         [ToggleGroup("EnabledAppend")]
         public BuffAppendType AppendType;
 
-        [ToggleGroup("EnabledAppend"), LabelText("最大叠加层数")]
+        [ToggleGroup("EnabledAppend"), LabelText("最大叠加层数"), Range(1, 100)]
         public int MaxAppendNum = 1;
         //===
 
