@@ -11,7 +11,7 @@ public class ScriptCreatorEditor  : UnityEditor.AssetModificationProcessor
         static void OnWillCreateAsset(string path)
         {
             //导入资源的路径，不知道具体是什么的时候建议输出查看
-            Debug.Log(path);
+            //Debug.Log(path);
             string str = path.Replace(".meta","");
             string[] splitArgs = str.Split('.');
             if (splitArgs[splitArgs.Length - 1].Equals("cs"))
