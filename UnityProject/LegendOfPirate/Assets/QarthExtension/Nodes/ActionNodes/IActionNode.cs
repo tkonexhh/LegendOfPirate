@@ -11,6 +11,7 @@ namespace GameWish.Game
         void OnTick();
         void OnEnd();
 
+        bool IsFinished { get;}
 	}
 	
 }

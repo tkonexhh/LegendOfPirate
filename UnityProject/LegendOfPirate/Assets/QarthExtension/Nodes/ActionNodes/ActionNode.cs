@@ -8,13 +8,17 @@ namespace GameWish.Game
 {
     public abstract class ActionNode : IActionNode
     {
-        public Action OnStartCallback = null;
-        public Action OnEndCallback = null;
-        public Action OnTickCallback = null;
+        protected Action OnStartCallback = null;
+        protected Action OnEndCallback = null;
+        protected Action OnTickCallback = null;
+
+        protected MonoBehaviour m_ExecuteBehavior = null;
 
         protected bool m_IsFinished = false;
 
         public bool cacheFlag { get; set; }
+
+        public bool IsFinished => m_IsFinished;
 
         public ActionNode()
         {
@@ -68,8 +72,33 @@ namespace GameWish.Game
         {
 
         }
+
+        public virtual void Execute()
+        {
+
+        }
         #endregion
 
+        public ActionNode AddOnStartCallback(Action callback)
+        {
+            OnStartCallback += callback;
+
+            return this;
+        }
+
+        public ActionNode AddOnTickCallback(Action callback)
+        {
+            OnTickCallback += callback;
+
+            return this;
+        }
+
+        public ActionNode AddOnEndCallback(Action callback)
+        {
+            OnEndCallback += callback;
+
+            return this;
+        }
         //public virtual void Execute()
         //{
         //    OnStart();

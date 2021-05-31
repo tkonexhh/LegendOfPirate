@@ -5,43 +5,36 @@ using System;
 
 namespace GameWish.Game
 {
-	public class CountdownActionNode : ActionNode
+	public class ScheduleNode : ActionNode
 	{
         private DateTime m_EndTime;
         private WaitForSeconds m_WaitForSeconds = null;
 
-        public CountdownActionNode() { }
+        public ScheduleNode() { }
 
-        public void Execute(MonoBehaviour executeBehavior, DateTime startTime, float totalTime, float tickInterval)
+        public ScheduleNode SetParams(MonoBehaviour executeBehavior, DateTime startTime, float totalTime, float tickInterval)
         {
+            m_ExecuteBehavior = executeBehavior;
+
             TimeSpan ts = TimeSpan.FromSeconds(totalTime);
             m_EndTime = startTime.Add(ts);
 
             m_WaitForSeconds = new WaitForSeconds(tickInterval);
 
+            return this;
+        }
+
+        public override void Execute()
+        {
             if (DateTime.Now > m_EndTime)
             {
                 OnEnd();
             }
             else
             {
-                executeBehavior.StartCoroutine(CountdownCor());
+                m_ExecuteBehavior.StartCoroutine(CountdownCor());
             }
         }
-
-        //public override void Execute()
-        //{
-        //    base.Execute();
-
-        //    if (DateTime.Now > m_EndTime)
-        //    {
-        //        OnEnd();
-        //    }
-        //    else
-        //    {
-        //        m_ExecuteBehavior.StartCoroutine(CountdownCor());
-        //    }
-        //}
 
         public override void Recycle2Cache()
         {
