@@ -11,12 +11,16 @@ namespace GameWish.Game
     {
         public GameObject gameObject { get; private set; }
         public Transform transform { get; private set; }
+        public BattleRoleData Data { get; private set; }
         public BattleRoleRenderer renderer { get; private set; }
-        public BattleRoleFSM fSM { get; private set; }
+        // public BattleRoleFSM fSM { get; private set; }
         public BattleRoleAI AI { get; private set; }
+        public BattleRoleBuff Buff { get; private set; }
+
 
         //---- Mono
-        public AIDestinationSetter AIDestination { get; private set; }
+        public BattleRoleMonoReference MonoReference { get; private set; }
+        // public IAstarAI 
         //----
 
 
@@ -32,23 +36,25 @@ namespace GameWish.Game
 
             renderer = ObjectPool<BattleRoleRenderer>.S.Allocate();
             renderer.OnInit();
-            renderer.SetTarget(transform);
+            renderer.transform = transform;
 
-            fSM = new BattleRoleFSM(this);
+            // fSM = new BattleRoleFSM(this);
             AI = new BattleRoleAI(this);
+            Data = new BattleRoleData();
+            Buff = new BattleRoleBuff(this);
 
             base.OnInit();
         }
 
         public override void OnFirstInit()
         {
-            AIDestination = gameObject.GetComponent<AIDestinationSetter>();
+            MonoReference = gameObject.GetComponent<BattleRoleMonoReference>();
         }
 
         public override void OnUpdate()
         {
             renderer.OnUpdate();
-            fSM.OnUpdate();
+            Buff.OnUpdate();
             AI.OnUpdate();
         }
         public override void OnDestroyed()
@@ -56,7 +62,7 @@ namespace GameWish.Game
             ObjectPool<BattleRoleRenderer>.S.Recycle(renderer);
             GameObjectPoolMgr.S.Recycle(gameObject);
             renderer = null;
-            fSM = null;
+            // fSM = null;
             AI = null;
         }
 

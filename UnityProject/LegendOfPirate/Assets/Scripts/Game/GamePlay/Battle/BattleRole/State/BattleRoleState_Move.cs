@@ -13,6 +13,7 @@ namespace GameWish.Game
         {
             base.Enter(controller);
             controller.renderer.CrossFadeAnim("Run", 0.1f, true);
+            // controller.renderer.PlayAnim("Run", true);
         }
 
         public override void Execute(BattleRoleController controller, float dt)
@@ -20,7 +21,8 @@ namespace GameWish.Game
             if (m_Target == null)
                 return;
 
-            controller.AIDestination.target = m_Target.transform;
+            controller.MonoReference.AIDestinationSetter.target = m_Target.transform;
+
         }
 
         public override void Exit(BattleRoleController controller)

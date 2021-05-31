@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 705466337683879698}
   - component: {fileID: 3649287727316722363}
   - component: {fileID: -7256542203658666426}
+  - component: {fileID: 1842909426530092171}
   m_Layer: 0
   m_Name: Role
   m_TagString: Untagged
@@ -93,7 +94,7 @@ MonoBehaviour:
   repathRate: 0.1
   canSearch: 1
   canMove: 1
-  maxSpeed: 24
+  maxSpeed: 2
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -111,3 +112,17 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!114 &1842909426530092171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5728299268360915620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb48f7631ac7c4a518c7130cbcb52a9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIDestinationSetter: {fileID: 3649287727316722363}
+  AstarAI: {fileID: -7256542203658666426}

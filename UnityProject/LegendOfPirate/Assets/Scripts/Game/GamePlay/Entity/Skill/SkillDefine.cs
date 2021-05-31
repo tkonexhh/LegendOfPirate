@@ -10,25 +10,7 @@ namespace GameWish.Game
 
     }
 
-    [LabelText("属性类型")]
-    public enum AttributeType
-    {
-        [LabelText("空")] None,
-        [LabelText("生命值")] Hp,
-        [LabelText("最大生命值")] MaxHp,
-        [LabelText("攻击力")] AP,
-        [LabelText("移动速度")] MoveSpeed,
-        [LabelText("攻击间隔")] AttackRate,
-        [LabelText("护甲")] Amor,
-        [LabelText("暴击")] Critical,
-    }
 
-    [LabelText("修饰类型")]
-    public enum ModifyType
-    {
-        [LabelText("数值")] Add,
-        [LabelText("百分比")] PercentAdd,
-    }
 
 
     [LabelText("技能类型")]
@@ -43,7 +25,7 @@ namespace GameWish.Game
     {
         [LabelText("自身")] Self,
         [LabelText("己方")] Our,
-        [LabelText("地方")] Enemy,
+        [LabelText("敌方")] Enemy,
         [LabelText("当前目标")] Target,
     }
 
