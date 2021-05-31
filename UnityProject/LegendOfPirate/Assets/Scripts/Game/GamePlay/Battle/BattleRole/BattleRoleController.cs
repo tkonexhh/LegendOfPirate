@@ -14,9 +14,11 @@ namespace GameWish.Game
         public BattleRoleRenderer renderer { get; private set; }
         public BattleRoleFSM fSM { get; private set; }
         public BattleRoleAI AI { get; private set; }
+        public IBattleSensor Sensor { get; private set; }
 
         //---- Mono
-        public AIDestinationSetter AIDestination { get; private set; }
+        public BattleRoleMonoReference MonoReference { get; private set; }
+        // public IAstarAI 
         //----
 
 
@@ -32,17 +34,19 @@ namespace GameWish.Game
 
             renderer = ObjectPool<BattleRoleRenderer>.S.Allocate();
             renderer.OnInit();
-            renderer.SetTarget(transform);
+            renderer.transform = transform;
 
             fSM = new BattleRoleFSM(this);
             AI = new BattleRoleAI(this);
+
+            Sensor = new BattleSensor_Nearest(this);
 
             base.OnInit();
         }
 
         public override void OnFirstInit()
         {
-            AIDestination = gameObject.GetComponent<AIDestinationSetter>();
+            MonoReference = gameObject.GetComponent<BattleRoleMonoReference>();
         }
 
         public override void OnUpdate()

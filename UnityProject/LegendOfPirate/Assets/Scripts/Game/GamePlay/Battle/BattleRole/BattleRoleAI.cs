@@ -1,43 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Qarth;
 
 namespace GameWish.Game
 {
     public class BattleRoleAI : IRoleAI
     {
-        private BattleRoleController m_Controller;
-        private BattleRoleController m_Target;
+        public BattleRoleController controller { get; private set; }
+        public BattleRoleController Target { get; set; }
+
+        public FSMStateMachine<BattleRoleAI> FSM { get; private set; }
 
         public BattleRoleAI(BattleRoleController controller)
         {
-            m_Controller = controller;
+            this.controller = controller;
+            // this.controller.fSM.SetState(BattleRoleStateEnum.Idle);
+            this.controller.renderer.PlayAnim("Idle", true);
+
+            FSM = new FSMStateMachine<BattleRoleAI>(this);
+            FSM.stateFactory = new FSMStateFactory<BattleRoleAI>(false);
+            FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.PickTarget, new BattleRoleAIState_PickTarget());
+            FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.MoveToTarget, new BattleRoleAIState_MoveToTarget());
+            FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Attack, new BattleRoleAIState_Attack());
+            FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Dead, new BattleRoleAIState_Dead());
+            FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Global, new BattleRoleAIState_Global());
+
         }
 
 
         public void OnBattleStart()
         {
-            PickTarget();
-            MoveToTarget();
+            FSM.SetCurrentStateByID(BattleRoleAIStateEnum.PickTarget);
+            FSM.SetGlobalStateByID(BattleRoleAIStateEnum.Global);
         }
 
         public void OnUpdate()
         {
-
+            FSM.UpdateState(Time.deltaTime);
         }
 
-        private void PickTarget()
-        {
-            m_Target = BattleMgr.S.BattleRendererComponent.GetRandomController(BattleHelper.GetOppositeCamp(m_Controller.camp));
-        }
-
-        private void MoveToTarget()
-        {
-            m_Controller.fSM.SetState(BattleRoleStateEnum.Move);
-            //TODO 移动改为在这个组件下运作
-            m_Controller.fSM.SendMsg(0, m_Target);
-        }
     }
 
 }

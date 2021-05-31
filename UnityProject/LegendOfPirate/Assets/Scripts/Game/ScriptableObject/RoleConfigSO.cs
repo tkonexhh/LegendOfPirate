@@ -8,6 +8,9 @@ namespace GameWish.Game
     [CreateAssetMenu(menuName = "Game/RoleConfigSO", fileName = "new_RoleConfigSO")]
     public class RoleConfigSO : SerializedScriptableObject
     {
+        [HideReferenceObjectPicker]
+        public PickTarget PickTarget = new PickTarget();
+
         public Attack Attack;
 
         [ToggleGroup("EnableAttackBuff", "攻击Buff")]

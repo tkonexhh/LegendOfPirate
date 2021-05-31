@@ -86,7 +86,7 @@ namespace GameWish.Game
                         else
                         {
                             m_Playing = false;
-                            PlayRandomAnim();
+                            // PlayRandomAnim();
                         }
                     }
                 }
@@ -104,7 +104,7 @@ namespace GameWish.Game
 
                     if (animLerp >= 1.0f)
                     {
-                        if (m_Looping)
+                        //if (m_Looping)
                         {
                             m_Anim1.animStartRate = m_Anim2.animStartRate;
                             m_Anim1.animEndRate = m_Anim2.animEndRate;
@@ -154,8 +154,6 @@ namespace GameWish.Game
 
 
             var animClip = s_AnimDataMap[animName];
-            if (m_Anim2 == null)
-                m_Anim2 = new Animation();
 
             m_Anim2.InitTime(animClip);
             float fadeTime = duringTime;

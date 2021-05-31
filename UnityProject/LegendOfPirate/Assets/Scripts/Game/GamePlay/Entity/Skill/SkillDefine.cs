@@ -43,7 +43,7 @@ namespace GameWish.Game
     {
         [LabelText("自身")] Self,
         [LabelText("己方")] Our,
-        [LabelText("地方")] Enemy,
+        [LabelText("敌方")] Enemy,
         [LabelText("当前目标")] Target,
     }
 

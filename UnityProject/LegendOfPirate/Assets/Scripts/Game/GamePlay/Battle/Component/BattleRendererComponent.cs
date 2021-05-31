@@ -11,6 +11,10 @@ namespace GameWish.Game
         private List<BattleRoleController> m_OurRoleControllerLst;
         private List<BattleRoleController> m_EnemyRoleControllerLst;
 
+
+        public List<BattleRoleController> ourControllers => m_OurRoleControllerLst;
+        public List<BattleRoleController> enemyControllers => m_EnemyRoleControllerLst;
+
         #region Override
         public override void Init()
         {
@@ -74,7 +78,7 @@ namespace GameWish.Game
         {
             Vector3 startPos = new Vector3(-70, 0, 60);
             int width = 80;
-            for (int i = 0; i < 2000; i++)
+            for (int i = 0; i < 5; i++)
             {
                 BattleRoleController role = BattleRoleControllerFactory.S.CreateController(null);
                 role.OnInit();
@@ -91,7 +95,7 @@ namespace GameWish.Game
         {
             Vector3 startPos = new Vector3(-70, 0, -60);
             int width = 80;
-            for (int i = 0; i < 2000; i++)
+            for (int i = 0; i < 5; i++)
             {
                 BattleRoleController role = BattleRoleControllerFactory.S.CreateController(null);
                 role.OnInit();
@@ -103,16 +107,15 @@ namespace GameWish.Game
             }
         }
 
-
-        public BattleRoleController GetRandomController(BattleCamp camp)
+        public List<BattleRoleController> GetControllersByCamp(BattleCamp camp)
         {
             if (camp == BattleCamp.Our)
             {
-                return m_OurRoleControllerLst[Random.Range(0, m_OurRoleControllerLst.Count - 1)];
+                return m_OurRoleControllerLst;
             }
             else
             {
-                return m_EnemyRoleControllerLst[Random.Range(0, m_EnemyRoleControllerLst.Count - 1)];
+                return m_EnemyRoleControllerLst;
             }
         }
     }
