@@ -7,8 +7,9 @@ namespace GameWish.Game
 {   
     public class PlayerInfoData : IDataClass
     {
-        public int coinNum;
-
+        public int coin;
+        public int diamond;
+        public int stamina;
 
         public void SetDefaultValue()
         {
@@ -27,8 +28,24 @@ namespace GameWish.Game
 
         public void AddCoin(int delta)
         {
-            coinNum += delta;
-            coinNum = Math.Max(0, coinNum);
+            coin += delta;
+            coin = Math.Max(0, coin);
+
+            SetDataDirty();
+        }
+
+        public void AddDiamond(int delta)
+        {
+            diamond += delta;
+            diamond = Math.Max(0, diamond);
+
+            SetDataDirty();
+        }
+
+        public void AddStamina(int delta)
+        {
+            stamina += delta;
+            stamina = Math.Max(0, stamina);
 
             SetDataDirty();
         }
