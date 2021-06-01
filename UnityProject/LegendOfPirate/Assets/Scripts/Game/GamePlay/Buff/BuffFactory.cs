@@ -11,30 +11,26 @@ namespace GameWish.Game
         {
             var buff = new Buff(configSO.ID);
             buff.time = configSO.Time;
-            buff.AttributeHandler = CreateBuffModelHandlerAttribute(configSO.AttributeType, configSO.ModifyType, configSO.NumericValue);
-            if (configSO.StatusControls != StatusControlType.None)//&& configSO.StatusControls.Count > 0)
+            buff.AttributeHandler = CreateBuffModelHandlerAttribute(configSO.AttributeType, configSO.NumericValue);
+            if (configSO.StatusControls != StatusControlType.None)
             {
-                buff.StatusHandler = new BuffModelHandler_Status(configSO.StatusControls);//new List<BuffModelHandler_Status>();
-                // for (int i = 0; i < configSO.StatusControls.Count; i++)
-                // {
-                //     buff.StatusHandler.Add(CreateBuffModelHandlerStatus(configSO.StatusControls[i].statusType));
-                // }
+                buff.StatusHandler = new BuffModelHandler_Status(configSO.StatusControls);
             }
             DealWithStatic(configSO);
             return buff;
         }
 
         #region BuffModelHandler
-        private static BuffModelHandler_Attribute CreateBuffModelHandlerAttribute(AttributeType attributeType, ModifyType modifyType, float value)
+        private static BuffModelHandler_Attribute CreateBuffModelHandlerAttribute(AttributeType attributeType, int value)
         {
             switch (attributeType)
             {
                 case AttributeType.MoveSpeed:
-                    return new BuffModelHandler_MoveSpeed(modifyType, value);
+                    return new BuffModelHandler_MoveSpeed(value);
                 case AttributeType.ATK:
-                    return new BuffModelHandler_ATK(modifyType, value);
+                    return new BuffModelHandler_ATK(value);
                 case AttributeType.MaxHp:
-                    return new BuffModelHandler_MaxHp(modifyType, value);
+                    return new BuffModelHandler_MaxHp(value);
             }
             return null;
         }

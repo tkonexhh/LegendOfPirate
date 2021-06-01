@@ -7,20 +7,25 @@ namespace GameWish.Game
 {
     public class BuffModelHandler_MaxHp : BuffModelHandler_Attribute
     {
-        public BuffModelHandler_MaxHp(ModifyType modifyType, float value) : base(modifyType, value)
+        private float m_DeltaValue;
+        public BuffModelHandler_MaxHp(int value) : base(value)
         {
         }
 
-        public override void OnAddBuff(BattleRoleModel model)
+        public override void OnAddBuff(BattleRoleRuntimeModel model)
         {
-
-        }
-        public override void OnRemoveBuff(BattleRoleModel model)
-        {
-
+            m_DeltaValue = m_Value * 0.01f;
+            model.MaxHpAddRate += m_DeltaValue;
+            model.MaxHp = (int)(model.BasicMaxHp * (1.0f + model.MaxHpAddRate));
         }
 
-        public override void OnAppendBuff(int appendNum, BattleRoleModel model)
+        public override void OnRemoveBuff(BattleRoleRuntimeModel model)
+        {
+            model.MaxHpAddRate -= m_DeltaValue;
+            model.MaxHp = (int)(model.BasicMaxHp / (1.0f + model.MaxHpAddRate));
+        }
+
+        public override void OnAppendBuff(int appendNum, BattleRoleRuntimeModel model)
         {
 
         }

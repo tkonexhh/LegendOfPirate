@@ -21,7 +21,7 @@ namespace GameWish.Game
         }
 
         #region  IBuff
-        public void OnAddAppendNum(BattleRoleModel model)
+        public void OnAddAppendNum(BattleRoleRuntimeModel model)
         {
             if (AttributeHandler != null)
             {
@@ -29,7 +29,7 @@ namespace GameWish.Game
             }
         }
 
-        public void OnAddBuff(BattleRoleModel model)
+        public void OnAddBuff(BattleRoleRuntimeModel model)
         {
             if (AttributeHandler != null)
             {
@@ -46,7 +46,7 @@ namespace GameWish.Game
             }
         }
 
-        public void OnRemoveBuff(BattleRoleModel model)
+        public void OnRemoveBuff(BattleRoleRuntimeModel model)
         {
             if (AttributeHandler != null)
             {

@@ -16,25 +16,17 @@ namespace GameWish.Game
     {
         [LabelText("空")] None,
         [LabelText("生命值")] Hp,
-        [LabelText("最大生命值")] MaxHp,
+        [LabelText("最大生命值%")] MaxHp,
         [LabelText("攻击力")] ATK,
-        [LabelText("移动速度")] MoveSpeed,
+        [LabelText("移动速度%")] MoveSpeed,
         [LabelText("攻击间隔")] AttackRate,
         [LabelText("护甲")] Amor,
         [LabelText("暴击")] Critical,
     }
 
-    [LabelText("修饰类型")]
-    public enum ModifyType
-    {
-        [LabelText("数值")] Add,
-        [LabelText("百分比")] PercentAdd,
-    }
-
     [LabelText("Buff持续时间叠加类型")]
     public enum BuffAppendType
     {
-
         [LabelText("刷新")] Reset,
         [LabelText("累加")] Additive,
         [LabelText("继续")] Continue,

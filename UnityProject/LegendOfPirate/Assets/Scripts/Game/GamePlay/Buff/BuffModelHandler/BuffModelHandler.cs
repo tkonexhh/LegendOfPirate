@@ -7,8 +7,8 @@ namespace GameWish.Game
 {
     public abstract class BuffModelHandler
     {
-        public abstract void OnAddBuff(BattleRoleModel model);
-        public abstract void OnRemoveBuff(BattleRoleModel model);
+        public abstract void OnAddBuff(BattleRoleRuntimeModel model);
+        public abstract void OnRemoveBuff(BattleRoleRuntimeModel model);
     }
 
     public class BuffModelHandler_Status : BuffModelHandler
@@ -20,12 +20,12 @@ namespace GameWish.Game
             m_StatusControlType = statusControlType;
         }
 
-        public override void OnAddBuff(BattleRoleModel model)
+        public override void OnAddBuff(BattleRoleRuntimeModel model)
         {
             model.StatusMask.AddStatus(m_StatusControlType);
         }
 
-        public override void OnRemoveBuff(BattleRoleModel model)
+        public override void OnRemoveBuff(BattleRoleRuntimeModel model)
         {
             model.StatusMask.RemoveStatus(m_StatusControlType);
         }
@@ -33,16 +33,14 @@ namespace GameWish.Game
 
     public abstract class BuffModelHandler_Attribute : BuffModelHandler
     {
-        protected ModifyType m_ModifyType;
-        protected float m_Value;
+        protected int m_Value;
 
-        public BuffModelHandler_Attribute(ModifyType modifyType, float value)
+        public BuffModelHandler_Attribute(int value)
         {
-            m_ModifyType = modifyType;
             m_Value = value;
         }
 
-        public abstract void OnAppendBuff(int appendNum, BattleRoleModel model);
+        public abstract void OnAppendBuff(int appendNum, BattleRoleRuntimeModel model);
 
     }
 

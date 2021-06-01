@@ -9,13 +9,16 @@ namespace GameWish.Game
     {
         public BattleRoleModel originData;
         public BattleRoleModel equipedData;
-        public BattleRoleModel buffedData;
+        public BattleRoleRuntimeModel buffedData;
 
 
         public override void OnBattleStart()
         {
-            buffedData = new BattleRoleModel();
-            buffedData.MoveSpeed = 2.0f;
+            buffedData = new BattleRoleRuntimeModel();
+            buffedData.BasicMaxHp = 100;
+            buffedData.Hp = 90;
+
+            buffedData.BasicMoveSpeed = 2.0f;
         }
 
     }

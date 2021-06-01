@@ -33,9 +33,9 @@ namespace GameWish.Game
         [ToggleGroup("EnabledAttributeModify")]
         public AttributeType AttributeType;
         [ToggleGroup("EnabledAttributeModify"), LabelText("数值参数")]
-        public float NumericValue;
-        [ToggleGroup("EnabledAttributeModify")]
-        public ModifyType ModifyType;
+        public int NumericValue;
+        // [ToggleGroup("EnabledAttributeModify")]
+        // public ModifyType ModifyType;
 
         [ToggleGroup("EnabledAttributeModify")]
         public BuffTriggerType triggerType;
