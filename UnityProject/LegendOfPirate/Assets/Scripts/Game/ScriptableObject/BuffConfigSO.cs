@@ -18,7 +18,7 @@ namespace GameWish.Game
         [ToggleGroup("EnabledStateModify", "状态控制")]
         public bool EnabledStateModify;
         [ToggleGroup("EnabledStateModify")]
-        public List<ActionControl> ActionControls = new List<ActionControl>();
+        public List<StatusControl> StatusControls = new List<StatusControl>();
         //===
 
 

@@ -5,37 +5,32 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class Buff_MoveSpeed : Buff
+    public class BuffModelHandler_MaxHp : BuffModelHandler_Attribute
     {
-        public Buff_MoveSpeed(int id, ModifyType modifyType, int value) : base(id, modifyType, value)
+        public BuffModelHandler_MaxHp(ModifyType modifyType, int value) : base(modifyType, value)
         {
-
         }
-
 
         public override void OnAddBuff(BattleRoleModel model)
         {
-            if (this.modifyType == ModifyType.Add)
+            if (m_ModifyType == ModifyType.Add)
             {
-                model.MoveSpeed += Value;
+                model.MoveSpeed += m_Value;
             }
             else
             {
-                model.MoveSpeed *= Value;
+                model.MoveSpeed *= m_Value;
             }
-
         }
-
-
         public override void OnRemoveBuff(BattleRoleModel model)
         {
-            if (this.modifyType == ModifyType.Add)
+            if (m_ModifyType == ModifyType.Add)
             {
-                model.MoveSpeed -= Value;
+                model.MoveSpeed -= m_Value;
             }
             else
             {
-                model.MoveSpeed /= Value;
+                model.MoveSpeed /= m_Value;
             }
         }
     }

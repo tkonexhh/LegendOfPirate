@@ -35,13 +35,13 @@ namespace GameWish.Game
             {
                 //Handle Append
 
-                //1 处理层数
-                buff.AddAppendNum();
-                //2 时间处理
-                var appendHandle = BuffFactory.GetAppendHandler(buff.id);
-                if (appendHandle != null)
+                var buffStaticInfo = BuffFactory.GetBuffStaticInfo(buff.id);
+                if (buffStaticInfo != null)
                 {
-                    appendHandle.HandleApped(m_BuffMap[buff.id], buff);
+                    //层数处理
+                    m_BuffMap[buff.id].nowAppendNum++;
+                    m_BuffMap[buff.id].nowAppendNum = Mathf.Min(m_BuffMap[buff.id].nowAppendNum, buffStaticInfo.maxAppendNum);
+                    buffStaticInfo.appendHandler.HandleApped(m_BuffMap[buff.id], buff);
                 }
 
                 return;
