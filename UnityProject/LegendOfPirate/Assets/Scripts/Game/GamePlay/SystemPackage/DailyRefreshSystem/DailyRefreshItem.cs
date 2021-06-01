@@ -56,6 +56,8 @@ namespace GameWish.Game
 
         public void Notify()
         {
+            m_LastRefreshDate = DateTime.Now;
+
             m_RefreshCallback?.Invoke();
         }
     }

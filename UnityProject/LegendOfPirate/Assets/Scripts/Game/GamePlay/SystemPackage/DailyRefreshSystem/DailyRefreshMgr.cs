@@ -31,7 +31,7 @@ namespace GameWish.Game
             m_DailyRefreshItemDic.Clear();
             m_DailyRefreshItemDic = null;
 
-            Timer.S.Cancel(m_TimerId);
+            //Timer.S.Cancel(m_TimerId);
         }
 
         #endregion
@@ -67,17 +67,21 @@ namespace GameWish.Game
 
         private int StartTimeChecker()
         {
-            int id = Timer.S.Post2Really(OnMinuteChanged, 60, -1);
+            int id = Timer.S.Post2Really(OnMinuteChanged, 1, -1);
             return id;
         }
 
         private void OnMinuteChanged(int tick)
         {
-            if (DateTime.Now.Hour != m_LastCheckHour)
+            //if (DateTime.Now.Hour != m_LastCheckHour)
             {
                 foreach(DailyRefreshItem item in m_DailyRefreshItemDic.Values)
                 {
                     bool needRefresh = CheckNeedRefresh(item);
+                    if (needRefresh)
+                    {
+                        item.Notify();
+                    }
                 }
 
                 m_LastCheckHour = DateTime.Now.Hour;
@@ -86,16 +90,16 @@ namespace GameWish.Game
 
         private bool CheckNeedRefresh(DailyRefreshItem item)
         {
-            if (item.LastRefreshDate.Day < DateTime.Now.Day) // Last Refresh Not In Same Day
+            if (item.LastRefreshDate.DayOfYear < DateTime.Now.DayOfYear)
             {
                 if (DateTime.Now.Hour >= item.RefreshHour)
                 {
                     return true;
                 }
             }
-            else if (item.LastRefreshDate.Day == DateTime.Now.Day) // Last Refresh In Same Day
+            else if (item.LastRefreshDate.DayOfYear == DateTime.Now.DayOfYear)
             {
-                if (item.LastRefreshDate.Hour < DateTime.Now.Hour && DateTime.Now.Hour >= item.RefreshHour)
+                if (item.LastRefreshDate.Hour < item.RefreshHour && DateTime.Now.Hour >= item.RefreshHour)
                 {
                     return true;
                 }
