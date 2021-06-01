@@ -41,6 +41,7 @@ namespace GameWish.Game
                     //层数处理
                     m_BuffMap[buff.id].nowAppendNum++;
                     m_BuffMap[buff.id].nowAppendNum = Mathf.Min(m_BuffMap[buff.id].nowAppendNum, buffStaticInfo.maxAppendNum);
+                    m_BuffMap[buff.id].OnAddAppendNum(m_Controller.Data.buffedData);
                     buffStaticInfo.appendHandler.HandleApped(m_BuffMap[buff.id], buff);
                 }
 

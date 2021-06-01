@@ -61,8 +61,8 @@ namespace GameWish.Game
     [System.Serializable, LabelText("状态控制")]
     public class StatusControl
     {
-        public StatusControlType type;
-        public bool isOn;
+        public StatusControlType statusType;
+        // public bool isOn;
     }
 
 }

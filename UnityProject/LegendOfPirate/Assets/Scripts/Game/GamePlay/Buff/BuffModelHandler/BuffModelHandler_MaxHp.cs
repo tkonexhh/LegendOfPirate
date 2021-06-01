@@ -33,6 +33,11 @@ namespace GameWish.Game
                 model.MoveSpeed /= m_Value;
             }
         }
+
+        public override void OnAppendBuff(int appendNum, BattleRoleModel model)
+        {
+
+        }
     }
 
 }

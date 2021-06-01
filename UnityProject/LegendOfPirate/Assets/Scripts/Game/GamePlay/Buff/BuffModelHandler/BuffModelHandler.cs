@@ -14,12 +14,20 @@ namespace GameWish.Game
     public abstract class BuffModelHandler_Status : BuffModelHandler
     {
         protected StatusControlType m_StatusControlType;
-        protected bool m_IsOn;
 
-        public BuffModelHandler_Status(StatusControlType statusControlType, bool isOn)
+        public BuffModelHandler_Status(StatusControlType statusControlType)
         {
             m_StatusControlType = statusControlType;
-            m_IsOn = isOn;
+        }
+
+        public override void OnAddBuff(BattleRoleModel model)
+        {
+            model.StatusMask.AddStatus(m_StatusControlType);
+        }
+
+        public override void OnRemoveBuff(BattleRoleModel model)
+        {
+            model.StatusMask.RemoveStatus(m_StatusControlType);
         }
     }
 
@@ -33,6 +41,8 @@ namespace GameWish.Game
             m_ModifyType = modifyType;
             m_Value = value;
         }
+
+        public abstract void OnAppendBuff(int appendNum, BattleRoleModel model);
 
     }
 

@@ -11,6 +11,14 @@ namespace GameWish.Game
         {
             var buff = new Buff(configSO.ID);
             buff.AttributeHandler = CreateBuffModelHandlerAttribute(configSO.AttributeType, configSO.ModifyType, configSO.NumericValue);
+            if (configSO.StatusControls != null && configSO.StatusControls.Count > 0)
+            {
+                buff.StatusHandler = new List<BuffModelHandler_Status>();
+                for (int i = 0; i < configSO.StatusControls.Count; i++)
+                {
+                    buff.StatusHandler.Add(CreateBuffModelHandlerStatus(configSO.StatusControls[i].statusType));
+                }
+            }
             DealWithStatic(configSO);
             return buff;
         }
@@ -26,6 +34,20 @@ namespace GameWish.Game
                     return new BuffModelHandler_ATK(modifyType, value);
                 case AttributeType.MaxHp:
                     return new BuffModelHandler_MaxHp(modifyType, value);
+            }
+            return null;
+        }
+
+        private static BuffModelHandler_Status CreateBuffModelHandlerStatus(StatusControlType statusType)
+        {
+            switch (statusType)
+            {
+                case StatusControlType.AttackForbid:
+                    return new BuffModelHandler_AttackForbid();
+                case StatusControlType.MoveForbid:
+                    return new BuffModelHandler_MoveForbid();
+                case StatusControlType.SkillForbid:
+                    return new BuffModelHandler_SkillForbid();
             }
             return null;
         }
