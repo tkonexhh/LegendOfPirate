@@ -23,16 +23,16 @@ MonoBehaviour:
     SerializationNodes: []
   ID: 0
   Name: Buff1
+  Time: 10
   EnabledStateModify: 1
-  StatusControls: []
+  StatusControls: 7
   EnabledAttributeModify: 1
-  Time: -1
-  AttributeType: 1
-  NumericValue: -20
+  AttributeType: 4
+  NumericValue: 20
   ModifyType: 1
   triggerType: 0
   Interval: 1
-  EnabledAppend: 1
+  EnabledAppend: 0
   AppendType: 0
   MaxAppendNum: 44
   ParticleEffect: {fileID: 0}

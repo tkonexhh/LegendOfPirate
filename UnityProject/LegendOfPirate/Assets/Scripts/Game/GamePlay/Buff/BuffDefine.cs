@@ -52,17 +52,10 @@ namespace GameWish.Game
     public enum StatusControlType
     {
         [LabelText("（空）")] None = 0,
-        [LabelText("移动禁止")] MoveForbid = 1 << 1,
-        [LabelText("施法禁止")] SkillForbid = 1 << 2,
-        [LabelText("攻击禁止")] AttackForbid = 1 << 3,
+        [LabelText("移动禁止")] MoveForbid = 1 << 0,
+        [LabelText("施法禁止")] SkillForbid = 1 << 1,
+        [LabelText("攻击禁止")] AttackForbid = 1 << 2,
 
-    }
-
-    [System.Serializable, LabelText("状态控制")]
-    public class StatusControl
-    {
-        public StatusControlType statusType;
-        // public bool isOn;
     }
 
 }

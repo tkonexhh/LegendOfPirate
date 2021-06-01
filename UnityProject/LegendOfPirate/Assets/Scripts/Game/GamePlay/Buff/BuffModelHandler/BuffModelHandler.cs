@@ -11,7 +11,7 @@ namespace GameWish.Game
         public abstract void OnRemoveBuff(BattleRoleModel model);
     }
 
-    public abstract class BuffModelHandler_Status : BuffModelHandler
+    public class BuffModelHandler_Status : BuffModelHandler
     {
         protected StatusControlType m_StatusControlType;
 
@@ -34,9 +34,9 @@ namespace GameWish.Game
     public abstract class BuffModelHandler_Attribute : BuffModelHandler
     {
         protected ModifyType m_ModifyType;
-        protected int m_Value;
+        protected float m_Value;
 
-        public BuffModelHandler_Attribute(ModifyType modifyType, int value)
+        public BuffModelHandler_Attribute(ModifyType modifyType, float value)
         {
             m_ModifyType = modifyType;
             m_Value = value;

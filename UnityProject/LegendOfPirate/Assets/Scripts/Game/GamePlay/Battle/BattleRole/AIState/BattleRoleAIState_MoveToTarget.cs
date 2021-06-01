@@ -12,8 +12,6 @@ namespace GameWish.Game
             base.Enter(ai);
             ai.controller.MonoReference.AstarAI.canMove = true;
             ai.controller.renderer.CrossFadeAnim("Run", 0.1f, true);
-            // ai.controller.fSM.SetState(BattleRoleStateEnum.Move);
-            ai.controller.MonoReference.AIDestinationSetter.target = ai.Target.transform;
         }
 
         public override void Execute(BattleRoleAI ai, float dt)
@@ -23,6 +21,9 @@ namespace GameWish.Game
             {
                 ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.Attack);
             }
+            ai.controller.MonoReference.AstarAI.canMove = !ai.controller.Data.buffedData.StatusMask.HasStatus(StatusControlType.MoveForbid);
+            ai.controller.MonoReference.AstarAI.maxSpeed = ai.controller.Data.buffedData.MoveSpeed;
+            ai.controller.MonoReference.AstarAI.destination = ai.Target.transform.position;
         }
 
         public override void Exit(BattleRoleAI ai)

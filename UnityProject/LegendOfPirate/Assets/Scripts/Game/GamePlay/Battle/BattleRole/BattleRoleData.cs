@@ -5,12 +5,18 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class BattleRoleData
+    public class BattleRoleData : BattleRoleComponent
     {
         public BattleRoleModel originData;
         public BattleRoleModel equipedData;
         public BattleRoleModel buffedData;
 
+
+        public override void OnBattleStart()
+        {
+            buffedData = new BattleRoleModel();
+            buffedData.MoveSpeed = 2.0f;
+        }
 
     }
 

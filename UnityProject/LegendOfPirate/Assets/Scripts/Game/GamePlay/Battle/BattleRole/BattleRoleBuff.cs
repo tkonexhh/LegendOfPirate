@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class BattleRoleBuff
+    public class BattleRoleBuff : BattleRoleComponent
     {
         private BattleRoleController m_Controller;
         private List<Buff> m_BuffList = new List<Buff>();
@@ -17,14 +17,17 @@ namespace GameWish.Game
             m_Controller = controller;
         }
 
-        public void OnUpdate()
+        public override void OnUpdate()
         {
             for (int i = m_BuffList.Count - 1; i >= 0; i--)
             {
-                m_BuffList[i].time -= Time.deltaTime;
-                if (m_BuffList[i].time <= 0)
+                if (m_BuffList[i].time != -1)//-1 是永久持续
                 {
-                    RemoveBuff(m_BuffList[i]);
+                    m_BuffList[i].time -= Time.deltaTime;
+                    if (m_BuffList[i].time <= 0)
+                    {
+                        RemoveBuff(m_BuffList[i]);
+                    }
                 }
             }
         }
@@ -42,7 +45,7 @@ namespace GameWish.Game
                     m_BuffMap[buff.id].nowAppendNum++;
                     m_BuffMap[buff.id].nowAppendNum = Mathf.Min(m_BuffMap[buff.id].nowAppendNum, buffStaticInfo.maxAppendNum);
                     m_BuffMap[buff.id].OnAddAppendNum(m_Controller.Data.buffedData);
-                    buffStaticInfo.appendHandler.HandleApped(m_BuffMap[buff.id], buff);
+                    buffStaticInfo.appendHandler?.HandleApped(m_BuffMap[buff.id], buff);
                 }
 
                 return;

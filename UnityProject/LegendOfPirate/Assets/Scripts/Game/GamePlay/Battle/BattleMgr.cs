@@ -9,6 +9,7 @@ namespace GameWish.Game
     public class BattleMgr : TMonoSingleton<BattleMgr>, IMgr
     {
         [SerializeField] private GameObject m_RolePrefab;
+        [SerializeField] private BuffConfigSO m_DemoBuffSO;
 
         private ResLoader m_Loader;
         private List<IBattleComponent> m_BattleComponentList;
@@ -93,11 +94,28 @@ namespace GameWish.Game
             {
                 m_BattleComponentList[i].OnBattleUpdate();
             }
+
+            //XXX test add buff
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                Buff buff = BuffFactory.CreateBuff(m_DemoBuffSO);
+                for (int i = 0; i < BattleRendererComponent.ourControllers.Count; i++)
+                {
+                    CreateBuff(BattleRendererComponent.ourControllers[i], buff);
+                }
+
+
+            }
         }
 
 
 
-
+        #region Buff
+        public void CreateBuff(BattleRoleController controller, Buff buff)
+        {
+            controller.Buff.AddBuff(buff);
+        }
+        #endregion
 
 
     }

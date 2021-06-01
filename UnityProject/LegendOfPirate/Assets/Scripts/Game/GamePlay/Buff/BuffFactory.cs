@@ -10,21 +10,22 @@ namespace GameWish.Game
         public static Buff CreateBuff(BuffConfigSO configSO)
         {
             var buff = new Buff(configSO.ID);
+            buff.time = configSO.Time;
             buff.AttributeHandler = CreateBuffModelHandlerAttribute(configSO.AttributeType, configSO.ModifyType, configSO.NumericValue);
-            if (configSO.StatusControls != null && configSO.StatusControls.Count > 0)
+            if (configSO.StatusControls != StatusControlType.None)//&& configSO.StatusControls.Count > 0)
             {
-                buff.StatusHandler = new List<BuffModelHandler_Status>();
-                for (int i = 0; i < configSO.StatusControls.Count; i++)
-                {
-                    buff.StatusHandler.Add(CreateBuffModelHandlerStatus(configSO.StatusControls[i].statusType));
-                }
+                buff.StatusHandler = new BuffModelHandler_Status(configSO.StatusControls);//new List<BuffModelHandler_Status>();
+                // for (int i = 0; i < configSO.StatusControls.Count; i++)
+                // {
+                //     buff.StatusHandler.Add(CreateBuffModelHandlerStatus(configSO.StatusControls[i].statusType));
+                // }
             }
             DealWithStatic(configSO);
             return buff;
         }
 
         #region BuffModelHandler
-        private static BuffModelHandler_Attribute CreateBuffModelHandlerAttribute(AttributeType attributeType, ModifyType modifyType, int value)
+        private static BuffModelHandler_Attribute CreateBuffModelHandlerAttribute(AttributeType attributeType, ModifyType modifyType, float value)
         {
             switch (attributeType)
             {

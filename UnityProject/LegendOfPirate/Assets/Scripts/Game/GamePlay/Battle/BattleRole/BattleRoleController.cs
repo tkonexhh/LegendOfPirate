@@ -78,6 +78,7 @@ namespace GameWish.Game
 
         public void BattleStart()
         {
+            Data.OnBattleStart();
             AI.OnBattleStart();
         }
     }

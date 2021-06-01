@@ -13,12 +13,15 @@ namespace GameWish.Game
         public int ID = 0;
         [LabelText("Buff名称")]
         public string Name = "BuffName";
+        [LabelText("持续时间")]
+        [PropertyTooltip("-1 是永久持续"), Range(-1, 200)]
+        public float Time;
 
         //---
         [ToggleGroup("EnabledStateModify", "状态控制")]
         public bool EnabledStateModify;
         [ToggleGroup("EnabledStateModify")]
-        public List<StatusControl> StatusControls = new List<StatusControl>();
+        public StatusControlType StatusControls;
         //===
 
 
@@ -26,14 +29,11 @@ namespace GameWish.Game
         [ToggleGroup("EnabledAttributeModify", "属性修饰")]
         public bool EnabledAttributeModify;
 
-        [ToggleGroup("EnabledAttributeModify"), LabelText("持续时间")]
-        [PropertyTooltip("-1 是永久持续"), Range(-1, 99999)]
-        public float Time;
 
         [ToggleGroup("EnabledAttributeModify")]
         public AttributeType AttributeType;
         [ToggleGroup("EnabledAttributeModify"), LabelText("数值参数")]
-        public int NumericValue;
+        public float NumericValue;
         [ToggleGroup("EnabledAttributeModify")]
         public ModifyType ModifyType;
 

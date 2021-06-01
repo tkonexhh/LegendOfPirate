@@ -7,7 +7,8 @@ namespace GameWish.Game
 {
     public class BuffModelHandler_MoveSpeed : BuffModelHandler_Attribute
     {
-        public BuffModelHandler_MoveSpeed(ModifyType modifyType, int value) : base(modifyType, value)
+        private float m_DeltaValue = 0;
+        public BuffModelHandler_MoveSpeed(ModifyType modifyType, float value) : base(modifyType, value)
         {
         }
 
@@ -15,23 +16,18 @@ namespace GameWish.Game
         {
             if (m_ModifyType == ModifyType.Add)
             {
-                model.MoveSpeed += m_Value;
+                m_DeltaValue = m_Value;
             }
             else
             {
-                model.MoveSpeed *= m_Value;
+                m_DeltaValue = model.MoveSpeed * (m_Value * 0.01f);
             }
+
+            model.MoveSpeed += m_DeltaValue;
         }
         public override void OnRemoveBuff(BattleRoleModel model)
         {
-            if (m_ModifyType == ModifyType.Add)
-            {
-                model.MoveSpeed -= m_Value;
-            }
-            else
-            {
-                model.MoveSpeed /= m_Value;
-            }
+            model.MoveSpeed -= m_DeltaValue;
         }
 
         public override void OnAppendBuff(int appendNum, BattleRoleModel model)

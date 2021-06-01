@@ -26,35 +26,38 @@ namespace GameWish.Game
         public float HPRecoverRate = 0;//生命回复率
         public float ExtraHP = 0;//额外生命值 护盾
 
-        public StatusMask StatusMask;//状态标识位
+        public StatusMask StatusMask = new StatusMask();//状态标识位
     }
 
     public class StatusMask
     {
-        public Int32 mask = 0;
+        public StatusControlType mask = 0;
 
         public void AddStatus(StatusControlType statusType)
         {
-            Int32 add = 1 << (Int32)(statusType);
-            mask = (mask) | add;
+            // Int32 add = 1 << (Int32)(statusType);
+            mask = (mask) | statusType;
+            // Debug.LogError(mask.ToString());
             // Debug.LogError("AddStatus Temp" + Convert.ToString(add, 2));
         }
 
         public void RemoveStatus(StatusControlType statusType)
         {
-            Int32 remove = ~(1 << (Int32)(statusType));
+            // Int32 remove = ~(1 << (Int32)(statusType));
             // Debug.LogError("Remove Temp" + Convert.ToString(remove, 2));
-            mask = mask & remove;
+            // mask = mask & remove;
+            mask = mask ^ statusType;
+            // Debug.LogError(mask.ToString());
         }
 
         public bool HasStatus(StatusControlType statusType)
         {
-            return ((mask >> (Int32)statusType) & 1) == 1;
+            return (mask & statusType) != 0; //((mask >> (Int32)statusType) & 1) == 1;
         }
 
         public override string ToString()
         {
-            return Convert.ToString(mask, 2);
+            return mask.ToString();
         }
     }
 
