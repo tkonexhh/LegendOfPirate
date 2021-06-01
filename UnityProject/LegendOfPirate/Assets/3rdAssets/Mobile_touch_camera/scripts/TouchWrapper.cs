@@ -10,7 +10,6 @@
 
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.EventSystems;
 
 namespace BitBenderGames {
 
@@ -26,12 +25,7 @@ namespace BitBenderGames {
         #endregion
 
         if (Input.GetMouseButton(0) == true) {
-          if(!EventSystem.current.IsPointerOverGameObject())
           return (1);
-          else
-          {
-              return (0);
-          }
         } else {
           return (0);
         }

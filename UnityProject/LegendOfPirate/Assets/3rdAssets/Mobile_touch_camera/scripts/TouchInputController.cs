@@ -135,6 +135,14 @@ namespace BitBenderGames {
 
     public void Update() {
 
+            if (TouchWrapper.IsFingerDown)
+            {
+                if (IsScreenPositionOverUI(TouchWrapper.Touch0.Position))
+                {
+                    return;
+                }
+            }
+
       if (TouchWrapper.IsFingerDown == false) {
         isInputOnLockedArea = false;
       }
@@ -386,5 +394,34 @@ namespace BitBenderGames {
       float dragDistance = new Vector2(dragVector.x / Screen.width, dragVector.y / Screen.height).magnitude;
       return dragDistance;
     }
-  }
+
+        private bool IsScreenPositionOverUI(Vector2 position)
+        {
+
+            EventSystem uiEventSystem = EventSystem.current;
+            if (uiEventSystem != null)
+            {
+
+                PointerEventData uiPointerEventData = new PointerEventData(uiEventSystem);
+                uiPointerEventData.position = position;
+
+
+                List<RaycastResult> uiRaycastResultCache = new List<RaycastResult>();
+                uiEventSystem.RaycastAll(uiPointerEventData, uiRaycastResultCache);
+
+                if (uiRaycastResultCache.Count > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
 }
