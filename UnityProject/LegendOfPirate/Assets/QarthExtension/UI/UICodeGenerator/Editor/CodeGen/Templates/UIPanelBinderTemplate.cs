@@ -20,17 +20,44 @@ namespace Qarth.Extension
             var root = new RootCode()
                 .Using("UnityEngine")
                 .Using("UnityEngine.UI")
+                .Using("Qarth.Extension")
                 .Using("Qarth")
                 .Using("UniRx")
                 .EmptyLine()
                 .Namespace(scriptNamespace, nsScope =>
                 {
-                    nsScope.Class(name + "Data", "UIPanelData", false, false, classScope => { });
+                    nsScope.Class(name + "Data", "UIPanelData", false, false, classScope => 
+                    {
+                        classScope.CustomScope("public " + name + "Data()", false,
+                            function =>
+                            {
+                            });
+                    });
 
                     nsScope.EmptyLine();
 
                     nsScope.Class(name, null, true, false, classScope =>
                     {
+                        classScope.Custom("private " + name + "Data m_PanelData = null;");
+
+                        classScope.EmptyLine();
+
+                        classScope.CustomScope("private void AllocatePanelData()", false,
+                            function =>
+                            {
+                                function.Custom(" m_PanelData = UIPanelData.Allocate<" + name + "Data>();");
+                            });
+
+                        classScope.EmptyLine();
+
+                        classScope.CustomScope("private void ReleasePanelData()", false,
+                            function =>
+                            {
+                                function.Custom("ObjectPool<" + name + "Data>.S.Recycle(m_PanelData);");
+                            });
+
+                        classScope.EmptyLine();
+
                         classScope.CustomScope("private void BindModelToUI()", false,
                             function =>
                             {

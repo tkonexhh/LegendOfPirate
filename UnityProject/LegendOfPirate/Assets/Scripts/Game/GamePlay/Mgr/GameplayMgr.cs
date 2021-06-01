@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
 using System;
-using BitBenderGames;
+//using BitBenderGames;
 using UnityEngine.SceneManagement;
 using Int64 = System.Int64;
 using Random = UnityEngine.Random;
@@ -85,7 +85,7 @@ namespace GameWish.Game
 
             if (m_IsGameStart == false)
             {
-                if (AssetPreloaderMgr.S.IsPreloaderDone())
+                //if (AssetPreloaderMgr.S.IsPreloaderDone())
                 {
                     m_IsGameStart = true;
 

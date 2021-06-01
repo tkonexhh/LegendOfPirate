@@ -7,7 +7,7 @@ namespace GameWish.Game
 {
     public class BattleRoleRenderer : Controller
     {
-        private Transform m_Target;
+        public Transform transform { get; set; }
         protected AnimedRenderCell m_RenderInfo;
         string soName = "Enemy1ConfigSO";
 
@@ -16,10 +16,9 @@ namespace GameWish.Game
         #region IElement
         public override void OnInit()
         {
-            // gameObject = GameObjectPoolMgr.S.Allocate("BattleRole");
-            // transform = gameObject.transform;
-            // transform.SetParent(BattleMgr.S.transform);
             m_RenderInfo = new AnimedRenderCell();
+            m_RenderInfo.animLerp = 0;
+            m_RenderInfo.Pause();
 
 
             if (GPUInstanceMgr.S.HasRenderGroup(soName))
@@ -39,19 +38,17 @@ namespace GameWish.Game
 
         public override void OnUpdate()
         {
-            if (m_Target == null)
+            if (transform == null)
                 return;
-            m_RenderInfo.rotation = m_Target.rotation;
-            m_RenderInfo.position = m_Target.position;
+            m_RenderInfo.rotation = transform.rotation;
+            m_RenderInfo.position = transform.position;
             m_RenderInfo.Update();
         }
 
         public override void OnDestroyed()
         {
             GPUInstanceMgr.S.GetRenderGroup(soName).RemoveRenderCell(m_RenderInfo);
-            // GameObjectPoolMgr.S.Recycle(gameObject);
             m_RenderInfo = null;
-            // transform = null;
         }
 
         public override void OnCacheReset()
@@ -67,18 +64,14 @@ namespace GameWish.Game
         }
         #endregion
 
-        public void SetTarget(Transform transform)
-        {
-            m_Target = transform;
-        }
-
-        public void PlayAnim(string animName, bool loop)
+        public void PlayAnim(string animName, bool loop = false)
         {
             m_RenderInfo.Play(animName, loop);
         }
 
-        public void CrossFadeAnim(string animName, float fadeTime, bool loop)
+        public void CrossFadeAnim(string animName, float fadeTime, bool loop = false)
         {
+            //TODO 攻击动画播放结束 跳回idle状态
             m_RenderInfo.CrossFade(animName, fadeTime, loop);
         }
     }

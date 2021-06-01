@@ -31,7 +31,6 @@ namespace GameWish.Game
                     animRate1 = animedCell.animRate1,
                     animRate2 = animedCell.animRate2
                 };
-
                 animInfos.Add(animInfo);
             }
             m_ComputeBuffer.SetData(animInfos);

@@ -23,6 +23,7 @@ namespace GameWish.Game
 
             BattleMgr.S.OnInit();
 
+            UIMgr.S.OpenPanel(UIID.TestPanel);
         }
 
         public void OnUpdate()

@@ -16,6 +16,7 @@ namespace Qarth.Extension
                 .Using("System")
                 .Using("UnityEngine")
                 .Using("UnityEngine.UI")
+                .Using("Qarth.Extension")
                 .Using("Qarth")
                 .EmptyLine()
                 .Namespace(scriptNamespace.IsTrimNullOrEmpty()
@@ -43,9 +44,6 @@ namespace Qarth.Extension
                         }
 
                         classScope.EmptyLine();
-                        classScope.Custom("private " + name + "Data m_PrivateData = null;");
-
-                        classScope.EmptyLine();
 
                         //classScope.CustomScope("protected override void ClearUIComponents()", false, (function) =>
                         //{
@@ -69,20 +67,20 @@ namespace Qarth.Extension
                         //classScope.EmptyLine();
 
 
-                        classScope.CustomScope(name + "Data Data", false, (property) =>
-                        {
-                            property.CustomScope("get", false,
-                                (getter) =>
-                                {
-                                    getter.Custom("return m_PrivateData ?? (m_PrivateData = new " + name + "Data());");
-                                });
+                        //classScope.CustomScope(name + "Data Data", false, (property) =>
+                        //{
+                        //    property.CustomScope("get", false,
+                        //        (getter) =>
+                        //        {
+                        //            getter.Custom("return m_PrivateData ?? (m_PrivateData = new " + name + "Data());");
+                        //        });
 
-                            property.CustomScope("set", false, (setter) =>
-                            {
-                                //setter.Custom("mUIData = value;");
-                                setter.Custom("m_PrivateData = value;");
-                            });
-                        });
+                        //    property.CustomScope("set", false, (setter) =>
+                        //    {
+                        //        //setter.Custom("mUIData = value;");
+                        //        setter.Custom("m_PrivateData = value;");
+                        //    });
+                        //});
                     });
                 });
 
