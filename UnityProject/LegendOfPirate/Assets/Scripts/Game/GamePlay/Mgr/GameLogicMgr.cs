@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace GameWish.Game
 {
-    public class GameWorldMgr : TSingleton<GameWorldMgr>, IMgr
+    public class GameLogicMgr : TSingleton<GameLogicMgr>, IMgr
     {
         private bool m_IsInited = false;
 
@@ -15,11 +15,14 @@ namespace GameWish.Game
         public void OnInit()
         {
             Log.i("--------------World init--------------");
+
             m_IsInited = true;
 
             ModelMgr.S.OnInit();
 
             BattleMgr.S.OnInit();
+
+            DailyRefreshMgr.S.OnInit();
 
             UIMgr.S.OpenPanel(UIID.TestPanel);
         }
@@ -34,7 +37,7 @@ namespace GameWish.Game
 
         public void OnDestroyed()
         {
-
+            DailyRefreshMgr.S.OnDestroyed();
         }
 
         #endregion
