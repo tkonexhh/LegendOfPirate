@@ -11,6 +11,7 @@ namespace GameWish.Game
         void OnBattleInit();
         void OnBattleStart();
         void OnBattleUpdate();
+        void OnBattleEnd(bool isSuccess);
         void OnBattleClean();
     }
 

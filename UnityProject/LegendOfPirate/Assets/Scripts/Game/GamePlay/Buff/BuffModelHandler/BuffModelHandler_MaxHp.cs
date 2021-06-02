@@ -17,12 +17,16 @@ namespace GameWish.Game
             m_DeltaValue = m_Value * 0.01f;
             model.MaxHpAddRate += m_DeltaValue;
             model.MaxHp = (int)(model.BasicMaxHp * (1.0f + model.MaxHpAddRate));
+            model.Hp = (int)(model.Hp * (1.0f + model.MaxHpAddRate));
+            // Debug.LogError(model.MaxHp + "-" + model.Hp);
         }
 
         public override void OnRemoveBuff(BattleRoleRuntimeModel model)
         {
+            model.Hp = (int)(model.Hp / (1.0f + model.MaxHpAddRate));
             model.MaxHpAddRate -= m_DeltaValue;
             model.MaxHp = (int)(model.BasicMaxHp / (1.0f + model.MaxHpAddRate));
+            // Debug.LogError(model.MaxHp + "-" + model.Hp);
         }
 
         public override void OnAppendBuff(int appendNum, BattleRoleRuntimeModel model)

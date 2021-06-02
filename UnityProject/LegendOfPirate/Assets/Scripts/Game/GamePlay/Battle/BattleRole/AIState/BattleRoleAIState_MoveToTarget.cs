@@ -18,7 +18,7 @@ namespace GameWish.Game
 
             m_MoveSpeedAddRateChange = ai.controller.Data.buffedData.MoveSpeedAddRate.Subscribe(_ =>
             {
-                ai.controller.MonoReference.AstarAI.maxSpeed = ai.controller.Data.buffedData.FinalMoveSpeed;
+                ai.controller.MonoReference.AstarAI.maxSpeed = ai.controller.Data.buffedData.MoveSpeed;
             });
 
             // m_StatusChange = ai.controller.Data.buffedData.StatusMask.Subscribe(_ =>
@@ -31,6 +31,10 @@ namespace GameWish.Game
         public override void Execute(BattleRoleAI ai, float dt)
         {
             base.Execute(ai, dt);
+            if (ai.Target == null)
+            {
+                return;
+            }
             if (ai.controller.MonoReference.AstarAI.reachedDestination)
             {
                 ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.Attack);

@@ -25,7 +25,6 @@ namespace GameWish.Game
 
             public bool IsEnd()
             {
-                // return animRate>=1;
                 return animRate >= animEndRate;
             }
 
@@ -36,10 +35,8 @@ namespace GameWish.Game
 
             public void Replay()
             {
-                // animRate=0;
                 animRate = animStartRate;
             }
-
         }
 
         private bool m_Playing = false;
@@ -85,7 +82,8 @@ namespace GameWish.Game
                         }
                         else
                         {
-                            m_Playing = false;
+                            Pause();
+                            m_Anim1.animRate = m_Anim1.animEndRate;
                             // PlayRandomAnim();
                         }
                     }

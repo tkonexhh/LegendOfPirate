@@ -17,7 +17,7 @@ namespace GameWish.Game
         public float bounsATKRate = 0;//攻击加速
         public int CriticalRate = 0;//暴击率
         public float Amor = 0;//护甲
-        public float EvasionRate = 0;//闪避率
+        public int EvasionRate = 0;//闪避率
         public float SkillATKRate = 0;//技能伤害
         public float SkillAmorRate = 0;//技能保护
         public float ATKResponseRate = 0;//吸血率
@@ -28,7 +28,20 @@ namespace GameWish.Game
 
     public class BattleRoleRuntimeModel : BattleRoleModel
     {
-        public int Hp;//当前生命值
+        private int m_HP;//当前生命值
+        public int Hp
+        {
+            get => m_HP;
+            set
+            {
+                m_HP = value;
+                m_HP = Mathf.Clamp(m_HP, 0, MaxHp);
+                if (m_HP <= 0)
+                {
+                    IsDead.Value = true;
+                }
+            }
+        }
         public int MaxHp;
         public float MaxHpAddRate = 0;
         public float ATKAddRate = 0;//攻击加成比例
@@ -39,8 +52,9 @@ namespace GameWish.Game
         public StatusMask StatusMask = new StatusMask();//状态标识位
 
 
-        public float FinalMoveSpeed => BasicMoveSpeed * (1 + MoveSpeedAddRate.Value);
-
+        public float MoveSpeed => BasicMoveSpeed * (1.0f + MoveSpeedAddRate.Value);
+        public int ATK => (int)(BasicATK * (1.0f + ATKAddRate));
+        public BoolReactiveProperty IsDead = new BoolReactiveProperty(false);
 
     }
 
