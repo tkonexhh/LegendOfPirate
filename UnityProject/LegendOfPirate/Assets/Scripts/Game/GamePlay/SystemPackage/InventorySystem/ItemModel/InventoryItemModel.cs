@@ -1,38 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UniRx;
 
 namespace GameWish.Game
 {
-    public abstract class InventoryItem<T> : IInventoryItem where T : System.IConvertible
+    public abstract class InventoryItemModel<T> : Model, IInventoryItemModel where T : System.IConvertible
     {
-        protected int m_Count;
+        protected IntReactiveProperty m_Count;
         protected T m_Id;
 
-        public InventoryItem(T id, int count)
+        public InventoryItemModel(T id, IntReactiveProperty count)
         {
             m_Id = id;
             m_Count = count;
         }
 
-        #region IInventoryItem
+        #region IInventoryItemModel
 
         public void AddCount(int deltaCount)
         {
-            m_Count += deltaCount;
-            m_Count = Mathf.Max(0, m_Count);
+            m_Count.Value += deltaCount;
+            m_Count.Value = Mathf.Max(0, m_Count.Value);
         }
 
         public void SubCount(int deltaCount)
         {
-            m_Count -= deltaCount;
-            m_Count = Mathf.Max(0, m_Count);
+            m_Count.Value -= deltaCount;
+            m_Count.Value = Mathf.Max(0, m_Count.Value);
         }
 
         public int GetCount()
         {
-            return m_Count;
+            return m_Count.Value;
         }
 
         public int GetId()

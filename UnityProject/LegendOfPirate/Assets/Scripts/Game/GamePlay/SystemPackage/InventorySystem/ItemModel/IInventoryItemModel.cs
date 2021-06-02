@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public interface IInventoryItem
+	public interface IInventoryItemModel
 	{
         string GetName();
         string GetDesc();

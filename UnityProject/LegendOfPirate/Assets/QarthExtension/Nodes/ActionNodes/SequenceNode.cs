@@ -35,7 +35,7 @@ namespace GameWish.Game
             return this;
         }
 
-        public void Execute()
+        public override void Execute()
         {
             while (m_NodeQueue.Count > 0)
             {

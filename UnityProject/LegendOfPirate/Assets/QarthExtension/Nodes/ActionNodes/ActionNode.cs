@@ -70,13 +70,16 @@ namespace GameWish.Game
 
         public virtual void OnCacheReset()
         {
-
+            OnStartCallback = null;
+            OnEndCallback = null;
+            OnTickCallback = null;
         }
 
         public virtual void Execute()
         {
 
         }
+
         #endregion
 
         public ActionNode AddOnStartCallback(Action callback)
@@ -99,10 +102,6 @@ namespace GameWish.Game
 
             return this;
         }
-        //public virtual void Execute()
-        //{
-        //    OnStart();
-        //}
 
     }
 

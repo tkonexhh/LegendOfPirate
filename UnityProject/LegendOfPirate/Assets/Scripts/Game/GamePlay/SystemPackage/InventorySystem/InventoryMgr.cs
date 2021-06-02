@@ -8,12 +8,12 @@ namespace GameWish.Game
 {
     public partial class InventoryMgr : TSingleton<InventoryMgr>, IMgr
     {
-        private Dictionary<int, IInventoryItem> m_InventoryItemDic;
+        private Dictionary<int, IInventoryItemModel> m_InventoryItemDic;
 
         #region IMgr
         public void OnInit()
         {
-            m_InventoryItemDic = new Dictionary<int, IInventoryItem>();
+            m_InventoryItemDic = new Dictionary<int, IInventoryItemModel>();
 
             LoadDataFromModel();
         }
@@ -31,11 +31,11 @@ namespace GameWish.Game
 
         #region Public
 
-        public void AddInventoryItem<T>(T id, IInventoryItem item) where T : IConvertible
+        public void AddInventoryItem<T>(T id, IInventoryItemModel item) where T : IConvertible
         {
             int key = id.ToInt32(null);
 
-            IInventoryItem savedItem = GetItem<T>(id);
+            IInventoryItemModel savedItem = GetItem<T>(id);
 
             if (savedItem == null)
             {
@@ -51,7 +51,7 @@ namespace GameWish.Game
         {
             int key = id.ToInt32(null);
 
-            IInventoryItem savedItem = GetItem<T>(id);
+            IInventoryItemModel savedItem = GetItem<T>(id);
 
             if (savedItem == null)
             {
@@ -71,7 +71,7 @@ namespace GameWish.Game
         {
             int key = id.ToInt32(null);
 
-            IInventoryItem savedItem = GetItem<T>(id);
+            IInventoryItemModel savedItem = GetItem<T>(id);
 
             if (savedItem == null)
             {
@@ -95,7 +95,7 @@ namespace GameWish.Game
             }
         }
 
-        public IInventoryItem GetItem<T>(T id) where T : IConvertible
+        public IInventoryItemModel GetItem<T>(T id) where T : IConvertible
         {
             int key = id.ToInt32(null);
             if (m_InventoryItemDic.ContainsKey(key))
