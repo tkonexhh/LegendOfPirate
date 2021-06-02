@@ -5,12 +5,21 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class BattleRoleData
+    public class BattleRoleData : BattleRoleComponent
     {
         public BattleRoleModel originData;
         public BattleRoleModel equipedData;
-        public BattleRoleModel buffedData;
+        public BattleRoleRuntimeModel buffedData;
 
+
+        public override void OnBattleStart()
+        {
+            buffedData = new BattleRoleRuntimeModel();
+            buffedData.BasicMaxHp = 100;
+            buffedData.Hp = 90;
+
+            buffedData.BasicMoveSpeed = 2.0f;
+        }
 
     }
 

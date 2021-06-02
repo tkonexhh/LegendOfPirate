@@ -5,7 +5,7 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public class BattleRoleAI : IRoleAI
+    public class BattleRoleAI : BattleRoleComponent
     {
         public BattleRoleController controller { get; private set; }
         public BattleRoleController Target { get; set; }
@@ -29,14 +29,13 @@ namespace GameWish.Game
 
         }
 
-
-        public void OnBattleStart()
+        public override void OnBattleStart()
         {
             FSM.SetCurrentStateByID(BattleRoleAIStateEnum.PickTarget);
             FSM.SetGlobalStateByID(BattleRoleAIStateEnum.Global);
         }
 
-        public void OnUpdate()
+        public override void OnUpdate()
         {
             FSM.UpdateState(Time.deltaTime);
         }
