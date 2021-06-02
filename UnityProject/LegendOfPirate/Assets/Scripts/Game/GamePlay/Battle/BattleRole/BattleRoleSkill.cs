@@ -20,10 +20,15 @@ namespace GameWish.Game
             base.OnBattleStart();
             for (int i = 0; i < m_SkillLst.Count; i++)
             {
-                m_SkillLst[i].timer = 0;
+
                 if (m_SkillLst[i] is PassiveSkill)
                 {
+                    m_SkillLst[i].timer = m_SkillLst[i].cd;
                     m_SkillLst[i].Cast(controller);
+                }
+                else
+                {
+                    m_SkillLst[i].timer = 0;
                 }
             }
         }
