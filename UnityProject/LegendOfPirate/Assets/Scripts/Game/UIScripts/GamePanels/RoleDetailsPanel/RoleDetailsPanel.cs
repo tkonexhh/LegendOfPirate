@@ -6,7 +6,7 @@ using UniRx;
 
 namespace GameWish.Game
 {
-	public partial class MainMenuPanel : AbstractAnimPanel
+	public partial class RoleDetailsPanel : AbstractAnimPanel
 	{
 		protected override void OnUIInit()
 		{
@@ -21,10 +21,6 @@ namespace GameWish.Game
 			
 			BindModelToUI();
 			BindUIToModel();
-
-			RoleDetailsBtn.OnClickAsObservable().Subscribe(_=> {
-				UIMgr.S.OpenPanel(UIID.RoleDetailsPanel);
-			});
 		}
 		
 		protected override void OnPanelHideComplete()

@@ -20,5 +20,7 @@ namespace GameWish.Game
         MyFloatMessagePanel,
         TestPanel,
 
+        RoleDetailsPanel
+
     }
 }

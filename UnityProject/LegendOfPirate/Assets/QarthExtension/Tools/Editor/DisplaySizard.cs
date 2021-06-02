@@ -40,8 +40,8 @@ public class DisplaySizard : EditorWindow
         OnInit();
     }
 
-    private ItemID itemID = ItemID._3;
-    private ItemType itemType = ItemType.Consumable;
+    //private ItemID itemID = ItemID._3;
+    //private ItemType itemType = ItemType.Consumable;
     private long numer = 0;
     private void OnGUI()
     {
@@ -54,18 +54,18 @@ public class DisplaySizard : EditorWindow
             //...水平布局
             GUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("增加物品", new[] { GUILayout.Width(100) });
-            itemID = (ItemID)EditorGUILayout.EnumPopup(itemID, new[] { GUILayout.Width(100) });
-            itemType = (ItemType)EditorGUILayout.EnumPopup(itemType, new[] { GUILayout.Width(100) });
-            numer = (long)EditorGUILayout.FloatField(numer, new[] { GUILayout.Width(100) });
-            bool isClick = GUILayout.Button("确定增加", new[] { GUILayout.Width(100) });
-            if (isClick && Application.isPlaying)
-            {
-                UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
-                InventroyMgr.S.AddItemForID(itemType, itemID, numer);
-                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
-                EditorUtility.DisplayDialog("提示", "增加成功","确认");
-                //EditorWindow.ShowPopup()
-            }
+            //itemID = (ItemID)EditorGUILayout.EnumPopup(itemID, new[] { GUILayout.Width(100) });
+            //itemType = (ItemType)EditorGUILayout.EnumPopup(itemType, new[] { GUILayout.Width(100) });
+            //numer = (long)EditorGUILayout.FloatField(numer, new[] { GUILayout.Width(100) });
+            //bool isClick = GUILayout.Button("确定增加", new[] { GUILayout.Width(100) });
+            //if (isClick && Application.isPlaying)
+            //{
+            //    UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
+            //    InventroyMgr.S.AddItemForID(itemType, itemID, numer);
+            //    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+            //    EditorUtility.DisplayDialog("提示", "增加成功","确认");
+            //    //EditorWindow.ShowPopup()
+            //}
             GUILayout.EndHorizontal();
 
 

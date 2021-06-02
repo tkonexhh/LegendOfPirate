@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6335331362040332364}
   - component: {fileID: 6335331362040332363}
   - component: {fileID: 6335331362040332362}
-  - component: {fileID: -6118687032528277918}
+  - component: {fileID: 8985932030137962317}
   m_Layer: 5
   m_Name: TestPanel
   m_TagString: Untagged
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 55
---- !u!114 &-6118687032528277918
+--- !u!114 &8985932030137962317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

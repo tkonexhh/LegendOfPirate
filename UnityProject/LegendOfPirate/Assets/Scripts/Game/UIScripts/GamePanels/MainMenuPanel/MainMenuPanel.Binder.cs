@@ -6,25 +6,25 @@ using UniRx;
 
 namespace GameWish.Game
 {
-	public class TestPanelData : UIPanelData
+	public class MainMenuPanelData : UIPanelData
 	{
-		public TestPanelData()
+		public MainMenuPanelData()
 		{
 		}
 	}
 	
-	public partial class TestPanel
+	public partial class MainMenuPanel
 	{
-		private TestPanelData m_PanelData = null;
+		private MainMenuPanelData m_PanelData = null;
 		
 		private void AllocatePanelData()
 		{
-			 m_PanelData = UIPanelData.Allocate<TestPanelData>();
+			 m_PanelData = UIPanelData.Allocate<MainMenuPanelData>();
 		}
 		
 		private void ReleasePanelData()
 		{
-			ObjectPool<TestPanelData>.S.Recycle(m_PanelData);
+			ObjectPool<MainMenuPanelData>.S.Recycle(m_PanelData);
 		}
 		
 		private void BindModelToUI()
