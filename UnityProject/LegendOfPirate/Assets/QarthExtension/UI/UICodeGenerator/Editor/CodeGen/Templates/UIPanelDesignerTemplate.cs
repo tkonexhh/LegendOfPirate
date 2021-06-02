@@ -23,7 +23,7 @@ namespace Qarth.Extension
                     ? UIKitSettingData.Namespace
                     : scriptNamespace, ns =>
                 {
-                    //ns.Custom("// Generate Id:{0}".FillFormat(Guid.NewGuid().ToString()));
+                    ns.Custom("// Auto Generated Code. Don't Modify This Class ");
                     ns.Class(name, null, true, false, (classScope) =>
                     {
                         classScope.Custom("public const string Name = \"" + name + "\";");
