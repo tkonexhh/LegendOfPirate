@@ -11,6 +11,7 @@ namespace GameWish.Game
         public BattleRoleModel equipedData;
         public BattleRoleRuntimeModel buffedData;
 
+        public BattleRoleData(BattleRoleController controller) : base(controller) { }
 
         public override void OnBattleStart()
         {

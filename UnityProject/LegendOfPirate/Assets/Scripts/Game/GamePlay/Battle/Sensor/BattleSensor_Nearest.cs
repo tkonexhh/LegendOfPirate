@@ -5,12 +5,16 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class BattleSensor_Nearest : BattleSensor_Distance
+    public class BattleSensor_Nearest : BattleSensor
     {
+        public BattleSensor_Nearest(PickTargetType type) : base(type)
+        {
+        }
+
 
         public override BattleRoleController PickTarget(BattleRoleController picker)
         {
-            m_OppositeCamp = BattleHelper.GetOppositeCamp(picker.camp);
+            GetPickBattleCamp(picker);
             var controllers = BattleMgr.S.BattleRendererComponent.GetControllersByCamp(m_OppositeCamp);
             float distance = float.MaxValue;
             int index = -1;

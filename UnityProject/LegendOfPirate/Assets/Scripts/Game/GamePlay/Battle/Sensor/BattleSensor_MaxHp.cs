@@ -5,12 +5,15 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class BattleSensor_MaxHp : BattleSensor_Hp
+    public class BattleSensor_MaxHp : BattleSensor
     {
+        public BattleSensor_MaxHp(PickTargetType type) : base(type)
+        {
+        }
 
         public override BattleRoleController PickTarget(BattleRoleController picker)
         {
-            m_OppositeCamp = BattleHelper.GetOppositeCamp(picker.camp);
+            GetPickBattleCamp(picker);
             var controllers = BattleMgr.S.BattleRendererComponent.GetControllersByCamp(m_OppositeCamp);
             int maxHp = int.MinValue;
             int index = -1;

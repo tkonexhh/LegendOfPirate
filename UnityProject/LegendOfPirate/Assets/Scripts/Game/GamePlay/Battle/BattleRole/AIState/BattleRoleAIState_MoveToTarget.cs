@@ -41,6 +41,10 @@ namespace GameWish.Game
             }
             ai.controller.MonoReference.AstarAI.canMove = !ai.controller.Data.buffedData.StatusMask.HasStatus(StatusControlType.MoveForbid);
             ai.controller.MonoReference.AstarAI.destination = ai.Target.transform.position;
+            if (ai.onMove != null)
+            {
+                ai.onMove();
+            }
         }
 
         public override void Exit(BattleRoleAI ai)

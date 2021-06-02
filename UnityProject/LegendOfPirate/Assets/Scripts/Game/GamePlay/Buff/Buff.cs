@@ -39,10 +39,6 @@ namespace GameWish.Game
             if (StatusHandler != null)
             {
                 StatusHandler.OnAddBuff(model);
-                // for (int i = 0; i < StatusHandler.Count; i++)
-                // {
-                //     StatusHandler[i].OnAddBuff(model);
-                // }
             }
         }
 
@@ -56,10 +52,6 @@ namespace GameWish.Game
             if (StatusHandler != null)
             {
                 StatusHandler.OnRemoveBuff(model);
-                // for (int i = 0; i < StatusHandler.Count; i++)
-                // {
-                //     StatusHandler[i].OnRemoveBuff(model);
-                // }
             }
         }
         #endregion

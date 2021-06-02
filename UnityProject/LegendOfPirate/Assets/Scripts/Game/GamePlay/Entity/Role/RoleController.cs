@@ -40,10 +40,6 @@ namespace GameWish.Game
             return this;
         }
 
-        public RoleController AddBuff(int test)
-        {
-            return this;
-        }
         #endregion
     }
 

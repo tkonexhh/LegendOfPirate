@@ -1103,6 +1103,7 @@ MonoBehaviour:
   m_RolePrefab: {fileID: 5728299268360915620, guid: 119ad41d5dd9145a5b73e998cd7ec0b6,
     type: 3}
   m_DemoBuffSO: {fileID: 11400000, guid: 3964941d191e6480c8f6f13d409d88b6, type: 2}
+  DemoSkillSO: {fileID: 11400000, guid: 48ff19146024b4d2e852c835423a421f, type: 2}
 --- !u!114 &1594192785
 MonoBehaviour:
   m_ObjectHideFlags: 0

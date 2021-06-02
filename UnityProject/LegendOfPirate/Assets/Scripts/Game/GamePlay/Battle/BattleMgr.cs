@@ -10,6 +10,7 @@ namespace GameWish.Game
     {
         [SerializeField] private GameObject m_RolePrefab;
         [SerializeField] private BuffConfigSO m_DemoBuffSO;
+        public SkillConfigSO DemoSkillSO;
 
         private ResLoader m_Loader;
         private List<IBattleComponent> m_BattleComponentList;
@@ -123,6 +124,10 @@ namespace GameWish.Game
 
         public void SendDamage(BattleRoleController controller, RoleDamagePackage roleDamagePackage)
         {
+            if (controller.AI.onHurt != null)
+            {
+                controller.AI.onHurt();
+            }
             controller.Data.GetDamage(roleDamagePackage);
         }
         #endregion

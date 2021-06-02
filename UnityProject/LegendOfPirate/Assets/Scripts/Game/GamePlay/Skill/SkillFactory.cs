@@ -17,6 +17,7 @@ namespace GameWish.Game
                     break;
                 case SkillType.Passive:
                     skill = new PassiveSkill();
+                    DealWithPassiveSkill(configSO, skill as PassiveSkill);
                     break;
                 default:
                     skill = new Skill();
@@ -24,10 +25,17 @@ namespace GameWish.Game
             }
 
             skill.id = configSO.ID;
+            skill.cd = configSO.CD;
             skill.name = configSO.name;
-            skill.Sensor = BattleSensorFactory.CreateBattleSensor(configSO.PickTarget.SensorTypeEnum);
+            skill.Sensor = BattleSensorFactory.CreateBattleSensor(configSO.PickTarget.PickTargetType, configSO.PickTarget.SensorTypeEnum);
 
-            return null;
+            return skill;
+        }
+
+        private static PassiveSkill DealWithPassiveSkill(SkillConfigSO configSO, PassiveSkill skill)
+        {
+            skill.skillTrigger = SkillTriggerFactory.CreateSkillTrigger(configSO.PassiveSkillTriggerType);
+            return skill;
         }
     }
 

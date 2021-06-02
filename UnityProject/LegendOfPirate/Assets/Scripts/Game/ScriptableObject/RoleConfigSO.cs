@@ -12,7 +12,7 @@ namespace GameWish.Game
         public int ID = 0;
 
         [LabelText("人物名称")]
-        public string RoleName = "SkillName";
+        public string RoleName = "RoleName";
         [HideReferenceObjectPicker]
         public PickTarget PickTarget = new PickTarget();
 

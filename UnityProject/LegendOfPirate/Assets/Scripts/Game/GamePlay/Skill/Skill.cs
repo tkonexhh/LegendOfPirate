@@ -11,13 +11,20 @@ namespace GameWish.Game
         public string name;
         public float range;
         public float cd;
+        public float timer;
         public IBattleSensor Sensor { get; set; }//技能选择器
         public Buff appendBuff;//附加Buff
+        protected BattleRoleController m_Owner;
 
 
         public BattleRoleController PicketTarget(BattleRoleController picker)
         {
             return Sensor.PickTarget(picker);
+        }
+
+        public virtual void Cast(BattleRoleController owner)
+        {
+            m_Owner = owner;
         }
     }
 
@@ -37,7 +44,32 @@ namespace GameWish.Game
     /// </summary>
     public class PassiveSkill : Skill
     {
+        public SkillTrigger skillTrigger;
 
+
+        public override void Cast(BattleRoleController owner)
+        {
+            base.Cast(owner);
+            skillTrigger.Start(m_Owner);
+            skillTrigger.onSkillTrigger += OnSkillTrigger;
+        }
+
+        public void Release()
+        {
+            skillTrigger.Stop(m_Owner);
+            skillTrigger.onSkillTrigger -= OnSkillTrigger;
+        }
+
+        private void OnSkillTrigger()
+        {
+            if (timer >= cd)
+            {
+                Debug.LogError("OnSkillTrigger");
+                if (appendBuff != null)
+                    m_Owner.Buff.AddBuff(appendBuff);
+            }
+
+        }
     }
 
 }

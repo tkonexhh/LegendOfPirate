@@ -58,6 +58,11 @@ namespace GameWish.Game
         //TODO 需要改成动画事件
         private void CreateDamage()
         {
+            if (m_AI.onAttack != null)
+            {
+                m_AI.onAttack();
+            }
+
             int damage = BattleHelper.CalcAtkDamage(m_AI.controller.Data.buffedData);
             RoleDamagePackage damagePackage = new RoleDamagePackage();
             damagePackage.damageType = BattleDamageType.Normal;

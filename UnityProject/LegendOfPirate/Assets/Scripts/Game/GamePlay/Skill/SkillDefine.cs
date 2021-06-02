@@ -17,10 +17,10 @@ namespace GameWish.Game
     public enum SkillType
     {
         [LabelText("主动技能")] Initiative,
-        [LabelText("被动技能")] Passive,
+        [LabelText("被动技能(完成)")] Passive,
     }
 
-    [LabelText("释放对象")]
+    [LabelText("释放对象(完成)")]
     public enum PickTargetType
     {
         [LabelText("自身")] Self,
@@ -29,7 +29,7 @@ namespace GameWish.Game
         [LabelText("当前目标")] Target,
     }
 
-    [LabelText("被动技能触发类型")]
+    [LabelText("被动技能触发类型(完成)")]
     public enum PassiveSkillTriggerType
     {
         [LabelText("攻击时触发")] Attack,
