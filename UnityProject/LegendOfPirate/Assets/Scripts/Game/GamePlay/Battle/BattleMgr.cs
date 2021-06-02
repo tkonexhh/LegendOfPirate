@@ -10,9 +10,11 @@ namespace GameWish.Game
     {
         [SerializeField] private GameObject m_RolePrefab;
         [SerializeField] private BuffConfigSO m_DemoBuffSO;
+        public SkillConfigSO DemoSkillSO;
 
         private ResLoader m_Loader;
         private List<IBattleComponent> m_BattleComponentList;
+        public bool Started { get; private set; }
 
 
         public ResLoader loader => m_Loader;
@@ -66,15 +68,21 @@ namespace GameWish.Game
 
         public void BattleStart()
         {
+            Started = true;
             for (int i = 0; i < m_BattleComponentList.Count; i++)
             {
                 m_BattleComponentList[i].OnBattleStart();
             }
         }
 
-        public void BattleEnd()
+        public void BattleEnd(bool isSuccess)
         {
-
+            Started = false;
+            Debug.LogError("BattleEnd:" + isSuccess);
+            for (int i = 0; i < m_BattleComponentList.Count; i++)
+            {
+                m_BattleComponentList[i].OnBattleEnd(isSuccess);
+            }
         }
 
         public void BattleClean()
@@ -103,8 +111,6 @@ namespace GameWish.Game
                 {
                     CreateBuff(BattleRendererComponent.ourControllers[i], buff);
                 }
-
-
             }
         }
 
@@ -114,6 +120,15 @@ namespace GameWish.Game
         public void CreateBuff(BattleRoleController controller, Buff buff)
         {
             controller.Buff.AddBuff(buff);
+        }
+
+        public void SendDamage(BattleRoleController controller, RoleDamagePackage roleDamagePackage)
+        {
+            if (controller.AI.onHurt != null)
+            {
+                controller.AI.onHurt();
+            }
+            controller.Data.GetDamage(roleDamagePackage);
         }
         #endregion
 

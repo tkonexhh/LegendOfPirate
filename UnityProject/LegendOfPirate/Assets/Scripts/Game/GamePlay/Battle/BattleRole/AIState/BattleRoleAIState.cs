@@ -12,6 +12,7 @@ namespace GameWish.Game
         Attack,
         Global,
         Dead,
+        Victory,
     }
 
     public class BattleRoleAIState : FSMState<BattleRoleAI>

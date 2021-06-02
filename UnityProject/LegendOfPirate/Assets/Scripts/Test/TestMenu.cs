@@ -21,7 +21,7 @@ namespace GameWish.Game
 
             if (GUI.Button(new Rect(400, 0, 200, 200), "BattleEnd"))
             {
-                BattleMgr.S.BattleEnd();
+                BattleMgr.S.BattleEnd(true);
                 BattleMgr.S.BattleClean();
             }
 

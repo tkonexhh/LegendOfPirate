@@ -7,16 +7,23 @@ namespace GameWish.Game
 {
     public class BattleRoleAI : BattleRoleComponent
     {
-        public BattleRoleController controller { get; private set; }
-        public BattleRoleController Target { get; set; }
 
+        public BattleRoleController Target { get; set; }
         public FSMStateMachine<BattleRoleAI> FSM { get; private set; }
         public IBattleSensor Sensor { get; private set; }
 
-        public BattleRoleAI(BattleRoleController controller)
+        public delegate void OnMove();
+        public delegate void OnAttack();
+        public delegate void OnHurt();
+
+        //TODO 移动到其他component中
+        public OnAttack onAttack;
+        public OnMove onMove;
+        public OnHurt onHurt;
+
+        public BattleRoleAI(BattleRoleController controller) : base(controller)
         {
-            this.controller = controller;
-            Sensor = new BattleSensor_Nearest(controller);
+            Sensor = BattleSensorFactory.CreateBattleSensor(PickTargetType.Enemy, SensorTypeEnum.Nearest);
             this.controller.renderer.PlayAnim("Idle", true);
 
             FSM = new FSMStateMachine<BattleRoleAI>(this);
@@ -25,6 +32,7 @@ namespace GameWish.Game
             FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.MoveToTarget, new BattleRoleAIState_MoveToTarget());
             FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Attack, new BattleRoleAIState_Attack());
             FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Dead, new BattleRoleAIState_Dead());
+            FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Victory, new BattleRoleAIState_Victory());
             FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Global, new BattleRoleAIState_Global());
 
         }

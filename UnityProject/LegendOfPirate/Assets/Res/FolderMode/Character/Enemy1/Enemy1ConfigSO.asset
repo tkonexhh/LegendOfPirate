@@ -12,6 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8074673259e714a71ae5d505f6021c1c, type: 3}
   m_Name: Enemy1ConfigSO
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: PickTarget
+      Entry: 7
+      Data: 0|GameWish.Game.PickTarget, Assembly-CSharp
+    - Name: PickTargetType
+      Entry: 3
+      Data: 0
+    - Name: SensorTypeEnum
+      Entry: 3
+      Data: 0
+    - Name: PickNum
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Attack
+      Entry: 6
+      Data: 
+  ID: 0
+  RoleName: SkillName
+  EnableAttackBuff: 0
+  BuffConfigSO: {fileID: 0}
+  childSkills: []
   mesh: {fileID: 4300000, guid: 36b8ab911f6f84408993f3dc89056df8, type: 2}
   material: {fileID: 2100000, guid: 8313048490a284c6b84e16733d13ca36, type: 2}
   animInfoText: {fileID: 4900000, guid: 2ea00aa5eb364441b99ed9b394c7c6c2, type: 2}

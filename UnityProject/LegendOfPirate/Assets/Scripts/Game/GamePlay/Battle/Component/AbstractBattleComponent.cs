@@ -11,6 +11,7 @@ namespace GameWish.Game
         public virtual void OnBattleInit() { }
         public virtual void OnBattleStart() { }
         public virtual void OnBattleUpdate() { }
+        public virtual void OnBattleEnd(bool isSuccess) { }
         public virtual void OnBattleClean() { }
     }
 

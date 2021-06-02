@@ -64,11 +64,11 @@ namespace GameWish.Game
     [LabelText("索敌类型")]
     public enum SensorTypeEnum
     {
-        [LabelText("血量最低")] HPLow,
-        [LabelText("血量最高")] HPHigh,
+        [LabelText("血量最低(完成)")] HPLow,
+        [LabelText("血量最高(完成)")] HPHigh,
         [LabelText("血量百分比最低")] HPRateLow,
         [LabelText("血量百分比最高")] HPRateHigh,
-        [LabelText("最近")] Nearest,
+        [LabelText("最近(完成)")] Nearest,
         [LabelText("最远")] Farest,
     }
 }

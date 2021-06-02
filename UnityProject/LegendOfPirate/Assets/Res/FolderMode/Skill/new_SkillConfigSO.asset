@@ -41,7 +41,7 @@ MonoBehaviour:
       Data: 1|GameWish.Game.Attack, Assembly-CSharp
     - Name: AttackType
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: DamageType
       Entry: 3
       Data: 1
@@ -63,7 +63,7 @@ MonoBehaviour:
   ID: 0
   SkillName: Demo Skill
   Range: 200
-  SkillType: 0
+  SkillType: 1
   ChildBuffs:
   - {fileID: 0}
   CD: 0
