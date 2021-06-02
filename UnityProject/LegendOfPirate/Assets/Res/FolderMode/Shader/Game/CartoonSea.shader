@@ -6,7 +6,7 @@
 		_MainTex ("Main Texture", 2D) = "white" {}
 		//_NoiseTex("Wave Noise", 2D) = "white" {}
 		//_Speed("Wave Speed", Range(0,1)) = 0.5
-		//_Amount("Wave Amount", Range(0,10)) = 0.5
+		_WaveScale("Wave Scale", Range(0,2)) = 0.1
 		_ReflectColorAdjust("Reflect Color Adujst", Range(0.1, 10)) = 5
 		_ColorBlendAdjust("Color Blend Adujst", Range(0.1, 10)) = 5
 		_Foam("Foamline Thickness", Range(0,3)) = 0.5
@@ -52,7 +52,7 @@
 
             CBUFFER_START(UnityPerMaterial)
             half4 _MainColor;
-            //float _Speed;
+            float _WaveScale;
             float _ColorBlendAdjust;
             float _ReflectColorAdjust;
             float _Foam;
@@ -135,7 +135,7 @@
 			}
 
 			float3 swell(float3 normal , float3 pos , float anisotropy){
-				float height = noise(pos.xz * 0.1,0);
+				float height = noise(pos.xz * _WaveScale,0);
 				height *= anisotropy ;
 				normal = normalize(
 					cross ( 
@@ -208,8 +208,8 @@
 				
 				// speclar
 				Light mainLight = GetMainLight();
-				float spe = pow( saturate(dot( reflDir, normalize(mainLight.direction))),100);
-				float3 lightColor = float3(1,1,1);
+				float spe = pow( saturate(dot( reflDir, normalize(mainLight.direction))),10);
+				float3 lightColor = float3(1,0,0);
 				reflectionColor += 100.4 * half4((spe * lightColor).xxxx);
 
 				// fresnel reflect 
@@ -221,7 +221,7 @@
 
 				float alpha = saturate(volmeZ);
 				
-  				col.a = alpha;
+  				col.a = alpha*1;
 
                 return col;
             }
