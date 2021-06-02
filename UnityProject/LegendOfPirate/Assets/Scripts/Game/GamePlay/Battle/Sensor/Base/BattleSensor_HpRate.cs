@@ -10,16 +10,14 @@ namespace GameWish.Game
     /// </summary>
     public class BattleSensor_HpRate : BattleSensor
     {
-        public BattleSensor_HpRate(BattleRoleController controller) : base(controller)
-        {
-        }
 
-        public override BattleRoleController PickTarget()
+
+        public override BattleRoleController PickTarget(BattleRoleController picker)
         {
             return null;
         }
 
-        public override BattleRoleController[] PickTarget(int num)
+        public override BattleRoleController[] PickTarget(BattleRoleController picker, int num)
         {
             return null;
         }

@@ -10,18 +10,16 @@ namespace GameWish.Game
     /// </summary>
     public abstract class BattleSensor : IBattleSensor
     {
-        protected BattleRoleController m_Controller;
+        // protected BattleRoleController m_Controller;
         protected BattleCamp m_OppositeCamp;
 
-        public BattleSensor(BattleRoleController controller)
+
+
+        public abstract BattleRoleController PickTarget(BattleRoleController picker);
+        public virtual BattleRoleController[] PickTarget(BattleRoleController picker, int num)
         {
-            m_Controller = controller;
-
+            return null;
         }
-
-
-        public abstract BattleRoleController PickTarget();
-        public abstract BattleRoleController[] PickTarget(int num);
     }
 
 }

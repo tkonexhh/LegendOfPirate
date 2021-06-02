@@ -10,16 +10,12 @@ namespace GameWish.Game
     /// </summary>
     public class BattleSensor_Distance : BattleSensor
     {
-        public BattleSensor_Distance(BattleRoleController controller) : base(controller)
-        {
-        }
-
-        public override BattleRoleController PickTarget()
+        public override BattleRoleController PickTarget(BattleRoleController picker)
         {
             return null;
         }
 
-        public override BattleRoleController[] PickTarget(int num)
+        public override BattleRoleController[] PickTarget(BattleRoleController picker, int num)
         {
             return null;
         }

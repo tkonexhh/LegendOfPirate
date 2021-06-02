@@ -34,20 +34,6 @@ namespace GameWish.Game
             }
             return null;
         }
-
-        private static BuffModelHandler_Status CreateBuffModelHandlerStatus(StatusControlType statusType)
-        {
-            switch (statusType)
-            {
-                case StatusControlType.AttackForbid:
-                    return new BuffModelHandler_AttackForbid();
-                case StatusControlType.MoveForbid:
-                    return new BuffModelHandler_MoveForbid();
-                case StatusControlType.SkillForbid:
-                    return new BuffModelHandler_SkillForbid();
-            }
-            return null;
-        }
         #endregion
 
         #region Buff Append

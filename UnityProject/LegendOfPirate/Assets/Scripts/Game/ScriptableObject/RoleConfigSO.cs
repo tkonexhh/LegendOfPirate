@@ -8,6 +8,11 @@ namespace GameWish.Game
     [CreateAssetMenu(menuName = "Game/RoleConfigSO", fileName = "new_RoleConfigSO")]
     public class RoleConfigSO : SerializedScriptableObject
     {
+        [LabelText("人物ID")]
+        public int ID = 0;
+
+        [LabelText("人物名称")]
+        public string RoleName = "SkillName";
         [HideReferenceObjectPicker]
         public PickTarget PickTarget = new PickTarget();
 

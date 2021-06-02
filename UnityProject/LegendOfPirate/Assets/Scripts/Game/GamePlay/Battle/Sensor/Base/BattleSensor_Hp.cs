@@ -11,16 +11,13 @@ namespace GameWish.Game
     public class BattleSensor_Hp : BattleSensor
     {
 
-        public BattleSensor_Hp(BattleRoleController controller) : base(controller)
-        {
-        }
 
-        public override BattleRoleController PickTarget()
+        public override BattleRoleController PickTarget(BattleRoleController picker)
         {
             return null;
         }
 
-        public override BattleRoleController[] PickTarget(int num)
+        public override BattleRoleController[] PickTarget(BattleRoleController picker, int num)
         {
             return null;
         }

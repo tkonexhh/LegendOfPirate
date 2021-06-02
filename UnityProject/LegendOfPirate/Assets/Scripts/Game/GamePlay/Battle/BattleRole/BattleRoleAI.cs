@@ -16,7 +16,7 @@ namespace GameWish.Game
         public BattleRoleAI(BattleRoleController controller)
         {
             this.controller = controller;
-            Sensor = new BattleSensor_Nearest(controller);
+            Sensor = new BattleSensor_Nearest();
             this.controller.renderer.PlayAnim("Idle", true);
 
             FSM = new FSMStateMachine<BattleRoleAI>(this);
