@@ -12,25 +12,31 @@ namespace GameWish.Game
 
         protected override void LoadDataFromDb()
         {
-            base.LoadDataFromDb();
+            RoleGroupData roleGroupData = GameDataMgr.S.GetRoleGroupData();
+            for (int i = 0; i < roleGroupData.roleList.Count; i++)
+            {
+                RoleData roleData = roleGroupData.roleList[i];
+                RoleItemModel itemModel = new RoleItemModel(roleData);
+                roleItemList.Add(itemModel);
+            }
         }
     }
 
-    public class RoleItemModel //:RumTimeModel
+    public class RoleItemModel : Model
     {
-        public IntReactiveProperty id;
+        public int id;
         public IntReactiveProperty level;
+        public string name;
+        public string resName;
+        public ReactiveCollection<int> equipList;
+        public ReactiveCollection<int> skillList;
 
-        public IntReactiveProperty hp;
-        public IntReactiveProperty def;
-        //public int MaxHp;
-        //public int Dog;//闪避率
-        //public int Critical;//暴击率
-        //public int Atk;//物理攻击
-        //public int Def;//物理防御
-        //public int Mag;//法术攻击
-        //public int Wil;//法术防御
-        //public float attackSpeed;//攻击速率
-        //public float moveSpeed;//移动速度
+        public RoleItemModel(RoleData roleData)
+        {
+            id = roleData.id;
+            level = new IntReactiveProperty(roleData.level);
+            name = roleData.name;
+            //TODO: equp and skill
+        }
     }
 }

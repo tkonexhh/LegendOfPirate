@@ -28,7 +28,7 @@ namespace GameWish.Game
 
         protected override void LoadDataFromDb()
         {
-            base.LoadDataFromDb();
+
         }
 
         private void RefreshEnemyRoleList()

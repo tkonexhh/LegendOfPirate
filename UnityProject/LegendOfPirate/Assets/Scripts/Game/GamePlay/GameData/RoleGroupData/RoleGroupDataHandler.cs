@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class RoleDataHandler : DataHandlerBase<PlayerInfoData>, ILoadDataFromServer
+    public class RoleGroupDataHandler : DataHandlerBase<RoleGroupData>, ILoadDataFromServer
     {
-        public RoleDataHandler()
+        public RoleGroupDataHandler()
         {
 
         }
