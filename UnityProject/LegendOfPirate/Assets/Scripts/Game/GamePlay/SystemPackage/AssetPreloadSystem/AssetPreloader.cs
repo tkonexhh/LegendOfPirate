@@ -17,6 +17,8 @@ namespace GameWish.Game
 
         private ResLoader m_ResLoader = null;
 
+        #region IAssetPreloader
+
         public bool IsLoadDone()
         {
             return m_IsLoadDone;
@@ -44,6 +46,13 @@ namespace GameWish.Game
                 OnResLoadFinish();
             }
         }
+
+        public void Release()
+        {
+            m_ResLoader.ReleaseAllRes();
+        }
+
+        #endregion
 
         protected virtual void SetNeedPreloadAssets()
         {

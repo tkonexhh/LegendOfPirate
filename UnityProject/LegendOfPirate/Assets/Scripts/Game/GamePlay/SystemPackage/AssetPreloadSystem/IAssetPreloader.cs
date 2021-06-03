@@ -9,6 +9,6 @@ namespace GameWish.Game
         string[] NeedPreloadAssets { get; }
         bool IsLoadDone();
         void StartPreload();
-
+        void Release();
     }
 }

@@ -14,6 +14,9 @@ namespace GameWish.Game
         public void OnInit()
         {
             m_ShipUnitDic = new Dictionary<ShipUnitType, IShipUnit>();
+
+            SpawnSea();
+            SpawnShip();
         }
 
         public void OnUpdate()
