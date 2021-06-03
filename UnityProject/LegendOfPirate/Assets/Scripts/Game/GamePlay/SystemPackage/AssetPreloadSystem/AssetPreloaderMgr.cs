@@ -16,6 +16,8 @@ namespace GameWish.Game
         public void OnInit()
         {
             AutoRegisterAllAssetPreloaders();
+
+            StartPreload();
         }
 
         public void OnUpdate()
@@ -28,14 +30,7 @@ namespace GameWish.Game
 
         #endregion
 
-        private void AddAssetPreloader(IAssetPreloader assetPreloader)
-        {
-            if (!m_AssetPreloaderList.Contains(assetPreloader))
-            {
-                assetPreloader.StartPreload();
-                m_AssetPreloaderList.Add(assetPreloader);
-            }
-        }
+        #region Public
 
         public bool IsPreloaderDone()
         {
@@ -59,7 +54,36 @@ namespace GameWish.Game
             m_AssetPreloaderList = null;
         }
 
+        #endregion
+
         #region Private
+
+        private void AddAssetPreloader(IAssetPreloader assetPreloader)
+        {
+            if (assetPreloader != null)
+            {
+                if (!m_AssetPreloaderList.Contains(assetPreloader))
+                {
+                    m_AssetPreloaderList.Add(assetPreloader);
+                }
+                else
+                {
+                    Log.e("IAssetPreloader Already Exists!");
+                }
+            }
+            else
+            {
+                Log.e("IAssetPreloader class not found!");
+            }
+        }
+
+        private void StartPreload()
+        {
+            for (int i = 0; i < m_AssetPreloaderList.Count; i++)
+            {
+                m_AssetPreloaderList[i].StartPreload();
+            }
+        }
 
         private void AutoRegisterAllAssetPreloaders()
         {
@@ -71,17 +95,8 @@ namespace GameWish.Game
                     {
                         object preloaderObj = Activator.CreateInstance(type);
                         IAssetPreloader preloader = (IAssetPreloader)preloaderObj;
-                        if (preloader != null)
-                        {
-                            if (!m_AssetPreloaderList.Contains(preloader))
-                            {
-                                m_AssetPreloaderList.Add(preloader);
-                            }
-                        }
-                        else
-                        {
-                            Log.e("IAssetPreloader class not found!");
-                        }
+
+                        AddAssetPreloader(preloader);                       
                     }
 
                 }

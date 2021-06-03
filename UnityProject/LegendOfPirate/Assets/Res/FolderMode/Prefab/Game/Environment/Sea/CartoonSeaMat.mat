@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CartoonSea
+  m_Name: CartoonSeaMat
   m_Shader: {fileID: 4800000, guid: e51cf991c062ae5468f8b21f4a2475a1, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
