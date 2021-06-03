@@ -6,11 +6,16 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class RoleGroupDataHandler : DataHandlerBase<RoleGroupData>, ILoadDataFromServer
+    public class RoleGroupDataHandler : DataHandlerBase<RoleGroupData>, IDataHandler
     {
         public RoleGroupDataHandler()
         {
 
+        }
+
+        public IDataClass GetDataClass()
+        {
+            return m_Data;
         }
 
         public override void LoadDataFromServer(Action callback)

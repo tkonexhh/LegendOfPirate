@@ -5,12 +5,10 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public enum ShipComponentType
-	{
-        None,
-        Lobby,
-        Kitchen,
-
+	public enum ShipUnitType
+    {
+	    None, 
+        Kitchen
 	}
 	
 }

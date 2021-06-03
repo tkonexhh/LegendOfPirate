@@ -39,14 +39,17 @@ namespace GameWish.Game
             }
         }
 
+        private bool m_EnableInput = true;
+
         public void Init()
         {
+            m_EnableInput = true;
             EasyTouch.On_TouchStart += On_TouchStart;
-            //EasyTouch.On_TouchDown += On_TouchDown;
-            //EasyTouch.On_TouchUp += On_TouchUp;
-            //EasyTouch.On_Drag += On_Drag;
+            EasyTouch.On_TouchDown += On_TouchDown;
+            EasyTouch.On_TouchUp += On_TouchUp;
+            EasyTouch.On_Drag += On_Drag;
             //EasyTouch.On_LongTap += On_LongTap;
-            //EasyTouch.On_Swipe += On_Swipe;
+            EasyTouch.On_Swipe += On_Swipe;
         }
 
         public void AddTouchObserver(IInputObserver ob)
@@ -54,6 +57,8 @@ namespace GameWish.Game
             if (!m_TouchObservers.Contains(ob))
             {
                 m_TouchObservers.Add(ob);
+
+                m_TouchObservers.Sort((a, b) => { return b.GetSortingLayer() - a.GetSortingLayer(); });
             }
         }
 
@@ -67,27 +72,41 @@ namespace GameWish.Game
 
         private void On_TouchStart(Gesture gesture)
         {
+            if (!m_EnableInput)
+                return;
+
+            foreach (var ob in m_TouchObservers)
             {
-                foreach (var ob in m_TouchObservers)
-                {
-                    ob.On_TouchStart(gesture);
-                }
+                bool touched = ob.On_TouchStart(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
+
         }
 
         private void On_TouchDown(Gesture gesture)
         {
+            if (!m_EnableInput)
+                return;
+
             m_Time = DateTime.Now;
             //HideTouchTip();
 
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_TouchDown(gesture);
+                bool touched = ob.On_TouchDown(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
         }
 
         private void On_TouchUp(Gesture gesture)
         {
+            if (!m_EnableInput)
+                return;
+
             //start check
             //if (AbTestActor.IsShowHandTip())
             //{
@@ -97,34 +116,56 @@ namespace GameWish.Game
 
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_TouchUp(gesture);
+                bool touched = ob.On_TouchUp(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
         }
 
         private void On_Drag(Gesture gesture)
         {
+            if (!m_EnableInput)
+                return;
+
             if (IsDragEnabled == false)
                 return;
 
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_Drag(gesture, m_IsTouchStartFromUI);
+                bool touched = ob.On_Drag(gesture, m_IsTouchStartFromUI);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
+
+            //Log.e("On drag");
         }
 
         private void On_Swipe(Gesture gesture)
         {
+            if (!m_EnableInput)
+                return;
+
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_Swipe(gesture);
+                bool touched = ob.On_Swipe(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
+
+            //Log.e("On swipe");
         }
 
         private void On_LongTap(Gesture gesture)
         {
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_LongTap(gesture);
+                bool touched = ob.On_LongTap(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
         }
 
@@ -143,5 +184,15 @@ namespace GameWish.Game
         //        EffectMgr.S.HideTouchTip();
         //    }
         //}
+
+        public void EnableInput()
+        {
+            m_EnableInput = true;
+        }
+
+        public void DisableInput()
+        {
+            m_EnableInput = false;
+        }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace GameWish.Game
 {
     // Ship的组件功能比较简单，所以此处不进行VC结构分层
-    public class ShipComponent : IShipComponent
+    public class ShipUnit : IShipUnit
     {
         #region IShipComponent
 

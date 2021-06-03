@@ -24,6 +24,8 @@ namespace GameWish.Game
 
             DailyRefreshMgr.S.OnInit();
 
+            ShipMgr.S.OnInit();
+
             //UIMgr.S.OpenPanel(UIID.TestPanel);
         }
 

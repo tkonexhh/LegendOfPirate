@@ -13,7 +13,7 @@ namespace GameWish.Game
 
         protected override void LoadDataFromDb()
         {
-            RoleGroupData roleGroupData = GameDataMgr.S.GetRoleGroupData();
+            RoleGroupData roleGroupData = GameDataMgr.S.GetData<RoleGroupData>();
             for (int i = 0; i < roleGroupData.roleList.Count; i++)
             {
                 RoleData roleData = roleGroupData.roleList[i];

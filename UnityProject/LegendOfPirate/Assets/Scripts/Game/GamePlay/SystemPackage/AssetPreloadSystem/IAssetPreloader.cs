@@ -6,7 +6,7 @@ namespace GameWish.Game
 {
     public interface IAssetPreloader
     {
-        string[] NeedPreloadAsset { get; }
+        string[] NeedPreloadAssets { get; }
         bool IsLoadDone();
         void StartPreload();
 

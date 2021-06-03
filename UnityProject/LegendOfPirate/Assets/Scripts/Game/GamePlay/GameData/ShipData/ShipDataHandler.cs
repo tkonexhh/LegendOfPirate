@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class PlayerInfoDataHandler : DataHandlerBase<PlayerInfoData>, IDataHandler
+    public class ShipDataHandler : DataHandlerBase<ShipData>, IDataHandler
     {
-        public PlayerInfoDataHandler()
+        public ShipDataHandler()
         {
 
         }

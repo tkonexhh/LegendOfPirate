@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public interface ILoadDataFromServer
+	public class Kitchen : ShipUnit
 	{
-        //bool IsDone();
+
 	}
 	
 }

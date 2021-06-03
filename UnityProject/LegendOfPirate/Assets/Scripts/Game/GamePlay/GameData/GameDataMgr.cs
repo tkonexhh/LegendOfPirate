@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
 using System;
+using System.Linq;
 
 namespace GameWish.Game
 {
@@ -19,10 +20,11 @@ namespace GameWish.Game
     {
         public static DataMode s_DataMode = DataMode.Local;
 
-        private List<ILoadDataFromServer> m_DataHanlderList;
+        private List<IDataHandler> m_DataHanlderList;
 
         private PlayerInfoDataHandler m_PlayerInfoDataHandler = null;
         private RoleGroupDataHandler m_RoleGroupDataHandler = null;
+        private ShipDataHandler m_ShipDataHandler = null;
 
         private int m_LoadDoneCount = 0;
         private Action m_OnLoadDoneCallback = null;
@@ -33,16 +35,19 @@ namespace GameWish.Game
         {
             m_OnLoadDoneCallback = callback;
 
-            m_DataHanlderList = new List<ILoadDataFromServer>();
+            m_DataHanlderList = new List<IDataHandler>();
 
             m_PlayerInfoDataHandler = new PlayerInfoDataHandler();
             m_RoleGroupDataHandler = new RoleGroupDataHandler();
+            m_ShipDataHandler = new ShipDataHandler();
 
             m_DataHanlderList.Add(m_PlayerInfoDataHandler);
             m_DataHanlderList.Add(m_RoleGroupDataHandler);
+            m_DataHanlderList.Add(m_ShipDataHandler);
 
             m_PlayerInfoDataHandler.LoadData(OnLoadDone);
             m_RoleGroupDataHandler.LoadData(OnLoadDone);
+            m_ShipDataHandler.LoadData(OnLoadDone);
 
             RegisterEvents();
         }
@@ -61,14 +66,30 @@ namespace GameWish.Game
             m_PlayerInfoDataHandler.Save(null);
         }
 
-        public PlayerInfoData GetPlayerInfoData()
-        {
-            return PlayerInfoDataHandler.data;
-        }
+        //public PlayerInfoData GetPlayerInfoData()
+        //{
+        //    return PlayerInfoDataHandler.data;
+        //}
 
-        public RoleGroupData GetRoleGroupData()
+        //public RoleGroupData GetRoleGroupData()
+        //{
+        //    return RoleGroupDataHandler.data;
+        //}
+
+        public T GetData<T>() where T : IDataClass
         {
-            return RoleGroupDataHandler.data;
+            IDataHandler dataHandler = m_DataHanlderList.FirstOrDefault(i => i.GetDataClass().GetType() == typeof(T));
+            if (dataHandler != null)
+            {
+                T t = (T)dataHandler.GetDataClass();
+                return t;
+            }
+            else
+            {
+                Log.e("Data Not Found: " + typeof(T).ToString());
+            }
+
+            return null;
         }
 
         #endregion
