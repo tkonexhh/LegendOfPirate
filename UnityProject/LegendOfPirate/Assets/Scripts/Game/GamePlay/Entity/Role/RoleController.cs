@@ -35,10 +35,10 @@ namespace GameWish.Game
 
         #region Public
 
-        public RoleController EquipSkill(RoleSkill roleSkill)
-        {
-            return this;
-        }
+        //public RoleController EquipSkill(RoleSkill roleSkill)
+        //{
+        //    return this;
+        //}
 
         #endregion
     }

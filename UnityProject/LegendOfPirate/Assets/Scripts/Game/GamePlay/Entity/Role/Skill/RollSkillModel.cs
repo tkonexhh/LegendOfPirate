@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class RoleSkill
+	public class RollSkillModel : Model
 	{
 
 	}
