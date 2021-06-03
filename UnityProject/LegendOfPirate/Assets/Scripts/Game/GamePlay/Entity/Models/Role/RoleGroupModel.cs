@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
+using System.Linq;
 
 namespace GameWish.Game
 {
@@ -19,6 +20,12 @@ namespace GameWish.Game
                 RoleModel itemModel = new RoleModel(roleData);
                 roleItemList.Add(itemModel);
             }
+        }
+
+        public RoleModel GetRoleModel(int id)
+        {
+            RoleModel role = roleItemList.FirstOrDefault(i => i.id == id);
+            return role;
         }
     }    
 }

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
-
+using System.Linq;
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -36,6 +37,35 @@ namespace GameWish.Game
             }
         }
 
+        #region Public Get
+
+        public RoleEquipModel GetEquipModel(int equipId)
+        {
+            RoleEquipModel equipModel = equipList.FirstOrDefault(i => i.equipId == equipId);
+
+            if (equipModel == null)
+            {
+                Log.e("Equip Model Not Found: " + equipId);
+            }
+
+            return equipModel;
+        }
+
+        public RoleSkillModel GetSkillModel(int skillId)
+        {
+            RoleSkillModel skillModel = skillList.FirstOrDefault(i => i.skillId == skillId);
+
+            if (skillModel == null)
+            {
+                Log.e("Skill Model Not Found: " + skillId);
+            }
+
+            return skillModel;
+        }
+
+        #endregion
+
+        #region Public Set
         public bool AddSkill()
         {
             return false;
@@ -55,6 +85,7 @@ namespace GameWish.Game
         {
 
         }
+        #endregion
     }
 
 }
