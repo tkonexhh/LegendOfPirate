@@ -46,7 +46,5 @@ namespace GameWish.Game
 		public UnityEngine.UI.ScrollRect RoleSelecScrollView;
 		[SerializeField]
 		public RectTransform RoleSelectRegion;
-		
-		
 	}
 }
