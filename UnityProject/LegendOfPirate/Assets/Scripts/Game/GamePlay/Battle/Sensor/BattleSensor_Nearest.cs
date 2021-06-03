@@ -1,20 +1,41 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace GameWish.Game
 {
-    /// <summary>
-    /// 战场索敌方式 - 嗜血索敌 - 寻找百分比血量最低的单位进行攻击；
-    /// </summary>
     public class BattleSensor_Nearest : BattleSensor
     {
-
-        public override IElement PickTarget()
+        public BattleSensor_Nearest(PickTargetType type) : base(type)
         {
+        }
+
+
+        public override BattleRoleController PickTarget(BattleRoleController picker)
+        {
+            GetPickBattleCamp(picker);
+            var controllers = BattleMgr.S.BattleRendererComponent.GetControllersByCamp(m_OppositeCamp);
+            float distance = float.MaxValue;
+            int index = -1;
+            for (int i = 0; i < controllers.Count; i++)
+            {
+                var d = Vector3.Distance(picker.transform.position, controllers[i].transform.position);
+                if (d < distance)
+                {
+                    distance = d;
+                    index = i;
+                }
+            }
+
+            if (index != -1)
+            {
+                return controllers[index];
+            }
+
             return null;
         }
+
     }
 
 }

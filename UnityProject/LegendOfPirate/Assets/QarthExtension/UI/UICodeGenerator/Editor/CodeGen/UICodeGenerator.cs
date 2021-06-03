@@ -72,24 +72,33 @@ namespace Qarth.Extension
 
             var behaviourName = uiPrefab.name;
 
-            var strFilePath = CodeGenUtil.GenSourceFilePathFromPrefabPath(uiPrefabPath, behaviourName);
-            if (mScriptKitInfo.IsNotNull())
+            //var strFilePath = CodeGenUtil.GenSourceFilePathFromPrefabPath(uiPrefabPath, behaviourName);
+            string folderDir = Application.dataPath + @"\Scripts\Game\UIScripts\GamePanels\" + behaviourName;
+            if (!Directory.Exists(folderDir))
             {
-                if (File.Exists(strFilePath) == false)
-                {
-                    if (mScriptKitInfo.Templates.IsNotNull() && mScriptKitInfo.Templates[0].IsNotNull())
-                        mScriptKitInfo.Templates[0].Generate(strFilePath, behaviourName, UIKitSettingData.GetProjectNamespace(), null);
-                }
+                Directory.CreateDirectory(folderDir);
             }
-            else
+
+            var strFilePath = folderDir + @"\" + behaviourName + ".cs";
+            //if (mScriptKitInfo.IsNotNull())
+            //{
+            //    if (File.Exists(strFilePath) == false)
+            //    {
+            //        if (mScriptKitInfo.Templates.IsNotNull() && mScriptKitInfo.Templates[0].IsNotNull())
+            //            mScriptKitInfo.Templates[0].Generate(strFilePath, behaviourName, UIKitSettingData.GetProjectNamespace(), null);
+            //    }
+            //}
+            //else
             {
                 if (File.Exists(strFilePath) == false)
                 {
-                    UIPanelTemplate.Write(behaviourName, strFilePath, UIKitSettingData.Load().Namespace, UIKitSettingData.Load());
+                    UIPanelTemplate.Write(behaviourName, strFilePath, UIKitSettingData.Namespace);
                 }
             }
 
             CreateUIPanelDesignerCode(behaviourName, strFilePath, panelCodeInfo);
+
+            CreateUIPanelBinderCode(behaviourName, strFilePath, panelCodeInfo);
             Debug.Log(">>>>>>>Success Create UIPrefab Code: " + behaviourName);
         }
 
@@ -97,22 +106,22 @@ namespace Qarth.Extension
         {
             var dir = uiUIPanelfilePath.Replace(behaviourName + ".cs", "");
             var generateFilePath = dir + behaviourName + ".Designer.cs";
-            if (mScriptKitInfo.IsNotNull())
+            //if (mScriptKitInfo.IsNotNull())
+            //{
+            //    if (mScriptKitInfo.Templates.IsNotNull() && mScriptKitInfo.Templates[1].IsNotNull())
+            //    {
+            //        mScriptKitInfo.Templates[1].Generate(generateFilePath, behaviourName, UIKitSettingData.GetProjectNamespace(), panelCodeInfo);
+            //    }
+            //    mScriptKitInfo.HotScriptFilePath.CreateDirIfNotExists();
+            //    mScriptKitInfo.HotScriptFilePath = mScriptKitInfo.HotScriptFilePath + "/" + behaviourName + mScriptKitInfo.HotScriptSuffix;
+            //    if (File.Exists(mScriptKitInfo.HotScriptFilePath) == false && mScriptKitInfo.Templates.IsNotNull() && mScriptKitInfo.Templates[2].IsNotNull())
+            //    {
+            //        mScriptKitInfo.Templates[2].Generate(mScriptKitInfo.HotScriptFilePath, behaviourName, UIKitSettingData.GetProjectNamespace(), panelCodeInfo);
+            //    }
+            //}
+            //else
             {
-                if (mScriptKitInfo.Templates.IsNotNull() && mScriptKitInfo.Templates[1].IsNotNull())
-                {
-                    mScriptKitInfo.Templates[1].Generate(generateFilePath, behaviourName, UIKitSettingData.GetProjectNamespace(), panelCodeInfo);
-                }
-                mScriptKitInfo.HotScriptFilePath.CreateDirIfNotExists();
-                mScriptKitInfo.HotScriptFilePath = mScriptKitInfo.HotScriptFilePath + "/" + behaviourName + mScriptKitInfo.HotScriptSuffix;
-                if (File.Exists(mScriptKitInfo.HotScriptFilePath) == false && mScriptKitInfo.Templates.IsNotNull() && mScriptKitInfo.Templates[2].IsNotNull())
-                {
-                    mScriptKitInfo.Templates[2].Generate(mScriptKitInfo.HotScriptFilePath, behaviourName, UIKitSettingData.GetProjectNamespace(), panelCodeInfo);
-                }
-            }
-            else
-            {
-                UIPanelDesignerTemplate.Write(behaviourName, dir, UIKitSettingData.GetProjectNamespace(), panelCodeInfo, UIKitSettingData.Load());
+                UIPanelDesignerTemplate.Write(behaviourName, dir, UIKitSettingData.GetProjectNamespace(), panelCodeInfo);
             }
 
             foreach (var elementCodeData in panelCodeInfo.ElementCodeDatas)
@@ -120,9 +129,26 @@ namespace Qarth.Extension
                 var elementDir = string.Empty;
                 elementDir = elementCodeData.BindInfo.BindScript.GetBindType() == BindType.Element
                     ? (dir + behaviourName + "/").CreateDirIfNotExists()
-                    : (Application.dataPath + "/" + UIKitSettingData.GetScriptsPath() + "/Components/").CreateDirIfNotExists();
+                    : (dir + behaviourName + "/" + "/Components/").CreateDirIfNotExists();
                 CreateUIElementCode(elementDir, elementCodeData);
             }
+        }
+
+        private void CreateUIPanelBinderCode(string behaviourName, string uiUIPanelfilePath, PanelCodeInfo panelCodeInfo)
+        {
+            var dir = uiUIPanelfilePath.Replace(behaviourName + ".cs", "");
+            var generateFilePath = dir + behaviourName + ".Binder.cs";
+
+            UIPanelBinderTemplate.Write(behaviourName, dir, UIKitSettingData.GetProjectNamespace(), panelCodeInfo);
+
+            //foreach (var elementCodeData in panelCodeInfo.ElementCodeDatas)
+            //{
+            //    var elementDir = string.Empty;
+            //    elementDir = elementCodeData.BindInfo.BindScript.GetBindType() == BindType.Element
+            //        ? (dir + behaviourName + "/").CreateDirIfNotExists()
+            //        : (Application.dataPath + "/" + UIKitSettingData.GetScriptsPath() + "/Components/").CreateDirIfNotExists();
+            //    CreateUIElementCode(elementDir, elementCodeData);
+            //}
         }
 
         private static void CreateUIElementCode(string generateDirPath, ElementCodeInfo elementCodeInfo)

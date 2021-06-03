@@ -1,21 +1,32 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
+using System.Reflection;
+using System;
 
 namespace GameWish.Game
 {
-	public class AssetPreloaderMgr : TSingleton<AssetPreloaderMgr>
+	public class AssetPreloaderMgr : TSingleton<AssetPreloaderMgr>, IMgr
 	{
         private List<IAssetPreloader> m_AssetPreloaderList = new List<IAssetPreloader>();
 
-        private int m_LoadDoneCount = 0;
+        #region IMgr
 
-        public void Init()
+        public void OnInit()
         {
-            Log.i("Asset preloader start........");
-
+            AutoRegisterAllAssetPreloaders();
         }
+
+        public void OnUpdate()
+        {
+        }
+
+        public void OnDestroyed()
+        {
+        }
+
+        #endregion
 
         private void AddAssetPreloader(IAssetPreloader assetPreloader)
         {
@@ -28,25 +39,56 @@ namespace GameWish.Game
 
         public bool IsPreloaderDone()
         {
-            return m_AssetPreloaderList.Count <= m_LoadDoneCount;
-            //bool isDone = true;
+            bool isDone = true;
 
-            //foreach (IAssetPreloader assetPreloader in m_AssetPreloaderList)
-            //{
-            //    if (assetPreloader.IsLoadDone() == false)
-            //    {
-            //        isDone = false;
-            //        break;
-            //    }
-            //}
+            foreach (IAssetPreloader assetPreloader in m_AssetPreloaderList)
+            {
+                if (assetPreloader.IsLoadDone() == false)
+                {
+                    isDone = false;
+                    break;
+                }
+            }
 
-            //return isDone;
+            return isDone;
         }
 
-        public void OnLoadDone()
+        public void Release()
         {
-            m_LoadDoneCount++;
+            m_AssetPreloaderList.Clear();
+            m_AssetPreloaderList = null;
         }
-	}
-	
+
+        #region Private
+
+        private void AutoRegisterAllAssetPreloaders()
+        {
+            Assembly assembly = AssemblyHelper.DefaultCSharpAssembly;
+            {
+                foreach (Type type in assembly.GetTypes())
+                {
+                    if (type.GetCustomAttribute<AssetAutoPreloadAttribute>() != null)
+                    {
+                        object preloaderObj = Activator.CreateInstance(type);
+                        IAssetPreloader preloader = (IAssetPreloader)preloaderObj;
+                        if (preloader != null)
+                        {
+                            if (!m_AssetPreloaderList.Contains(preloader))
+                            {
+                                m_AssetPreloaderList.Add(preloader);
+                            }
+                        }
+                        else
+                        {
+                            Log.e("IAssetPreloader class not found!");
+                        }
+                    }
+
+                }
+            }
+        }
+
+        #endregion
+    }
+
 }

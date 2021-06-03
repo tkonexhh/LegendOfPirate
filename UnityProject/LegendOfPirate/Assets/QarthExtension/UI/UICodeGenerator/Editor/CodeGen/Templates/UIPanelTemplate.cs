@@ -1,12 +1,11 @@
-
+﻿
 namespace Qarth.Extension
 {
     using System.IO;
 
     public class UIPanelTemplate
     {
-        public static void Write(string name, string srcFilePath, string scriptNamespace,
-            UIKitSettingData uiKitSettingData)
+        public static void Write(string name, string srcFilePath, string scriptNamespace)
         {
             var scriptFile = srcFilePath;
 
@@ -23,17 +22,21 @@ namespace Qarth.Extension
             var rootCode = new RootCode()
                 .Using("UnityEngine")
                 .Using("UnityEngine.UI")
+                .Using("Qarth.Extension")
                 .Using("Qarth")
                 .Using("UniRx")
                 .EmptyLine()
                 .Namespace(scriptNamespace, nsScope =>
                 {
-                    nsScope.Class(name + "Data", "UIPanelData", false, false, classScope => { });
+                    //nsScope.Class(name + "Data", "UIPanelData", false, false, classScope => { });
 
                     nsScope.Class(name, "AbstractAnimPanel", true, false, classScope =>
                     {
                         classScope.CustomScope("protected override void OnUIInit()", false,
-                            (function) => { });
+                            (function) => 
+                            {
+                                function.Custom("base.OnUIInit();");
+                            });
 
                         classScope.EmptyLine();
 
@@ -41,26 +44,34 @@ namespace Qarth.Extension
                             function =>
                             {
                                 function.Custom("base.OnPanelOpen(args);");
+                                function.EmptyLine();
+                                function.Custom("AllocatePanelData();");
+                                function.EmptyLine();
+                                function.Custom("BindModelToUI();");
+                                function.Custom("BindUIToModel();");
                             });
 
                         classScope.EmptyLine();
+
                         classScope.CustomScope("protected override void OnPanelHideComplete()", false,
                             function => 
                             {
                                 function.Custom("base.OnPanelHideComplete();");
+                                function.EmptyLine();
                                 function.Custom("CloseSelfPanel();");
                             });
 
-                        //classScope.EmptyLine();
-                        //classScope.CustomScope("protected override void OnShow()", false,
-                        //    function => { });
-                        //classScope.EmptyLine();
-                        //classScope.CustomScope("protected override void OnHide()", false,
-                        //    function => { });
+                        classScope.EmptyLine();
 
-                        //classScope.EmptyLine();
-                        //classScope.CustomScope("protected override void OnClose()", false,
-                        //    function => { });
+                        classScope.CustomScope("protected override void OnClose()", false,
+                             function =>
+                             {
+                                 function.Custom("base.OnClose();");
+                                 function.EmptyLine();
+                                 function.Custom("ReleasePanelData();");
+                             });
+
+                        classScope.EmptyLine();
                     });
                 });
 

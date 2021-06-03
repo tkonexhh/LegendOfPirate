@@ -10,22 +10,26 @@ namespace GameWish.Game
     /// 将组装Controller的逻辑放在工厂类中，减少Controller的工作量
     /// </summary>
     /// <typeparam name="T"></typeparam>
-	public class ControllerFactory<T> where T : IController, new()
+	public class ControllerFactory<T>: TSingleton<ControllerFactory<T>> where T : IController, new()
 	{
-        public T CreateController()
+        public T CreateController(IModel model)
         {
             T controller = ObjectPool<T>.S.Allocate();
 
-            BuildController(controller);
+            BuildController(controller, model);
 
             return controller;
         }
 
+        public void RecycleController(T controller)
+        {
+            ObjectPool<T>.S.Recycle(controller);
+        }
         /// <summary>
         /// 在这里进行Controller的组装
         /// </summary>
         /// <param name="controller"></param>
-        protected virtual void BuildController(T controller)
+        protected virtual void BuildController(T controller, IModel model)
         {
         }
 	}

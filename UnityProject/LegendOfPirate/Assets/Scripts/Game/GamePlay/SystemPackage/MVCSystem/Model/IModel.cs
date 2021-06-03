@@ -7,7 +7,6 @@ namespace GameWish.Game
 {
 	public interface IModel : IElement
 	{
-        IModel DeepCopy();
 	}
 	
 }

@@ -6,13 +6,13 @@ using UniRx;
 namespace GameWish.Game
 {
     [ModelAutoRegister]
-    public class ShipModel : Model
+    public class ShipModel : DbModel
 	{
         public IntReactiveProperty level;
 
         protected override void LoadDataFromDb()
         {
-            base.LoadDataFromDb();
+
         }
     }
 

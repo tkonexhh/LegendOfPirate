@@ -1,4 +1,4 @@
-
+﻿
 using System;
 using System.IO;
 
@@ -6,8 +6,7 @@ namespace Qarth.Extension
 {
     public class UIPanelDesignerTemplate
     {
-        public static void Write(string name, string scriptsFolder, string scriptNamespace, PanelCodeInfo panelCodeInfo,
-            UIKitSettingData uiKitSettingData)
+        public static void Write(string name, string scriptsFolder, string scriptNamespace, PanelCodeInfo panelCodeInfo)
         {
             var scriptFile = scriptsFolder + "/{0}.Designer.cs".FillFormat(name);
 
@@ -17,13 +16,14 @@ namespace Qarth.Extension
                 .Using("System")
                 .Using("UnityEngine")
                 .Using("UnityEngine.UI")
+                .Using("Qarth.Extension")
                 .Using("Qarth")
                 .EmptyLine()
                 .Namespace(scriptNamespace.IsTrimNullOrEmpty()
-                    ? uiKitSettingData.Namespace
+                    ? UIKitSettingData.Namespace
                     : scriptNamespace, ns =>
                 {
-                    ns.Custom("// Generate Id:{0}".FillFormat(Guid.NewGuid().ToString()));
+                    ns.Custom("// Auto Generated Code. Don't Modify This Class ");
                     ns.Class(name, null, true, false, (classScope) =>
                     {
                         classScope.Custom("public const string Name = \"" + name + "\";");
@@ -42,9 +42,6 @@ namespace Qarth.Extension
                             classScope.Custom("public " + bindInfo.BindScript.ComponentName + " " + bindInfo.Name +
                                               ";");
                         }
-
-                        classScope.EmptyLine();
-                        classScope.Custom("private " + name + "Data m_PrivateData = null;");
 
                         classScope.EmptyLine();
 
@@ -70,20 +67,20 @@ namespace Qarth.Extension
                         //classScope.EmptyLine();
 
 
-                        classScope.CustomScope(name + "Data Data", false, (property) =>
-                        {
-                            property.CustomScope("get", false,
-                                (getter) =>
-                                {
-                                    getter.Custom("return m_PrivateData ?? (m_PrivateData = new " + name + "Data());");
-                                });
+                        //classScope.CustomScope(name + "Data Data", false, (property) =>
+                        //{
+                        //    property.CustomScope("get", false,
+                        //        (getter) =>
+                        //        {
+                        //            getter.Custom("return m_PrivateData ?? (m_PrivateData = new " + name + "Data());");
+                        //        });
 
-                            property.CustomScope("set", false, (setter) =>
-                            {
-                                //setter.Custom("mUIData = value;");
-                                setter.Custom("m_PrivateData = value;");
-                            });
-                        });
+                        //    property.CustomScope("set", false, (setter) =>
+                        //    {
+                        //        //setter.Custom("mUIData = value;");
+                        //        setter.Custom("m_PrivateData = value;");
+                        //    });
+                        //});
                     });
                 });
 

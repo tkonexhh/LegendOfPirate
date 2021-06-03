@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
 using System;
-using BitBenderGames;
+//using BitBenderGames;
 using UnityEngine.SceneManagement;
 using Int64 = System.Int64;
 using Random = UnityEngine.Random;
@@ -15,24 +15,16 @@ namespace GameWish.Game
         [SerializeField] private Transform m_EntityRoot;
 
         public Transform EntityRoot { get => m_EntityRoot; set => m_EntityRoot = value; }
-        public MonoBehaviour Mono { get => m_Mono; set => m_Mono = value; }
 
-        private bool m_IsLoadingBarFinished = false;
         private bool m_IsGameStart = false;
-
-        private MonoBehaviour m_Mono;
 
         public void InitGameplay()
         {
-            m_Mono = GetComponent<MonoBehaviour>();
-            StartCoroutine(Init());
+            Init();
         }
 
-        private IEnumerator Init()
+        private void Init()
         {
-            // Init Managers
-            //GameDataMgr.S.Init();
-
             AudioMgr.S.OnSingletonInit();
 
             EventSystem.S.Register(EngineEventID.OnApplicationQuit, ApplicationQuit);
@@ -46,9 +38,15 @@ namespace GameWish.Game
 
             RemoteConfigMgr.S.StartChecker(null);
 
-            m_IsLoadingBarFinished = true;
 
-            yield return null;
+            UIMgr.S.ClosePanelAsUIID(UIID.LogoPanel);
+            UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+
+            MusicMgr.S.PlayBgMusic();
+
+            GameLogicMgr.S.OnInit();
+
+            m_IsGameStart = true;
         }
 
         private void OnGamePauseChange(int key, params object[] args)
@@ -75,36 +73,20 @@ namespace GameWish.Game
 
         private void ApplicationQuit(int key, params object[] args)
         {
-            //GameDataMgr.S.GetPlayerInfoData().SetLoginTime();
+
         }
 
         private void Update()
         {
-            if (m_IsLoadingBarFinished == false)
+            if (m_IsGameStart == false)
                 return;
 
-            if (m_IsGameStart == false)
-            {
-                if (AssetPreloaderMgr.S.IsPreloaderDone())
-                {
-                    m_IsGameStart = true;
-
-                    UIMgr.S.ClosePanelAsUIID(UIID.LogoPanel);
-                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
-
-                    MusicMgr.S.PlayBgMusic();
-                    GameWorldMgr.S.OnInit();
-                }
-            }
-            else
-            {
-                GameWorldMgr.S.OnUpdate();
-            }
+            GameLogicMgr.S.OnUpdate();
         }
 
-        private void FixedUpdate()
+        private void OnDestroy()
         {
-
+            GameLogicMgr.S.OnDestroyed();
         }
     }
 }

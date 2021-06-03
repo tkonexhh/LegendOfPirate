@@ -17,12 +17,12 @@ namespace GameWish.Game
     /// </summary>
     public class GameDataMgr : TSingleton<GameDataMgr>
     {
-        public static DataMode s_DataMode = DataMode.Server;
+        public static DataMode s_DataMode = DataMode.Local;
 
         private List<ILoadDataFromServer> m_DataHanlderList;
 
         private PlayerInfoDataHandler m_PlayerInfoDataHandler = null;
-        private RoleDataHandler m_RoleDataHandler = null;
+        private RoleGroupDataHandler m_RoleGroupDataHandler = null;
 
         private int m_LoadDoneCount = 0;
         private Action m_OnLoadDoneCallback = null;
@@ -36,13 +36,13 @@ namespace GameWish.Game
             m_DataHanlderList = new List<ILoadDataFromServer>();
 
             m_PlayerInfoDataHandler = new PlayerInfoDataHandler();
-            m_RoleDataHandler = new RoleDataHandler();
+            m_RoleGroupDataHandler = new RoleGroupDataHandler();
 
             m_DataHanlderList.Add(m_PlayerInfoDataHandler);
-            m_DataHanlderList.Add(m_RoleDataHandler);
+            m_DataHanlderList.Add(m_RoleGroupDataHandler);
 
             m_PlayerInfoDataHandler.LoadData(OnLoadDone);
-            m_RoleDataHandler.LoadData(OnLoadDone);
+            m_RoleGroupDataHandler.LoadData(OnLoadDone);
 
             RegisterEvents();
         }
@@ -64,6 +64,11 @@ namespace GameWish.Game
         public PlayerInfoData GetPlayerInfoData()
         {
             return PlayerInfoDataHandler.data;
+        }
+
+        public RoleGroupData GetRoleGroupData()
+        {
+            return RoleGroupDataHandler.data;
         }
 
         #endregion
