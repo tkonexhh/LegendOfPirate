@@ -12,6 +12,8 @@ namespace GameWish.Game
         void OnEnd();
 
         bool IsFinished { get;}
+
+        void Execute();
 	}
 	
 }
