@@ -50,21 +50,20 @@ namespace GameWish.Game
         public override void Cast(BattleRoleController owner)
         {
             base.Cast(owner);
-            skillTrigger.Start(m_Owner);
             skillTrigger.onSkillTrigger += OnSkillTrigger;
+            skillTrigger.Start(m_Owner);
         }
 
         public void Release()
         {
-            skillTrigger.Stop(m_Owner);
             skillTrigger.onSkillTrigger -= OnSkillTrigger;
+            skillTrigger.Stop(m_Owner);
         }
 
         private void OnSkillTrigger()
         {
             if (timer >= cd)
             {
-                Debug.LogError("OnSkillTrigger");
                 if (appendBuff != null)
                     m_Owner.Buff.AddBuff(appendBuff);
             }

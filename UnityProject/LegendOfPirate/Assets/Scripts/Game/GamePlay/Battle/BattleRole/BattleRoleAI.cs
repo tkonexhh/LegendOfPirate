@@ -12,14 +12,13 @@ namespace GameWish.Game
         public FSMStateMachine<BattleRoleAI> FSM { get; private set; }
         public IBattleSensor Sensor { get; private set; }
 
-        public delegate void OnMove();
-        public delegate void OnAttack();
-        public delegate void OnHurt();
+
 
         //TODO 移动到其他component中
-        public OnAttack onAttack;
-        public OnMove onMove;
-        public OnHurt onHurt;
+        public Run onAttack;
+        public Run onMove;
+        public Run onHurt;
+        public Run onUpdate;
 
         public BattleRoleAI(BattleRoleController controller) : base(controller)
         {
@@ -46,6 +45,10 @@ namespace GameWish.Game
         public override void OnUpdate()
         {
             FSM.UpdateState(Time.deltaTime);
+            if (onUpdate != null)
+            {
+                onUpdate();
+            }
         }
 
     }

@@ -36,7 +36,7 @@ namespace GameWish.Game
         [LabelText("受击时触发")] Hurt,
         [LabelText("时间间隔触发")] Time,
         [LabelText("移动触发")] Move,
-        [LabelText("永久触发")] Forver,
+        [LabelText("立即触发")] Forver,
     }
 
 }

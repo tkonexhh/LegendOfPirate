@@ -6,8 +6,8 @@ using UniRx;
 namespace GameWish.Game
 {
     [ModelAutoRegister]
-	public class RoleGroupModel : DbModel
-	{
+    public class RoleGroupModel : DbModel
+    {
         public ReactiveCollection<RoleItemModel> roleItemList = new ReactiveCollection<RoleItemModel>();
 
         protected override void LoadDataFromDb()

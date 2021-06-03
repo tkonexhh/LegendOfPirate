@@ -17,7 +17,7 @@ namespace GameWish.Game
     /// </summary>
     public class GameDataMgr : TSingleton<GameDataMgr>
     {
-        public static DataMode s_DataMode = DataMode.Server;
+        public static DataMode s_DataMode = DataMode.Local;
 
         private List<ILoadDataFromServer> m_DataHanlderList;
 
