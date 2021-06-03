@@ -11,7 +11,7 @@ namespace GameWish.Game
         public StringReactiveProperty testName;
         public IntReactiveProperty curLevel;
 
-        public ReactiveCollection<RoleItemModel> roleItemList = new ReactiveCollection<RoleItemModel>();
+        public ReactiveCollection<RoleModel> roleItemList = new ReactiveCollection<RoleModel>();
 
         public override void OnInit()
         {
