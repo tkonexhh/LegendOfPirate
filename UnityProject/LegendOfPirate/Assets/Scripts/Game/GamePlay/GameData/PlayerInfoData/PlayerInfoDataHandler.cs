@@ -6,11 +6,16 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class PlayerInfoDataHandler : DataHandlerBase<PlayerInfoData>, ILoadDataFromServer
+    public class PlayerInfoDataHandler : DataHandlerBase<PlayerInfoData>, IDataHandler
     {
         public PlayerInfoDataHandler()
         {
 
+        }
+
+        public IDataClass GetDataClass()
+        {
+            return m_Data;
         }
 
         public override void LoadDataFromServer(Action callback)

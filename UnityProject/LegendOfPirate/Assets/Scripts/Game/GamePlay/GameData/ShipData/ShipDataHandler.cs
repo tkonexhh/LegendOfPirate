@@ -6,11 +6,16 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class ShipDataHandler : DataHandlerBase<ShipData>, ILoadDataFromServer
+    public class ShipDataHandler : DataHandlerBase<ShipData>, IDataHandler
     {
         public ShipDataHandler()
         {
 
+        }
+
+        public IDataClass GetDataClass()
+        {
+            return m_Data;
         }
 
         public override void LoadDataFromServer(Action callback)
