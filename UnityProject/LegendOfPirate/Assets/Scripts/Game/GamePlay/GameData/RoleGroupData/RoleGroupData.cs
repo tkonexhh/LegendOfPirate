@@ -10,6 +10,8 @@ namespace GameWish.Game
     {
         public List<RoleData> roleList = new List<RoleData>();
 
+        #region IDataClass
+
         public void SetDefaultValue()
         {
             SetDataDirty();
@@ -25,7 +27,11 @@ namespace GameWish.Game
 
         }
 
-        public void AddRole(int id, string name)
+        #endregion
+
+        #region Public Set
+
+        public void OnRoleUnlocked(int id, string name)
         {
             if (roleList.Any(i => i.id == id))
             {
@@ -39,7 +45,7 @@ namespace GameWish.Game
             }
         }
 
-        public void AddRoleLevel(int id, int deltaLevel)
+        public void OnRoleUpgraded(int id, int deltaLevel)
         {
             RoleData? item = GetRoleItem(id);
 
@@ -55,19 +61,24 @@ namespace GameWish.Game
             }
         }
 
-        public void AddRoleSkill(int id)
+        public void OnRoleSkillUnlocked(int id)
         { }
 
-        public void UpgradeRollSkill(int id, int deltaLevel)
+        public void OnRollSkillUpgraded(int id, int deltaLevel)
         {
         }
+
+        #endregion
+
+        #region Private
 
         private RoleData? GetRoleItem(int id)
         {
             return roleList.FirstOrDefault(i => i.id == id);
         }
 
-    
+        #endregion
+
     }
 
 }

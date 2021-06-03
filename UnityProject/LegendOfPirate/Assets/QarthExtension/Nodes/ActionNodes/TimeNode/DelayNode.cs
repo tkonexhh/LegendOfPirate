@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
+    /// <summary>
+    /// 延迟一段时间后处理某个操作
+    /// </summary>
 	public class DelayNode : ActionNode
 	{
         private float m_DelayTime;

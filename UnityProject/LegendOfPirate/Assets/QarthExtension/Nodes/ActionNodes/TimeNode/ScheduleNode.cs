@@ -5,6 +5,9 @@ using System;
 
 namespace GameWish.Game
 {
+    /// <summary>
+    /// 定时器，每隔一定时间会Tick一下
+    /// </summary>
 	public class ScheduleNode : ActionNode
 	{
         private DateTime m_EndTime;
