@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public interface IShipComponent : IElement
+	public class Kitchen : ShipUnit
 	{
 
 	}

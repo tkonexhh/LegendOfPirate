@@ -7,13 +7,13 @@ namespace GameWish.Game
 {
     public class ShipMgr : TSingleton<ShipMgr>, IMgr
     {
-        private Dictionary<ShipComponentType, IShipComponent> m_ShipComponentDic = null;
+        private Dictionary<ShipUnitType, IShipUnit> m_ShipComponentDic = null;
 
         #region IMgr
 
         public void OnInit()
         {
-            m_ShipComponentDic = new Dictionary<ShipComponentType, IShipComponent>();
+            m_ShipComponentDic = new Dictionary<ShipUnitType, IShipUnit>();
         }
 
         public void OnUpdate()
@@ -29,7 +29,7 @@ namespace GameWish.Game
 
         #region Public
 
-        public void AddShipComponent(ShipComponentType type, IShipComponent shipComponent)
+        public void AddShipComponent(ShipUnitType type, IShipUnit shipComponent)
         {
             if (!m_ShipComponentDic.ContainsKey(type))
             {
@@ -41,9 +41,9 @@ namespace GameWish.Game
             }
         }
 
-        public IShipComponent GetShipComponent(ShipComponentType type)
+        public IShipUnit GetShipComponent(ShipUnitType type)
         {
-            IShipComponent com = null;
+            IShipUnit com = null;
             m_ShipComponentDic.TryGetValue(type, out com);
 
             return com;

@@ -1,16 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UniRx;
 
 namespace GameWish.Game
 {
-	public enum ShipComponentType
+    // 船的组件Model
+	public class ShipUnitModel : Model
 	{
-        None,
-        Lobby,
-        Kitchen,
-
+        //public 
 	}
 	
 }
