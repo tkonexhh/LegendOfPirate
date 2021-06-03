@@ -27,6 +27,7 @@ MonoBehaviour:
       - OfflinePanel
       - OfflineRewardPanel
       - RatePanel
+      - RoleDetailsPanel
       - SettingPanel
       - ShopPanel
       - TaskPanel
