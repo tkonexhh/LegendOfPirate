@@ -18,7 +18,11 @@ namespace GameWish.Game
             m_ShipData = GameDataMgr.S.GetData<ShipData>();
 
             shipUnitModelList = new ReactiveCollection<ShipUnitModel>();
-
+            for (int i = 0; i < m_ShipData.shipUnitDataList.Count; i++)
+            {
+                ShipUnitModel unitModel = new ShipUnitModel(m_ShipData.shipUnitDataList[i]);
+                shipUnitModelList.Add(unitModel);
+            }
         }
     }
 

@@ -7,13 +7,13 @@ namespace GameWish.Game
 {
     public class ShipMgr : TSingleton<ShipMgr>, IMgr
     {
-        private Dictionary<ShipUnitType, IShipUnit> m_ShipComponentDic = null;
+        private Dictionary<ShipUnitType, IShipUnit> m_ShipUnitDic = null;
 
         #region IMgr
 
         public void OnInit()
         {
-            m_ShipComponentDic = new Dictionary<ShipUnitType, IShipUnit>();
+            m_ShipUnitDic = new Dictionary<ShipUnitType, IShipUnit>();
         }
 
         public void OnUpdate()
@@ -22,18 +22,18 @@ namespace GameWish.Game
 
         public void OnDestroyed()
         {
-            m_ShipComponentDic = null;
+            m_ShipUnitDic = null;
         }
 
         #endregion
 
         #region Public
 
-        public void AddShipComponent(ShipUnitType type, IShipUnit shipComponent)
+        public void OnShipUnitUnlocked(ShipUnitType type, IShipUnit shipUnit)
         {
-            if (!m_ShipComponentDic.ContainsKey(type))
+            if (!m_ShipUnitDic.ContainsKey(type))
             {
-                m_ShipComponentDic.Add(type, shipComponent);
+                m_ShipUnitDic.Add(type, shipUnit);
             }
             else
             {
@@ -41,13 +41,27 @@ namespace GameWish.Game
             }
         }
 
-        public IShipUnit GetShipComponent(ShipUnitType type)
+        public IShipUnit GetShipUnit(ShipUnitType type)
         {
             IShipUnit com = null;
-            m_ShipComponentDic.TryGetValue(type, out com);
+            m_ShipUnitDic.TryGetValue(type, out com);
 
             return com;
         }
+        #endregion
+
+        #region Priavte
+
+        private void SpawnSea()
+        {
+
+        }
+
+        private void SpawnShip()
+        {
+
+        }
+
         #endregion
 
     }

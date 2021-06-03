@@ -175,10 +175,7 @@
 				half4 col = SAMPLE_TEXTURE2D(_MainTex, smp_Point_Repeat, i.uv) * _MainColor;
                 // 获取深度纹理中的深度值
 				half depth = GetLinearEyeDepth(i.screenPos.xy/i.screenPos.w);
-                // 通过深度图中的深度值和像素深度值的差值，实现foam效果
-				half4 foamLine = 1 - saturate(_Foam * (depth - i.screenPos.w));
-				col += foamLine * _FoamColor;
-				
+
                 // 采样Noise贴图
                 //half4 noise = SAMPLE_TEXTURE2D(_NoiseTex, smp_Point_Repeat, i.uv);
                 //float2 distort = _DistortStrength * (noise.xy);
@@ -219,9 +216,13 @@
 
 				col = lerp(col , reflectionColor , vReflect);
 
+                // 通过深度图中的深度值和像素深度值的差值，实现foam效果
+				half4 foamLine = 1 - saturate(_Foam * (depth - i.screenPos.w));
+				col += foamLine * _FoamColor;
+				
 				float alpha = saturate(volmeZ);
 				
-  				col.a = alpha*1;
+  				col.a = 1;
 
                 return col;
             }
