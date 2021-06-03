@@ -30,12 +30,19 @@ namespace GameWish.Game
 
             SetNeedPreloadAssets();
 
-            for (int i = 0; i < m_NeedPreloadAssets.Length; i++)
+            if (m_NeedPreloadAssets.Length > 0)
             {
-                m_ResLoader.Add2Load(m_NeedPreloadAssets[i]);
-            }
+                for (int i = 0; i < m_NeedPreloadAssets.Length; i++)
+                {
+                    m_ResLoader.Add2Load(m_NeedPreloadAssets[i]);
+                }
 
-            m_ResLoader.LoadAsync(OnResLoadFinish);
+                m_ResLoader.LoadAsync(OnResLoadFinish);
+            }
+            else
+            {
+                OnResLoadFinish();
+            }
         }
 
         protected virtual void SetNeedPreloadAssets()
