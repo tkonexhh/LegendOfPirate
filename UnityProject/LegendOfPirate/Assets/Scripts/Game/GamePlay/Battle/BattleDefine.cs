@@ -29,13 +29,6 @@ namespace GameWish.Game
         [LabelText("远程攻击")] Shoot,
     }
 
-    [LabelText("伤害方式")]
-    public enum DamageType
-    {
-        [LabelText("单体")] Single,
-        [LabelText("范围")] Range,
-    }
-
 
     /// <summary>
     /// 伤害范围
@@ -43,6 +36,7 @@ namespace GameWish.Game
     [LabelText("伤害范围")]
     public enum DamageRangeType
     {
+        [LabelText("单体")] Single,
         [LabelText("圆形")] Circle,
         [LabelText("扇形")] Sector,
         [LabelText("矩形")] Rect,

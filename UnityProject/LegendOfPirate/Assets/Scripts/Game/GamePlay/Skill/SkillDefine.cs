@@ -17,7 +17,7 @@ namespace GameWish.Game
     public enum SkillType
     {
         [LabelText("主动技能")] Initiative,
-        [LabelText("被动技能(完成)")] Passive,
+        [LabelText("被动技能")] Passive,
     }
 
     [LabelText("释放对象(完成)")]
@@ -36,7 +36,7 @@ namespace GameWish.Game
         [LabelText("受击时触发")] Hurt,
         [LabelText("时间间隔触发")] Time,
         [LabelText("移动触发")] Move,
-        [LabelText("永久触发")] Forver,
+        [LabelText("立即触发")] Forver,
     }
 
 }

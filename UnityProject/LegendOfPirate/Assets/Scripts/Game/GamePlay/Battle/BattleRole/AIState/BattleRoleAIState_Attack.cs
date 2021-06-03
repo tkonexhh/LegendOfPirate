@@ -32,8 +32,6 @@ namespace GameWish.Game
                 m_AttackTimer = 0;
             }
 
-
-
             //检测Target是否太远
             if (Vector3.Distance(ai.controller.transform.position, ai.Target.transform.position) > 5.0f)
             {
@@ -52,7 +50,8 @@ namespace GameWish.Game
         private void Attack()
         {
             m_AI.controller.renderer.CrossFadeAnim("Attack02", 0.1f, false);
-            CreateDamage();
+            m_AI.Attacker.Attack(m_AI.controller);
+            // CreateDamage();
         }
 
         //TODO 需要改成动画事件
@@ -62,12 +61,8 @@ namespace GameWish.Game
             {
                 m_AI.onAttack();
             }
+            // m_AI.Attacker.Attack(m_AI.controller, m_AI.Target);
 
-            int damage = BattleHelper.CalcAtkDamage(m_AI.controller.Data.buffedData);
-            RoleDamagePackage damagePackage = new RoleDamagePackage();
-            damagePackage.damageType = BattleDamageType.Normal;
-            damagePackage.damage = damage;
-            BattleMgr.S.SendDamage(m_AI.Target, damagePackage);
         }
     }
 
