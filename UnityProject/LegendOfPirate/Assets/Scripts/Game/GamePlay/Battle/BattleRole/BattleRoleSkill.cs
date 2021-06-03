@@ -8,6 +8,7 @@ namespace GameWish.Game
     public class BattleRoleSkill : BattleRoleComponent
     {
         private List<Skill> m_SkillLst = new List<Skill>();
+        public bool skillReady = false;
 
         public BattleRoleSkill(BattleRoleController controller) : base(controller)
         {
@@ -20,33 +21,54 @@ namespace GameWish.Game
             base.OnBattleStart();
             for (int i = 0; i < m_SkillLst.Count; i++)
             {
-
+                m_SkillLst[i].timer = 0;
                 if (m_SkillLst[i] is PassiveSkill)
                 {
-                    m_SkillLst[i].timer = m_SkillLst[i].cd;
                     m_SkillLst[i].Cast(controller);
-                }
-                else
-                {
-                    m_SkillLst[i].timer = 0;
                 }
             }
         }
 
         public override void OnUpdate()
         {
+            base.OnUpdate();
             if (!battleStarted) return;
+            skillReady = false;
 
             for (int i = 0; i < m_SkillLst.Count; i++)
             {
-                m_SkillLst[i].timer += Time.deltaTime;
-                m_SkillLst[i].timer = Mathf.Clamp(m_SkillLst[i].timer, 0, m_SkillLst[i].cd);
+                m_SkillLst[i].Update();
+
+                if (m_SkillLst[i] is InitiativeSkill skill)
+                {
+                    if (skill.isReady) skillReady = true;
+                }
             }
         }
 
         public override void OnDestroy()
         {
             base.OnDestroy();
+            for (int i = 0; i < m_SkillLst.Count; i++)
+            {
+                if (m_SkillLst[i] is PassiveSkill skill)
+                {
+                    skill.Release();
+                }
+            }
+        }
+
+        public Skill GetReadySkill()
+        {
+            for (int i = 0; i < m_SkillLst.Count; i++)
+            {
+                if (m_SkillLst[i] is InitiativeSkill skill)
+                {
+                    if (skill.isReady)
+                        return skill;
+                }
+            }
+            return null;
         }
 
     }

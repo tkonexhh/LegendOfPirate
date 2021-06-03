@@ -25,6 +25,7 @@ namespace GameWish.Game
 
         public override void Execute(BattleRoleAI ai, float dt)
         {
+            //检测目标是否死亡
             if (ai.Target != null)
             {
                 if (ai.Target.Data.buffedData.IsDead.Value)
@@ -33,6 +34,7 @@ namespace GameWish.Game
                 }
             }
 
+            //没有目标了就去找另一个目标
             if (ai.Target == null
                 && !ai.controller.Data.buffedData.IsDead.Value
                 && BattleMgr.S.Started)
@@ -40,6 +42,12 @@ namespace GameWish.Game
                 // Debug.LogError("Pick another target");
                 //目标消失了，需要换一个目标
                 ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.PickTarget);
+            }
+
+            //TODO 检测技能
+            if (ai.controller.Skill.skillReady && BattleMgr.S.Started)
+            {
+                ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.Skill);
             }
         }
 

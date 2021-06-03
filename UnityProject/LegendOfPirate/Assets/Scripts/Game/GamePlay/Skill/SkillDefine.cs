@@ -17,7 +17,7 @@ namespace GameWish.Game
     public enum SkillType
     {
         [LabelText("主动技能")] Initiative,
-        [LabelText("被动技能(完成)")] Passive,
+        [LabelText("被动技能")] Passive,
     }
 
     [LabelText("释放对象(完成)")]

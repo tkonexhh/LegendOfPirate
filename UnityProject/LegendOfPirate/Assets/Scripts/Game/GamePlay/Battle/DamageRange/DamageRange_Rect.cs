@@ -12,16 +12,14 @@ namespace GameWish.Game
     {
         private float m_Width;
         private float m_Height;
-        private Vector3 m_Pos;
 
-        public DamageRange_Rect(float width, float height, Vector3 pos)
+        public DamageRange_Rect(float width, float height) : base()
         {
             m_Width = width;
             m_Height = height;
-            m_Pos = pos;
         }
 
-        public override List<IElement> PickTargets() { return null; }
+        public override List<BattleRoleController> PickTargets(Vector3 center) { return null; }
     }
 
 }

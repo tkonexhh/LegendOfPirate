@@ -8,7 +8,6 @@ namespace GameWish.Game
     public class BattleRoleData : BattleRoleComponent
     {
         public BattleRoleModel originData;
-        public BattleRoleModel equipedData;
         public BattleRoleRuntimeModel buffedData;
 
         public BattleRoleData(BattleRoleController controller) : base(controller) { }

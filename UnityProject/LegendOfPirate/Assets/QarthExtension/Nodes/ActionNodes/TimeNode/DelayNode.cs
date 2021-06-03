@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class DelayNode : ActionNode
-	{
+    public class DelayNode : ActionNode
+    {
         private float m_DelayTime;
         private DateTime m_EndTime;
 
@@ -42,5 +42,5 @@ namespace GameWish.Game
             OnEnd();
         }
     }
-	
+
 }

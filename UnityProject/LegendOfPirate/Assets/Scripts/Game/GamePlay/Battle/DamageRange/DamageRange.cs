@@ -10,7 +10,14 @@ namespace GameWish.Game
     /// </summary>
     public abstract class DamageRange
     {
-        public abstract List<IElement> PickTargets();
+        public BattleRoleController owner { set; get; }
+
+        public DamageRange()
+        {
+            // m_Owner = owner;
+        }
+
+        public abstract List<BattleRoleController> PickTargets(Vector3 center);
     }
 
 }
