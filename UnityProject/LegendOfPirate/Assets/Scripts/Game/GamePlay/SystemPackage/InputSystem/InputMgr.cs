@@ -7,18 +7,13 @@ using HedgehogTeam.EasyTouch;
 
 namespace GameWish.Game
 {
-    public class InputMgr : TSingleton<InputMgr>
+    public class InputMgr : TSingleton<InputMgr>, IMgr
     {
         private List<IInputObserver> m_TouchObservers = new List<IInputObserver>();
 
         private bool m_IsTouchStartFromUI = false;
-
         private bool m_IsDragEnabled = true;
-
-        private bool m_LongTimeNoTouch;
-
-        private int m_TimerId = -1;
-        private DateTime m_Time;
+        private bool m_EnableInput = true;
 
         public bool IsDragEnabled
         {
@@ -26,31 +21,25 @@ namespace GameWish.Game
             set { m_IsDragEnabled = value; }
         }
 
-        public bool LongTimeNoTouch
-        {
-            get
-            {
-                return m_LongTimeNoTouch;
-            }
+        #region IMgr
 
-            set
-            {
-                m_LongTimeNoTouch = value;
-            }
-        }
-
-        private bool m_EnableInput = true;
-
-        public void Init()
+        public void OnInit()
         {
             m_EnableInput = true;
             EasyTouch.On_TouchStart += On_TouchStart;
             EasyTouch.On_TouchDown += On_TouchDown;
             EasyTouch.On_TouchUp += On_TouchUp;
             EasyTouch.On_Drag += On_Drag;
-            //EasyTouch.On_LongTap += On_LongTap;
             EasyTouch.On_Swipe += On_Swipe;
         }
+
+        public void OnUpdate() { }
+
+        public void OnDestroyed() { }
+
+        #endregion
+
+        #region Public Set
 
         public void AddTouchObserver(IInputObserver ob)
         {
@@ -69,6 +58,19 @@ namespace GameWish.Game
                 m_TouchObservers.Remove(ob);
             }
         }
+
+        public void EnableInput()
+        {
+            m_EnableInput = true;
+        }
+
+        public void DisableInput()
+        {
+            m_EnableInput = false;
+        }
+        #endregion
+
+        #region Private
 
         private void On_TouchStart(Gesture gesture)
         {
@@ -89,9 +91,6 @@ namespace GameWish.Game
         {
             if (!m_EnableInput)
                 return;
-
-            m_Time = DateTime.Now;
-            //HideTouchTip();
 
             foreach (var ob in m_TouchObservers)
             {
@@ -169,30 +168,7 @@ namespace GameWish.Game
             }
         }
 
-        private void CheckLongTimeNoTouch(int i)
-        {
-            Log.i("show hand click tip");
-            LongTimeNoTouch = true;
-            //EffectMgr.S.ShowTouchTip(UIMgr.S.FindPanel(UIID.MainGamePanel).transform,Vector3.zero);
-        }
+        #endregion
 
-        //private void HideTouchTip()
-        //{
-        //    if (LongTimeNoTouch)
-        //    {
-        //        LongTimeNoTouch = false;
-        //        EffectMgr.S.HideTouchTip();
-        //    }
-        //}
-
-        public void EnableInput()
-        {
-            m_EnableInput = true;
-        }
-
-        public void DisableInput()
-        {
-            m_EnableInput = false;
-        }
     }
 }

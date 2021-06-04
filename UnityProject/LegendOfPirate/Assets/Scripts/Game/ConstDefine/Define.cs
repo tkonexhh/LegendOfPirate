@@ -20,7 +20,12 @@ namespace GameWish.Game
         //rate record
         public const string RATE_RECORD = "rate";
 
+        public const string GAME_LAYER = "Game";
+
         public const string SEA = "CartoonSea";
         public const string SHIP = "Ship";
+
+        public const int INPUT_SORTING_ORDER_DEFAULT = 0;
+        public const int INPUT_SORTING_ORDER_SHIP_UNIT = 1;
     }
 }

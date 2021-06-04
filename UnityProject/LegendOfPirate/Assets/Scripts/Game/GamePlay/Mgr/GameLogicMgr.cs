@@ -18,6 +18,8 @@ namespace GameWish.Game
 
             m_IsInited = true;
 
+            InputMgr.S.OnInit();
+
             ModelMgr.S.OnInit();
 
             BattleMgr.S.OnInit();
