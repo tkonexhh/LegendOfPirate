@@ -7,7 +7,7 @@ using Pathfinding;
 
 namespace GameWish.Game
 {
-    public class BattleRoleController : RoleController
+    public class BattleRoleController : RoleController, IDealDamage
     {
         public GameObject gameObject { get; private set; }
         public Transform transform { get; private set; }
@@ -98,6 +98,7 @@ namespace GameWish.Game
             this.camp = camp;
         }
 
+
         public void BattleStart()
         {
             for (int i = 0; i < m_Components.Count; i++)
@@ -105,6 +106,30 @@ namespace GameWish.Game
                 m_Components[i].OnBattleStart();
             }
         }
+
+        #region override
+        public void DealDamage()
+        {
+            if (AI.onAttack != null)
+            {
+                AI.onAttack();
+            }
+
+            DamageRange range = new DamageRange_Target(AI.Target);
+            var targets = range.PickTargets(camp);
+            int damage = BattleHelper.CalcAtkDamage(Data.buffedData);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                RoleDamagePackage damagePackage = new RoleDamagePackage();
+                damagePackage.damageType = BattleDamageType.Normal;
+                damagePackage.damage = damage;
+                BattleMgr.S.SendDamage(targets[i], damagePackage);
+            }
+        }
+
+        #endregion
     }
+
+
 
 }

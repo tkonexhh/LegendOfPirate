@@ -7,14 +7,15 @@ namespace GameWish.Game
 {
     public class DamageRange_Target : DamageRange
     {
-        public DamageRange_Target() : base()
+        private BattleRoleController m_Controller;
+        public DamageRange_Target(BattleRoleController controller) : base()
         {
-
+            m_Controller = controller;
         }
 
-        public override List<BattleRoleController> PickTargets(Vector3 center)
+        public override List<BattleRoleController> PickTargets(BattleCamp camp)
         {
-            return new List<BattleRoleController>() { owner.AI.Target };
+            return new List<BattleRoleController>() { m_Controller.AI.Target };
         }
     }
 

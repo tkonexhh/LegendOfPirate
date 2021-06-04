@@ -34,6 +34,12 @@ namespace GameWish.Game
             return damage;
         }
 
+        public static int CalcSkillDamage(BattleRoleRuntimeModel model)
+        {
+            int damage = 1;
+            return damage;
+        }
+
         public static int CalcATKHurt(int damage, BattleRoleRuntimeModel model)
         {
             damage = (int)(damage / (1.0f + model.Amor));

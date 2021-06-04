@@ -34,6 +34,7 @@ namespace GameWish.Game
     /// 伤害范围
     /// </summary>
     [LabelText("伤害范围")]
+    [PropertyTooltip("必须以;来分隔\n参数说明:\n单体:无需参数\n圆形:参数1:半径\n扇形:参数1:半径,参数2:角度\n矩形:参数1:宽度,参数2:高度")]
     public enum DamageRangeType
     {
         [LabelText("单体")] Single,

@@ -110,7 +110,7 @@ namespace GameWish.Game
         {
             Vector3 startPos = new Vector3(-70, 0, 40);
             int width = 80;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 BattleRoleController role = BattleRoleControllerFactory.S.CreateController(null);
                 role.OnInit();
@@ -127,7 +127,7 @@ namespace GameWish.Game
         {
             Vector3 startPos = new Vector3(-70, 0, -40);
             int width = 80;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 BattleRoleController role = BattleRoleControllerFactory.S.CreateController(null);
                 role.OnInit();

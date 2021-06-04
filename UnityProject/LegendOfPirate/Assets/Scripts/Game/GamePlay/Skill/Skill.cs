@@ -12,7 +12,6 @@ namespace GameWish.Game
         public float range;
         public float cd;
         public float timer;
-        public float value;
         public IBattleSensor Sensor { get; set; }//技能选择器
         public Buff appendBuff;//附加Buff
         protected BattleRoleController m_Owner;
@@ -53,7 +52,7 @@ namespace GameWish.Game
     /// <summary>
     /// 主动技能
     /// </summary>
-    public class InitiativeSkill : Skill
+    public class InitiativeSkill : Skill, IDealDamage
     {
         public BattleAttacker attacker;
         public DamageRange damageRange;
@@ -61,13 +60,24 @@ namespace GameWish.Game
         public override void Cast(BattleRoleController owner)
         {
             base.Cast(owner);
-            damageRange.owner = owner;
             timer = 0;
             Debug.LogError("InitiativeSkill Cast");
-            // attacker.Attack(owner, PicketTarget());
+            attacker.Attack(this);
         }
 
-
+        public void DealDamage()
+        {
+            Debug.LogError("Skill Deal Damage");
+            var targets = damageRange.PickTargets(m_Owner.camp);
+            int damage = BattleHelper.CalcSkillDamage(m_Owner.Data.buffedData);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                RoleDamagePackage damagePackage = new RoleDamagePackage();
+                damagePackage.damageType = BattleDamageType.Skill;
+                damagePackage.damage = damage;
+                BattleMgr.S.SendDamage(targets[i], damagePackage);
+            }
+        }
     }
 
     /// <summary>
@@ -76,7 +86,6 @@ namespace GameWish.Game
     public class PassiveSkill : Skill
     {
         public SkillTrigger skillTrigger;
-
 
         public override void Cast(BattleRoleController owner)
         {
