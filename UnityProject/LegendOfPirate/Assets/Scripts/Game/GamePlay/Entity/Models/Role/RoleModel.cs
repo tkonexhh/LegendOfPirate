@@ -14,6 +14,8 @@ namespace GameWish.Game
         public string name;
         public string resName;
 
+        public IntReactiveProperty curHp;
+        public FloatReactiveProperty curAtk;
         public IntReactiveProperty curExp;
         public IntReactiveProperty starLevel;
         public ReactiveCollection<RoleEquipModel> equipList;
@@ -78,6 +80,15 @@ namespace GameWish.Game
         {
             return starLevel.Value;
         }
+        public int GetCurHp()
+        {
+            return curHp.Value;
+        }
+
+        public float GetCurAtk()
+        {
+            return curAtk.Value;
+        }
 
         #endregion
 
@@ -102,14 +113,24 @@ namespace GameWish.Game
 
         }
 
-        public void SetCurExp(int exp)
+        public void SetCurExp(int value)
         {
-            curExp.Value = exp;
+            curExp.Value = value;
         }
 
-        public void SetStaraLevel(int level)
+        public void SetStaraLevel(int value)
         {
-            starLevel.Value = level;
+            starLevel.Value = value;
+        }
+
+        public void SetCurHp(int value)
+        {
+            curHp.Value += value;
+        }
+
+        public void SetCurAtk(float value)
+        {
+            curAtk.Value = value;
         }
         #endregion
     }

@@ -31,7 +31,7 @@ namespace GameWish.Game
 		
 		private void BindModelToUI()
 		{
-			
+			//m_PanelData.roleModel.curExp.SubscribeToText(ExperienceBar);
 		}
 		
 		private void BindUIToModel()
