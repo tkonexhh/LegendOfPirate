@@ -115,8 +115,7 @@ namespace GameWish.Game
                 AI.onAttack();
             }
 
-            DamageRange range = new DamageRange_Target(AI.Target);
-            var targets = range.PickTargets(camp);
+            var targets = Data.DamageRange.PickTargets(camp);
             int damage = BattleHelper.CalcAtkDamage(Data.buffedData);
             for (int i = 0; i < targets.Count; i++)
             {
@@ -126,7 +125,17 @@ namespace GameWish.Game
                 BattleMgr.S.SendDamage(targets[i], damagePackage);
             }
         }
+        //TODO修改实现
+        public Vector3 DamageCenter()
+        {
+            return transform.position;
+        }
 
+        //TODO修改实现
+        public Vector3 DamageForward()
+        {
+            return transform.forward;
+        }
         #endregion
     }
 

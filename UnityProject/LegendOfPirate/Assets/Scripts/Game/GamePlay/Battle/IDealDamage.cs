@@ -8,6 +8,9 @@ namespace GameWish.Game
     public interface IDealDamage
     {
         void DealDamage();
+
+        Vector3 DamageCenter();
+        Vector3 DamageForward();
     }
 
 }

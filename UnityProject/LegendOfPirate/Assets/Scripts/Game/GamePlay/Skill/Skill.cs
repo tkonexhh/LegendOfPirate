@@ -18,6 +18,7 @@ namespace GameWish.Game
 
         public bool isReady => timer >= cd;
 
+
         public BattleRoleController PicketTarget()
         {
             return Sensor.PickTarget(m_Owner);
@@ -65,6 +66,7 @@ namespace GameWish.Game
             attacker.Attack(this);
         }
 
+        #region IDealDamage
         public void DealDamage()
         {
             Debug.LogError("Skill Deal Damage");
@@ -78,6 +80,19 @@ namespace GameWish.Game
                 BattleMgr.S.SendDamage(targets[i], damagePackage);
             }
         }
+
+        //TODO修改实现
+        public Vector3 DamageCenter()
+        {
+            return PicketTarget().transform.position;
+        }
+
+        //TODO修改实现
+        public Vector3 DamageForward()
+        {
+            return PicketTarget().transform.forward;
+        }
+        #endregion
     }
 
     /// <summary>

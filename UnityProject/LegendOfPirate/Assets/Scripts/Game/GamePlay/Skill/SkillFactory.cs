@@ -36,7 +36,7 @@ namespace GameWish.Game
         private static InitiativeSkill DealWithInitativeSkill(SkillConfigSO configSO, InitiativeSkill skill)
         {
             skill.attacker = BattleAttackerFactory.CreateBattleAttacker(configSO.Attack.AttackType);
-            skill.damageRange = DamageRangeFactory.CreateDamageRange(configSO.Attack.DamageRangeType, configSO.Attack.RangeArgs);
+            skill.damageRange = DamageRangeFactory.CreateDamageRange(configSO.Attack.DamageRangeType, skill, configSO.Attack.RangeArgs);
             if (configSO.Attack.AttackType == AttackType.Shoot)//远程
             {
                 BattleAttackerFactory.SetBullet((skill.attacker as BattleAttacker_Shoot), configSO.Attack.Bullet, configSO.Attack.BulletNum);
