@@ -57,12 +57,14 @@ namespace GameWish.Game
 
         private void SpawnSea()
         {
-
+            GameObject sea = GameObjectPoolMgr.S.Allocate(Define.SEA);
+            sea.transform.SetParent(GameplayMgr.S.EntityRoot);
         }
 
         private void SpawnShip()
         {
-
+            GameObject ship = GameObjectPoolMgr.S.Allocate(Define.SHIP);
+            ship.transform.SetParent(GameplayMgr.S.EntityRoot);
         }
 
         #endregion

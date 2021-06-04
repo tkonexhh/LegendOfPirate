@@ -36,20 +36,22 @@ namespace GameWish.Game
             {
                 for (int i = 0; i < m_NeedPreloadAssets.Length; i++)
                 {
-                    m_ResLoader.Add2Load(m_NeedPreloadAssets[i]);
+                    m_ResLoader.Add2Load(m_NeedPreloadAssets[i], OnResLoadFinish);
                 }
 
-                m_ResLoader.LoadAsync(OnResLoadFinish);
+                m_ResLoader.LoadAsync(OnAllResLoadFinish);
             }
             else
             {
-                OnResLoadFinish();
+                OnAllResLoadFinish();
             }
         }
 
         public void Release()
         {
             m_ResLoader.ReleaseAllRes();
+            m_ResLoader.Recycle2Cache();
+            m_ResLoader = null;
         }
 
         #endregion
@@ -59,7 +61,12 @@ namespace GameWish.Game
 
         }
 
-        private void OnResLoadFinish()
+        protected virtual void OnResLoadFinish(bool result, IRes res)
+        {
+
+        }
+
+        private void OnAllResLoadFinish()
         {
             m_IsLoadDone = true;
 

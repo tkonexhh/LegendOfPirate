@@ -50,6 +50,11 @@ namespace GameWish.Game
 
         public void Release()
         {
+            foreach (IAssetPreloader assetPreloader in m_AssetPreloaderList)
+            {
+                assetPreloader.Release();
+            }
+
             m_AssetPreloaderList.Clear();
             m_AssetPreloaderList = null;
         }
