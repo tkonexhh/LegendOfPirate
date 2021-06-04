@@ -10,17 +10,14 @@ namespace GameWish.Game
     /// </summary>
     public class DamageRange_Circle : DamageRange
     {
-        private Vector3 m_Center;
         private float m_Radius;
 
-        public DamageRange_Circle(Vector3 center, float radius)
+        public DamageRange_Circle(float radius) : base()
         {
-            m_Center = center;
             m_Radius = radius;
         }
 
-
-        public override List<IElement> PickTargets() { return null; }
+        public override List<BattleRoleController> PickTargets(Vector3 center) { return null; }
     }
 
 }

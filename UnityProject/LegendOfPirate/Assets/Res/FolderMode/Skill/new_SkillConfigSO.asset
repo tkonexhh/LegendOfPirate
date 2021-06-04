@@ -63,10 +63,10 @@ MonoBehaviour:
   ID: 0
   SkillName: Demo Skill
   Range: 200
-  SkillType: 1
+  SkillType: 0
   ChildBuffs:
   - {fileID: 0}
-  CD: 0
+  CD: 10
   SkillEffect: {fileID: 0}
   SkillAudio: {fileID: 0}
-  PassiveSkillTriggerType: 1
+  PassiveSkillTriggerType: 2

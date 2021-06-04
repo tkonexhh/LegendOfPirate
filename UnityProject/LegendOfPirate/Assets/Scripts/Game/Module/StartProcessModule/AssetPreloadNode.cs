@@ -23,7 +23,7 @@ namespace GameWish.Game
             if (isFinish)
             {
                 Log.i("------Asset Preload End");
-                AssetPreloaderMgr.S.Release();
+                //AssetPreloaderMgr.S.Release();
             }
         }
     }

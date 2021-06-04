@@ -18,11 +18,15 @@ namespace GameWish.Game
 
             m_IsInited = true;
 
+            InputMgr.S.OnInit();
+
             ModelMgr.S.OnInit();
 
             BattleMgr.S.OnInit();
 
             DailyRefreshMgr.S.OnInit();
+
+            ShipMgr.S.OnInit();
 
             //UIMgr.S.OpenPanel(UIID.TestPanel);
         }

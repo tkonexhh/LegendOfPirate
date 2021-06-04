@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
+    /// <summary>
+    /// 重复执行某种操作
+    /// </summary>
 	public class RepeatNode : ActionNode
 	{
         private float m_RepeatInterval;
@@ -31,7 +34,7 @@ namespace GameWish.Game
             return this;
         }
 
-        public void Execute()
+        public override void Execute()
         {
 
             if (DateTime.Now > m_StartTime)

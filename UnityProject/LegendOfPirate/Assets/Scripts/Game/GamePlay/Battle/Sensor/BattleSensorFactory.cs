@@ -13,6 +13,10 @@ namespace GameWish.Game
             {
                 return new BattleSensor_Self();
             }
+            else if (pickTargetType == PickTargetType.Target)
+            {
+                return new BattleSensor_Target();
+            }
 
             switch (sensorType)
             {
@@ -23,6 +27,7 @@ namespace GameWish.Game
                 case SensorTypeEnum.HPRateHigh:
                 case SensorTypeEnum.HPRateLow:
                 case SensorTypeEnum.Farest:
+                    return new BattleSensor_Farest(pickTargetType);
                 case SensorTypeEnum.Nearest:
                     return new BattleSensor_Nearest(pickTargetType);
 

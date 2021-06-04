@@ -14,10 +14,11 @@ namespace GameWish.Game
             {
                 case SkillType.Initiative:
                     skill = new InitiativeSkill();
+                    skill = DealWithInitativeSkill(configSO, skill as InitiativeSkill);
                     break;
                 case SkillType.Passive:
                     skill = new PassiveSkill();
-                    DealWithPassiveSkill(configSO, skill as PassiveSkill);
+                    skill = DealWithPassiveSkill(configSO, skill as PassiveSkill);
                     break;
                 default:
                     skill = new Skill();
@@ -31,6 +32,18 @@ namespace GameWish.Game
 
             return skill;
         }
+
+        private static InitiativeSkill DealWithInitativeSkill(SkillConfigSO configSO, InitiativeSkill skill)
+        {
+            skill.attacker = BattleAttackerFactory.CreateBattleAttacker(configSO.Attack.AttackType);
+            skill.damageRange = DamageRangeFactory.CreateDamageRange(configSO.Attack.DamageRangeType, configSO.Attack.RangeArgs);
+            if (configSO.Attack.AttackType == AttackType.Shoot)//远程
+            {
+                BattleAttackerFactory.SetBullet((skill.attacker as BattleAttacker_Shoot), configSO.Attack.Bullet, configSO.Attack.BulletNum);
+            }
+            return skill;
+        }
+
 
         private static PassiveSkill DealWithPassiveSkill(SkillConfigSO configSO, PassiveSkill skill)
         {
