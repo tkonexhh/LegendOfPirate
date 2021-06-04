@@ -14,6 +14,11 @@ namespace GameWish.Game
             m_Collider = GetComponentInChildren<Collider>();
         }
 
+        public override int GetSortingLayer()
+        {
+            return Define.INPUT_SORTING_ORDER_SHIP_UNIT;
+        }
+
         protected override void OnClicked()
         {
             base.OnClicked();

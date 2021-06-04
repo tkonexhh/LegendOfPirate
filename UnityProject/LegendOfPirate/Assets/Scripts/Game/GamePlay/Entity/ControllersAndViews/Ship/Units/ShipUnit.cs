@@ -6,9 +6,11 @@ using UnityEngine;
 namespace GameWish.Game
 {
     // Ship的组件功能比较简单，所以此处不进行VC结构分层
-    public class ShipUnit : IShipUnit
+    public class ShipUnit : ClickableView, IShipUnit
     {
-        #region IShipComponent
+        protected ShipUnitType m_ShipUnitType = ShipUnitType.None;
+
+        #region IShipUnit
 
         public virtual void OnInit()
         {
@@ -25,7 +27,10 @@ namespace GameWish.Game
 
         #endregion
 
-
+        public override int GetSortingLayer()
+        {
+            return Define.INPUT_SORTING_ORDER_SHIP_UNIT;
+        }
     }
 
 }

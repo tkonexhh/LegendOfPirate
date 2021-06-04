@@ -15,12 +15,12 @@ namespace GameWish.Game
             InputMgr.S.AddTouchObserver(this);    
         }
 
-        public bool BlockInput()
+        public virtual bool BlockInput()
         {
             return true;
         }
 
-        public int GetSortingLayer()
+        public virtual int GetSortingLayer()
         {
             return Define.INPUT_SORTING_ORDER_DEFAULT;
         }

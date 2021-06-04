@@ -65,6 +65,14 @@ namespace GameWish.Game
         {
             GameObject ship = GameObjectPoolMgr.S.Allocate(Define.SHIP);
             ship.transform.SetParent(GameplayMgr.S.EntityRoot);
+
+            ShipModel shipModel = ModelMgr.S.GetModel<ShipModel>();
+            for (int i = 0; i < shipModel.shipUnitModelList.Count; i++)
+            {
+                ShipUnitType shipUnitType = shipModel.shipUnitModelList[i].unitType;
+                ShipUnitConfig unitConfig = ShipConfig.S.GetUnitConfig(shipUnitType);
+
+            }
         }
 
         #endregion
