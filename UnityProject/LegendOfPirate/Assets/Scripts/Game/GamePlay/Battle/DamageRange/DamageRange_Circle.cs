@@ -10,20 +10,22 @@ namespace GameWish.Game
     /// </summary>
     public class DamageRange_Circle : DamageRange
     {
+        private Vector3 m_Center;
         private float m_Radius;
 
-        public DamageRange_Circle(float radius) : base()
+        public DamageRange_Circle(Vector3 center, float radius) : base()
         {
+            m_Center = center;
             m_Radius = radius;
         }
 
-        public override List<BattleRoleController> PickTargets(Vector3 center)
+        public override List<BattleRoleController> PickTargets(BattleCamp camp)
         {
             List<BattleRoleController> targets = new List<BattleRoleController>();
-            var enemys = BattleMgr.S.BattleRendererComponent.GetControllersByCamp(BattleHelper.GetOppositeCamp(owner.camp));
+            var enemys = BattleMgr.S.BattleRendererComponent.GetControllersByCamp(BattleHelper.GetOppositeCamp(camp));
             for (int i = 0; i < enemys.Count; i++)
             {
-                if (Vector3.Distance(center, enemys[i].transform.position) <= m_Radius)
+                if (Vector3.Distance(m_Center, enemys[i].transform.position) <= m_Radius)
                 {
                     targets.Add(enemys[i]);
                 }

@@ -60,7 +60,6 @@ namespace GameWish.Game
         public override void Cast(BattleRoleController owner)
         {
             base.Cast(owner);
-            damageRange.owner = owner;
             timer = 0;
             Debug.LogError("InitiativeSkill Cast");
             attacker.Attack(this);
@@ -69,7 +68,7 @@ namespace GameWish.Game
         public void DealDamage()
         {
             Debug.LogError("Skill Deal Damage");
-            var targets = damageRange.PickTargets(m_Owner.transform.position);
+            var targets = damageRange.PickTargets(m_Owner.camp);
             int damage = BattleHelper.CalcSkillDamage(m_Owner.Data.buffedData);
             for (int i = 0; i < targets.Count; i++)
             {

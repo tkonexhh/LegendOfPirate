@@ -114,7 +114,9 @@ namespace GameWish.Game
             {
                 AI.onAttack();
             }
-            var targets = Data.DamageRange.PickTargets(transform.position);
+
+            DamageRange range = new DamageRange_Target(AI.Target);
+            var targets = range.PickTargets(camp);
             int damage = BattleHelper.CalcAtkDamage(Data.buffedData);
             for (int i = 0; i < targets.Count; i++)
             {

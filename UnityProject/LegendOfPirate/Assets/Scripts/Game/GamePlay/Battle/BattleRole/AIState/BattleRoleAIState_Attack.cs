@@ -37,8 +37,6 @@ namespace GameWish.Game
             {
                 ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.MoveToTarget);
             }
-
-
         }
 
         public override void Exit(BattleRoleAI ai)
