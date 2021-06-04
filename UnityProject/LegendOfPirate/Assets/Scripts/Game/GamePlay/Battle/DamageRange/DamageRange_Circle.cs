@@ -17,7 +17,19 @@ namespace GameWish.Game
             m_Radius = radius;
         }
 
-        public override List<BattleRoleController> PickTargets(Vector3 center) { return null; }
+        public override List<BattleRoleController> PickTargets(Vector3 center)
+        {
+            List<BattleRoleController> targets = new List<BattleRoleController>();
+            var enemys = BattleMgr.S.BattleRendererComponent.GetControllersByCamp(BattleHelper.GetOppositeCamp(owner.camp));
+            for (int i = 0; i < enemys.Count; i++)
+            {
+                if (Vector3.Distance(center, enemys[i].transform.position) <= m_Radius)
+                {
+                    targets.Add(enemys[i]);
+                }
+            }
+            return targets;
+        }
     }
 
 }

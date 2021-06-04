@@ -7,26 +7,16 @@ namespace GameWish.Game
 {
     public abstract class BattleAttacker
     {
-        public abstract void Attack(BattleRoleController attacker);
+        public abstract void Attack(IDealDamage attacker);
     }
 
     public class BattleAttacker_Lock : BattleAttacker
     {
-        public override void Attack(BattleRoleController attacker)
+        public override void Attack(IDealDamage attacker)
         {
             //TODO 监听动画攻击事件
             // DamageRangeFactory.CreateDamageRange
-            var targets = attacker.AI.DamageRange.PickTargets(attacker.transform.position);
-            int damage = BattleHelper.CalcAtkDamage(attacker.Data.buffedData);
-            for (int i = 0; i < targets.Count; i++)
-            {
-                RoleDamagePackage damagePackage = new RoleDamagePackage();
-                damagePackage.damageType = BattleDamageType.Normal;
-                damagePackage.damage = damage;
-                BattleMgr.S.SendDamage(targets[i], damagePackage);
-            }
-
-
+            attacker.DealDamage();
         }
     }
 
@@ -35,9 +25,11 @@ namespace GameWish.Game
         public int bulletNum;
         public GameObject bullet;
 
-        public override void Attack(BattleRoleController attacker)
+        public override void Attack(IDealDamage attacker)
         {
             //监听发射发射出子弹
+
+            //子弹带有attacker信息
         }
     }
 

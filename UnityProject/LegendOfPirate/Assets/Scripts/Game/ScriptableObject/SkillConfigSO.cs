@@ -62,7 +62,6 @@ namespace GameWish.Game
     public class Attack
     {
         public AttackType AttackType;
-
         public DamageRangeType DamageRangeType;
         [HideIf("DamageRangeType", DamageRangeType.Single), LabelText("伤害范围参数")]
         public string RangeArgs;
