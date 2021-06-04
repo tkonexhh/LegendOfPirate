@@ -7,11 +7,11 @@ namespace GameWish.Game
 {
 	public class ParallelNode : ActionNode
 	{
-        private Queue<IActionNode> m_NodeQueue;
+        private List<IActionNode> m_NodeList;
 
         public ParallelNode()
         {
-            m_NodeQueue = new Queue<IActionNode>();
+            m_NodeList = new List<IActionNode>();
         }
 
         public override void Recycle2Cache()
@@ -25,21 +25,53 @@ namespace GameWish.Game
         {
             base.OnCacheReset();
 
-            m_NodeQueue.Clear();
+            m_NodeList.Clear();
         }
 
-        public ParallelNode Append(IActionNode node)
+        public ParallelNode SetParams(MonoBehaviour executeBehavior)
         {
-            m_NodeQueue.Enqueue(node);
+            m_ExecuteBehavior = executeBehavior;
+
+            return this;
+        }
+
+        public ParallelNode Add(IActionNode node)
+        {
+            if (!m_NodeList.Contains(node))
+            {
+                m_NodeList.Add(node);
+            }
 
             return this;
         }
 
         public override void Execute()
         {
-            while (m_NodeQueue.Count > 0)
-            {
+            OnStart();
 
+            for (int i = 0; i < m_NodeList.Count; i++)
+            {
+                m_NodeList[i].AddOnEndCallback(OnNodeEnd);
+            }
+
+            m_ExecuteBehavior.StartCoroutine(ParallelCor());
+        }
+
+        private IEnumerator ParallelCor()
+        {
+            while (m_NodeList.Count > 0)
+            {
+                yield return null;
+            }
+
+            OnEnd();
+        }
+
+        private void OnNodeEnd(ActionNode node)
+        {
+            if (m_NodeList.Contains(node))
+            {
+                m_NodeList.Remove(node);
             }
         }
     }

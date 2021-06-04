@@ -10,7 +10,8 @@ namespace GameWish.Game
         private void Start()
         {
             //TestScheduleNode();
-            TestSequenceNode();
+            //TestSequenceNode();
+            TestParallelNode();
         }
 
         private void TestScheduleNode()
@@ -18,9 +19,9 @@ namespace GameWish.Game
             ScheduleNode countdownActionNode = ActionNode.Allocate<ScheduleNode>();
 
             countdownActionNode.SetParams(this, System.DateTime.Now, 10, 1)
-                .AddOnStartCallback(() => { Debug.Log("On countdown start"); })
-                .AddOnTickCallback(() => { Debug.Log("On countdown tick : " + Time.time); })
-                .AddOnEndCallback(() => { Debug.Log("On countdown end"); ActionNode.Recycle2Cache(countdownActionNode); })
+                .AddOnStartCallback((node) => { Debug.Log("On countdown start"); })
+                .AddOnTickCallback((node) => { Debug.Log("On countdown tick : " + Time.time); })
+                .AddOnEndCallback((node) => { Debug.Log("On countdown end"); ActionNode.Recycle2Cache(countdownActionNode); })
                 .Execute();
         }
 
@@ -28,17 +29,50 @@ namespace GameWish.Game
         {
             DelayNode delayNode1 = ActionNode.Allocate<DelayNode>();
             delayNode1.SetParams(this, DateTime.Now, 3)
-                .AddOnEndCallback(()=> {
+                .AddOnStartCallback((node) => {
+                    Debug.Log("Delay1 start");
+                })
+                .AddOnEndCallback((node)=> {
                     Debug.Log("Delay1 end"); });
 
             DelayNode delayNode2 = ActionNode.Allocate<DelayNode>();
             delayNode2.SetParams(this, DateTime.Now, 6)
-                .AddOnEndCallback(() => {
+                .AddOnStartCallback((node) => {
+                    Debug.Log("Delay2 start");
+                })
+                .AddOnEndCallback((node) => {
                     Debug.Log("Delay2 end"); });
 
             SequenceNode sequenceNode = ActionNode.Allocate<SequenceNode>();
             sequenceNode.SetParams(this).Append(delayNode1).Append(delayNode2)
-                .AddOnEndCallback(() => { Debug.Log("SequenceNode end"); })
+                .AddOnEndCallback((node) => { Debug.Log("SequenceNode end"); })
+                .Execute();
+
+        }
+
+        private void TestParallelNode()
+        {
+            DelayNode delayNode1 = ActionNode.Allocate<DelayNode>();
+            delayNode1.SetParams(this, DateTime.Now, 3)
+                .AddOnStartCallback((node) => {
+                    Debug.Log("Delay1 start");
+                })
+                .AddOnEndCallback((node) => {
+                    Debug.Log("Delay1 end");
+                });
+
+            DelayNode delayNode2 = ActionNode.Allocate<DelayNode>();
+            delayNode2.SetParams(this, DateTime.Now, 6)
+                .AddOnStartCallback((node) => {
+                    Debug.Log("Delay2 start");
+                })
+                .AddOnEndCallback((node) => {
+                    Debug.Log("Delay2 end");
+                });
+
+            ParallelNode parallelNode = ActionNode.Allocate<ParallelNode>();
+            parallelNode.SetParams(this).Add(delayNode1).Add(delayNode2)
+                .AddOnEndCallback((node) => { Debug.Log("ParallelNode end"); })
                 .Execute();
 
         }

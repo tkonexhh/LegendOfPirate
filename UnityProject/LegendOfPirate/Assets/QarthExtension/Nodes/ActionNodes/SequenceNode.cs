@@ -47,6 +47,8 @@ namespace GameWish.Game
 
         public override void Execute()
         {
+            OnStart();
+
             if (m_NodeQueue.Count <= 0)
             {
                 OnEnd();
