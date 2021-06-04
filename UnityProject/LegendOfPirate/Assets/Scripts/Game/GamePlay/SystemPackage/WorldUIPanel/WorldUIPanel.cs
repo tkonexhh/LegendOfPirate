@@ -28,11 +28,19 @@ namespace GameWish.Game
     {
         public static WorldUIPanel S;
         public WorldUI_WorkTalk m_WalkTalk;
+
+        [Header("不散乱时用")]
         [Tooltip("上移距离")]
         public float m_RollingDistance = 100f;
         [Tooltip("动画持续时间")]
-        public int m_AnimTime = 3;
-
+        public float m_SmoothAnimTime = 3;
+        [Header("散乱时用")]
+        [Tooltip("散乱幅度(左右)")]
+        public float m_DisruptionRange= 100f;
+        [Tooltip("散乱持续时间")]
+        public float m_DisruptionAnimTime = 0.5f;
+        [Tooltip("抛物线最高高度")]
+        public float m_DisruptionHeight = 100;
         protected override void OnUIInit()
         {
             S = this;
@@ -48,7 +56,7 @@ namespace GameWish.Game
         // }
 
         #region Public
-        public void ShowCommonInjuryText(Transform character, string talk)
+        public void ShowCommonInjuryText(Transform character, string talk,bool isScattered = false)
         {
             var obj = CreateInjuryObj();
 
@@ -56,9 +64,9 @@ namespace GameWish.Game
 
             workTalk.SetStyle(InjuryType.CommonInjury);
 
-            RetardedText(obj);
+            RetardedText(obj, isScattered);
         }
-        public void ShowCriticalInjuryText(Transform character, string talk)
+        public void ShowCriticalInjuryText(Transform character, string talk, bool isScattered = false)
         {
             var obj = CreateInjuryObj();
 
@@ -66,7 +74,17 @@ namespace GameWish.Game
 
             workTalk.SetStyle(InjuryType.CriticalInjury);
 
-            RetardedText(obj);
+            RetardedText(obj, isScattered);
+        }
+        public void ShowAbnormalInjuryText(Transform character, string talk, bool isScattered = false)
+        {
+            var obj = CreateInjuryObj();
+
+            WorldUI_WorkTalk workTalk = ShowWorkText(character, talk, obj);
+
+            workTalk.SetStyle(InjuryType.CriticalInjury);
+
+            RetardedText(obj, isScattered);
         }
 
 
@@ -75,17 +93,38 @@ namespace GameWish.Game
 
         #region Private
         //.SetEase(Ease.OutElastic).SetLoops(-1, LoopType.Yoyo);
-        private void RetardedText(GameObject obj)
+        private void RetardedText(GameObject obj, bool isScattered)
         {
-            //float ran = Random.Range(-50,50);
-            obj.transform.DOLocalMove(obj.transform.localPosition + new Vector3(0, m_RollingDistance, 0), m_AnimTime).SetEase(Ease.Linear,1,5).OnComplete(() =>
+            if (isScattered)
             {
-                GameObjectPoolMgr.S.Recycle(obj);
-                obj = null;
-            });
+                float ran = Random.Range(-m_DisruptionRange, m_DisruptionRange);
+                WorldUI_WorkTalk worldUI_WorkTalk = obj.GetComponent<WorldUI_WorkTalk>();
+                worldUI_WorkTalk.SetExerciseTime(m_DisruptionAnimTime, m_DisruptionHeight, ran, () => {
+                    GameObjectPoolMgr.S.Recycle(obj);
+                    obj = null;
+                });
+            }
+            else
+            {
+                obj.transform.DOLocalMove(obj.transform.localPosition + new Vector3(0, m_RollingDistance, 0), m_SmoothAnimTime).SetEase(Ease.Linear).OnComplete(() =>
+                  {
+                      GameObjectPoolMgr.S.Recycle(obj);
+                      obj = null;
+                  });
+            }
+
             //obj.transform.DOScale(obj.transform.localScale+ new Vector3(obj.transform.localScale.x, obj.transform.localScale.y+0.5f, obj.transform.localScale.z)).SetEase()
 
         }
+        public static Vector2 Parabola(Vector2 start, Vector2 end, float height, float t)
+        {
+            float Func(float x) => 4 * (-height * x * x + height * x);
+
+            var mid = Vector2.Lerp(start, end, t);
+
+            return new Vector2(mid.x, Func(t) + Mathf.Lerp(start.y, end.y, t));
+        }
+
 
         private GameObject CreateInjuryObj()
         {
