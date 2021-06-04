@@ -11,11 +11,14 @@ namespace GameWish.Game
     {
         public int id;
         public int level;
-
-        public RoleEquipData(int id, int level)
+        public EquipType type;
+        public int count;
+        public RoleEquipData(int id, int level,EquipType type,int count)
         {
             this.id = id;
             this.level = level;
+            this.type = type;
+            this.count = count;
         }
 
         public void Upgrade(int deltaLevel)

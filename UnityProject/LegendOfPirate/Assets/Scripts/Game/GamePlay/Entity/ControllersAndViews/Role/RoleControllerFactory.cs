@@ -11,8 +11,10 @@ namespace GameWish.Game
         {
             base.BuildController(controller, model);
 
+
             // controller.EquipSkill(RoleSkillMgr.S.GetSkill(RoleSkillType.None)).AddBuff(1);
         }
+
     }
 
 }

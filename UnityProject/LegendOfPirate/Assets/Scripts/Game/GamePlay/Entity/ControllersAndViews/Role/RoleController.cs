@@ -13,6 +13,7 @@ namespace GameWish.Game
         public override void OnInit()
         {
             base.OnInit();
+
         }
 
         public override void OnUpdate() { }
@@ -35,10 +36,20 @@ namespace GameWish.Game
 
         #region Public
 
+        public void InitRoleEquipDic()
+        {
+
+            
+        }
+
         //public RoleController EquipSkill(RoleSkill roleSkill)
         //{
         //    return this;
         //}
+
+        #endregion
+
+        #region Private
 
         #endregion
     }
