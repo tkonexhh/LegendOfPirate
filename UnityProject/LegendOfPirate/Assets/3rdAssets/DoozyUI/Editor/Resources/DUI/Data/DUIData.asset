@@ -21,6 +21,7 @@ MonoBehaviour:
       - AdStaticShowPanel
       - BoostPanel
       - EffectActivePanel
+      - EvolutionSolePanel
       - MagicCloudPanel
       - MainMenuPanel
       - OccupyOverPanel
@@ -28,6 +29,9 @@ MonoBehaviour:
       - OfflineRewardPanel
       - RatePanel
       - RoleDetailsPanel
+      - RoleEquipDetailsPanel
+      - RoleSkillPanel
+      - RoleStoryPanel
       - SettingPanel
       - ShopPanel
       - TaskPanel

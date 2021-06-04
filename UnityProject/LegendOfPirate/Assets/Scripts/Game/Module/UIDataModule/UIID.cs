@@ -13,6 +13,8 @@ namespace GameWish.Game
         UIClipPanel,
         SkipGuidePanel,
         ToastPanel,
+        WorldUIPanel,
+        FloatMessagePanel1,
         MainMenuPanel,
         /// <summary>
         /// 消息提示界面
@@ -20,7 +22,15 @@ namespace GameWish.Game
         MyFloatMessagePanel,
         TestPanel,
 
-        RoleDetailsPanel
+        #region Role
+        RoleDetailsPanel,
+        RoleEquipDetailsPanel,
+        EvolutionSolePanel,
+        RoleSkillPanel,
+        RoleStoryPanel,
+        #endregion
+
+        FloatMeshMessagePanel,
 
     }
 }

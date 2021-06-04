@@ -22,9 +22,18 @@ namespace GameWish.Game
 			BindModelToUI();
 			BindUIToModel();
 
+			UIMgr.S.OpenPanel(UIID.WorldUIPanel);
+
 			RoleDetailsBtn.OnClickAsObservable().Subscribe(_=> {
-				UIMgr.S.OpenPanel(UIID.RoleDetailsPanel);
-			});
+                //Transform tran = GameObject.FindGameObjectWithTag("Finish").transform;
+                //FloatMeshMessage.S.ShowMsg("##", tran);
+                //WorldUIPanel.S.ShowCriticalInjuryText(tran, "+1");
+
+                //UIMgr.S.OpenPanel(UIID.RoleEquipDetailsPanel);
+                //UIMgr.S.OpenPanel(UIID.EvolutionSolePanel);
+                //UIMgr.S.OpenPanel(UIID.RoleSkillPanel);
+                UIMgr.S.OpenPanel(UIID.RoleStoryPanel);
+            });
 		}
 		
 		protected override void OnPanelHideComplete()
