@@ -20,9 +20,10 @@ MonoBehaviour:
     m_DumpPath: 
     m_DumpToScreen: 0
     m_DumpToFile: 1
-  m_LogLevel: 0
+  m_LogLevel: 5
   m_IsGuideActive: 1
   m_IsResUpdateActive: 1
   m_ResUpdateVersion: 
   m_WeMobAppKey: 
   m_WeMobChannelID: 
+  m_SupportMail: 
