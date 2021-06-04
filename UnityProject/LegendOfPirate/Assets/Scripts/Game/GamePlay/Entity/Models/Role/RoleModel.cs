@@ -13,6 +13,9 @@ namespace GameWish.Game
         public IntReactiveProperty level;
         public string name;
         public string resName;
+
+        public IntReactiveProperty curExp;
+        public IntReactiveProperty starLevel;
         public ReactiveCollection<RoleEquipModel> equipList;
         public ReactiveCollection<RoleSkillModel> skillList;
 
@@ -21,6 +24,9 @@ namespace GameWish.Game
             id = roleData.id;
             level = new IntReactiveProperty(roleData.level);
             name = roleData.name;
+
+            curExp = new IntReactiveProperty(roleData.curExp);
+            starLevel = new IntReactiveProperty(roleData.starLevel);
 
             equipList = new ReactiveCollection<RoleEquipModel>();
             for (int i = 0; i < roleData.equipList.Count; i++)
@@ -63,6 +69,16 @@ namespace GameWish.Game
             return skillModel;
         }
 
+        public int GetCurExp()
+        {
+            return curExp.Value;
+        }
+
+        public int GetStarLevel()
+        {
+            return starLevel.Value;
+        }
+
         #endregion
 
         #region Public Set
@@ -84,6 +100,16 @@ namespace GameWish.Game
         public void UpgradeEquip()
         {
 
+        }
+
+        public void SetCurExp(int exp)
+        {
+            curExp.Value = exp;
+        }
+
+        public void SetStaraLevel(int level)
+        {
+            starLevel.Value = level;
         }
         #endregion
     }

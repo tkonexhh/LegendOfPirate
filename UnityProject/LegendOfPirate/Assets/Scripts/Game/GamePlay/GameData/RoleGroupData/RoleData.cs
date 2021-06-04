@@ -13,14 +13,19 @@ namespace GameWish.Game
         public int id;
         public int level;
         public string name;
+
+        public int curExp;
+        public int starLevel;
         public List<RoleEquipData> equipList;
         public List<RoleSkillData> skillList;
 
-        public RoleData(int id, int level, string name)
+        public RoleData(int id, int level, string name ,int exp, int starLevel)
         {
             this.id = id;
             this.level = level;
             this.name = name;
+            this.curExp = exp;
+            this.starLevel = starLevel;
 
             equipList = new List<RoleEquipData>();
             skillList = new List<RoleSkillData>();

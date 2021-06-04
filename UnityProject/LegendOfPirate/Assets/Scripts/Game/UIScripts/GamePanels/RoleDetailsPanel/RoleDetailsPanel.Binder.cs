@@ -8,8 +8,10 @@ namespace GameWish.Game
 {
 	public class RoleDetailsPanelData : UIPanelData
 	{
+		public RoleModel roleModel { get; private set; }
 		public RoleDetailsPanelData()
 		{
+			roleModel = ModelMgr.S.GetModel<RoleModel>();
 		}
 	}
 	
@@ -29,10 +31,12 @@ namespace GameWish.Game
 		
 		private void BindModelToUI()
 		{
+			
 		}
 		
 		private void BindUIToModel()
 		{
+
 		}
 		
 	}

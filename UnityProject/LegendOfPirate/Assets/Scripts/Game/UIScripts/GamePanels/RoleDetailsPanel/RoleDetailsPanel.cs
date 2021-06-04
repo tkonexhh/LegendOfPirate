@@ -11,6 +11,7 @@ namespace GameWish.Game
 		protected override void OnUIInit()
 		{
 			base.OnUIInit();
+
 		}
 		
 		protected override void OnPanelOpen(params object[] args)
