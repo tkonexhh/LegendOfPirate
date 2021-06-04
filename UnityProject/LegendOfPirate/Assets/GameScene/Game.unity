@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 6d62f3ad7008f864cb698ca669a3fc6f, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.33881372, g: 0.8223812, b: 0.9296663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -569,6 +569,8 @@ GameObject:
   - component: {fileID: 1001805194}
   - component: {fileID: 1001805193}
   - component: {fileID: 1001805192}
+  - component: {fileID: 1001805196}
+  - component: {fileID: 1001805195}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -583,13 +585,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001805190}
-  m_LocalRotation: {x: -0.006558599, y: -0.8677942, z: 0.4967484, w: -0.011458963}
-  m_LocalPosition: {x: 2.2810159, y: 135.06154, z: 113.498024}
+  m_LocalRotation: {x: 0, y: 0.9396927, z: -0.3420201, w: 0}
+  m_LocalPosition: {x: 0, y: 76.2, z: 89.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 369659008}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: 180, z: 0}
 --- !u!114 &1001805192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,6 +675,116 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1001805195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001805190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec3e4ed2a559374298a103953472518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraAxes: 1
+  perspectiveZoomMode: 1
+  camZoomMin: 100
+  camZoomMax: 200
+  camOverzoomMargin: 3
+  camOverdragMargin: 5
+  boundaryMin: {x: -1000, y: -1000}
+  boundaryMax: {x: 1000, y: 1000}
+  camFollowFactor: 15
+  autoScrollDampMode: 0
+  autoScrollDamp: 300
+  autoScrollDampCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.7
+      value: 0.9
+      inSlope: -0.5
+      outSlope: -0.5
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.01
+      inSlope: -0.85
+      outSlope: -0.85
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  groundLevelOffset: 0
+  enableRotation: 0
+  enableTilt: 0
+  tiltAngleMin: 45
+  tiltAngleMax: 90
+  enableZoomTilt: 0
+  zoomTiltAngleMin: 45
+  zoomTiltAngleMax: 90
+  OnPickItem:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPickItem2D:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPickItemDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPickItem2DDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  expertModeEnabled: 0
+  zoomBackSpringFactor: 20
+  dragBackSpringFactor: 10
+  autoScrollVelocityMax: 60
+  dampFactorTimeMultiplier: 2
+  isPinchModeExclusive: 1
+  customZoomSensitivity: 1
+  terrainCollider: {fileID: 0}
+  cameraTransform: {fileID: 0}
+  rotationDetectionDeltaThreshold: 0.25
+  rotationMinPinchDistance: 0.125
+  rotationLockThreshold: 2.5
+  pinchModeDetectionMoveTreshold: 0.025
+  pinchTiltModeThreshold: 0.0075
+  pinchTiltSpeed: 180
+--- !u!114 &1001805196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001805190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b68db338cb9e141b86129564ccfbf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expertModeEnabled: 0
+  clickDurationThreshold: 0.7
+  doubleclickDurationThreshold: 0.5
+  tiltMoveDotTreshold: 0.7
+  tiltHorizontalDotThreshold: 0.5
+  dragStartDistanceThresholdRelative: 0.05
+  longTapStartsDrag: 1
 --- !u!1001 &1146458797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -799,7 +911,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1198092926}
   - component: {fileID: 1198092925}
-  - component: {fileID: 1198092927}
   m_Layer: 0
   m_Name: UIRoot
   m_TagString: Untagged
@@ -842,18 +953,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1198092927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1198092924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27004b741c40442038f9968fb0273999, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1474359849
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,7 +971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1474359850
 Transform:
   m_ObjectHideFlags: 0
@@ -1102,6 +1201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RolePrefab: {fileID: 5728299268360915620, guid: 119ad41d5dd9145a5b73e998cd7ec0b6,
     type: 3}
+  m_DemoBuffSO: {fileID: 11400000, guid: 3964941d191e6480c8f6f13d409d88b6, type: 2}
+  DemoSkillSO: {fileID: 11400000, guid: 48ff19146024b4d2e852c835423a421f, type: 2}
 --- !u!114 &1594192785
 MonoBehaviour:
   m_ObjectHideFlags: 0

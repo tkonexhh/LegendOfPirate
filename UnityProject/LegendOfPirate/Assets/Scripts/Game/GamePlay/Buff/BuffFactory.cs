@@ -7,32 +7,37 @@ namespace GameWish.Game
 {
     public class BuffFactory
     {
-
-        public static Buff CreateBuff(int id, AttributeType attributeType, ModifyType modifyType, int value)
+        public static Buff CreateBuff(BuffConfigSO configSO)
         {
-            Buff buff = null;
+            var buff = new Buff(configSO.ID);
+            buff.time = configSO.Time;
+            buff.AttributeHandler = CreateBuffModelHandlerAttribute(configSO.AttributeType, configSO.NumericValue);
+            if (configSO.StatusControls != StatusControlType.None)
+            {
+                buff.StatusHandler = new BuffModelHandler_Status(configSO.StatusControls);
+            }
+            DealWithStatic(configSO);
+            return buff;
+        }
+
+        #region BuffModelHandler
+        private static BuffModelHandler_Attribute CreateBuffModelHandlerAttribute(AttributeType attributeType, int value)
+        {
             switch (attributeType)
             {
                 case AttributeType.MoveSpeed:
-                    buff = new Buff_MoveSpeed(id, modifyType, value);
-                    break;
+                    return new BuffModelHandler_MoveSpeed(value);
+                case AttributeType.ATK:
+                    return new BuffModelHandler_ATK(value);
+                case AttributeType.MaxHp:
+                    return new BuffModelHandler_MaxHp(value);
             }
-
-            return buff;
+            return null;
         }
-
-        public static Buff CreateBuff(BuffConfigSO configSO)
-        {
-            var buff = CreateBuff(configSO.ID, configSO.AttributeType, configSO.ModifyType, configSO.NumericValue);
-            DealWithAppend(configSO);
-            return buff;
-        }
-
-
-
+        #endregion
 
         #region Buff Append
-        private static Dictionary<int, BuffAppendHandler> s_BuffAppendHandleMap = new Dictionary<int, BuffAppendHandler>();
+        private static Dictionary<int, BuffStaticInfo> s_BuffStaticMap = new Dictionary<int, BuffStaticInfo>();
         private static BuffAppendHandler CreateAppendHandler(BuffAppendType appendType)
         {
             switch (appendType)
@@ -47,21 +52,23 @@ namespace GameWish.Game
             return null;
         }
 
-        public static BuffAppendHandler GetAppendHandler(int id)
+        public static BuffStaticInfo GetBuffStaticInfo(int id)
         {
-            if (s_BuffAppendHandleMap.ContainsKey(id))
+            if (s_BuffStaticMap.ContainsKey(id))
             {
-                return s_BuffAppendHandleMap[id];
+                return s_BuffStaticMap[id];
             }
             return null;
         }
 
-        private static void DealWithAppend(BuffConfigSO configSO)
+        private static void DealWithStatic(BuffConfigSO configSO)
         {
-            if (s_BuffAppendHandleMap.ContainsKey(configSO.ID))//已经处理过叠加了
+            if (s_BuffStaticMap.ContainsKey(configSO.ID))//已经处理过叠加了
             {
                 return;
             }
+            BuffStaticInfo staticInfo = new BuffStaticInfo();
+            staticInfo.maxAppendNum = configSO.MaxAppendNum;
 
             //处理叠加
             if (configSO.EnabledAppend)
@@ -69,12 +76,22 @@ namespace GameWish.Game
                 var appendHandler = CreateAppendHandler(configSO.AppendType);
                 if (appendHandler != null)
                 {
-                    s_BuffAppendHandleMap.Add(configSO.ID, appendHandler);
+                    staticInfo.appendHandler = appendHandler;
+
                 }
             }
+
+            s_BuffStaticMap.Add(configSO.ID, staticInfo);
         }
 
         #endregion
+    }
+
+
+    public class BuffStaticInfo
+    {
+        public int maxAppendNum;
+        public BuffAppendHandler appendHandler;
     }
 
 }

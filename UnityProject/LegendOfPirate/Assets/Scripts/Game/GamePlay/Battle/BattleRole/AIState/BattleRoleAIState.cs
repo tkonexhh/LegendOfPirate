@@ -10,8 +10,10 @@ namespace GameWish.Game
         PickTarget,
         MoveToTarget,
         Attack,
+        Skill,
         Global,
         Dead,
+        Victory,
     }
 
     public class BattleRoleAIState : FSMState<BattleRoleAI>

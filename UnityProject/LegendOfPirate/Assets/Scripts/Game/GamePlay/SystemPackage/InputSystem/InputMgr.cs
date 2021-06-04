@@ -7,18 +7,13 @@ using HedgehogTeam.EasyTouch;
 
 namespace GameWish.Game
 {
-    public class InputMgr : TSingleton<InputMgr>
+    public class InputMgr : TSingleton<InputMgr>, IMgr
     {
         private List<IInputObserver> m_TouchObservers = new List<IInputObserver>();
 
         private bool m_IsTouchStartFromUI = false;
-
         private bool m_IsDragEnabled = true;
-
-        private bool m_LongTimeNoTouch;
-
-        private int m_TimerId = -1;
-        private DateTime m_Time;
+        private bool m_EnableInput = true;
 
         public bool IsDragEnabled
         {
@@ -26,34 +21,33 @@ namespace GameWish.Game
             set { m_IsDragEnabled = value; }
         }
 
-        public bool LongTimeNoTouch
-        {
-            get
-            {
-                return m_LongTimeNoTouch;
-            }
+        #region IMgr
 
-            set
-            {
-                m_LongTimeNoTouch = value;
-            }
-        }
-
-        public void Init()
+        public void OnInit()
         {
+            m_EnableInput = true;
             EasyTouch.On_TouchStart += On_TouchStart;
-            //EasyTouch.On_TouchDown += On_TouchDown;
-            //EasyTouch.On_TouchUp += On_TouchUp;
-            //EasyTouch.On_Drag += On_Drag;
-            //EasyTouch.On_LongTap += On_LongTap;
-            //EasyTouch.On_Swipe += On_Swipe;
+            EasyTouch.On_TouchDown += On_TouchDown;
+            EasyTouch.On_TouchUp += On_TouchUp;
+            EasyTouch.On_Drag += On_Drag;
+            EasyTouch.On_Swipe += On_Swipe;
         }
+
+        public void OnUpdate() { }
+
+        public void OnDestroyed() { }
+
+        #endregion
+
+        #region Public Set
 
         public void AddTouchObserver(IInputObserver ob)
         {
             if (!m_TouchObservers.Contains(ob))
             {
                 m_TouchObservers.Add(ob);
+
+                m_TouchObservers.Sort((a, b) => { return b.GetSortingLayer() - a.GetSortingLayer(); });
             }
         }
 
@@ -65,29 +59,53 @@ namespace GameWish.Game
             }
         }
 
+        public void EnableInput()
+        {
+            m_EnableInput = true;
+        }
+
+        public void DisableInput()
+        {
+            m_EnableInput = false;
+        }
+        #endregion
+
+        #region Private
+
         private void On_TouchStart(Gesture gesture)
         {
+            if (!m_EnableInput)
+                return;
+
+            foreach (var ob in m_TouchObservers)
             {
-                foreach (var ob in m_TouchObservers)
-                {
-                    ob.On_TouchStart(gesture);
-                }
+                bool touched = ob.On_TouchStart(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
+
         }
 
         private void On_TouchDown(Gesture gesture)
         {
-            m_Time = DateTime.Now;
-            //HideTouchTip();
+            if (!m_EnableInput)
+                return;
 
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_TouchDown(gesture);
+                bool touched = ob.On_TouchDown(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
         }
 
         private void On_TouchUp(Gesture gesture)
         {
+            if (!m_EnableInput)
+                return;
+
             //start check
             //if (AbTestActor.IsShowHandTip())
             //{
@@ -97,51 +115,60 @@ namespace GameWish.Game
 
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_TouchUp(gesture);
+                bool touched = ob.On_TouchUp(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
         }
 
         private void On_Drag(Gesture gesture)
         {
+            if (!m_EnableInput)
+                return;
+
             if (IsDragEnabled == false)
                 return;
 
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_Drag(gesture, m_IsTouchStartFromUI);
+                bool touched = ob.On_Drag(gesture, m_IsTouchStartFromUI);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
+
+            //Log.e("On drag");
         }
 
         private void On_Swipe(Gesture gesture)
         {
+            if (!m_EnableInput)
+                return;
+
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_Swipe(gesture);
+                bool touched = ob.On_Swipe(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
+
+            //Log.e("On swipe");
         }
 
         private void On_LongTap(Gesture gesture)
         {
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_LongTap(gesture);
+                bool touched = ob.On_LongTap(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
         }
 
-        private void CheckLongTimeNoTouch(int i)
-        {
-            Log.i("show hand click tip");
-            LongTimeNoTouch = true;
-            //EffectMgr.S.ShowTouchTip(UIMgr.S.FindPanel(UIID.MainGamePanel).transform,Vector3.zero);
-        }
+        #endregion
 
-        //private void HideTouchTip()
-        //{
-        //    if (LongTimeNoTouch)
-        //    {
-        //        LongTimeNoTouch = false;
-        //        EffectMgr.S.HideTouchTip();
-        //    }
-        //}
     }
 }

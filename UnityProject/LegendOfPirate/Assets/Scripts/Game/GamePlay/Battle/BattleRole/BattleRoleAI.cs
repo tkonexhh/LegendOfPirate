@@ -5,18 +5,23 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public class BattleRoleAI : IRoleAI
+    public class BattleRoleAI : BattleRoleComponent
     {
-        public BattleRoleController controller { get; private set; }
-        public BattleRoleController Target { get; set; }
 
+        public BattleRoleController Target { get; set; }//当前选择目标
         public FSMStateMachine<BattleRoleAI> FSM { get; private set; }
-        public IBattleSensor Sensor { get; private set; }
 
-        public BattleRoleAI(BattleRoleController controller)
+
+
+        //TODO 移动到其他component中
+        public Run onAttack;
+        public Run onMove;
+        public Run onHurt;
+        public Run onUpdate;
+
+        public BattleRoleAI(BattleRoleController controller) : base(controller)
         {
-            this.controller = controller;
-            Sensor = new BattleSensor_Nearest(controller);
+
             this.controller.renderer.PlayAnim("Idle", true);
 
             FSM = new FSMStateMachine<BattleRoleAI>(this);
@@ -24,21 +29,27 @@ namespace GameWish.Game
             FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.PickTarget, new BattleRoleAIState_PickTarget());
             FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.MoveToTarget, new BattleRoleAIState_MoveToTarget());
             FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Attack, new BattleRoleAIState_Attack());
+            FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Skill, new BattleRoleAIState_Skill());
             FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Dead, new BattleRoleAIState_Dead());
+            FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Victory, new BattleRoleAIState_Victory());
             FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Global, new BattleRoleAIState_Global());
+
 
         }
 
-
-        public void OnBattleStart()
+        public override void OnBattleStart()
         {
             FSM.SetCurrentStateByID(BattleRoleAIStateEnum.PickTarget);
             FSM.SetGlobalStateByID(BattleRoleAIStateEnum.Global);
         }
 
-        public void OnUpdate()
+        public override void OnUpdate()
         {
             FSM.UpdateState(Time.deltaTime);
+            if (onUpdate != null)
+            {
+                onUpdate();
+            }
         }
 
     }

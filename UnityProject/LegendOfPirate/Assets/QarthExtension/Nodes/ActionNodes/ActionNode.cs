@@ -8,9 +8,9 @@ namespace GameWish.Game
 {
     public abstract class ActionNode : IActionNode
     {
-        protected Action OnStartCallback = null;
-        protected Action OnEndCallback = null;
-        protected Action OnTickCallback = null;
+        protected Action<ActionNode> OnStartCallback = null;
+        protected Action<ActionNode> OnEndCallback = null;
+        protected Action<ActionNode> OnTickCallback = null;
 
         protected MonoBehaviour m_ExecuteBehavior = null;
 
@@ -41,19 +41,19 @@ namespace GameWish.Game
         {
             m_IsFinished = false;
 
-            OnStartCallback?.Invoke();
+            OnStartCallback?.Invoke(this);
         }
 
         public virtual void OnTick()
         {
-            OnTickCallback?.Invoke();
+            OnTickCallback?.Invoke(this);
         }
 
         public virtual void OnEnd()
         {
             m_IsFinished = true;
 
-            OnEndCallback?.Invoke();
+            OnEndCallback?.Invoke(this);
         }
 
         public virtual void Dispose()
@@ -70,39 +70,38 @@ namespace GameWish.Game
 
         public virtual void OnCacheReset()
         {
-
+            OnStartCallback = null;
+            OnEndCallback = null;
+            OnTickCallback = null;
         }
 
         public virtual void Execute()
         {
 
         }
-        #endregion
-
-        public ActionNode AddOnStartCallback(Action callback)
+        public ActionNode AddOnStartCallback(Action<ActionNode> callback)
         {
             OnStartCallback += callback;
 
             return this;
         }
 
-        public ActionNode AddOnTickCallback(Action callback)
+        public ActionNode AddOnTickCallback(Action<ActionNode> callback)
         {
             OnTickCallback += callback;
 
             return this;
         }
 
-        public ActionNode AddOnEndCallback(Action callback)
+        public ActionNode AddOnEndCallback(Action<ActionNode> callback)
         {
             OnEndCallback += callback;
 
             return this;
         }
-        //public virtual void Execute()
-        //{
-        //    OnStart();
-        //}
+        #endregion
+
+
 
     }
 

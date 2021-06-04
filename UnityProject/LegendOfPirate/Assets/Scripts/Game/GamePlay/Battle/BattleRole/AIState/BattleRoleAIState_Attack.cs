@@ -18,11 +18,17 @@ namespace GameWish.Game
         public override void Execute(BattleRoleAI ai, float dt)
         {
             base.Execute(ai, dt);
+
+            if (ai.Target == null)
+            {
+                return;//ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.PickTarget);
+            }
+
             m_AttackTimer += dt;
             //TODO 攻击速度从Data中读取
             if (m_AttackTimer >= 2.1f)
             {
-                Attack();
+                PlayAttackAnim();
                 m_AttackTimer = 0;
             }
 
@@ -39,10 +45,14 @@ namespace GameWish.Game
             m_AttackTimer = 0;
         }
 
-        private void Attack()
+        private void PlayAttackAnim()
         {
             m_AI.controller.renderer.CrossFadeAnim("Attack02", 0.1f, false);
+            //TODO 需要改成动画事件
+            m_AI.controller.Data.Attacker.Attack(m_AI.controller);
         }
+
+
     }
 
 }

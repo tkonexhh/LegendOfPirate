@@ -11,9 +11,10 @@ namespace GameWish.Game
 	{
         public IntReactiveProperty level;
 
+        public List<IInventoryItemModel> itemModelList = new List<IInventoryItemModel>();
+
         protected override void LoadDataFromDb()
         {
-            base.LoadDataFromDb();
         }
     }
 	

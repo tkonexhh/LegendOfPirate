@@ -8,6 +8,7 @@ namespace GameWish.Game
 	public class SequenceNode : ActionNode
 	{
         private Queue<IActionNode> m_NodeQueue;
+        private IActionNode m_CurNode = null;
 
         public SequenceNode()
         {
@@ -26,6 +27,15 @@ namespace GameWish.Game
             base.OnCacheReset();
 
             m_NodeQueue.Clear();
+
+            m_CurNode = null;
+        }
+
+        public SequenceNode SetParams(MonoBehaviour executeBehavior)
+        {
+            m_ExecuteBehavior = executeBehavior;
+
+            return this;
         }
 
         public SequenceNode Append(IActionNode node)
@@ -35,12 +45,43 @@ namespace GameWish.Game
             return this;
         }
 
-        public void Execute()
+        public override void Execute()
         {
-            while (m_NodeQueue.Count > 0)
-            {
+            OnStart();
 
+            if (m_NodeQueue.Count <= 0)
+            {
+                OnEnd();
+                return;
             }
+
+            m_CurNode = m_NodeQueue.Dequeue();
+            m_CurNode.Execute();
+
+            m_ExecuteBehavior.StartCoroutine(SequenceCor());
+        }
+
+        private IEnumerator SequenceCor()
+        {
+            while (m_NodeQueue.Count > 0 || (m_CurNode != null && m_CurNode.IsFinished == false))
+            {
+                if (m_CurNode == null || m_CurNode.IsFinished)
+                {
+                    if (m_NodeQueue.Count > 0)
+                    {
+                        m_CurNode = m_NodeQueue.Dequeue();
+                        m_CurNode.Execute();
+                    }
+                    else
+                    {
+                        m_CurNode = null;
+                    }
+                }
+
+                yield return null;
+            }
+
+            OnEnd();
         }
     }
 	

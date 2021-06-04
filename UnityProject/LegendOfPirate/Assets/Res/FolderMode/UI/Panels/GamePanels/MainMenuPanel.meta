@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:UnityProject/LegendOfPirate/Assets/3rdAssets/SkyBox.meta
+guid: 50d992fc1b51cf746ab802063dd43828
+=======
 guid: 29b5a155c41d5aa42a404883dd4a6eea
+>>>>>>> origin/lmm:UnityProject/LegendOfPirate/Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

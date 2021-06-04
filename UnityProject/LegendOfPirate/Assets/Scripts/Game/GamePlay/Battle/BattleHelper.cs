@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -18,6 +18,37 @@ namespace GameWish.Game
             {
                 return BattleCamp.Our;
             }
+        }
+
+
+        public static int CalcAtkDamage(BattleRoleRuntimeModel model)
+        {
+            int damage = model.ATK;
+            //判断是否暴击
+            if (RandomHelper.Range(0, 100) < model.CriticalRate)
+            {
+                // Debug.LogError("暴击");
+                damage *= 2;
+            }
+
+            return damage;
+        }
+
+        public static int CalcSkillDamage(BattleRoleRuntimeModel model)
+        {
+            int damage = 1;
+            return damage;
+        }
+
+        public static int CalcATKHurt(int damage, BattleRoleRuntimeModel model)
+        {
+            damage = (int)(damage / (1.0f + model.Amor));
+            return damage;
+        }
+
+        public static int CalcSkillHurt(int damage, BattleRoleRuntimeModel model)
+        {
+            return 0;
         }
 
     }

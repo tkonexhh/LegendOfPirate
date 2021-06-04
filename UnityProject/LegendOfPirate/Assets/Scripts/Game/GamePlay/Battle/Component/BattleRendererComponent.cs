@@ -56,6 +56,38 @@ namespace GameWish.Game
             {
                 m_EnemyRoleControllerLst[i].OnUpdate();
             }
+
+            if (BattleMgr.S.Started)
+            {
+                if (m_OurRoleControllerLst.Count == 0)
+                {
+                    BattleMgr.S.BattleEnd(false);
+                }
+
+                if (m_EnemyRoleControllerLst.Count == 0)
+                {
+                    BattleMgr.S.BattleEnd(true);
+                }
+            }
+
+        }
+
+        public override void OnBattleEnd(bool isSuccess)
+        {
+            if (isSuccess)
+            {
+                for (int i = m_OurRoleControllerLst.Count - 1; i >= 0; i--)
+                {
+                    m_OurRoleControllerLst[i].AI.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.Victory);
+                }
+            }
+            else
+            {
+                for (int i = m_EnemyRoleControllerLst.Count - 1; i >= 0; i--)
+                {
+                    m_EnemyRoleControllerLst[i].AI.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.Victory);
+                }
+            }
         }
 
         public override void OnBattleClean()
@@ -76,9 +108,9 @@ namespace GameWish.Game
 
         private void InitOwerRole()
         {
-            Vector3 startPos = new Vector3(-70, 0, 60);
+            Vector3 startPos = new Vector3(-70, 0, 40);
             int width = 80;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 BattleRoleController role = BattleRoleControllerFactory.S.CreateController(null);
                 role.OnInit();
@@ -93,9 +125,9 @@ namespace GameWish.Game
 
         private void InitEnemyRole()
         {
-            Vector3 startPos = new Vector3(-70, 0, -60);
+            Vector3 startPos = new Vector3(-70, 0, -40);
             int width = 80;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 BattleRoleController role = BattleRoleControllerFactory.S.CreateController(null);
                 role.OnInit();
@@ -116,6 +148,18 @@ namespace GameWish.Game
             else
             {
                 return m_EnemyRoleControllerLst;
+            }
+        }
+
+        public void RemoveController(BattleRoleController controller)
+        {
+            if (controller.camp == BattleCamp.Our)
+            {
+                m_OurRoleControllerLst.Remove(controller);
+            }
+            else
+            {
+                m_EnemyRoleControllerLst.Remove(controller);
             }
         }
     }

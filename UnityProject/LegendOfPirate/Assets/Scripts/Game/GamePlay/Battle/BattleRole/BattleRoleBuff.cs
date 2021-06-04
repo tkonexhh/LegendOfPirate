@@ -5,26 +5,28 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class BattleRoleBuff
+    public class BattleRoleBuff : BattleRoleComponent
     {
-        private BattleRoleController m_Controller;
         private List<Buff> m_BuffList = new List<Buff>();
         private Dictionary<int, Buff> m_BuffMap = new Dictionary<int, Buff>();
 
 
-        public BattleRoleBuff(BattleRoleController controller)
-        {
-            m_Controller = controller;
-        }
+        public BattleRoleBuff(BattleRoleController controller) : base(controller) { }
 
-        public void OnUpdate()
+
+        public override void OnUpdate()
         {
+            if (!battleStarted) return;
+
             for (int i = m_BuffList.Count - 1; i >= 0; i--)
             {
-                m_BuffList[i].time -= Time.deltaTime;
-                if (m_BuffList[i].time <= 0)
+                if (m_BuffList[i].time != -1)//-1 是永久持续
                 {
-                    RemoveBuff(m_BuffList[i]);
+                    m_BuffList[i].time -= Time.deltaTime;
+                    if (m_BuffList[i].time <= 0)
+                    {
+                        RemoveBuff(m_BuffList[i]);
+                    }
                 }
             }
         }
@@ -35,19 +37,20 @@ namespace GameWish.Game
             {
                 //Handle Append
 
-                //1 处理层数
-                buff.AddAppendNum();
-                //2 时间处理
-                var appendHandle = BuffFactory.GetAppendHandler(buff.id);
-                if (appendHandle != null)
+                var buffStaticInfo = BuffFactory.GetBuffStaticInfo(buff.id);
+                if (buffStaticInfo != null)
                 {
-                    appendHandle.HandleApped(m_BuffMap[buff.id], buff);
+                    //层数处理
+                    m_BuffMap[buff.id].nowAppendNum++;
+                    m_BuffMap[buff.id].nowAppendNum = Mathf.Min(m_BuffMap[buff.id].nowAppendNum, buffStaticInfo.maxAppendNum);
+                    m_BuffMap[buff.id].OnAddAppendNum(controller.Data.buffedData);
+                    buffStaticInfo.appendHandler?.HandleApped(m_BuffMap[buff.id], buff);
                 }
 
                 return;
             }
             //不同ID的buff
-            buff.OnAddBuff(m_Controller.Data.buffedData);
+            buff.OnAddBuff(controller.Data.buffedData);
             m_BuffList.Add(buff);
             m_BuffMap.Add(buff.id, buff);
         }
@@ -58,7 +61,7 @@ namespace GameWish.Game
             {
                 return;
             }
-            buff.OnRemoveBuff(m_Controller.Data.buffedData);
+            buff.OnRemoveBuff(controller.Data.buffedData);
             m_BuffList.Remove(buff);
             m_BuffMap.Remove(buff.id);
         }

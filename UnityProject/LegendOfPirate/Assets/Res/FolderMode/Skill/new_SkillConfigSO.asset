@@ -41,7 +41,7 @@ MonoBehaviour:
       Data: 1|GameWish.Game.Attack, Assembly-CSharp
     - Name: AttackType
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: DamageType
       Entry: 3
       Data: 1
@@ -66,7 +66,7 @@ MonoBehaviour:
   SkillType: 0
   ChildBuffs:
   - {fileID: 0}
-  CD: 0
+  CD: 10
   SkillEffect: {fileID: 0}
   SkillAudio: {fileID: 0}
-  PassiveSkillTriggerType: 1
+  PassiveSkillTriggerType: 2

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class DbModel : Model
+	public abstract class DbModel : Model
 	{
 
         #region IModel
@@ -16,10 +16,7 @@ namespace GameWish.Game
         }
 
         #endregion
-        protected virtual void LoadDataFromDb()
-        {
-
-        }
+        protected abstract void LoadDataFromDb();
 
     }
 

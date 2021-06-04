@@ -31,6 +31,7 @@ namespace GameWish.Game
         /// <param name="controller"></param>
         protected virtual void BuildController(T controller, IModel model)
         {
+
         }
 	}
 	

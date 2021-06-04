@@ -29,20 +29,15 @@ namespace GameWish.Game
         [LabelText("远程攻击")] Shoot,
     }
 
-    [LabelText("伤害方式")]
-    public enum DamageType
-    {
-        [LabelText("单体")] Single,
-        [LabelText("范围")] Range,
-    }
-
 
     /// <summary>
     /// 伤害范围
     /// </summary>
     [LabelText("伤害范围")]
+    [PropertyTooltip("必须以;来分隔\n参数说明:\n单体:无需参数\n圆形:参数1:半径\n扇形:参数1:半径,参数2:角度\n矩形:参数1:宽度,参数2:高度")]
     public enum DamageRangeType
     {
+        [LabelText("单体")] Single,
         [LabelText("圆形")] Circle,
         [LabelText("扇形")] Sector,
         [LabelText("矩形")] Rect,
@@ -64,11 +59,11 @@ namespace GameWish.Game
     [LabelText("索敌类型")]
     public enum SensorTypeEnum
     {
-        [LabelText("血量最低")] HPLow,
-        [LabelText("血量最高")] HPHigh,
+        [LabelText("血量最低(完成)")] HPLow,
+        [LabelText("血量最高(完成)")] HPHigh,
         [LabelText("血量百分比最低")] HPRateLow,
         [LabelText("血量百分比最高")] HPRateHigh,
-        [LabelText("最近")] Nearest,
+        [LabelText("最近(完成)")] Nearest,
         [LabelText("最远")] Farest,
     }
 }

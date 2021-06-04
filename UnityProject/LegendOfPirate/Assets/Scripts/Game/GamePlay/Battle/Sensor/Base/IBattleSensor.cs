@@ -7,8 +7,8 @@ namespace GameWish.Game
 {
     public interface IBattleSensor
     {
-        BattleRoleController PickTarget();
-        BattleRoleController[] PickTarget(int num);
+        BattleRoleController PickTarget(BattleRoleController picker);
+        BattleRoleController[] PickTarget(BattleRoleController picker, int num);
     }
 
 }
