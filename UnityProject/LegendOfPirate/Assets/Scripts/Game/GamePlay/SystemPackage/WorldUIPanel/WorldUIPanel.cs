@@ -27,16 +27,17 @@ namespace GameWish.Game
     public class WorldUIPanel : AbstractPanel
     {
         public static WorldUIPanel S;
-        public WorldUI_WorkTalk m_WalkTalk;
+        public CombatDamageText m_WalkTalk;
 
         [Header("不散乱时用")]
         [Tooltip("上移距离")]
         public float m_RollingDistance = 100f;
         [Tooltip("动画持续时间")]
         public float m_SmoothAnimTime = 3;
+
         [Header("散乱时用")]
         [Tooltip("散乱幅度(左右)")]
-        public float m_DisruptionRange= 100f;
+        public float m_DisruptionRange = 100f;
         [Tooltip("散乱持续时间")]
         public float m_DisruptionAnimTime = 0.5f;
         [Tooltip("抛物线最高高度")]
@@ -56,13 +57,13 @@ namespace GameWish.Game
         // }
 
         #region Public
-        public void ShowCommonInjuryText(Transform character, string talk,bool isScattered = false)
+        public void ShowCommonInjuryText(Transform character, string talk, bool isScattered = false)
         {
             var obj = CreateInjuryObj();
 
-            WorldUI_WorkTalk workTalk = ShowWorkText(character, talk, obj);
+            CombatDamageText combatDamageText = ShowWorkText(character, talk, obj);
 
-            workTalk.SetStyle(InjuryType.CommonInjury);
+            combatDamageText.SetStyle(InjuryType.CommonInjury);
 
             RetardedText(obj, isScattered);
         }
@@ -70,9 +71,9 @@ namespace GameWish.Game
         {
             var obj = CreateInjuryObj();
 
-            WorldUI_WorkTalk workTalk = ShowWorkText(character, talk, obj);
+            CombatDamageText combatDamageText = ShowWorkText(character, talk, obj);
 
-            workTalk.SetStyle(InjuryType.CriticalInjury);
+            combatDamageText.SetStyle(InjuryType.CriticalInjury);
 
             RetardedText(obj, isScattered);
         }
@@ -80,14 +81,12 @@ namespace GameWish.Game
         {
             var obj = CreateInjuryObj();
 
-            WorldUI_WorkTalk workTalk = ShowWorkText(character, talk, obj);
+            CombatDamageText combatDamageText = ShowWorkText(character, talk, obj);
 
-            workTalk.SetStyle(InjuryType.CriticalInjury);
+            combatDamageText.SetStyle(InjuryType.CriticalInjury);
 
             RetardedText(obj, isScattered);
         }
-
-
 
         #endregion
 
@@ -98,8 +97,9 @@ namespace GameWish.Game
             if (isScattered)
             {
                 float ran = Random.Range(-m_DisruptionRange, m_DisruptionRange);
-                WorldUI_WorkTalk worldUI_WorkTalk = obj.GetComponent<WorldUI_WorkTalk>();
-                worldUI_WorkTalk.SetExerciseTime(m_DisruptionAnimTime, m_DisruptionHeight, ran, () => {
+                CombatDamageText worldUI_WorkTalk = obj.GetComponent<CombatDamageText>();
+                worldUI_WorkTalk.SetExerciseTime(m_DisruptionAnimTime, m_DisruptionHeight, ran, () =>
+                {
                     GameObjectPoolMgr.S.Recycle(obj);
                     obj = null;
                 });
@@ -136,7 +136,7 @@ namespace GameWish.Game
             return m_WorkTalkGo;
         }
 
-        private WorldUI_WorkTalk ShowWorkText(Transform character, string talk, GameObject obj)
+        private CombatDamageText ShowWorkText(Transform character, string talk, GameObject obj)
         {
             // if (m_IsBattle) return;
 
@@ -146,7 +146,7 @@ namespace GameWish.Game
             //m_WorkTalkGo.transform.localScale = Vector3.one;
             //m_WorkTalkGo.SetActive(true);
 
-            WorldUI_WorkTalk workTalk = obj.GetComponent<WorldUI_WorkTalk>();
+            CombatDamageText workTalk = obj.GetComponent<CombatDamageText>();
             workTalk.followTransform = character;
             workTalk.UpdatePosition();
             workTalk.SetText(talk);

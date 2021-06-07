@@ -1259,10 +1259,9 @@ GameObject:
   - component: {fileID: 6286240760902303421}
   - component: {fileID: 7444070469043801630}
   - component: {fileID: 7444070469043801601}
-  - component: {fileID: -3312669525358910589}
   - component: {fileID: 7923441702396847494}
   m_Layer: 5
-  m_Name: RoleSkillPanel
+  m_Name: RoleEquipDetailsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1634,42 +1633,6 @@ MonoBehaviour:
   loopAnimationsPresetCategoryName: Uncategorized
   loopAnimationsPresetName: DefaultPreset
   loadLoopAnimationsPresetAtRuntime: 0
---- !u!114 &-3312669525358910589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7444070469043801600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 776950f3b456ffc4da5a389b0c2295a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ParentPage: {fileID: 0}
-  m_SpritesData: []
-  m_PanelEventLogType: 0
-  m_HideMask: 0
-  m_CustomVisibleFlag: 1
-  m_SortingOrder: -1
-  RoleName: {fileID: 0}
-  RegionRoleName: {fileID: 0}
-  StartRegion: {fileID: 0}
-  RoleLevel: {fileID: 0}
-  ExperienceBar: {fileID: 0}
-  ExperienceValue: {fileID: 0}
-  RoleModel: {fileID: 0}
-  StoryBtn: {fileID: 0}
-  LeftRoleBtn: {fileID: 0}
-  RightRoleBtn: {fileID: 0}
-  EquipRegion: {fileID: 0}
-  SkillTitle: {fileID: 0}
-  SkillRegion: {fileID: 0}
-  UpgradeMaterials: {fileID: 0}
-  UpgradeMaterialsValue: {fileID: 0}
-  UpgradeMaterialsBtn: {fileID: 0}
-  RoleSelecScrollView: {fileID: 0}
-  RoleSelectRegion: {fileID: 0}
 --- !u!114 &7923441702396847494
 MonoBehaviour:
   m_ObjectHideFlags: 0

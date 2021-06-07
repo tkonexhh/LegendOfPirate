@@ -8,7 +8,7 @@ using System;
 
 namespace GameWish.Game
 {
-    public class WorldUI_WorkTalk : WorldUIBindTransform
+    public class CombatDamageText : WorldUIBindTransform
     {
         [SerializeField] private TextMeshProUGUI m_TxtTalk;
 
@@ -53,7 +53,7 @@ namespace GameWish.Game
 
         private float m_ExerciseTime = 0;
         private float m_Height = 0;
-        private float ticker = 0.0f;
+        private float m_Ticker = 0.0f;
 
         public Action OnOverEvent;
 
@@ -62,8 +62,8 @@ namespace GameWish.Game
         {
             if (m_IsExercise)
             {
-                ticker += Time.deltaTime;
-                m_DeletaT = ticker / m_ExerciseTime;  // 
+                m_Ticker += Time.deltaTime;
+                m_DeletaT = m_Ticker / m_ExerciseTime;  // 
                 m_DeletaT = Mathf.Clamp(m_DeletaT, 0.0f, 1.0f);
                 transform.localPosition = Bezier_2(m_StartPoint, m_MiddlePoint, m_EndPoint, m_DeletaT);
                 //Debug.LogError("m_DeletaT = " + m_DeletaT);
@@ -94,7 +94,7 @@ namespace GameWish.Game
         public void SetExerciseTime(float time,float height,float xDelta,Action action)
         {
             m_IsExercise = true;
-            ticker = 0;
+            m_Ticker = 0;
             OnOverEvent = action;
             m_ExerciseTime = time;
             m_Height = height;
