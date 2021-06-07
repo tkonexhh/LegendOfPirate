@@ -35,6 +35,8 @@ namespace GameWish.Game
 
         private ConsoleWindow m_ConsoleWindow = new ConsoleWindow();
 
+        private ProfilerInformationWindow m_ProfilerInformationWindow = new ProfilerInformationWindow();
+
         private RuntimeMemorySummaryWindow m_RuntimeMemorySummaryWindow = new RuntimeMemorySummaryWindow();
         private RuntimeMemoryInformationWindow<UnityEngine.Object> m_RuntimeMemoryAllInformationWindow = new RuntimeMemoryInformationWindow<UnityEngine.Object>();
         private RuntimeMemoryInformationWindow<Texture> m_RuntimeMemoryTextureInformationWindow = new RuntimeMemoryInformationWindow<Texture>();
@@ -52,6 +54,8 @@ namespace GameWish.Game
             m_DebuggerWindowRoot = new DebuggerWindowGroup();
 
             RegisterDebuggerWindow("Console", m_ConsoleWindow);
+
+            RegisterDebuggerWindow("Profiler/Summary", m_ProfilerInformationWindow);
 
             RegisterDebuggerWindow("Profiler/Memory/Summary", m_RuntimeMemorySummaryWindow);
             RegisterDebuggerWindow("Profiler/Memory/All", m_RuntimeMemoryAllInformationWindow);
