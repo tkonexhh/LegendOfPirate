@@ -1247,9 +1247,9 @@ GameObject:
   - component: {fileID: 8991146605966718163}
   - component: {fileID: 2351415811210372310}
   - component: {fileID: 1811038347917646419}
-  - component: {fileID: 1581349529106222008}
-  - component: {fileID: 6869872313725689312}
   - component: {fileID: 664415002354943211}
+  - component: {fileID: 1479400659498045403}
+  - component: {fileID: 8357741279063265320}
   m_Layer: 5
   m_Name: SkillUogradeBtn
   m_TagString: Untagged
@@ -1314,7 +1314,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1581349529106222008
+--- !u!114 &664415002354943211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1323,7 +1323,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 5639445258117303631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
+--- !u!114 &1479400659498045403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5639445258117303631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd606cb523643b34a88e7bc7437f7d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ClickDownScale: {x: 0.95, y: 0.95, z: 0.95}
+  m_NormalScale: {x: 1, y: 1, z: 1}
+--- !u!114 &8357741279063265320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5639445258117303631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eebb047a7cbfef4380c3f34763a5060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1357,38 +1387,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6869872313725689312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5639445258117303631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
---- !u!114 &664415002354943211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5639445258117303631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
+  m_IsSoundEnable: 1
+  m_ClickSound: 
+  m_UseDefaultSound: 1
 --- !u!1 &5670514365029787310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,7 +1681,6 @@ GameObject:
   - component: {fileID: 6286240760902303421}
   - component: {fileID: 7444070469043801630}
   - component: {fileID: 7444070469043801601}
-  - component: {fileID: -3312669525358910589}
   - component: {fileID: 7160054222889378433}
   m_Layer: 5
   m_Name: RoleSkillPanel
@@ -2055,42 +2055,6 @@ MonoBehaviour:
   loopAnimationsPresetCategoryName: Uncategorized
   loopAnimationsPresetName: DefaultPreset
   loadLoopAnimationsPresetAtRuntime: 0
---- !u!114 &-3312669525358910589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7444070469043801600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 776950f3b456ffc4da5a389b0c2295a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ParentPage: {fileID: 0}
-  m_SpritesData: []
-  m_PanelEventLogType: 0
-  m_HideMask: 0
-  m_CustomVisibleFlag: 1
-  m_SortingOrder: -1
-  RoleName: {fileID: 0}
-  RegionRoleName: {fileID: 0}
-  StartRegion: {fileID: 0}
-  RoleLevel: {fileID: 0}
-  ExperienceBar: {fileID: 0}
-  ExperienceValue: {fileID: 0}
-  RoleModel: {fileID: 0}
-  StoryBtn: {fileID: 0}
-  LeftRoleBtn: {fileID: 0}
-  RightRoleBtn: {fileID: 0}
-  EquipRegion: {fileID: 0}
-  SkillTitle: {fileID: 0}
-  SkillRegion: {fileID: 0}
-  UpgradeMaterials: {fileID: 0}
-  UpgradeMaterialsValue: {fileID: 0}
-  UpgradeMaterialsBtn: {fileID: 0}
-  RoleSelecScrollView: {fileID: 0}
-  RoleSelectRegion: {fileID: 0}
 --- !u!114 &7160054222889378433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2119,5 +2083,5 @@ MonoBehaviour:
   NextLevelExplain: {fileID: 735320697142012345}
   SkillUpgradeMaterialsIcon: {fileID: 4451739203496139070}
   SkillUpgradeMaterialsnumber: {fileID: 7388935203175641007}
-  SkillUogradeBtn: {fileID: 1581349529106222008}
+  SkillUogradeBtn: {fileID: 0}
   SkillUogradeText: {fileID: 3923301820371756803}

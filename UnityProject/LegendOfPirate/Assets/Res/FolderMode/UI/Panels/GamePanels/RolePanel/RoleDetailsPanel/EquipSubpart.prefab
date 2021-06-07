@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4144073701266268919}
   - component: {fileID: 2206879351208481194}
   - component: {fileID: 7091778845645540841}
-  - component: {fileID: 6133934584555251278}
+  - component: {fileID: 887051864098007100}
+  - component: {fileID: 1882034318560759735}
   m_Layer: 5
   m_Name: EquipSubpart
   m_TagString: Untagged
@@ -76,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6133934584555251278
+--- !u!114 &887051864098007100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1149789834528534043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 2eebb047a7cbfef4380c3f34763a5060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -119,6 +120,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  m_IsSoundEnable: 1
+  m_ClickSound: 
+  m_UseDefaultSound: 1
+--- !u!114 &1882034318560759735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149789834528534043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd606cb523643b34a88e7bc7437f7d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ClickDownScale: {x: 0.95, y: 0.95, z: 0.95}
+  m_NormalScale: {x: 1, y: 1, z: 1}
 --- !u!1 &5318045533994420393
 GameObject:
   m_ObjectHideFlags: 0
