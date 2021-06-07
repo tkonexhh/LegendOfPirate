@@ -33,13 +33,38 @@ namespace GameWish.Game
 
         private readonly DebuggerWindowGroup m_DebuggerWindowRoot;
 
+        private ConsoleWindow m_ConsoleWindow = new ConsoleWindow();
+
         private RuntimeMemorySummaryWindow m_RuntimeMemorySummaryWindow = new RuntimeMemorySummaryWindow();
+        private RuntimeMemoryInformationWindow<UnityEngine.Object> m_RuntimeMemoryAllInformationWindow = new RuntimeMemoryInformationWindow<UnityEngine.Object>();
+        private RuntimeMemoryInformationWindow<Texture> m_RuntimeMemoryTextureInformationWindow = new RuntimeMemoryInformationWindow<Texture>();
+        private RuntimeMemoryInformationWindow<Mesh> m_RuntimeMemoryMeshInformationWindow = new RuntimeMemoryInformationWindow<Mesh>();
+        private RuntimeMemoryInformationWindow<Material> m_RuntimeMemoryMaterialInformationWindow = new RuntimeMemoryInformationWindow<Material>();
+        private RuntimeMemoryInformationWindow<Shader> m_RuntimeMemoryShaderInformationWindow = new RuntimeMemoryInformationWindow<Shader>();
+        private RuntimeMemoryInformationWindow<AnimationClip> m_RuntimeMemoryAnimationClipInformationWindow = new RuntimeMemoryInformationWindow<AnimationClip>();
+        private RuntimeMemoryInformationWindow<AudioClip> m_RuntimeMemoryAudioClipInformationWindow = new RuntimeMemoryInformationWindow<AudioClip>();
+        private RuntimeMemoryInformationWindow<Font> m_RuntimeMemoryFontInformationWindow = new RuntimeMemoryInformationWindow<Font>();
+        private RuntimeMemoryInformationWindow<TextAsset> m_RuntimeMemoryTextAssetInformationWindow = new RuntimeMemoryInformationWindow<TextAsset>();
+        private RuntimeMemoryInformationWindow<ScriptableObject> m_RuntimeMemoryScriptableObjectInformationWindow = new RuntimeMemoryInformationWindow<ScriptableObject>();
 
         public DebuggerMgr()
         {
             m_DebuggerWindowRoot = new DebuggerWindowGroup();
 
+            RegisterDebuggerWindow("Console", m_ConsoleWindow);
+
             RegisterDebuggerWindow("Profiler/Memory/Summary", m_RuntimeMemorySummaryWindow);
+            RegisterDebuggerWindow("Profiler/Memory/All", m_RuntimeMemoryAllInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/Texture", m_RuntimeMemoryTextureInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/Mesh", m_RuntimeMemoryMeshInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/Material", m_RuntimeMemoryMaterialInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/Shader", m_RuntimeMemoryShaderInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/AnimationClip", m_RuntimeMemoryAnimationClipInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/AudioClip", m_RuntimeMemoryAudioClipInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/Font", m_RuntimeMemoryFontInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/TextAsset", m_RuntimeMemoryTextAssetInformationWindow);
+            RegisterDebuggerWindow("Profiler/Memory/ScriptableObject", m_RuntimeMemoryScriptableObjectInformationWindow);
+
         }
 
         #region IMgr
@@ -167,23 +192,23 @@ namespace GameWish.Game
             GUI.DragWindow(m_DragRect);
             GUILayout.Space(5);
             Color32 color = Color.white;
-            //m_ConsoleWindow.RefreshCount();
-            //if (m_ConsoleWindow.FatalCount > 0)
-            //{
-            //    color = m_ConsoleWindow.GetLogStringColor(LogType.Exception);
-            //}
-            //else if (m_ConsoleWindow.ErrorCount > 0)
-            //{
-            //    color = m_ConsoleWindow.GetLogStringColor(LogType.Error);
-            //}
-            //else if (m_ConsoleWindow.WarningCount > 0)
-            //{
-            //    color = m_ConsoleWindow.GetLogStringColor(LogType.Warning);
-            //}
-            //else
-            //{
-            //    color = m_ConsoleWindow.GetLogStringColor(LogType.Log);
-            //}
+            m_ConsoleWindow.RefreshCount();
+            if (m_ConsoleWindow.FatalCount > 0)
+            {
+                color = m_ConsoleWindow.GetLogStringColor(LogType.Exception);
+            }
+            else if (m_ConsoleWindow.ErrorCount > 0)
+            {
+                color = m_ConsoleWindow.GetLogStringColor(LogType.Error);
+            }
+            else if (m_ConsoleWindow.WarningCount > 0)
+            {
+                color = m_ConsoleWindow.GetLogStringColor(LogType.Warning);
+            }
+            else
+            {
+                color = m_ConsoleWindow.GetLogStringColor(LogType.Log);
+            }
 
             string title = Utility.Text.Format("<color=#{0}{1}{2}{3}><b>FPS: {4}</b></color>", color.r.ToString("x2"), color.g.ToString("x2"), color.b.ToString("x2"), color.a.ToString("x2"), 1/*m_FpsCounter.CurrentFps.ToString("F2")*/);
             if (GUILayout.Button(title, GUILayout.Width(100f), GUILayout.Height(40f)))
