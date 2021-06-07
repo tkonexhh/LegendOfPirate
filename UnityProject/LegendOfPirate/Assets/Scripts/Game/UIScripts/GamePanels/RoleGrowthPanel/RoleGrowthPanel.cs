@@ -18,11 +18,27 @@ namespace GameWish.Game
 			base.OnPanelOpen(args);
 			
 			AllocatePanelData();
-			
+
+			InitializePassValue(args);
+
+			GetInformationForNeed();
+
 			BindModelToUI();
 			BindUIToModel();
 		}
-		
+
+		private void InitializePassValue(object[] args)
+		{
+			m_PanelData.roleID = (int)args[0];
+		}
+
+		private void GetInformationForNeed()
+		{
+			m_PanelData.roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
+			m_PanelData.roleModel = m_PanelData.roleGroupModel.GetRoleModel(m_PanelData.roleID);
+		}
+
+
 		protected override void OnPanelHideComplete()
 		{
 			base.OnPanelHideComplete();
