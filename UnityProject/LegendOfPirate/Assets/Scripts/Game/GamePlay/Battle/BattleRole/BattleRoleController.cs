@@ -12,7 +12,7 @@ namespace GameWish.Game
         public GameObject gameObject { get; private set; }
         public Transform transform { get; private set; }
         public BattleRoleData Data { get; private set; }
-        public BattleRoleRenderer renderer { get; private set; }
+        public BattleRoleRenderer Renderer { get; private set; }
         public BattleRoleAI AI { get; private set; }
         public BattleRoleBuff Buff { get; private set; }
         public BattleRoleSkill Skill { get; private set; }
@@ -34,11 +34,7 @@ namespace GameWish.Game
             transform = gameObject.transform;
             transform.SetParent(BattleMgr.S.transform);
 
-            renderer = ObjectPool<BattleRoleRenderer>.S.Allocate();
-            renderer.OnInit();
-            renderer.transform = transform;
-
-
+            Renderer = AddBattleRoleComponent(new BattleRoleRenderer(this)) as BattleRoleRenderer;
             Data = AddBattleRoleComponent(new BattleRoleData(this)) as BattleRoleData;
             AI = AddBattleRoleComponent(new BattleRoleAI(this)) as BattleRoleAI;
             Buff = AddBattleRoleComponent(new BattleRoleBuff(this)) as BattleRoleBuff;
@@ -54,7 +50,6 @@ namespace GameWish.Game
 
         public override void OnUpdate()
         {
-            renderer.OnUpdate();
             for (int i = 0; i < m_Components.Count; i++)
             {
                 m_Components[i].OnUpdate();
@@ -63,15 +58,14 @@ namespace GameWish.Game
 
         public override void OnDestroyed()
         {
-            ObjectPool<BattleRoleRenderer>.S.Recycle(renderer);
             GameObjectPoolMgr.S.Recycle(gameObject);
 
-            renderer = null;
             for (int i = m_Components.Count - 1; i >= 0; i--)
             {
-                m_Components[i].OnDestroy();
+                var c = m_Components[i];
+                c.OnDestroy();
+                c = null;
                 m_Components.RemoveAt(i);
-                m_Components[i] = null;
             }
 
         }

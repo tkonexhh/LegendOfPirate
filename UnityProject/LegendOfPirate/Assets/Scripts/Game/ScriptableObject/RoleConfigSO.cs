@@ -27,10 +27,8 @@ namespace GameWish.Game
         public List<SkillConfigSO> childSkills;
 
 
-        [Header("GPUInstance")]
-        public Mesh mesh;
-        public Material material;
-        public TextAsset animInfoText;
+        [Header("预制体")]
+        public GameObject prefab;
     }
 
 

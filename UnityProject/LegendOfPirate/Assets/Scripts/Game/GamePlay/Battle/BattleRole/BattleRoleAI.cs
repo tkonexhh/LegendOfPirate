@@ -22,7 +22,7 @@ namespace GameWish.Game
         public BattleRoleAI(BattleRoleController controller) : base(controller)
         {
 
-            this.controller.renderer.PlayAnim("Idle", true);
+            this.controller.Renderer.PlayAnim(BattleDefine.ROLEANIM_IDLE);
 
             FSM = new FSMStateMachine<BattleRoleAI>(this);
             FSM.stateFactory = new FSMStateFactory<BattleRoleAI>(false);

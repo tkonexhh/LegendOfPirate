@@ -31,6 +31,9 @@ namespace GameWish.Game
             buffedData.MaxHp = 100;
             buffedData.Hp = 90;
             buffedData.BasicMoveSpeed = 4.0f;
+
+            controller.MonoReference.AstarAI.maxSpeed = buffedData.MoveSpeed;
+            controller.MonoReference.AstarAI.endReachedDistance = buffedData.AttackRange;
         }
 
 

@@ -7,7 +7,13 @@ namespace GameWish.Game
 {
     public class BattleDefine
     {
-
+        public const string ROLEANIM_RUN = "run";
+        public const string ROLEANIM_IDLE = "idle";
+        public const string ROLEANIM_DEATH = "death";
+        public const string ROLEANIM_ATTACK01 = "attack01";
+        public const string ROLEANIM_SKILL01 = "skill001";
+        public const string ROLEANIM_SKILL02 = "skill002";
+        public const string ROLEANIM_VICTORY = "victory";
     }
 
     /// <summary>

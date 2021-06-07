@@ -11,7 +11,7 @@ namespace GameWish.Game
         {
             base.Enter(ai);
             Debug.LogError("Death");
-            ai.controller.renderer.PlayAnim("Death");
+            ai.controller.Renderer.PlayAnim(BattleDefine.ROLEANIM_DEATH);
             BattleMgr.S.BattleRendererComponent.RemoveController(ai.controller);
             ai.controller.MonoReference.AstarAI.canMove = false;
         }

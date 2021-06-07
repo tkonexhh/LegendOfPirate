@@ -27,7 +27,7 @@ namespace GFrame.Editor
             CreateUI(Text);
         }
 
-        [MenuItem("GameObject/UI/Text Mesh Pro")]
+        [MenuItem("GameObject/UI/Text - TextMeshPro")]
         static void CreatTextMeshPro()
         {
             CreateUI(TextMeshProUGUI);

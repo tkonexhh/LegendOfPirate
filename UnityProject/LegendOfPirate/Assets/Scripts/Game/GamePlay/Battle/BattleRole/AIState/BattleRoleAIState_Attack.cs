@@ -12,7 +12,7 @@ namespace GameWish.Game
         {
             base.Enter(ai);
             m_AttackTimer = 0;
-            ai.controller.renderer.CrossFadeAnim("Idle", 0.1f, true);
+            ai.controller.Renderer.CrossFadeAnim(BattleDefine.ROLEANIM_IDLE, 0.1f);
         }
 
         public override void Execute(BattleRoleAI ai, float dt)
@@ -33,7 +33,7 @@ namespace GameWish.Game
             }
 
             //检测Target是否太远
-            if (Vector3.Distance(ai.controller.transform.position, ai.Target.transform.position) > 5.0f)
+            if (Vector3.Distance(ai.controller.transform.position, ai.Target.transform.position) > ai.controller.Data.buffedData.AttackRange + 0.05f)
             {
                 ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.MoveToTarget);
             }
@@ -47,7 +47,7 @@ namespace GameWish.Game
 
         private void PlayAttackAnim()
         {
-            m_AI.controller.renderer.CrossFadeAnim("Attack02", 0.1f, false);
+            m_AI.controller.Renderer.CrossFadeAnim(BattleDefine.ROLEANIM_ATTACK01, 0.1f);
             //TODO 需要改成动画事件
             m_AI.controller.Data.Attacker.Attack(m_AI.controller);
         }

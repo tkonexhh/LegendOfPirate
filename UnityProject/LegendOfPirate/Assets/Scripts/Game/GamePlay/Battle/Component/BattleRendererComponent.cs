@@ -7,7 +7,6 @@ namespace GameWish.Game
 {
     public class BattleRendererComponent : AbstractBattleComponent
     {
-        //private BattleRoleControllerFactory m_RoleFactory;
         private List<BattleRoleController> m_OurRoleControllerLst;
         private List<BattleRoleController> m_EnemyRoleControllerLst;
 
@@ -18,7 +17,6 @@ namespace GameWish.Game
         #region Override
         public override void Init()
         {
-            //m_RoleFactory = new BattleRoleControllerFactory();
             m_OurRoleControllerLst = new List<BattleRoleController>();
             m_EnemyRoleControllerLst = new List<BattleRoleController>();
         }
@@ -117,7 +115,7 @@ namespace GameWish.Game
                 role.SetCamp(BattleCamp.Our);
                 int x = i % width;
                 int y = i / width;
-                role.transform.position = startPos + new Vector3(10.5f * x, 0, 1.5f * y);
+                role.transform.localPosition = startPos + new Vector3(10.5f * x, 0, 1.5f * y);
                 role.transform.rotation = Quaternion.Euler(0, 180, 0);
                 m_OurRoleControllerLst.Add(role);
             }
@@ -134,7 +132,7 @@ namespace GameWish.Game
                 role.SetCamp(BattleCamp.Enemy);
                 int x = i % width;
                 int y = i / width;
-                role.transform.position = startPos + new Vector3(10.5f * x, 0, 1.5f * y);
+                role.transform.localPosition = startPos + new Vector3(10.5f * x, 0, 1.5f * y);
                 m_EnemyRoleControllerLst.Add(role);
             }
         }
