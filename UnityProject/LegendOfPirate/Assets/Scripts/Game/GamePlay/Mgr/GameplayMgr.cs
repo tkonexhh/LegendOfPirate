@@ -44,6 +44,8 @@ namespace GameWish.Game
 
             MusicMgr.S.PlayBgMusic();
 
+            DebuggerMgr.S.OnInit();
+
             GameLogicMgr.S.OnInit();
 
             m_IsGameStart = true;
@@ -82,6 +84,11 @@ namespace GameWish.Game
                 return;
 
             GameLogicMgr.S.OnUpdate();
+        }
+
+        private void OnGUI()
+        {
+            DebuggerMgr.S.OnGUI();
         }
 
         private void OnDestroy()
