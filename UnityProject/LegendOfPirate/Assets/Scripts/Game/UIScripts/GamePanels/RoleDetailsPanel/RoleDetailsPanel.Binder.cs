@@ -8,16 +8,18 @@ namespace GameWish.Game
 {
 	public class RoleDetailsPanelData : UIPanelData
 	{
-		public RoleModel roleModel { get; private set; }
+		public RoleGroupModel roleGroupModel { get; private set; }
 		public RoleDetailsPanelData()
 		{
-			roleModel = ModelMgr.S.GetModel<RoleModel>();
+			roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
 		}
 	}
 	
 	public partial class RoleDetailsPanel
 	{
 		private RoleDetailsPanelData m_PanelData = null;
+		private int m_RoleId;
+		private RoleModel m_RoleModel;
 		
 		private void AllocatePanelData()
 		{
@@ -31,13 +33,49 @@ namespace GameWish.Game
 		
 		private void BindModelToUI()
 		{
-			//m_PanelData.roleModel.curExp.SubscribeToText(ExperienceBar);
+			m_RoleModel.level.SubscribeToTextMeshPro(RoleLevel);
+			
 		}
 		
 		private void BindUIToModel()
 		{
 
 		}
-		
-	}
+
+		private void InitSelfPanelData(params object[] args)
+        {
+            if (args !=null && args.Length > 0)
+            {
+                if (args.Length>=1)
+                {
+					m_RoleId = (int)args[0];
+                }
+            }
+			m_RoleModel = m_PanelData.roleGroupModel.GetRoleModel(m_RoleId);
+			RoleName.text = m_RoleModel.name;
+			//RegionRoleName.text
+			RoleLevel.text = string.Format("LV.{0}", m_RoleModel.level);
+
+        }
+
+
+        private void RegisterEvents()
+        {
+
+        }
+
+        private void UnregisterEvents()
+        {
+
+        }
+
+		private void OnClickAddListener()
+        {
+			StoryBtn.onClick.AddListener(() => { });
+			LeftRoleBtn.OnClickAsObservable().Subscribe();
+			RightRoleBtn.OnClickAsObservable().Subscribe();
+
+		}
+
+    }
 }

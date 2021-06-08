@@ -17,11 +17,14 @@ namespace GameWish.Game
 		protected override void OnPanelOpen(params object[] args)
 		{
 			base.OnPanelOpen(args);
+
+			InitSelfPanelData(args);
 			
 			AllocatePanelData();
 			
 			BindModelToUI();
 			BindUIToModel();
+			RegisterEvents();
 		}
 		
 		protected override void OnPanelHideComplete()
@@ -36,6 +39,7 @@ namespace GameWish.Game
 			base.OnClose();
 			
 			ReleasePanelData();
+			UnregisterEvents();
 		}
 		
 	}
