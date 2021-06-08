@@ -14,14 +14,10 @@ namespace GameWish.Game
 
         #region IDataClass
 
-        public void SetDefaultValue()
-        {
-            SetDataDirty();
-        }
-
         public override void InitWithEmptyData()
         {
-
+            //TODO: for test
+            shipUnitDataList.Add(new ShipUnitData(ShipUnitType.Kitchen));
         }
 
         public override void OnDataLoadFinish()

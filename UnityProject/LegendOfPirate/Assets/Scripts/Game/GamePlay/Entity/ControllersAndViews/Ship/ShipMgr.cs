@@ -9,11 +9,14 @@ namespace GameWish.Game
     {
         private Dictionary<ShipUnitType, IShipUnit> m_ShipUnitDic = null;
 
+        private ResLoader m_ShipResLoader = null;
+
         #region IMgr
 
         public void OnInit()
         {
             m_ShipUnitDic = new Dictionary<ShipUnitType, IShipUnit>();
+            m_ShipResLoader = ResLoader.Allocate("ShipResLoader");
 
             SpawnSea();
             SpawnShip();
@@ -26,6 +29,10 @@ namespace GameWish.Game
         public void OnDestroyed()
         {
             m_ShipUnitDic = null;
+
+            m_ShipResLoader.ReleaseAllRes();
+            m_ShipResLoader.Recycle2Cache();
+            m_ShipResLoader = null;
         }
 
         #endregion
@@ -71,10 +78,17 @@ namespace GameWish.Game
             {
                 ShipUnitType shipUnitType = shipModel.shipUnitModelList[i].unitType;
                 ShipUnitConfig unitConfig = ShipConfig.S.GetUnitConfig(shipUnitType);
-
+                SpawnShipUnit(ship.transform, unitConfig);
             }
         }
 
+        private void SpawnShipUnit(Transform ship, ShipUnitConfig config)
+        {
+            GameObject prefab = m_ShipResLoader.LoadSync(config.prefabName) as GameObject;
+            GameObject obj = GameObject.Instantiate(prefab);
+            obj.transform.SetParent(ship);
+            obj.transform.SetLocalPos(config.pos);
+        }
         #endregion
 
     }

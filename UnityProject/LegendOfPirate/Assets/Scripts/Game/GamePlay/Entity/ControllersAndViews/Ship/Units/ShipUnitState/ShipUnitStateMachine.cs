@@ -11,8 +11,10 @@ namespace GameWish.Game
         {
             stateFactory = new FSMStateFactory<ShipUnit>(false);
 
-            //stateFactory.RegisterState(BattleStateEnum.Fighting, new BattleState_Fighting());
-            //stateFactory.RegisterState(BattleStateEnum.End, new BattleState_End());
+            stateFactory.RegisterState(ShipUnitStateId.Locked, new ShipUnitStateLocked(ShipUnitStateId.Locked));
+            stateFactory.RegisterState(ShipUnitStateId.ReadyToBuild, new ShipUnitStateReadyToBuild(ShipUnitStateId.ReadyToBuild));
+            stateFactory.RegisterState(ShipUnitStateId.Building, new ShipUnitStateBuilding(ShipUnitStateId.Building));
+            stateFactory.RegisterState(ShipUnitStateId.Idle, new ShipUnitStateIdle(ShipUnitStateId.Idle));
         }
     }
 
