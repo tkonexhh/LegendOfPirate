@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using GFrame.Editor;
 
 namespace Qarth.Extension
 {
@@ -69,6 +70,7 @@ namespace Qarth.Extension
             //ugui expand
             if (GetComponent<SoundButton>()) return "SoundButton";
             if (GetComponent<PopButton>()) return "PopButton";
+            if (GetComponent<GButton>()) return "GFrame.Editor.GButton";
 
             // ugui bind
             if (GetComponent<Dropdown>()) return "UnityEngine.UI.Dropdown";
