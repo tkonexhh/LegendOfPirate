@@ -39,6 +39,12 @@ namespace GFrame.Editor
             CreateUI(Button);
         }
 
+        [MenuItem("GameObject/UI/Button - TextMeshPro")]
+        static void CreatButtonTMP()
+        {
+            CreateUI(ButtonTMP);
+        }
+
         private static void CreateUI(System.Func<GameObject> callback)
         {
             var canvasObj = SecurityCheck();
@@ -115,7 +121,25 @@ namespace GFrame.Editor
             return CreateGO<GButton>("Btn_", callback);
         }
 
+        private static GameObject ButtonTMP()
+        {
+            System.Action<GameObject> callback = (go) =>
+            {
+                var image = go.AddComponent<GImage>();
+                var button = go.GetComponent<GButton>();
+                button.targetGraphic = image;
 
+                GameObject textGo = TextMeshProUGUI();
+                textGo.transform.SetParent(go.transform);
+                textGo.transform.localScale = Vector3.one;
+                Text text = textGo.GetComponent<Text>();
+                HandleText(text);
+                RectTransform rectText = text.GetComponent<RectTransform>();
+                rectText.SetAnchor(AnchorPresets.StretchAll, 0, 0);
+                rectText.SetSize(button.GetComponent<RectTransform>().sizeDelta);
+            };
+            return CreateGO<GButton>("Btn_", callback);
+        }
 
         #endregion
 
