@@ -32,5 +32,8 @@ namespace GameWish.Game
 
         FloatMeshMessagePanel,
 
+        #region 训练室
+        TrainingRoomPanel,
+        #endregion
     }
 }
