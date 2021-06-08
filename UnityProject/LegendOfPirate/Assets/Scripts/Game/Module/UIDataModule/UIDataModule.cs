@@ -76,8 +76,24 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.TestPanel, null, "GamePanels/TestPanel/TestPanel");
 
             UIDataTable.AddPanelData(UIID.FloatMeshMessagePanel, null, "Common/FloatMeshMessagePanel");
-
+            //Warship Management System
+            #region 训练室
             UIDataTable.AddPanelData(UIID.TrainingRoomPanel, null, "GamePanels/WarshipManagement/TrainingRoomPanel/TrainingRoomPanel");
+            #endregion
+            #region 图书室
+            UIDataTable.AddPanelData(UIID.LibraryRoomPanel, null, "GamePanels/WarshipManagement/LibraryRoomPanel/LibraryRoomPanel");
+            #endregion
+            #region 战船系统
+            UIDataTable.AddPanelData(UIID.WarshipUpgradePanel, null, "GamePanels/WarshipManagement/WarshipUpgradePanel/WarshipUpgradePanel");
+            #endregion
+
+
+            //Island Management System
+            #region 随机防御
+            UIDataTable.AddPanelData(UIID.RandomDefensePanel, null, "GamePanels/LandManagement/RandomDefensePanel/RandomDefensePanel");
+            UIDataTable.AddPanelData(UIID.RandomDefenseChooseRolePanel, null, "GamePanels/LandManagement/RandomDefenseChooseRolePanel/RandomDefenseChooseRolePanel");
+            #endregion
+
 
         }
     }
