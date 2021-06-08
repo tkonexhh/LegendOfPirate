@@ -18,6 +18,7 @@ namespace Qarth.Extension
                 .Using("UnityEngine.UI")
                 .Using("Qarth.Extension")
                 .Using("Qarth")
+                .Using("GFrame.Editor")
                 .EmptyLine()
                 .Namespace(scriptNamespace.IsTrimNullOrEmpty()
                     ? UIKitSettingData.Namespace

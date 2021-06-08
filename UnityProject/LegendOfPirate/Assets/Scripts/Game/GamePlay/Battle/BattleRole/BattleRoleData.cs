@@ -16,9 +16,9 @@ namespace GameWish.Game
 
         public BattleRoleData(BattleRoleController controller) : base(controller)
         {
-            // Sensor = BattleSensorFactory.CreateBattleSensor(PickTargetType.Enemy, SensorTypeEnum.Nearest);
-            // Attacker = new BattleAttacker_Lock();
-            // DamageRange = new DamageRange_Target(controller);
+            Sensor = BattleSensorFactory.CreateBattleSensor(PickTargetType.Enemy, SensorTypeEnum.Nearest);
+            Attacker = new BattleAttacker_Lock();
+            DamageRange = new DamageRange_Target(controller);
 
         }
 

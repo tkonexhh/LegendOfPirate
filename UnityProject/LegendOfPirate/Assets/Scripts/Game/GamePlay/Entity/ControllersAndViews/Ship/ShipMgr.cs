@@ -78,7 +78,8 @@ namespace GameWish.Game
             {
                 ShipUnitType shipUnitType = shipModel.shipUnitModelList[i].unitType;
                 ShipUnitConfig unitConfig = ShipConfig.S.GetUnitConfig(shipUnitType);
-                SpawnShipUnit(ship.transform, unitConfig);
+                if (unitConfig != null)
+                    SpawnShipUnit(ship.transform, unitConfig);
             }
         }
 
