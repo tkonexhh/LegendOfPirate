@@ -92,13 +92,13 @@ namespace GameWish.Game
         {
             for (int i = m_OurRoleControllerLst.Count - 1; i >= 0; i--)
             {
-                ObjectPool<BattleRoleController>.S.Recycle(m_OurRoleControllerLst[i]);
+                m_OurRoleControllerLst[i].Recycle2Cache();
                 m_OurRoleControllerLst.RemoveAt(i);
             }
 
             for (int i = m_EnemyRoleControllerLst.Count - 1; i >= 0; i--)
             {
-                ObjectPool<BattleRoleController>.S.Recycle(m_EnemyRoleControllerLst[i]);
+                m_EnemyRoleControllerLst[i].Recycle2Cache();
                 m_EnemyRoleControllerLst.RemoveAt(i);
             }
         }
@@ -108,13 +108,13 @@ namespace GameWish.Game
         {
             Vector3 startPos = new Vector3(-70, 0, 40);
             int width = 80;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 20; i++)
             {
                 BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
                 role.SetCamp(BattleCamp.Our);
                 int x = i % width;
                 int y = i / width;
-                role.transform.localPosition = startPos + new Vector3(8.5f * x, 0, 1.5f * y);
+                role.transform.localPosition = startPos + new Vector3(4.5f * x, 0, 1.5f * y);
                 role.transform.localRotation = Quaternion.Euler(0, 180, 0);
                 m_OurRoleControllerLst.Add(role);
             }
@@ -130,7 +130,7 @@ namespace GameWish.Game
                 role.SetCamp(BattleCamp.Enemy);
                 int x = i % width;
                 int y = i / width;
-                role.transform.localPosition = startPos + new Vector3(8.5f * x, 0, 1.5f * y);
+                role.transform.localPosition = startPos + new Vector3(4.5f * x, 0, 1.5f * y);
                 role.transform.localRotation = Quaternion.identity;
                 m_EnemyRoleControllerLst.Add(role);
             }

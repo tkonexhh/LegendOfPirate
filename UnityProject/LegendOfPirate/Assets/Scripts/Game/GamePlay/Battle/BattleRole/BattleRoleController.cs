@@ -61,21 +61,20 @@ namespace GameWish.Game
 
         public override void OnDestroyed()
         {
-            GameObjectPoolMgr.S.Recycle(gameObject);
-
             for (int i = m_Components.Count - 1; i >= 0; i--)
             {
                 var c = m_Components[i];
                 c.OnDestroy();
-                c = null;
                 m_Components.RemoveAt(i);
+                c = null;
             }
-
+            GameObjectPoolMgr.S.Recycle(gameObject);
         }
 
         public override void Recycle2Cache()
         {
             base.Recycle2Cache();
+            OnDestroyed();
         }
         #endregion
 

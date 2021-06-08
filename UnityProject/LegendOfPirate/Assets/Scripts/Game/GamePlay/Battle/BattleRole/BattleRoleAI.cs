@@ -34,6 +34,7 @@ namespace GameWish.Game
 
         public override void OnBattleStart()
         {
+            controller.MonoReference.Collider.enabled = true;
             FSM.SetCurrentStateByID(BattleRoleAIStateEnum.PickTarget);
             FSM.SetGlobalStateByID(BattleRoleAIStateEnum.Global);
         }

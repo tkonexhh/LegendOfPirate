@@ -14,23 +14,20 @@ namespace GameWish.Game
         public RoleConfigSO DemoRoleSO;
         public SkillConfigSO DemoSkillSO;
 
-        private ResLoader m_Loader;
         private List<IBattleComponent> m_BattleComponentList;
         public bool Started { get; private set; }
 
 
-        public ResLoader loader => m_Loader;
         public BattleRendererComponent BattleRendererComponent { get; private set; }
 
 
 
         public override void OnSingletonInit()
         {
-            m_Loader = ResLoader.Allocate("BattleMgr");
 
             m_BattleComponentList = new List<IBattleComponent>();
             BattleRendererComponent = AddComponent(new BattleRendererComponent()) as BattleRendererComponent;
-
+            AddComponent(new BattlePoolComponent());
         }
 
         private IBattleComponent AddComponent(IBattleComponent component)
