@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -14,6 +14,10 @@ namespace GameWish.Game
             ai.controller.Renderer.PlayAnim(BattleDefine.ROLEANIM_DEATH);
             BattleMgr.S.BattleRendererComponent.RemoveController(ai.controller);
             ai.controller.MonoReference.AstarAI.canMove = false;
+            ai.controller.MonoReference.Collider.enabled = false;
+            //TODO 改为动画时间
+            Timer.S.Post2Really(i => { ai.controller.Recycle2Cache(); }, 3);
+
         }
 
 
