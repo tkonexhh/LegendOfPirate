@@ -26,7 +26,7 @@ namespace GameWish.Game
 		{
 			ObjectPool<RoleSkillPanelData>.S.Recycle(m_PanelData);
 		}
-		
+
 		private void BindModelToUI()
 		{
 		}

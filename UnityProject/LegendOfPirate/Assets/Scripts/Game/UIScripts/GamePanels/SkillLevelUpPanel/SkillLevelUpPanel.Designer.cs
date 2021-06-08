@@ -14,7 +14,9 @@ namespace GameWish.Game
 		[SerializeField]
 		public UnityEngine.UI.Button CloseBtn;
 		[SerializeField]
-		public TMPro.TextMeshProUGUI SkillMsg;
+		public TMPro.TextMeshProUGUI SkillLevel;
+		[SerializeField]
+		public TMPro.TextMeshProUGUI SkillName;
 		[SerializeField]
 		public UnityEngine.UI.Image SkillIcon;
 		[SerializeField]
