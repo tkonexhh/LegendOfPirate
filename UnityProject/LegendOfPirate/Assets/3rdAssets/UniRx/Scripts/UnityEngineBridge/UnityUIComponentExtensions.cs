@@ -24,9 +24,9 @@ namespace UniRx
             return source.SubscribeWithState2(text, selector, (x, t, s) => t.text = s(x));
         }
 
-        public static IDisposable SubscribeToTextMeshPro<T>(this IObservable<T> source, TMPro.TextMeshProUGUI text)
+        public static IDisposable SubscribeToTextMeshPro<T>(this IObservable<T> source, TMPro.TextMeshProUGUI text,string format = "{0}")
         {
-            return source.SubscribeWithState(text, (x, t) => t.text = x.ToString());
+            return source.SubscribeWithState(text, (x, t) => t.text = string.Format(format, x));
         }
 
         public static IDisposable SubscribeToInteractable(this IObservable<bool> source, Selectable selectable)
