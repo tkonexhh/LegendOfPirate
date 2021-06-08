@@ -14,7 +14,7 @@ namespace GameWish.Game
             if (ai.Target == null)
             {
                 // Debug.LogError("Pick Target is Null");
-                ai.controller.renderer.PlayAnim("Idle", true);
+                ai.controller.Renderer.PlayAnim(BattleDefine.ROLEANIM_IDLE);
                 return;
             }
             ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.MoveToTarget);

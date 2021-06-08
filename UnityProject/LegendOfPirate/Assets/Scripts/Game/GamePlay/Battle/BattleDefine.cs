@@ -7,7 +7,13 @@ namespace GameWish.Game
 {
     public class BattleDefine
     {
-
+        public const string ROLEANIM_RUN = "run";
+        public const string ROLEANIM_IDLE = "idle";
+        public const string ROLEANIM_DEATH = "death";
+        public const string ROLEANIM_ATTACK01 = "attack01";
+        public const string ROLEANIM_SKILL01 = "skill001";
+        public const string ROLEANIM_SKILL02 = "skill002";
+        public const string ROLEANIM_VICTORY = "victory";
     }
 
     /// <summary>
@@ -44,26 +50,16 @@ namespace GameWish.Game
     }
 
     /// <summary>
-    /// 人物类型
-    /// </summary>
-    public enum RoleTypeEnum
-    {
-        Warrior,
-        Wizard,
-        Assassin,
-    }
-
-    /// <summary>
     /// 索敌类型
     /// </summary>
     [LabelText("索敌类型")]
     public enum SensorTypeEnum
     {
-        [LabelText("血量最低(完成)")] HPLow,
-        [LabelText("血量最高(完成)")] HPHigh,
+        [LabelText("最近")] Nearest,
+        [LabelText("最远")] Farest,
+        [LabelText("血量最低")] HPLow,
+        [LabelText("血量最高")] HPHigh,
         [LabelText("血量百分比最低")] HPRateLow,
         [LabelText("血量百分比最高")] HPRateHigh,
-        [LabelText("最近(完成)")] Nearest,
-        [LabelText("最远")] Farest,
     }
 }

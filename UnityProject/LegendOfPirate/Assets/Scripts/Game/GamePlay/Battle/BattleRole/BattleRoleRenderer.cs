@@ -5,74 +5,35 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public class BattleRoleRenderer : Controller
+    public class BattleRoleRenderer : BattleRoleComponent
     {
-        public Transform transform { get; set; }
-        protected AnimedRenderCell m_RenderInfo;
-        string soName = "Enemy1ConfigSO";
+        private BattleRoleAnimation animator;
 
+        public GameObject prefab;
+        public BattleRoleRenderer(BattleRoleController controller) : base(controller) { }
 
-
-        #region IElement
         public override void OnInit()
         {
-            m_RenderInfo = new AnimedRenderCell();
-            m_RenderInfo.animLerp = 0;
-            m_RenderInfo.Pause();
-
-
-            if (GPUInstanceMgr.S.HasRenderGroup(soName))
-            {
-                GPUInstanceMgr.S.GetRenderGroup(soName).AddRenderCell(m_RenderInfo);
-            }
-            else
-            {
-                var config = BattleMgr.S.loader.LoadSync(soName) as RoleConfigSO;
-                AnimDataInfo animDataInfo = JsonUtility.FromJson<AnimDataInfo>(config.animInfoText.text);
-                RenderGroup group = new AnimedRenderGroup(soName, config.mesh, config.material, animDataInfo);
-                GPUInstanceMgr.S.AddRenderGroup(group).AddRenderCell(m_RenderInfo);
-            }
-
-
+            var gameObject = GameObject.Instantiate(prefab);
+            gameObject.transform.SetParent(controller.transform);
+            gameObject.transform.localPosition = Vector3.zero;
+            gameObject.transform.localRotation = Quaternion.identity;
+            animator = gameObject.GetComponent<BattleRoleAnimation>();
+            PlayAnim(BattleDefine.ROLEANIM_IDLE);
         }
 
-        public override void OnUpdate()
+        public override void OnDestroy()
         {
-            if (transform == null)
-                return;
-            m_RenderInfo.rotation = transform.rotation;
-            m_RenderInfo.position = transform.position;
-            m_RenderInfo.Update();
         }
 
-        public override void OnDestroyed()
+        public void PlayAnim(string animName)
         {
-            GPUInstanceMgr.S.GetRenderGroup(soName).RemoveRenderCell(m_RenderInfo);
-            m_RenderInfo = null;
+            animator.Play(animName);
         }
 
-        public override void OnCacheReset()
+        public void CrossFadeAnim(string animName, float fadeTime)
         {
-            base.OnCacheReset();
-            OnDestroyed();
-        }
-
-        public override void Recycle2Cache()
-        {
-            base.Recycle2Cache();
-            ObjectPool<BattleRoleRenderer>.S.Recycle(this);
-        }
-        #endregion
-
-        public void PlayAnim(string animName, bool loop = false)
-        {
-            m_RenderInfo.Play(animName, loop);
-        }
-
-        public void CrossFadeAnim(string animName, float fadeTime, bool loop = false)
-        {
-            //TODO 攻击动画播放结束 跳回idle状态
-            m_RenderInfo.CrossFade(animName, fadeTime, loop);
+            animator.CrossFade(animName, fadeTime);
         }
     }
 

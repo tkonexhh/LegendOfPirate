@@ -10,15 +10,12 @@ namespace GameWish.Game
     /// </summary>
     public class DamageRange_Rect : DamageRange
     {
-        private Vector3 m_Center;
-        private Vector3 m_Forward;
+
         private float m_Width;
         private float m_Height;
 
-        public DamageRange_Rect(Vector3 center, Vector3 forward, float width, float height) : base()
+        public DamageRange_Rect(IDealDamage owner, float width, float height) : base(owner)
         {
-            m_Center = center;
-            m_Forward = forward;
             m_Width = width;
             m_Height = height;
         }
@@ -26,12 +23,11 @@ namespace GameWish.Game
         public override List<BattleRoleController> PickTargets(BattleCamp camp)
         {
             List<BattleRoleController> targets = new List<BattleRoleController>();
-            Vector3 right = Quaternion.Euler(0, 90, 0) * m_Forward;
-            Vector3 leftup = m_Center + m_Forward * m_Height * 0.5f - right * m_Width * 0.5f;
-            Vector3 rightup = m_Center + m_Forward * m_Height * 0.5f + right * m_Width * 0.5f;
-            Vector3 leftdown = m_Center + -m_Forward * m_Height * 0.5f - right * m_Width * 0.5f;
-            Vector3 rightdown = m_Center + -m_Forward * m_Height * 0.5f + right * m_Width * 0.5f;
-            Debug.LogError(m_Center + ":" + leftup + ":" + rightup + ":" + leftdown + ":" + rightdown);
+            Vector3 right = Quaternion.Euler(0, 90, 0) * owner.DamageForward();
+            Vector3 leftup = owner.DamageCenter() + owner.DamageForward() * m_Height * 0.5f - right * m_Width * 0.5f;
+            Vector3 rightup = owner.DamageCenter() + owner.DamageForward() * m_Height * 0.5f + right * m_Width * 0.5f;
+            Vector3 leftdown = owner.DamageCenter() + -owner.DamageForward() * m_Height * 0.5f - right * m_Width * 0.5f;
+            Vector3 rightdown = owner.DamageCenter() + -owner.DamageForward() * m_Height * 0.5f + right * m_Width * 0.5f;
 
             //利用叉乘来框定区域
             //上左

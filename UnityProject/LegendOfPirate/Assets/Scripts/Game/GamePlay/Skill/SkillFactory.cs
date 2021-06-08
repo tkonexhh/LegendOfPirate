@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -9,19 +9,16 @@ namespace GameWish.Game
     {
         public static Skill CreateSkill(SkillConfigSO configSO)
         {
-            Skill skill;
+            Skill skill = null;
             switch (configSO.SkillType)
             {
                 case SkillType.Initiative:
-                    skill = new InitiativeSkill();
+                    skill = ObjectPool<InitiativeSkill>.S.Allocate();
                     skill = DealWithInitativeSkill(configSO, skill as InitiativeSkill);
                     break;
                 case SkillType.Passive:
-                    skill = new PassiveSkill();
+                    skill = ObjectPool<PassiveSkill>.S.Allocate();
                     skill = DealWithPassiveSkill(configSO, skill as PassiveSkill);
-                    break;
-                default:
-                    skill = new Skill();
                     break;
             }
 
@@ -36,7 +33,7 @@ namespace GameWish.Game
         private static InitiativeSkill DealWithInitativeSkill(SkillConfigSO configSO, InitiativeSkill skill)
         {
             skill.attacker = BattleAttackerFactory.CreateBattleAttacker(configSO.Attack.AttackType);
-            skill.damageRange = DamageRangeFactory.CreateDamageRange(configSO.Attack.DamageRangeType, configSO.Attack.RangeArgs);
+            skill.damageRange = DamageRangeFactory.CreateDamageRange(configSO.Attack.DamageRangeType, skill, configSO.Attack.RangeArgs);
             if (configSO.Attack.AttackType == AttackType.Shoot)//远程
             {
                 BattleAttackerFactory.SetBullet((skill.attacker as BattleAttacker_Shoot), configSO.Attack.Bullet, configSO.Attack.BulletNum);

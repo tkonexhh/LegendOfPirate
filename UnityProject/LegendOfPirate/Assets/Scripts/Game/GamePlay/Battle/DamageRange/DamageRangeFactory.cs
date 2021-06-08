@@ -7,52 +7,27 @@ namespace GameWish.Game
 {
     public class DamageRangeFactory
     {
-        public static DamageRange CreateDamageRange(DamageRangeType type, params object[] param)
+        public static DamageRange CreateDamageRange(DamageRangeType type, IDealDamage owner, params object[] param)
         {
             List<float> paramInt = Helper.String2ListFloat(param[0] as string, ";");
             switch (type)
             {
                 case DamageRangeType.Single:
-                    return new DamageRange_Target((BattleRoleController)param[0]);
+                    return new DamageRange_Target(owner);
                 case DamageRangeType.Circle:
                     {
-                        CircleArgs args = (CircleArgs)param[0];
-                        return new DamageRange_Circle(args.center, args.radius);
+                        return new DamageRange_Circle(owner, paramInt[0]);
                     }
                 case DamageRangeType.Rect:
                     {
-                        RectArgs args = (RectArgs)param[0];
-                        return new DamageRange_Rect(args.center, args.forward, args.width, args.height);
+                        return new DamageRange_Rect(owner, paramInt[0], paramInt[1]);
                     }
                 case DamageRangeType.Sector:
                     {
-                        SectorArgs args = (SectorArgs)param[0];
-                        return new DamageRange_Sector(args.center, args.forward, args.radius, args.degree);
+                        return new DamageRange_Sector(owner, paramInt[0], paramInt[1]);
                     }
             }
             return null;
-        }
-
-        public struct CircleArgs
-        {
-            public Vector3 center;
-            public float radius;
-        }
-
-        public struct RectArgs
-        {
-            public Vector3 center;
-            public Vector3 forward;
-            public float width;
-            public float height;
-        }
-
-        public struct SectorArgs
-        {
-            public Vector3 center;
-            public Vector3 forward;
-            public float radius;
-            public float degree;
         }
     }
 

@@ -15,16 +15,16 @@ namespace GameWish.Game
             m_CstSkill = ai.controller.Skill.GetReadySkill();
             if (m_CstSkill == null)
             {
-                ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.MoveToTarget);
+                ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.Attack);
                 return;
             }
 
-            ai.controller.renderer.CrossFadeAnim("Attack01", 0.1f, true);
+            ai.controller.Renderer.CrossFadeAnim(BattleDefine.ROLEANIM_SKILL01, 0.1f);
             m_CstSkill.Cast(ai.controller);
             //TODO 动画播放结束后退出状态
             Timer.S.Post2Scale(i =>
             {
-                ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.MoveToTarget);
+                ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.Attack);
             }, 2);
 
         }

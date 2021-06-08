@@ -79,12 +79,12 @@
                 float NdotL = saturate(dot(N, L));
                 
                 
-                half shadowStep = smoothstep(_ShadowMid - _ShadowSmooth, _ShadowMid + _ShadowSmooth, NdotL);
+                // half shadowStep = smoothstep(_ShadowMid - _ShadowSmooth, _ShadowMid + _ShadowSmooth, NdotL);
                 // return shadowStep;
                 // return NdotL;
                 
                 half4 var_MainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv);
-                float4 finalRGB = lerp(var_MainTex, var_MainTex * _ShadowColor, 1 - shadowStep);
+                float4 finalRGB = lerp(var_MainTex, var_MainTex * _ShadowColor, 1 - NdotL);//1 - shadowStep
 
                 
                 return finalRGB;

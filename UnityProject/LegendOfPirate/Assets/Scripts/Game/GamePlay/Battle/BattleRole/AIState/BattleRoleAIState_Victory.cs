@@ -10,7 +10,7 @@ namespace GameWish.Game
         public override void Enter(BattleRoleAI ai)
         {
             base.Enter(ai);
-            ai.controller.renderer.PlayAnim("Victory", true);
+            ai.controller.Renderer.PlayAnim(BattleDefine.ROLEANIM_VICTORY);
             ai.controller.MonoReference.AstarAI.canMove = false;
         }
     }

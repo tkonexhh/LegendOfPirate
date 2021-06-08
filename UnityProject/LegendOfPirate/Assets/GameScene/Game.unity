@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.33881372, g: 0.8223812, b: 0.9296663, a: 1}
+  m_IndirectSpecularColor: {r: 0.33881366, g: 0.82238126, b: 0.9296663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -236,7 +236,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 369659008}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &342760425
 GameObject:
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a940ce3728b6cb8478db8a7500338183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EntityRoot: {fileID: 748829213}
+  m_EntityRoot: {fileID: 1760948563}
 --- !u!4 &369659008
 Transform:
   m_ObjectHideFlags: 0
@@ -392,6 +392,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1001805191}
+  - {fileID: 1760948563}
   - {fileID: 748829213}
   - {fileID: 223410112}
   m_Father: {fileID: 0}
@@ -463,13 +464,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594192783}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 500, y: 500, z: 500}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 813148778}
   - {fileID: 1474359850}
   m_Father: {fileID: 369659008}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &813148777
 GameObject:
@@ -516,7 +517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAABAIex4e06mpgIAAMAFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVMtu2zAQ/BWD56aQhaZ1emvlPFo0iRG3yKHKYU2tJMIUKfAR2wn8711SsqW4BQoYljT74MxyyFcmYYcm01459nkyfTdhDZoKly2oB1AVEpi8PyeY12CAOzQ3KKraRfwD4ULZFrnT5tqI4lYXoYKFdzYO3uAWKq2W4gUPOY+icHVIgpjzAE7onoKwukFnBP+iKhkpEOiVKLVpLosKM22dJbgEaZFCRrtQrQh6nbBtX7Drny/hOdkHDahIwP+yvOISmhaLwHZITpNDOr3FREVK+pzAmmsphe1pMLdro8wMWutJBCUUAkhWJBDy68Mg03HxfVladD0pA7u5MDSdriv7qruRNWDXHbNnkB6P1LuWt39Fz6YxXBrdHLdvGvW4WvD1A+w4WDea6Biev6Xt1QbkGlYSH2tUd/rakHkKCjrjQ6m3mM5HrY7Kshr5esjruJ6Avv17d6bD7uyj9m0mRbM6OpCApdRx2hehBg3tyzciHD1h+06EBhK/LP6EamyePnAljHUU6hdUgd1KexNS2RW9hLlz7zJtFEa0p9yiAul2C+riTvfvJDZa9SRyBeGU9Gv3sYP5T0oiPOQnyUlooTfDXln87pt2oYVySwTD61E/W+vNLdr63jspFA6KQuCOZphppTrv2X+ULb0pgY/KHG6dNzgHB/EEECcySTEupTHGCuWlDH6MKkLz36Qi/J66m4bWlRFmd1rFs/Pm+RR8UHlRvHU5W/FZOpuuPiVTxJQ+ztLVbHpx8TFJ+Sw5xyRl8RgIRTMHueiG1m8VGUgNWhRZPnT8EW5HLCbhQqM/aOPxKwxsrsVLo0c2EKrUS24Q1X3X6SgaDS1G10RxWQiSu0TnhIoWZK85k5qvsciPjfI44MutM5APXXLWimftApKzLF5jOduz/R9QSwMEFAAACAgAAEAh7BfjmopxAAAAfQAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTVUVBKL0osyCgGihiCOKWZKSB2tFJSsoWRhWGSuYFhaqoRkKNrlGRhaGlpZmCUbGFgmmpgpBQLVF9SWZDql5ibCtETkFiSkZaZl5KZl67nk1iZWuRelJniDjJfKbYWAFBLAQItABQAAAgIAABAIex4e06mpgIAAMAFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAABAIewX45qKcQAAAH0AAAAJACQAAAAAAAAAAAAAAPMCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAArwMAAAAA
+    dataString: UEsDBBQAAAgIAABAIez4Bt7brQIAAMYFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFtVMlu2zAQ/RWD56aQhaZ1emvlLC2axIha5FDnMKbGEmGKFLjES+B/75CSLdkpYJjUm4XvzQz5xiRs0WTaK8e+jsYfRqxGU2LegHoCVSKBycdLgnkFBrhDc4eirFzEPxEulG2QO21ujSjudREiWNizofEON1BqlYsdHnyeReGq4ATR5wmc0B0FYXWNzgj+TZUyUiDQK7HUpr4uSsy0dZbgJUiLZDLahWhF0NuIbbqAbbfuwjraBw2oSEDvdZkc/Nrdrt1FX6+4hLrBInDuQ9JjSNo5KtLT+QTuXEspbEeGuW0TxWbQWE9SyKEQQOIijeBfHcqZDoMfl0uLrhNgYDsVhmrUZmXfdVu4GuyqZfYK0uNRZpvy/p31YhzNS6PrYxPHUY+rBF89wZaDdYO6DuHpKW2v1iBXsJD4XKF60LeGRqggozM+hHqL6XSQ6qgsq5Cver+W6xnom/edHPed3Eftm0yKenGcQwJyqWO1r0IMGurLDyIcJ8N2mQgNJP5Y/A3lcIQ6w40w1pGpO1AFdgvtTXBlN7QJdefeZdoojGhHuUEF0m1nlMWd9+/MNjj1zHID4a50Z3e2wxU4C4lw758kZ6aZXve9svjT181MC+VyBMOrQT5b6fU92urROykU9oqC4YFqmGml2tmz/wnLvVkCH4Q53DhvcAoO4g0gTjQkxTCUyhgjlJcyzGNUEZL/JRXh99K+N3SujDB70CrenZP1JcxB6UVxOuVswSfpZLz4kowRU/q4SBeT8dXV5yTlk+QSk5TFayAU1RzkrC1a1yoaINVrUTTyIeOv8EZiMQrPGv1BE69fYWB9K3a1HoyBUEudc4OoHttMR9Fo6DB6JorrQpDcHJ0TKo4ge5szqfkKi/kx0TwW+HrjDMz7LHPWiFftAjJnWXzM5mzP9v8AUEsDBBQAAAgIAABAIewX45qKcQAAAH0AAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM01VFQSi9KLMgoBooYgjilmSkgdrRSUrKFkYVhkrmBYWqqEZCja5RkYWhpaWZglGxhYJpqYKQUC1RfUlmQ6peYmwrRE5BYkpGWmZeSmZeu55NYmVrkXpSZ4g4yXym2FgBQSwECLQAUAAAICAAAQCHs+Abe260CAADGBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAQCHsF+OainEAAAB9AAAACQAkAAAAAAAAAAAAAAD6AgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAALYDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -971,7 +972,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1474359850
 Transform:
   m_ObjectHideFlags: 0
@@ -1179,7 +1180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 748829213}
   - component: {fileID: 1594192784}
-  - component: {fileID: 1594192785}
+  - component: {fileID: 1594192786}
   m_Layer: 0
   m_Name: BattleRoot
   m_TagString: Untagged
@@ -1202,8 +1203,9 @@ MonoBehaviour:
   m_RolePrefab: {fileID: 5728299268360915620, guid: 119ad41d5dd9145a5b73e998cd7ec0b6,
     type: 3}
   m_DemoBuffSO: {fileID: 11400000, guid: 3964941d191e6480c8f6f13d409d88b6, type: 2}
+  DemoRoleSO: {fileID: 11400000, guid: 0f4971ae1490042239c3d7e35c96f5d8, type: 2}
   DemoSkillSO: {fileID: 11400000, guid: 48ff19146024b4d2e852c835423a421f, type: 2}
---- !u!114 &1594192785
+--- !u!114 &1594192786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1212,10 +1214,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 1594192783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f00e3c3e7b84978902561e1d2b9fbe, type: 3}
+  m_Script: {fileID: 11500000, guid: 27004b741c40442038f9968fb0273999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 8313048490a284c6b84e16733d13ca36, type: 2}
+--- !u!1 &1760948562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1760948563}
+  m_Layer: 0
+  m_Name: SeaRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1760948563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760948562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 369659008}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1950002117
 GameObject:
   m_ObjectHideFlags: 0
