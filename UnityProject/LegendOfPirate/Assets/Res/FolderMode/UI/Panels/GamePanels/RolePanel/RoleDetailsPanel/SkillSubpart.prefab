@@ -11,14 +11,15 @@ GameObject:
   - component: {fileID: 7866639153267956061}
   - component: {fileID: 8920502290262728983}
   - component: {fileID: 6793277791327709528}
-  - component: {fileID: 1225295693701090059}
+  - component: {fileID: 913137195265431375}
+  - component: {fileID: 2361137801742600846}
   m_Layer: 5
   m_Name: SkillSubpart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7866639153267956061
 RectTransform:
   m_ObjectHideFlags: 0
@@ -76,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1225295693701090059
+--- !u!114 &913137195265431375
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,7 +86,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6609453110372531152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: fd606cb523643b34a88e7bc7437f7d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ClickDownScale: {x: 0.95, y: 0.95, z: 0.95}
+  m_NormalScale: {x: 1, y: 1, z: 1}
+--- !u!114 &2361137801742600846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6609453110372531152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eebb047a7cbfef4380c3f34763a5060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -119,6 +134,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  m_IsSoundEnable: 1
+  m_ClickSound: 
+  m_UseDefaultSound: 1
 --- !u!1 &8377469171856629246
 GameObject:
   m_ObjectHideFlags: 0
