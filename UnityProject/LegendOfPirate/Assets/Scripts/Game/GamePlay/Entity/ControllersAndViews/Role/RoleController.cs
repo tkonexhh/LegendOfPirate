@@ -22,7 +22,6 @@ namespace GameWish.Game
         public override void OnCacheReset()
         {
             base.OnCacheReset();
-            OnDestroyed();
         }
 
         public override void Recycle2Cache()
@@ -39,7 +38,7 @@ namespace GameWish.Game
         public void InitRoleEquipDic()
         {
 
-            
+
         }
 
         //public RoleController EquipSkill(RoleSkill roleSkill)

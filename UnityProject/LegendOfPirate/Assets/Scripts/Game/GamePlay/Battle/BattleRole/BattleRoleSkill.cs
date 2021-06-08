@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -14,6 +14,11 @@ namespace GameWish.Game
         {
             //TODO Test Skill
             m_SkillLst.Add(SkillFactory.CreateSkill(BattleMgr.S.DemoSkillSO));
+        }
+
+        public void AddSkill(Skill skill)
+        {
+            m_SkillLst.Add(skill);
         }
 
         public override void OnBattleStart()
@@ -51,10 +56,10 @@ namespace GameWish.Game
             base.OnDestroy();
             for (int i = 0; i < m_SkillLst.Count; i++)
             {
-                if (m_SkillLst[i] is PassiveSkill skill)
-                {
-                    skill.Release();
-                }
+                var skill = m_SkillLst[i];
+                skill.Release();
+                m_SkillLst.RemoveAt(i);
+                ObjectPool<Skill>.S.Recycle(skill);
             }
         }
 

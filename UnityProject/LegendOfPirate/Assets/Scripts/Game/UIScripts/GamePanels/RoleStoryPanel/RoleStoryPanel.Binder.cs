@@ -8,6 +8,7 @@ namespace GameWish.Game
 {
 	public class RoleStoryPanelData : UIPanelData
 	{
+		
 		public RoleStoryPanelData()
 		{
 		}

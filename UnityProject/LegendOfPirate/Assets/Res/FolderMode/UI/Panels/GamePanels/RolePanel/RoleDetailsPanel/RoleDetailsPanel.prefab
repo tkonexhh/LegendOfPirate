@@ -273,7 +273,6 @@ GameObject:
   - component: {fileID: 2172007578199082505}
   - component: {fileID: 3985099955136865818}
   - component: {fileID: 8050692477529058872}
-  - component: {fileID: 943827956734276986}
   m_Layer: 5
   m_Name: SkillRegion
   m_TagString: Untagged
@@ -327,22 +326,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
 --- !u!114 &8050692477529058872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295434619377934038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
---- !u!114 &943827956734276986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1327,8 +1310,9 @@ GameObject:
   - component: {fileID: 3437552810944174863}
   - component: {fileID: 4049884702313070953}
   - component: {fileID: 8950455115950537323}
-  - component: {fileID: 4343373516810612315}
   - component: {fileID: 8884853984143171233}
+  - component: {fileID: 3465285427512151351}
+  - component: {fileID: 4452053464601518135}
   m_Layer: 5
   m_Name: UpgradeMaterialsBtn
   m_TagString: Untagged
@@ -1393,7 +1377,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4343373516810612315
+--- !u!114 &8884853984143171233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1402,7 +1386,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3666863329903677506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
+--- !u!114 &3465285427512151351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3666863329903677506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eebb047a7cbfef4380c3f34763a5060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1436,7 +1436,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8884853984143171233
+  m_IsSoundEnable: 1
+  m_ClickSound: 
+  m_UseDefaultSound: 1
+--- !u!114 &4452053464601518135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1445,13 +1448,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3666863329903677506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Script: {fileID: 11500000, guid: fd606cb523643b34a88e7bc7437f7d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
+  m_ClickDownScale: {x: 0.95, y: 0.95, z: 0.95}
+  m_NormalScale: {x: 1, y: 1, z: 1}
 --- !u!1 &3713710715831368990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,8 +1464,9 @@ GameObject:
   - component: {fileID: 4708147841488460655}
   - component: {fileID: 2595366866014079418}
   - component: {fileID: 1884982390671251254}
-  - component: {fileID: 5410100738033779316}
   - component: {fileID: 6899935513459724433}
+  - component: {fileID: 7322063493468866649}
+  - component: {fileID: 3682366864835845728}
   m_Layer: 5
   m_Name: LeftRoleBtn
   m_TagString: Untagged
@@ -1528,7 +1530,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5410100738033779316
+--- !u!114 &6899935513459724433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1537,7 +1539,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3713710715831368990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
+--- !u!114 &7322063493468866649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3713710715831368990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eebb047a7cbfef4380c3f34763a5060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1571,7 +1589,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6899935513459724433
+  m_IsSoundEnable: 1
+  m_ClickSound: 
+  m_UseDefaultSound: 1
+--- !u!114 &3682366864835845728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1580,13 +1601,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3713710715831368990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Script: {fileID: 11500000, guid: fd606cb523643b34a88e7bc7437f7d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
+  m_ClickDownScale: {x: 0.95, y: 0.95, z: 0.95}
+  m_NormalScale: {x: 1, y: 1, z: 1}
 --- !u!1 &3734294330961390417
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,8 +1745,9 @@ GameObject:
   - component: {fileID: 3830057495566971383}
   - component: {fileID: 7496179791225082174}
   - component: {fileID: 3567913775716368802}
-  - component: {fileID: 3468769081691097858}
   - component: {fileID: 5600342692775575013}
+  - component: {fileID: 7668064202157662805}
+  - component: {fileID: 2833999036012817696}
   m_Layer: 5
   m_Name: StoryBtn
   m_TagString: Untagged
@@ -1792,7 +1812,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3468769081691097858
+--- !u!114 &5600342692775575013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1801,7 +1821,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 4659122897339227845}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
+--- !u!114 &7668064202157662805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4659122897339227845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eebb047a7cbfef4380c3f34763a5060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1835,7 +1871,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5600342692775575013
+  m_IsSoundEnable: 1
+  m_ClickSound: 
+  m_UseDefaultSound: 1
+--- !u!114 &2833999036012817696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1844,13 +1883,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4659122897339227845}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Script: {fileID: 11500000, guid: fd606cb523643b34a88e7bc7437f7d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
+  m_ClickDownScale: {x: 0.95, y: 0.95, z: 0.95}
+  m_NormalScale: {x: 1, y: 1, z: 1}
 --- !u!1 &4832531996050816084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1995,8 +2032,9 @@ GameObject:
   - component: {fileID: 8431683250492825928}
   - component: {fileID: 5915694531555737320}
   - component: {fileID: 2174325330418189810}
-  - component: {fileID: 2711045469337650648}
   - component: {fileID: 5384056005060077134}
+  - component: {fileID: 8021695688748189555}
+  - component: {fileID: 5475638442032867988}
   m_Layer: 5
   m_Name: RightRoleBtn
   m_TagString: Untagged
@@ -2060,7 +2098,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2711045469337650648
+--- !u!114 &5384056005060077134
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2069,7 +2107,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5551379285047452348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
+--- !u!114 &8021695688748189555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5551379285047452348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eebb047a7cbfef4380c3f34763a5060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -2103,7 +2157,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5384056005060077134
+  m_IsSoundEnable: 1
+  m_ClickSound: 
+  m_UseDefaultSound: 1
+--- !u!114 &5475638442032867988
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2112,13 +2169,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5551379285047452348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Script: {fileID: 11500000, guid: fd606cb523643b34a88e7bc7437f7d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
+  m_ClickDownScale: {x: 0.95, y: 0.95, z: 0.95}
+  m_NormalScale: {x: 1, y: 1, z: 1}
 --- !u!1 &5777246403092891394
 GameObject:
   m_ObjectHideFlags: 0
@@ -3124,15 +3179,15 @@ MonoBehaviour:
   ExperienceBar: {fileID: 781848282874120721}
   ExperienceValue: {fileID: 2076955080367348492}
   RoleModel: {fileID: 1047196231024118747}
-  StoryBtn: {fileID: 3468769081691097858}
-  LeftRoleBtn: {fileID: 5410100738033779316}
-  RightRoleBtn: {fileID: 2711045469337650648}
+  StoryBtn: {fileID: 0}
+  LeftRoleBtn: {fileID: 0}
+  RightRoleBtn: {fileID: 0}
   EquipRegion: {fileID: 5639243409469966800}
   SkillTitle: {fileID: 2450020406915276066}
   SkillRegion: {fileID: 2172007578199082505}
   UpgradeMaterials: {fileID: 98872310426149987}
   UpgradeMaterialsValue: {fileID: 4982129858180241456}
-  UpgradeMaterialsBtn: {fileID: 4343373516810612315}
+  UpgradeMaterialsBtn: {fileID: 0}
   RoleSelecScrollView: {fileID: 6537320399820313763}
   RoleSelectRegion: {fileID: 7300212810729539922}
 --- !u!1 &7463445051635136302
@@ -3979,11 +4034,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoleSubpart
       objectReference: {fileID: 0}
-    - target: {fileID: 6375836529491642285, guid: c5e08c94c81fa594b956af8c0cc82d6f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5e08c94c81fa594b956af8c0cc82d6f, type: 3}
 --- !u!224 &8299546290214413310 stripped
@@ -4133,11 +4183,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkillSubpart
-      objectReference: {fileID: 0}
-    - target: {fileID: 6609453110372531152, guid: 57bd7af35e12cf64f98381aab40e03e4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7866639153267956061, guid: 57bd7af35e12cf64f98381aab40e03e4,
         type: 3}

@@ -14,7 +14,7 @@ namespace GameWish.Game
         {
             base.Enter(ai);
             ai.controller.MonoReference.AstarAI.canMove = true;
-            ai.controller.renderer.CrossFadeAnim("Run", 0.1f, true);
+            ai.controller.Renderer.CrossFadeAnim(BattleDefine.ROLEANIM_RUN, 0.1f);
 
             m_MoveSpeedAddRateChange = ai.controller.Data.buffedData.MoveSpeedAddRate.Subscribe(_ =>
             {

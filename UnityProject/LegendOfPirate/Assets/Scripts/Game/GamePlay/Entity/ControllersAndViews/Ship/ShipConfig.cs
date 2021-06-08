@@ -76,7 +76,7 @@ namespace GameWish.Game
         [LabelText("组件类型")]
         public ShipUnitType shipUnitType;
         [LabelText("组件资源名")]
-        public Vector3 prefabName;
+        public string prefabName;
         [LabelText("组件位置")]
         public Vector3 pos;
     }

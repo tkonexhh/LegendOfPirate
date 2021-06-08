@@ -56,12 +56,13 @@ namespace GameWish.Game
         public int ATK => (int)(BasicATK * (1.0f + ATKAddRate));
         public BoolReactiveProperty IsDead = new BoolReactiveProperty(false);
 
+        public float AttackRange = 2.5f;//攻击范围
     }
 
 
     public class StatusMask
     {
-        public StatusControlType mask = 0;
+        public StatusControlType mask = StatusControlType.None;
 
         public void AddStatus(StatusControlType statusType)
         {

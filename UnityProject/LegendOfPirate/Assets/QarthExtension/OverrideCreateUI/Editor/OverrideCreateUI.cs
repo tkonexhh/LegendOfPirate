@@ -27,7 +27,7 @@ namespace GFrame.Editor
             CreateUI(Text);
         }
 
-        [MenuItem("GameObject/UI/Text Mesh Pro")]
+        [MenuItem("GameObject/UI/Text - TextMeshPro")]
         static void CreatTextMeshPro()
         {
             CreateUI(TextMeshProUGUI);
@@ -37,6 +37,12 @@ namespace GFrame.Editor
         static void CreatButton()
         {
             CreateUI(Button);
+        }
+
+        [MenuItem("GameObject/UI/Button - TextMeshPro")]
+        static void CreatButtonTMP()
+        {
+            CreateUI(ButtonTMP);
         }
 
         private static void CreateUI(System.Func<GameObject> callback)
@@ -100,7 +106,7 @@ namespace GFrame.Editor
             System.Action<GameObject> callback = (go) =>
             {
                 var image = go.AddComponent<GImage>();
-                var button = go.GetComponent<Button>();
+                var button = go.GetComponent<GButton>();
                 button.targetGraphic = image;
 
                 GameObject textGo = new GameObject("Text", typeof(Text));
@@ -112,10 +118,28 @@ namespace GFrame.Editor
                 rectText.SetAnchor(AnchorPresets.StretchAll, 0, 0);
                 rectText.SetSize(button.GetComponent<RectTransform>().sizeDelta);
             };
-            return CreateGO<Button>("Btn_", callback);
+            return CreateGO<GButton>("Btn_", callback);
         }
 
+        private static GameObject ButtonTMP()
+        {
+            System.Action<GameObject> callback = (go) =>
+            {
+                var image = go.AddComponent<GImage>();
+                var button = go.GetComponent<GButton>();
+                button.targetGraphic = image;
 
+                GameObject textGo = TextMeshProUGUI();
+                textGo.transform.SetParent(go.transform);
+                textGo.transform.localScale = Vector3.one;
+                Text text = textGo.GetComponent<Text>();
+                HandleText(text);
+                RectTransform rectText = text.GetComponent<RectTransform>();
+                rectText.SetAnchor(AnchorPresets.StretchAll, 0, 0);
+                rectText.SetSize(button.GetComponent<RectTransform>().sizeDelta);
+            };
+            return CreateGO<GButton>("Btn_", callback);
+        }
 
         #endregion
 

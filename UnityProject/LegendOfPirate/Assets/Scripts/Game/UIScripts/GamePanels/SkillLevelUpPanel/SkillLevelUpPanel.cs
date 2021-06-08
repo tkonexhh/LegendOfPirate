@@ -11,16 +11,19 @@ namespace GameWish.Game
 		protected override void OnUIInit()
 		{
 			base.OnUIInit();
+			CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim());
 		}
 		
 		protected override void OnPanelOpen(params object[] args)
 		{
 			base.OnPanelOpen(args);
-			
+
+			InitPanelWithParams(args);
 			AllocatePanelData();
 			
 			BindModelToUI();
 			BindUIToModel();
+
 		}
 		
 		protected override void OnPanelHideComplete()

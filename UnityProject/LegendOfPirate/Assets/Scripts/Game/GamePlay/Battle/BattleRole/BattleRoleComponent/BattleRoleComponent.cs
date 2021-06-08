@@ -14,6 +14,8 @@ namespace GameWish.Game
             this.controller = controller;
         }
 
+        public virtual void OnInit() { }
+
         public virtual void OnBattleStart()
         {
             battleStarted = true;

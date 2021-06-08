@@ -12,7 +12,7 @@ namespace GameWish.Game
         public GameObject gameObject { get; private set; }
         public Transform transform { get; private set; }
         public BattleRoleData Data { get; private set; }
-        public BattleRoleRenderer renderer { get; private set; }
+        public BattleRoleRenderer Renderer { get; private set; }
         public BattleRoleAI AI { get; private set; }
         public BattleRoleBuff Buff { get; private set; }
         public BattleRoleSkill Skill { get; private set; }
@@ -26,6 +26,14 @@ namespace GameWish.Game
 
         public BattleCamp camp { get; private set; }//阵营
 
+        public BattleRoleController()
+        {
+            Renderer = AddBattleRoleComponent(new BattleRoleRenderer(this)) as BattleRoleRenderer;
+            Data = AddBattleRoleComponent(new BattleRoleData(this)) as BattleRoleData;
+            AI = AddBattleRoleComponent(new BattleRoleAI(this)) as BattleRoleAI;
+            Buff = AddBattleRoleComponent(new BattleRoleBuff(this)) as BattleRoleBuff;
+            Skill = AddBattleRoleComponent(new BattleRoleSkill(this)) as BattleRoleSkill;
+        }
 
         #region Override
         public override void OnInit()
@@ -34,17 +42,8 @@ namespace GameWish.Game
             transform = gameObject.transform;
             transform.SetParent(BattleMgr.S.transform);
 
-            renderer = ObjectPool<BattleRoleRenderer>.S.Allocate();
-            renderer.OnInit();
-            renderer.transform = transform;
-
-
-            Data = AddBattleRoleComponent(new BattleRoleData(this)) as BattleRoleData;
-            AI = AddBattleRoleComponent(new BattleRoleAI(this)) as BattleRoleAI;
-            Buff = AddBattleRoleComponent(new BattleRoleBuff(this)) as BattleRoleBuff;
-            Skill = AddBattleRoleComponent(new BattleRoleSkill(this)) as BattleRoleSkill;
-
             base.OnInit();
+            Renderer.OnInit();
         }
 
         public override void OnFirstInit()
@@ -54,7 +53,6 @@ namespace GameWish.Game
 
         public override void OnUpdate()
         {
-            renderer.OnUpdate();
             for (int i = 0; i < m_Components.Count; i++)
             {
                 m_Components[i].OnUpdate();
@@ -63,22 +61,20 @@ namespace GameWish.Game
 
         public override void OnDestroyed()
         {
-            ObjectPool<BattleRoleRenderer>.S.Recycle(renderer);
-            GameObjectPoolMgr.S.Recycle(gameObject);
-
-            renderer = null;
             for (int i = m_Components.Count - 1; i >= 0; i--)
             {
-                m_Components[i].OnDestroy();
+                var c = m_Components[i];
+                c.OnDestroy();
                 m_Components.RemoveAt(i);
-                m_Components[i] = null;
+                c = null;
             }
-
+            GameObjectPoolMgr.S.Recycle(gameObject);
         }
 
         public override void Recycle2Cache()
         {
             base.Recycle2Cache();
+            OnDestroyed();
         }
         #endregion
 
@@ -115,8 +111,7 @@ namespace GameWish.Game
                 AI.onAttack();
             }
 
-            DamageRange range = new DamageRange_Target(AI.Target);
-            var targets = range.PickTargets(camp);
+            var targets = Data.DamageRange.PickTargets(camp);
             int damage = BattleHelper.CalcAtkDamage(Data.buffedData);
             for (int i = 0; i < targets.Count; i++)
             {
@@ -126,7 +121,17 @@ namespace GameWish.Game
                 BattleMgr.S.SendDamage(targets[i], damagePackage);
             }
         }
+        //TODO修改实现
+        public Vector3 DamageCenter()
+        {
+            return transform.position;
+        }
 
+        //TODO修改实现
+        public Vector3 DamageForward()
+        {
+            return transform.forward;
+        }
         #endregion
     }
 

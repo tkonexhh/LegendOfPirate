@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using GFrame.Editor;
 
 namespace Qarth.Extension
 {
@@ -66,6 +67,11 @@ namespace Qarth.Extension
             if (GetComponent("TMPro.TextMeshPro")) return "TMPro.TextMeshPro";
             if (GetComponent("TMPro.TMP_InputField")) return "TMPro.TMP_InputField";
 
+            //ugui expand
+            if (GetComponent<SoundButton>()) return "SoundButton";
+            if (GetComponent<PopButton>()) return "PopButton";
+            if (GetComponent<GButton>()) return "GFrame.Editor.GButton";
+
             // ugui bind
             if (GetComponent<Dropdown>()) return "UnityEngine.UI.Dropdown";
             if (GetComponent<Button>()) return "UnityEngine.UI.Button";
@@ -97,6 +103,8 @@ namespace Qarth.Extension
             if (GetComponent<MeshRenderer>()) return "MeshRenderer";
 
             if (GetComponent<SpriteRenderer>()) return "SpriteRenderer";
+
+
 
             // NGUI 支持
             if (GetComponent("UIButton")) return "UIButton";

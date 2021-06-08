@@ -21,9 +21,6 @@ namespace GameWish.Game
 
         public BattleRoleAI(BattleRoleController controller) : base(controller)
         {
-
-            this.controller.renderer.PlayAnim("Idle", true);
-
             FSM = new FSMStateMachine<BattleRoleAI>(this);
             FSM.stateFactory = new FSMStateFactory<BattleRoleAI>(false);
             FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.PickTarget, new BattleRoleAIState_PickTarget());
@@ -33,12 +30,11 @@ namespace GameWish.Game
             FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Dead, new BattleRoleAIState_Dead());
             FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Victory, new BattleRoleAIState_Victory());
             FSM.stateFactory.RegisterState(BattleRoleAIStateEnum.Global, new BattleRoleAIState_Global());
-
-
         }
 
         public override void OnBattleStart()
         {
+            controller.MonoReference.Collider.enabled = true;
             FSM.SetCurrentStateByID(BattleRoleAIStateEnum.PickTarget);
             FSM.SetGlobalStateByID(BattleRoleAIStateEnum.Global);
         }

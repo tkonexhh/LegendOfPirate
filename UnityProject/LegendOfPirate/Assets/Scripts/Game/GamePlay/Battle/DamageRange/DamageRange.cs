@@ -10,11 +10,11 @@ namespace GameWish.Game
     /// </summary>
     public abstract class DamageRange
     {
-        // public BattleRoleController owner { set; get; }
+        public IDealDamage owner { set; get; }
 
-        public DamageRange()
+        public DamageRange(IDealDamage owner)
         {
-            // m_Owner = owner;
+            this.owner = owner;
         }
 
         public abstract List<BattleRoleController> PickTargets(BattleCamp camp);

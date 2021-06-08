@@ -45,7 +45,7 @@ namespace Qarth.Extension
                             {
                                 function.Custom("base.OnPanelOpen(args);");
                                 function.EmptyLine();
-                                function.Custom("AllocatePanelData();");
+                                function.Custom("AllocatePanelData(args);");
                                 function.EmptyLine();
                                 function.Custom("BindModelToUI();");
                                 function.Custom("BindUIToModel();");

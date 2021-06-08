@@ -8,6 +8,9 @@ namespace GameWish.Game
 {
 	public class EvolutionSolePanelData : UIPanelData
 	{
+		public int roleID;
+		public RoleGroupModel roleGroupModel = null;
+		public RoleModel roleModel = null;
 		public EvolutionSolePanelData()
 		{
 		}
