@@ -3,9 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
+using GFrame.Editor;
 
 namespace GameWish.Game
 {
+	// Auto Generated Code. Don't Modify This Class 
 	public partial class RoleDetailsPanel
 	{
 		public const string Name = "RoleDetailsPanel";
@@ -25,11 +27,11 @@ namespace GameWish.Game
 		[SerializeField]
 		public UnityEngine.UI.Image RoleModel;
 		[SerializeField]
-		public UnityEngine.UI.Button StoryBtn;
+		public SoundButton StoryBtn;
 		[SerializeField]
-		public UnityEngine.UI.Button LeftRoleBtn;
+		public SoundButton LeftRoleBtn;
 		[SerializeField]
-		public UnityEngine.UI.Button RightRoleBtn;
+		public SoundButton RightRoleBtn;
 		[SerializeField]
 		public RectTransform EquipRegion;
 		[SerializeField]
@@ -41,10 +43,12 @@ namespace GameWish.Game
 		[SerializeField]
 		public TMPro.TextMeshProUGUI UpgradeMaterialsValue;
 		[SerializeField]
-		public UnityEngine.UI.Button UpgradeMaterialsBtn;
+		public SoundButton UpgradeMaterialsBtn;
 		[SerializeField]
 		public UnityEngine.UI.ScrollRect RoleSelecScrollView;
 		[SerializeField]
 		public RectTransform RoleSelectRegion;
+		
+		
 	}
 }
