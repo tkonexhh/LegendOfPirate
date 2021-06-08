@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3649287727316722363}
   - component: {fileID: -7256542203658666426}
   - component: {fileID: 1842909426530092171}
+  - component: {fileID: 3124119211913533538}
+  - component: {fileID: 5052040270988697829}
   m_Layer: 0
   m_Name: Role
   m_TagString: Untagged
@@ -124,5 +126,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb48f7631ac7c4a518c7130cbcb52a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AIDestinationSetter: {fileID: 3649287727316722363}
   AstarAI: {fileID: -7256542203658666426}
+--- !u!54 &3124119211913533538
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5728299268360915620}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 64
+  m_CollisionDetection: 0
+--- !u!136 &5052040270988697829
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5728299268360915620}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 4.2720356
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.6360178, z: 0}

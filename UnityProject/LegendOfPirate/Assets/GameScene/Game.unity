@@ -522,7 +522,7 @@ MonoBehaviour:
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
     cacheStartup: 0
-  showNavGraphs: 1
+  showNavGraphs: 0
   showUnwalkableNodes: 1
   debugMode: 0
   debugFloor: 0
@@ -1180,7 +1180,6 @@ GameObject:
   m_Component:
   - component: {fileID: 748829213}
   - component: {fileID: 1594192784}
-  - component: {fileID: 1594192785}
   - component: {fileID: 1594192786}
   m_Layer: 0
   m_Name: BattleRoot
@@ -1204,20 +1203,8 @@ MonoBehaviour:
   m_RolePrefab: {fileID: 5728299268360915620, guid: 119ad41d5dd9145a5b73e998cd7ec0b6,
     type: 3}
   m_DemoBuffSO: {fileID: 11400000, guid: 3964941d191e6480c8f6f13d409d88b6, type: 2}
+  DemoRoleSO: {fileID: 11400000, guid: 0f4971ae1490042239c3d7e35c96f5d8, type: 2}
   DemoSkillSO: {fileID: 11400000, guid: 48ff19146024b4d2e852c835423a421f, type: 2}
---- !u!114 &1594192785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1594192783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f00e3c3e7b84978902561e1d2b9fbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 8313048490a284c6b84e16733d13ca36, type: 2}
 --- !u!114 &1594192786
 MonoBehaviour:
   m_ObjectHideFlags: 0

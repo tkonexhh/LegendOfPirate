@@ -26,6 +26,14 @@ namespace GameWish.Game
 
         public BattleCamp camp { get; private set; }//阵营
 
+        public BattleRoleController()
+        {
+            Renderer = AddBattleRoleComponent(new BattleRoleRenderer(this)) as BattleRoleRenderer;
+            Data = AddBattleRoleComponent(new BattleRoleData(this)) as BattleRoleData;
+            AI = AddBattleRoleComponent(new BattleRoleAI(this)) as BattleRoleAI;
+            Buff = AddBattleRoleComponent(new BattleRoleBuff(this)) as BattleRoleBuff;
+            Skill = AddBattleRoleComponent(new BattleRoleSkill(this)) as BattleRoleSkill;
+        }
 
         #region Override
         public override void OnInit()
@@ -34,13 +42,8 @@ namespace GameWish.Game
             transform = gameObject.transform;
             transform.SetParent(BattleMgr.S.transform);
 
-            Renderer = AddBattleRoleComponent(new BattleRoleRenderer(this)) as BattleRoleRenderer;
-            Data = AddBattleRoleComponent(new BattleRoleData(this)) as BattleRoleData;
-            AI = AddBattleRoleComponent(new BattleRoleAI(this)) as BattleRoleAI;
-            Buff = AddBattleRoleComponent(new BattleRoleBuff(this)) as BattleRoleBuff;
-            Skill = AddBattleRoleComponent(new BattleRoleSkill(this)) as BattleRoleSkill;
-
             base.OnInit();
+            Renderer.OnInit();
         }
 
         public override void OnFirstInit()

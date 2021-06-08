@@ -56,7 +56,7 @@ namespace GameWish.Game
         public int ATK => (int)(BasicATK * (1.0f + ATKAddRate));
         public BoolReactiveProperty IsDead = new BoolReactiveProperty(false);
 
-        public float AttackRange = 20.5f;//攻击范围
+        public float AttackRange = 5.5f;//攻击范围
     }
 
 

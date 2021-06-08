@@ -25,13 +25,13 @@ namespace GameWish.Game
                 case SensorTypeEnum.HPHigh:
                     return new BattleSensor_MaxHp(pickTargetType);
                 case SensorTypeEnum.HPRateHigh:
+                    return new BattleSensor_MaxHpRate(pickTargetType);
                 case SensorTypeEnum.HPRateLow:
+                    return new BattleSensor_MinHpRate(pickTargetType);
                 case SensorTypeEnum.Farest:
                     return new BattleSensor_Farest(pickTargetType);
                 case SensorTypeEnum.Nearest:
                     return new BattleSensor_Nearest(pickTargetType);
-
-
             }
             return null;
         }

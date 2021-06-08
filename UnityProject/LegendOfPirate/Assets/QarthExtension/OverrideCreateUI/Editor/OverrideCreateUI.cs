@@ -100,7 +100,7 @@ namespace GFrame.Editor
             System.Action<GameObject> callback = (go) =>
             {
                 var image = go.AddComponent<GImage>();
-                var button = go.GetComponent<Button>();
+                var button = go.GetComponent<GButton>();
                 button.targetGraphic = image;
 
                 GameObject textGo = new GameObject("Text", typeof(Text));
@@ -112,7 +112,7 @@ namespace GFrame.Editor
                 rectText.SetAnchor(AnchorPresets.StretchAll, 0, 0);
                 rectText.SetSize(button.GetComponent<RectTransform>().sizeDelta);
             };
-            return CreateGO<Button>("Btn_", callback);
+            return CreateGO<GButton>("Btn_", callback);
         }
 
 

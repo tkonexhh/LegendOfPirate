@@ -110,13 +110,12 @@ namespace GameWish.Game
             int width = 80;
             for (int i = 0; i < 10; i++)
             {
-                BattleRoleController role = BattleRoleControllerFactory.S.CreateController(null);
-                role.OnInit();
+                BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
                 role.SetCamp(BattleCamp.Our);
                 int x = i % width;
                 int y = i / width;
-                role.transform.localPosition = startPos + new Vector3(10.5f * x, 0, 1.5f * y);
-                role.transform.rotation = Quaternion.Euler(0, 180, 0);
+                role.transform.localPosition = startPos + new Vector3(8.5f * x, 0, 1.5f * y);
+                role.transform.localRotation = Quaternion.Euler(0, 180, 0);
                 m_OurRoleControllerLst.Add(role);
             }
         }
@@ -127,12 +126,12 @@ namespace GameWish.Game
             int width = 80;
             for (int i = 0; i < 10; i++)
             {
-                BattleRoleController role = BattleRoleControllerFactory.S.CreateController(null);
-                role.OnInit();
+                BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
                 role.SetCamp(BattleCamp.Enemy);
                 int x = i % width;
                 int y = i / width;
-                role.transform.localPosition = startPos + new Vector3(10.5f * x, 0, 1.5f * y);
+                role.transform.localPosition = startPos + new Vector3(8.5f * x, 0, 1.5f * y);
+                role.transform.localRotation = Quaternion.identity;
                 m_EnemyRoleControllerLst.Add(role);
             }
         }

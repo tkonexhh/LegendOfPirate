@@ -7,18 +7,18 @@ namespace GameWish.Game
 {
     public class BattleRoleData : BattleRoleComponent
     {
-        public IBattleSensor Sensor { get; private set; }//索敌方式
-        public BattleAttacker Attacker { get; private set; }//攻击方式
-        public DamageRange DamageRange { get; private set; }//伤害范围
+        public IBattleSensor Sensor { get; set; }//索敌方式
+        public BattleAttacker Attacker { get; set; }//攻击方式
+        public DamageRange DamageRange { get; set; }//伤害范围
 
         public BattleRoleModel originData;
         public BattleRoleRuntimeModel buffedData;
 
         public BattleRoleData(BattleRoleController controller) : base(controller)
         {
-            Sensor = BattleSensorFactory.CreateBattleSensor(PickTargetType.Enemy, SensorTypeEnum.Nearest);
-            Attacker = new BattleAttacker_Lock();
-            DamageRange = new DamageRange_Target(controller);
+            // Sensor = BattleSensorFactory.CreateBattleSensor(PickTargetType.Enemy, SensorTypeEnum.Nearest);
+            // Attacker = new BattleAttacker_Lock();
+            // DamageRange = new DamageRange_Target(controller);
 
         }
 

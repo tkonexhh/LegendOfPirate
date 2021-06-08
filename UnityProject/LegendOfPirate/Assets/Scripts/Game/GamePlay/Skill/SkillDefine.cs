@@ -10,9 +10,6 @@ namespace GameWish.Game
 
     }
 
-
-
-
     [LabelText("技能类型")]
     public enum SkillType
     {
@@ -23,9 +20,9 @@ namespace GameWish.Game
     [LabelText("释放对象(完成)")]
     public enum PickTargetType
     {
-        [LabelText("自身")] Self,
-        [LabelText("己方")] Our,
         [LabelText("敌方")] Enemy,
+        [LabelText("己方")] Our,
+        [LabelText("自身")] Self,
         [LabelText("当前目标")] Target,
     }
 

@@ -29,6 +29,7 @@ namespace GameWish.Game
 
         [Header("预制体")]
         public GameObject prefab;
+
     }
 
 

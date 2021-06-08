@@ -37,14 +37,29 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: Attack
+      Entry: 7
+      Data: 1|GameWish.Game.Attack, Assembly-CSharp
+    - Name: AttackType
+      Entry: 3
+      Data: 0
+    - Name: DamageRangeType
+      Entry: 3
+      Data: 0
+    - Name: RangeArgs
       Entry: 6
+      Data: 
+    - Name: Bullet
+      Entry: 6
+      Data: 
+    - Name: BulletNum
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
       Data: 
   ID: 0
   RoleName: SkillName
   EnableAttackBuff: 0
   BuffConfigSO: {fileID: 0}
   childSkills: []
-  mesh: {fileID: 4300000, guid: 36b8ab911f6f84408993f3dc89056df8, type: 2}
-  material: {fileID: 2100000, guid: 8313048490a284c6b84e16733d13ca36, type: 2}
-  animInfoText: {fileID: 4900000, guid: 2ea00aa5eb364441b99ed9b394c7c6c2, type: 2}
   prefab: {fileID: 3212148170728413058, guid: 3442515a72b7d4a8ca290139ada825a2, type: 3}

@@ -7,18 +7,23 @@ namespace GameWish.Game
 {
     public class BattleRoleRenderer : BattleRoleComponent
     {
-        // public Transform transform { get; set; }
-        // protected AnimedRenderCell m_RenderInfo;
         private BattleRoleAnimation animator;
-        string soName = "Enemy1ConfigSO";
-        public BattleRoleRenderer(BattleRoleController controller) : base(controller)
+
+        public GameObject prefab;
+        public BattleRoleRenderer(BattleRoleController controller) : base(controller) { }
+
+        public override void OnInit()
         {
-            var config = BattleMgr.S.loader.LoadSync(soName) as RoleConfigSO;
-            var gameObject = GameObject.Instantiate(config.prefab);
+            var gameObject = GameObject.Instantiate(prefab);
             gameObject.transform.SetParent(controller.transform);
             gameObject.transform.localPosition = Vector3.zero;
             gameObject.transform.localRotation = Quaternion.identity;
             animator = gameObject.GetComponent<BattleRoleAnimation>();
+            PlayAnim(BattleDefine.ROLEANIM_IDLE);
+        }
+
+        public override void OnDestroy()
+        {
         }
 
         public void PlayAnim(string animName)

@@ -7,7 +7,6 @@ namespace GameWish.Game
 {
     public class BattleRoleMonoReference : MonoBehaviour
     {
-        // public AIDestinationSetter AIDestinationSetter;
         public AIPath AstarAI;
     }
 

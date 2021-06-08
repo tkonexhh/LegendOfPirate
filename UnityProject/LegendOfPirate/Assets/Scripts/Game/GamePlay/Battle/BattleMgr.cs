@@ -10,6 +10,8 @@ namespace GameWish.Game
     {
         [SerializeField] private GameObject m_RolePrefab;
         [SerializeField] private BuffConfigSO m_DemoBuffSO;
+
+        public RoleConfigSO DemoRoleSO;
         public SkillConfigSO DemoSkillSO;
 
         private ResLoader m_Loader;

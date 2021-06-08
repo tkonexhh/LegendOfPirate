@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Qarth;
 
 namespace GameWish.Game
 {
-    public class Skill
+    public class Skill : ICacheAble
     {
         public int id;
         public string name;
@@ -29,6 +29,9 @@ namespace GameWish.Game
             m_Owner = owner;
         }
 
+        public virtual void Release() { }
+
+
         public void Update()
         {
             timer += Time.deltaTime;
@@ -48,6 +51,21 @@ namespace GameWish.Game
             return false;
         }
 
+        #region ICacheAble
+
+        public bool cacheFlag
+        {
+            get; set;
+        }
+
+        public virtual void OnCacheReset()
+        {
+            m_Owner = null;
+            Sensor = null;
+        }
+
+        #endregion
+
     }
 
     /// <summary>
@@ -64,6 +82,12 @@ namespace GameWish.Game
             timer = 0;
             Debug.LogError("InitiativeSkill Cast");
             attacker.Attack(this);
+        }
+
+        public override void Release()
+        {
+            damageRange = null;
+            attacker = null;
         }
 
         #region IDealDamage
@@ -93,6 +117,7 @@ namespace GameWish.Game
             return PicketTarget().transform.forward;
         }
         #endregion
+
     }
 
     /// <summary>
@@ -110,10 +135,11 @@ namespace GameWish.Game
             skillTrigger.Start(m_Owner);
         }
 
-        public void Release()
+        public override void Release()
         {
             skillTrigger.onSkillTrigger -= OnSkillTrigger;
             skillTrigger.Stop(m_Owner);
+            skillTrigger = null;
         }
 
         private void OnSkillTrigger()
