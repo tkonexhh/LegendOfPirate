@@ -38,6 +38,9 @@ namespace GameWish.Game
         #region 图书室
         LibraryRoomPanel,
         #endregion
+        #region 炼金室
+        AlchemyRoomPanel,
+        #endregion
         #region 战船系统
         WarshipUpgradePanel,
         #endregion
@@ -45,5 +48,11 @@ namespace GameWish.Game
         RandomDefensePanel,
         RandomDefenseChooseRolePanel,
         #endregion
+        #region 走私系统
+        SmugglePanel,
+        SmuggleChooseRolePanel,
+        #endregion
+        CongratulationPanel,
+        LandUpgradePanel,
     }
 }
