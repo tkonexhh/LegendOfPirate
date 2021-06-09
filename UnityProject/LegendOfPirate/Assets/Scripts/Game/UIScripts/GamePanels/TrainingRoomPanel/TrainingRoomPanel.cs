@@ -9,14 +9,10 @@ namespace GameWish.Game
 {
 	public partial class TrainingRoomPanel : AbstractAnimPanel
 	{
-		#region Item
-		[Header("Item")]
-		public GameObject MiddleTrainingRole;
-		[SerializeField]
-		public GameObject BottomTrainingRole;
-		#endregion
 		[SerializeField]
 		private UGridListView m_MiddleTrainingRoleUGridList;
+		[SerializeField]
+		private USimpleListView m_BottomTrainingRoleUList;
 		protected override void OnUIInit()
 		{
 			base.OnUIInit();
@@ -57,13 +53,21 @@ namespace GameWish.Game
 
 			//TitleIcon.sprite = SpriteHandler.S.GetSprite(AtlasDefine.TestAtlas, iconName);
 
-			m_MiddleTrainingRoleUGridList.SetCellRenderer(OnCellRenderer);
+			m_MiddleTrainingRoleUGridList.SetCellRenderer(OnMiddleCellRenderer);
+			m_BottomTrainingRoleUList.SetCellRenderer(OnBottomCellRenderer);
 
 			m_MiddleTrainingRoleUGridList.SetDataCount(10);
+			m_BottomTrainingRoleUList.SetDataCount(10);
+		}
+		private void OnBottomCellRenderer(Transform root, int index)
+		{
+			Debug.LogError("Index = " + index);
+			root.GetComponent<BottomTrainingRole>().OnInit(index);
 		}
 
-        private void OnCellRenderer(Transform root, int index)
+		private void OnMiddleCellRenderer(Transform root, int index)
         {
+			Debug.LogError("Index = " + index);
 			root.GetComponent<MiddleTrainingRole>().OnInit(index);
 		}
 
