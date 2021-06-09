@@ -21,7 +21,7 @@ namespace GameWish.Game
 		[SerializeField]
 		public TMPro.TextMeshProUGUI Title;
 		[SerializeField]
-		public RectTransform RoleListTra;
+		public RectTransform SelectRoleRegion;
 		[SerializeField]
 		public GFrame.Editor.GButton ChooseBtn;
 		[SerializeField]
