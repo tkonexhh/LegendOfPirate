@@ -172,6 +172,7 @@ namespace GFrame.Editor
             tmp.alignment = UIDefaultConfig.textMeshProConfig.textAlignment;
             tmp.color = UIDefaultConfig.textMeshProConfig.color;
             tmp.fontSize = UIDefaultConfig.textMeshProConfig.fontSize;
+            tmp.overflowMode = TextOverflowModes.Truncate;
         }
 
         private static void HandleImage(Image image)

@@ -20,20 +20,50 @@ namespace GameWish.Game
 		private RoleDetailsPanelData m_PanelData = null;
 		private int m_RoleId;
 		private RoleModel m_RoleModel;
-		
-		private void AllocatePanelData()
+		private bool m_IsUnlock;
+		private ResLoader m_Loader;
+
+		private void AllocatePanelData(params object[] args)
 		{
 			 m_PanelData = UIPanelData.Allocate<RoleDetailsPanelData>();
+            if (args != null && args.Length > 0)
+            {
+                if (args.Length >= 1)
+                {
+                    m_RoleId = (int)args[0];
+                }
+            }
+			m_RoleModel = new RoleModel(new RoleData(1, 99, "Jack", 88, 2)); //m_PanelData.roleGroupModel.GetRoleModel(m_RoleId);
+            RoleName.text = m_RoleModel.name;
+			m_IsUnlock = m_RoleModel.isUnlcok = true;
+			m_Loader = ResLoader.Allocate("RoleDetailsPanelItem", null);
+
+			if (!m_IsUnlock)
+            {
+				RefreshRoleIsUnclockView(m_IsUnlock);
+				return;
+            }
+
+			//RegionRoleName.text		
+
 		}
-		
-		private void ReleasePanelData()
+
+        #region RefreshPanelData
+
+        private void ReleasePanelData()
 		{
 			ObjectPool<RoleDetailsPanelData>.S.Recycle(m_PanelData);
+			
 		}
 		
 		private void BindModelToUI()
 		{
-			m_RoleModel.level.SubscribeToTextMeshPro(RoleLevel);
+			m_RoleModel.level.SubscribeToTextMeshPro(RoleLevel,"Lv:{0}");
+			m_RoleModel.level.SubscribeToTextMeshPro(ExperienceValue, "{0}/999");
+			m_RoleModel.level.Subscribe( value => 
+			{
+				ExperienceBar.fillAmount = (float)value / 999f;
+			});
 			
 		}
 		
@@ -41,22 +71,6 @@ namespace GameWish.Game
 		{
 
 		}
-
-		private void InitSelfPanelData(params object[] args)
-        {
-            if (args !=null && args.Length > 0)
-            {
-                if (args.Length>=1)
-                {
-					m_RoleId = (int)args[0];
-                }
-            }
-			m_RoleModel = m_PanelData.roleGroupModel.GetRoleModel(m_RoleId);
-			RoleName.text = m_RoleModel.name;
-			//RegionRoleName.text
-			RoleLevel.text = string.Format("LV.{0}", m_RoleModel.level);
-
-        }
 
 
         private void RegisterEvents()
@@ -71,11 +85,47 @@ namespace GameWish.Game
 
 		private void OnClickAddListener()
         {
-			StoryBtn.onClick.AddListener(() => { });
-			LeftRoleBtn.OnClickAsObservable().Subscribe();
-			RightRoleBtn.OnClickAsObservable().Subscribe();
+			StoryBtn.onClick.AddListener(() => 
+			{
+				UIMgr.S.OpenPanel(UIID.RoleStoryPanel,m_RoleId);
+			});
+			//LeftRoleBtn.OnClickAsObservable().Subscribe();
+			//RightRoleBtn.OnClickAsObservable().Subscribe();
+
 
 		}
+
+        #endregion
+
+
+        #region RefreshPanelView
+
+		private void RefreshRoleIsUnclockView(bool isUnlock)
+        {
+			StartRegion.gameObject.SetActive(isUnlock);
+			RoleLevel.gameObject.SetActive(isUnlock);
+			ExperienceBar.gameObject.SetActive(isUnlock);
+			EquipRegion.gameObject.SetActive(isUnlock);
+        }
+
+		private void RefreshRoleView()
+        {
+
+        }
+
+		private void AddSkillItem()
+        {
+            SoundButton skillBtn = ((GameObject)m_Loader.LoadSync("SkillSubpart")).GetComponent<SoundButton>();
+            skillBtn.transform.SetParent(SkillRegion);
+            skillBtn.onClick.AddListener(() =>
+            {
+                UIMgr.S.OpenPanel(UIID.RoleSkillPanel, m_RoleId);
+            });
+        }
+
+
+
+        #endregion
 
     }
 }

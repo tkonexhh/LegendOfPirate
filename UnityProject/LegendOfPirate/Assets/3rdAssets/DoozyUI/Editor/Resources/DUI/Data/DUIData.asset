@@ -22,11 +22,14 @@ MonoBehaviour:
       - BoostPanel
       - EffectActivePanel
       - EvolutionSolePanel
+      - LibraryRoomPanel
       - MagicCloudPanel
       - MainMenuPanel
       - OccupyOverPanel
       - OfflinePanel
       - OfflineRewardPanel
+      - RandomDefenseChooseRolePanel
+      - RandomDefensePanel
       - RatePanel
       - RoleDetailsPanel
       - RoleEquipDetailsPanel
@@ -35,9 +38,11 @@ MonoBehaviour:
       - SettingPanel
       - ShopPanel
       - TaskPanel
+      - TrainingRoomPanel
       - UnlockEnemyPanel
       - UnlockSoldierPanel
       - UnlockWeaponPanel
+      - WarshipUpgradePanel
       isExpanded:
         m_Target: 1
         speed: 2

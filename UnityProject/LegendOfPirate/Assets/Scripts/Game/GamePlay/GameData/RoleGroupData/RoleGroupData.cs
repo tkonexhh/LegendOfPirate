@@ -39,7 +39,7 @@ namespace GameWish.Game
             }
             else
             {
-                roleList.Add(new RoleData(id, 1, name,0,1));
+                roleList.Add(new RoleData(id, 1, name,1,1));
 
                 SetDataDirty();
             }
