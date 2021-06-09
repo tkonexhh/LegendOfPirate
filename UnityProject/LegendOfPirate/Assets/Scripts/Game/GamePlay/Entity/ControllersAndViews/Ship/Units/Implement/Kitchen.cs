@@ -10,8 +10,6 @@ namespace GameWish.Game
         public override void OnInit()
         {
             base.OnInit();
-
-            m_ShipUnitType = ShipUnitType.Kitchen;
         }
 
         protected override void OnClicked()
@@ -19,6 +17,11 @@ namespace GameWish.Game
             base.OnClicked();
 
             //TODO: Open Kitchen Panel
+        }
+
+        public override ShipUnitType GetShipUnitType()
+        {
+            return ShipUnitType.Kitchen;
         }
     }
 	

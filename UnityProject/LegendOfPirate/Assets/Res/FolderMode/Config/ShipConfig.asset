@@ -21,19 +21,38 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: unitConfigList
+    - Name: unitConfigDic
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[GameWish.Game.ShipUnitConfig, Assembly-CSharp]],
-        mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[GameWish.Game.ShipUnitType,
+        Assembly-CSharp],[GameWish.Game.ShipUnitConfig, Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[GameWish.Game.ShipUnitType,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|GameWish.Game.ShipUnitConfig, Assembly-CSharp
-    - Name: shipUnitType
+      Data: 
+    - Name: $k
       Entry: 3
       Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 2|GameWish.Game.ShipUnitConfig, Assembly-CSharp
+    - Name: prefabName
+      Entry: 1
+      Data: Kitchen
     - Name: pos
       Entry: 7
       Data: UnityEngine.Vector3, UnityEngine.CoreModule
@@ -46,6 +65,12 @@ MonoBehaviour:
     - Name: 
       Entry: 4
       Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: bodyPrefabName
+      Entry: 1
+      Data: KitchenBody
     - Name: 
       Entry: 8
       Data: 

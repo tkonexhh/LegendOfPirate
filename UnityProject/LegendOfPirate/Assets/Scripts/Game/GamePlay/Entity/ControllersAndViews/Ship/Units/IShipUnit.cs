@@ -7,7 +7,7 @@ namespace GameWish.Game
 {
 	public interface IShipUnit : IElement
 	{
-
+        ShipUnitType GetShipUnitType();
 	}
 	
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
+using System.Linq;
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -23,6 +25,17 @@ namespace GameWish.Game
                 ShipUnitModel unitModel = new ShipUnitModel(m_ShipData.shipUnitDataList[i]);
                 shipUnitModelList.Add(unitModel);
             }
+        }
+
+        public ShipUnitModel GetShipUnitModel(ShipUnitType shipUnitType)
+        {
+            ShipUnitModel model = shipUnitModelList.FirstOrDefault(i => i.unitType == shipUnitType);
+            if (model == null)
+            {
+                Log.e("Ship Unit Model Not Found: " + shipUnitType.ToString());
+            }
+
+            return model;
         }
     }
 
