@@ -30,7 +30,7 @@ namespace GameWish.Game
         public  int  level {get { return m_Level; } }
        
         /// <summary>
-        /// 升级资源
+        /// 升级资源（id|数量）
         /// </summary>
         public  string  upgradeRes {get { return m_UpgradeRes; } }
        
@@ -40,12 +40,12 @@ namespace GameWish.Game
         public  int  upgradeCost {get { return m_UpgradeCost; } }
        
         /// <summary>
-        /// 升级条件
+        /// 升级条件（主船等级）
         /// </summary>
         public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
        
         /// <summary>
-        /// 升级时间
+        /// 升级时间（s）
         /// </summary>
         public  int  upgradeSpeed {get { return m_UpgradeSpeed; } }
        
@@ -65,7 +65,7 @@ namespace GameWish.Game
         public  int  skillPoints {get { return m_SkillPoints; } }
        
         /// <summary>
-        /// 读书时间
+        /// 读书时间（s）
         /// </summary>
         public  int  readingSpeed {get { return m_ReadingSpeed; } }
        

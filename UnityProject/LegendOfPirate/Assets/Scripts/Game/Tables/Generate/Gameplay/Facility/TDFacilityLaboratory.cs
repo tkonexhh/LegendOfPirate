@@ -30,22 +30,22 @@ namespace GameWish.Game
         public  int  level {get { return m_Level; } }
        
         /// <summary>
-        /// 升级资源
+        /// 升级资源（id|数量）
         /// </summary>
         public  string  upgradeRes {get { return m_UpgradeRes; } }
        
         /// <summary>
-        /// 升级花费（普通货币）
+        /// 升级花费
         /// </summary>
         public  int  upgradeCost {get { return m_UpgradeCost; } }
        
         /// <summary>
-        /// 升级条件
+        /// 升级条件（主船等级）
         /// </summary>
         public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
        
         /// <summary>
-        /// 升级时间（分钟）
+        /// 升级时间（s）
         /// </summary>
         public  int  upgradeTime {get { return m_UpgradeTime; } }
        
@@ -55,7 +55,7 @@ namespace GameWish.Game
         public  string  modelResources {get { return m_ModelResources; } }
        
         /// <summary>
-        /// 解锁组药剂制作图
+        /// 解锁组药剂制作图（id）
         /// </summary>
         public  string  unlockPotionID {get { return m_UnlockPotionID; } }
        
@@ -65,7 +65,7 @@ namespace GameWish.Game
         public  string  unlockPartSpace {get { return m_UnlockPartSpace; } }
        
         /// <summary>
-        /// 主动解锁制作位置消耗
+        /// 主动解锁制作位置消耗（充值货币）
         /// </summary>
         public  string  unlockSpaceCost {get { return m_UnlockSpaceCost; } }
        

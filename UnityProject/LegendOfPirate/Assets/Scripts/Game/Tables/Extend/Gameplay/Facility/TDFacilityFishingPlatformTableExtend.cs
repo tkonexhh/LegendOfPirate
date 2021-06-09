@@ -27,6 +27,17 @@ namespace GameWish.Game
         }
 
         public static FishingUnitProperty[] fishingUnitProperties = null;
+
+        public static FishingUnitProperty GetFishingUnitProperty(int level)
+        {
+            if (level > fishingUnitProperties.Length)
+            {
+                Log.e("GetFishingUnitProperty Level Out Of Range: " + level  + "  Data Count: " + fishingUnitProperties.Length);
+                return default(FishingUnitProperty);
+            }
+
+            return fishingUnitProperties[level - 1];
+        }
     }
 
     public struct FishingUnitProperty
