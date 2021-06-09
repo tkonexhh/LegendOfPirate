@@ -10,9 +10,8 @@ namespace GameWish.Game
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(AudioSource))]
-    public class BattleRoleAnimation : MonoBehaviour
+    public class PlayablesAnimation : MonoBehaviour
     {
-        [SerializeField] private RuntimeAnimatorController controller = null;
         public List<AnimationClip> clipsList;
 
         private PlayableGraph m_Graph;
@@ -24,7 +23,7 @@ namespace GameWish.Game
 
         private void Awake()
         {
-            m_Graph = PlayableGraph.Create("BattleRoleAnimation");
+            m_Graph = PlayableGraph.Create("PlayablesAnimation");
             m_Graph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
             GraphVisualizerClient.Show(m_Graph);
 
@@ -46,15 +45,15 @@ namespace GameWish.Game
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                CrossFade("run", 0.3f);
-            }
+            // if (Input.GetKeyDown(KeyCode.W))
+            // {
+            //     CrossFade("run", 0.3f);
+            // }
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                CrossFade("idle", 0.3f);
-            }
+            // if (Input.GetKeyDown(KeyCode.E))
+            // {
+            //     CrossFade("idle", 0.3f);
+            // }
 
             if (m_Fading)
             {

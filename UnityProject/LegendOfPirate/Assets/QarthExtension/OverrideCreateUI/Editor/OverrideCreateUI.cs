@@ -132,8 +132,8 @@ namespace GFrame.Editor
                 GameObject textGo = TextMeshProUGUI();
                 textGo.transform.SetParent(go.transform);
                 textGo.transform.localScale = Vector3.one;
-                Text text = textGo.GetComponent<Text>();
-                HandleText(text);
+                TextMeshProUGUI text = textGo.GetComponent<TextMeshProUGUI>();
+                HandleTextMeshPro(text);
                 RectTransform rectText = text.GetComponent<RectTransform>();
                 rectText.SetAnchor(AnchorPresets.StretchAll, 0, 0);
                 rectText.SetSize(button.GetComponent<RectTransform>().sizeDelta);

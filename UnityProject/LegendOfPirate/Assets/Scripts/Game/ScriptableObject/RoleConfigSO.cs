@@ -24,11 +24,14 @@ namespace GameWish.Game
         public BuffConfigSO BuffConfigSO;
 
         [Space(30)]
+        [LabelText("拥有技能")]
         public List<SkillConfigSO> childSkills;
 
 
-        [Header("预制体")]
+        [LabelText("预制体")]
         public GameObject prefab;
+        [LabelText("角色头像")]
+        public Sprite Icon;
 
     }
 
