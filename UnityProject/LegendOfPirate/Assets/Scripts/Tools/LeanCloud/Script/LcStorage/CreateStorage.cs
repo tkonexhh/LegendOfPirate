@@ -4,7 +4,6 @@ using UnityEngine;
 using LeanCloud.Storage;
 using TMPro;
 
-
 namespace GameWish.Game
 {
     public class CreateStorage : MonoBehaviour
@@ -12,7 +11,7 @@ namespace GameWish.Game
         [SerializeField] private TextMeshProUGUI m_ShowText;
         private string m_ObjectId;
 
-        #region 创建对象并保存到后端
+        #region 创建对象并保存到后端 子类化创建 便于管理与操作
 
         ///<summary>
         /// 创建玩家账号对象并保存到后端
@@ -64,7 +63,7 @@ namespace GameWish.Game
 
         #endregion
 
-        #region 查询对象 返回数据 
+        #region 查询对象 返回数据 对于已经保存到云端的 LCObject，可以通过它的 objectId 将其取回 可以获取全部数据
         ///<summary>
         /// 获取后端的英雄对象
         ///</summary>
@@ -73,12 +72,30 @@ namespace GameWish.Game
             LCQuery<HeroStorage> query = new LCQuery<HeroStorage>("HeroStorage");
             // query.WhereEndsWith("name", "chuck");
             HeroStorage hero = await query.Get(m_ObjectId);
-            m_ShowText.text = hero.Name + "_" + hero.Level + "_" + hero.Balance.ToString();
+            if (hero.Name != null)
+                m_ShowText.text = hero.Name + "_" + hero.Level + "_" + hero.Balance.ToString();
+            else
+                m_ShowText.text = "查无此人";
         }
+
+        ///<summary>
+        /// 获取关卡等级奖励
+        ///</summary>
+        public async void QueryLevelAward()
+        {
+            LCQuery<AwardStorage> query = new LCQuery<AwardStorage>("AwardStorage");
+            query.Limit(40);
+            // query.WhereEndsWith("name", "chuck");
+            ReadOnlyCollection<AwardStorage> list = await query.Find();
+            foreach (AwardStorage item in list)
+            {
+                m_ShowText.text += item.Level + "_" + item.Award + "\n";
+            }
+        }
+
         #endregion
 
-
-        #region 要更新一个对象，只需指定需要更新的属性名和属性值，然后调用 Save 方法
+        #region 要更新一个对象，只需指定需要更新的属性名和属性值，然后调用 Save 方法 需要 唯一标识 ObjectId
 
         ///<summary>
         /// 获取后端的英雄对象 根据 m_ObjectId 获取对应的对象 从而进行更新数据
@@ -92,8 +109,7 @@ namespace GameWish.Game
         }
         #endregion
 
-
-        #region 删除指定对象
+        #region 删除指定对象 需要 唯一标识 ObjectId
 
         ///<summary>
         /// 获取后端的英雄对象 根据 m_ObjectId 获取对应的对象 从而进行更新删除
