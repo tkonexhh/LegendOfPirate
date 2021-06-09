@@ -67,15 +67,43 @@ namespace GameWish.Game
 
             UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuPanel/MainMenuPanel");
 
+            #region 角色相关
             UIDataTable.AddPanelData(UIID.RoleDetailsPanel, null, "GamePanels/RolePanel/RoleDetailsPanel/RoleDetailsPanel");
             UIDataTable.AddPanelData(UIID.RoleEquipDetailsPanel, null, "GamePanels/RolePanel/RoleEquipDetailsPanel/RoleEquipDetailsPanel");
             UIDataTable.AddPanelData(UIID.EvolutionSolePanel, null, "GamePanels/RolePanel/EvolutionSolePanel/EvolutionSolePanel");
             UIDataTable.AddPanelData(UIID.RoleSkillPanel, null, "GamePanels/RolePanel/RoleSkillPanel/RoleSkillPanel");
             UIDataTable.AddPanelData(UIID.RoleStoryPanel, null, "GamePanels/RolePanel/RoleStoryPanel/RoleStoryPanel"); ;
-
+            #endregion
             UIDataTable.AddPanelData(UIID.TestPanel, null, "GamePanels/TestPanel/TestPanel");
 
             UIDataTable.AddPanelData(UIID.FloatMeshMessagePanel, null, "Common/FloatMeshMessagePanel");
+            //Warship Management System
+            #region 训练室
+            UIDataTable.AddPanelData(UIID.TrainingRoomPanel, null, "GamePanels/WarshipManagement/TrainingRoomPanel/TrainingRoomPanel");
+            #endregion
+            #region 图书室
+            UIDataTable.AddPanelData(UIID.LibraryRoomPanel, null, "GamePanels/WarshipManagement/LibraryRoomPanel/LibraryRoomPanel");
+            #endregion
+            #region 炼金室
+            UIDataTable.AddPanelData(UIID.AlchemyRoomPanel, null, "GamePanels/WarshipManagement/AlchemyRoomPanel/AlchemyRoomPanel");
+            #endregion
+            #region 战船系统
+            UIDataTable.AddPanelData(UIID.WarshipUpgradePanel, null, "GamePanels/WarshipManagement/WarshipUpgradePanel/WarshipUpgradePanel");
+            #endregion
+
+
+            //Island Management System
+            UIDataTable.AddPanelData(UIID.CongratulationPanel, null, "GamePanels/LandManagement/CongratulationPanel/CongratulationPanel");
+            UIDataTable.AddPanelData(UIID.LandUpgradePanel, null, "GamePanels/LandManagement/LandUpgradePanel/LandUpgradePanel");
+            #region 随机防御
+            UIDataTable.AddPanelData(UIID.RandomDefensePanel, null, "GamePanels/LandManagement/RandomDefensePanel/RandomDefensePanel");
+            UIDataTable.AddPanelData(UIID.RandomDefenseChooseRolePanel, null, "GamePanels/LandManagement/RandomDefenseChooseRolePanel/RandomDefenseChooseRolePanel");
+            #endregion
+            #region 走私系统
+            UIDataTable.AddPanelData(UIID.SmugglePanel, null, "GamePanels/LandManagement/SmugglePanel/SmugglePanel");
+            UIDataTable.AddPanelData(UIID.SmuggleChooseRolePanel, null, "GamePanels/LandManagement/SmuggleChooseRolePanel/SmuggleChooseRolePanel");
+            #endregion
+
         }
     }
 }

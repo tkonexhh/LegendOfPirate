@@ -1,11 +1,13 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
+using GFrame.Editor;
 
 namespace GameWish.Game
 {
+	// Auto Generated Code. Don't Modify This Class 
 	public partial class TestPanel
 	{
 		public const string Name = "TestPanel";
@@ -14,7 +16,6 @@ namespace GameWish.Game
 		public UnityEngine.UI.Text Txt_;
 		[SerializeField]
 		public UnityEngine.UI.Button Btn_;
-		
 		
 	}
 }

@@ -19,14 +19,20 @@ MonoBehaviour:
       - ~Element Name~
       - AdDynamicShowPanel
       - AdStaticShowPanel
+      - AlchemyRoomPanel
       - BoostPanel
+      - CongratulationPanel
       - EffectActivePanel
       - EvolutionSolePanel
+      - LandUpgradePanel
+      - LibraryRoomPanel
       - MagicCloudPanel
       - MainMenuPanel
       - OccupyOverPanel
       - OfflinePanel
       - OfflineRewardPanel
+      - RandomDefenseChooseRolePanel
+      - RandomDefensePanel
       - RatePanel
       - RoleDetailsPanel
       - RoleEquipDetailsPanel
@@ -34,10 +40,14 @@ MonoBehaviour:
       - RoleStoryPanel
       - SettingPanel
       - ShopPanel
+      - SmuggleChooseRolePanel
+      - SmugglePanel
       - TaskPanel
+      - TrainingRoomPanel
       - UnlockEnemyPanel
       - UnlockSoldierPanel
       - UnlockWeaponPanel
+      - WarshipUpgradePanel
       isExpanded:
         m_Target: 1
         speed: 2

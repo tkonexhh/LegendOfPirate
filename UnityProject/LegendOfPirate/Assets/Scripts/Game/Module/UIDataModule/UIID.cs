@@ -32,5 +32,27 @@ namespace GameWish.Game
 
         FloatMeshMessagePanel,
 
+        #region 训练室
+        TrainingRoomPanel,
+        #endregion
+        #region 图书室
+        LibraryRoomPanel,
+        #endregion
+        #region 炼金室
+        AlchemyRoomPanel,
+        #endregion
+        #region 战船系统
+        WarshipUpgradePanel,
+        #endregion
+        #region 随机防御
+        RandomDefensePanel,
+        RandomDefenseChooseRolePanel,
+        #endregion
+        #region 走私系统
+        SmugglePanel,
+        SmuggleChooseRolePanel,
+        #endregion
+        CongratulationPanel,
+        LandUpgradePanel,
     }
 }

@@ -24,16 +24,7 @@ namespace GameWish.Game
 
 			UIMgr.S.OpenPanel(UIID.WorldUIPanel);
 
-			RoleDetailsBtn.OnClickAsObservable().Subscribe(_=> {
-                //Transform tran = GameObject.FindGameObjectWithTag("Finish").transform;
-                //FloatMeshMessage.S.ShowMsg("##", tran);
-                //WorldUIPanel.S.ShowCriticalInjuryText(tran, "+1",true);
-
-                //UIMgr.S.OpenPanel(UIID.RoleEquipDetailsPanel);
-                //UIMgr.S.OpenPanel(UIID.EvolutionSolePanel);
-                //UIMgr.S.OpenPanel(UIID.RoleSkillPanel);
-                //UIMgr.S.OpenPanel(UIID.RoleStoryPanel);
-            });
+			
 		}
 		
 		protected override void OnPanelHideComplete()

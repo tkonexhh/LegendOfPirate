@@ -49,6 +49,8 @@ namespace GameWish.Game
         private RuntimeMemoryInformationWindow<TextAsset> m_RuntimeMemoryTextAssetInformationWindow = new RuntimeMemoryInformationWindow<TextAsset>();
         private RuntimeMemoryInformationWindow<ScriptableObject> m_RuntimeMemoryScriptableObjectInformationWindow = new RuntimeMemoryInformationWindow<ScriptableObject>();
 
+        private GMWindow m_GMWindow = new GMWindow();
+
         public DebuggerMgr()
         {
             m_DebuggerWindowRoot = new DebuggerWindowGroup();
@@ -68,7 +70,7 @@ namespace GameWish.Game
             RegisterDebuggerWindow("Profiler/Memory/Font", m_RuntimeMemoryFontInformationWindow);
             RegisterDebuggerWindow("Profiler/Memory/TextAsset", m_RuntimeMemoryTextAssetInformationWindow);
             RegisterDebuggerWindow("Profiler/Memory/ScriptableObject", m_RuntimeMemoryScriptableObjectInformationWindow);
-
+            RegisterDebuggerWindow("GM", m_GMWindow);
         }
 
         #region IMgr

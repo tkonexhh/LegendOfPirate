@@ -14,18 +14,20 @@ namespace GameWish.Game
         [LabelText("组件配置列表")]
         public Dictionary<ShipUnitType, ShipUnitConfig> unitConfigDic = new Dictionary<ShipUnitType, ShipUnitConfig>();
 
+        private  static ResLoader s_ResLoader;
+
         #region 初始化过程
         private static ShipConfig s_Instance;
 
         private static ShipConfig LoadInstance()
         {
-            ResLoader loader = ResLoader.Allocate("ShipConfig", null);
+            s_ResLoader = ResLoader.Allocate("ShipConfig", null);
 
-            UnityEngine.Object obj = loader.LoadSync("ShipConfig");
+            UnityEngine.Object obj = s_ResLoader.LoadSync("ShipConfig");
             if (obj == null)
             {
                 Log.e("Not Find Ship Config, Will Use Default Ship Config.");
-                loader.ReleaseAllRes();
+                s_ResLoader.ReleaseAllRes();
 
                 return null;
             }
@@ -33,12 +35,6 @@ namespace GameWish.Game
             Log.i("Success Load Ship Config.");
 
             s_Instance = obj as ShipConfig;
-
-            ShipConfig newAB = GameObject.Instantiate(s_Instance);
-
-            s_Instance = newAB;
-
-            loader.Recycle2Cache();
 
             return s_Instance;
         }
@@ -58,6 +54,14 @@ namespace GameWish.Game
             }
         }
 
+        public static void Release()
+        {
+            s_Instance = null;
+
+            s_ResLoader.Recycle2Cache();
+            s_ResLoader = null;
+        }
+
         public ShipUnitConfig GetUnitConfig(ShipUnitType shipUnitType)
         {
             if (unitConfigDic.ContainsKey(shipUnitType))
@@ -73,11 +77,13 @@ namespace GameWish.Game
 
     public class ShipUnitConfig
     {
-        [LabelText("组件类型")]
-        public ShipUnitType shipUnitType;
+        //[LabelText("组件类型")]
+        //public ShipUnitType shipUnitType;
         [LabelText("组件资源名")]
         public string prefabName;
         [LabelText("组件位置")]
         public Vector3 pos;
+        [LabelText("组件Body资源名")]
+        public string bodyPrefabName;
     }
 }
