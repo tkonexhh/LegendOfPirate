@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
@@ -16,8 +16,6 @@ namespace GameWish.Game
 		public UnityEngine.UI.Text Txt_;
 		[SerializeField]
 		public UnityEngine.UI.Button Btn_;
-		[SerializeField]
-		public Img_ Img_;
 		
 		
 	}
