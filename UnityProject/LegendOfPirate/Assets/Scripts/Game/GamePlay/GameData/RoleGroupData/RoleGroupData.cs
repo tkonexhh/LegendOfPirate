@@ -12,14 +12,10 @@ namespace GameWish.Game
 
         #region IDataClass
 
-        public void SetDefaultValue()
-        {
-            SetDataDirty();
-        }
-
         public override void InitWithEmptyData()
         {
-
+            //For Test
+            roleList.Add(new RoleData(1, "Test"));
         }
 
         public override void OnDataLoadFinish()

@@ -22,10 +22,13 @@ namespace GameWish.Game
 
         public const string GAME_LAYER = "Game";
 
-        public const string SEA = "CartoonSea";
-        public const string SHIP = "Ship";
+        // Prefab Name
+        public const string SEA_PREFAB = "CartoonSea";
+        public const string SHIP_PREFAB = "Ship";
+        public const string ROLE_PREFAB = "Role";
 
         public const int INPUT_SORTING_ORDER_DEFAULT = 0;
-        public const int INPUT_SORTING_ORDER_SHIP_UNIT = 1;
+        public const int INPUT_SORTING_ORDER_SHIP_UNIT = 5;
+        public const int INPUT_SORTING_ORDER_SHIP_ROLE = 10;
     }
 }

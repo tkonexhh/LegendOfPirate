@@ -7,14 +7,13 @@ using UnityEngine;
 namespace GameWish.Game
 {
     [AssetAutoPreload]
-	public class ShipAssetPreloader : AssetPreloader
+	public class RoleAssetPreloader : AssetPreloader
 	{
         protected override void SetNeedPreloadAssets()
         {
             m_NeedPreloadAssets = new string[]
             {
-                Define.SEA_PREFAB,
-                Define.SHIP_PREFAB
+                Define.ROLE_PREFAB,
             };
         }
 
@@ -23,7 +22,7 @@ namespace GameWish.Game
             if (result)
             {
                 GameObject go = res.asset as GameObject;
-                GameObjectPoolMgr.S.AddPool(res.name, go, 1, 1);
+                GameObjectPoolMgr.S.AddPool(res.name, go, 50, 10);
             }
             else
             {

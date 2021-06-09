@@ -16,20 +16,20 @@ namespace GameWish.Game
 
         }
 
-        public override void OnUpdate() { }
-        public override void OnDestroyed() { }
+        //public override void OnUpdate() { }
+        //public override void OnDestroyed() { }
 
-        public override void OnCacheReset()
-        {
-            base.OnCacheReset();
-        }
+        //public override void OnCacheReset()
+        //{
+        //    base.OnCacheReset();
+        //}
 
-        public override void Recycle2Cache()
-        {
-            base.Recycle2Cache();
-            //ObjectPool<RoleController>.S.Recycle(this);
-            RoleControllerFactory.S.RecycleController(this);
-        }
+        //public override void Recycle2Cache()
+        //{
+        //    base.Recycle2Cache();
+        //    //ObjectPool<RoleController>.S.Recycle(this);
+        //    ShipRoleControllerFactory.S.RecycleController(this);
+        //}
 
         #endregion
 
