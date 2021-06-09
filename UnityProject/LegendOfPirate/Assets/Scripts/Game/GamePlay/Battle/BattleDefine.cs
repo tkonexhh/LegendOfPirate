@@ -14,6 +14,9 @@ namespace GameWish.Game
         public const string ROLEANIM_SKILL01 = "skill001";
         public const string ROLEANIM_SKILL02 = "skill002";
         public const string ROLEANIM_VICTORY = "victory";
+
+        public const int BATTLE_WIDTH = 6;
+        public const int BATTLE_HEIGHT = 4;
     }
 
     /// <summary>

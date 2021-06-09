@@ -9,6 +9,8 @@ namespace GameWish.Game
     [CreateAssetMenu(menuName = "Game/BuffConfigSO", fileName = "new_BuffConfigSO")]
     public class BuffConfigSO : SerializedScriptableObject
     {
+        private const string Group_Name_Effect = "效果";
+
         [LabelText("BuffID")]
         public int ID = 0;
         [LabelText("Buff名称")]
@@ -57,10 +59,10 @@ namespace GameWish.Game
         //===
 
 
-        [Space(50)]
+        [BoxGroup(Group_Name_Effect)]
         [LabelText("状态特效")]
         public GameObject ParticleEffect;
-
+        [BoxGroup(Group_Name_Effect)]
         [LabelText("状态音效")]
         public AudioClip Audio;
 
