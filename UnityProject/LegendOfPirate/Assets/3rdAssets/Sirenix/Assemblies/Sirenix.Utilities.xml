@@ -1443,6 +1443,11 @@
             <param name="candidateType">Type of the candidate.</param>
             <param name="openGenericInterfaceType">Type of the open generic interface.</param>
         </member>
+        <member name="M:Sirenix.Utilities.TypeExtensions.GetOperatorMethod(System.Type,Sirenix.Utilities.Operator,System.Type,System.Type)">
+            <summary>
+            Gets the MethodInfo of a specific operator kind, with the given left and right operands. This overload is *far* faster than any of the other GetOperatorMethod implementations, and should be used whenever possible.
+            </summary>
+        </member>
         <member name="M:Sirenix.Utilities.TypeExtensions.GetOperatorMethod(System.Type,Sirenix.Utilities.Operator)">
             <summary>
             Gets the MethodInfo of a specific operator type.
@@ -1602,7 +1607,7 @@
             </exception>
         </member>
         <member name="M:Sirenix.Utilities.TypeExtensions.TryInferGenericParameters(System.Type,System.Type[]@,System.Type[])">
-            <summary>
+            <summary>//
             Tries to infer a set of valid generic parameters for a generic type definition, given a subset of known parameters.
             </summary>
             <param name="genericTypeDefinition">The generic type definition to attempt to infer parameters for.</param>
@@ -1751,72 +1756,6 @@
         <member name="M:Sirenix.Utilities.Editor.AssetScriptGuidUtility.TryUpdateAssetScriptGuid(System.String,System.Type)">
             <summary>
             Tries to update the Guid of a specified asset with the Guid from a specified script type.
-            </summary>
-        </member>
-        <member name="T:Sirenix.Utilities.Cache`1">
-            <summary>
-            Provides an easy way of claiming and freeing cached values of any non-abstract reference type with a public parameterless constructor.
-            <para />
-            Cached types which implement the <see cref="T:Sirenix.Utilities.ICacheNotificationReceiver"/> interface will receive notifications when they are claimed and freed.
-            <para />
-            Only one thread should be holding a given cache instance at a time if <see cref="T:Sirenix.Utilities.ICacheNotificationReceiver"/> is implemented, since the invocation of 
-            <see cref="M:Sirenix.Utilities.ICacheNotificationReceiver.OnFreed"/> is not thread safe, IE, weird stuff might happen if multiple different threads are trying to free
-            the same cache instance at the same time. This will practically never happen unless you're doing really strange stuff, but the case is documented here.
-            </summary>
-            <typeparam name="T">The type which is cached.</typeparam>
-            <seealso cref="T:System.IDisposable" />
-        </member>
-        <member name="P:Sirenix.Utilities.Cache`1.MaxCacheSize">
-            <summary>
-            Gets or sets the maximum size of the cache. This value can never go beneath 1.
-            </summary>
-            <value>
-            The maximum size of the cache.
-            </value>
-        </member>
-        <member name="F:Sirenix.Utilities.Cache`1.Value">
-            <summary>
-            The cached value.
-            </summary>
-        </member>
-        <member name="P:Sirenix.Utilities.Cache`1.IsFree">
-            <summary>
-            Gets a value indicating whether this cached value is free.
-            </summary>
-            <value>
-              <c>true</c> if this cached value is free; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="M:Sirenix.Utilities.Cache`1.Claim">
-            <summary>
-            Claims a cached value of type <see cref="!:T"/>.
-            </summary>
-            <returns>A cached value of type <see cref="!:T"/>.</returns>
-        </member>
-        <member name="M:Sirenix.Utilities.Cache`1.Release(Sirenix.Utilities.Cache{`0})">
-            <summary>
-            Releases a cached value.
-            </summary>
-            <param name="cache">The cached value to release.</param>
-            <exception cref="T:System.ArgumentNullException">The cached value to release is null.</exception>
-        </member>
-        <member name="M:Sirenix.Utilities.Cache`1.op_Implicit(Sirenix.Utilities.Cache{`0})~`0">
-            <summary>
-            Performs an implicit conversion from <see cref="T:Sirenix.Utilities.Cache`1"/> to <see cref="!:T"/>.
-            </summary>
-            <param name="cache">The cache to convert.</param>
-            <returns>
-            The result of the conversion.
-            </returns>
-        </member>
-        <member name="M:Sirenix.Utilities.Cache`1.Release">
-            <summary>
-            Releases this cached value.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.Cache`1.System#IDisposable#Dispose">
-            <summary>
-            Releases this cached value.
             </summary>
         </member>
         <member name="T:Sirenix.Utilities.DeepReflection">
@@ -2475,21 +2414,6 @@
             Option passed to a control to allow or disallow horizontal expansion.
             </summary>
         </member>
-        <member name="T:Sirenix.Utilities.ICacheNotificationReceiver">
-            <summary>
-            Provides notification callbacks for values that are cached using the <see cref="T:Sirenix.Utilities.Cache`1"/> class.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.ICacheNotificationReceiver.OnFreed">
-            <summary>
-            Called when the cached value is freed.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.ICacheNotificationReceiver.OnClaimed">
-            <summary>
-            Called when the cached value is claimed.
-            </summary>
-        </member>
         <member name="T:Sirenix.Utilities.ImmutableHashSet`1">
             <summary>
             Immutable hashset wraps another hashset, and allows for reading the inner hashset, without the ability to change it.
@@ -2758,131 +2682,6 @@
             <param name="list">The list.</param>
             <param name="length">The new length.</param>
             <param name="newElement">Value of new elements.</param>
-        </member>
-        <member name="T:Sirenix.Utilities.IndexedDictionary`2">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="P:Sirenix.Utilities.IndexedDictionary`2.Keys">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="P:Sirenix.Utilities.IndexedDictionary`2.Values">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="P:Sirenix.Utilities.IndexedDictionary`2.Count">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="P:Sirenix.Utilities.IndexedDictionary`2.IsReadOnly">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="P:Sirenix.Utilities.IndexedDictionary`2.Item(`0)">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.#ctor">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.#ctor(System.Int32)">
-            <summary>
-            Not yet documented.
-            </summary>
-            <param name="capacity">Not yet documented.</param>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.Get(System.Int32)">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.GetKey(System.Int32)">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.GetValue(System.Int32)">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.IndexOf(`0)">
-            <summary>
-            Not yet documented.
-            </summary>
-            <param name="key"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.Add(`0,`1)">
-            <summary>
-            Not yet documented.
-            </summary>
-            <param name="key"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.Clear">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.Remove(`0)">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.RemoveAt(System.Int32)">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.ContainsKey(`0)">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.TryGetValue(`0,`1@)">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.Add(System.Collections.Generic.KeyValuePair{`0,`1})">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.Contains(System.Collections.Generic.KeyValuePair{`0,`1})">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.Remove(System.Collections.Generic.KeyValuePair{`0,`1})">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.GetEnumerator">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.Utilities.IndexedDictionary`2.System#Collections#IEnumerable#GetEnumerator">
-            <summary>
-            Not yet documented.
-            </summary>
         </member>
         <member name="T:Sirenix.Utilities.MathUtilities">
             <summary>
@@ -3766,6 +3565,11 @@
             <param name="bytes">Not yet documented.</param>
             <param name="decimals">Not yet documented.</param>
             <returns>Not yet documented.</returns>
+        </member>
+        <member name="M:Sirenix.Utilities.StringUtilities.NumberAwareStringCompare(System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Compares two strings in a number-aware manner, IE, "[2] Foo" is considered to come before "[10] Bar".
+            </summary>
         </member>
         <member name="T:Sirenix.Utilities.UnityVersion">
             <summary>

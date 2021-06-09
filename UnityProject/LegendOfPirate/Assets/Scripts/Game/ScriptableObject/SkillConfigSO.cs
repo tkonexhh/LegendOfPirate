@@ -8,6 +8,8 @@ namespace GameWish.Game
     [CreateAssetMenu(menuName = "Game/SkillConfigSO", fileName = "new_SkillConfigSO")]
     public class SkillConfigSO : SerializedScriptableObject
     {
+        private const string Group_Name_Effect = "效果";
+
         [LabelText("技能ID")]
         public int ID = 0;
 
@@ -30,9 +32,10 @@ namespace GameWish.Game
         [PropertyTooltip("CD:主动技能CD 被动技能间隔CD")]
         public float CD;
 
-        [Space(40)]
+        [BoxGroup(Group_Name_Effect)]
         [LabelText("技能执行")]
         public GameObject SkillEffect;
+        [BoxGroup(Group_Name_Effect)]
         [LabelText("技能音效")]
         public AudioClip SkillAudio;
 
