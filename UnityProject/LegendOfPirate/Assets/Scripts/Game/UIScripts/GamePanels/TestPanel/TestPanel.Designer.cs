@@ -16,8 +16,8 @@ namespace GameWish.Game
 		public UnityEngine.UI.Text Txt_;
 		[SerializeField]
 		public UnityEngine.UI.Button Btn_;
-		[SerializeField]
-		public Img_ Img_;
+		//[SerializeField]
+		//public Img_ Img_;
 		
 		
 	}
