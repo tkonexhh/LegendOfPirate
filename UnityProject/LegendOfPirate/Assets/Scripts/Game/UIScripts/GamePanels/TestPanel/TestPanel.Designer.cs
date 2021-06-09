@@ -16,6 +16,11 @@ namespace GameWish.Game
 		public UnityEngine.UI.Text Txt_;
 		[SerializeField]
 		public UnityEngine.UI.Button Btn_;
+<<<<<<< HEAD
+=======
+		//[SerializeField]
+		//public Img_ Img_;
+>>>>>>> origin/Zyj
 		
 		
 	}
