@@ -8,50 +8,38 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDEquipmentConfig
+    public partial class TDFacilityWarship
     {
         
        
         private EInt m_EquipmentId = 0;   
-        private EInt m_StarLevel = 0;   
-        private EInt m_NextEquipment = 0;   
-        private string m_RoleName;   
-        private string m_EquipmentType;   
-        private string m_ParamType;   
+        private string m_Name;   
+        private string m_ModelResources;   
+        private EInt m_UnlockAccountLevel = 0;   
         private string m_StrengthenCost;   
-        private string m_ParamValue;  
+        private string m_AttributeValues;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
         /// <summary>
-        /// 装备ID
+        /// 战船ID
         /// </summary>
         public  int  equipmentId {get { return m_EquipmentId; } }
        
         /// <summary>
-        /// 星级
+        /// 战船名称
         /// </summary>
-        public  int  starLevel {get { return m_StarLevel; } }
+        public  string  name {get { return m_Name; } }
        
         /// <summary>
-        /// 下一星级装备
+        /// 模型资源
         /// </summary>
-        public  int  nextEquipment {get { return m_NextEquipment; } }
+        public  string  modelResources {get { return m_ModelResources; } }
        
         /// <summary>
-        /// 装备名字
+        /// 解锁等级条件
         /// </summary>
-        public  string  roleName {get { return m_RoleName; } }
-       
-        /// <summary>
-        /// 装备类型
-        /// </summary>
-        public  string  equipmentType {get { return m_EquipmentType; } }
-       
-        /// <summary>
-        /// 装备属性类型
-        /// </summary>
-        public  string  paramType {get { return m_ParamType; } }
+        public  int  unlockAccountLevel {get { return m_UnlockAccountLevel; } }
        
         /// <summary>
         /// 强化消耗
@@ -61,7 +49,7 @@ namespace GameWish.Game
         /// <summary>
         /// 属性数值
         /// </summary>
-        public  string  paramValue {get { return m_ParamValue; } }
+        public  string  attributeValues {get { return m_AttributeValues; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -82,25 +70,19 @@ namespace GameWish.Game
                     m_EquipmentId = dataR.ReadInt();
                     break;
                 case 1:
-                    m_StarLevel = dataR.ReadInt();
+                    m_Name = dataR.ReadString();
                     break;
                 case 2:
-                    m_NextEquipment = dataR.ReadInt();
+                    m_ModelResources = dataR.ReadString();
                     break;
                 case 3:
-                    m_RoleName = dataR.ReadString();
+                    m_UnlockAccountLevel = dataR.ReadInt();
                     break;
                 case 4:
-                    m_EquipmentType = dataR.ReadString();
-                    break;
-                case 5:
-                    m_ParamType = dataR.ReadString();
-                    break;
-                case 6:
                     m_StrengthenCost = dataR.ReadString();
                     break;
-                case 7:
-                    m_ParamValue = dataR.ReadString();
+                case 5:
+                    m_AttributeValues = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -112,16 +94,14 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(8);
+          Dictionary<string, int> ret = new Dictionary<string, int>(6);
           
           ret.Add("EquipmentId", 0);
-          ret.Add("StarLevel", 1);
-          ret.Add("NextEquipment", 2);
-          ret.Add("RoleName", 3);
-          ret.Add("EquipmentType", 4);
-          ret.Add("ParamType", 5);
-          ret.Add("StrengthenCost", 6);
-          ret.Add("ParamValue", 7);
+          ret.Add("Name", 1);
+          ret.Add("ModelResources", 2);
+          ret.Add("UnlockAccountLevel", 3);
+          ret.Add("StrengthenCost", 4);
+          ret.Add("AttributeValues", 5);
           return ret;
         }
     } 

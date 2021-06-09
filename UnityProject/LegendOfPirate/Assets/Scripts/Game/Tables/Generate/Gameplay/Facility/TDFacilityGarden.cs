@@ -8,60 +8,60 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDEquipmentConfig
+    public partial class TDFacilityGarden
     {
         
        
-        private EInt m_EquipmentId = 0;   
-        private EInt m_StarLevel = 0;   
-        private EInt m_NextEquipment = 0;   
-        private string m_RoleName;   
-        private string m_EquipmentType;   
-        private string m_ParamType;   
-        private string m_StrengthenCost;   
-        private string m_ParamValue;  
+        private EInt m_Level = 0;   
+        private string m_UpgradeRes;   
+        private EInt m_UpgradeCost = 0;   
+        private EInt m_UpgradePreconditions = 0;   
+        private EInt m_UpgradeSpeed = 0;   
+        private string m_SeedUnlock;   
+        private string m_ModelResources;   
+        private EInt m_PlantingSpeed = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
         /// <summary>
-        /// 装备ID
+        /// ID
         /// </summary>
-        public  int  equipmentId {get { return m_EquipmentId; } }
+        public  int  level {get { return m_Level; } }
        
         /// <summary>
-        /// 星级
+        /// 升级资源
         /// </summary>
-        public  int  starLevel {get { return m_StarLevel; } }
+        public  string  upgradeRes {get { return m_UpgradeRes; } }
        
         /// <summary>
-        /// 下一星级装备
+        /// 升级花费
         /// </summary>
-        public  int  nextEquipment {get { return m_NextEquipment; } }
+        public  int  upgradeCost {get { return m_UpgradeCost; } }
        
         /// <summary>
-        /// 装备名字
+        /// 升级条件
         /// </summary>
-        public  string  roleName {get { return m_RoleName; } }
+        public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
        
         /// <summary>
-        /// 装备类型
+        /// 升级时间
         /// </summary>
-        public  string  equipmentType {get { return m_EquipmentType; } }
+        public  int  upgradeSpeed {get { return m_UpgradeSpeed; } }
        
         /// <summary>
-        /// 装备属性类型
+        /// 解锁种子
         /// </summary>
-        public  string  paramType {get { return m_ParamType; } }
+        public  string  seedUnlock {get { return m_SeedUnlock; } }
        
         /// <summary>
-        /// 强化消耗
+        /// 模型资源
         /// </summary>
-        public  string  strengthenCost {get { return m_StrengthenCost; } }
+        public  string  modelResources {get { return m_ModelResources; } }
        
         /// <summary>
-        /// 属性数值
+        /// 种植时间
         /// </summary>
-        public  string  paramValue {get { return m_ParamValue; } }
+        public  int  plantingSpeed {get { return m_PlantingSpeed; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -79,28 +79,28 @@ namespace GameWish.Game
             { 
             
                 case 0:
-                    m_EquipmentId = dataR.ReadInt();
+                    m_Level = dataR.ReadInt();
                     break;
                 case 1:
-                    m_StarLevel = dataR.ReadInt();
+                    m_UpgradeRes = dataR.ReadString();
                     break;
                 case 2:
-                    m_NextEquipment = dataR.ReadInt();
+                    m_UpgradeCost = dataR.ReadInt();
                     break;
                 case 3:
-                    m_RoleName = dataR.ReadString();
+                    m_UpgradePreconditions = dataR.ReadInt();
                     break;
                 case 4:
-                    m_EquipmentType = dataR.ReadString();
+                    m_UpgradeSpeed = dataR.ReadInt();
                     break;
                 case 5:
-                    m_ParamType = dataR.ReadString();
+                    m_SeedUnlock = dataR.ReadString();
                     break;
                 case 6:
-                    m_StrengthenCost = dataR.ReadString();
+                    m_ModelResources = dataR.ReadString();
                     break;
                 case 7:
-                    m_ParamValue = dataR.ReadString();
+                    m_PlantingSpeed = dataR.ReadInt();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -114,14 +114,14 @@ namespace GameWish.Game
         {
           Dictionary<string, int> ret = new Dictionary<string, int>(8);
           
-          ret.Add("EquipmentId", 0);
-          ret.Add("StarLevel", 1);
-          ret.Add("NextEquipment", 2);
-          ret.Add("RoleName", 3);
-          ret.Add("EquipmentType", 4);
-          ret.Add("ParamType", 5);
-          ret.Add("StrengthenCost", 6);
-          ret.Add("ParamValue", 7);
+          ret.Add("Level", 0);
+          ret.Add("UpgradeRes", 1);
+          ret.Add("UpgradeCost", 2);
+          ret.Add("UpgradePreconditions", 3);
+          ret.Add("UpgradeSpeed", 4);
+          ret.Add("SeedUnlock", 5);
+          ret.Add("ModelResources", 6);
+          ret.Add("PlantingSpeed", 7);
           return ret;
         }
     } 
