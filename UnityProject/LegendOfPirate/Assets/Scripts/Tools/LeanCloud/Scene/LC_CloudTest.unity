@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 902593646}
   - component: {fileID: 902593647}
   m_Layer: 0
-  m_Name: Root
+  m_Name: CloudRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
