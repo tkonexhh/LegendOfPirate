@@ -16,7 +16,7 @@ namespace GameWish.Game
         /// 云函数请求获取表的数据 Run方式 返回常规数据类型 int string 等
         /// </summary>
         /// <param name="cloudFunc">云函数名称</param>
-        /// <param name="contentKey">" { "className", "Hello" },{ "key", object }..."</param>
+        // /// <param name="contentKey">" { "className", "Hello" },{ "key", object }..."</param>
         public async Task<T> RunRequest<T>(string cloudFunc, Dictionary<string, object> contentKey = null) where T : struct
         {
             try
