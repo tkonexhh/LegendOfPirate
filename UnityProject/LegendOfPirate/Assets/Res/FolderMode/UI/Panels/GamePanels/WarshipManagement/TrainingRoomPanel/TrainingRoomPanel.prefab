@@ -742,7 +742,6 @@ GameObject:
   - component: {fileID: 7709447323965246566}
   - component: {fileID: 6966300995494332251}
   - component: {fileID: 3149144222536172304}
-  - component: {fileID: 5844953788433292182}
   m_Layer: 0
   m_Name: TrainBtnTMP
   m_TagString: Untagged
@@ -866,22 +865,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5844953788433292182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737262664210508444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!1 &2017991543724008702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,8 +1043,10 @@ GameObject:
   - component: {fileID: 4601852484112687940}
   - component: {fileID: 2745670669693858358}
   - component: {fileID: 2181551898610122347}
+  - component: {fileID: 3967908146598473902}
+  - component: {fileID: 5583235004064041611}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: MiddleUGridListView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1156,6 +1141,43 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3967908146598473902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109857830884538147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5199d92bbd527ef489d44e93bba3f89a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 6462610768351220809}
+  layout: 0
+  padding: {x: 0, y: 0}
+  spacing: {x: 0, y: 0}
+  needMask: 0
+  content: {fileID: 7556378392382210392}
+  viewPort: {fileID: 6117518663154676817}
+  m_MaxRow: 0
+  m_MaxCol: 0
+--- !u!114 &5583235004064041611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109857830884538147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &2193906406611852557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,8 +1296,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2394858872692421745}
   m_HandleRect: {fileID: 7195620359761444604}
   m_Direction: 0
-  m_Value: 1.0000142
-  m_Size: 0.9561386
+  m_Value: 1.0000025
+  m_Size: 0.7746698
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1291,7 +1313,6 @@ GameObject:
   - component: {fileID: 5541630213193116244}
   - component: {fileID: 3558882142428488270}
   - component: {fileID: 1936927555189334107}
-  - component: {fileID: 7468979870940708247}
   m_Layer: 0
   m_Name: AutoTrainBtnTMP
   m_TagString: Untagged
@@ -1415,22 +1436,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7468979870940708247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2512940711608846481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!1 &2704594542343738651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,11 +1508,11 @@ RectTransform:
   m_Father: {fileID: 6117518663154676817}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
-  m_SizeDelta: {x: 532, y: 549.1}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &36888845058920456
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1582,8 +1587,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 0
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!114 &3853403978845630242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2233,8 +2238,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7722322784267852811}
   m_HandleRect: {fileID: 6344143962522097561}
   m_Direction: 2
-  m_Value: -3.8329754
-  m_Size: 0.857173
+  m_Value: -4219.77
+  m_Size: 0.8571291
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2599,8 +2604,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1555379852675476282}
   m_HandleRect: {fileID: 55347477843870896}
   m_Direction: 0
-  m_Value: 0.4999982
-  m_Size: 0.9680451
+  m_Value: 0.5
+  m_Size: 0.9644195
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2781,7 +2786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.256, y: 0.63867176}
   m_AnchorMax: {x: 0.81011254, y: 0.8925314}
-  m_AnchoredPosition: {x: -22.29365, y: 46.56253}
+  m_AnchoredPosition: {x: -22.293453, y: 71743.25}
   m_SizeDelta: {x: 195.95914, y: 93.12508}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &953592356269464347
@@ -3580,6 +3585,11 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
+  MiddleTrainingRole: {fileID: 2260991087394611744, guid: 172bdc5961163d744ba7c506272546b7,
+    type: 3}
+  BottomTrainingRole: {fileID: 9210596526150195611, guid: ce4a1c56cdf3b404093aeb2802752add,
+    type: 3}
+  m_MiddleTrainingRoleUGridList: {fileID: 3967908146598473902}
   Bg: {fileID: 229258740851149090}
   TitleBg: {fileID: 4345214937124685109}
   TitleIcon: {fileID: 8763189335784135290}
@@ -3587,6 +3597,7 @@ MonoBehaviour:
   TrainingLevelTMP: {fileID: 1222264747794609341}
   TrainingUpgradeBtn: {fileID: 3563372089484757010}
   TrainingUpgradeBtnTMP: {fileID: 6987211962791376732}
+  MiddleUGridListView: {fileID: 2181551898610122347}
   MiddleTrainingRoleTra: {fileID: 865230367213769078}
   BottomRegionBg: {fileID: 8543107674581887091}
   LeftArrowBtn: {fileID: 3523745070731068530}
@@ -3595,9 +3606,7 @@ MonoBehaviour:
   RoleSelectNumberIcon: {fileID: 7167461537664871557}
   RoleSelectNumberTMP: {fileID: 3121451920920336563}
   TrainBtn: {fileID: 3692846969806881561}
-  TrainBtnTMP: {fileID: 3149144222536172304}
   AutoTrainBtn: {fileID: 4420634708857283113}
-  AutoTrainBtnTMP: {fileID: 1936927555189334107}
 --- !u!1 &7561815362281361095
 GameObject:
   m_ObjectHideFlags: 0
@@ -3937,8 +3946,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5298877761251555607}
   m_HandleRect: {fileID: 5951402956041261914}
   m_Direction: 2
-  m_Value: 0.5000018
-  m_Size: 0.96904016
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4248,7 +4257,7 @@ PrefabInstance:
     - target: {fileID: 420962207970017165, guid: 172bdc5961163d744ba7c506272546b7,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 420962207970017165, guid: 172bdc5961163d744ba7c506272546b7,
         type: 3}
@@ -4355,6 +4364,12 @@ PrefabInstance:
 --- !u!224 &4834869076639615460 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 420962207970017165, guid: 172bdc5961163d744ba7c506272546b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 5102412535387829865}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6462610768351220809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2260991087394611744, guid: 172bdc5961163d744ba7c506272546b7,
     type: 3}
   m_PrefabInstance: {fileID: 5102412535387829865}
   m_PrefabAsset: {fileID: 0}

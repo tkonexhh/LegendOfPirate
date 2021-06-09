@@ -3,11 +3,20 @@ using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
 using UniRx;
+using System;
 
 namespace GameWish.Game
 {
 	public partial class TrainingRoomPanel : AbstractAnimPanel
 	{
+		#region Item
+		[Header("Item")]
+		public GameObject MiddleTrainingRole;
+		[SerializeField]
+		public GameObject BottomTrainingRole;
+		#endregion
+		[SerializeField]
+		private UGridListView m_MiddleTrainingRoleUGridList;
 		protected override void OnUIInit()
 		{
 			base.OnUIInit();
@@ -16,13 +25,17 @@ namespace GameWish.Game
 		protected override void OnPanelOpen(params object[] args)
 		{
 			base.OnPanelOpen(args);
-			
+			RegisterEvents();
+
 			AllocatePanelData(args);
 			
 			BindModelToUI();
 			BindUIToModel();
+			OnClickAddListener();
+
+			InitData();
 		}
-		
+
 		protected override void OnPanelHideComplete()
 		{
 			base.OnPanelHideComplete();
@@ -35,7 +48,35 @@ namespace GameWish.Game
 			base.OnClose();
 			
 			ReleasePanelData();
+			UnregisterEvents();
 		}
-		
+
+		private void InitData()
+		{
+			InitFixedText();
+
+			//TitleIcon.sprite = SpriteHandler.S.GetSprite(AtlasDefine.TestAtlas, iconName);
+
+			m_MiddleTrainingRoleUGridList.SetCellRenderer(OnCellRenderer);
+
+			m_MiddleTrainingRoleUGridList.SetDataCount(10);
+		}
+
+        private void OnCellRenderer(Transform root, int index)
+        {
+			root.GetComponent<MiddleTrainingRole>().OnInit(index);
+		}
+
+        private void InitFixedText()
+		{
+
+		}
+
+		public void CreateMiddleTrainingRole()
+		{
+			//MiddleTrainingRole middleTraining = Instantiate(MiddleTrainingRole, MiddleTrainingRoleTra.transform).GetComponent<MiddleTrainingRole>();
+
+        }
+
 	}
 }

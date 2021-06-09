@@ -27,6 +27,8 @@ namespace GameWish.Game
 		[SerializeField]
 		public TMPro.TextMeshProUGUI TrainingUpgradeBtnTMP;
 		[SerializeField]
+		public UnityEngine.UI.ScrollRect MiddleUGridListView;
+		[SerializeField]
 		public UnityEngine.UI.Image MiddleTrainingRoleTra;
 		[SerializeField]
 		public UnityEngine.UI.Image BottomRegionBg;
@@ -43,11 +45,7 @@ namespace GameWish.Game
 		[SerializeField]
 		public GFrame.Editor.GButton TrainBtn;
 		[SerializeField]
-		public TMPro.TextMeshProUGUI TrainBtnTMP;
-		[SerializeField]
 		public GFrame.Editor.GButton AutoTrainBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI AutoTrainBtnTMP;
 		
 		
 	}

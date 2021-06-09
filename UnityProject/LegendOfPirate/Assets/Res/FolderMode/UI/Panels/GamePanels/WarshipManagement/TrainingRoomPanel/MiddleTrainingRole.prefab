@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 420962207970017165}
   - component: {fileID: 8761032158646183593}
   - component: {fileID: 2217542531992013216}
+  - component: {fileID: 7311832798156342139}
   m_Layer: 0
   m_Name: MiddleTrainingRole
   m_TagString: Untagged
@@ -153,6 +154,18 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
+--- !u!114 &7311832798156342139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2260991087394611744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9641da72ea362049888eadedf839cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6459192279054363629
 GameObject:
   m_ObjectHideFlags: 0
