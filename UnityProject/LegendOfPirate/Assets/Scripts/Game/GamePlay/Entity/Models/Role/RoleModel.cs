@@ -13,6 +13,7 @@ namespace GameWish.Game
         public IntReactiveProperty level;
         public string name;
         public string resName;
+        public bool isUnlcok;
 
         public IntReactiveProperty curHp;
         public FloatReactiveProperty curAtk;
@@ -26,6 +27,7 @@ namespace GameWish.Game
             id = roleData.id;
             level = new IntReactiveProperty(roleData.level);
             name = roleData.name;
+            isUnlcok = false;
 
             curExp = new IntReactiveProperty(roleData.curExp);
             starLevel = new IntReactiveProperty(roleData.starLevel);
