@@ -18,7 +18,8 @@ namespace GameWish.Game
         private string m_RoleName;   
         private string m_EquipmentType;   
         private string m_ParamType;   
-        private string m_StrengthenCost;  
+        private string m_StrengthenCost;   
+        private string m_ParamValue;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -57,6 +58,11 @@ namespace GameWish.Game
         /// </summary>
         public  string  strengthenCost {get { return m_StrengthenCost; } }
        
+        /// <summary>
+        /// 属性数值
+        /// </summary>
+        public  string  paramValue {get { return m_ParamValue; } }
+       
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
         {
@@ -93,6 +99,9 @@ namespace GameWish.Game
                 case 6:
                     m_StrengthenCost = dataR.ReadString();
                     break;
+                case 7:
+                    m_ParamValue = dataR.ReadString();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -103,7 +112,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(7);
+          Dictionary<string, int> ret = new Dictionary<string, int>(8);
           
           ret.Add("EquipmentId", 0);
           ret.Add("StarLevel", 1);
@@ -112,6 +121,7 @@ namespace GameWish.Game
           ret.Add("EquipmentType", 4);
           ret.Add("ParamType", 5);
           ret.Add("StrengthenCost", 6);
+          ret.Add("ParamValue", 7);
           return ret;
         }
     } 

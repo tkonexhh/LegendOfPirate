@@ -32,7 +32,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EngineEventID.OnApplicationFocusChange, OnGameFocusChange);
 
             //Set language
-            //I18Mgr.S.SwitchLanguage(SystemLanguage.German);
+            I18Mgr.S.SwitchLanguage(SystemLanguage.English);
 
             GameMgr.S.StartGuide();
 

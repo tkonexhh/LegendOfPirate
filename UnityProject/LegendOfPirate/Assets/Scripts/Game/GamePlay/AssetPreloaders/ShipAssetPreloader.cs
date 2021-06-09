@@ -13,8 +13,8 @@ namespace GameWish.Game
         {
             m_NeedPreloadAssets = new string[]
             {
-                Define.SEA,
-                Define.SHIP
+                Define.SEA_PREFAB,
+                Define.SHIP_PREFAB
             };
         }
 

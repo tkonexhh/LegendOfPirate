@@ -21,7 +21,7 @@ namespace GameWish.Game
 
         public void Build()
         {
-            GameObject ship = GameObjectPoolMgr.S.Allocate(Define.SHIP);
+            GameObject ship = GameObjectPoolMgr.S.Allocate(Define.SHIP_PREFAB);
             ship.transform.SetParent(GameplayMgr.S.EntityRoot);
 
             SpawnShipBody(ship.transform);
