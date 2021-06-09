@@ -22,12 +22,10 @@ namespace GFrame.Editor
             if (Foldout.extraSettings)
             {
                 EditorGUILayout.Space();
-                // serializedObject.Update();
-                // EditorGUILayout.TextArea("123");
-                // // EditorGUILayout.PropertyField(this.serializedObject.FindProperty("I18Nkey"));
+                EditorGUILayout.PropertyField(this.serializedObject.FindProperty("I18Nkey"));
 
-                // serializedObject.ApplyModifiedProperties();
-                // serializedObject.Update();
+                serializedObject.ApplyModifiedProperties();
+                serializedObject.Update();
             }
         }
     }
