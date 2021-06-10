@@ -97,9 +97,40 @@ namespace GameWish.Game
                 this["balance"] = value;
             }
         }
-        //TODO 其他属性
+        //TODO 其他属性添加 比如 战斗力 经验值 等等
     }
 
+    //TODO 其他对象 怪物 武器
+
+    ///<summary>
+    /// 奖励信息
+    ///</summary>
+    internal class AwardStorage : LCObject
+    {
+        ///<summary>
+        /// 关卡等级
+        ///</summary>
+        internal int Level
+        {
+            get => (int)this["Level"];
+            set
+            {
+                this["Level"] = value;
+            }
+        }
+        ///<summary>
+        /// 关卡奖励
+        ///</summary>
+        internal string Award
+        {
+            get => this["Award"] as string;
+            set
+            {
+                this["Award"] = value;
+            }
+        }
+        internal AwardStorage() : base("AwardStorage") { }
+    }
     ///<summary>
     /// 游戏数据存储 可拓展 每一个对象对应一个表 
     ///</summary>
@@ -118,6 +149,7 @@ namespace GameWish.Game
             LCObject.RegisterSubclass("World", () => new World());
             LCObject.RegisterSubclass("AccountStorage", () => new AccountStorage());
             LCObject.RegisterSubclass("HeroStorage", () => new HeroStorage());
+            LCObject.RegisterSubclass("AwardStorage", () => new AwardStorage());
         }
     }
 }
