@@ -20,6 +20,7 @@ MonoBehaviour:
       - AdDynamicShowPanel
       - AdStaticShowPanel
       - AlchemyRoomPanel
+      - BlackMarketPanel
       - BoostPanel
       - CongratulationPanel
       - EffectActivePanel

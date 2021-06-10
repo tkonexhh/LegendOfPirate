@@ -4,9 +4,23 @@ using Qarth.Extension;
 using Qarth;
 using UniRx;
 using System;
+using System.Linq;
 
 namespace GameWish.Game
 {
+	#region Other Data Class
+	public class BottomTrainingRoleModule
+	{
+		public IntReactiveProperty index;
+		public BoolReactiveProperty isSelected;
+
+		public BottomTrainingRoleModule(int index,bool selected)
+		{
+			this.index = new IntReactiveProperty(index);
+			this.isSelected = new BoolReactiveProperty(selected);
+		}
+	}
+	#endregion
 	public partial class TrainingRoomPanel : AbstractAnimPanel
 	{
 		[SerializeField]
@@ -16,6 +30,7 @@ namespace GameWish.Game
 
 		#region Data
 		private IntReactiveProperty m_SelectedCount = new IntReactiveProperty(0);
+		private ReactiveCollection<BottomTrainingRoleModule> bottomTrainingRoleDatas = new ReactiveCollection<BottomTrainingRoleModule>();
         #endregion
 
         #region AbstractAnimPanel
@@ -28,6 +43,8 @@ namespace GameWish.Game
 		{
 			base.OnPanelOpen(args);
 			RegisterEvents();
+
+			OpenDependPanel(EngineUI.MaskPanel, -1, null);
 
 			AllocatePanelData(args);
 			
@@ -43,6 +60,8 @@ namespace GameWish.Game
 			base.OnPanelHideComplete();
 			
 			CloseSelfPanel();
+
+			CloseDependPanel(EngineUI.MaskPanel);
 		}
 		
 		protected override void OnClose()
@@ -66,6 +85,10 @@ namespace GameWish.Game
 		public void AutoTrainBtnEvent()
 		{
 
+		}	
+		public void BgBtnEvent()
+		{
+			HideSelfWithAnim();
 		}
         #endregion
 
@@ -93,13 +116,22 @@ namespace GameWish.Game
 		}
 		private void OnBottomCellRenderer(Transform root, int index)
 		{
-			Debug.LogError("Index = " + index);
-			root.GetComponent<BottomTrainingRole>().OnInit(index);
+			BottomTrainingRoleModule bottomTrainingRoleData = bottomTrainingRoleDatas.FirstOrDefault(item => item.index.Value == index);
+            if (bottomTrainingRoleData!=null)
+            {
+				root.GetComponent<BottomTrainingRole>().OnInit(bottomTrainingRoleData, m_SelectedCount);
+			}
+            else
+            {
+				BottomTrainingRoleModule newBottomTrainingRoleModule = new BottomTrainingRoleModule(index, false);
+				bottomTrainingRoleDatas.Add(newBottomTrainingRoleModule);
+				root.GetComponent<BottomTrainingRole>().OnInit(newBottomTrainingRoleModule, m_SelectedCount);
+			}
 		}
 
 		private void OnMiddleCellRenderer(Transform root, int index)
         {
-			Debug.LogError("Index = " + index);
+
 			root.GetComponent<MiddleTrainingRole>().OnInit(index);
 		}
 
