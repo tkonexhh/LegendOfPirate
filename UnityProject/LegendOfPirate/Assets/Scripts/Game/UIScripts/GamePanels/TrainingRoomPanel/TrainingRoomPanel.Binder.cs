@@ -49,7 +49,7 @@ namespace GameWish.Game
             m_PanelData.trainingRoomModel
                 .level
                 .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.Fixed_Title_Lv) + level.ToString())
-                .SubscribeToTextMeshPro(TrainingLevelTMP);
+                .SubscribeToTextMeshPro(TrainingLevelTMP).AddTo(this);
         }
 
         private void BindUIToModel()
@@ -74,6 +74,10 @@ namespace GameWish.Game
             AutoTrainBtn.OnClickAsObservable().Subscribe(_ =>
             {
                 AutoTrainBtnEvent();
+            });
+            BgBtn.OnClickAsObservable().Subscribe(_ =>
+            {
+                BgBtnEvent();
             });
         }
         private void UnregisterEvents()

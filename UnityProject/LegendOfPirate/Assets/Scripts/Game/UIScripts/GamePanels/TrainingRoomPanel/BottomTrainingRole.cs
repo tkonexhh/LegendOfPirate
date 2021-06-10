@@ -7,12 +7,6 @@ using UniRx;
 
 namespace GameWish.Game
 {
-    public enum BottomTrainingRoleType
-    {
-        Selected,
-        NotSelected,
-    }
-
     public class BottomTrainingRole : UListItemView
     {
         [SerializeField]
@@ -23,37 +17,52 @@ namespace GameWish.Game
         private Image m_State;
 
         #region Data
-        private int m_Index = -1;
-        private BottomTrainingRoleType m_BottomTrainingRoleType = BottomTrainingRoleType.NotSelected;
+        private BottomTrainingRoleModule m_BottomTrainingRoleData;
+        private IntReactiveProperty m_IntReactiveProperty;
         #endregion
 
         private void Awake()
         {
-            m_BottomTrainingRole.OnClickAsObservable().Subscribe(_ =>
-            {
-                m_BottomTrainingRoleType = m_BottomTrainingRoleType == BottomTrainingRoleType.NotSelected ? BottomTrainingRoleType.Selected : BottomTrainingRoleType.NotSelected;
-                EventSystem.S.Send(EventID.OnBottomTrainingRole, m_BottomTrainingRoleType == BottomTrainingRoleType.NotSelected ? -1 : 1);
-                RefreshBottomTrainingRole();
-            });
         }
 
         private void RefreshBottomTrainingRole()
         {
-            switch (m_BottomTrainingRoleType)
+            if (m_BottomTrainingRoleData.isSelected.Value)
             {
-                case BottomTrainingRoleType.Selected:
-                    m_State.gameObject.SetActive(true);
-                    break;
-                case BottomTrainingRoleType.NotSelected:
-                    m_State.gameObject.SetActive(false);
-                    break;
+                m_State.gameObject.SetActive(true);
+            }
+            else
+            {
+                m_State.gameObject.SetActive(false);
             }
         }
 
-
-        public void OnInit(int index)
+        private void ResetState()
         {
-            m_Index = index;
+            m_BottomTrainingRole.onClick.RemoveAllListeners();
+            m_State.gameObject.SetActive(false);
+            m_BottomTrainingRole.OnClickAsObservable().Subscribe(_ =>
+            {
+                m_BottomTrainingRoleData.isSelected.Value = !m_BottomTrainingRoleData.isSelected.Value;
+                //m_BottomTrainingRoleData.bottomTrainingRoleType.Value = (m_BottomTrainingRoleData.bottomTrainingRoleType.Value. == BottomTrainingRoleType.NotSelected ? BottomTrainingRoleType.Selected : BottomTrainingRoleType.NotSelected);
+                m_IntReactiveProperty.Value += (m_BottomTrainingRoleData.isSelected.Value ? 1 : -1);
+                //EventSystem.S.Send(EventID.OnBottomTrainingRole, );
+                RefreshBottomTrainingRole();
+            });
+        }
+
+        public void OnInit(BottomTrainingRoleModule bottomTrainingRoleData, IntReactiveProperty intReactiveProperty)
+        {
+            ResetState();
+            if (bottomTrainingRoleData == null)
+            {
+                Debug.LogWarning("bottomTrainingRoleData is null");
+                return;
+            }
+
+            m_BottomTrainingRoleData = bottomTrainingRoleData;
+            m_IntReactiveProperty = intReactiveProperty;
+
             RefreshBottomTrainingRole();
         }
     }
