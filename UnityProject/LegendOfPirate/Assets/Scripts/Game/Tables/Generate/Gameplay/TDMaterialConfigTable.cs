@@ -42,7 +42,7 @@ namespace GameWish.Game
 
         private static void OnAddRow(TDMaterialConfig memberInstance)
         {
-            int key = memberInstance.roleId;
+            int key = memberInstance.materialId;
             if (m_DataCache.ContainsKey(key))
             {
                 Log.e(string.Format("Invaild,  TDMaterialConfigTable Id already exists {0}", key));
