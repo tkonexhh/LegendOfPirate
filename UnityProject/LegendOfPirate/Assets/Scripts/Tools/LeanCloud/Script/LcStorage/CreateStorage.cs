@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using UnityEngine;
 using LeanCloud.Storage;
+using LeanCloud.LiveQuery;
 using TMPro;
 
 namespace GameWish.Game
@@ -10,6 +11,7 @@ namespace GameWish.Game
     {
         [SerializeField] private TextMeshProUGUI m_ShowText;
         private string m_ObjectId;
+        private LCLiveQuery liveQuery;
 
         #region 创建对象并保存到后端 子类化创建 便于管理与操作
 
@@ -22,11 +24,26 @@ namespace GameWish.Game
             account.Account = "ChuckFly";
             await account.Save();
         }
-
         ///<summary>
-        /// 创建英雄对象并保存到后端
+        /// 创建英雄对象并保存到后端 非子类化
         ///</summary>
         public async void CreateHero()
+        {
+            // 构建对象
+            LCObject heroStorage = new LCObject("HeroStorage");
+            // 为属性赋值
+            heroStorage["name"] = "chuck";
+            heroStorage["level"] = "20";
+            heroStorage["balance"] = 1024;
+            // 将对象保存到云端
+            await heroStorage.Save();
+            m_ObjectId = heroStorage.ObjectId;
+            //TODO 每一个对象的ObjectID都需要存档 以便于查询更新使用
+        }
+        ///<summary>
+        /// 创建英雄对象并保存到后端 子类化创建
+        ///</summary>
+        public async void CreateSubHero()
         {
             // LCQuery<HeroStorage> query = new LCQuery<HeroStorage>("HeroStorage");
             // query.WhereExists("name");
@@ -76,6 +93,8 @@ namespace GameWish.Game
                 m_ShowText.text = hero.Name + "_" + hero.Level + "_" + hero.Balance.ToString();
             else
                 m_ShowText.text = "查无此人";
+
+            // LiveQueryTest();
         }
 
         ///<summary>
@@ -92,7 +111,35 @@ namespace GameWish.Game
                 m_ShowText.text += item.Level + "_" + item.Award + "\n";
             }
         }
-
+        public async void LiveQueryTest()
+        {
+            LCQuery<HeroStorage> query = new LCQuery<HeroStorage>("HeroStorage");
+            query.WhereEndsWith("name", "chuck");
+            liveQuery = await query.Subscribe();
+            liveQuery.OnCreate = (obj) =>
+            {
+                Debug.Log($"create: {obj}");
+            };
+            liveQuery.OnUpdate = (obj, keys) =>
+            {
+                Debug.Log($"update: {obj}");
+                Debug.Log(keys.Count);
+            };
+            liveQuery.OnDelete = (objId) =>
+            {
+                Debug.Log($"delete: {objId}");
+            };
+            liveQuery.OnEnter = (obj, keys) =>
+            {
+                Debug.Log($"enter: {obj}");
+                Debug.Log(keys.Count);
+            };
+            liveQuery.OnLeave = (obj, keys) =>
+            {
+                Debug.Log($"leave: {obj}");
+                Debug.Log(keys.Count);
+            };
+        }
         #endregion
 
         #region 要更新一个对象，只需指定需要更新的属性名和属性值，然后调用 Save 方法 需要 唯一标识 ObjectId
