@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities;
-using Sirenix.Utilities.Editor;
+// using Sirenix.Utilities;
+// using Sirenix.Utilities.Editor;
 
 namespace GameWish.Game
 {
@@ -20,22 +20,22 @@ namespace GameWish.Game
         [TableMatrix(SquareCells = true, HideColumnIndices = true, HideRowIndices = true, ResizableColumns = false), OnValueChanged("OnEnemysChange")]//DrawElementMethod ="DrawBattleFieldCell"
         public RoleConfigSO[,] Enemys = new RoleConfigSO[BattleDefine.BATTLE_WIDTH, BattleDefine.BATTLE_HEIGHT];
 
-        static RoleConfigSO DrawBattleFieldCell(Rect rect, RoleConfigSO value)
-        {
-            var id = DragAndDropUtilities.GetDragAndDropId(rect);
-            // DragAndDropUtilities.DrawDropZone(rect, value ? value.Icon : null, null, id);
-            Texture2D texture = null;
-            if (value)
-            {
-                texture = GUIHelper.GetAssetThumbnail(value.Icon, typeof(Texture2D), true);
-            }
-            SirenixEditorFields.UnityPreviewObjectField(rect.Padding(2), value, texture, typeof(RoleConfigSO), false);
-            SirenixEditorFields.UnityObjectField(rect, value, typeof(RoleConfigSO), false);
-            // value = DragAndDropUtilities.DropZone(rect, value);                                     // Drop zone for ItemSlot structs.
-            // value.Item = DragAndDropUtilities.DropZone<Item>(rect, value.Item);                     // Drop zone for Item types.
-            // value = DragAndDropUtilities.DragZone(rect, value, true, true);
-            return value;
-        }
+        // static RoleConfigSO DrawBattleFieldCell(Rect rect, RoleConfigSO value)
+        // {
+        //     var id = DragAndDropUtilities.GetDragAndDropId(rect);
+        //     // DragAndDropUtilities.DrawDropZone(rect, value ? value.Icon : null, null, id);
+        //     Texture2D texture = null;
+        //     if (value)
+        //     {
+        //         texture = GUIHelper.GetAssetThumbnail(value.Icon, typeof(Texture2D), true);
+        //     }
+        //     SirenixEditorFields.UnityPreviewObjectField(rect.Padding(2), value, texture, typeof(RoleConfigSO), false);
+        //     SirenixEditorFields.UnityObjectField(rect, value, typeof(RoleConfigSO), false);
+        //     // value = DragAndDropUtilities.DropZone(rect, value);                                     // Drop zone for ItemSlot structs.
+        //     // value.Item = DragAndDropUtilities.DropZone<Item>(rect, value.Item);                     // Drop zone for Item types.
+        //     // value = DragAndDropUtilities.DragZone(rect, value, true, true);
+        //     return value;
+        // }
 
 
         [BoxGroup("头像预览")]
