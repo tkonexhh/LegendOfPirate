@@ -13,7 +13,7 @@ namespace GameWish.Game
         {
 
             if (forgeUnitProperties == null)
-                forgeUnitProperties = new ForgeUnitProperty[dataList.Count];
+                forgeUnitProperties = new ForgeUnitConfig[dataList.Count];
 
             int level = tdData.level;
             if (level > forgeUnitProperties.Length)
@@ -21,34 +21,34 @@ namespace GameWish.Game
                 throw new ArgumentOutOfRangeException("Forge Data Out Of Range");
             }
 
-            forgeUnitProperties[level - 1] = new ForgeUnitProperty(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
+            forgeUnitProperties[level - 1] = new ForgeUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
                 tdData.upgradePreconditions, tdData.upgradeTime, tdData.modelResources, tdData.unlockEquipmentID);
         }
 
-        public static ForgeUnitProperty[] forgeUnitProperties = null;
+        public static ForgeUnitConfig[] forgeUnitProperties = null;
 
-        public static ForgeUnitProperty GetForgeUnitProperty(int level)
+        public static ForgeUnitConfig GetConfig(int level)
         {
             if (level > forgeUnitProperties.Length)
             {
                 Log.e("GetForgeUnitProperty Level Out Of Range: " + level + "  Data Count: " + forgeUnitProperties.Length);
-                return default(ForgeUnitProperty);
+                return default(ForgeUnitConfig);
             }
 
             return forgeUnitProperties[level - 1];
         }
     }
 
-    public struct ForgeUnitProperty
+    public struct ForgeUnitConfig
     {
-        public ShipUnitBaseProperty baseProperty;
+        public ShipUnitBaseConfig baseProperty;
         public int unlockEuipId;
 
-        public ForgeUnitProperty(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
+        public ForgeUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
             int upgradeTime, string modelRes, int unlockEquipId
             )
         {
-            baseProperty = new ShipUnitBaseProperty(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
+            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
             this.unlockEuipId = unlockEquipId;
         }
     }

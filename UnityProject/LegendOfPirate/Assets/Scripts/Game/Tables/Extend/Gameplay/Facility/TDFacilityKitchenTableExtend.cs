@@ -12,7 +12,7 @@ namespace GameWish.Game
         static void CompleteRowAdd(TDFacilityKitchen tdData)
         {
             if (kitchenUnitProperties == null)
-                kitchenUnitProperties = new KitchenUnitProperty[dataList.Count];
+                kitchenUnitProperties = new KitchenUnitConfig[dataList.Count];
 
             int level = tdData.level;
             if (level > kitchenUnitProperties.Length)
@@ -20,34 +20,34 @@ namespace GameWish.Game
                 throw new ArgumentOutOfRangeException("Kitchen Data Out Of Range");
             }
 
-            kitchenUnitProperties[level - 1] = new KitchenUnitProperty(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
+            kitchenUnitProperties[level - 1] = new KitchenUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
                 tdData.upgradePreconditions, tdData.upgradeTime, tdData.modelResources, tdData.unlockSpaceCost);
         }
 
-        public static KitchenUnitProperty[] kitchenUnitProperties = null;
+        public static KitchenUnitConfig[] kitchenUnitProperties = null;
 
-        public static KitchenUnitProperty GetKitchenUnitProperty(int level)
+        public static KitchenUnitConfig GetConfig(int level)
         {
             if (level > kitchenUnitProperties.Length)
             {
                 Log.e("GetKitchenUnitProperty Level Out Of Range: " + level + "  Data Count: " + kitchenUnitProperties.Length);
-                return default(KitchenUnitProperty);
+                return default(KitchenUnitConfig);
             }
 
             return kitchenUnitProperties[level - 1];
         }
     }
 
-    public struct KitchenUnitProperty
+    public struct KitchenUnitConfig
     {
-        public ShipUnitBaseProperty baseProperty;
+        public ShipUnitBaseConfig baseProperty;
         public int unlockSpaceCost;
 
-        public KitchenUnitProperty(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
+        public KitchenUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
             int upgradeTime, string modelRes, int unlockSpaceCost
             )
         {
-            baseProperty = new ShipUnitBaseProperty(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
+            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
             this.unlockSpaceCost = unlockSpaceCost;
         }
     }

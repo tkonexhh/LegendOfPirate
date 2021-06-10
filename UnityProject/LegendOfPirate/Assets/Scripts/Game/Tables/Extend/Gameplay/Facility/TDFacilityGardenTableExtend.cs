@@ -13,7 +13,7 @@ namespace GameWish.Game
         {
 
             if (gardenUnitProperties == null)
-                gardenUnitProperties = new GardenUnitProperty[dataList.Count];
+                gardenUnitProperties = new GardenUnitConfig[dataList.Count];
 
             int level = tdData.level;
             if (level > gardenUnitProperties.Length)
@@ -21,34 +21,34 @@ namespace GameWish.Game
                 throw new ArgumentOutOfRangeException("Garden Data Out Of Range");
             }
 
-            gardenUnitProperties[level - 1] = new GardenUnitProperty(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
+            gardenUnitProperties[level - 1] = new GardenUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
                 tdData.upgradePreconditions, tdData.upgradeSpeed, tdData.modelResources, tdData.plantingSpeed);
         }
 
-        public static GardenUnitProperty[] gardenUnitProperties = null;
+        public static GardenUnitConfig[] gardenUnitProperties = null;
 
-        public static GardenUnitProperty GetGardenUnitProperty(int level)
+        public static GardenUnitConfig GetConfig(int level)
         {
             if (level > gardenUnitProperties.Length)
             {
                 Log.e("GetGardenUnitProperty Level Out Of Range: " + level + "  Data Count: " + gardenUnitProperties.Length);
-                return default(GardenUnitProperty);
+                return default(GardenUnitConfig);
             }
 
             return gardenUnitProperties[level - 1];
         }
     }
 
-    public struct GardenUnitProperty
+    public struct GardenUnitConfig
     {
-        public ShipUnitBaseProperty baseProperty;
+        public ShipUnitBaseConfig baseProperty;
         public int plantingSped;
 
-        public GardenUnitProperty(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
+        public GardenUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
             int upgradeTime, string modelRes, int plantingSped
             )
         {
-            baseProperty = new ShipUnitBaseProperty(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
+            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
             this.plantingSped = plantingSped;
         }
     }

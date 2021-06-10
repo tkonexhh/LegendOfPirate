@@ -8,19 +8,18 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDFacilityLibrary
+    public partial class TDFacilityIsland
     {
         
        
         private EInt m_Level = 0;   
+        private string m_Name;   
+        private EInt m_ResourceID = 0;   
+        private EInt m_OutputSpeed = 0;   
+        private EInt m_StorageLimits = 0;   
         private string m_UpgradeRes;   
         private EInt m_UpgradeCost = 0;   
-        private EInt m_UpgradePreconditions = 0;   
-        private EInt m_UpgradeSpeed = 0;   
-        private string m_ModelResources;   
-        private EInt m_Capacity = 0;   
-        private EInt m_SkillPoints = 0;   
-        private EInt m_ReadingSpeed = 0;  
+        private EInt m_UpgradeTime = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -28,6 +27,26 @@ namespace GameWish.Game
         /// ID
         /// </summary>
         public  int  level {get { return m_Level; } }
+       
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public  string  name {get { return m_Name; } }
+       
+        /// <summary>
+        /// 资源产出（id）
+        /// </summary>
+        public  int  resourceID {get { return m_ResourceID; } }
+       
+        /// <summary>
+        /// 产出速率（每秒产出数量）
+        /// </summary>
+        public  int  outputSpeed {get { return m_OutputSpeed; } }
+       
+        /// <summary>
+        /// 存储上限
+        /// </summary>
+        public  int  storageLimits {get { return m_StorageLimits; } }
        
         /// <summary>
         /// 升级资源（id|数量）
@@ -40,34 +59,9 @@ namespace GameWish.Game
         public  int  upgradeCost {get { return m_UpgradeCost; } }
        
         /// <summary>
-        /// 升级条件（主船等级）
-        /// </summary>
-        public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
-       
-        /// <summary>
         /// 升级时间（s）
         /// </summary>
-        public  int  upgradeSpeed {get { return m_UpgradeSpeed; } }
-       
-        /// <summary>
-        /// 模型资源
-        /// </summary>
-        public  string  modelResources {get { return m_ModelResources; } }
-       
-        /// <summary>
-        /// 读书人数
-        /// </summary>
-        public  int  capacity {get { return m_Capacity; } }
-       
-        /// <summary>
-        /// 技能点
-        /// </summary>
-        public  int  skillPoints {get { return m_SkillPoints; } }
-       
-        /// <summary>
-        /// 读书时间（s）
-        /// </summary>
-        public  int  readingSpeed {get { return m_ReadingSpeed; } }
+        public  int  upgradeTime {get { return m_UpgradeTime; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -88,28 +82,25 @@ namespace GameWish.Game
                     m_Level = dataR.ReadInt();
                     break;
                 case 1:
-                    m_UpgradeRes = dataR.ReadString();
+                    m_Name = dataR.ReadString();
                     break;
                 case 2:
-                    m_UpgradeCost = dataR.ReadInt();
+                    m_ResourceID = dataR.ReadInt();
                     break;
                 case 3:
-                    m_UpgradePreconditions = dataR.ReadInt();
+                    m_OutputSpeed = dataR.ReadInt();
                     break;
                 case 4:
-                    m_UpgradeSpeed = dataR.ReadInt();
+                    m_StorageLimits = dataR.ReadInt();
                     break;
                 case 5:
-                    m_ModelResources = dataR.ReadString();
+                    m_UpgradeRes = dataR.ReadString();
                     break;
                 case 6:
-                    m_Capacity = dataR.ReadInt();
+                    m_UpgradeCost = dataR.ReadInt();
                     break;
                 case 7:
-                    m_SkillPoints = dataR.ReadInt();
-                    break;
-                case 8:
-                    m_ReadingSpeed = dataR.ReadInt();
+                    m_UpgradeTime = dataR.ReadInt();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -121,17 +112,16 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(9);
+          Dictionary<string, int> ret = new Dictionary<string, int>(8);
           
           ret.Add("Level", 0);
-          ret.Add("UpgradeRes", 1);
-          ret.Add("UpgradeCost", 2);
-          ret.Add("UpgradePreconditions", 3);
-          ret.Add("UpgradeSpeed", 4);
-          ret.Add("ModelResources", 5);
-          ret.Add("Capacity", 6);
-          ret.Add("SkillPoints", 7);
-          ret.Add("ReadingSpeed", 8);
+          ret.Add("Name", 1);
+          ret.Add("ResourceID", 2);
+          ret.Add("OutputSpeed", 3);
+          ret.Add("StorageLimits", 4);
+          ret.Add("UpgradeRes", 5);
+          ret.Add("UpgradeCost", 6);
+          ret.Add("UpgradeTime", 7);
           return ret;
         }
     } 

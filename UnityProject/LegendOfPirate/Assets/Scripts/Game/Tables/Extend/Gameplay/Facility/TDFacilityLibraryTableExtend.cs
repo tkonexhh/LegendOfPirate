@@ -12,7 +12,7 @@ namespace GameWish.Game
         static void CompleteRowAdd(TDFacilityLibrary tdData)
         {
             if (libraryUnitProperties == null)
-                libraryUnitProperties = new LibraryUnitProperty[dataList.Count];
+                libraryUnitProperties = new LibraryUnitConfig[dataList.Count];
 
             int level = tdData.level;
             if (level > libraryUnitProperties.Length)
@@ -20,36 +20,36 @@ namespace GameWish.Game
                 throw new ArgumentOutOfRangeException("Library Data Out Of Range");
             }
 
-            libraryUnitProperties[level - 1] = new LibraryUnitProperty(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
+            libraryUnitProperties[level - 1] = new LibraryUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
                 tdData.upgradePreconditions, tdData.upgradeSpeed, tdData.modelResources, tdData.capacity, tdData.skillPoints, tdData.readingSpeed);
         }
 
-        public static LibraryUnitProperty[] libraryUnitProperties = null;
+        public static LibraryUnitConfig[] libraryUnitProperties = null;
 
-        public static LibraryUnitProperty GetLibraryUnitProperty(int level)
+        public static LibraryUnitConfig GetConfig(int level)
         {
             if (level > libraryUnitProperties.Length)
             {
                 Log.e("GetLibraryUnitProperty Level Out Of Range: " + level + "  Data Count: " + libraryUnitProperties.Length);
-                return default(LibraryUnitProperty);
+                return default(LibraryUnitConfig);
             }
 
             return libraryUnitProperties[level - 1];
         }
     }
 
-    public struct LibraryUnitProperty
+    public struct LibraryUnitConfig
     {
-        public ShipUnitBaseProperty baseProperty;
+        public ShipUnitBaseConfig baseProperty;
         public int capacity;
         public int skillPoints;
         public int readingSpeed;
 
-        public LibraryUnitProperty(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
+        public LibraryUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
             int upgradeTime, string modelRes, int capacity, int skillPoints, int readingSpeed
             )
         {
-            baseProperty = new ShipUnitBaseProperty(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
+            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
             this.capacity = capacity;
             this.skillPoints = skillPoints;
             this.readingSpeed = readingSpeed;

@@ -37,6 +37,12 @@ namespace GameWish.Game
 
             return model;
         }
+
+        public T GetShipUnitModel<T>(ShipUnitType shipUnitType) where T : ShipUnitModel
+        {
+            ShipUnitModel model = GetShipUnitModel(shipUnitType);
+            return model as T;
+        }
     }
 
 }

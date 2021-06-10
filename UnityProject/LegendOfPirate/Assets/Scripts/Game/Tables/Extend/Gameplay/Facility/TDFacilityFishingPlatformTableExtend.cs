@@ -13,7 +13,7 @@ namespace GameWish.Game
         static void CompleteRowAdd(TDFacilityFishingPlatform tdData)
         {
             if(fishingUnitProperties == null)
-                fishingUnitProperties = new FishingUnitProperty[dataList.Count];
+                fishingUnitProperties = new FishingUnitConfig[dataList.Count];
 
             int level = tdData.level;
             if (level > fishingUnitProperties.Length)
@@ -21,37 +21,37 @@ namespace GameWish.Game
                 throw new ArgumentOutOfRangeException("Fish Data Out Of Range");
             }
 
-            fishingUnitProperties[level - 1] = new FishingUnitProperty(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
+            fishingUnitProperties[level - 1] = new FishingUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
                 tdData.upgradePreconditions, tdData.upgradeSpeed, tdData.modelResources, tdData.fishingRod, tdData.fishingSpeed,
                 tdData.capability, tdData.unlockRecipe);
         }
 
-        public static FishingUnitProperty[] fishingUnitProperties = null;
+        public static FishingUnitConfig[] fishingUnitProperties = null;
 
-        public static FishingUnitProperty GetFishingUnitProperty(int level)
+        public static FishingUnitConfig GetConfig(int level)
         {
             if (level > fishingUnitProperties.Length)
             {
                 Log.e("GetFishingUnitProperty Level Out Of Range: " + level  + "  Data Count: " + fishingUnitProperties.Length);
-                return default(FishingUnitProperty);
+                return default(FishingUnitConfig);
             }
 
             return fishingUnitProperties[level - 1];
         }
     }
 
-    public struct FishingUnitProperty
+    public struct FishingUnitConfig
     {
-        public ShipUnitBaseProperty baseProperty;
+        public ShipUnitBaseConfig baseProperty;
         public string fishingRod;
         public int fishingTime;
         public UnlockFish[] unclockFishs;
 
-        public FishingUnitProperty(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
+        public FishingUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
             int upgradeTime, string modelRes, string fishingRodRes, int fishingSpeed, int capability, string unlockFish
             )
         {
-            baseProperty = new ShipUnitBaseProperty(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
+            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
             fishingRod = fishingRodRes;
             fishingTime = fishingSpeed;
 

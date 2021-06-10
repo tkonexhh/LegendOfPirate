@@ -18,9 +18,9 @@ namespace GameWish.Game
         private EInt m_UpgradePreconditions = 0;   
         private EInt m_UpgradeTime = 0;   
         private string m_ModelResources;   
-        private string m_UnlockPartID;   
-        private string m_UnlockPartSpace;   
-        private string m_UnlockSpaceCost;  
+        private EInt m_UnlockPartID = 0;   
+        private EInt m_UnlockPartSpace = 0;   
+        private EInt m_UnlockSpaceCost = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -57,17 +57,17 @@ namespace GameWish.Game
         /// <summary>
         /// 解锁组件制作图（id）
         /// </summary>
-        public  string  unlockPartID {get { return m_UnlockPartID; } }
+        public  int  unlockPartID {get { return m_UnlockPartID; } }
        
         /// <summary>
         /// 解锁制作位数量
         /// </summary>
-        public  string  unlockPartSpace {get { return m_UnlockPartSpace; } }
+        public  int  unlockPartSpace {get { return m_UnlockPartSpace; } }
        
         /// <summary>
         /// 主动解锁制作位置消耗（充值货币）
         /// </summary>
-        public  string  unlockSpaceCost {get { return m_UnlockSpaceCost; } }
+        public  int  unlockSpaceCost {get { return m_UnlockSpaceCost; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -103,13 +103,13 @@ namespace GameWish.Game
                     m_ModelResources = dataR.ReadString();
                     break;
                 case 6:
-                    m_UnlockPartID = dataR.ReadString();
+                    m_UnlockPartID = dataR.ReadInt();
                     break;
                 case 7:
-                    m_UnlockPartSpace = dataR.ReadString();
+                    m_UnlockPartSpace = dataR.ReadInt();
                     break;
                 case 8:
-                    m_UnlockSpaceCost = dataR.ReadString();
+                    m_UnlockSpaceCost = dataR.ReadInt();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);

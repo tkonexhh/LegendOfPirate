@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.IO;
 using System.Collections;
@@ -7,10 +7,11 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDGlobalConfigTable
+    public partial class TDFacilityIsland
     {
-        static void CompleteRowAdd(TDGlobalConfig tdData)
+        public void Reset()
         {
+
         }
     }
 }

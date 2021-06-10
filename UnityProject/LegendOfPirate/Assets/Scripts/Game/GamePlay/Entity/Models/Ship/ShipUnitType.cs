@@ -8,7 +8,14 @@ namespace GameWish.Game
 	public enum ShipUnitType
     {
 	    None, 
-        Kitchen
+        Kitchen,
+        FishingPlatform,
+        Garden,
+        //Island,
+        Laboratory,
+        Library,
+        ProcessingRoom,
+        TrainingRoom,
 	}
 	
 }

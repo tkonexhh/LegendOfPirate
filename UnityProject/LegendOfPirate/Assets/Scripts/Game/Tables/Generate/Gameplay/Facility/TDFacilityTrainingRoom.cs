@@ -18,7 +18,7 @@ namespace GameWish.Game
         private EInt m_UpgradePreconditions = 0;   
         private EInt m_UpgradeSpeed = 0;   
         private string m_ModelResources;   
-        private string m_Capacity;   
+        private EInt m_Capacity = 0;   
         private EInt m_Experience = 0;   
         private EInt m_TrainingSpeed = 0;  
         
@@ -57,7 +57,7 @@ namespace GameWish.Game
         /// <summary>
         /// 训练人数
         /// </summary>
-        public  string  capacity {get { return m_Capacity; } }
+        public  int  capacity {get { return m_Capacity; } }
        
         /// <summary>
         /// 经验值
@@ -103,7 +103,7 @@ namespace GameWish.Game
                     m_ModelResources = dataR.ReadString();
                     break;
                 case 6:
-                    m_Capacity = dataR.ReadString();
+                    m_Capacity = dataR.ReadInt();
                     break;
                 case 7:
                     m_Experience = dataR.ReadInt();

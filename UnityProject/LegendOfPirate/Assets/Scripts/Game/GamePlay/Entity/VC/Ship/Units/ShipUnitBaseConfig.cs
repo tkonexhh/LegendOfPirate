@@ -5,7 +5,7 @@ using Qarth;
 
 namespace GameWish.Game
 {
-	public struct ShipUnitBaseProperty
+	public struct ShipUnitBaseConfig
 	{
         public int level;
         public int upgradeCoinCost;
@@ -14,7 +14,7 @@ namespace GameWish.Game
         public int upgradeTime;
         public string modelRes;
 
-        public ShipUnitBaseProperty(int level, int upgradeCoinCost, string upgradeCost, int upgradePrecondition, int upgradeTime, string modelRes)
+        public ShipUnitBaseConfig(int level, int upgradeCoinCost, string upgradeCost, int upgradePrecondition, int upgradeTime, string modelRes)
         {
             this.level = level;
             this.upgradeCoinCost = upgradeCoinCost;
