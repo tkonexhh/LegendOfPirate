@@ -7,8 +7,9 @@ namespace GameWish.Game
 {
 	public class ShipUnitModelFactory
 	{
-        public static ShipUnitModel CreateUnitModel(ShipUnitType shipUnitType, ShipUnitData shipUnitData)
+        public static ShipUnitModel CreateUnitModel(ShipUnitData shipUnitData)
         {
+            ShipUnitType shipUnitType = shipUnitData.unitType;
             ShipUnitModel unitModel = null;
 
             switch (shipUnitType)
