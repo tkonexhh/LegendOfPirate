@@ -34,6 +34,11 @@ namespace GameWish.Game
             return damage;
         }
 
+        public static int CalcAtkDamage(int atk)
+        {
+            return atk;
+        }
+
         public static int CalcSkillDamage(BattleRoleRuntimeModel model)
         {
             int damage = 1;

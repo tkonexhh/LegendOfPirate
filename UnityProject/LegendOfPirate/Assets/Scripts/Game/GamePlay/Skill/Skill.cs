@@ -14,19 +14,19 @@ namespace GameWish.Game
         public float timer;
         public IBattleSensor Sensor { get; set; }//技能选择器
         public Buff appendBuff;//附加Buff
-        protected BattleRoleController m_Owner;
+        public BattleRoleController Owner { get; private set; }
 
         public bool isReady => timer >= cd;
 
 
         public BattleRoleController PicketTarget()
         {
-            return Sensor.PickTarget(m_Owner);
+            return Sensor.PickTarget(Owner);
         }
 
         public virtual void Cast(BattleRoleController owner)
         {
-            m_Owner = owner;
+            Owner = owner;
         }
 
         public virtual void Release() { }
@@ -45,7 +45,7 @@ namespace GameWish.Game
             if (target == null)
                 return false;
 
-            if (Vector3.Distance(target.transform.position, m_Owner.transform.position) < range)
+            if (Vector3.Distance(target.transform.position, Owner.transform.position) < range)
                 return true;
 
             return false;
@@ -60,7 +60,7 @@ namespace GameWish.Game
 
         public virtual void OnCacheReset()
         {
-            m_Owner = null;
+            Owner = null;
             Sensor = null;
         }
 
@@ -81,7 +81,7 @@ namespace GameWish.Game
             base.Cast(owner);
             timer = 0;
             Debug.LogError("InitiativeSkill Cast");
-            attacker.Attack(this);
+            attacker.Attack(this, PicketTarget());
         }
 
         public override void Release()
@@ -94,8 +94,8 @@ namespace GameWish.Game
         public void DealDamage()
         {
             Debug.LogError("Skill Deal Damage");
-            var targets = damageRange.PickTargets(m_Owner.camp);
-            int damage = BattleHelper.CalcSkillDamage(m_Owner.Data.buffedData);
+            var targets = damageRange.PickTargets(Owner.camp);
+            int damage = BattleHelper.CalcSkillDamage(Owner.Data.buffedData);
             for (int i = 0; i < targets.Count; i++)
             {
                 RoleDamagePackage damagePackage = new RoleDamagePackage();
@@ -116,6 +116,16 @@ namespace GameWish.Game
         {
             return PicketTarget().transform.forward;
         }
+
+        public Transform DamageTransform()
+        {
+            return Owner.transform;
+        }
+
+        public DamageRange GetDamageRange()
+        {
+            return damageRange;
+        }
         #endregion
 
     }
@@ -132,13 +142,13 @@ namespace GameWish.Game
             base.Cast(owner);
             timer = cd;
             skillTrigger.onSkillTrigger += OnSkillTrigger;
-            skillTrigger.Start(m_Owner);
+            skillTrigger.Start(Owner);
         }
 
         public override void Release()
         {
             skillTrigger.onSkillTrigger -= OnSkillTrigger;
-            skillTrigger.Stop(m_Owner);
+            skillTrigger.Stop(Owner);
             skillTrigger = null;
         }
 
@@ -148,7 +158,7 @@ namespace GameWish.Game
             {
                 timer = 0;
                 if (appendBuff != null)
-                    m_Owner.Buff.AddBuff(appendBuff);
+                    Owner.Buff.AddBuff(appendBuff);
             }
 
         }

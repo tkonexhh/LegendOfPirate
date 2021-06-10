@@ -13,12 +13,13 @@ namespace GameWish.Game
 
         public BattleRoleModel originData;
         public BattleRoleRuntimeModel buffedData;
+        public float AtkRange { get; set; }//攻击距离
 
         public BattleRoleData(BattleRoleController controller) : base(controller)
         {
-            Sensor = BattleSensorFactory.CreateBattleSensor(PickTargetType.Enemy, SensorTypeEnum.Nearest);
-            Attacker = new BattleAttacker_Lock();
-            DamageRange = new DamageRange_Target(controller);
+            // Sensor = BattleSensorFactory.CreateBattleSensor(PickTargetType.Enemy, SensorTypeEnum.Nearest);
+            // Attacker = new BattleAttacker_Lock();
+            // DamageRange = new DamageRange_Target(controller);
 
         }
 
@@ -33,7 +34,7 @@ namespace GameWish.Game
             buffedData.BasicMoveSpeed = 4.0f;
 
             controller.MonoReference.AstarAI.maxSpeed = buffedData.MoveSpeed;
-            controller.MonoReference.AstarAI.endReachedDistance = buffedData.AttackRange;
+            controller.MonoReference.AstarAI.endReachedDistance = AtkRange;
         }
 
 
@@ -56,6 +57,7 @@ namespace GameWish.Game
                     break;
             }
             buffedData.Hp -= damage;
+            WorldUIPanel.S.ShowAbnormalInjuryText(controller.transform, damage);
             // Debug.LogError(buffedData.Hp + ":" + damage);
         }
 
