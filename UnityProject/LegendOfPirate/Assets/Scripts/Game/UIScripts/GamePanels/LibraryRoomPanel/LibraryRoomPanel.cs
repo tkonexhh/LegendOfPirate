@@ -40,6 +40,7 @@ namespace GameWish.Game
 		}
 		private void InitData()
 		{
+		
 
 			//TitleIcon.sprite = SpriteHandler.S.GetSprite(AtlasDefine.TestAtlas, iconName);
 

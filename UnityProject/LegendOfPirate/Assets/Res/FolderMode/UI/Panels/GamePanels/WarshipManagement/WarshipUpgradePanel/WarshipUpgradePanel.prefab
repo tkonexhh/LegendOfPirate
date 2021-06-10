@@ -304,7 +304,6 @@ GameObject:
   - component: {fileID: 226085662271048930}
   - component: {fileID: 2859270585440224124}
   - component: {fileID: 6045875181060213619}
-  - component: {fileID: 5177582684783632123}
   m_Layer: 0
   m_Name: LeftTopTitleValue
   m_TagString: Untagged
@@ -428,22 +427,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5177582684783632123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174579374964240180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!1 &235629969736587361
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,7 +718,6 @@ GameObject:
   - component: {fileID: 8980589858440122665}
   - component: {fileID: 3814914706761084079}
   - component: {fileID: 6848058623554856472}
-  - component: {fileID: 8861634579770617582}
   m_Layer: 0
   m_Name: LevelTitle
   m_TagString: Untagged
@@ -859,22 +841,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8861634579770617582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532068346017645348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!1 &659294169727679607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,7 +1507,6 @@ GameObject:
   - component: {fileID: 1426651341298869798}
   - component: {fileID: 395585936133540661}
   - component: {fileID: 5873703284563762948}
-  - component: {fileID: 4479021325139341840}
   m_Layer: 0
   m_Name: UpgradeResTimeTitle
   m_TagString: Untagged
@@ -1665,22 +1630,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4479021325139341840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919069622613242958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!1 &2051669959618832213
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,7 +3299,6 @@ GameObject:
   - component: {fileID: 8550631164502384870}
   - component: {fileID: 1839026467960122698}
   - component: {fileID: 166870164423560379}
-  - component: {fileID: 610514678613887635}
   m_Layer: 0
   m_Name: CETitle
   m_TagString: Untagged
@@ -3474,22 +3422,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &610514678613887635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6376419788193504290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!1 &6553795986589175845
 GameObject:
   m_ObjectHideFlags: 0
@@ -3999,10 +3931,8 @@ MonoBehaviour:
   LeftArrowBtn: {fileID: 6700879261979315940}
   WarShipIcon: {fileID: 6462796324951489365}
   CEBg: {fileID: 4315777930226792038}
-  CETitle: {fileID: 166870164423560379}
   CEValue: {fileID: 7567132845161886388}
   LevelBg: {fileID: 3091100544432916496}
-  LevelTitle: {fileID: 6848058623554856472}
   CurLevel: {fileID: 2161688706678073670}
   LevelArrow: {fileID: 1727640401496205707}
   NextLevel: {fileID: 174345202314214720}
@@ -4018,13 +3948,10 @@ MonoBehaviour:
   UnlockValue: {fileID: 5713865195479103307}
   UpgradeRegionBg: {fileID: 8359445321107593974}
   UpgradeResTra: {fileID: 3515812643653640881}
-  UpgradeResTimeTitle: {fileID: 5873703284563762948}
   UpgradeResTimeValue: {fileID: 8220122548323458566}
   UpgradeBtn: {fileID: 1993728722343264040}
-  UpgradeBtnValue: {fileID: 3882423690214055188}
   LeftTopTitleValue: {fileID: 6045875181060213619}
   LeftDownExitBtn: {fileID: 7099496942720108010}
-  LeftDownExitBtnValue: {fileID: 1385009087083618966}
 --- !u!1 &7806406318975632063
 GameObject:
   m_ObjectHideFlags: 0
@@ -4261,7 +4188,6 @@ GameObject:
   - component: {fileID: 1606730083625626477}
   - component: {fileID: 8650674825911258170}
   - component: {fileID: 3882423690214055188}
-  - component: {fileID: 2990024569408598903}
   m_Layer: 0
   m_Name: UpgradeBtnValue
   m_TagString: Untagged
@@ -4385,22 +4311,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2990024569408598903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8367693766914735027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!1 &8401873372922514687
 GameObject:
   m_ObjectHideFlags: 0
@@ -4682,7 +4592,6 @@ GameObject:
   - component: {fileID: 2810032182676705765}
   - component: {fileID: 5424619940390085303}
   - component: {fileID: 1385009087083618966}
-  - component: {fileID: 73357553914987155}
   m_Layer: 0
   m_Name: LeftDownExitBtnValue
   m_TagString: Untagged
@@ -4806,22 +4715,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &73357553914987155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8714059320011712734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!1 &8728407277324496793
 GameObject:
   m_ObjectHideFlags: 0
