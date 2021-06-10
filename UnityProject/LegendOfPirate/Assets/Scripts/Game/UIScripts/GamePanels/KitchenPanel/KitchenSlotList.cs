@@ -15,7 +15,7 @@ namespace GameWish.Game
             m_MaxCookingCount = count;
             for (int i = 0; i < count; i++)
             {
-                m_KitchenSlotList[0].UnLockKitchenSlot(true);
+                m_KitchenSlotList[i].UnLockKitchenSlot(true);
             }
         }
         public void UseSlot() 

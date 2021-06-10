@@ -9,6 +9,7 @@ namespace GameWish.Game
         {
             //连接LC后端云
             LCApplication.Initialize(LeanCloudConfig.S.appid, LeanCloudConfig.S.appkey, LeanCloudConfig.S.server);
+            //子类化对象注册
             GameStorage.S.SetUp();
             LCLogger.LogDelegate = (level, log) =>
             {

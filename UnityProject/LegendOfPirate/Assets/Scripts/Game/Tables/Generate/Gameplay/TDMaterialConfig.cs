@@ -12,7 +12,7 @@ namespace GameWish.Game
     {
         
        
-        private EInt m_RoleId = 0;   
+        private EInt m_MaterialId = 0;   
         private string m_MaterialName;   
         private string m_MaterialDsc;   
         private string m_MaterialType;   
@@ -23,7 +23,7 @@ namespace GameWish.Game
         /// <summary>
         /// 材料ID
         /// </summary>
-        public  int  roleId {get { return m_RoleId; } }
+        public  int  materialId {get { return m_MaterialId; } }
        
         /// <summary>
         /// 材料名字
@@ -61,7 +61,7 @@ namespace GameWish.Game
             { 
             
                 case 0:
-                    m_RoleId = dataR.ReadInt();
+                    m_MaterialId = dataR.ReadInt();
                     break;
                 case 1:
                     m_MaterialName = dataR.ReadString();
@@ -87,7 +87,7 @@ namespace GameWish.Game
         {
           Dictionary<string, int> ret = new Dictionary<string, int>(5);
           
-          ret.Add("RoleId", 0);
+          ret.Add("MaterialId", 0);
           ret.Add("MaterialName", 1);
           ret.Add("MaterialDsc", 2);
           ret.Add("MaterialType", 3);

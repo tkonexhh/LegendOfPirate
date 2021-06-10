@@ -10,7 +10,7 @@ namespace GameWish.Game
 		[SerializeField] private Image m_LockImage;
 		public void UnLockKitchenSlot(bool unlock) 
 		{
-			m_LockImage.gameObject.SetActive(unlock);
+			m_LockImage.gameObject.SetActive(!unlock);
 		}
 		public void UseSlot() 
 		{

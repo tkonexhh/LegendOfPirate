@@ -17,7 +17,7 @@ namespace GameWish.Game
         private EInt m_UpgradeCost = 0;   
         private EInt m_UpgradePreconditions = 0;   
         private EInt m_UpgradeSpeed = 0;   
-        private EInt m_SeedUnlock = 0;   
+        private string m_SeedUnlock;   
         private string m_ModelResources;   
         private EInt m_PlantingSpeed = 0;  
         
@@ -51,7 +51,7 @@ namespace GameWish.Game
         /// <summary>
         /// 解锁种子（id）
         /// </summary>
-        public  int  seedUnlock {get { return m_SeedUnlock; } }
+        public  string  seedUnlock {get { return m_SeedUnlock; } }
        
         /// <summary>
         /// 模型资源
@@ -94,7 +94,7 @@ namespace GameWish.Game
                     m_UpgradeSpeed = dataR.ReadInt();
                     break;
                 case 5:
-                    m_SeedUnlock = dataR.ReadInt();
+                    m_SeedUnlock = dataR.ReadString();
                     break;
                 case 6:
                     m_ModelResources = dataR.ReadString();

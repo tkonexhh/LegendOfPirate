@@ -41,14 +41,14 @@ namespace GameWish.Game
             AddItemBtn.OnClickAsObservable().Subscribe(_ => AddCookSlotBtnClick()).AddTo(this);
 			CookBtn.OnClickAsObservable().Subscribe(_=>OnCookBtnClick()).AddTo(this);
 			LevelUpBtn.OnClickAsObservable().Subscribe(_ => OnLevelUpBtnClick()).AddTo(this);
-			CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfPanel()).AddTo(this);
+			CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
         }
 		private void OnKitchenLevelChange(int level) 
 		{
 			BuildingLevel.text = "Lv." + level;
 			CookList.GetComponent<KitchenSlotList>().SetUnlockSlot(TDFacilityKitchenTable.dataList[level-1].unlockCookSpace);
 			Content.GetComponent<MenuSlotList>().SetMenuSlot(level);
-			AddItemBtn.GetComponentInChildren<TextMeshPro>().text = TDFacilityKitchenTable.dataList[level - 1].unlockSpaceCost.ToString();
+			AddItemBtn.GetComponentInChildren<TextMeshProUGUI>().text = TDFacilityKitchenTable.dataList[level - 1].unlockSpaceCost.ToString();
 		}
 
         private void OnCookBtnClick()

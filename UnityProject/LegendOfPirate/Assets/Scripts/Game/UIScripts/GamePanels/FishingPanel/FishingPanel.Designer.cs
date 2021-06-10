@@ -29,7 +29,7 @@ namespace GameWish.Game
 		[SerializeField]
 		public RectTransform FishingPoint3;
 		[SerializeField]
-		public UnityEngine.UI.ToggleGroup Content;
+		public RectTransform Content;
 		[SerializeField]
 		public TMPro.TextMeshProUGUI RoleCount;
 		[SerializeField]

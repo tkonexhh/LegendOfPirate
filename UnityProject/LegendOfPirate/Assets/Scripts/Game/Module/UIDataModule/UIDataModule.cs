@@ -48,7 +48,7 @@ namespace GameWish.Game
             //effect panel
 
             //在开发阶段使用该模式方便调试
-            UIDataTable.SetABMode(true);
+            UIDataTable.SetABMode(false);
 
             //guide
             //UIDataTable.AddPanelData(UIID.MyGuidePanel, null, "GuidePanel/MyGuidePanel", true);
@@ -98,12 +98,15 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.ProgressingRoomPanel,null, "GamePanels/WarshipManagement/ProgressRoomPanel/ProgressRoomPanel");
 
 
-            //Island Management System
+            //Land Management System  
             UIDataTable.AddPanelData(UIID.CongratulationPanel, null, "GamePanels/LandManagement/CongratulationPanel/CongratulationPanel");
             UIDataTable.AddPanelData(UIID.LandUpgradePanel, null, "GamePanels/LandManagement/LandUpgradePanel/LandUpgradePanel");
             #region 随机防御
             UIDataTable.AddPanelData(UIID.RandomDefensePanel, null, "GamePanels/LandManagement/RandomDefensePanel/RandomDefensePanel");
             UIDataTable.AddPanelData(UIID.RandomDefenseChooseRolePanel, null, "GamePanels/LandManagement/RandomDefenseChooseRolePanel/RandomDefenseChooseRolePanel");
+            #endregion
+            #region 黑市
+            UIDataTable.AddPanelData(UIID.BlackMarketPanel, null, "GamePanels/LandManagement/BlackMarketPanel/BlackMarketPanel");
             #endregion
             #region 走私系统
             UIDataTable.AddPanelData(UIID.SmugglePanel, null, "GamePanels/LandManagement/SmugglePanel/SmugglePanel");

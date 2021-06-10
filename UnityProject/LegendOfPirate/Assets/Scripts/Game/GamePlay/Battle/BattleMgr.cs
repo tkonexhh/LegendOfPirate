@@ -19,7 +19,7 @@ namespace GameWish.Game
 
 
         public BattleRendererComponent BattleRendererComponent { get; private set; }
-
+        public BattleBulletComponent Bullet { get; private set; }
 
 
         public override void OnSingletonInit()
@@ -28,7 +28,7 @@ namespace GameWish.Game
             m_BattleComponentList = new List<IBattleComponent>();
             AddComponent(new BattlePoolComponent());
             BattleRendererComponent = AddComponent(new BattleRendererComponent()) as BattleRendererComponent;
-
+            Bullet = AddComponent(new BattleBulletComponent()) as BattleBulletComponent;
         }
 
         private IBattleComponent AddComponent(IBattleComponent component)
@@ -123,7 +123,7 @@ namespace GameWish.Game
 
         public void SendDamage(BattleRoleController controller, RoleDamagePackage roleDamagePackage)
         {
-            if (controller.AI.onHurt != null)
+            if (controller != null && controller.AI.onHurt != null)
             {
                 controller.AI.onHurt();
             }

@@ -49,6 +49,7 @@ namespace GameWish.Game
         public override void OnFirstInit()
         {
             MonoReference = gameObject.GetComponent<BattleRoleMonoReference>();
+            MonoReference.ShootPos = transform;
         }
 
         public override void OnUpdate()
@@ -131,6 +132,16 @@ namespace GameWish.Game
         public Vector3 DamageForward()
         {
             return transform.forward;
+        }
+
+        public Transform DamageTransform()
+        {
+            return MonoReference.ShootPos;
+        }
+
+        public DamageRange GetDamageRange()
+        {
+            return Data.DamageRange;
         }
         #endregion
     }
