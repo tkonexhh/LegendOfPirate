@@ -18,7 +18,7 @@ namespace GameWish.Game
 
         #region Data
         private BottomTrainingRoleModule m_BottomTrainingRoleData;
-        private IntReactiveProperty m_IntReactiveProperty;
+        private IntReactiveProperty m_IntReactiveIndex;
         #endregion
 
         private void Awake()
@@ -45,7 +45,7 @@ namespace GameWish.Game
             {
                 m_BottomTrainingRoleData.isSelected.Value = !m_BottomTrainingRoleData.isSelected.Value;
                 //m_BottomTrainingRoleData.bottomTrainingRoleType.Value = (m_BottomTrainingRoleData.bottomTrainingRoleType.Value. == BottomTrainingRoleType.NotSelected ? BottomTrainingRoleType.Selected : BottomTrainingRoleType.NotSelected);
-                m_IntReactiveProperty.Value += (m_BottomTrainingRoleData.isSelected.Value ? 1 : -1);
+                m_IntReactiveIndex.Value += (m_BottomTrainingRoleData.isSelected.Value ? 1 : -1);
                 //EventSystem.S.Send(EventID.OnBottomTrainingRole, );
                 RefreshBottomTrainingRole();
             });
@@ -61,7 +61,7 @@ namespace GameWish.Game
             }
 
             m_BottomTrainingRoleData = bottomTrainingRoleData;
-            m_IntReactiveProperty = intReactiveProperty;
+            m_IntReactiveIndex = intReactiveProperty;
 
             RefreshBottomTrainingRole();
         }

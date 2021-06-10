@@ -22,7 +22,7 @@ namespace GameWish.Game
 			BindModelToUI();
 			BindUIToModel();
 
-			UIMgr.S.OpenPanel(UIID.WorldUIPanel);
+			UIMgr.S.OpenPanel(UIID.LibraryRoomPanel);
 
 			
 		}

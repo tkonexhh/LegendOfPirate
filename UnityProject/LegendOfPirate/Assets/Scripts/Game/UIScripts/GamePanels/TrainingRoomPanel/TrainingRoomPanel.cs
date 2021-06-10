@@ -176,6 +176,5 @@ namespace GameWish.Game
 			//MiddleTrainingRole middleTraining = Instantiate(MiddleTrainingRole, MiddleTrainingRoleTra.transform).GetComponent<MiddleTrainingRole>();
 
         }
-
 	}
 }

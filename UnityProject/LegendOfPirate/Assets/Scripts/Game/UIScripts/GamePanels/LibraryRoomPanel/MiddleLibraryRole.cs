@@ -8,21 +8,25 @@ using UnityEngine;
 namespace GameWish.Game
 {
 	public class MiddleLibraryRole : UListItemView
-	{
-	    // Start is called before the first frame update
-	    void Start()
-	    {
-	        
-	    }
-	
-	    // Update is called once per frame
-	    void Update()
-	    {
-	        
-	    }
-
-        internal void OnInit(int index)
+    {
+        #region Data
+        private MiddleLibraryRoleModule m_MiddleLibraryRoleModule;
+        #endregion
+        public void OnInit(MiddleLibraryRoleModule middleLibraryRoleModule)
         {
+            ResetState();
+
+            if (middleLibraryRoleModule == null)
+            {
+                Debug.LogWarning("middleLibraryRoleModule is null");
+                return;
+            }
+
+            m_MiddleLibraryRoleModule = middleLibraryRoleModule;
+        }
+        private void ResetState()
+        {
+
         }
     }
 	
