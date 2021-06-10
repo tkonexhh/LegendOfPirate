@@ -48,7 +48,7 @@ namespace GameWish.Game
             //effect panel
 
             //在开发阶段使用该模式方便调试
-            UIDataTable.SetABMode(true);
+            UIDataTable.SetABMode(false);
 
             //guide
             //UIDataTable.AddPanelData(UIID.MyGuidePanel, null, "GuidePanel/MyGuidePanel", true);

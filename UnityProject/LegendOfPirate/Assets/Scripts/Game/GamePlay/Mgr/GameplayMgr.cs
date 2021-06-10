@@ -42,7 +42,7 @@ namespace GameWish.Game
             UIMgr.S.ClosePanelAsUIID(UIID.LogoPanel);
             UIMgr.S.OpenPanel(UIID.MainMenuPanel);
 
-            MusicMgr.S.PlayBgMusic();
+            //MusicMgr.S.PlayBgMusic();
 
             DebuggerMgr.S.OnInit();
 
