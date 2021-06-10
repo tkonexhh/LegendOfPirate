@@ -10,10 +10,10 @@ namespace GameWish.Game
     public partial class TDFacilityFishingPlatformTable
     {
 
-        static void CompleteRowAdd(TDFacilityFishingPlatform tdData)
+        static void CompleteRowAdd(TDFacilityFishingPlatform tdData, int rowCount)
         {
             if(fishingUnitProperties == null)
-                fishingUnitProperties = new FishingUnitConfig[dataList.Count];
+                fishingUnitProperties = new FishingUnitConfig[rowCount];
 
             int level = tdData.level;
             if (level > fishingUnitProperties.Length)

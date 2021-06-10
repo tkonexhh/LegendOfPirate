@@ -9,10 +9,10 @@ namespace GameWish.Game
 {
     public partial class TDFacilityProcessingRoomTable
     {
-        static void CompleteRowAdd(TDFacilityProcessingRoom tdData)
+        static void CompleteRowAdd(TDFacilityProcessingRoom tdData, int rowCount)
         {
             if (processingRoomUnitProperties == null)
-                processingRoomUnitProperties = new ProcessingRoomUnitConfig[dataList.Count];
+                processingRoomUnitProperties = new ProcessingRoomUnitConfig[rowCount];
 
             int level = tdData.level;
             if (level > processingRoomUnitProperties.Length)

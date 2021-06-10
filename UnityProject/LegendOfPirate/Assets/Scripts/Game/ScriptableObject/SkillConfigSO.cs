@@ -72,7 +72,7 @@ namespace GameWish.Game
 
         //===远程攻击
         [ShowIf("AttackType", AttackType.Shoot), LabelText("子弹对象")]
-        public GameObject Bullet;
+        public BulletConfigSO Bullet;
 
         [ShowIf("AttackType", AttackType.Shoot), LabelText("子弹数量")]
         public int BulletNum = 1;

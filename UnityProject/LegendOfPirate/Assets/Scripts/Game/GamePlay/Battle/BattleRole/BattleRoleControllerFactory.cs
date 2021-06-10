@@ -15,9 +15,14 @@ namespace GameWish.Game
             {
                 role.Skill.AddSkill(SkillFactory.CreateSkill(configSO.childSkills[i]));
             }
-            // role.Data.Sensor = BattleSensorFactory.CreateBattleSensor(configSO.PickTarget.PickTargetType, configSO.PickTarget.SensorTypeEnum);
-            // role.Data.Attacker = BattleAttackerFactory.CreateBattleAttacker(configSO.Attack.AttackType);
-            // role.Data.DamageRange = DamageRangeFactory.CreateDamageRange(configSO.Attack.DamageRangeType, role, configSO.Attack.RangeArgs);
+            role.Data.AtkRange = configSO.AtkRange;
+            role.Data.Sensor = BattleSensorFactory.CreateBattleSensor(configSO.PickTarget.PickTargetType, configSO.PickTarget.SensorTypeEnum);
+            role.Data.Attacker = BattleAttackerFactory.CreateBattleAttacker(configSO.Attack.AttackType);
+            if (role.Data.Attacker is BattleAttacker_Shoot attacker)//配置远程攻击的子弹
+            {
+                BattleAttackerFactory.SetBullet(attacker, configSO.Attack.Bullet, configSO.Attack.BulletNum);
+            }
+            role.Data.DamageRange = DamageRangeFactory.CreateDamageRange(configSO.Attack.DamageRangeType, role, configSO.Attack.RangeArgs);
             role.OnInit();
             return role;
         }

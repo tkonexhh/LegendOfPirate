@@ -33,7 +33,7 @@ namespace GameWish.Game
             }
 
             //检测Target是否太远
-            if (Vector3.Distance(ai.controller.transform.position, ai.Target.transform.position) > ai.controller.Data.buffedData.AttackRange + 0.05f)
+            if (Vector3.Distance(ai.controller.transform.position, ai.Target.transform.position) > ai.controller.Data.AtkRange + 0.05f)
             {
                 ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.MoveToTarget);
             }
@@ -49,7 +49,7 @@ namespace GameWish.Game
         {
             m_AI.controller.Renderer.CrossFadeAnim(BattleDefine.ROLEANIM_ATTACK01, 0.1f);
             //TODO 需要改成动画事件
-            m_AI.controller.Data.Attacker.Attack(m_AI.controller);
+            m_AI.controller.Data.Attacker.Attack(m_AI.controller, m_AI.Target);
         }
 
 

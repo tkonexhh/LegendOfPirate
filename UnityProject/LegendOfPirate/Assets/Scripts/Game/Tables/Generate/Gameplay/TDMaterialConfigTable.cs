@@ -1,4 +1,4 @@
-//Auto Generate Don't Edit it
+﻿//Auto Generate Don't Edit it
 using UnityEngine;
 using System;
 using System.IO;
@@ -35,14 +35,14 @@ namespace GameWish.Game
                 memberInstance.ReadRow(dataR, fieldIndex);
                 OnAddRow(memberInstance);
                 memberInstance.Reset();
-                CompleteRowAdd(memberInstance);
+                CompleteRowAdd(memberInstance, rowCount);
             }
             Log.i(string.Format("Parse Success TDMaterialConfig"));
         }
 
         private static void OnAddRow(TDMaterialConfig memberInstance)
         {
-            int key = memberInstance.roleId;
+            int key = memberInstance.materialId;
             if (m_DataCache.ContainsKey(key))
             {
                 Log.e(string.Format("Invaild,  TDMaterialConfigTable Id already exists {0}", key));

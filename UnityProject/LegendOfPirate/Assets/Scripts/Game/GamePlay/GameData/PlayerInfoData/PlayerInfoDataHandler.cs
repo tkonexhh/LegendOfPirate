@@ -24,6 +24,7 @@ namespace GameWish.Game
             {
                 callback.Invoke();
             }
+            LoadData();
         }
 
         public override void SaveDataToServer(Action callback)
@@ -32,6 +33,14 @@ namespace GameWish.Game
             {
                 callback.Invoke();
             }
+            LCDataMgr.S.SaveData("PlayerInfoData", m_Data);
+        }
+
+        private async void LoadData()
+        {
+            await LCDataMgr.S.LoadData("PlayerInfoData");
+            if (!string.IsNullOrEmpty(LCDataMgr.S.DealData()))
+                ParseJson(LCDataMgr.S.DealData());
         }
     }
 }

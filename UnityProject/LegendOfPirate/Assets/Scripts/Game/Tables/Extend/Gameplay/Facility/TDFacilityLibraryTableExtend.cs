@@ -9,10 +9,10 @@ namespace GameWish.Game
 {
     public partial class TDFacilityLibraryTable
     {
-        static void CompleteRowAdd(TDFacilityLibrary tdData)
+        static void CompleteRowAdd(TDFacilityLibrary tdData, int rowCount)
         {
             if (libraryUnitProperties == null)
-                libraryUnitProperties = new LibraryUnitConfig[dataList.Count];
+                libraryUnitProperties = new LibraryUnitConfig[rowCount];
 
             int level = tdData.level;
             if (level > libraryUnitProperties.Length)

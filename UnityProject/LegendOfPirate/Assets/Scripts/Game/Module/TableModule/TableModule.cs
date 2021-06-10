@@ -45,15 +45,15 @@ namespace GameWish.Game
                 //TDLevelConfigTable.metaData,
                  #region Facility
                 TDFacilityKitchenTable.metaData,
-                //TDFacilityFishingPlatformTable.metaData,
-                //TDFacilityForgeTable.metaData,
-                //TDFacilityGardenTable.metaData,
+                TDFacilityFishingPlatformTable.metaData,
+                TDFacilityForgeTable.metaData,
+                TDFacilityGardenTable.metaData,
                 //TDFacilityIslandTable.metaData,
-                //TDFacilityLaboratoryTable.metaData,
-                //TDFacilityLibraryTable.metaData,
-                //TDFacilityProcessingRoomTable.metaData,
-                //TDFacilityTrainingRoomTable.metaData,
-                //TDFacilityWarshipTable.metaData,
+                TDFacilityLaboratoryTable.metaData,
+                TDFacilityLibraryTable.metaData,
+                TDFacilityProcessingRoomTable.metaData,
+                TDFacilityTrainingRoomTable.metaData,
+                TDFacilityWarshipTable.metaData,
                 #endregion
             };
         }

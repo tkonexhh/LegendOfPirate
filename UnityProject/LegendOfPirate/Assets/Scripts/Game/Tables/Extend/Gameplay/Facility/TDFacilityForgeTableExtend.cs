@@ -9,11 +9,11 @@ namespace GameWish.Game
 {
     public partial class TDFacilityForgeTable
     {
-        static void CompleteRowAdd(TDFacilityForge tdData)
+        static void CompleteRowAdd(TDFacilityForge tdData, int rowCount)
         {
 
             if (forgeUnitProperties == null)
-                forgeUnitProperties = new ForgeUnitConfig[dataList.Count];
+                forgeUnitProperties = new ForgeUnitConfig[rowCount];
 
             int level = tdData.level;
             if (level > forgeUnitProperties.Length)

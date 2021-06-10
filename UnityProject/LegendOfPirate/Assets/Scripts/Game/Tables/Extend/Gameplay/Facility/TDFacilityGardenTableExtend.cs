@@ -9,11 +9,11 @@ namespace GameWish.Game
 {
     public partial class TDFacilityGardenTable
     {
-        static void CompleteRowAdd(TDFacilityGarden tdData)
+        static void CompleteRowAdd(TDFacilityGarden tdData, int rowCount)
         {
 
             if (gardenUnitProperties == null)
-                gardenUnitProperties = new GardenUnitConfig[dataList.Count];
+                gardenUnitProperties = new GardenUnitConfig[rowCount];
 
             int level = tdData.level;
             if (level > gardenUnitProperties.Length)

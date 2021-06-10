@@ -50,38 +50,33 @@ namespace GameWish.Game
 
         }
 
-        // protected override void OnOpen()
-        // {
-        //     // RegisterEvent(EventID.OnEnterBattle, HandleEvent);
-        //     // RegisterEvent(EventID.OnExitBattle, HandleEvent);
-        // }
 
         #region Public
-        public void ShowCommonInjuryText(Transform character, string talk, bool isScattered = false)
+        public void ShowInjuryText(Transform character, int damage, bool isScattered = false)
         {
             var obj = CreateInjuryObj();
 
-            CombatDamageText combatDamageText = ShowWorkText(character, talk, obj);
+            CombatDamageText combatDamageText = ShowWorkText(character, damage.ToString(), obj);
 
             combatDamageText.SetStyle(InjuryType.CommonInjury);
 
             RetardedText(obj, isScattered);
         }
-        public void ShowCriticalInjuryText(Transform character, string talk, bool isScattered = false)
+        public void ShowCriticalInjuryText(Transform character, int damage, bool isScattered = false)
         {
             var obj = CreateInjuryObj();
 
-            CombatDamageText combatDamageText = ShowWorkText(character, talk, obj);
+            CombatDamageText combatDamageText = ShowWorkText(character, damage.ToString(), obj);
 
             combatDamageText.SetStyle(InjuryType.CriticalInjury);
 
             RetardedText(obj, isScattered);
         }
-        public void ShowAbnormalInjuryText(Transform character, string talk, bool isScattered = false)
+        public void ShowAbnormalInjuryText(Transform character, int damage, bool isScattered = false)
         {
             var obj = CreateInjuryObj();
 
-            CombatDamageText combatDamageText = ShowWorkText(character, talk, obj);
+            CombatDamageText combatDamageText = ShowWorkText(character, damage.ToString(), obj);
 
             combatDamageText.SetStyle(InjuryType.CriticalInjury);
 
@@ -138,25 +133,12 @@ namespace GameWish.Game
 
         private CombatDamageText ShowWorkText(Transform character, string talk, GameObject obj)
         {
-            // if (m_IsBattle) return;
-
-            //var m_WorkTalkGo = GameObjectPoolMgr.S.Allocate("WalkTalk");
-            //m_WorkTalkGo.transform.SetParent(transform);
-            //m_WorkTalkGo.transform.localPosition = Vector3.zero;
-            //m_WorkTalkGo.transform.localScale = Vector3.one;
-            //m_WorkTalkGo.SetActive(true);
-
             CombatDamageText workTalk = obj.GetComponent<CombatDamageText>();
             workTalk.followTransform = character;
             workTalk.UpdatePosition();
             workTalk.SetText(talk);
 
             return workTalk;
-
-            //Timer.S.Post2Scale(i =>
-            //{
-            //    GameObjectPoolMgr.S.Recycle(workTalkGo);
-            //}, 3.0f);
         }
         #endregion
 
