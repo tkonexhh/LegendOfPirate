@@ -33,13 +33,9 @@ namespace GameWish.Game
 		[SerializeField]
 		public UnityEngine.UI.Image CEBg;
 		[SerializeField]
-		public TMPro.TextMeshProUGUI CETitle;
-		[SerializeField]
 		public TMPro.TextMeshProUGUI CEValue;
 		[SerializeField]
 		public UnityEngine.UI.Image LevelBg;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI LevelTitle;
 		[SerializeField]
 		public TMPro.TextMeshProUGUI CurLevel;
 		[SerializeField]
@@ -71,19 +67,11 @@ namespace GameWish.Game
 		[SerializeField]
 		public RectTransform UpgradeResTra;
 		[SerializeField]
-		public TMPro.TextMeshProUGUI UpgradeResTimeTitle;
-		[SerializeField]
 		public TMPro.TextMeshProUGUI UpgradeResTimeValue;
 		[SerializeField]
 		public GFrame.Editor.GButton UpgradeBtn;
 		[SerializeField]
-		public TMPro.TextMeshProUGUI UpgradeBtnValue;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI LeftTopTitleValue;
-		[SerializeField]
 		public GFrame.Editor.GButton LeftDownExitBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI LeftDownExitBtnValue;
 		
 		
 	}

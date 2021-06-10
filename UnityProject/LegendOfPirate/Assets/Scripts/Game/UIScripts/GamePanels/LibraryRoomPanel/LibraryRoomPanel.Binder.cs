@@ -30,10 +30,25 @@ namespace GameWish.Game
 		private void BindModelToUI()
 		{
 		}
-		
-		private void BindUIToModel()
+
+        private void BindUIToModel()
 		{
 		}
-		
+		private void RegisterEvents()
+		{
+
+		}
+
+		private void OnClickAddListener()
+		{
+			//TrainingUpgradeBtn.OnClickAsObservable().Subscribe(_ => {
+			//	Debug.LogError("Upgrade");//TODO
+			//});
+			
+		}
+		private void UnregisterEvents()
+		{
+
+		}
 	}
 }

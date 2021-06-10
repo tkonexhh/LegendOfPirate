@@ -161,8 +161,9 @@ GameObject:
   - component: {fileID: 4155058092532774220}
   - component: {fileID: 1352218251454856758}
   - component: {fileID: 5754478648781044052}
+  - component: {fileID: 6384914953768700092}
   m_Layer: 0
-  m_Name: BottomTrainingRole
+  m_Name: BottomLibraryRole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,3 +228,15 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
+--- !u!114 &6384914953768700092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9210596526150195611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6ef8cbff5539b429b2f0ddea89697f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

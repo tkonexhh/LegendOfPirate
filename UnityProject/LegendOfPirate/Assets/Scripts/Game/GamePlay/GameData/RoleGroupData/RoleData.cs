@@ -20,7 +20,7 @@ namespace GameWish.Game
         public List<RoleEquipData> equipList;
         public List<RoleSkillData> skillList;
 
-        public RoleData(int id, bool isUnlock = false)
+        public RoleData(int id, bool isUnlock)
         {
             this.id = id;
             this.isUnlock = isUnlock;

@@ -34,6 +34,33 @@ namespace GameWish.Game
 		private void BindUIToModel()
 		{
 		}
-		
+		private void RegisterEvents()
+		{
+
+		}
+
+		private void OnClickAddListener()
+		{
+			RightArrowBtn.OnClickAsObservable().Subscribe(_ =>
+            {
+                Debug.LogError("RightArrowBtn");//TODO
+            });
+			LeftArrowBtn.OnClickAsObservable().Subscribe(_ =>
+            {
+                Debug.LogError("LeftArrowBtn");//TODO
+            });
+			LeftDownExitBtn.OnClickAsObservable().Subscribe(_ =>
+            {
+				HideSelfWithAnim();
+            });
+			UpgradeBtn.OnClickAsObservable().Subscribe(_ =>
+            {
+                Debug.LogError("UpgradeBtn");//TODO
+            });
+        }
+		private void UnregisterEvents()
+		{
+
+		}
 	}
 }

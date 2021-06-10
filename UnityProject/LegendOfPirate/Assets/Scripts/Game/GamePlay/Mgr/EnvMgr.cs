@@ -41,7 +41,7 @@ namespace GameWish.Game
 
         private void SpawnSea()
         {
-            GameObject sea = GameObjectPoolMgr.S.Allocate(Define.SEA);
+            GameObject sea = GameObjectPoolMgr.S.Allocate(Define.SEA_PREFAB);
             sea.transform.SetParent(GameplayMgr.S.EntityRoot);
         }
 

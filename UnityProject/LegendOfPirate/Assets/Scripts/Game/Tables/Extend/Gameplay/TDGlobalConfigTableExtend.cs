@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.IO;
 using System.Collections;
@@ -11,7 +11,6 @@ namespace GameWish.Game
     {
         static void CompleteRowAdd(TDGlobalConfig tdData)
         {
-
         }
     }
 }

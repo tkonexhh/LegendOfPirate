@@ -19,9 +19,12 @@ MonoBehaviour:
       - ~Element Name~
       - AdDynamicShowPanel
       - AdStaticShowPanel
+      - AlchemyRoomPanel
       - BoostPanel
+      - CongratulationPanel
       - EffectActivePanel
       - EvolutionSolePanel
+      - LandUpgradePanel
       - LibraryRoomPanel
       - MagicCloudPanel
       - MainMenuPanel
@@ -37,6 +40,8 @@ MonoBehaviour:
       - RoleStoryPanel
       - SettingPanel
       - ShopPanel
+      - SmuggleChooseRolePanel
+      - SmugglePanel
       - TaskPanel
       - TrainingRoomPanel
       - UnlockEnemyPanel

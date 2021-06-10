@@ -16,8 +16,13 @@ namespace GameWish.Game
 
         public override void InitWithEmptyData()
         {
-            //TODO: for test
-            shipUnitDataList.Add(new ShipUnitData(ShipUnitType.Kitchen));
+            foreach (var item in EnumUtil.GetValues<ShipUnitType>())
+            {
+                if (item != ShipUnitType.None)
+                {
+                    shipUnitDataList.Add(new ShipUnitData(item));
+                }
+            }
         }
 
         public override void OnDataLoadFinish()

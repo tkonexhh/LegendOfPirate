@@ -22,7 +22,7 @@ namespace GameWish.Game
             shipUnitModelList = new ReactiveCollection<ShipUnitModel>();
             for (int i = 0; i < m_ShipData.shipUnitDataList.Count; i++)
             {
-                ShipUnitModel unitModel = new ShipUnitModel(m_ShipData.shipUnitDataList[i]);
+                ShipUnitModel unitModel = ShipUnitModelFactory.CreateUnitModel(m_ShipData.shipUnitDataList[i]);
                 shipUnitModelList.Add(unitModel);
             }
         }
@@ -36,6 +36,12 @@ namespace GameWish.Game
             }
 
             return model;
+        }
+
+        public T GetShipUnitModel<T>(ShipUnitType shipUnitType) where T : ShipUnitModel
+        {
+            ShipUnitModel model = GetShipUnitModel(shipUnitType);
+            return model as T;
         }
     }
 
