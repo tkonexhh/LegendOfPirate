@@ -17,6 +17,8 @@ namespace GameWish.Game
         public PickTarget PickTarget = new PickTarget();
 
         public Attack Attack;
+        [LabelText("攻击距离")]
+        public float AtkRange = 2.0f;
 
         [ToggleGroup("EnableAttackBuff", "攻击Buff")]
         public bool EnableAttackBuff;

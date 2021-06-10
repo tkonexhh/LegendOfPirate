@@ -28,8 +28,8 @@ namespace GameWish.Game
 
         public void OnDestroyed()
         {
-            m_DailyRefreshItemDic.Clear();
-            m_DailyRefreshItemDic = null;
+            //m_DailyRefreshItemDic.Clear();
+            //m_DailyRefreshItemDic = null;
 
             //Timer.S.Cancel(m_TimerId);
         }
