@@ -19,13 +19,9 @@ namespace GameWish.Game
 		[SerializeField]
 		public UnityEngine.UI.Image TitleIcon;
 		[SerializeField]
-		public TMPro.TextMeshProUGUI TitileCont;
-		[SerializeField]
 		public TMPro.TextMeshProUGUI AlchemyTMP;
 		[SerializeField]
 		public GFrame.Editor.GButton AlchemyUpgradeBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI AlchemyUpgradeBtnTMP;
 		[SerializeField]
 		public UnityEngine.UI.Image ReadyBuildBg;
 		[SerializeField]
@@ -36,8 +32,6 @@ namespace GameWish.Game
 		public RectTransform MaterialsTra;
 		[SerializeField]
 		public GFrame.Editor.GButton MakeBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI MakeBtnValue;
 		[SerializeField]
 		public UnityEngine.UI.Image BottomRegionBg;
 		[SerializeField]
