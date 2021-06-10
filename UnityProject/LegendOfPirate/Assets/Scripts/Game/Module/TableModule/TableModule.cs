@@ -33,6 +33,11 @@ namespace GameWish.Game
                 TDAppConfigTable.metaData,
                 TDRemoteConfigTable.metaData,
                 TDPurchaseTable.metaData,
+                TDEquipmentConfigTable.metaData,
+                TDGlobalConfigTable.metaData,
+                TDMaterialConfigTable.metaData,
+                TDRoleConfigTable.metaData,
+                
 
                 // Game play table        
                 //TDMainTaskTable.metaData,

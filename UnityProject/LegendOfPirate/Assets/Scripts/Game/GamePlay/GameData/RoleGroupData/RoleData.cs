@@ -8,34 +8,43 @@ using Qarth;
 namespace GameWish.Game
 {
     [Serializable]
-    public struct RoleData
+    public class RoleData : IDataClass
     {
         public int id;
+        public bool isUnlock;
+        public int spiritCount;
         public int level;
-        public string name;
 
         public int curExp;
         public int starLevel;
         public List<RoleEquipData> equipList;
         public List<RoleSkillData> skillList;
 
-        public RoleData(int id, int level, string name ,int exp, int starLevel)
+        public RoleData(int id, bool isUnlock = false)
         {
             this.id = id;
-            this.level = level;
-            this.name = name;
-            this.curExp = exp;
-            this.starLevel = starLevel;
+            this.isUnlock = isUnlock;
+            this.level = 1;
+            this.spiritCount = 0;
 
+            this.curExp = 1;
+            this.starLevel = 1;
             equipList = new List<RoleEquipData>();
             skillList = new List<RoleSkillData>();
         }
 
         #region Public
 
+        public void SetUnlocked()
+        {
+            isUnlock = true;
+            SetDataDirty();
+        }
+
         public void AddLevel(int deltaLevel)
         {
-            level += deltaLevel;
+            level = deltaLevel;
+            SetDataDirty();
         }
 
         public bool AddSkill(int id)
@@ -45,6 +54,7 @@ namespace GameWish.Game
             if (skill == null)
             {
                 skillList.Add(new RoleSkillData());
+                SetDataDirty();
                 return true;
             }
 
@@ -58,6 +68,7 @@ namespace GameWish.Game
             if (skill != null)
             {
                 skill.Value.Upgrade(deltaLevel);
+                SetDataDirty();
                 return true;
             }
 
@@ -71,6 +82,7 @@ namespace GameWish.Game
             if (equip == null)
             {
                 equipList.Add(new RoleEquipData());
+                SetDataDirty();
                 return true;
             }
 
@@ -84,6 +96,7 @@ namespace GameWish.Game
             if (equip != null)
             {
                 equip.Value.Upgrade(deltaLevel);
+                SetDataDirty();
                 return true;
             }
 
