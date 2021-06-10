@@ -30,6 +30,14 @@ namespace GameWish.Game
         OnGameSuccess,
         OnGameStart,
         OnTipCountChange,
+
+
+        #region TrainingRoomPanel
+        /// <summary>
+        /// BottomTrainingRole点击事件
+        /// </summary>
+        OnBottomTrainingRole,
+        #endregion
     }
 
 }

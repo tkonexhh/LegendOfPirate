@@ -13,7 +13,13 @@ namespace GameWish.Game
 		private UGridListView m_MiddleTrainingRoleUGridList;
 		[SerializeField]
 		private USimpleListView m_BottomTrainingRoleUList;
-		protected override void OnUIInit()
+
+		#region Data
+		private IntReactiveProperty m_SelectedCount = new IntReactiveProperty(0);
+        #endregion
+
+        #region AbstractAnimPanel
+        protected override void OnUIInit()
 		{
 			base.OnUIInit();
 		}
@@ -46,10 +52,36 @@ namespace GameWish.Game
 			ReleasePanelData();
 			UnregisterEvents();
 		}
+		#endregion
 
-		private void InitData()
+		#region ButtonEvent
+		public void TrainingUpgradeBtnEvent()
 		{
-			InitFixedText();
+
+		}
+		public void TrainBtnEvent()
+		{
+
+		}
+		public void AutoTrainBtnEvent()
+		{
+
+		}
+        #endregion
+
+        #region EventSystem
+        private void HandlerEvent(int key, object[] param)
+		{
+            switch ((EventID)key)
+            {
+                case EventID.OnBottomTrainingRole:
+                    break;
+            }
+        }
+        #endregion
+        private void InitData()
+		{
+			BindUniRxUI();
 
 			//TitleIcon.sprite = SpriteHandler.S.GetSprite(AtlasDefine.TestAtlas, iconName);
 
@@ -71,9 +103,9 @@ namespace GameWish.Game
 			root.GetComponent<MiddleTrainingRole>().OnInit(index);
 		}
 
-        private void InitFixedText()
+        private void BindUniRxUI()
 		{
-
+			m_SelectedCount.Select(count => count + "/" + 10).SubscribeToTextMeshPro(RoleSelectNumberTMP);
 		}
 
 		public void CreateMiddleTrainingRole()

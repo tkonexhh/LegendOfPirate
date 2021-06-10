@@ -52,6 +52,10 @@ namespace GameWish.Game
         SmugglePanel,
         SmuggleChooseRolePanel,
         #endregion
+        #region 黑市
+        BlackMarketPanel,
+        #endregion
+
         CongratulationPanel,
         LandUpgradePanel,
     }

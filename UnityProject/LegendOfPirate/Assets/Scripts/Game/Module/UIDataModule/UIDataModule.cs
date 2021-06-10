@@ -92,12 +92,15 @@ namespace GameWish.Game
             #endregion
 
 
-            //Island Management System
+            //Land Management System  
             UIDataTable.AddPanelData(UIID.CongratulationPanel, null, "GamePanels/LandManagement/CongratulationPanel/CongratulationPanel");
             UIDataTable.AddPanelData(UIID.LandUpgradePanel, null, "GamePanels/LandManagement/LandUpgradePanel/LandUpgradePanel");
             #region 随机防御
             UIDataTable.AddPanelData(UIID.RandomDefensePanel, null, "GamePanels/LandManagement/RandomDefensePanel/RandomDefensePanel");
             UIDataTable.AddPanelData(UIID.RandomDefenseChooseRolePanel, null, "GamePanels/LandManagement/RandomDefenseChooseRolePanel/RandomDefenseChooseRolePanel");
+            #endregion
+            #region 黑市
+            UIDataTable.AddPanelData(UIID.BlackMarketPanel, null, "GamePanels/LandManagement/BlackMarketPanel/BlackMarketPanel");
             #endregion
             #region 走私系统
             UIDataTable.AddPanelData(UIID.SmugglePanel, null, "GamePanels/LandManagement/SmugglePanel/SmugglePanel");
