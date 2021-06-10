@@ -8,10 +8,10 @@ namespace GameWish.Game
 {
 	public class FishingPanelData : UIPanelData
 	{
-		
+		RoleGroupModel m_RoleGroupModel;
 		public FishingPanelData()
         {
-
+			m_RoleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
         }
 	}
 	
@@ -35,7 +35,11 @@ namespace GameWish.Game
 		
 		private void BindUIToModel()
 		{
+			CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfPanel()).AddTo(this);
+			TrainBtn.OnClickAsObservable().Subscribe(_=>OnTrainBtnClick()).AddTo(this);
+			AutoBtn.OnClickAsObservable().Subscribe(_ => OnAutoBtnClick()).AddTo(this);
 		}
-		
+		private void OnTrainBtnClick() {}
+		private void OnAutoBtnClick() { }
 	}
 }

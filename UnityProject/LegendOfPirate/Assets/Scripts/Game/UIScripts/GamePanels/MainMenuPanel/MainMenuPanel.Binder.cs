@@ -30,7 +30,8 @@ namespace GameWish.Game
 				//UIMgr.S.OpenPanel(UIID.EvolutionSolePanel);
 				//UIMgr.S.OpenPanel(UIID.RoleSkillPanel);
 				//UIMgr.S.OpenPanel(UIID.RoleStoryPanel);
-				UIMgr.S.OpenPanel(UIID.RoleDetailsPanel, 1);
+				//UIMgr.S.OpenPanel(UIID.RoleDetailsPanel, 1);
+				UIMgr.S.OpenPanel(UIID.KitchenPanel);		
             });
         }
 		

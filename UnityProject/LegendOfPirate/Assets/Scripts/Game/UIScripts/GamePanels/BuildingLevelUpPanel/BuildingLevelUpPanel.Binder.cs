@@ -10,6 +10,7 @@ namespace GameWish.Game
 	{
 		public BuildingLevelUpPanelData()
 		{
+
 		}
 	}
 	
@@ -35,5 +36,23 @@ namespace GameWish.Game
 		{
 		}
 		
+	}
+	public interface IBuildingLevelUpStrategy 
+	{
+		Model GetBuildingModel();
+		void BuildingLevelUp(Model BuildingModel);
+	}
+    public class FishingUpLevelStrategy : IBuildingLevelUpStrategy
+    {
+        public void BuildingLevelUp(Model BuildingModel)
+        {
+			//TODO:升级对应Model
+		}
+
+		public Model GetBuildingModel()
+        {
+			return null;
+			//Todo:返回对应Model
+		}
 	}
 }

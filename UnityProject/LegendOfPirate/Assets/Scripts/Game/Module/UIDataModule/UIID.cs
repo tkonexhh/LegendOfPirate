@@ -32,6 +32,13 @@ namespace GameWish.Game
 
         FloatMeshMessagePanel,
 
+        KitchenPanel,
+        FishingPanel,
+        ForgePanel,
+        GardenPanel,
+        ProgressingRoomPanel,
+
+
         #region 训练室
         TrainingRoomPanel,
         #endregion
