@@ -9,10 +9,10 @@ namespace GameWish.Game
 {
     public partial class TDFacilityKitchenTable
     {
-        static void CompleteRowAdd(TDFacilityKitchen tdData)
+        static void CompleteRowAdd(TDFacilityKitchen tdData, int rowCount)
         {
             if (kitchenUnitProperties == null)
-                kitchenUnitProperties = new KitchenUnitConfig[dataList.Count];
+                kitchenUnitProperties = new KitchenUnitConfig[rowCount];
 
             int level = tdData.level;
             if (level > kitchenUnitProperties.Length)

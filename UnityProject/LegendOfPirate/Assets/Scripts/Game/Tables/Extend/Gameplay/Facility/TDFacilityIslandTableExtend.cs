@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.IO;
 using System.Collections;
@@ -9,7 +9,7 @@ namespace GameWish.Game
 {
     public partial class TDFacilityIslandTable
     {
-        static void CompleteRowAdd(TDFacilityIsland tdData)
+        static void CompleteRowAdd(TDFacilityIsland tdData, int rowCount)
         {
 
         }

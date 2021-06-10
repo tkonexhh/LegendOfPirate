@@ -28,18 +28,22 @@ namespace GameWish.Game
                 this.upgradeResCosts = new UpgradeResCost[costItmeStrs.Length];
                 for (int i = 0; i < costItmeStrs.Length; i++)
                 {
-                    string[] itemStr = costItmeStrs[i].Split('|');
-                    if (itemStr.Length == 2)
+                    if (!string.IsNullOrEmpty(costItmeStrs[i]))
                     {
-                        RawMatType rawMatType = (RawMatType)(int.Parse(itemStr[0]));
-                        int count = int.Parse(itemStr[1]);
+                        string[] itemStr = costItmeStrs[i].Split('|');
 
-                        UpgradeResCost cost = new UpgradeResCost(rawMatType, count);
-                        upgradeResCosts[i] = cost;
-                    }
-                    else
-                    {
-                        Log.e("Upgrade Cost Pattern Wrong: " + upgradeCost);
+                        if (itemStr.Length == 2)
+                        {
+                            RawMatType rawMatType = (RawMatType)(int.Parse(itemStr[0]));
+                            int count = int.Parse(itemStr[1]);
+
+                            UpgradeResCost cost = new UpgradeResCost(rawMatType, count);
+                            upgradeResCosts[i] = cost;
+                        }
+                        else
+                        {
+                            Log.e("Upgrade Cost Pattern Wrong: " + upgradeCost);
+                        }
                     }
                 }
             }

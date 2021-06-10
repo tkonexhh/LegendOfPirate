@@ -40,19 +40,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 7
     - Name: 
       Entry: 7
       Data: 
     - Name: $k
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: $v
       Entry: 7
       Data: 2|GameWish.Game.ShipUnitConfig, Assembly-CSharp
     - Name: prefabName
       Entry: 1
-      Data: Kitchen
+      Data: FishingPlatform
     - Name: pos
       Entry: 7
       Data: UnityEngine.Vector3, UnityEngine.CoreModule
@@ -70,7 +70,223 @@ MonoBehaviour:
       Data: 
     - Name: bodyPrefabName
       Entry: 1
+      Data: FishingPlatformBody
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 3|GameWish.Game.ShipUnitConfig, Assembly-CSharp
+    - Name: prefabName
+      Entry: 1
+      Data: Kitchen
+    - Name: pos
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: bodyPrefabName
+      Entry: 1
       Data: KitchenBody
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: 4|GameWish.Game.ShipUnitConfig, Assembly-CSharp
+    - Name: prefabName
+      Entry: 1
+      Data: Garden
+    - Name: pos
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: bodyPrefabName
+      Entry: 1
+      Data: GardenBody
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: 5|GameWish.Game.ShipUnitConfig, Assembly-CSharp
+    - Name: prefabName
+      Entry: 1
+      Data: Laboratory
+    - Name: pos
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: bodyPrefabName
+      Entry: 1
+      Data: LaboratoryBody
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 5
+    - Name: $v
+      Entry: 7
+      Data: 6|GameWish.Game.ShipUnitConfig, Assembly-CSharp
+    - Name: prefabName
+      Entry: 1
+      Data: Library
+    - Name: pos
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: bodyPrefabName
+      Entry: 1
+      Data: LibraryBody
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 6
+    - Name: $v
+      Entry: 7
+      Data: 7|GameWish.Game.ShipUnitConfig, Assembly-CSharp
+    - Name: prefabName
+      Entry: 1
+      Data: ProcessingRoom
+    - Name: pos
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: bodyPrefabName
+      Entry: 1
+      Data: ProcessingRoomBody
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 7
+    - Name: $v
+      Entry: 7
+      Data: 8|GameWish.Game.ShipUnitConfig, Assembly-CSharp
+    - Name: prefabName
+      Entry: 1
+      Data: TrainingRoom
+    - Name: pos
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: bodyPrefabName
+      Entry: 1
+      Data: TrainingRoomBody
     - Name: 
       Entry: 8
       Data: 

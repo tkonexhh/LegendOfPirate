@@ -9,7 +9,7 @@ namespace GameWish.Game
 {
     public partial class TDGlobalConfigTable
     {
-        static void CompleteRowAdd(TDGlobalConfig tdData)
+        static void CompleteRowAdd(TDGlobalConfig tdData, int rowCount)
         {
         }
     }

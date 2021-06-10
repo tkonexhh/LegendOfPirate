@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.IO;
 using System.Collections;
@@ -9,7 +9,7 @@ namespace GameWish.Game
 {
     public partial class TDPartSynthesisConfigTable
     {
-        static void CompleteRowAdd(TDPartSynthesisConfig tdData)
+        static void CompleteRowAdd(TDPartSynthesisConfig tdData, int rowCount)
         {
 
         }

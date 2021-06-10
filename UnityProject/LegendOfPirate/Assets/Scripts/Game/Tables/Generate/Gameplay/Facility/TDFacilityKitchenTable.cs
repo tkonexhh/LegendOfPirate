@@ -1,4 +1,4 @@
-//Auto Generate Don't Edit it
+﻿//Auto Generate Don't Edit it
 using UnityEngine;
 using System;
 using System.IO;
@@ -35,7 +35,7 @@ namespace GameWish.Game
                 memberInstance.ReadRow(dataR, fieldIndex);
                 OnAddRow(memberInstance);
                 memberInstance.Reset();
-                CompleteRowAdd(memberInstance);
+                CompleteRowAdd(memberInstance, rowCount);
             }
             Log.i(string.Format("Parse Success TDFacilityKitchen"));
         }
