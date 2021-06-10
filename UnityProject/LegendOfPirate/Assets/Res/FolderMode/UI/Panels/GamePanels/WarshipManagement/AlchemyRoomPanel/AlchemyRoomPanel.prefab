@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8640403701659500974}
   - component: {fileID: 2179061460030699343}
   - component: {fileID: 8974728815070553472}
-  - component: {fileID: 160148835840411510}
   m_Layer: 0
   m_Name: TitileCont
   m_TagString: Untagged
@@ -137,22 +136,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &160148835840411510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336208995829579970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!1 &732009135600423089
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +148,7 @@ GameObject:
   - component: {fileID: 8343058886917189962}
   - component: {fileID: 2821871956491288278}
   - component: {fileID: 4668607366128224216}
+  - component: {fileID: 2948739426138434419}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -261,6 +245,26 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2948739426138434419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732009135600423089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24f16bdc700010488366ad71a3cbb4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 3963813422037075706}
+  layout: 1
+  padding: {x: 10, y: 0}
+  spacing: {x: 0, y: 0}
+  needMask: 0
+  content: {fileID: 7161235670849181909}
+  viewPort: {fileID: 7838866716723004281}
+  alignment: 0
 --- !u!1 &927613725929906965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,6 +1331,18 @@ MonoBehaviour:
   ComponentGeneratePath: 
   CustomComment: 
   mComponentName: 
+--- !u!114 &312050702198979590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3963813422037075706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406aa85270312034f9a2b469261e2822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4379340834968290390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,7 +1570,6 @@ GameObject:
   - component: {fileID: 4231354634845655682}
   - component: {fileID: 3580456812000267635}
   - component: {fileID: 6987211962791376732}
-  - component: {fileID: 4219876551886335443}
   m_Layer: 0
   m_Name: AlchemyUpgradeBtnTMP
   m_TagString: Untagged
@@ -1677,22 +1692,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4219876551886335443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5452264659699070882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!1 &5662363482129060945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2014,7 +2013,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7161235670849181909}
-  - component: {fileID: 953592356269464347}
   - component: {fileID: 3565997352372715183}
   m_Layer: 5
   m_Name: BottomAlchemyTra
@@ -2043,31 +2041,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &953592356269464347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5963165458794384576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 3
-  m_Spacing: 5
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
 --- !u!114 &3565997352372715183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2602,20 +2575,18 @@ MonoBehaviour:
   Bg: {fileID: 229258740851149090}
   TitleBg: {fileID: 4345214937124685109}
   TitleIcon: {fileID: 8763189335784135290}
-  TitileCont: {fileID: 8974728815070553472}
   AlchemyTMP: {fileID: 1222264747794609341}
   AlchemyUpgradeBtn: {fileID: 3563372089484757010}
-  AlchemyUpgradeBtnTMP: {fileID: 6987211962791376732}
   ReadyBuildBg: {fileID: 571670557262341647}
   AlchemyGoodsTra: {fileID: 7206944368624485051}
   ReadyStateIcon: {fileID: 3083222725820408737}
   MaterialsTra: {fileID: 6637533889775950048}
   MakeBtn: {fileID: 2918376136689969961}
-  MakeBtnValue: {fileID: 1625788195733981411}
   BottomRegionBg: {fileID: 8543107674581887091}
   LeftArrowBtn: {fileID: 3523745070731068530}
   RightArrowBtn: {fileID: 4523738736209528621}
   BottomAlchemyTra: {fileID: 7161235670849181909}
+  m_BottomLibarayRoleUList: {fileID: 2948739426138434419}
 --- !u!1 &7502011868213158575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2920,7 +2891,6 @@ GameObject:
   - component: {fileID: 8801272195056119797}
   - component: {fileID: 501243708637838672}
   - component: {fileID: 1625788195733981411}
-  - component: {fileID: 6392980837481496991}
   m_Layer: 0
   m_Name: MakeBtnValue
   m_TagString: Untagged
@@ -3044,22 +3014,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6392980837481496991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8586822275662444342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!1 &8728407277324496793
 GameObject:
   m_ObjectHideFlags: 0
@@ -3395,7 +3349,7 @@ PrefabInstance:
     - target: {fileID: 1677566720209189926, guid: c273aa5e21b78f14d93bcde38ff8f196,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1677566720209189926, guid: c273aa5e21b78f14d93bcde38ff8f196,
         type: 3}
@@ -3405,7 +3359,7 @@ PrefabInstance:
     - target: {fileID: 1677566720209189926, guid: c273aa5e21b78f14d93bcde38ff8f196,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1677566720209189926, guid: c273aa5e21b78f14d93bcde38ff8f196,
         type: 3}
@@ -3455,12 +3409,12 @@ PrefabInstance:
     - target: {fileID: 1677566720209189926, guid: c273aa5e21b78f14d93bcde38ff8f196,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1677566720209189926, guid: c273aa5e21b78f14d93bcde38ff8f196,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -30.063057
       objectReference: {fileID: 0}
     - target: {fileID: 1677566720209189926, guid: c273aa5e21b78f14d93bcde38ff8f196,
         type: 3}
@@ -3484,6 +3438,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c273aa5e21b78f14d93bcde38ff8f196, type: 3}
+--- !u!1 &3963813422037075706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5958362812381080746, guid: c273aa5e21b78f14d93bcde38ff8f196,
+    type: 3}
+  m_PrefabInstance: {fileID: 7327937302748801616}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8283802164686018166 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1677566720209189926, guid: c273aa5e21b78f14d93bcde38ff8f196,
