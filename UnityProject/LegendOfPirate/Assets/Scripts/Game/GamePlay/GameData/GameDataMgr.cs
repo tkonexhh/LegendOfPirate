@@ -25,6 +25,8 @@ namespace GameWish.Game
         private PlayerInfoDataHandler m_PlayerInfoDataHandler = null;
         private RoleGroupDataHandler m_RoleGroupDataHandler = null;
         private ShipDataHandler m_ShipDataHandler = null;
+        private InventoryDataHandler m_InventoryDataHandler = null;
+        private KitchenDataHandler m_KitchenDataHandler = null;
 
         private int m_LoadDoneCount = 0;
         private Action m_OnLoadDoneCallback = null;
@@ -40,14 +42,20 @@ namespace GameWish.Game
             m_PlayerInfoDataHandler = new PlayerInfoDataHandler();
             m_RoleGroupDataHandler = new RoleGroupDataHandler();
             m_ShipDataHandler = new ShipDataHandler();
+            m_InventoryDataHandler = new InventoryDataHandler();
+            m_KitchenDataHandler = new KitchenDataHandler();
 
             m_DataHanlderList.Add(m_PlayerInfoDataHandler);
             m_DataHanlderList.Add(m_RoleGroupDataHandler);
             m_DataHanlderList.Add(m_ShipDataHandler);
+            m_DataHanlderList.Add(m_InventoryDataHandler);
+            m_DataHanlderList.Add(m_KitchenDataHandler);
 
             m_PlayerInfoDataHandler.LoadData(OnLoadDone);
             m_RoleGroupDataHandler.LoadData(OnLoadDone);
             m_ShipDataHandler.LoadData(OnLoadDone);
+            m_InventoryDataHandler.LoadData(OnLoadDone);
+            m_KitchenDataHandler.LoadData(OnLoadDone);
 
             RegisterEvents();
         }
@@ -65,16 +73,6 @@ namespace GameWish.Game
         {
             m_PlayerInfoDataHandler.Save(null);
         }
-
-        //public PlayerInfoData GetPlayerInfoData()
-        //{
-        //    return PlayerInfoDataHandler.data;
-        //}
-
-        //public RoleGroupData GetRoleGroupData()
-        //{
-        //    return RoleGroupDataHandler.data;
-        //}
 
         public T GetData<T>() where T : IDataClass
         {
