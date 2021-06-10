@@ -3,6 +3,7 @@ using Qarth;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UniRx;
 
 namespace GameWish.Game
 {   
@@ -12,10 +13,22 @@ namespace GameWish.Game
 
         #region IDataClass
 
+        public void SetDefaultValue()
+        {
+            SetDataDirty();
+        }
+
         public override void InitWithEmptyData()
         {
-            //For Test
-            roleList.Add(new RoleData(1, "Test"));
+            if (roleList.Count <= 0)
+            {
+                foreach (var item in TDRoleConfigTable.dataList)
+                {
+                    OnAddRoleItem(item.roleId,false);
+                }
+            }
+
+            SetDataDirty();
         }
 
         public override void OnDataLoadFinish()
@@ -27,7 +40,7 @@ namespace GameWish.Game
 
         #region Public Set
 
-        public void OnRoleUnlocked(int id, string name)
+        public void OnAddRoleItem(int id,bool isUnlock)
         {
             if (roleList.Any(i => i.id == id))
             {
@@ -35,7 +48,7 @@ namespace GameWish.Game
             }
             else
             {
-                roleList.Add(new RoleData(id, 1, name,1,1));
+                roleList.Add(new RoleData(id, isUnlock));
 
                 SetDataDirty();
             }
@@ -43,7 +56,7 @@ namespace GameWish.Game
 
         public void OnRoleUpgraded(int id, int deltaLevel)
         {
-            RoleData? item = GetRoleItem(id);
+            RoleData item = GetRoleItem(id);
 
             if (item == null)
             {
@@ -51,7 +64,7 @@ namespace GameWish.Game
             }
             else
             {
-                item.Value.AddLevel(deltaLevel);
+                item.AddLevel(deltaLevel);
 
                 SetDataDirty();
             }
@@ -64,14 +77,16 @@ namespace GameWish.Game
         {
         }
 
+        public RoleData GetRoleItem(int id)
+        {
+            return roleList.FirstOrDefault(i => i.id == id);
+        }
+
         #endregion
 
         #region Private
 
-        private RoleData? GetRoleItem(int id)
-        {
-            return roleList.FirstOrDefault(i => i.id == id);
-        }
+
 
         #endregion
 

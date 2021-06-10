@@ -21,7 +21,6 @@ namespace GameWish.Game
 		private int m_RoleId;
 		private RoleModel m_RoleModel;
 		private bool m_IsUnlock;
-		private ResLoader m_Loader;
 
 		private void AllocatePanelData(params object[] args)
 		{
@@ -33,10 +32,9 @@ namespace GameWish.Game
                     m_RoleId = (int)args[0];
                 }
             }
-			m_RoleModel = new RoleModel(new RoleData(1, 99, "Jack", 88, 2)); //m_PanelData.roleGroupModel.GetRoleModel(m_RoleId);
-            RoleName.text = m_RoleModel.name;
-			m_IsUnlock = m_RoleModel.isUnlcok = true;
-			m_Loader = ResLoader.Allocate("RoleDetailsPanelItem", null);
+			m_RoleModel = m_PanelData.roleGroupModel.GetRoleModel(m_RoleId);//new RoleModel(new RoleData(1, 99, "Jack", 88, 2)); //
+			RoleName.text = m_RoleModel.name;
+			m_IsUnlock = m_RoleModel.isUnlcok.Value;
 
 			if (!m_IsUnlock)
             {
@@ -115,13 +113,14 @@ namespace GameWish.Game
 
 		private void AddSkillItem()
         {
-            SoundButton skillBtn = ((GameObject)m_Loader.LoadSync("SkillSubpart")).GetComponent<SoundButton>();
+            SoundButton skillBtn = ((GameObject)LoadPageRes("SkillSubpart")).GetComponent<SoundButton>();
             skillBtn.transform.SetParent(SkillRegion);
             skillBtn.onClick.AddListener(() =>
             {
                 UIMgr.S.OpenPanel(UIID.RoleSkillPanel, m_RoleId);
             });
-        }
+
+		}
 
 
 
