@@ -37,12 +37,12 @@ namespace GameWish.Game
         public  string  modelResources {get { return m_ModelResources; } }
        
         /// <summary>
-        /// 解锁等级条件
+        /// 解锁等级条件（主船等级）
         /// </summary>
         public  int  unlockAccountLevel {get { return m_UnlockAccountLevel; } }
        
         /// <summary>
-        /// 强化消耗
+        /// 强化消耗（id|数量）
         /// </summary>
         public  string  strengthenCost {get { return m_StrengthenCost; } }
        

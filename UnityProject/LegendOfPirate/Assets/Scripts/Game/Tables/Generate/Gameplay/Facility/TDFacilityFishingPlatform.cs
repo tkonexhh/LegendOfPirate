@@ -20,7 +20,7 @@ namespace GameWish.Game
         private string m_FishingRod;   
         private string m_ModelResources;   
         private EInt m_FishingSpeed = 0;   
-        private EInt m_UnlockRecipe = 0;   
+        private string m_UnlockRecipe;   
         private EInt m_Capability = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
@@ -31,7 +31,7 @@ namespace GameWish.Game
         public  int  level {get { return m_Level; } }
        
         /// <summary>
-        /// 升级资源
+        /// 升级资源（id|数量）
         /// </summary>
         public  string  upgradeRes {get { return m_UpgradeRes; } }
        
@@ -41,12 +41,12 @@ namespace GameWish.Game
         public  int  upgradeCost {get { return m_UpgradeCost; } }
        
         /// <summary>
-        /// 升级条件
+        /// 升级条件（主船等级）
         /// </summary>
         public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
        
         /// <summary>
-        /// 升级时间
+        /// 升级时间（s）
         /// </summary>
         public  int  upgradeSpeed {get { return m_UpgradeSpeed; } }
        
@@ -61,14 +61,14 @@ namespace GameWish.Game
         public  string  modelResources {get { return m_ModelResources; } }
        
         /// <summary>
-        /// 钓鱼时间
+        /// 钓鱼时间（s）
         /// </summary>
         public  int  fishingSpeed {get { return m_FishingSpeed; } }
        
         /// <summary>
-        /// 各种鱼的概率%
+        /// 各种鱼的概率%（id|概率%）
         /// </summary>
-        public  int  unlockRecipe {get { return m_UnlockRecipe; } }
+        public  string  unlockRecipe {get { return m_UnlockRecipe; } }
        
         /// <summary>
         /// 钓鱼人数
@@ -115,7 +115,7 @@ namespace GameWish.Game
                     m_FishingSpeed = dataR.ReadInt();
                     break;
                 case 8:
-                    m_UnlockRecipe = dataR.ReadInt();
+                    m_UnlockRecipe = dataR.ReadString();
                     break;
                 case 9:
                     m_Capability = dataR.ReadInt();

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.IO;
 using System.Collections;
@@ -9,7 +9,7 @@ namespace GameWish.Game
 {
     public partial class TDLanguageEnTable
     {
-        static void CompleteRowAdd(TDLanguageEn tdData)
+        static void CompleteRowAdd(TDLanguageEn tdData, int rowCount)
         {
 
         }

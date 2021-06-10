@@ -7,8 +7,8 @@ using Qarth;
 namespace GameWish.Game
 {
     public class TableModule : AbstractTableModule
-    { 
-       
+    {
+
         protected override void OnTableLoadFinish()
         {
             TDConstTable.InitArrays(typeof(ConstType));
@@ -34,9 +34,22 @@ namespace GameWish.Game
                 TDRemoteConfigTable.metaData,
                 TDPurchaseTable.metaData,
 
+               
                 // Game play table        
                 //TDMainTaskTable.metaData,
                 //TDLevelConfigTable.metaData,
+                 #region Facility
+                TDFacilityKitchenTable.metaData,
+                TDFacilityFishingPlatformTable.metaData,
+                TDFacilityForgeTable.metaData,
+                TDFacilityGardenTable.metaData,
+                //TDFacilityIslandTable.metaData,
+                TDFacilityLaboratoryTable.metaData,
+                TDFacilityLibraryTable.metaData,
+                TDFacilityProcessingRoomTable.metaData,
+                TDFacilityTrainingRoomTable.metaData,
+                TDFacilityWarshipTable.metaData,
+                #endregion
             };
         }
     }

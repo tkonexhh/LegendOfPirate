@@ -1,3 +1,4 @@
+using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,19 +6,13 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class BottomTrainingRole : MonoBehaviour
+	public class BottomTrainingRole : UListItemView
 	{
-	    // Start is called before the first frame update
-	    void Start()
-	    {
-	        
-	    }
-	
-	    // Update is called once per frame
-	    void Update()
-	    {
-	        
-	    }
+		private int m_Index = -1;
+		public void OnInit(int index)
+		{
+			m_Index = index;
+		}
 	}
 	
 }

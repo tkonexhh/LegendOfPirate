@@ -45,7 +45,7 @@ namespace GameWish.Game
         public  string  desc {get { return m_Desc; } }
        
         /// <summary>
-        /// 制作材料
+        /// 制作材料（id|数量）
         /// </summary>
         public  string  makeRes {get { return m_MakeRes; } }
        
@@ -55,17 +55,17 @@ namespace GameWish.Game
         public  string  buffType {get { return m_BuffType; } }
        
         /// <summary>
-        /// 增益效率
+        /// 增益效率（%）
         /// </summary>
         public  int  buffRate {get { return m_BuffRate; } }
        
         /// <summary>
-        /// 维持时长分钟
+        /// 维持时长（s）
         /// </summary>
         public  int  buffTime {get { return m_BuffTime; } }
        
         /// <summary>
-        /// 制作时间（分钟）
+        /// 制作时间（s）
         /// </summary>
         public  int  makeTime {get { return m_MakeTime; } }
        

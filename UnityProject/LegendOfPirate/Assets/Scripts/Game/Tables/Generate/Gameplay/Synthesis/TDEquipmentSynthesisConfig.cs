@@ -42,12 +42,12 @@ namespace GameWish.Game
         public  string  desc {get { return m_Desc; } }
        
         /// <summary>
-        /// 制作材料
+        /// 制作材料（id|数量）
         /// </summary>
         public  string  makeRes {get { return m_MakeRes; } }
        
         /// <summary>
-        /// 制作时间（分钟）
+        /// 制作时间（s）
         /// </summary>
         public  int  makeTime {get { return m_MakeTime; } }
        

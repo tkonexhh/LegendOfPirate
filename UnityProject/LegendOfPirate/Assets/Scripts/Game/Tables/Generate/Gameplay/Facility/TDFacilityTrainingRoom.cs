@@ -18,7 +18,7 @@ namespace GameWish.Game
         private EInt m_UpgradePreconditions = 0;   
         private EInt m_UpgradeSpeed = 0;   
         private string m_ModelResources;   
-        private string m_Capacity;   
+        private EInt m_Capacity = 0;   
         private EInt m_Experience = 0;   
         private EInt m_TrainingSpeed = 0;  
         
@@ -30,7 +30,7 @@ namespace GameWish.Game
         public  int  level {get { return m_Level; } }
        
         /// <summary>
-        /// 升级资源
+        /// 升级资源（id|数量）
         /// </summary>
         public  string  upgradeRes {get { return m_UpgradeRes; } }
        
@@ -40,12 +40,12 @@ namespace GameWish.Game
         public  int  upgradeCost {get { return m_UpgradeCost; } }
        
         /// <summary>
-        /// 升级条件
+        /// 升级条件（主船等级）
         /// </summary>
         public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
        
         /// <summary>
-        /// 升级时间
+        /// 升级时间（s）
         /// </summary>
         public  int  upgradeSpeed {get { return m_UpgradeSpeed; } }
        
@@ -57,7 +57,7 @@ namespace GameWish.Game
         /// <summary>
         /// 训练人数
         /// </summary>
-        public  string  capacity {get { return m_Capacity; } }
+        public  int  capacity {get { return m_Capacity; } }
        
         /// <summary>
         /// 经验值
@@ -65,7 +65,7 @@ namespace GameWish.Game
         public  int  experience {get { return m_Experience; } }
        
         /// <summary>
-        /// 训练时间
+        /// 训练时间（s）
         /// </summary>
         public  int  trainingSpeed {get { return m_TrainingSpeed; } }
        
@@ -103,7 +103,7 @@ namespace GameWish.Game
                     m_ModelResources = dataR.ReadString();
                     break;
                 case 6:
-                    m_Capacity = dataR.ReadString();
+                    m_Capacity = dataR.ReadInt();
                     break;
                 case 7:
                     m_Experience = dataR.ReadInt();
