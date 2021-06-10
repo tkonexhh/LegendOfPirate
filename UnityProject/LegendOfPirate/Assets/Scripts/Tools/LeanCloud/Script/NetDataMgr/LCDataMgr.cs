@@ -3,21 +3,23 @@ using LeanCloud.Storage;
 using UnityEngine;
 using LeanCloud;
 using LitJson;
+using System;
 
 namespace GameWish.Game
 {
     ///<summary>
     /// LC服务器
     ///</summary>
-    public class LCDataMgr : NetDataMgr
+    public class LCDataMgr : INetDataHandler
     {
         private LCObject m_data;
+
         ///<summary>
         /// 保存数据到服务端
         ///</summary>
         /// <param name="className">存储数据的对象名</param>
         /// <param name="content">存储对象的内容</param>
-        public override bool SaveData(string className, object data)
+        public bool SaveNetData(string className, object data)
         {
             if (data == null)
             {
@@ -38,12 +40,14 @@ namespace GameWish.Game
             }
             return true;
         }
-		
+
+
+
         ///<summary>
         /// 下载数据到客户端
         ///</summary>
-		/// <param name="className">存储数据的对象名</param>
-        public override async Task<LCObject> LoadData(string className)
+        /// <param name="className">存储数据的对象名</param>
+        private async Task<string> LoadNetData(string className)
         {
             if (LCObjectMgr.S.QueryObject(className) != null)
             {
@@ -51,7 +55,12 @@ namespace GameWish.Game
                 {
                     m_data = await LCObjectMgr.S.QueryObject(className) as LCObject;
                     Debug.Log("数据拉取成功");
-                    return m_data;
+                    if (m_data != null && m_data["content"] != null)
+                    {
+                        string content = m_data["content"] as string;
+                        return content;
+                    }
+                    return "";
                 }
                 catch (LCException e)
                 {
@@ -63,15 +72,26 @@ namespace GameWish.Game
         }
 
         ///<summary>
+        /// 下载数据到客户端 通用下载接口
+        ///</summary>
+        /// <param name="className">下载数据的对象名</param>
+        /// <param name="callback1">json -->对象 完成回调 ParseJson(string json)</param>
+        /// <param name="callback2">数据加载完成回调 OnLoadDone </param>
+        public async void LoadNetData(string className, Action<string> callback1, Action callback2)
+        {
+            string content = await LoadNetData(className);
+            if (callback1 != null && !string.IsNullOrEmpty(content))
+            {
+                callback1(content);
+                callback2?.Invoke();
+            }
+        }
+
+        ///<summary>
         /// 解析数据
         ///</summary>
-        public override string DealData()
+        public string DealData()
         {
-            if (m_data != null && m_data["content"] != null)
-            {
-                string content = m_data["content"] as string;
-                return content;
-            }
             return "";
         }
 
