@@ -71,6 +71,7 @@ namespace Qarth.Extension
             if (GetComponent<SoundButton>()) return "SoundButton";
             if (GetComponent<PopButton>()) return "PopButton";
             if (GetComponent<GButton>()) return "GFrame.Editor.GButton";
+            if (GetComponent<IUListView>()) return "IUListView";
 
             // ugui bind
             if (GetComponent<Dropdown>()) return "UnityEngine.UI.Dropdown";
