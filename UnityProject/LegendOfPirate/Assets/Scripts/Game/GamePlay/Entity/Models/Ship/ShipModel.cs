@@ -22,7 +22,7 @@ namespace GameWish.Game
             shipUnitModelList = new ReactiveCollection<ShipUnitModel>();
             for (int i = 0; i < m_ShipData.shipUnitDataList.Count; i++)
             {
-                ShipUnitModel unitModel = ShipUnitModelFactory.CreateUnitModel(m_ShipData.shipUnitDataList[i].unitType, m_ShipData.shipUnitDataList[i])//new ShipUnitModel(m_ShipData.shipUnitDataList[i]);
+                ShipUnitModel unitModel = ShipUnitModelFactory.CreateUnitModel(m_ShipData.shipUnitDataList[i]);
                 shipUnitModelList.Add(unitModel);
             }
         }
