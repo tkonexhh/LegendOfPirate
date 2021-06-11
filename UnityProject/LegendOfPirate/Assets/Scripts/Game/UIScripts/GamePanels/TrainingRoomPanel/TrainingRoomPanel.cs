@@ -89,7 +89,7 @@ namespace GameWish.Game
 		#region ButtonEvent
 		public void TrainingUpgradeBtnEvent()
 		{
-
+			m_PanelData.trainingRoomModel.level.Value++;
 		}
 		public void TrainBtnEvent()
 		{
@@ -122,6 +122,8 @@ namespace GameWish.Game
             }
         }
         #endregion
+
+        #region Other Method
         private void InitData()
 		{
 			BindUniRxUI();
@@ -176,5 +178,6 @@ namespace GameWish.Game
 			//MiddleTrainingRole middleTraining = Instantiate(MiddleTrainingRole, MiddleTrainingRoleTra.transform).GetComponent<MiddleTrainingRole>();
 
         }
-	}
+        #endregion
+    }
 }
