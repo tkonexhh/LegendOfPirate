@@ -25,7 +25,39 @@ namespace GameWish.Game
         {
         }
 
-        private void RefreshBottomTrainingRole()
+    
+
+
+        public void OnInit(BottomTrainingRoleModule bottomTrainingRoleData, IntReactiveProperty intReactiveProperty)
+        {
+            OnReset();
+            if (bottomTrainingRoleData == null)
+            {
+                Debug.LogWarning("bottomTrainingRoleData is null");
+                return;
+            }
+
+            m_BottomTrainingRoleData = bottomTrainingRoleData;
+            m_IntReactiveIndex = intReactiveProperty;
+
+            OnRefresh();
+        }
+        #region IItemCom
+        public void OnReset()
+        {
+            m_BottomTrainingRole.onClick.RemoveAllListeners();
+            m_State.gameObject.SetActive(false);
+            m_BottomTrainingRole.OnClickAsObservable().Subscribe(_ =>
+            {
+                m_BottomTrainingRoleData.isSelected.Value = !m_BottomTrainingRoleData.isSelected.Value;
+                //m_BottomTrainingRoleData.bottomTrainingRoleType.Value = (m_BottomTrainingRoleData.bottomTrainingRoleType.Value. == BottomTrainingRoleType.NotSelected ? BottomTrainingRoleType.Selected : BottomTrainingRoleType.NotSelected);
+                m_IntReactiveIndex.Value += (m_BottomTrainingRoleData.isSelected.Value ? 1 : -1);
+                //EventSystem.S.Send(EventID.OnBottomTrainingRole, );
+                OnRefresh();
+            });
+        }
+
+        public void OnRefresh()
         {
             if (m_BottomTrainingRoleData.isSelected.Value)
             {
@@ -36,35 +68,7 @@ namespace GameWish.Game
                 m_State.gameObject.SetActive(false);
             }
         }
-
-        private void ResetState()
-        {
-            m_BottomTrainingRole.onClick.RemoveAllListeners();
-            m_State.gameObject.SetActive(false);
-            m_BottomTrainingRole.OnClickAsObservable().Subscribe(_ =>
-            {
-                m_BottomTrainingRoleData.isSelected.Value = !m_BottomTrainingRoleData.isSelected.Value;
-                //m_BottomTrainingRoleData.bottomTrainingRoleType.Value = (m_BottomTrainingRoleData.bottomTrainingRoleType.Value. == BottomTrainingRoleType.NotSelected ? BottomTrainingRoleType.Selected : BottomTrainingRoleType.NotSelected);
-                m_IntReactiveIndex.Value += (m_BottomTrainingRoleData.isSelected.Value ? 1 : -1);
-                //EventSystem.S.Send(EventID.OnBottomTrainingRole, );
-                RefreshBottomTrainingRole();
-            });
-        }
-
-        public void OnInit(BottomTrainingRoleModule bottomTrainingRoleData, IntReactiveProperty intReactiveProperty)
-        {
-            ResetState();
-            if (bottomTrainingRoleData == null)
-            {
-                Debug.LogWarning("bottomTrainingRoleData is null");
-                return;
-            }
-
-            m_BottomTrainingRoleData = bottomTrainingRoleData;
-            m_IntReactiveIndex = intReactiveProperty;
-
-            RefreshBottomTrainingRole();
-        }
+        #endregion
     }
 
 }

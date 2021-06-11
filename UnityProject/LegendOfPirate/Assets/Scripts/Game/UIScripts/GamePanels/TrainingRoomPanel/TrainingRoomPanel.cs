@@ -104,11 +104,11 @@ namespace GameWish.Game
 		}
 		public void LeftArrowBtnEvent()
 		{
-			m_ScrollRectAutoAdjustPosition.Move2Pre();
+			m_ScrollRectAutoAdjustPosition?.Move2Pre();
 		}
 		public void RightArrowBtnEvent()
 		{
-			m_ScrollRectAutoAdjustPosition.Move2Next();
+			m_ScrollRectAutoAdjustPosition?.Move2Next();
 		}
 		#endregion
 

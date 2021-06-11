@@ -39,7 +39,7 @@ namespace GameWish.Game
         LibraryRoomPanel,
         #endregion
         #region 炼金室
-        AlchemyRoomPanel,
+        LaboratoryRoomPanel,
         #endregion
         #region 战船系统
         WarshipUpgradePanel,
