@@ -23,9 +23,9 @@ namespace GameWish.Game
                 // 将对象保存到云端
                 await lcObject.Save();
                 string objectId = lcObject.ObjectId;
-                Log.i("ObjectId=" + objectId);
+                Log.i(className + "ObjectId=" + objectId);
                 PlayerPrefs.SetString(className, objectId);
-                Log.i("数据创建成功");
+                Log.i(className + "数据创建成功");
             }
             catch (LCException e)
             {
@@ -44,7 +44,7 @@ namespace GameWish.Game
                 {
                     LCQuery<LCObject> query = new LCQuery<LCObject>(className);
                     LCObject data = await query.Get(PlayerPrefs.GetString(className));
-                    Log.i("数据查询成功");
+                    Log.i(className + "数据查询成功");
                     return data;
                 }
                 catch (LCException e)
@@ -55,7 +55,7 @@ namespace GameWish.Game
             }
             else
             {
-                Log.i("该对象并未上传服务器");
+                Log.i(className + "对象并未上传服务器");
                 return null;
             }
         }
@@ -73,7 +73,7 @@ namespace GameWish.Game
                 lcObject["content"] = content;
                 // 将对象保存到云端
                 await lcObject.Save();
-                Log.i("数据更新成功");
+                Log.i(className + "数据更新成功");
             }
             catch (LCException e)
             {

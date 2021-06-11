@@ -23,13 +23,13 @@ namespace GameWish.Game
         {
             if (data == null)
             {
-                Debug.LogWarning("SerializeJson data is Null.");
+                Debug.LogWarning(className + "SerializeJson data is Null.");
                 return false;
             }
 
             string content = JsonMapper.ToJson(data);
             //若 objectid 为空，则未创建该数据，需要创建；否则直接更新，防止对象多次创建。
-            Debug.Log("PlayerPrefs.GetString(className) =" + PlayerPrefs.GetString(className));
+            // Debug.Log(className + "PlayerPrefs.GetString(className) =" + PlayerPrefs.GetString(className));
             if (string.IsNullOrEmpty(PlayerPrefs.GetString(className)))
             {
                 LCObjectMgr.S.CreateObject(className, content);
@@ -58,7 +58,7 @@ namespace GameWish.Game
                     if (m_data != null && m_data["content"] != null)
                     {
                         string content = m_data["content"] as string;
-                        Debug.Log("数据拉取成功");
+                        Debug.Log(className + "数据拉取成功");
                         return content;
                     }
                     return "";

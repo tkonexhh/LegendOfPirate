@@ -136,10 +136,6 @@ namespace GameWish.Game
     ///</summary>
     public class GameStorage : TSingleton<GameStorage>
     {
-        private void Awake()
-        {
-            SetUp();
-        }
         ///<summary>
         /// 具体对象的子类化注册
         ///</summary>
