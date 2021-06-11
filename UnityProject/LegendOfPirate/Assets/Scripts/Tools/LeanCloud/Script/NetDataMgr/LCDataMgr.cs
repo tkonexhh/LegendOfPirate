@@ -29,7 +29,7 @@ namespace GameWish.Game
 
             string content = JsonMapper.ToJson(data);
             //若 objectid 为空，则未创建该数据，需要创建；否则直接更新，防止对象多次创建。
-            Debug.Log("PlayerPrefs.GetString(className) =" + string.IsNullOrEmpty(PlayerPrefs.GetString(className)));
+            Debug.Log("PlayerPrefs.GetString(className) =" + PlayerPrefs.GetString(className));
             if (string.IsNullOrEmpty(PlayerPrefs.GetString(className)))
             {
                 LCObjectMgr.S.CreateObject(className, content);
@@ -49,15 +49,16 @@ namespace GameWish.Game
         /// <param name="className">存储数据的对象名</param>
         private async Task<string> LoadNetData(string className)
         {
-            if (LCObjectMgr.S.QueryObject(className) != null)
+            m_data = await LCObjectMgr.S.QueryObject(className);
+
+            if (m_data != null)
             {
                 try
                 {
-                    m_data = await LCObjectMgr.S.QueryObject(className) as LCObject;
-                    Debug.Log("数据拉取成功");
                     if (m_data != null && m_data["content"] != null)
                     {
                         string content = m_data["content"] as string;
+                        Debug.Log("数据拉取成功");
                         return content;
                     }
                     return "";
@@ -65,10 +66,10 @@ namespace GameWish.Game
                 catch (LCException e)
                 {
                     Debug.LogError(e);
-                    return null;
+                    return "";
                 }
             }
-            return null;
+            return "";
         }
 
         ///<summary>
@@ -80,7 +81,7 @@ namespace GameWish.Game
         public async void LoadNetData(string className, Action<string> callback1, Action callback2)
         {
             string content = await LoadNetData(className);
-            if (callback1 != null && !string.IsNullOrEmpty(content))
+            if (callback1 != null)
             {
                 callback1(content);
                 callback2?.Invoke();

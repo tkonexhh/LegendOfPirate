@@ -20,10 +20,7 @@ namespace GameWish.Game
 
         public override void LoadDataFromServer(Action callback)
         {
-            if (callback != null)
-            {
-                callback.Invoke();
-            }
+            NetDataMgr.S.LoadNetData("ShipData", ParseJson, callback);
         }
 
         public override void SaveDataToServer(Action callback)
@@ -32,6 +29,7 @@ namespace GameWish.Game
             {
                 callback.Invoke();
             }
+            NetDataMgr.S.SaveNetData("ShipData", m_Data);
         }
     }
 }

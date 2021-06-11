@@ -52,7 +52,7 @@ namespace GameWish.Game
 
         public virtual void LoadDataFromServer(Action callback)
         {
-          
+
         }
 
         public virtual void SaveDataToServer(Action callback)
@@ -62,6 +62,10 @@ namespace GameWish.Game
 
         protected void ParseJson(string json)
         {
+            if (m_Data != null)
+            {
+                return;
+            }
             m_Data = JsonUtility.FromJson<T>(json);
 
             if (m_Data == null)
