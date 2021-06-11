@@ -7,18 +7,19 @@ namespace GameWish.Game
 {
     public class SkillAction_AddBuff : SkillAction
     {
-        private Buff m_Buff;
+        private BuffConfigSO m_BuffConfig;
         private SkillTarget m_Target;
 
-        public SkillAction_AddBuff(Buff buff, SkillTarget target) //: base(owner)
+        public SkillAction_AddBuff(BuffConfigSO buffConfig, SkillTarget target) //: base(owner)
         {
-            m_Buff = buff;
+            m_BuffConfig = buffConfig;
             m_Target = target;
         }
 
         public override void ExcuteAction(Skill skill)
         {
-            m_Target.PicketTarget().Buff.AddBuff(m_Buff);
+            var buff = BuffFactory.CreateBuff(m_BuffConfig);
+            m_Target.PicketTarget().Buff.AddBuff(buff);
         }
     }
 

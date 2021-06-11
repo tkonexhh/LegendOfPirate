@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -10,12 +10,19 @@ namespace GameWish.Game
     /// </summary>
     public abstract class BuffTrigger
     {
-        public delegate void OnBuffTrigger();
-        public OnBuffTrigger onBuffTrigger;
 
+        public Run onBuffTrigger;
 
-        public abstract void Start(BattleRoleController controller);
-        public abstract void Stop(BattleRoleController controller);
+        public virtual void Start(Buff buff)
+        {
+            onBuffTrigger += buff.ExcuteBuff;
+        }
+
+        public virtual void Stop(Buff buff)
+        {
+            onBuffTrigger -= buff.ExcuteBuff;
+        }
+
         protected void OnTrigger()
         {
             if (onBuffTrigger != null)

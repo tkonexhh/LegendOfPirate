@@ -19,7 +19,7 @@ namespace GameWish.Game
         public float Time;
 
         // [ToggleGroup("EnabledAttributeModify")]
-        public BuffTriggerType triggerType;
+        public BuffTriggerType BuffTriggerType;
 
         //---
         [ToggleGroup("EnabledStateModify", "状态控制")]
@@ -41,7 +41,7 @@ namespace GameWish.Game
 
 
 
-        [ToggleGroup("EnabledAttributeModify"), ShowIf("triggerType", BuffTriggerType.Interval), LabelText("间隔时间")]
+        [ToggleGroup("EnabledAttributeModify"), ShowIf("BuffTriggerType", BuffTriggerType.Interval), LabelText("间隔时间")]
         public float Interval = 1;
 
         //===

@@ -11,13 +11,15 @@ namespace GameWish.Game
     /// </summary>
     public class BuffTrigger_Forver : BuffTrigger
     {
-        public override void Start(BattleRoleController controller)
+        public override void Start(Buff buff)
         {
+            base.Start(buff);
             OnTrigger();
         }
 
-        public override void Stop(BattleRoleController controller)
+        public override void Stop(Buff buff)
         {
+            base.Stop(buff);
         }
     }
 

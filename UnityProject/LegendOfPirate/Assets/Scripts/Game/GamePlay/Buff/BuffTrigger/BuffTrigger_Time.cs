@@ -7,14 +7,16 @@ namespace GameWish.Game
 {
     public class BuffTrigger_Time : BuffTrigger
     {
-        public override void Start(BattleRoleController controller)
+        public override void Start(Buff buff)
         {
-            controller.AI.onUpdate += OnTrigger;
+            base.Start(buff);
+            buff.Owner.AI.onUpdate += OnTrigger;
         }
 
-        public override void Stop(BattleRoleController controller)
+        public override void Stop(Buff buff)
         {
-            controller.AI.onUpdate -= OnTrigger;
+            base.Stop(buff);
+            buff.Owner.AI.onUpdate -= OnTrigger;
         }
     }
 

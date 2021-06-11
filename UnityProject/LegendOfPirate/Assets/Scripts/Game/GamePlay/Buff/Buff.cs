@@ -11,16 +11,13 @@ namespace GameWish.Game
         public float time;//持续时间
         public int nowAppendNum = 0;
 
+        public BuffModelHandler_Status StatusHandler { get; set; }//状态改变
+        public List<BuffModelHandler_Attribute> AttributeHandler { get; set; }//属性改变
+        public BuffTrigger BuffTrigger { get; set; }
+        public BattleRoleController Owner { get; set; }//拥有者
 
-        public BuffModelHandler_Status StatusHandler { get; set; }
-        public List<BuffModelHandler_Attribute> AttributeHandler { get; set; }
 
-        public Buff(int id)
-        {
-            this.id = id;
-        }
-
-        #region  IBuff
+        #region IBuff
         public void OnAddAppendNum(BattleRoleRuntimeModel model)
         {
             if (AttributeHandler != null)
@@ -32,38 +29,45 @@ namespace GameWish.Game
             }
         }
 
-        public void OnAddBuff(BattleRoleRuntimeModel model)
+        public void OnAddBuff()
         {
-            if (AttributeHandler != null)
-            {
-                for (int i = 0; i < AttributeHandler.Count; i++)
-                {
-                    AttributeHandler[i].OnAddBuff(model);
-                }
-            }
-
-            if (StatusHandler != null)
-            {
-                StatusHandler.OnAddBuff(model);
-            }
+            BuffTrigger.Start(this);
         }
 
-        public void OnRemoveBuff(BattleRoleRuntimeModel model)
+        public void OnRemoveBuff()
         {
+            BuffTrigger.Stop(this);
             if (AttributeHandler != null)
             {
                 for (int i = 0; i < AttributeHandler.Count; i++)
                 {
-                    AttributeHandler[i].OnRemoveBuff(model);
+                    AttributeHandler[i].OnRemoveBuff(Owner.Data.buffedData);
                 }
             }
 
             if (StatusHandler != null)
             {
-                StatusHandler.OnRemoveBuff(model);
+                StatusHandler.OnRemoveBuff(Owner.Data.buffedData);
             }
         }
         #endregion
+
+        public void ExcuteBuff()
+        {
+            Debug.LogError("ExcuteBuff");
+            if (AttributeHandler != null)
+            {
+                for (int i = 0; i < AttributeHandler.Count; i++)
+                {
+                    AttributeHandler[i].OnAddBuff(Owner.Data.buffedData);
+                }
+            }
+
+            if (StatusHandler != null)
+            {
+                StatusHandler.OnAddBuff(Owner.Data.buffedData);
+            }
+        }
 
     }
 

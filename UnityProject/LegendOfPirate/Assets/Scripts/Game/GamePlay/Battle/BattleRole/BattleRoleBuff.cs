@@ -39,26 +39,27 @@ namespace GameWish.Game
 
         public void AddBuff(Buff buff)
         {
+            buff.Owner = controller;
             if (m_BuffMap.ContainsKey(buff.id))
             {
                 //Handle Append
-
                 var buffStaticInfo = BuffFactory.GetBuffStaticInfo(buff.id);
-                if (buffStaticInfo != null)
+                if (buffStaticInfo != null && buffStaticInfo.appendHandler != null)
                 {
                     //层数处理
                     m_BuffMap[buff.id].nowAppendNum++;
                     m_BuffMap[buff.id].nowAppendNum = Mathf.Min(m_BuffMap[buff.id].nowAppendNum, buffStaticInfo.maxAppendNum);
                     m_BuffMap[buff.id].OnAddAppendNum(controller.Data.buffedData);
                     buffStaticInfo.appendHandler?.HandleApped(m_BuffMap[buff.id], buff);
-                }
 
+                }
                 return;
             }
+            // Debug.LogError("AddBuff");
             //不同ID的buff
-            buff.OnAddBuff(controller.Data.buffedData);
             m_BuffList.Add(buff);
             m_BuffMap.Add(buff.id, buff);
+            buff.OnAddBuff();
         }
 
         public void RemoveBuff(Buff buff)
@@ -68,7 +69,15 @@ namespace GameWish.Game
             {
                 return;
             }
-            buff.OnRemoveBuff(controller.Data.buffedData);
+
+            var buffStaticInfo = BuffFactory.GetBuffStaticInfo(buff.id);
+            if (buffStaticInfo != null && buffStaticInfo.appendHandler != null)
+            {
+                m_BuffMap[buff.id].nowAppendNum = 0;
+            }
+
+
+            buff.OnRemoveBuff();
             m_BuffList.Remove(buff);
             m_BuffMap.Remove(buff.id);
         }

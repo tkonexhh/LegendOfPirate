@@ -7,19 +7,19 @@ namespace GameWish.Game
 {
     public class BuffTriggerFactory
     {
-        public static BuffTrigger CreateBuffTrigger(PassiveSkillTriggerType triggerType)
+        public static BuffTrigger CreateBuffTrigger(BuffTriggerType triggerType)
         {
             switch (triggerType)
             {
-                case PassiveSkillTriggerType.Attack:
+                case BuffTriggerType.Attack:
                     return new BuffTrigger_Attack();
-                case PassiveSkillTriggerType.Hurt:
+                case BuffTriggerType.Hurt:
                     return new BuffTrigger_Hurt();
-                case PassiveSkillTriggerType.Forver:
+                case BuffTriggerType.Create:
                     return new BuffTrigger_Forver();
-                case PassiveSkillTriggerType.Time:
+                case BuffTriggerType.Interval:
                     return new BuffTrigger_Time();
-                case PassiveSkillTriggerType.Move:
+                case BuffTriggerType.Move:
                     return new BuffTrigger_Move();
             }
 

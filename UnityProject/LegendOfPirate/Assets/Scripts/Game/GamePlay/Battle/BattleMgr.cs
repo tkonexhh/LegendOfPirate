@@ -108,18 +108,14 @@ namespace GameWish.Game
                 Buff buff = BuffFactory.CreateBuff(m_DemoBuffSO);
                 for (int i = 0; i < BattleRendererComponent.ourControllers.Count; i++)
                 {
-                    CreateBuff(BattleRendererComponent.ourControllers[i], buff);
+                    BattleRendererComponent.ourControllers[i].Buff.AddBuff(buff);
                 }
             }
         }
 
 
 
-        #region Buff
-        public void CreateBuff(BattleRoleController controller, Buff buff)
-        {
-            controller.Buff.AddBuff(buff);
-        }
+        #region public
 
         public void SendDamage(BattleRoleController controller, RoleDamagePackage roleDamagePackage)
         {

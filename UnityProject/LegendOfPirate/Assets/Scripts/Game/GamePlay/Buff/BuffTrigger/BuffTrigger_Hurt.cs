@@ -7,17 +7,17 @@ namespace GameWish.Game
 {
     public class BuffTrigger_Hurt : BuffTrigger
     {
-        // public SkillTrigger_Hurt(Skill skill) : base(skill) { }
 
-
-        public override void Start(BattleRoleController controller)
+        public override void Start(Buff buff)
         {
-            controller.AI.onHurt += OnTrigger;
+            base.Start(buff);
+            buff.Owner.AI.onHurt += OnTrigger;
         }
 
-        public override void Stop(BattleRoleController controller)
+        public override void Stop(Buff buff)
         {
-            controller.AI.onHurt -= OnTrigger;
+            base.Stop(buff);
+            buff.Owner.AI.onHurt -= OnTrigger;
         }
     }
 

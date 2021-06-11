@@ -45,7 +45,7 @@ namespace GameWish.Game
 
         private static SkillAction CreateSkillAction_AddBuff(Skill skill, SkillActionConfig_AddBuff actionConfig)
         {
-            return new SkillAction_AddBuff(BuffFactory.CreateBuff(actionConfig.buffConfigSO), SkillTargetFactory.CreateSkillTarget(actionConfig.target, skill));
+            return new SkillAction_AddBuff(actionConfig.buffConfigSO, SkillTargetFactory.CreateSkillTarget(actionConfig.target, skill));
         }
 
         private static SkillAction CreateSkillAction_Damage(Skill skill, SkillActionConfig_Damage actionConfig)

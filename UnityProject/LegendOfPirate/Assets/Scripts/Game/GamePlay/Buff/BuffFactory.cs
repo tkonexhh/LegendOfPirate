@@ -9,8 +9,10 @@ namespace GameWish.Game
     {
         public static Buff CreateBuff(BuffConfigSO configSO)
         {
-            var buff = new Buff(configSO.ID);
+            var buff = new Buff();
+            buff.id = configSO.ID;
             buff.time = configSO.Time;
+            buff.BuffTrigger = BuffTriggerFactory.CreateBuffTrigger(configSO.BuffTriggerType);
             if (configSO.EnabledAttributeModify)
             {
                 for (int i = 0; i < configSO.ModifierAttributeLst.Count; i++)
@@ -83,11 +85,11 @@ namespace GameWish.Game
                 return;
             }
             BuffStaticInfo staticInfo = new BuffStaticInfo();
-            staticInfo.maxAppendNum = configSO.MaxAppendNum;
 
             //处理叠加
             if (configSO.EnabledAppend)
             {
+                staticInfo.maxAppendNum = configSO.MaxAppendNum;
                 var appendHandler = CreateAppendHandler(configSO.AppendType);
                 if (appendHandler != null)
                 {
