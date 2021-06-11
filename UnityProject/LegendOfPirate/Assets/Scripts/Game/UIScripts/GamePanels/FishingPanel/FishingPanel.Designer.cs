@@ -36,6 +36,8 @@ namespace GameWish.Game
 		public GFrame.Editor.GButton TrainBtn;
 		[SerializeField]
 		public GFrame.Editor.GButton AutoBtn;
+		[SerializeField]
+		public UnityEngine.UI.Toggle Role_Tamp;
 		
 		
 	}

@@ -15,11 +15,15 @@ namespace GameWish.Game
 		[SerializeField]
 		public UnityEngine.UI.Button CloseBtn;
 		[SerializeField]
+		public TMPro.TextMeshProUGUI Timer;
+		[SerializeField]
 		public UnityEngine.UI.Image BuildingNameBg;
 		[SerializeField]
 		public TMPro.TextMeshProUGUI BuildingName;
 		[SerializeField]
 		public TMPro.TextMeshProUGUI BuildingLevel;
+		[SerializeField]
+		public UnityEngine.UI.Button LevelUpBtn;
 		[SerializeField]
 		public RectTransform FishingPoint0;
 		[SerializeField]

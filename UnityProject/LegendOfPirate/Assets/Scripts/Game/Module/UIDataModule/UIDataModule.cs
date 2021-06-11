@@ -91,11 +91,11 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.WarshipUpgradePanel, null, "GamePanels/WarshipManagement/WarshipUpgradePanel/WarshipUpgradePanel");
             #endregion
 
-            UIDataTable.AddPanelData(UIID.KitchenPanel,null, "GamePanels/WarshipManagement/KitchenPanel/KitchenPanel");
-            UIDataTable.AddPanelData(UIID.FishingPanel,null, "GamePanels/WarshipManagement/FishingPanel/FishingPanel");
-            UIDataTable.AddPanelData(UIID.ForgePanel,null, "GamePanels/WarshipManagement/ForgePanel/ForgePanel");
-            UIDataTable.AddPanelData(UIID.GardenPanel,null, "GamePanels/WarshipManagement/GardenPanel/GardenPanel");
-            UIDataTable.AddPanelData(UIID.ProgressingRoomPanel,null, "GamePanels/WarshipManagement/ProgressRoomPanel/ProgressRoomPanel");
+            UIDataTable.AddPanelData(UIID.KitchenPanel,null, "GamePanels/LandManagement/KitchenPanel/KitchenPanel");
+            UIDataTable.AddPanelData(UIID.FishingPanel,null, "GamePanels/LandManagement/FishingPanel/FishingPanel");
+            UIDataTable.AddPanelData(UIID.ForgePanel,null, "GamePanels/LandManagement/ForgePanel/ForgePanel");
+            UIDataTable.AddPanelData(UIID.GardenPanel,null, "GamePanels/LandManagement/GardenPanel/GardenPanel");
+            UIDataTable.AddPanelData(UIID.ProgressingRoomPanel,null, "GamePanels/LandManagement/ProgressRoomPanel/ProgressRoomPanel");
 
 
             //Land Management System  

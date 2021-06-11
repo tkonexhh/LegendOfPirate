@@ -33,7 +33,7 @@ namespace GameWish.Game
 		
 		private void BindModelToUI()
 		{
-			m_PanelData.kitchenModel.level.Subscribe(level =>OnKitchenLevelChange(level)) ;
+			m_PanelData.kitchenModel.level.Subscribe(level =>OnKitchenLevelChange(level)).AddTo(this);
 		}
 		
 		private void BindUIToModel()

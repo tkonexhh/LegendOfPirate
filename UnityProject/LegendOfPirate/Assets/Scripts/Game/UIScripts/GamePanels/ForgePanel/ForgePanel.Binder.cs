@@ -8,6 +8,7 @@ namespace GameWish.Game
 {
 	public class ForgePanelData : UIPanelData
 	{
+		public ForgeModel forgeModel;
 		public ForgePanelData()
 		{
 		}
@@ -20,6 +21,7 @@ namespace GameWish.Game
 		private void AllocatePanelData(params object[] args)
 		{
 			 m_PanelData = UIPanelData.Allocate<ForgePanelData>();
+			
 		}
 		
 		private void ReleasePanelData()
