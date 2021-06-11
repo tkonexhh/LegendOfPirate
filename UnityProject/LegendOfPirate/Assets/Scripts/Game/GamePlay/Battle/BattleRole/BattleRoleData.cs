@@ -14,6 +14,7 @@ namespace GameWish.Game
         public BattleRoleModel originData;
         public BattleRoleRuntimeModel buffedData;
         public float AtkRange { get; set; }//攻击距离
+        public bool IsDead => buffedData.Hp <= 0;
 
         public BattleRoleData(BattleRoleController controller) : base(controller)
         {

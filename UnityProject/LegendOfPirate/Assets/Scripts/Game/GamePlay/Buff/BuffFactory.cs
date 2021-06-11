@@ -11,11 +11,26 @@ namespace GameWish.Game
         {
             var buff = new Buff(configSO.ID);
             buff.time = configSO.Time;
-            buff.AttributeHandler = CreateBuffModelHandlerAttribute(configSO.AttributeType, configSO.NumericValue);
-            if (configSO.StatusControls != StatusControlType.None)
+            if (configSO.EnabledAttributeModify)
             {
-                buff.StatusHandler = new BuffModelHandler_Status(configSO.StatusControls);
+                for (int i = 0; i < configSO.ModifierAttributeLst.Count; i++)
+                {
+                    if (buff.AttributeHandler == null)
+                    {
+                        buff.AttributeHandler = new List<BuffModelHandler_Attribute>();
+                    }
+                    buff.AttributeHandler.Add(CreateBuffModelHandlerAttribute(configSO.ModifierAttributeLst[i].AttributeType, configSO.ModifierAttributeLst[i].NumericValue));
+                }
             }
+
+            if (configSO.EnabledStateModify)
+            {
+                if (configSO.StatusControls != StatusControlType.None)
+                {
+                    buff.StatusHandler = new BuffModelHandler_Status(configSO.StatusControls);
+                }
+            }
+
             DealWithStatic(configSO);
             return buff;
         }

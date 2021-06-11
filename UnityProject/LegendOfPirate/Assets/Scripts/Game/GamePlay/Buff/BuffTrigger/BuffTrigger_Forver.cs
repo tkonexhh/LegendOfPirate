@@ -5,21 +5,20 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class SkillTrigger_Attack : SkillTrigger
+    /// <summary>
+    /// 永久触发被动技能
+    /// 所触发的buff时间应该为-1
+    /// </summary>
+    public class BuffTrigger_Forver : BuffTrigger
     {
-        // public SkillTrigger_Attack(Skill skill) : base(skill){}
-
-
         public override void Start(BattleRoleController controller)
         {
-            controller.AI.onAttack += OnTrigger;
+            OnTrigger();
         }
 
         public override void Stop(BattleRoleController controller)
         {
-            controller.AI.onAttack -= OnTrigger;
         }
-
     }
 
 }

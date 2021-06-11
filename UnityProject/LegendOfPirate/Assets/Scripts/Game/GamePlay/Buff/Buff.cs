@@ -13,7 +13,7 @@ namespace GameWish.Game
 
 
         public BuffModelHandler_Status StatusHandler { get; set; }
-        public BuffModelHandler_Attribute AttributeHandler { get; set; }
+        public List<BuffModelHandler_Attribute> AttributeHandler { get; set; }
 
         public Buff(int id)
         {
@@ -25,7 +25,10 @@ namespace GameWish.Game
         {
             if (AttributeHandler != null)
             {
-                AttributeHandler.OnAppendBuff(nowAppendNum, model);
+                for (int i = 0; i < AttributeHandler.Count; i++)
+                {
+                    AttributeHandler[i].OnAppendBuff(nowAppendNum, model);
+                }
             }
         }
 
@@ -33,7 +36,10 @@ namespace GameWish.Game
         {
             if (AttributeHandler != null)
             {
-                AttributeHandler.OnAddBuff(model);
+                for (int i = 0; i < AttributeHandler.Count; i++)
+                {
+                    AttributeHandler[i].OnAddBuff(model);
+                }
             }
 
             if (StatusHandler != null)
@@ -46,7 +52,10 @@ namespace GameWish.Game
         {
             if (AttributeHandler != null)
             {
-                AttributeHandler.OnRemoveBuff(model);
+                for (int i = 0; i < AttributeHandler.Count; i++)
+                {
+                    AttributeHandler[i].OnRemoveBuff(model);
+                }
             }
 
             if (StatusHandler != null)

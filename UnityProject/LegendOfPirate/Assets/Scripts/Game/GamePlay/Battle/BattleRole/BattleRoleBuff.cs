@@ -13,6 +13,12 @@ namespace GameWish.Game
 
         public BattleRoleBuff(BattleRoleController controller) : base(controller) { }
 
+        public override void OnBattleStart()
+        {
+            base.OnBattleStart();
+            m_BuffMap.Clear();
+            m_BuffList.Clear();
+        }
 
         public override void OnUpdate()
         {
@@ -20,7 +26,7 @@ namespace GameWish.Game
 
             for (int i = m_BuffList.Count - 1; i >= 0; i--)
             {
-                if (m_BuffList[i].time != -1)//-1 是永久持续
+                if (m_BuffList[i].time != SkillDefine.INFINITETIME)//-1 是永久持续
                 {
                     m_BuffList[i].time -= Time.deltaTime;
                     if (m_BuffList[i].time <= 0)
@@ -57,6 +63,7 @@ namespace GameWish.Game
 
         public void RemoveBuff(Buff buff)
         {
+            Debug.LogError("RemoveBuff");
             if (!m_BuffList.Contains(buff))
             {
                 return;

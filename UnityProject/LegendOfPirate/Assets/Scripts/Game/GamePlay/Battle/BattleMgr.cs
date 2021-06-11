@@ -123,11 +123,14 @@ namespace GameWish.Game
 
         public void SendDamage(BattleRoleController controller, RoleDamagePackage roleDamagePackage)
         {
-            if (controller != null && controller.AI.onHurt != null)
-            {
+            if (controller == null)
+                return;
+
+            if (controller.AI.onHurt != null)
                 controller.AI.onHurt();
-            }
             controller.Data.GetDamage(roleDamagePackage);
+
+
         }
         #endregion
 

@@ -11,6 +11,16 @@ namespace GameWish.Game
 
     }
 
+    [LabelText("被动技能触发类型(完成)")]
+    public enum PassiveSkillTriggerType
+    {
+        [LabelText("攻击时触发")] Attack,
+        [LabelText("受击时触发")] Hurt,
+        [LabelText("时间间隔触发")] Time,
+        [LabelText("移动触发")] Move,
+        [LabelText("立即触发")] Forver,
+    }
+
     [LabelText("属性类型")]
     public enum AttributeType
     {
@@ -35,7 +45,9 @@ namespace GameWish.Game
     [LabelText("触发方式")]
     public enum BuffTriggerType
     {
-        [LabelText("立即触发")] Instant,
+        [LabelText("（空）")] None = 0,
+        [LabelText("创建时")] Create,
+        [LabelText("攻击时")] Attacked,
         [LabelText("间隔触发")] Interval,
     }
 

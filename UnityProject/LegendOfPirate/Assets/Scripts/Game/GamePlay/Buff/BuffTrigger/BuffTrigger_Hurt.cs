@@ -5,16 +5,19 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class SkillTrigger_Move : SkillTrigger
+    public class BuffTrigger_Hurt : BuffTrigger
     {
+        // public SkillTrigger_Hurt(Skill skill) : base(skill) { }
+
+
         public override void Start(BattleRoleController controller)
         {
-            controller.AI.onMove += OnTrigger;
+            controller.AI.onHurt += OnTrigger;
         }
 
         public override void Stop(BattleRoleController controller)
         {
-            controller.AI.onMove -= OnTrigger;
+            controller.AI.onHurt -= OnTrigger;
         }
     }
 

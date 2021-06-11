@@ -9,7 +9,6 @@ namespace GameWish.Game
     [CreateAssetMenu(menuName = "Game/BuffConfigSO", fileName = "new_BuffConfigSO")]
     public class BuffConfigSO : SerializedScriptableObject
     {
-        private const string Group_Name_Effect = "效果";
 
         [LabelText("BuffID")]
         public int ID = 0;
@@ -18,6 +17,9 @@ namespace GameWish.Game
         [LabelText("持续时间")]
         [PropertyTooltip("-1 是永久持续"), Range(-1, 200)]
         public float Time;
+
+        // [ToggleGroup("EnabledAttributeModify")]
+        public BuffTriggerType triggerType;
 
         //---
         [ToggleGroup("EnabledStateModify", "状态控制")]
@@ -28,19 +30,16 @@ namespace GameWish.Game
 
 
         //---
+
         [ToggleGroup("EnabledAttributeModify", "属性修饰")]
         public bool EnabledAttributeModify;
 
-
         [ToggleGroup("EnabledAttributeModify")]
-        public AttributeType AttributeType;
-        [ToggleGroup("EnabledAttributeModify"), LabelText("数值参数")]
-        public int NumericValue;
-        // [ToggleGroup("EnabledAttributeModify")]
-        // public ModifyType ModifyType;
+        [LabelText("属性修饰列表")]
+        [HideReferenceObjectPicker]
+        public List<ModifierAttribute> ModifierAttributeLst = new List<ModifierAttribute>();
 
-        [ToggleGroup("EnabledAttributeModify")]
-        public BuffTriggerType triggerType;
+
 
         [ToggleGroup("EnabledAttributeModify"), ShowIf("triggerType", BuffTriggerType.Interval), LabelText("间隔时间")]
         public float Interval = 1;
@@ -59,19 +58,21 @@ namespace GameWish.Game
         //===
 
 
-        [BoxGroup(Group_Name_Effect)]
-        [LabelText("状态特效")]
-        public GameObject ParticleEffect;
-        [BoxGroup(Group_Name_Effect)]
-        [LabelText("状态音效")]
-        public AudioClip Audio;
-
 
 
         [Space(50)]
         [TextArea, LabelText("状态描述")]
         public string StatusDescription;
 
+    }
+
+    [LabelText("属性修饰子项")]
+    public class ModifierAttribute
+    {
+        public AttributeType AttributeType;
+        [LabelText("数值参数")]
+        public int NumericValue;
+        // public BuffTriggerType triggerType;
     }
 
 }
