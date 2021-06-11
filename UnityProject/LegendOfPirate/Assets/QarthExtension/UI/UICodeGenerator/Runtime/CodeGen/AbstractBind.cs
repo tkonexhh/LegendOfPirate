@@ -58,8 +58,7 @@ namespace Qarth.Extension
 
 
             if (GetComponent("SkeletonAnimation")) return "SkeletonAnimation";
-            if (GetComponent<ScrollRect>()) return "UnityEngine.UI.ScrollRect";
-            if (GetComponent<InputField>()) return "UnityEngine.UI.InputField";
+           
 
             // text mesh pro supported
             if (GetComponent("TMP.TextMeshProUGUI")) return "TMP.TextMeshProUGUI";
@@ -74,6 +73,8 @@ namespace Qarth.Extension
             if (GetComponent<IUListView>()) return "IUListView";
 
             // ugui bind
+            if (GetComponent<ScrollRect>()) return "UnityEngine.UI.ScrollRect";
+            if (GetComponent<InputField>()) return "UnityEngine.UI.InputField";
             if (GetComponent<Dropdown>()) return "UnityEngine.UI.Dropdown";
             if (GetComponent<Button>()) return "UnityEngine.UI.Button";
             if (GetComponent<Text>()) return "UnityEngine.UI.Text";
