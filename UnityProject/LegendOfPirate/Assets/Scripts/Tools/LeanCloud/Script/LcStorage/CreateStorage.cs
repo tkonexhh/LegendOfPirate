@@ -50,7 +50,7 @@ namespace GameWish.Game
             HeroStorage heroStorage = new HeroStorage()
             {
                 Name = "chuck",
-                Level = "20",
+                Level = 20,
                 Balance = 1024
             };
 
@@ -151,7 +151,7 @@ namespace GameWish.Game
         {
             HeroStorage hero = LCObject.CreateWithoutData("HeroStorage", m_ObjectId) as HeroStorage;
             hero.Name = "Chuck2";
-            hero.Level = "40";
+            hero.Level = 40;
             await hero.Save();
         }
         #endregion

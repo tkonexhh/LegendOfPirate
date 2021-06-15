@@ -75,11 +75,11 @@ namespace GameWish.Game
         ///<summary>
         /// 玩家等级
         ///</summary>
-        internal string Level
+        internal int Level
         {
             get
             {
-                return this["level"] as string;
+                return (int)this["level"];
             }
             set
             {

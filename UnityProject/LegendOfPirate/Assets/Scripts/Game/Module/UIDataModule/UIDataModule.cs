@@ -64,6 +64,10 @@ namespace GameWish.Game
             //UIDataTable.AddPanelData(UIID.SettingPanel, null, "GamePanels/SettingPanel/SettingPanel");
 
             //UIDataTable.AddPanelData(UIID.MyFloatMessagePanel, null, "GamePanels/MyFloatMessagePanel/MyFloatMessagePanel");
+            #region 登录注册创角
+            UIDataTable.AddPanelData(UIID.LoginPanel, null, "LoginPanel/LoginPanel");
+            UIDataTable.AddPanelData(UIID.CreateHeroPanel, null, "GamePanels/CreateHeroPanel/CreateHeroPanel");
+            #endregion
 
             UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuPanel/MainMenuPanel");
 
@@ -92,11 +96,11 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.WarshipUpgradePanel, null, "GamePanels/WarshipManagement/WarshipUpgradePanel/WarshipUpgradePanel");
             #endregion
 
-            UIDataTable.AddPanelData(UIID.KitchenPanel,null, "GamePanels/LandManagement/KitchenPanel/KitchenPanel");
-            UIDataTable.AddPanelData(UIID.FishingPanel,null, "GamePanels/LandManagement/FishingPanel/FishingPanel");
-            UIDataTable.AddPanelData(UIID.ForgePanel,null, "GamePanels/LandManagement/ForgePanel/ForgePanel");
-            UIDataTable.AddPanelData(UIID.GardenPanel,null, "GamePanels/LandManagement/GardenPanel/GardenPanel");
-            UIDataTable.AddPanelData(UIID.ProgressingRoomPanel,null, "GamePanels/LandManagement/ProgressRoomPanel/ProgressRoomPanel");
+            UIDataTable.AddPanelData(UIID.KitchenPanel, null, "GamePanels/LandManagement/KitchenPanel/KitchenPanel");
+            UIDataTable.AddPanelData(UIID.FishingPanel, null, "GamePanels/LandManagement/FishingPanel/FishingPanel");
+            UIDataTable.AddPanelData(UIID.ForgePanel, null, "GamePanels/LandManagement/ForgePanel/ForgePanel");
+            UIDataTable.AddPanelData(UIID.GardenPanel, null, "GamePanels/LandManagement/GardenPanel/GardenPanel");
+            UIDataTable.AddPanelData(UIID.ProgressingRoomPanel, null, "GamePanels/LandManagement/ProgressRoomPanel/ProgressRoomPanel");
 
 
             //Land Management System  
