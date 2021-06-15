@@ -15,13 +15,22 @@ namespace GameWish.Game
         {
 
         }
+
+        #region Public
+        /// <summary>
+        /// 获取当前等级可训练的槽位数
+        /// </summary>
+        /// <returns></returns>
+        public int GetTrainingRoomCapacity()
+        {
+            return trainingRoomModel.tableConfig.capacity;
+        }
+        #endregion
     }
 
     public partial class TrainingRoomPanel
     {
-
         private TrainingRoomPanelData m_PanelData = null;
-
 
         private void AllocatePanelData(params object[] args)
         {
@@ -32,6 +41,8 @@ namespace GameWish.Game
                 m_PanelData.shipModel = ModelMgr.S.GetModel<ShipModel>();
 
                 m_PanelData.trainingRoomModel = m_PanelData.shipModel.GetShipUnitModel(ShipUnitType.TrainingRoom) as TrainingRoomModel;
+
+                Debug.LogError(m_PanelData.trainingRoomModel.level);
             }
             catch (Exception e)
             {
