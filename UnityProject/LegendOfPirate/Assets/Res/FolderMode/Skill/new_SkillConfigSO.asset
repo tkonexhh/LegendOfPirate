@@ -28,13 +28,13 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 1|GameWish.Game.SkillActionConfig_Damage, Assembly-CSharp
     - Name: Damage
       Entry: 3
-      Data: 20
+      Data: 1
     - Name: DamageType
       Entry: 3
       Data: 0
@@ -63,6 +63,18 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 5|GameWish.Game.SkillActionConfig_PlaySound, Assembly-CSharp
+    - Name: audio
+      Entry: 6
+      Data: 
+    - Name: target
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -70,7 +82,7 @@ MonoBehaviour:
       Data: 
     - Name: PickTarget
       Entry: 7
-      Data: 5|GameWish.Game.PickTarget, Assembly-CSharp
+      Data: 6|GameWish.Game.PickTarget, Assembly-CSharp
     - Name: PickTargetType
       Entry: 3
       Data: 0
@@ -85,7 +97,7 @@ MonoBehaviour:
       Data: 
     - Name: Attack
       Entry: 7
-      Data: 6|GameWish.Game.Attack, Assembly-CSharp
+      Data: 7|GameWish.Game.Attack, Assembly-CSharp
     - Name: AttackType
       Entry: 3
       Data: 0
@@ -107,5 +119,5 @@ MonoBehaviour:
   ID: 0
   SkillName: Demo Skill
   Range: 200
-  CD: 5
+  CD: 6
   SkillTriggerType: 0

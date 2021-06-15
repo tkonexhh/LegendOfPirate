@@ -18,8 +18,7 @@ namespace GameWish.Game
         [LabelText("伤害量")]
         public int Damage;
         public BattleDamageType DamageType;
-        [LabelText("目标")]
-        public SkillTargetConfig target;
+        public SkillTargetType targetType;
     }
 
     [LabelText("治愈")]
@@ -28,18 +27,16 @@ namespace GameWish.Game
     {
         [LabelText("治愈量")]
         public int HealAmount;
-        [LabelText("目标")]
-        public SkillTargetConfig target;
+        public SkillTargetType targetType;
     }
 
-    [LabelText("添加Buff")]
+    [LabelText("直接添加Buff")]
     [HideReferenceObjectPicker]
     public class SkillActionConfig_AddBuff : SkillActionConfig
     {
         [LabelText("Buff配置")]
         public BuffConfigSO buffConfigSO;
-        [LabelText("目标")]
-        public SkillTargetConfig target;
+        public SkillTargetType targetType;
     }
 
     [LabelText("播放声音")]
@@ -48,9 +45,15 @@ namespace GameWish.Game
     {
         [LabelText("音效资源")]
         public AudioClip audio;
-        [LabelText("目标")]
-        public SkillTargetConfig target;
+        public SkillTargetType targetType;
     }
 
-
+    [LabelText("冲刺")]
+    [HideReferenceObjectPicker]
+    public class SkillActionConfig_Sprint : SkillActionConfig
+    {
+        public float range;
+        public float speed;
+        public SkillTargetType targetType;
+    }
 }

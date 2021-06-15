@@ -20,16 +20,6 @@ namespace GameWish.Game
             return skill;
         }
 
-        // private static InitiativeSkill DealWithInitativeSkill(SkillConfigSO configSO, InitiativeSkill skill)
-        // {
-        //     skill.attacker = BattleAttackerFactory.CreateBattleAttacker(configSO.Attack.AttackType);
-        //     skill.damageRange = DamageRangeFactory.CreateDamageRange(configSO.Attack.DamageRangeType, skill, configSO.Attack.RangeArgs);
-        //     if (configSO.Attack.AttackType == AttackType.Shoot)//远程
-        //     {
-        //         BattleAttackerFactory.SetBullet((skill.attacker as BattleAttacker_Shoot), configSO.Attack.Bullet, configSO.Attack.BulletNum);
-        //     }
-        //     return skill;
-        // }
 
         private static void DealWithSkillAction(List<SkillActionConfig> configs, Skill skill)
         {
@@ -40,19 +30,36 @@ namespace GameWish.Game
             {
                 if (configs[i] is SkillActionConfig_AddBuff addBuffConfig) { skill.SkillActions.Add(CreateSkillAction_AddBuff(skill, addBuffConfig)); }
                 if (configs[i] is SkillActionConfig_Damage damageConfig) { skill.SkillActions.Add(CreateSkillAction_Damage(skill, damageConfig)); }
+                if (configs[i] is SkillActionConfig_Heal healConfig) { skill.SkillActions.Add(CreateSkillAction_Heal(skill, healConfig)); }
+                if (configs[i] is SkillActionConfig_PlaySound soundConfig) { skill.SkillActions.Add(CreateSkillAction_PlaySound(skill, soundConfig)); }//TODO
+                if (configs[i] is SkillActionConfig_Sprint sprintConfig) { skill.SkillActions.Add(CreateSkillAction_Sprint(skill, sprintConfig)); }
             }
         }
 
         private static SkillAction CreateSkillAction_AddBuff(Skill skill, SkillActionConfig_AddBuff actionConfig)
         {
-            return new SkillAction_AddBuff(actionConfig.buffConfigSO, SkillTargetFactory.CreateSkillTarget(actionConfig.target, skill));
+            return new SkillAction_AddBuff(actionConfig.buffConfigSO, actionConfig.targetType);
         }
 
         private static SkillAction CreateSkillAction_Damage(Skill skill, SkillActionConfig_Damage actionConfig)
         {
-            return new SkillAction_Damage(actionConfig.Damage, actionConfig.DamageType, SkillTargetFactory.CreateSkillTarget(actionConfig.target, skill));
+            return new SkillAction_Damage(actionConfig.Damage, actionConfig.DamageType, actionConfig.targetType);
         }
 
+        private static SkillAction CreateSkillAction_Heal(Skill skill, SkillActionConfig_Heal healConfig)
+        {
+            return new SkillAction_Heal(healConfig.HealAmount, healConfig.targetType);
+        }
+
+        private static SkillAction CreateSkillAction_PlaySound(Skill skill, SkillActionConfig_PlaySound config)
+        {
+            return new SkillAction_PlaySound(config.audio, config.targetType);
+        }
+
+        private static SkillAction CreateSkillAction_Sprint(Skill skill, SkillActionConfig_Sprint config)
+        {
+            return new SkillAction_Sprint(config.range, config.speed, config.targetType);
+        }
     }
 
 }

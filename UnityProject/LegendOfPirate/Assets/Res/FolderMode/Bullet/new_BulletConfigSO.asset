@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: new_BulletConfigSO
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -23,7 +23,7 @@ MonoBehaviour:
     SerializationNodes: []
   ID: 0
   Speed: 1.5
-  Prefab: {fileID: 6005353224581057178, guid: ddbeb3061fb0148faa723fcca7286573, type: 3}
+  Prefab: {fileID: 919132149155446097, guid: 11e32482f93564664bc02d368a1b0931, type: 3}
   Effect: {fileID: 0}
   MoveType: 1
   TargetType: 0

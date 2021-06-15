@@ -21,7 +21,9 @@ namespace GameWish.Game
 
         public Run onCreate;//技能创建时
         public Run onCast;//技能释放时
+        private SkillTargetInfo m_TargetInfo;
 
+        public SkillTargetInfo TargetInfo => m_TargetInfo;
 
         protected float m_Timer;
 
@@ -37,17 +39,22 @@ namespace GameWish.Game
             m_Timer = 0;
         }
 
-        public virtual void Cast()
+        public void Cast()
         {
             m_Timer = 0;
             if (onCast != null)
             {
                 onCast();
             }
+
         }
 
         public void ExcuteSkill()
         {
+            var target = Sensor.PickTarget(Owner);
+            m_TargetInfo = new SkillTargetInfo();
+            m_TargetInfo.Caster = Owner;
+            m_TargetInfo.Target = target;
             if (SkillActions != null)
             {
                 for (int i = 0; i < SkillActions.Count; i++)
@@ -57,7 +64,7 @@ namespace GameWish.Game
             }
         }
 
-        public virtual void Release()
+        public void Release()
         {
             skillTrigger.Stop(this);
         }
