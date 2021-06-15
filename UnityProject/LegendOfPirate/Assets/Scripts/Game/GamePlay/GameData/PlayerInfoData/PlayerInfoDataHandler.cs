@@ -20,7 +20,7 @@ namespace GameWish.Game
 
         public override void LoadDataFromServer(Action callback)
         {
-            NetDataMgr.S.LoadNetData("PlayerInfoData", ParseJson, callback);
+            NetDataMgr.S.LoadNetData("PlayerInfoData", ParseJson, callback, () => { Log.i("存档读取成功!!!"); }, () => { Log.e("存档读取失败,加载网络重连面板!!!"); });
         }
 
         public override void SaveDataToServer(Action callback)
