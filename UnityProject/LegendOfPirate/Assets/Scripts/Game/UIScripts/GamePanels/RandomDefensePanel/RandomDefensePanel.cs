@@ -49,6 +49,7 @@ namespace GameWish.Game
 			ReleasePanelData();
 		}
         #endregion
+
         #region ButtonEvent
         public void BlackExitBgEvent()
         {
@@ -66,7 +67,6 @@ namespace GameWish.Game
 		#region Other Method
 		private void InitData()
 		{
-
             for (int i = 0; i < 3; i++)
             {
 				CeateMiddleDispatchRole();

@@ -32,11 +32,11 @@ namespace GameWish.Game
         OnTipCountChange,
 
 
-        #region TrainingRoomPanel
+        #region Common
         /// <summary>
-        /// BottomTrainingRole点击事件
+        /// 选择弟子事件
         /// </summary>
-        OnBottomTrainingRole,
+        OnSelectedRole,
         #endregion
     }
 

@@ -115,11 +115,11 @@ namespace GameWish.Game
 		#region EventSystem
 		private void HandlerEvent(int key, object[] param)
 		{
-            switch ((EventID)key)
-            {
-                case EventID.OnBottomTrainingRole:
-                    break;
-            }
+            //switch ((EventID)key)
+            //{
+            //    case EventID.OnBottomTrainingRole:
+            //        break;
+            //}
         }
         #endregion
 
