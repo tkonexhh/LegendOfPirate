@@ -27,6 +27,7 @@ namespace GameWish.Game
         [LabelText("默认添加")] OnCreate,
     }
 
+    [LabelText("技能目标类型")]
     public enum SkillTargetType
     {
         [LabelText("施法者")] Caster,

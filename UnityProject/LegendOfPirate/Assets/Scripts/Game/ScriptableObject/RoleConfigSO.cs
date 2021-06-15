@@ -47,6 +47,24 @@ namespace GameWish.Game
 
     }
 
+    [LabelText("攻击方式")]
+    public class Attack
+    {
+        public AttackType AttackType;
+        public DamageRangeType DamageRangeType;
+        [HideIf("DamageRangeType", DamageRangeType.Single), LabelText("伤害范围参数")]
+        public string RangeArgs;
+        //===
+
+        //===远程攻击
+        [ShowIf("AttackType", AttackType.Shoot), LabelText("子弹对象")]
+        public BulletConfigSO Bullet;
+
+        [ShowIf("AttackType", AttackType.Shoot), LabelText("子弹数量")]
+        public int BulletNum = 1;
+        //===
+    }
+
 
 
 }

@@ -23,21 +23,21 @@ namespace GameWish.Game
 
 
         public SkillTriggerType SkillTriggerType;
+        [HideReferenceObjectPicker]
+        public PickTarget PickTarget = new PickTarget();
+
 
         [BoxGroup("技能执行操作")]
         [LabelText("技能操作")]
         public List<SkillActionConfig> SkillActionConfigs = new List<SkillActionConfig>();
 
-        [HideReferenceObjectPicker]
-        public PickTarget PickTarget = new PickTarget();
 
 
-
-        //===主动技能相关
-        [HideReferenceObjectPicker]
-        [ShowIf("SkillTriggerType", SkillTriggerType.OnSpellStart), Space(40)]
-        public Attack Attack;//=new Attack();
-        //===
+        // //===主动技能相关
+        // [HideReferenceObjectPicker]
+        // [ShowIf("SkillTriggerType", SkillTriggerType.OnSpellStart), Space(40)]
+        // public Attack Attack;//=new Attack();
+        // //===
     }
 
 
@@ -46,27 +46,9 @@ namespace GameWish.Game
     {
         public PickTargetType PickTargetType;
         public SensorTypeEnum SensorTypeEnum;
-        [PropertyRange(1, 30), LabelText("数量")]
-        public int PickNum = 1;
     }
 
-    [LabelText("攻击方式")]
-    public class Attack
-    {
-        public AttackType AttackType;
-        public DamageRangeType DamageRangeType;
-        [HideIf("DamageRangeType", DamageRangeType.Single), LabelText("伤害范围参数")]
-        public string RangeArgs;
-        //===
 
-        //===远程攻击
-        [ShowIf("AttackType", AttackType.Shoot), LabelText("子弹对象")]
-        public BulletConfigSO Bullet;
-
-        [ShowIf("AttackType", AttackType.Shoot), LabelText("子弹数量")]
-        public int BulletNum = 1;
-        //===
-    }
 
 
 

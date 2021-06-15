@@ -5,27 +5,27 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class SkillAction_AddBuff : SkillAction
+    public class SkillAction_Heal : SkillAction
     {
-        private BuffConfigSO m_BuffConfig;
+        private int m_HealAmount;
         private SkillTargetType m_Target;
 
-        public SkillAction_AddBuff(BuffConfigSO buffConfig, SkillTargetType target) //: base(owner)
+        public SkillAction_Heal(int healAmount, SkillTargetType target) //: base(owner)
         {
-            m_BuffConfig = buffConfig;
-            m_Target = target;
+            this.m_HealAmount = healAmount;
+            this.m_Target = target;
         }
 
         public override void ExcuteAction(Skill skill)
         {
-            var buff = BuffFactory.CreateBuff(m_BuffConfig);
+            Debug.LogError("加血啦!");
             switch (m_Target)
             {
                 case SkillTargetType.Caster:
-                    skill.TargetInfo.Caster.Buff.AddBuff(buff);
+                    skill.TargetInfo.Caster.Data.buffedData.Hp += m_HealAmount;
                     break;
                 case SkillTargetType.Target:
-                    skill.TargetInfo.Target.Buff.AddBuff(buff);
+                    skill.TargetInfo.Target.Data.buffedData.Hp += m_HealAmount;
                     break;
             }
         }

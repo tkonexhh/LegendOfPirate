@@ -19,6 +19,8 @@ namespace GameWish.Game
         public Run onHurt;
         public Run onUpdate;
 
+        private bool m_Paused = false;
+
         public BattleRoleAI(BattleRoleController controller) : base(controller)
         {
             FSM = new FSMStateMachine<BattleRoleAI>(this);
@@ -41,11 +43,26 @@ namespace GameWish.Game
 
         public override void OnUpdate()
         {
+            if (m_Paused)
+            {
+                return;
+            }
+
             FSM.UpdateState(Time.deltaTime);
             if (onUpdate != null)
             {
                 onUpdate();
             }
+        }
+
+        public void Pause()
+        {
+            m_Paused = true;
+        }
+
+        public void Resume()
+        {
+            m_Paused = false;
         }
 
     }
