@@ -15,6 +15,14 @@ namespace GameWish.Game
 
         private ShipData m_ShipData = null;
 
+        public override void OnUpdate()
+        {
+            for (int i = 0; i < shipUnitModelList.Count; i++)
+            {
+                shipUnitModelList[i].OnUpdate();
+            }
+        }
+
         protected override void LoadDataFromDb()
         {
             m_ShipData = GameDataMgr.S.GetData<ShipData>();

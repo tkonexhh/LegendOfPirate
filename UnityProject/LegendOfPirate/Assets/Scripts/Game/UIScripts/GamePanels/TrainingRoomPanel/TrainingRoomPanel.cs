@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -9,10 +9,26 @@ using System.Linq;
 namespace GameWish.Game
 {
 	#region Other Data Class
+	public enum TrainintRoomRoleState
+	{
+		/// <summary>
+		/// 空闲中
+		/// </summary>
+		Free = 0,
+		/// <summary>
+		/// 训练中
+		/// </summary>
+		Training = 1,
+		/// <summary>
+		/// 未解锁
+		/// </summary>
+		Locked = 2,
+	}
 	public class BottomTrainingRoleModule
 	{
 		public IntReactiveProperty index;
 		public BoolReactiveProperty isSelected;
+
 
 		public BottomTrainingRoleModule(int index,bool selected)
 		{
@@ -25,9 +41,12 @@ namespace GameWish.Game
 	{
 		public IntReactiveProperty index;
 
-		public MiddleTrainingRoleModule(int index)
+		public TrainingSlotModel trainingSlotModel;
+
+		public MiddleTrainingRoleModule(int index, TrainingSlotModel trainingSlotModel)
 		{
 			this.index = new IntReactiveProperty(index);
+			this.trainingSlotModel = trainingSlotModel;
 		}
 	}
 	#endregion
@@ -135,10 +154,10 @@ namespace GameWish.Game
 			m_MiddleTrainingRoleUGridList.SetCellRenderer(OnMiddleCellRenderer);
 			m_BottomTrainingRoleUList.SetCellRenderer(OnBottomCellRenderer);
 
-			m_ScrollRectAutoAdjustPosition.EnableAutoAdjust(10);
+			m_ScrollRectAutoAdjustPosition.EnableAutoAdjust(m_PanelData.GetSlotModelListCount());
 
-			m_MiddleTrainingRoleUGridList.SetDataCount(10);
-			m_BottomTrainingRoleUList.SetDataCount(10);
+			m_MiddleTrainingRoleUGridList.SetDataCount(m_PanelData.GetSlotModelListCount());
+			m_BottomTrainingRoleUList.SetDataCount(m_PanelData.GetSlotModelListCount());
 		}
 		private void OnBottomCellRenderer(Transform root, int index)
 		{
@@ -164,7 +183,10 @@ namespace GameWish.Game
 			}
 			else
 			{
-				MiddleTrainingRoleModule newMiddleTrainingRoleModule = new MiddleTrainingRoleModule(index);
+				MiddleTrainingRoleModule newMiddleTrainingRoleModule;
+
+				newMiddleTrainingRoleModule = new MiddleTrainingRoleModule(index, (m_PanelData.trainingRoomModel.slotModelList)[index]);
+
 				middleTrainingRoleDatas.Add(newMiddleTrainingRoleModule);
 				root.GetComponent<MiddleTrainingRole>().OnInit(newMiddleTrainingRoleModule);
 			}

@@ -30,5 +30,8 @@ namespace GameWish.Game
         public const int INPUT_SORTING_ORDER_DEFAULT = 0;
         public const int INPUT_SORTING_ORDER_SHIP_UNIT = 5;
         public const int INPUT_SORTING_ORDER_SHIP_ROLE = 10;
+
+        // Ship Unit Const
+        public const int TRAINING_ROOM_MAX_SLOT = 9;
     }
 }

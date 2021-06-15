@@ -45,6 +45,7 @@ namespace GameWish.Game
 
             m_DataHanlderList = new List<IDataHandler>();
 
+            //1.Create Handler
             m_PlayerInfoDataHandler = new PlayerInfoDataHandler();
             m_RoleGroupDataHandler = new RoleGroupDataHandler();
             m_ShipDataHandler = new ShipDataHandler();
@@ -57,6 +58,7 @@ namespace GameWish.Game
             m_ProcessingDataHandler = new ProcessingDataHandler();
             m_TrainingDataHandler = new TrainingDataHandler();
 
+            //2.Add To List
             m_DataHanlderList.Add(m_PlayerInfoDataHandler);
             m_DataHanlderList.Add(m_RoleGroupDataHandler);
             m_DataHanlderList.Add(m_ShipDataHandler);
@@ -69,6 +71,7 @@ namespace GameWish.Game
             m_DataHanlderList.Add(m_ProcessingDataHandler);
             m_DataHanlderList.Add(m_TrainingDataHandler);
 
+            //3.Set Callback
             m_PlayerInfoDataHandler.LoadData(OnLoadDone);
             m_RoleGroupDataHandler.LoadData(OnLoadDone);
             m_ShipDataHandler.LoadData(OnLoadDone);

@@ -22,28 +22,40 @@ namespace GameWish.Game
 		#endregion
 
 		#region Method
+
+		public void OnReset()
+		{
+			m_State.gameObject.SetActive(false);
+		}
+
 		public void OnInit()
 		{
+			OnReset();
 			topSelectedRoleModule = new TopSelectedRoleModule();
 		}
 
-		//public int GetRoleID()
-		//{
-  //          if (topSelectedRoleModule.isEmpty.Value)
-  //          {
-
-  //          }
-		//	//return topSelectedRoleModule.randomDefenseChooseRoleModule.GetRoleID();
-		//}
 		public void OnRefreshTopSelectedRoleModule(RandomDefenseChooseRoleModule randomDefenseChooseRoleModule)
 		{
 			topSelectedRoleModule.randomDefenseChooseRoleModule.Value = randomDefenseChooseRoleModule;
 			OnRefresh();
 		}
+		public void ClearSelf()
+		{
+			topSelectedRoleModule.randomDefenseChooseRoleModule.Value = null;
+			OnRefresh();
+		}
 
-        private void OnRefresh()
+		private void OnRefresh()
         {
-        }
+            if (topSelectedRoleModule.isEmpty.Value)
+            {
+				m_State.gameObject.SetActive(false);
+			}
+            else
+            {
+				m_State.gameObject.SetActive(true);
+			}
+		}
         #endregion
 
 
