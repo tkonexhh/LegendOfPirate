@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6423902045844309291}
   - component: {fileID: 7714170783052493700}
   - component: {fileID: 285060595541553942}
-  m_Layer: 0
-  m_Name: GardenBody
+  m_Layer: 8
+  m_Name: ForgeRoomBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

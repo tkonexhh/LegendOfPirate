@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -22,7 +22,7 @@ namespace GameWish.Game
 			BindModelToUI();
 			BindUIToModel();
 
-			UIMgr.S.OpenPanel(UIID.LibraryRoomPanel);
+			//UIMgr.S.OpenPanel(UIID.LibraryRoomPanel);
 
 			
 		}

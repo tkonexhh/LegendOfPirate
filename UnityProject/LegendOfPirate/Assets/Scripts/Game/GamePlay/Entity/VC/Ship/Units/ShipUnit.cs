@@ -29,6 +29,17 @@ namespace GameWish.Game
             m_UnitModel.level.Subscribe(OnLevelChanged);
 
             m_Body = SpawnBody();
+
+            // Set Collider
+            Collider collider = m_Body.GetComponent<Collider>();
+            if (collider == null)
+            {
+                Log.e("Collider Not Found in Ship Unit B");
+            }
+            else
+            {
+                SetCollider(collider);
+            }
         }
 
         public virtual void OnUpdate()
