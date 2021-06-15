@@ -19,12 +19,13 @@ MonoBehaviour:
       - ~Element Name~
       - AdDynamicShowPanel
       - AdStaticShowPanel
+      - AlchemyRoomPanel
       - BlackMarketPanel
       - BoostPanel
       - CongratulationPanel
       - EffectActivePanel
       - EvolutionSolePanel
-      - LaboratoryRoomPanel
+      - GardenPanel
       - LandUpgradePanel
       - LibraryRoomPanel
       - MagicCloudPanel

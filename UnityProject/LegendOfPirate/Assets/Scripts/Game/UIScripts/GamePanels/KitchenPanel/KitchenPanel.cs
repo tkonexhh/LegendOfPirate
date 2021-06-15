@@ -36,6 +36,6 @@ namespace GameWish.Game
 			
 			ReleasePanelData();
 		}
-		
+
 	}
 }
