@@ -4,6 +4,7 @@ using Qarth.Extension;
 using Qarth;
 using UniRx;
 using TMPro;
+using System;
 
 namespace GameWish.Game
 {
@@ -48,8 +49,15 @@ namespace GameWish.Game
 			CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
 			TrainBtn.OnClickAsObservable().Subscribe(_=>OnTrainBtnClick()).AddTo(this);
 			AutoBtn.OnClickAsObservable().Subscribe(_ => OnAutoBtnClick()).AddTo(this);
+			LevelUpBtn.OnClickAsObservable().Subscribe(_ => OnLevelUpBtnClick()).AddTo(this);
 		}
-		private void OnTrainBtnClick() {}
+
+        private void OnLevelUpBtnClick()
+        {
+			UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.FishingPlatform);
+        }
+
+        private void OnTrainBtnClick() {}
 		private void OnAutoBtnClick() { }
 		private void OnRoleListChange()
 		{

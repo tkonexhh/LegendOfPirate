@@ -52,7 +52,8 @@ namespace GameWish.Game
         }
         private void OnLevelBtnClick()
         {
-
+        
+                UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.ForgeRoom);
         }
 
         private void OnBuildingLevelUp(int level) 

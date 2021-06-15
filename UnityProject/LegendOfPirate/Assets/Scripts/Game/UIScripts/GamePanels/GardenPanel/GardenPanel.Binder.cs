@@ -43,7 +43,12 @@ namespace GameWish.Game
 			LevelUpBtn.OnClickAsObservable().Subscribe(_ => OnLevelUpBtnClick()).AddTo(this);
 		}
 		private void OnPlantBtnClick() { }
-		private void OnLevelUpBtnClick() { }
+		private void OnLevelUpBtnClick() 
+		{
+          
+                UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.Garden);
+     
+        }
 		private void OnGardenLevelChange(int level) 
 		{
 			var PlantSlots = Content.GetComponentsInChildren<Toggle>();

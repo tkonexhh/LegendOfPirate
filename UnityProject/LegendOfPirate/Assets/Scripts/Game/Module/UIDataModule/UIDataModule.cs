@@ -114,6 +114,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.SmuggleChooseRolePanel, null, "GamePanels/LandManagement/SmuggleChooseRolePanel/SmuggleChooseRolePanel");
             #endregion
 
+            UIDataTable.AddPanelData(UIID.BuildingLevelUpPanel, null, "GamePanels/BuildingLevelUpPanel/BuildingLevelUpPanel");
         }
     }
 }

@@ -80,7 +80,9 @@ namespace GameWish.Game
         #region ButtonEvent
         public void LibraryUpgradeBtnEvent()
         {
-
+            
+                UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.Library);
+      
         }
         public void TrainBtnEvent()
         {

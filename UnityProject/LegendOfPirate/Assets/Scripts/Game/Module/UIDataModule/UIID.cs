@@ -38,7 +38,7 @@ namespace GameWish.Game
         ForgePanel,
         GardenPanel,
         ProgressingRoomPanel,
-
+        BuildingLevelUpPanel,
 
         #region 训练室
         TrainingRoomPanel,

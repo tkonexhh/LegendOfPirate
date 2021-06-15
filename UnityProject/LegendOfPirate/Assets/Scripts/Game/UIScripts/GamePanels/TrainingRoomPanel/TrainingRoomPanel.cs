@@ -89,8 +89,10 @@ namespace GameWish.Game
 		#region ButtonEvent
 		public void TrainingUpgradeBtnEvent()
 		{
-			m_PanelData.trainingRoomModel.level.Value++;
-		}
+          
+                UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.TrainingRoom);
+            
+        }
 		public void TrainBtnEvent()
 		{
 
