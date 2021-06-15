@@ -20,21 +20,41 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: ModifierAttributeLst
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[GameWish.Game.ModifierAttribute,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|GameWish.Game.ModifierAttribute, Assembly-CSharp
+    - Name: AttributeType
+      Entry: 3
+      Data: 4
+    - Name: NumericValue
+      Entry: 3
+      Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   ID: 0
   Name: Buff1
   Time: 10
+  triggerType: 1
   EnabledStateModify: 1
   StatusControls: 7
   EnabledAttributeModify: 1
-  AttributeType: 4
-  NumericValue: 20
-  ModifyType: 1
-  triggerType: 0
   Interval: 1
   EnabledAppend: 0
   AppendType: 0
   MaxAppendNum: 44
-  ParticleEffect: {fileID: 0}
-  Audio: {fileID: 0}
   StatusDescription: "\u4E00\u4E2A\u6D4B\u8BD5Buff"

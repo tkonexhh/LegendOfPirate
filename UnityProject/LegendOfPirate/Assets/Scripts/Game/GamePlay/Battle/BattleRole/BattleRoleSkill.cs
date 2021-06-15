@@ -13,7 +13,7 @@ namespace GameWish.Game
         public BattleRoleSkill(BattleRoleController controller) : base(controller)
         {
             //TODO Test Skill
-            // m_SkillLst.Add(SkillFactory.CreateSkill(BattleMgr.S.DemoSkillSO));
+            m_SkillLst.Add(SkillFactory.CreateSkill(BattleMgr.S.DemoSkillSO));
         }
 
         public void AddSkill(Skill skill)
@@ -26,11 +26,7 @@ namespace GameWish.Game
             base.OnBattleStart();
             for (int i = 0; i < m_SkillLst.Count; i++)
             {
-                m_SkillLst[i].timer = 0;
-                if (m_SkillLst[i] is PassiveSkill)
-                {
-                    m_SkillLst[i].Cast(controller);
-                }
+                m_SkillLst[i].OnCreate(controller);
             }
         }
 
@@ -43,10 +39,10 @@ namespace GameWish.Game
             for (int i = 0; i < m_SkillLst.Count; i++)
             {
                 m_SkillLst[i].Update();
-
-                if (m_SkillLst[i] is InitiativeSkill skill)
+                if (m_SkillLst[i].isReady)
                 {
-                    if (skill.isReady) skillReady = true;
+                    skillReady = true;
+                    break;
                 }
             }
         }
@@ -67,11 +63,9 @@ namespace GameWish.Game
         {
             for (int i = 0; i < m_SkillLst.Count; i++)
             {
-                if (m_SkillLst[i] is InitiativeSkill skill)
-                {
-                    if (skill.isReady)
-                        return skill;
-                }
+                if (m_SkillLst[i].isReady)
+                    return m_SkillLst[i];
+
             }
             return null;
         }

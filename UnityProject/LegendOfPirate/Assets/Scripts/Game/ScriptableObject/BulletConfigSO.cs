@@ -10,6 +10,8 @@ namespace GameWish.Game
     {
         [LabelText("子弹ID")]
         public int ID;
+
+        
         [LabelText("子弹速度")]
         public float Speed = 0.5f;
         [LabelText("子弹预制体")]
