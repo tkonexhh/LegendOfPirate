@@ -28,6 +28,7 @@ namespace GameWish.Game
         EvolutionSolePanel,
         RoleSkillPanel,
         RoleStoryPanel,
+        RoleGroupPanel,
         #endregion
 
         FloatMeshMessagePanel,
