@@ -135,7 +135,7 @@ namespace GameWish.Game
 
 			m_ScrollRectAutoAdjustPosition.EnableAutoAdjust(10);
 
-			m_MiddleTrainingRoleUGridList.SetDataCount(10);
+			m_MiddleTrainingRoleUGridList.SetDataCount(m_PanelData.GetTrainingRoomCapacity());
 			m_BottomTrainingRoleUList.SetDataCount(10);
 		}
 		private void OnBottomCellRenderer(Transform root, int index)
