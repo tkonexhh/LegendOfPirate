@@ -8,9 +8,9 @@ using GFrame.Editor;
 namespace GameWish.Game
 {
 	// Auto Generated Code. Don't Modify This Class 
-	public partial class AlchemyRoomPanel
+	public partial class LaboratoryRoomPanel
 	{
-		public const string Name = "AlchemyRoomPanel";
+		public const string Name = "LaboratoryRoomPanel";
 		
 		[SerializeField]
 		public UnityEngine.UI.Image Bg;
@@ -19,13 +19,13 @@ namespace GameWish.Game
 		[SerializeField]
 		public UnityEngine.UI.Image TitleIcon;
 		[SerializeField]
-		public TMPro.TextMeshProUGUI AlchemyTMP;
+		public TMPro.TextMeshProUGUI LaboratoryTMP;
 		[SerializeField]
-		public GFrame.Editor.GButton AlchemyUpgradeBtn;
+		public GFrame.Editor.GButton LaboratoryUpgradeBtn;
 		[SerializeField]
 		public UnityEngine.UI.Image ReadyBuildBg;
 		[SerializeField]
-		public RectTransform AlchemyGoodsTra;
+		public RectTransform LaboratoryGoodsTra;
 		[SerializeField]
 		public UnityEngine.UI.Image ReadyStateIcon;
 		[SerializeField]
@@ -39,7 +39,7 @@ namespace GameWish.Game
 		[SerializeField]
 		public GFrame.Editor.GButton RightArrowBtn;
 		[SerializeField]
-		public RectTransform BottomAlchemyTra;
+		public RectTransform BottomLaboratoryTra;
 		
 		
 	}

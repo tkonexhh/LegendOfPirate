@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,11 +21,11 @@ namespace GameWish.Game
             }
             else
             {
+                Debug.LogError(m_LastPos);
                 m_LastPos = m_Target.position + m_OffsetPos;
                 return m_LastPos;
             }
 
         }
     }
-
 }

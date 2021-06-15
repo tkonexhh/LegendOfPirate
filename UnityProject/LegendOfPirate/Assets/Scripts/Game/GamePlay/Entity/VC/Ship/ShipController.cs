@@ -11,6 +11,10 @@ namespace GameWish.Game
 
         private ShipFactory m_ShipFactory = null;
 
+        private ShipView m_ShipView = null;
+
+        public ShipView ShipView { get => m_ShipView; set => m_ShipView = value; }
+
         #region Controller
 
         public override void OnInit()
@@ -54,6 +58,7 @@ namespace GameWish.Game
                 Log.e("Component has been added before : " + type.ToString());
             }
         }
+
         #endregion
 
         #region Public Get

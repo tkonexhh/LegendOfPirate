@@ -7,22 +7,17 @@ namespace GameWish.Game
 {
     public class SkillTriggerFactory
     {
-        public static SkillTrigger CreateSkillTrigger(PassiveSkillTriggerType triggerType)
+
+        public static SkillTrigger CreateSkillTrigger(SkillTriggerType triggerType, Skill skill)
         {
             switch (triggerType)
             {
-                case PassiveSkillTriggerType.Attack:
-                    return new SkillTrigger_Attack();
-                case PassiveSkillTriggerType.Hurt:
-                    return new SkillTrigger_Hurt();
-                case PassiveSkillTriggerType.Forver:
-                    return new SkillTrigger_Forver();
-                case PassiveSkillTriggerType.Time:
-                    return new SkillTrigger_Time();
-                case PassiveSkillTriggerType.Move:
-                    return new SkillTrigger_Move();
+                case SkillTriggerType.OnCreate:
+                    skill.CD = SkillDefine.INFINITETIME;//默认触发的技能CD一定为-1
+                    return new SkillTrigger_Create();
+                case SkillTriggerType.OnSpellStart:
+                    return new SkillTrigger_Cast();
             }
-
             return null;
         }
     }

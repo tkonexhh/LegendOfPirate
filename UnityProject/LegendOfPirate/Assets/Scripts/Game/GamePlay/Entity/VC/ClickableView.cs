@@ -66,9 +66,15 @@ namespace GameWish.Game
             return false;
         }
 
+        public void SetCollider(Collider collider)
+        {
+            m_Collider = collider;
+        }
+
+
         protected virtual void OnClicked()
         {
-
+            Qarth.Log.i("On Clicked: " + transform.name);
         }
     }
 

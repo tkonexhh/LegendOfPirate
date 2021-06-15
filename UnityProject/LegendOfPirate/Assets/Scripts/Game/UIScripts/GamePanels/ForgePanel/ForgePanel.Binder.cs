@@ -24,7 +24,7 @@ namespace GameWish.Game
 		private void AllocatePanelData(params object[] args)
 		{
 			m_PanelData = UIPanelData.Allocate<ForgePanelData>();
-			m_PanelData.forgeModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.Forge) as ForgeModel;
+			m_PanelData.forgeModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.ForgeRoom) as ForgeModel;
 
 		}
 

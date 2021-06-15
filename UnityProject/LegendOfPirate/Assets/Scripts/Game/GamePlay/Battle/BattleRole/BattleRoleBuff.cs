@@ -13,6 +13,12 @@ namespace GameWish.Game
 
         public BattleRoleBuff(BattleRoleController controller) : base(controller) { }
 
+        public override void OnBattleStart()
+        {
+            base.OnBattleStart();
+            m_BuffMap.Clear();
+            m_BuffList.Clear();
+        }
 
         public override void OnUpdate()
         {
@@ -20,7 +26,7 @@ namespace GameWish.Game
 
             for (int i = m_BuffList.Count - 1; i >= 0; i--)
             {
-                if (m_BuffList[i].time != -1)//-1 是永久持续
+                if (m_BuffList[i].time != SkillDefine.INFINITETIME)//-1 是永久持续
                 {
                     m_BuffList[i].time -= Time.deltaTime;
                     if (m_BuffList[i].time <= 0)
@@ -33,35 +39,45 @@ namespace GameWish.Game
 
         public void AddBuff(Buff buff)
         {
+            buff.Owner = controller;
             if (m_BuffMap.ContainsKey(buff.id))
             {
                 //Handle Append
-
                 var buffStaticInfo = BuffFactory.GetBuffStaticInfo(buff.id);
-                if (buffStaticInfo != null)
+                if (buffStaticInfo != null && buffStaticInfo.appendHandler != null)
                 {
                     //层数处理
                     m_BuffMap[buff.id].nowAppendNum++;
                     m_BuffMap[buff.id].nowAppendNum = Mathf.Min(m_BuffMap[buff.id].nowAppendNum, buffStaticInfo.maxAppendNum);
                     m_BuffMap[buff.id].OnAddAppendNum(controller.Data.buffedData);
                     buffStaticInfo.appendHandler?.HandleApped(m_BuffMap[buff.id], buff);
-                }
 
+                }
                 return;
             }
+            // Debug.LogError("AddBuff");
             //不同ID的buff
-            buff.OnAddBuff(controller.Data.buffedData);
             m_BuffList.Add(buff);
             m_BuffMap.Add(buff.id, buff);
+            buff.OnAddBuff();
         }
 
         public void RemoveBuff(Buff buff)
         {
+            Debug.LogError("RemoveBuff");
             if (!m_BuffList.Contains(buff))
             {
                 return;
             }
-            buff.OnRemoveBuff(controller.Data.buffedData);
+
+            var buffStaticInfo = BuffFactory.GetBuffStaticInfo(buff.id);
+            if (buffStaticInfo != null && buffStaticInfo.appendHandler != null)
+            {
+                m_BuffMap[buff.id].nowAppendNum = 0;
+            }
+
+
+            buff.OnRemoveBuff();
             m_BuffList.Remove(buff);
             m_BuffMap.Remove(buff.id);
         }

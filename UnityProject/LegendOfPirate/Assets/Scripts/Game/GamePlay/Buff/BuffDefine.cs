@@ -11,6 +11,8 @@ namespace GameWish.Game
 
     }
 
+
+
     [LabelText("属性类型")]
     public enum AttributeType
     {
@@ -35,7 +37,10 @@ namespace GameWish.Game
     [LabelText("触发方式")]
     public enum BuffTriggerType
     {
-        [LabelText("立即触发")] Instant,
+        [LabelText("创建时")] Create,
+        [LabelText("攻击时")] Attack,
+        [LabelText("受击时触发")] Hurt,
+        [LabelText("移动触发")] Move,
         [LabelText("间隔触发")] Interval,
     }
 

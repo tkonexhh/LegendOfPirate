@@ -24,6 +24,8 @@ namespace GameWish.Game
             GameObject ship = GameObjectPoolMgr.S.Allocate(Define.SHIP_PREFAB);
             ship.transform.SetParent(GameplayMgr.S.EntityRoot);
 
+            m_ShipController.ShipView = ship.GetComponent<ShipView>();
+
             SpawnShipBody(ship.transform);
 
             SpawnShipUnits(ship);
@@ -46,6 +48,17 @@ namespace GameWish.Game
             GameObject prefab = m_ShipResLoader.LoadSync(shipBodyPrefabName) as GameObject;
             GameObject obj = GameObject.Instantiate(prefab);
             obj.transform.SetParent(ship);
+
+            // Set Collider
+            Collider collider = obj.GetComponent<Collider>();
+            if (collider == null)
+            {
+                Log.e("Collider Not Found in Ship Body");
+            }
+            else
+            {
+                m_ShipController.ShipView.SetCollider(collider);
+            }
         }
 
         private void SpawnShipUnits(GameObject ship)
@@ -69,7 +82,7 @@ namespace GameWish.Game
 
             ShipUnit shipUnit = obj.GetComponent<ShipUnit>();
             shipUnit.OnInit();
-            m_ShipController.AddShipUnit(shipUnit.GetShipUnitType(), shipUnit);
+            m_ShipController.AddShipUnit(shipUnit.GetShipUnitType(), shipUnit);           
         }
 
         #endregion

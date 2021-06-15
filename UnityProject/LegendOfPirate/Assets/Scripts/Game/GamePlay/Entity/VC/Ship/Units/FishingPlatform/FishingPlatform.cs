@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -16,7 +16,7 @@ namespace GameWish.Game
         {
             base.OnClicked();
 
-            //TODO: Open Kitchen Panel
+            UIMgr.S.OpenPanel(UIID.FishingPanel);
         }
 
         public override ShipUnitType GetShipUnitType()

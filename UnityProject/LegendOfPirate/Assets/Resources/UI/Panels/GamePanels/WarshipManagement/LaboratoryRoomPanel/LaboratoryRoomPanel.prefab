@@ -64,9 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Laboratory
-
-'
+  m_text: LaboratoryRoom
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95510714052484116952359d06d42892, type: 2}
   m_sharedMaterial: {fileID: 6911236400702945317, guid: 95510714052484116952359d06d42892,
@@ -136,6 +134,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: Fixed_Title_LaboratoryRoom
 --- !u!1 &732009135600423089
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +148,7 @@ GameObject:
   - component: {fileID: 2821871956491288278}
   - component: {fileID: 4668607366128224216}
   - component: {fileID: 2948739426138434419}
+  - component: {fileID: 2430237167134929719}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -167,16 +167,17 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 8283802164686018166}
   - {fileID: 7838866716723004281}
   - {fileID: 8821693956007586672}
   - {fileID: 7837763070848616361}
   m_Father: {fileID: 2819926939507090033}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.256, y: 0.63867176}
-  m_AnchorMax: {x: 0.81011254, y: 0.8925314}
-  m_AnchoredPosition: {x: 0, y: -103}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.18800001, y: 0.38812557}
+  m_AnchorMax: {x: 0.75144595, y: 0.8234618}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -0.0000076293945, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8343058886917189962
 CanvasRenderer:
@@ -259,12 +260,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 3963813422037075706}
   layout: 1
-  padding: {x: 10, y: 0}
-  spacing: {x: 0, y: 0}
+  padding: {x: 0, y: 0}
+  spacing: {x: 20, y: 0}
   needMask: 0
   content: {fileID: 7161235670849181909}
   viewPort: {fileID: 7838866716723004281}
   alignment: 0
+--- !u!114 &2430237167134929719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732009135600423089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e005188a02338408a6245245dc13d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Layout: 1
+  m_ScrollRect: {fileID: 4668607366128224216}
 --- !u!1 &927613725929906965
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +293,7 @@ GameObject:
   - component: {fileID: 1222264747794609341}
   - component: {fileID: 2159099722028966791}
   m_Layer: 0
-  m_Name: AlchemyTMP
+  m_Name: LaboratoryTMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -400,6 +415,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!114 &2159099722028966791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,7 +468,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 255, y: 23}
+  m_AnchoredPosition: {x: 216, y: 34}
   m_SizeDelta: {x: 20, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4523738736209528621
@@ -498,7 +514,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  scaleAnim: 0
+  scaleAnim: 1
   clickDownScale: {x: 0.95, y: 0.95, z: 0.95}
   normalScale: {x: 1, y: 1, z: 1}
   sound: 0
@@ -966,7 +982,7 @@ RectTransform:
   m_Children:
   - {fileID: 2135186970775678108}
   m_Father: {fileID: 8601809670805212641}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1053,7 +1069,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7195620359761444604}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999998
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1331,18 +1347,6 @@ MonoBehaviour:
   ComponentGeneratePath: 
   CustomComment: 
   mComponentName: 
---- !u!114 &312050702198979590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3963813422037075706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 406aa85270312034f9a2b469261e2822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4379340834968290390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1378,7 +1382,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 21}
+  m_AnchoredPosition: {x: -19, y: 32}
   m_SizeDelta: {x: 515, y: 212.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3016025763939939690
@@ -1467,7 +1471,7 @@ RectTransform:
   m_Children:
   - {fileID: 7365551360923338834}
   m_Father: {fileID: 8601809670805212641}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1571,7 +1575,7 @@ GameObject:
   - component: {fileID: 3580456812000267635}
   - component: {fileID: 6987211962791376732}
   m_Layer: 0
-  m_Name: AlchemyUpgradeBtnTMP
+  m_Name: LaboratoryUpgradeBtnTMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1704,7 +1708,7 @@ GameObject:
   - component: {fileID: 8623734297784400607}
   - component: {fileID: 407275098980723742}
   m_Layer: 0
-  m_Name: AlchemyGoodsTra
+  m_Name: LaboratoryGoodsTra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1783,8 +1787,9 @@ GameObject:
   - component: {fileID: 8116843333528086125}
   - component: {fileID: 229258740851149090}
   - component: {fileID: 1469081022302088084}
+  - component: {fileID: 229650380699025233}
   m_Layer: 0
-  m_Name: Bg
+  m_Name: BgBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1830,8 +1835,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1863,6 +1868,54 @@ MonoBehaviour:
   ComponentGeneratePath: 
   CustomComment: 
   mComponentName: 
+--- !u!114 &229650380699025233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670514365029787310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9462c512071144765bbcb38e86a321e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 229258740851149090}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  scaleAnim: 0
+  clickDownScale: {x: 0.95, y: 0.95, z: 0.95}
+  normalScale: {x: 1, y: 1, z: 1}
+  sound: 0
+  clickEffect: 
 --- !u!1 &5760334768047448463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,7 +1952,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -211, y: 23}
+  m_AnchoredPosition: {x: -250, y: 34}
   m_SizeDelta: {x: 20, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3523745070731068530
@@ -1945,7 +1998,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  scaleAnim: 0
+  scaleAnim: 1
   clickDownScale: {x: 0.95, y: 0.95, z: 0.95}
   normalScale: {x: 1, y: 1, z: 1}
   sound: 0
@@ -2015,7 +2068,7 @@ GameObject:
   - component: {fileID: 7161235670849181909}
   - component: {fileID: 3565997352372715183}
   m_Layer: 5
-  m_Name: BottomAlchemyTra
+  m_Name: BottomLaboratoryTra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2031,8 +2084,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 8283802164686018166}
+  m_Children: []
   m_Father: {fileID: 7838866716723004281}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2182,7 +2234,7 @@ GameObject:
   - component: {fileID: 7444070469043801601}
   - component: {fileID: 4829386039489988705}
   m_Layer: 5
-  m_Name: AlchemyRoomPanel
+  m_Name: LaboratoryRoomPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2272,7 +2324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementCategory: Uncategorized
-  elementName: AlchemyRoomPanel
+  elementName: LaboratoryRoomPanel
   LANDSCAPE: 1
   PORTRAIT: 1
   startHidden: 0
@@ -2575,18 +2627,19 @@ MonoBehaviour:
   Bg: {fileID: 229258740851149090}
   TitleBg: {fileID: 4345214937124685109}
   TitleIcon: {fileID: 8763189335784135290}
-  AlchemyTMP: {fileID: 1222264747794609341}
-  AlchemyUpgradeBtn: {fileID: 3563372089484757010}
+  LaboratoryTMP: {fileID: 1222264747794609341}
+  LaboratoryUpgradeBtn: {fileID: 3563372089484757010}
   ReadyBuildBg: {fileID: 571670557262341647}
-  AlchemyGoodsTra: {fileID: 7206944368624485051}
+  LaboratoryGoodsTra: {fileID: 7206944368624485051}
   ReadyStateIcon: {fileID: 3083222725820408737}
   MaterialsTra: {fileID: 6637533889775950048}
   MakeBtn: {fileID: 2918376136689969961}
   BottomRegionBg: {fileID: 8543107674581887091}
   LeftArrowBtn: {fileID: 3523745070731068530}
   RightArrowBtn: {fileID: 4523738736209528621}
-  BottomAlchemyTra: {fileID: 7161235670849181909}
-  m_BottomLibarayRoleUList: {fileID: 2948739426138434419}
+  BottomLaboratoryTra: {fileID: 7161235670849181909}
+  m_BottomLaboratoryRoleUList: {fileID: 2948739426138434419}
+  m_ScrollRectAutoAdjustPosition: {fileID: 2430237167134929719}
 --- !u!1 &7502011868213158575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,7 +2708,7 @@ RectTransform:
   m_Children:
   - {fileID: 7161235670849181909}
   m_Father: {fileID: 8601809670805212641}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3014,6 +3067,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!1 &8728407277324496793
 GameObject:
   m_ObjectHideFlags: 0
@@ -3066,7 +3120,7 @@ GameObject:
   - component: {fileID: 3563372089484757010}
   - component: {fileID: 4316460620477106285}
   m_Layer: 0
-  m_Name: AlchemyUpgradeBtn
+  m_Name: LaboratoryUpgradeBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3324,8 +3378,18 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 7161235670849181909}
+    m_TransformParent: {fileID: 8601809670805212641}
     m_Modifications:
+    - target: {fileID: 441034448628843895, guid: c273aa5e21b78f14d93bcde38ff8f196,
+        type: 3}
+      propertyPath: sound
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 441034448628843895, guid: c273aa5e21b78f14d93bcde38ff8f196,
+        type: 3}
+      propertyPath: scaleAnim
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1677566720209189926, guid: c273aa5e21b78f14d93bcde38ff8f196,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3409,12 +3473,12 @@ PrefabInstance:
     - target: {fileID: 1677566720209189926, guid: c273aa5e21b78f14d93bcde38ff8f196,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 50
+      value: 890
       objectReference: {fileID: 0}
     - target: {fileID: 1677566720209189926, guid: c273aa5e21b78f14d93bcde38ff8f196,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30.063057
+      value: 135
       objectReference: {fileID: 0}
     - target: {fileID: 1677566720209189926, guid: c273aa5e21b78f14d93bcde38ff8f196,
         type: 3}
@@ -3434,19 +3498,19 @@ PrefabInstance:
     - target: {fileID: 5958362812381080746, guid: c273aa5e21b78f14d93bcde38ff8f196,
         type: 3}
       propertyPath: m_Name
-      value: BottomAlchemyPotion
+      value: BottomLaboratoryPotion
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c273aa5e21b78f14d93bcde38ff8f196, type: 3}
---- !u!1 &3963813422037075706 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5958362812381080746, guid: c273aa5e21b78f14d93bcde38ff8f196,
-    type: 3}
-  m_PrefabInstance: {fileID: 7327937302748801616}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8283802164686018166 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1677566720209189926, guid: c273aa5e21b78f14d93bcde38ff8f196,
+    type: 3}
+  m_PrefabInstance: {fileID: 7327937302748801616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3963813422037075706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5958362812381080746, guid: c273aa5e21b78f14d93bcde38ff8f196,
     type: 3}
   m_PrefabInstance: {fileID: 7327937302748801616}
   m_PrefabAsset: {fileID: 0}

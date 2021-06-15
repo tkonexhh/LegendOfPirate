@@ -97,4 +97,14 @@ namespace GameWish.Game
             tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
         }
     }
+
+    public class ForgeRoomModel : ShipUnitModel
+    {
+        public ForgeUnitConfig tableConfig;
+
+        public ForgeRoomModel(ShipUnitData shipUnitData) : base(shipUnitData)
+        {
+            tableConfig = TDFacilityForgeTable.GetConfig(level.Value);
+        }
+    }
 }

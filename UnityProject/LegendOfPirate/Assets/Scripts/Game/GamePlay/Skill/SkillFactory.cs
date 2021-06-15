@@ -9,44 +9,50 @@ namespace GameWish.Game
     {
         public static Skill CreateSkill(SkillConfigSO configSO)
         {
-            Skill skill = null;
-            switch (configSO.SkillType)
-            {
-                case SkillType.Initiative:
-                    skill = ObjectPool<InitiativeSkill>.S.Allocate();
-                    skill = DealWithInitativeSkill(configSO, skill as InitiativeSkill);
-                    break;
-                case SkillType.Passive:
-                    skill = ObjectPool<PassiveSkill>.S.Allocate();
-                    skill = DealWithPassiveSkill(configSO, skill as PassiveSkill);
-                    break;
-            }
-
+            Skill skill = ObjectPool<Skill>.S.Allocate();
+            DealWithSkillAction(configSO.SkillActionConfigs, skill);
+            skill.skillTrigger = SkillTriggerFactory.CreateSkillTrigger(configSO.SkillTriggerType, skill);
             skill.id = configSO.ID;
-            skill.cd = configSO.CD;
+            skill.CD = configSO.CD;
             skill.name = configSO.name;
             skill.Sensor = BattleSensorFactory.CreateBattleSensor(configSO.PickTarget.PickTargetType, configSO.PickTarget.SensorTypeEnum);
 
             return skill;
         }
 
-        private static InitiativeSkill DealWithInitativeSkill(SkillConfigSO configSO, InitiativeSkill skill)
+        // private static InitiativeSkill DealWithInitativeSkill(SkillConfigSO configSO, InitiativeSkill skill)
+        // {
+        //     skill.attacker = BattleAttackerFactory.CreateBattleAttacker(configSO.Attack.AttackType);
+        //     skill.damageRange = DamageRangeFactory.CreateDamageRange(configSO.Attack.DamageRangeType, skill, configSO.Attack.RangeArgs);
+        //     if (configSO.Attack.AttackType == AttackType.Shoot)//远程
+        //     {
+        //         BattleAttackerFactory.SetBullet((skill.attacker as BattleAttacker_Shoot), configSO.Attack.Bullet, configSO.Attack.BulletNum);
+        //     }
+        //     return skill;
+        // }
+
+        private static void DealWithSkillAction(List<SkillActionConfig> configs, Skill skill)
         {
-            skill.attacker = BattleAttackerFactory.CreateBattleAttacker(configSO.Attack.AttackType);
-            skill.damageRange = DamageRangeFactory.CreateDamageRange(configSO.Attack.DamageRangeType, skill, configSO.Attack.RangeArgs);
-            if (configSO.Attack.AttackType == AttackType.Shoot)//远程
+            if (configs == null) return;
+            skill.SkillActions = new List<SkillAction>();
+
+            for (int i = 0; i < configs.Count; i++)
             {
-                BattleAttackerFactory.SetBullet((skill.attacker as BattleAttacker_Shoot), configSO.Attack.Bullet, configSO.Attack.BulletNum);
+                if (configs[i] is SkillActionConfig_AddBuff addBuffConfig) { skill.SkillActions.Add(CreateSkillAction_AddBuff(skill, addBuffConfig)); }
+                if (configs[i] is SkillActionConfig_Damage damageConfig) { skill.SkillActions.Add(CreateSkillAction_Damage(skill, damageConfig)); }
             }
-            return skill;
         }
 
-
-        private static PassiveSkill DealWithPassiveSkill(SkillConfigSO configSO, PassiveSkill skill)
+        private static SkillAction CreateSkillAction_AddBuff(Skill skill, SkillActionConfig_AddBuff actionConfig)
         {
-            skill.skillTrigger = SkillTriggerFactory.CreateSkillTrigger(configSO.PassiveSkillTriggerType);
-            return skill;
+            return new SkillAction_AddBuff(actionConfig.buffConfigSO, SkillTargetFactory.CreateSkillTarget(actionConfig.target, skill));
         }
+
+        private static SkillAction CreateSkillAction_Damage(Skill skill, SkillActionConfig_Damage actionConfig)
+        {
+            return new SkillAction_Damage(actionConfig.Damage, actionConfig.DamageType, SkillTargetFactory.CreateSkillTarget(actionConfig.target, skill));
+        }
+
     }
 
 }
