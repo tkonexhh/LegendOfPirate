@@ -57,9 +57,9 @@ namespace GameWish.Game
             #endregion
 
             tdRoleConfig = TDRoleConfigTable.GetData(id);
-            name = tdRoleConfig.roleName;
+            //name = tdRoleConfig.roleName;
             //血量 = 基础血量 * 等级系数 * 星级系数 * 装备系数  //还有一个装备系数未加
-            curHp = new IntReactiveProperty();
+            //curHp = new IntReactiveProperty();
             //攻击 = 基础攻击 * 攻击成长系数^(等级-1) * 星级系数 ^(星级-1)  TODO...
             //curAtk = new FloatReactiveProperty(tdRoleConfig.initAtk * Mathf.Pow()); 
 
@@ -160,29 +160,29 @@ namespace GameWish.Game
 
         private void ModelSubscribe()
         {
-            isUnlcok.Subscribe( unlock => 
-            {
-                roleData.SetUnlocked();
-            });
+            //isUnlcok.Subscribe( unlock => 
+            //{
+            //    roleData.SetUnlocked();
+            //});
 
-            spiritCount.Subscribe(count => { });
+            //spiritCount.Subscribe(count => { });
 
-            level.Subscribe(lv => 
-            {
-                roleData.AddLevel(level.Value);
-                curHp.Value = tdRoleConfig.initHp * lv * starLevel.Value; 
-            });
+            //level.Subscribe(lv => 
+            //{
+            //    roleData.AddLevel(level.Value);
+            //    curHp.Value = tdRoleConfig.initHp * lv * starLevel.Value; 
+            //});
 
-            curHp.Subscribe(hp => { });
+            //curHp.Subscribe(hp => { });
 
-            //curAtk.Subscribe(atk => { });
+            ////curAtk.Subscribe(atk => { });
 
-            curExp.Subscribe(exp => { });
+            //curExp.Subscribe(exp => { });
 
-            starLevel.Subscribe(starlv => 
-            {
-                curHp.Value = tdRoleConfig.initHp * level.Value * starlv;
-            });
+            //starLevel.Subscribe(starlv => 
+            //{
+            //    curHp.Value = tdRoleConfig.initHp * level.Value * starlv;
+            //});
         }
 
         #endregion
