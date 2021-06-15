@@ -46,7 +46,7 @@ namespace GameWish.Game
             public int slotId;
             public int heroId = -1;
             public FloatReactiveProperty trainRemainTime = new FloatReactiveProperty(-1);
-            public bool isTraining = false;
+            public BoolReactiveProperty isTraining = new BoolReactiveProperty(false);
 
             private DateTime m_StartTime = default(DateTime);
             private DateTime m_EndTime = default(DateTime);
@@ -61,9 +61,9 @@ namespace GameWish.Game
 
                 this.slotId = dbItem.slotId;
                 this.heroId = dbItem.heroId;
-                this.isTraining = dbItem.isTraining;
+                this.isTraining.Value = dbItem.isTraining;
 
-                if (isTraining)
+                if (isTraining.Value)
                 {
                     SetTime(dbItem.trainingStartTime);
 
@@ -80,11 +80,11 @@ namespace GameWish.Game
                 m_DbItem.OnStartTraining(heroId, startTime);
             }
 
-            public void EndTraining()
+            private void EndTraining()
             {
                 heroId = -1;
                 trainRemainTime.Value = -1f;
-                isTraining = false;
+                isTraining.Value = false;
                 m_StartTime = default(DateTime);
                 m_EndTime = default(DateTime);
 
@@ -103,6 +103,11 @@ namespace GameWish.Game
                 double remainTime = (m_EndTime - DateTime.Now).TotalSeconds;
 
                 trainRemainTime.Value = (float)remainTime;
+
+                if (trainRemainTime.Value <= 0)
+                {
+                    EndTraining();
+                }
             }
         }
     }
