@@ -1,7 +1,7 @@
 ﻿
 namespace GameWish.Game
 {
-    public enum UIID:byte
+    public enum UIID : byte
     {
         LogPanel = 0,
         LogoPanel = 1,
@@ -76,5 +76,10 @@ namespace GameWish.Game
 
         CongratulationPanel,
         LandUpgradePanel,
+
+        #region 登录注册创角
+        LoginPanel,
+        CreateHeroPanel,
+        #endregion
     }
 }
