@@ -38,7 +38,7 @@ namespace GameWish.Game
         #region 图书室
         LibraryRoomPanel,
         #endregion
-        #region 炼金室
+        #region 实验室
         LaboratoryRoomPanel,
         #endregion
         #region 战船系统
