@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -17,14 +17,10 @@ namespace GameWish.Game
 		{
 			base.OnPanelOpen(args);
 			
-			AllocatePanelData();
+			AllocatePanelData(args);
 			
 			BindModelToUI();
 			BindUIToModel();
-
-			//UIMgr.S.OpenPanel(UIID.LibraryRoomPanel);
-
-			
 		}
 		
 		protected override void OnPanelHideComplete()

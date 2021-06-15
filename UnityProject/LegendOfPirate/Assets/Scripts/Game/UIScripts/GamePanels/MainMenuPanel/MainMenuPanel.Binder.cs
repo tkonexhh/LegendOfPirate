@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -17,23 +17,10 @@ namespace GameWish.Game
 	{
 		private MainMenuPanelData m_PanelData = null;
 		
-		private void AllocatePanelData()
+		private void AllocatePanelData(params object[] args)
 		{
 			 m_PanelData = UIPanelData.Allocate<MainMenuPanelData>();
-            RoleDetailsBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-				//Transform tran = GameObject.FindGameObjectWithTag("Finish").transform;
-				//FloatMeshMessage.S.ShowMsg("##", tran);
-				//WorldUIPanel.S.ShowCriticalInjuryText(tran, "+1",true);
-
-				//UIMgr.S.OpenPanel(UIID.RoleEquipDetailsPanel);
-				//UIMgr.S.OpenPanel(UIID.EvolutionSolePanel);
-				//UIMgr.S.OpenPanel(UIID.RoleSkillPanel);
-				//UIMgr.S.OpenPanel(UIID.RoleStoryPanel);
-				//UIMgr.S.OpenPanel(UIID.RoleDetailsPanel, 1);
-				UIMgr.S.OpenPanel(UIID.RoleGroupPanel);	
-            });
-        }
+		}
 		
 		private void ReleasePanelData()
 		{
