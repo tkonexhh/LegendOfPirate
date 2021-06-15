@@ -50,16 +50,6 @@ namespace GameWish.Game
         }
     }
 
-    public class ForgeModel : ShipUnitModel
-    {
-        public ForgeUnitConfig tableConfig;
-
-        public ForgeModel(ShipUnitData shipUnitData) : base(shipUnitData)
-        {
-            tableConfig = TDFacilityForgeTable.GetConfig(level.Value);
-        }
-    }
-
     public class LaboratoryModel : ShipUnitModel
     {
         public LaboratoryUnitConfig tableConfig;
