@@ -18,7 +18,7 @@ namespace GameWish.Game
 				}
 				else 
 				{
-					m_MenuSlotList[i].SetSlot(false, string.Format("Kitchen Lv{0}",level) );
+					m_MenuSlotList[i].SetSlot(false, string.Format("Kitchen Lv{0}", TDFacilityKitchenTable.dataList[i].level) );
 				}
 			}
 		}
