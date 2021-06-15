@@ -27,6 +27,12 @@ namespace GameWish.Game
         private ShipDataHandler m_ShipDataHandler = null;
         private InventoryDataHandler m_InventoryDataHandler = null;
         private KitchenDataHandler m_KitchenDataHandler = null;
+        private FishingDataHandler m_FishingDataHandler = null;
+        private ForgeDataHandler m_ForgeDataHandler = null;
+        private GardenDataHandler m_GardenDataHandler = null;
+        private LibraryDataHandler m_LibraryDataHandler = null;
+        private ProcessingDataHandler m_ProcessingDataHandler = null;
+        private TrainingDataHandler m_TrainingDataHandler = null;
 
         private int m_LoadDoneCount = 0;
         private Action m_OnLoadDoneCallback = null;
@@ -44,18 +50,36 @@ namespace GameWish.Game
             m_ShipDataHandler = new ShipDataHandler();
             m_InventoryDataHandler = new InventoryDataHandler();
             m_KitchenDataHandler = new KitchenDataHandler();
+            m_FishingDataHandler = new FishingDataHandler();
+            m_ForgeDataHandler = new ForgeDataHandler();
+            m_GardenDataHandler = new GardenDataHandler();
+            m_LibraryDataHandler = new LibraryDataHandler();
+            m_ProcessingDataHandler = new ProcessingDataHandler();
+            m_TrainingDataHandler = new TrainingDataHandler();
 
             m_DataHanlderList.Add(m_PlayerInfoDataHandler);
             m_DataHanlderList.Add(m_RoleGroupDataHandler);
             m_DataHanlderList.Add(m_ShipDataHandler);
             m_DataHanlderList.Add(m_InventoryDataHandler);
             m_DataHanlderList.Add(m_KitchenDataHandler);
+            m_DataHanlderList.Add(m_FishingDataHandler);
+            m_DataHanlderList.Add(m_ForgeDataHandler);
+            m_DataHanlderList.Add(m_GardenDataHandler);
+            m_DataHanlderList.Add(m_LibraryDataHandler);
+            m_DataHanlderList.Add(m_ProcessingDataHandler);
+            m_DataHanlderList.Add(m_TrainingDataHandler);
 
             m_PlayerInfoDataHandler.LoadData(OnLoadDone);
             m_RoleGroupDataHandler.LoadData(OnLoadDone);
             m_ShipDataHandler.LoadData(OnLoadDone);
             m_InventoryDataHandler.LoadData(OnLoadDone);
             m_KitchenDataHandler.LoadData(OnLoadDone);
+            m_FishingDataHandler.LoadData(OnLoadDone);
+            m_ForgeDataHandler.LoadData(OnLoadDone);
+            m_GardenDataHandler.LoadData(OnLoadDone);
+            m_LibraryDataHandler.LoadData(OnLoadDone);
+            m_ProcessingDataHandler.LoadData(OnLoadDone);
+            m_TrainingDataHandler.LoadData(OnLoadDone);
 
             RegisterEvents();
         }
