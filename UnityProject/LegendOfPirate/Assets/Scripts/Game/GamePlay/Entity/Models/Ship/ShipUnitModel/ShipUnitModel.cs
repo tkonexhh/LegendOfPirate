@@ -16,5 +16,11 @@ namespace GameWish.Game
             unitType = shipUnitData.unitType;
             level = new IntReactiveProperty(shipUnitData.level);
         }
+
+        public virtual void OnUpgrade(int delta)
+        {
+            level.Value += delta;
+
+        }
     }
 }

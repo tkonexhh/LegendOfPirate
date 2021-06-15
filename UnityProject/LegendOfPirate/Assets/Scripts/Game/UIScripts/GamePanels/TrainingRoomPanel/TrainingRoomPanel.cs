@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -12,17 +12,17 @@ namespace GameWish.Game
 	public enum TrainintRoomRoleState
 	{
 		/// <summary>
-		/// ¿ÕÏĞÖĞ
+		/// ç©ºé—²ä¸­
 		/// </summary>
-		Freeing = 0,
+		Free = 0,
 		/// <summary>
-		/// ÑµÁ·ÖĞ
+		/// è®­ç»ƒä¸­
 		/// </summary>
 		Training = 1,
 		/// <summary>
-		/// Î´½âËø
+		/// æœªè§£é”
 		/// </summary>
-		NotUnlocked = 2,
+		Locked = 2,
 	}
 	public class BottomTrainingRoleModule
 	{

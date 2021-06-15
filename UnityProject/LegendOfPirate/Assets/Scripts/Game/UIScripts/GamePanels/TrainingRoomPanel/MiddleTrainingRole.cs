@@ -42,13 +42,13 @@ namespace GameWish.Game
         {
             switch (m_MiddleTrainingRoleModule.trainingSlotModel.trainState.Value)
             {
-                case TrainintRoomRoleState.Freeing:
+                case TrainintRoomRoleState.Free:
                     m_Plug.gameObject.SetActive(true);
                     break;
                 case TrainintRoomRoleState.Training:
                     m_RoleIconBg.gameObject.SetActive(true);
                     break;
-                case TrainintRoomRoleState.NotUnlocked:
+                case TrainintRoomRoleState.Locked:
                     m_LockBg.gameObject.SetActive(true);
                     break;
             }

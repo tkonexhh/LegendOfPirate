@@ -60,28 +60,33 @@ namespace GameWish.Game
             public int slotId;
             public int heroId;
             public DateTime trainingStartTime;
-            public int trainState;
+            public TrainintRoomRoleState trainState;
 
             public TrainingDataItem(int slot)
             {
                 slotId = slot;
                 heroId = -1;
                 trainingStartTime = default(DateTime);
-                trainState = 2;
+                trainState = TrainintRoomRoleState.Locked;
             }
 
             public void OnStartTraining(int heroId, DateTime time)
             {
                 this.heroId = heroId;
                 this.trainingStartTime = time;
-                trainState = 1;
+                trainState = TrainintRoomRoleState.Training;
             }
 
             public void OnEndTraining()
             {
                 this.heroId = -1;
                 this.trainingStartTime = default(DateTime);
-                trainState = 0;
+                trainState = TrainintRoomRoleState.Free;
+            }
+
+            public void OnUnlocked()
+            {
+                trainState = TrainintRoomRoleState.Free;
             }
         }
     }
