@@ -36,7 +36,6 @@ namespace GameWish.Game
                 Debug.LogWarning("bottomTrainingRoleData is null");
                 return;
             }
-
             m_BottomTrainingRoleData = bottomTrainingRoleData;
             m_IntReactiveIndex = intReactiveProperty;
 

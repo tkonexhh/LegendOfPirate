@@ -40,76 +40,69 @@ namespace GameWish.Game
                 }
             }
         }
+    }
+    public class TrainingSlotModel : Model
+    {
+        public int slotId;
+        public int heroId = -1;
+        public FloatReactiveProperty trainRemainTime = new FloatReactiveProperty(-1);
+        public bool isTraining = false;
 
-        public class TrainingSlotModel : Model
+        private DateTime m_StartTime = default(DateTime);
+        private DateTime m_EndTime = default(DateTime);
+
+        private TrainingRoomModel m_TrainingRoomMode;
+        private TrainingData.TrainingDataItem m_DbItem;
+
+        public TrainingSlotModel(TrainingRoomModel trainingRoomMode, TrainingData.TrainingDataItem dbItem)
         {
-            public int slotId;
-            public int heroId = -1;
-            public FloatReactiveProperty trainRemainTime = new FloatReactiveProperty(-1);
-            public BoolReactiveProperty isTraining = new BoolReactiveProperty(false);
+            m_TrainingRoomMode = trainingRoomMode;
+            m_DbItem = dbItem;
 
-            private DateTime m_StartTime = default(DateTime);
-            private DateTime m_EndTime = default(DateTime);
+            this.slotId = dbItem.slotId;
+            this.heroId = dbItem.heroId;
+            this.isTraining = dbItem.isTraining;
 
-            private TrainingRoomModel m_TrainingRoomMode;
-            private TrainingData.TrainingDataItem m_DbItem;
-
-            public TrainingSlotModel(TrainingRoomModel trainingRoomMode, TrainingData.TrainingDataItem dbItem)
+            if (isTraining)
             {
-                m_TrainingRoomMode = trainingRoomMode;
-                m_DbItem = dbItem;
+                SetTime(dbItem.trainingStartTime);
 
-                this.slotId = dbItem.slotId;
-                this.heroId = dbItem.heroId;
-                this.isTraining.Value = dbItem.isTraining;
-
-                if (isTraining.Value)
-                {
-                    SetTime(dbItem.trainingStartTime);
-
-                    RefreshRemainTime();
-                }
-            }
-
-            public void StartTraining(int heroId, DateTime startTime)
-            {
-                this.heroId = heroId;
-
-                SetTime(startTime);
-
-                m_DbItem.OnStartTraining(heroId, startTime);
-            }
-
-            private void EndTraining()
-            {
-                heroId = -1;
-                trainRemainTime.Value = -1f;
-                isTraining.Value = false;
-                m_StartTime = default(DateTime);
-                m_EndTime = default(DateTime);
-
-                m_DbItem.OnEndTraining();
-            }
-
-            private void SetTime(DateTime startTime)
-            {
-                m_StartTime = startTime;
-                int totalTime = m_TrainingRoomMode.tableConfig.trainingTime;
-                m_EndTime = m_StartTime + TimeSpan.FromSeconds(totalTime);
-            }
-
-            public void RefreshRemainTime()
-            {
-                double remainTime = (m_EndTime - DateTime.Now).TotalSeconds;
-
-                trainRemainTime.Value = (float)remainTime;
-
-                if (trainRemainTime.Value <= 0)
-                {
-                    EndTraining();
-                }
+                RefreshRemainTime();
             }
         }
-    }
 
+        public void StartTraining(int heroId, DateTime startTime)
+        {
+            this.heroId = heroId;
+
+            SetTime(startTime);
+
+            m_DbItem.OnStartTraining(heroId, startTime);
+        }
+
+        public void EndTraining()
+        {
+            heroId = -1;
+            trainRemainTime.Value = -1f;
+            isTraining = false;
+            m_StartTime = default(DateTime);
+            m_EndTime = default(DateTime);
+
+            m_DbItem.OnEndTraining();
+        }
+
+        private void SetTime(DateTime startTime)
+        {
+            m_StartTime = startTime;
+            int totalTime = m_TrainingRoomMode.tableConfig.trainingTime;
+            m_EndTime = m_StartTime + TimeSpan.FromSeconds(totalTime);
+        }
+
+        public void RefreshRemainTime()
+        {
+            double remainTime = (m_EndTime - DateTime.Now).TotalSeconds;
+
+            trainRemainTime.Value = (float)remainTime;
+        }
+    }
 }
