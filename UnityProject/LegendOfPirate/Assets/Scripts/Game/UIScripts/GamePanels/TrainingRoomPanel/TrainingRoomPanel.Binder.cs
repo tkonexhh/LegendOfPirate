@@ -63,6 +63,14 @@ namespace GameWish.Game
 
         private void OnClickAddListener()
         {
+            LeftArrowBtn.OnClickAsObservable().Subscribe(_ =>
+            {
+                LeftArrowBtnEvent();
+            });
+            RightArrowBtn.OnClickAsObservable().Subscribe(_ =>
+            {
+                RightArrowBtnEvent();
+            });
             TrainingUpgradeBtn.OnClickAsObservable().Subscribe(_ =>
             {
                 TrainingUpgradeBtnEvent();

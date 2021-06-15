@@ -6,9 +6,10 @@ using UniRx;
 
 namespace GameWish.Game
 {
-	public partial class MainMenuPanel : AbstractAnimPanel
+	public partial class BlackMarketPanel : AbstractAnimPanel
 	{
-		protected override void OnUIInit()
+        #region AbstractAnimPanel
+        protected override void OnUIInit()
 		{
 			base.OnUIInit();
 		}
@@ -17,14 +18,12 @@ namespace GameWish.Game
 		{
 			base.OnPanelOpen(args);
 			
-			AllocatePanelData();
+			AllocatePanelData(args);
 			
 			BindModelToUI();
 			BindUIToModel();
 
-			UIMgr.S.OpenPanel(UIID.LibraryRoomPanel);
-
-			
+			OnClickAddListener();
 		}
 		
 		protected override void OnPanelHideComplete()
@@ -40,6 +39,14 @@ namespace GameWish.Game
 			
 			ReleasePanelData();
 		}
-		
-	}
+		#endregion
+		#region ButtonEvent
+
+		public void ExitBtnEvent()
+		{
+			HideSelfWithAnim();	
+		}
+        #endregion
+
+    }
 }

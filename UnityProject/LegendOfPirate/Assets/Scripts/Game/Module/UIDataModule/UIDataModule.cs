@@ -85,7 +85,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.LibraryRoomPanel, null, "GamePanels/WarshipManagement/LibraryRoomPanel/LibraryRoomPanel");
             #endregion
             #region 炼金室
-            UIDataTable.AddPanelData(UIID.AlchemyRoomPanel, null, "GamePanels/WarshipManagement/AlchemyRoomPanel/AlchemyRoomPanel");
+            UIDataTable.AddPanelData(UIID.LaboratoryRoomPanel, null, "GamePanels/WarshipManagement/LaboratoryRoomPanel/LaboratoryRoomPanel");
             #endregion
             #region 战船系统
             UIDataTable.AddPanelData(UIID.WarshipUpgradePanel, null, "GamePanels/WarshipManagement/WarshipUpgradePanel/WarshipUpgradePanel");
