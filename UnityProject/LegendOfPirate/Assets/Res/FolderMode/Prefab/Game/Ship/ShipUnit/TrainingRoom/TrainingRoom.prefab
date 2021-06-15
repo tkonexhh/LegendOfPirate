@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1711995915888048429}
   - component: {fileID: 8196046367393510530}
-  - component: {fileID: -1216559450789398864}
   m_Layer: 8
   m_Name: TrainingRoom
   m_TagString: Untagged
@@ -46,18 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BodyRoot: {fileID: 5520323239946411090}
---- !u!114 &-1216559450789398864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 369777128436332057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a97511c46d389f74fb1b6b1ca03f0818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1114267693546058073
 GameObject:
   m_ObjectHideFlags: 0

@@ -74,7 +74,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.RoleSkillPanel, null, "GamePanels/RolePanel/RoleSkillPanel/RoleSkillPanel");
             UIDataTable.AddPanelData(UIID.RoleStoryPanel, null, "GamePanels/RolePanel/RoleStoryPanel/RoleStoryPanel"); ;
             #endregion
-            UIDataTable.AddPanelData(UIID.TestPanel, null, "GamePanels/TestPanel/TestPanel");
+            //UIDataTable.AddPanelData(UIID.TestPanel, null, "GamePanels/TestPanel/TestPanel");
 
             UIDataTable.AddPanelData(UIID.FloatMeshMessagePanel, null, "Common/FloatMeshMessagePanel");
             //Warship Management System

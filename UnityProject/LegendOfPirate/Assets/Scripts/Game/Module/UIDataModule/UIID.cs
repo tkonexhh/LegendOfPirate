@@ -5,22 +5,22 @@ namespace GameWish.Game
     {
         LogPanel = 0,
         LogoPanel = 1,
-        TopPanel,
-        MainGamePanel,
+        //TopPanel,
+        //MainGamePanel,
         UIParticalPanel,
         SettingPanel,
         GuideWordsPanel,
         UIClipPanel,
         SkipGuidePanel,
-        ToastPanel,
+        //ToastPanel,
         WorldUIPanel,
-        FloatMessagePanel1,
+        //FloatMessagePanel1,
         MainMenuPanel,
         /// <summary>
         /// 消息提示界面
         /// </summary>
         MyFloatMessagePanel,
-        TestPanel,
+        //TestPanel,
 
         #region Role
         RoleDetailsPanel,
@@ -55,6 +55,22 @@ namespace GameWish.Game
         #region 黑市
         BlackMarketPanel,
         #endregion
+        /// <summary>
+        /// 厨房
+        /// </summary>
+        KitchenPanel,
+        /// <summary>
+        /// 钓鱼台
+        /// </summary>
+        FishingPlatformPanel,
+        /// <summary>
+        /// 花园
+        /// </summary>
+        GardenPanel,
+        /// <summary>
+        /// 加工室
+        /// </summary>
+        ProcessingRoomPanel,
 
         CongratulationPanel,
         LandUpgradePanel,

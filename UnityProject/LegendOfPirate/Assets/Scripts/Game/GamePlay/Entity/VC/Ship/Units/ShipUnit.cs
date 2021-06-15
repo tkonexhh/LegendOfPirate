@@ -70,8 +70,9 @@ namespace GameWish.Game
             ShipUnitConfig unitConfig = ShipConfig.S.GetUnitConfig(GetShipUnitType());
 
             GameObject prefab = m_ResLoader.LoadSync(unitConfig.bodyPrefabName) as GameObject;
-            GameObject obj = GameObject.Instantiate(prefab);
+            GameObject obj = GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
             obj.transform.SetParent(m_BodyRoot);
+            obj.transform.SetLocalPos(Vector3.zero);
 
             return obj;
         }
