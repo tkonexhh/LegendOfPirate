@@ -27,6 +27,7 @@ MonoBehaviour:
       - EvolutionSolePanel
       - ForgePanel
       - GardenPanel
+      - LaboratoryRoomPanel
       - LandUpgradePanel
       - LibraryRoomPanel
       - MagicCloudPanel

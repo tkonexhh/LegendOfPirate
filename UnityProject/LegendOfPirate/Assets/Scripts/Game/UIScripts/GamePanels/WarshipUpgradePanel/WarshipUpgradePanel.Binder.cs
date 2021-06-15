@@ -57,7 +57,11 @@ namespace GameWish.Game
             {
                 Debug.LogError("UpgradeBtn");//TODO
             });
-        }
+			BgBtn.OnClickAsObservable().Subscribe(_ =>
+			{
+				BgBtnEvent();
+			});
+		}
 		private void UnregisterEvents()
 		{
 

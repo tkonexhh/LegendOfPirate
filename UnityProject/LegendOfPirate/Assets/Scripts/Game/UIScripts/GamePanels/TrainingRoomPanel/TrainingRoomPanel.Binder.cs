@@ -58,7 +58,6 @@ namespace GameWish.Game
 
         private void RegisterEvents()
         {
-            EventSystem.S.Register(EventID.OnBottomTrainingRole,HandlerEvent);
         }
 
         private void OnClickAddListener()
@@ -90,7 +89,6 @@ namespace GameWish.Game
         }
         private void UnregisterEvents()
         {
-            EventSystem.S.UnRegister(EventID.OnBottomTrainingRole, HandlerEvent);
         }
     }
 }

@@ -6,9 +6,8 @@ using UniRx;
 
 namespace GameWish.Game
 {
-	public partial class SmuggleChooseRolePanel : AbstractAnimPanel
+	public partial class SubMiddleDownMaterial : AbstractAnimPanel
 	{
-		#region AbstractAnimPanel
 		protected override void OnUIInit()
 		{
 			base.OnUIInit();
@@ -22,10 +21,8 @@ namespace GameWish.Game
 			
 			BindModelToUI();
 			BindUIToModel();
-
-			OnClickAddListener();
 		}
-
+		
 		protected override void OnPanelHideComplete()
 		{
 			base.OnPanelHideComplete();
@@ -39,12 +36,6 @@ namespace GameWish.Game
 			
 			ReleasePanelData();
 		}
-		#endregion
-		#region Button Event
-		private void ExitBtnEvent()
-		{
-			HideSelfWithAnim();
-		}
-		#endregion
+		
 	}
 }
