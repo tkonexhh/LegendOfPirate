@@ -67,9 +67,9 @@ namespace GameWish.Game
         private TrainingRoomModel m_TrainingRoomMode;
         private TrainingData.TrainingDataItem m_DbItem;
 
-        public TrainingSlotModel(TrainingRoomModel trainingRoomMode, TrainingData.TrainingDataItem dbItem)
+        public TrainingSlotModel(TrainingRoomModel trainingRoomModel, TrainingData.TrainingDataItem dbItem)
         {
-            m_TrainingRoomMode = trainingRoomMode;
+            m_TrainingRoomMode = trainingRoomModel;
             m_DbItem = dbItem;
 
             this.slotId = dbItem.slotId;
@@ -82,7 +82,6 @@ namespace GameWish.Game
                     break;
                 case TrainintRoomRoleState.Training:
                     SetTime(dbItem.trainingStartTime);
-
                     RefreshRemainTime();
                     break;
                 case TrainintRoomRoleState.Locked:
