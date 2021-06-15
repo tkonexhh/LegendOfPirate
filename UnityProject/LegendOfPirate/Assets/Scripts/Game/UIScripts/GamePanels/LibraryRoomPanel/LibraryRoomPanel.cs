@@ -102,6 +102,7 @@ namespace GameWish.Game
             m_ScrollRectAutoAdjustPosition.Move2Next();
         }
         #endregion
+        #region Other Method
         private void InitData()
         {
             BindUniRxUI();
@@ -155,6 +156,6 @@ namespace GameWish.Game
         {
             m_SelectedCount.Select(count => count + "/" + 10).SubscribeToTextMeshPro(RoleSelectNumberTMP);
         }
-
+        #endregion
     }
 }

@@ -31,15 +31,23 @@ namespace GameWish.Game
         RoleGroupPanel,
         #endregion
 
-        FloatMeshMessagePanel,
 
+        //战船经营
+        #region 厨房
         KitchenPanel,
-        FishingPanel,
+        #endregion
+        #region 锻造
         ForgePanel,
+        #endregion
+        #region 钓鱼
+        FishingPanel,
+        #endregion
+        #region 菜园
         GardenPanel,
+        #endregion
+        #region 加工室
         ProgressingRoomPanel,
-
-
+        #endregion
         #region 训练室
         TrainingRoomPanel,
         #endregion
@@ -49,9 +57,11 @@ namespace GameWish.Game
         #region 实验室
         LaboratoryRoomPanel,
         #endregion
-        #region 战船系统
+        #region 战船升级
         WarshipUpgradePanel,
         #endregion
+
+        //海岛经营
         #region 随机防御
         RandomDefensePanel,
         RandomDefenseChooseRolePanel,
