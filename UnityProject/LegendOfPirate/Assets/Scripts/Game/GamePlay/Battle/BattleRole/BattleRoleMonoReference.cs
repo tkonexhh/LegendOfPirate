@@ -21,7 +21,7 @@ namespace GameWish.Game
 
         private void OnCollisionEnter(Collision other)
         {
-            Debug.LogError(other.gameObject.name);
+            //Debug.LogError(other.gameObject.name);
             if (onCollisionEnter != null)
                 onCollisionEnter(other);
         }

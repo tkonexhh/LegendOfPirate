@@ -44,7 +44,7 @@ namespace GameWish.Game
 
 		private void OpenPanel()
 		{
-			UIMgr.S.OpenPanel(UIID.RandomDefensePanel);
+			UIMgr.S.OpenPanel(UIID.TrainingRoomPanel);
 		}
         #endregion
     }

@@ -25,6 +25,11 @@ namespace GameWish.Game
         {
             return trainingRoomModel.tableConfig.capacity;
         }
+
+        public int GetSlotModelListCount()
+        {
+            return trainingRoomModel.slotModelList.Count;
+        }
         #endregion
     }
 
@@ -42,7 +47,6 @@ namespace GameWish.Game
 
                 m_PanelData.trainingRoomModel = m_PanelData.shipModel.GetShipUnitModel(ShipUnitType.TrainingRoom) as TrainingRoomModel;
 
-                Debug.LogError(m_PanelData.trainingRoomModel.level);
             }
             catch (Exception e)
             {

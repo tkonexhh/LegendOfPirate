@@ -7,22 +7,6 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public enum TrainintRoomRoleState
-    {
-        /// <summary>
-        /// Î´Ñ¡Ôñ
-        /// </summary>
-        NotSelected,
-        /// <summary>
-        /// ÑµÁ·ÖÐ
-        /// </summary>
-        Training,
-        /// <summary>
-        /// Î´½âËø
-        /// </summary>
-        NotUnlocked,
-    }
-
 	public class MiddleTrainingRole : UListItemView
 	{
         [SerializeField]
@@ -45,15 +29,22 @@ namespace GameWish.Game
         #region Data
         private MiddleTrainingRoleModule m_MiddleTrainingRoleModule;
         #endregion
-
-        private void ResetState()
+        #region Method
+        private void OnReset()
         {
            
+        }
+        private void OnRefresh()
+        {
+            switch (switch_on)
+            {
+                default:
+            }
         }
 
         public void OnInit(MiddleTrainingRoleModule middleTrainingRoleModule)
         {
-            ResetState();
+            OnReset();
 
             if (middleTrainingRoleModule == null)
             {
@@ -62,7 +53,10 @@ namespace GameWish.Game
             }
 
             m_MiddleTrainingRoleModule = middleTrainingRoleModule;
+
+            OnRefresh();
         }
+        #endregion
     }
-	
+
 }
