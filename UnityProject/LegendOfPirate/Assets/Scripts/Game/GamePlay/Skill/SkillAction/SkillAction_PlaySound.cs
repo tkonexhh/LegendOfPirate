@@ -19,6 +19,7 @@ namespace GameWish.Game
         public override void ExcuteAction(Skill skill)
         {
             Debug.LogError("播放音效啦!");
+            skill.SkillActionStepEnd();
             switch (m_Target)
             {
                 case SkillTargetType.Caster:

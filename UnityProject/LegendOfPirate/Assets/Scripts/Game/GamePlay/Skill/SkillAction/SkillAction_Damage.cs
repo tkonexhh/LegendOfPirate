@@ -19,7 +19,7 @@ namespace GameWish.Game
 
         public override void ExcuteAction(Skill skill)
         {
-
+            skill.SkillActionStepEnd();
             RoleDamagePackage package = new RoleDamagePackage();
             package.damage = m_Damage;
             package.damageType = m_DamageType;
