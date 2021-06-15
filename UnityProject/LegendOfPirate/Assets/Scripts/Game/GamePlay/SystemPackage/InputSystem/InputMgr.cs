@@ -77,6 +77,9 @@ namespace GameWish.Game
             if (!m_EnableInput)
                 return;
 
+            if (gesture.IsOverUIElement() || gesture.isOverGui)
+                return;
+
             foreach (var ob in m_TouchObservers)
             {
                 bool touched = ob.On_TouchStart(gesture);
@@ -90,6 +93,9 @@ namespace GameWish.Game
         private void On_TouchDown(Gesture gesture)
         {
             if (!m_EnableInput)
+                return;
+
+            if (gesture.IsOverUIElement())
                 return;
 
             foreach (var ob in m_TouchObservers)
@@ -106,6 +112,8 @@ namespace GameWish.Game
             if (!m_EnableInput)
                 return;
 
+            if (gesture.IsOverUIElement())
+                return;
             //start check
             //if (AbTestActor.IsShowHandTip())
             //{
@@ -146,6 +154,9 @@ namespace GameWish.Game
             if (!m_EnableInput)
                 return;
 
+            if (gesture.IsOverUIElement())
+                return;
+
             foreach (var ob in m_TouchObservers)
             {
                 bool touched = ob.On_Swipe(gesture);
@@ -159,6 +170,9 @@ namespace GameWish.Game
 
         private void On_LongTap(Gesture gesture)
         {
+            if (gesture.IsOverUIElement())
+                return;
+
             foreach (var ob in m_TouchObservers)
             {
                 bool touched = ob.On_LongTap(gesture);

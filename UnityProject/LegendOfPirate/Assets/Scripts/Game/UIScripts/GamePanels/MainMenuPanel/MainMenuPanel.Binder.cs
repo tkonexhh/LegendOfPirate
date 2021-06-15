@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -31,7 +31,7 @@ namespace GameWish.Game
 				//UIMgr.S.OpenPanel(UIID.RoleSkillPanel);
 				//UIMgr.S.OpenPanel(UIID.RoleStoryPanel);
 				//UIMgr.S.OpenPanel(UIID.RoleDetailsPanel, 1);
-				UIMgr.S.OpenPanel(UIID.ForgePanel);	
+				UIMgr.S.OpenPanel(UIID.RoleGroupPanel);	
             });
         }
 		
