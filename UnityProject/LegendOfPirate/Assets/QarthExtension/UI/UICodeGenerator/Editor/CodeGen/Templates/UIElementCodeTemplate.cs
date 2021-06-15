@@ -26,12 +26,13 @@ namespace Qarth.Extension
 			strBuilder.AppendLine("using System.Collections.Generic;");
 			strBuilder.AppendLine("using UnityEngine;");
 			strBuilder.AppendLine("using UnityEngine.UI;");
+			strBuilder.AppendLine("using UniRx;");
 			strBuilder.AppendLine("using Qarth;").AppendLine();
 
 			strBuilder.AppendLine("namespace " + nameSpace);
 			strBuilder.AppendLine("{");
 			strBuilder.AppendFormat("\tpublic partial class {0} : {1}", behaviourName,
-                "MonoBehaviour");
+				"IUListItemView");
 			strBuilder.AppendLine();
 			strBuilder.AppendLine("\t{");
 			strBuilder.Append("\t\t").AppendLine("private void Awake()");
@@ -59,11 +60,14 @@ namespace Qarth.Extension
 			var sw = new StreamWriter(generateFilePath, false, Encoding.UTF8);
 			var strBuilder = new StringBuilder();
 
-			strBuilder.AppendLine("/****************************************************************************");
-			strBuilder.AppendFormat(" * {0}.{1} {2}\n", DateTime.Now.Year, DateTime.Now.Month, SystemInfo.deviceName);
-			strBuilder.AppendLine(" ****************************************************************************/");
-			strBuilder.AppendLine();
-			strBuilder.AppendLine("using UnityEngine;");
+            //strBuilder.AppendLine("/****************************************************************************");
+            //strBuilder.AppendFormat(" * {0}.{1} {2}\n", DateTime.Now.Year, DateTime.Now.Month, SystemInfo.deviceName);
+            //strBuilder.AppendLine(" ****************************************************************************/");
+            //strBuilder.AppendLine();
+            strBuilder.AppendLine("using System;");
+            strBuilder.AppendLine("using GFrame.Editor;");
+            strBuilder.AppendLine("using Qarth.Extension;");
+            strBuilder.AppendLine("using UnityEngine;");
 			strBuilder.AppendLine("using UnityEngine.UI;");
 			strBuilder.AppendLine("using Qarth;");
 			strBuilder.AppendLine();
