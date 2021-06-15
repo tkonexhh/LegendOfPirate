@@ -74,7 +74,11 @@ namespace GameWish.Game
 			{
 				LaboratoryUpgradeBtnEvent();
 			});
-		}
+            BgBtn.OnClickAsObservable().Subscribe(_ =>
+            {
+				BgBtnEvent();
+            });
+        }
 		private void UnregisterEvents()
 		{
 

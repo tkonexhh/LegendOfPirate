@@ -79,8 +79,11 @@ namespace GameWish.Game
         { }
         public void LaboratoryUpgradeBtnEvent()
         { }
+        public void BgBtnEvent()
+        {
+            HideSelfWithAnim();
+        }
         #endregion
-
         #region Private
         private void InitData()
         {

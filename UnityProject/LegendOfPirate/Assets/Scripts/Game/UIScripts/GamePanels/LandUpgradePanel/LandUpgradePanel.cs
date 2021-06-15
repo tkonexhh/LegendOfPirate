@@ -6,36 +6,46 @@ using UniRx;
 
 namespace GameWish.Game
 {
-	public partial class LandUpgradePanel : AbstractAnimPanel
-	{
-		protected override void OnUIInit()
-		{
-			base.OnUIInit();
-		}
-		
-		protected override void OnPanelOpen(params object[] args)
-		{
-			base.OnPanelOpen(args);
-			
-			AllocatePanelData(args);
-			
-			BindModelToUI();
-			BindUIToModel();
-		}
-		
-		protected override void OnPanelHideComplete()
-		{
-			base.OnPanelHideComplete();
-			
-			CloseSelfPanel();
-		}
-		
-		protected override void OnClose()
-		{
-			base.OnClose();
-			
-			ReleasePanelData();
-		}
-		
-	}
+    public partial class LandUpgradePanel : AbstractAnimPanel
+    {
+        #region AbstractAnimPanel
+        protected override void OnUIInit()
+        {
+            base.OnUIInit();
+        }
+
+        protected override void OnPanelOpen(params object[] args)
+        {
+            base.OnPanelOpen(args);
+
+            AllocatePanelData(args);
+
+            BindModelToUI();
+            BindUIToModel();
+
+            OnClickAddListener();
+        }
+
+        protected override void OnPanelHideComplete()
+        {
+            base.OnPanelHideComplete();
+
+            CloseSelfPanel();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+
+            ReleasePanelData();
+        }
+        #endregion
+        #region Button Event
+        private void ExitBtnEvent()
+        {
+            HideSelfWithAnim();
+        }
+        #endregion
+
+    }
 }

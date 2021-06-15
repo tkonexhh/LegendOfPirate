@@ -13,7 +13,7 @@ namespace GameWish.Game
 		public const string Name = "LaboratoryRoomPanel";
 		
 		[SerializeField]
-		public UnityEngine.UI.Image Bg;
+		public GFrame.Editor.GButton BgBtn;
 		[SerializeField]
 		public UnityEngine.UI.Image TitleBg;
 		[SerializeField]

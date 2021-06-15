@@ -60,6 +60,12 @@ namespace GameWish.Game
 			
 			ReleasePanelData();
 		}
-		
-	}
+		#region Button Event
+		private void BgBtnEvent()
+		{
+			HideSelfWithAnim();
+		}
+        #endregion
+
+    }
 }
