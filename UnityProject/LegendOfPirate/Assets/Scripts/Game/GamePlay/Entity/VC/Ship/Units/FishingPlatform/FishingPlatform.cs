@@ -16,7 +16,7 @@ namespace GameWish.Game
         {
             base.OnClicked();
 
-            UIMgr.S.OpenPanel(UIID.FishingPlatformPanel);
+            UIMgr.S.OpenPanel(UIID.FishingPanel);
         }
 
         public override ShipUnitType GetShipUnitType()

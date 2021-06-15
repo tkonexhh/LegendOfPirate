@@ -35,6 +35,9 @@ namespace GameWish.Game
                 case ShipUnitType.TrainingRoom:
                     unitModel = new TrainingRoomModel(shipUnitData);
                     break;
+                case ShipUnitType.ForgeRoom:
+                    unitModel = new ForgeRoomModel(shipUnitData);
+                    break;
             }
 
             return unitModel;

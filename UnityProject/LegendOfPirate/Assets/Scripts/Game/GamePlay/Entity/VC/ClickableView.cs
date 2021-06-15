@@ -68,7 +68,7 @@ namespace GameWish.Game
 
         protected virtual void OnClicked()
         {
-
+            Qarth.Log.i("On Clicked: " + transform.name);
         }
     }
 

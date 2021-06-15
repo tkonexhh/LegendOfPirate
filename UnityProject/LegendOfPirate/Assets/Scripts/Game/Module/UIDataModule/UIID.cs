@@ -62,22 +62,6 @@ namespace GameWish.Game
         #region 黑市
         BlackMarketPanel,
         #endregion
-        /// <summary>
-        /// 厨房
-        /// </summary>
-        KitchenPanel,
-        /// <summary>
-        /// 钓鱼台
-        /// </summary>
-        FishingPlatformPanel,
-        /// <summary>
-        /// 花园
-        /// </summary>
-        GardenPanel,
-        /// <summary>
-        /// 加工室
-        /// </summary>
-        ProcessingRoomPanel,
 
         CongratulationPanel,
         LandUpgradePanel,

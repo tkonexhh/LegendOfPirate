@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class Kitchen : ShipUnit
+	public class ForgeRoom : ShipUnit
 	{
         public override void OnInit()
         {
@@ -16,12 +16,12 @@ namespace GameWish.Game
         {
             base.OnClicked();
 
-            Qarth.UIMgr.S.OpenPanel(UIID.KitchenPanel);
+            Qarth.UIMgr.S.OpenPanel(UIID.ForgePanel);
         }
 
         public override ShipUnitType GetShipUnitType()
         {
-            return ShipUnitType.Kitchen;
+            return ShipUnitType.ForgeRoom;
         }
     }
 	
