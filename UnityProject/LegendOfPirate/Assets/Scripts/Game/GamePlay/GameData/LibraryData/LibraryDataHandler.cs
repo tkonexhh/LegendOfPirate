@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class LibraryDataHandler : DataHandlerBase<KitchenData>, IDataHandler
+    public class LibraryDataHandler : DataHandlerBase<LibraryData>, IDataHandler
     {
         public LibraryDataHandler()
         {

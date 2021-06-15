@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class TrainingDataHandler : DataHandlerBase<KitchenData>, IDataHandler
+    public class TrainingDataHandler : DataHandlerBase<TrainingData>, IDataHandler
     {
         public TrainingDataHandler()
         {
@@ -32,5 +32,7 @@ namespace GameWish.Game
 
             NetDataMgr.S.SaveNetData("TrainingData", m_Data);
         }
+
     }
+
 }
