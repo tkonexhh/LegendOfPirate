@@ -48,7 +48,6 @@ namespace GameWish.Game
             {
                 onCast();
             }
-
         }
 
         public void ExcuteSkill()
@@ -57,14 +56,10 @@ namespace GameWish.Game
             m_TargetInfo = new SkillTargetInfo();
             m_TargetInfo.Caster = Owner;
             m_TargetInfo.Target = target;
-            if (SkillActions != null)
+            if (SkillActions != null && SkillActions.Count > 0)
             {
                 m_ActionStep = 0;
                 SkillActions[m_ActionStep].ExcuteAction(this);
-                // for (int i = 0; i < SkillActions.Count; i++)
-                // {
-                //     SkillActions[i].ExcuteAction(this);
-                // }
             }
             else
             {
@@ -106,7 +101,7 @@ namespace GameWish.Game
             m_Timer = Mathf.Clamp(m_Timer, 0, CD);
         }
 
-        public BattleRoleController PicketTarget()
+        private BattleRoleController PicketTarget()
         {
             return Sensor.PickTarget(Owner);
         }
@@ -114,6 +109,9 @@ namespace GameWish.Game
         //是否可以释放
         public bool CanCast()
         {
+            if (!isReady)
+                return false;
+
             var target = PicketTarget();
             if (target == null)
                 return false;

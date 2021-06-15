@@ -16,12 +16,11 @@ namespace GameWish.Game
         public override void ExcuteAction(Skill skill)
         {
             Vector3 targetPos = skill.Owner.transform.position;
-            Vector3 forward = skill.Owner.transform.forward;
             float radius = skill.Owner.MonoReference.Collider.radius;
 
             skill.Owner.AI.Pause();
 
-            targetPos -= forward * radius * m_Distance;
+            targetPos -= skill.Owner.transform.forward * radius * m_Distance;
             skill.Owner.transform.position = targetPos;
 
             skill.Owner.AI.Resume();
