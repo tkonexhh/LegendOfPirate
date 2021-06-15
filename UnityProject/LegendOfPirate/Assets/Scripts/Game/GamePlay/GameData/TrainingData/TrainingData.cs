@@ -60,28 +60,28 @@ namespace GameWish.Game
             public int slotId;
             public int heroId;
             public DateTime trainingStartTime;
-            public bool isTraining;
+            public int trainState;
 
             public TrainingDataItem(int slot)
             {
                 slotId = slot;
                 heroId = -1;
                 trainingStartTime = default(DateTime);
-                isTraining = false;
+                trainState = 2;
             }
 
             public void OnStartTraining(int heroId, DateTime time)
             {
                 this.heroId = heroId;
                 this.trainingStartTime = time;
-                isTraining = true;
+                trainState = 1;
             }
 
             public void OnEndTraining()
             {
                 this.heroId = -1;
                 this.trainingStartTime = default(DateTime);
-                isTraining = false;
+                trainState = 0;
             }
         }
     }
