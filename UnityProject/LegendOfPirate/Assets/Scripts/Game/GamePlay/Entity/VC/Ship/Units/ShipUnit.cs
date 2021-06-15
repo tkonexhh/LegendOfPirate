@@ -29,6 +29,17 @@ namespace GameWish.Game
             m_UnitModel.level.Subscribe(OnLevelChanged);
 
             m_Body = SpawnBody();
+
+            // Set Collider
+            Collider collider = m_Body.GetComponent<Collider>();
+            if (collider == null)
+            {
+                Log.e("Collider Not Found in Ship Unit B");
+            }
+            else
+            {
+                SetCollider(collider);
+            }
         }
 
         public virtual void OnUpdate()
@@ -70,8 +81,9 @@ namespace GameWish.Game
             ShipUnitConfig unitConfig = ShipConfig.S.GetUnitConfig(GetShipUnitType());
 
             GameObject prefab = m_ResLoader.LoadSync(unitConfig.bodyPrefabName) as GameObject;
-            GameObject obj = GameObject.Instantiate(prefab);
+            GameObject obj = GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
             obj.transform.SetParent(m_BodyRoot);
+            obj.transform.SetLocalPos(Vector3.zero);
 
             return obj;
         }

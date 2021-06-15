@@ -16,6 +16,7 @@ namespace GameWish.Game
         Library,
         ProcessingRoom,
         TrainingRoom,
+        ForgeRoom,
 	}
 	
 }

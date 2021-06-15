@@ -29,13 +29,15 @@ namespace GameWish.Game
 		[SerializeField]
 		public RectTransform FishingPoint3;
 		[SerializeField]
-		public UnityEngine.UI.ToggleGroup Content;
+		public RectTransform Content;
 		[SerializeField]
 		public TMPro.TextMeshProUGUI RoleCount;
 		[SerializeField]
 		public GFrame.Editor.GButton TrainBtn;
 		[SerializeField]
 		public GFrame.Editor.GButton AutoBtn;
+		[SerializeField]
+		public UnityEngine.UI.Toggle Role_Tamp;
 		
 		
 	}

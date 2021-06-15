@@ -16,7 +16,7 @@ namespace GameWish.Game
         {
             base.OnClicked();
 
-            //TODO: Open Kitchen Panel
+            Qarth.UIMgr.S.OpenPanel(UIID.LibraryRoomPanel);
         }
 
         public override ShipUnitType GetShipUnitType()

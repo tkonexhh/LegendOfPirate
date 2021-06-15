@@ -9,13 +9,30 @@ namespace GameWish.Game
     {
         public static Buff CreateBuff(BuffConfigSO configSO)
         {
-            var buff = new Buff(configSO.ID);
+            var buff = new Buff();
+            buff.id = configSO.ID;
             buff.time = configSO.Time;
-            buff.AttributeHandler = CreateBuffModelHandlerAttribute(configSO.AttributeType, configSO.NumericValue);
-            if (configSO.StatusControls != StatusControlType.None)
+            buff.BuffTrigger = BuffTriggerFactory.CreateBuffTrigger(configSO.BuffTriggerType);
+            if (configSO.EnabledAttributeModify)
             {
-                buff.StatusHandler = new BuffModelHandler_Status(configSO.StatusControls);
+                for (int i = 0; i < configSO.ModifierAttributeLst.Count; i++)
+                {
+                    if (buff.AttributeHandler == null)
+                    {
+                        buff.AttributeHandler = new List<BuffModelHandler_Attribute>();
+                    }
+                    buff.AttributeHandler.Add(CreateBuffModelHandlerAttribute(configSO.ModifierAttributeLst[i].AttributeType, configSO.ModifierAttributeLst[i].NumericValue));
+                }
             }
+
+            if (configSO.EnabledStateModify)
+            {
+                if (configSO.StatusControls != StatusControlType.None)
+                {
+                    buff.StatusHandler = new BuffModelHandler_Status(configSO.StatusControls);
+                }
+            }
+
             DealWithStatic(configSO);
             return buff;
         }
@@ -68,11 +85,11 @@ namespace GameWish.Game
                 return;
             }
             BuffStaticInfo staticInfo = new BuffStaticInfo();
-            staticInfo.maxAppendNum = configSO.MaxAppendNum;
 
             //处理叠加
             if (configSO.EnabledAppend)
             {
+                staticInfo.maxAppendNum = configSO.MaxAppendNum;
                 var appendHandler = CreateAppendHandler(configSO.AppendType);
                 if (appendHandler != null)
                 {

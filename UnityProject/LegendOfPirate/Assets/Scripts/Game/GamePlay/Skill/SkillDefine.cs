@@ -7,14 +7,7 @@ namespace GameWish.Game
 {
     public class SkillDefine
     {
-
-    }
-
-    [LabelText("技能类型")]
-    public enum SkillType
-    {
-        [LabelText("主动技能")] Initiative,
-        [LabelText("被动技能")] Passive,
+        public const int INFINITETIME = -1;
     }
 
     [LabelText("释放对象(完成)")]
@@ -26,14 +19,19 @@ namespace GameWish.Game
         [LabelText("当前目标")] Target,
     }
 
-    [LabelText("被动技能触发类型(完成)")]
-    public enum PassiveSkillTriggerType
+
+    [LabelText("技能触发类型")]
+    public enum SkillTriggerType
     {
-        [LabelText("攻击时触发")] Attack,
-        [LabelText("受击时触发")] Hurt,
-        [LabelText("时间间隔触发")] Time,
-        [LabelText("移动触发")] Move,
-        [LabelText("立即触发")] Forver,
+        [LabelText("技能施法开始")] OnSpellStart,
+        [LabelText("默认添加")] OnCreate,
     }
 
+    [LabelText("技能目标类型")]
+    public enum SkillTargetType
+    {
+        [LabelText("施法者")] Caster,
+        [LabelText("目标")] Target,
+        // [LabelText("攻击者")] Attacker,
+    }
 }

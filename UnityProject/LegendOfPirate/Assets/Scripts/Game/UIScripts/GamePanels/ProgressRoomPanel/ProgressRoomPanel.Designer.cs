@@ -19,6 +19,8 @@ namespace GameWish.Game
 		[SerializeField]
 		public TMPro.TextMeshProUGUI BuildingLevel;
 		[SerializeField]
+		public GFrame.Editor.GButton LevelUpBtn;
+		[SerializeField]
 		public Canvas CookList;
 		[SerializeField]
 		public GFrame.Editor.GButton AddItemBtn;

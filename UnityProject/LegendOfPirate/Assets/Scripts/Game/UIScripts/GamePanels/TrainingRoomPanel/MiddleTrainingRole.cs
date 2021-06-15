@@ -42,10 +42,26 @@ namespace GameWish.Game
         [SerializeField]
         private Image m_Lock;
 
-        private int m_Index = -1;
-        public void OnInit(int index)
+        #region Data
+        private MiddleTrainingRoleModule m_MiddleTrainingRoleModule;
+        #endregion
+
+        private void ResetState()
         {
-            m_Index = index;
+           
+        }
+
+        public void OnInit(MiddleTrainingRoleModule middleTrainingRoleModule)
+        {
+            ResetState();
+
+            if (middleTrainingRoleModule == null)
+            {
+                Debug.LogWarning("bottomTrainingRoleData is null");
+                return;
+            }
+
+            m_MiddleTrainingRoleModule = middleTrainingRoleModule;
         }
     }
 	

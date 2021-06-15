@@ -20,9 +20,21 @@ namespace GameWish.Game
 			this.isSelected = new BoolReactiveProperty(selected);
 		}
 	}
+
+	public class MiddleTrainingRoleModule
+	{
+		public IntReactiveProperty index;
+
+		public MiddleTrainingRoleModule(int index)
+		{
+			this.index = new IntReactiveProperty(index);
+		}
+	}
 	#endregion
 	public partial class TrainingRoomPanel : AbstractAnimPanel
 	{
+		[SerializeField]
+		private ScrollRectAutoAdjustPosition m_ScrollRectAutoAdjustPosition;
 		[SerializeField]
 		private UGridListView m_MiddleTrainingRoleUGridList;
 		[SerializeField]
@@ -31,6 +43,7 @@ namespace GameWish.Game
 		#region Data
 		private IntReactiveProperty m_SelectedCount = new IntReactiveProperty(0);
 		private ReactiveCollection<BottomTrainingRoleModule> bottomTrainingRoleDatas = new ReactiveCollection<BottomTrainingRoleModule>();
+		private ReactiveCollection<MiddleTrainingRoleModule> middleTrainingRoleDatas = new ReactiveCollection<MiddleTrainingRoleModule>();
         #endregion
 
         #region AbstractAnimPanel
@@ -76,7 +89,7 @@ namespace GameWish.Game
 		#region ButtonEvent
 		public void TrainingUpgradeBtnEvent()
 		{
-
+			m_PanelData.trainingRoomModel.level.Value++;
 		}
 		public void TrainBtnEvent()
 		{
@@ -84,16 +97,23 @@ namespace GameWish.Game
 		}
 		public void AutoTrainBtnEvent()
 		{
-
 		}	
 		public void BgBtnEvent()
 		{
 			HideSelfWithAnim();
 		}
-        #endregion
+		public void LeftArrowBtnEvent()
+		{
+			m_ScrollRectAutoAdjustPosition?.Move2Pre();
+		}
+		public void RightArrowBtnEvent()
+		{
+			m_ScrollRectAutoAdjustPosition?.Move2Next();
+		}
+		#endregion
 
-        #region EventSystem
-        private void HandlerEvent(int key, object[] param)
+		#region EventSystem
+		private void HandlerEvent(int key, object[] param)
 		{
             switch ((EventID)key)
             {
@@ -102,6 +122,8 @@ namespace GameWish.Game
             }
         }
         #endregion
+
+        #region Other Method
         private void InitData()
 		{
 			BindUniRxUI();
@@ -110,6 +132,8 @@ namespace GameWish.Game
 
 			m_MiddleTrainingRoleUGridList.SetCellRenderer(OnMiddleCellRenderer);
 			m_BottomTrainingRoleUList.SetCellRenderer(OnBottomCellRenderer);
+
+			m_ScrollRectAutoAdjustPosition.EnableAutoAdjust(10);
 
 			m_MiddleTrainingRoleUGridList.SetDataCount(10);
 			m_BottomTrainingRoleUList.SetDataCount(10);
@@ -130,9 +154,18 @@ namespace GameWish.Game
 		}
 
 		private void OnMiddleCellRenderer(Transform root, int index)
-        {
-
-			root.GetComponent<MiddleTrainingRole>().OnInit(index);
+		{
+			MiddleTrainingRoleModule middleTrainingRoleModule = middleTrainingRoleDatas.FirstOrDefault(item => item.index.Value == index);
+			if (middleTrainingRoleModule != null)
+			{
+				root.GetComponent<MiddleTrainingRole>().OnInit(middleTrainingRoleModule);
+			}
+			else
+			{
+				MiddleTrainingRoleModule newMiddleTrainingRoleModule = new MiddleTrainingRoleModule(index);
+				middleTrainingRoleDatas.Add(newMiddleTrainingRoleModule);
+				root.GetComponent<MiddleTrainingRole>().OnInit(newMiddleTrainingRoleModule);
+			}
 		}
 
         private void BindUniRxUI()
@@ -145,6 +178,6 @@ namespace GameWish.Game
 			//MiddleTrainingRole middleTraining = Instantiate(MiddleTrainingRole, MiddleTrainingRoleTra.transform).GetComponent<MiddleTrainingRole>();
 
         }
-
-	}
+        #endregion
+    }
 }

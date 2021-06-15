@@ -108,9 +108,11 @@ namespace GameWish.Game
         {
             Vector3 startPos = new Vector3(-70, 0, 40);
             int width = 80;
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 5; i++)
             {
                 BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
+                role.gameObject.layer = LayerDefine.LAYER_ROLE_OUR;
+                role.gameObject.name = "Our_" + i;
                 role.SetCamp(BattleCamp.Our);
                 int x = i % width;
                 int y = i / width;
@@ -124,9 +126,11 @@ namespace GameWish.Game
         {
             Vector3 startPos = new Vector3(-70, 0, -40);
             int width = 80;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
                 BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
+                role.gameObject.layer = LayerDefine.LAYER_ROLE_ENEMY;
+                role.gameObject.name = "Enemy_" + i;
                 role.SetCamp(BattleCamp.Enemy);
                 int x = i % width;
                 int y = i / width;

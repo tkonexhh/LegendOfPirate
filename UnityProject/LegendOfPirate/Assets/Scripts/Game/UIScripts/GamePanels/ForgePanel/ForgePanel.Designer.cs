@@ -21,6 +21,8 @@ namespace GameWish.Game
 		[SerializeField]
 		public TMPro.TextMeshProUGUI BuildingLevel;
 		[SerializeField]
+		public GFrame.Editor.GButton LevelUpBtn;
+		[SerializeField]
 		public UnityEngine.UI.Image WeaponIcon;
 		[SerializeField]
 		public TMPro.TextMeshProUGUI WeaponName;

@@ -13,6 +13,7 @@ namespace GameWish.Game
             base.Enter(ai);
             m_AttackTimer = 0;
             ai.controller.Renderer.CrossFadeAnim(BattleDefine.ROLEANIM_IDLE, 0.1f);
+            ai.controller.MonoReference.AstarAI.canMove = false;
         }
 
         public override void Execute(BattleRoleAI ai, float dt)
@@ -43,6 +44,7 @@ namespace GameWish.Game
         {
             base.Exit(ai);
             m_AttackTimer = 0;
+            ai.controller.MonoReference.AstarAI.canMove = true;
         }
 
         private void PlayAttackAnim()

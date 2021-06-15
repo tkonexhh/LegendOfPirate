@@ -7,8 +7,8 @@ namespace GameWish.Game
 {
     public interface IBuff
     {
-        void OnAddBuff(BattleRoleRuntimeModel model);
-        void OnRemoveBuff(BattleRoleRuntimeModel model);
+        void OnAddBuff();
+        void OnRemoveBuff();
     }
 
 }

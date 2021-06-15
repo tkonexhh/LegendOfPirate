@@ -113,6 +113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AstarAI: {fileID: -7256542203658666426}
   Collider: {fileID: 1088699993903106617}
+  Rigidbody: {fileID: 1053237192578244962}
+  ShootPos: {fileID: 0}
 --- !u!136 &1088699993903106617
 CapsuleCollider:
   m_ObjectHideFlags: 0

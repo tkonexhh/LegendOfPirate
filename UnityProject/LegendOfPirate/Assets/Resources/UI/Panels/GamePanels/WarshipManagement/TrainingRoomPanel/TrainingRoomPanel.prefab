@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Training Room
+  m_text: Fixed_Title_TrainingRoom
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95510714052484116952359d06d42892, type: 2}
   m_sharedMaterial: {fileID: 6911236400702945317, guid: 95510714052484116952359d06d42892,
@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 2821871956491288278}
   - component: {fileID: 4668607366128224216}
   - component: {fileID: 5748566756126989049}
+  - component: {fileID: 1558460076780962313}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -282,6 +283,20 @@ MonoBehaviour:
   content: {fileID: 7161235670849181909}
   viewPort: {fileID: 7838866716723004281}
   alignment: 0
+--- !u!114 &1558460076780962313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732009135600423089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e005188a02338408a6245245dc13d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Layout: 1
+  m_ScrollRect: {fileID: 4668607366128224216}
 --- !u!1 &927613725929906965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,6 +1101,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4834869076639615460}
   - {fileID: 6117518663154676817}
   - {fileID: 2715664150595219588}
   - {fileID: 5819687350829962070}
@@ -1525,14 +1541,13 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4834869076639615460}
+  m_Children: []
   m_Father: {fileID: 6117518663154676817}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0.000061035156}
   m_SizeDelta: {x: -515, y: -532.1}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &36888845058920456
@@ -2401,7 +2416,7 @@ RectTransform:
   m_Children:
   - {fileID: 4119673988081637275}
   m_Father: {fileID: 7810735020036720784}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2488,7 +2503,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 55347477843870896}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999666
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2754,7 +2769,7 @@ RectTransform:
   m_Children:
   - {fileID: 7556378392382210392}
   m_Father: {fileID: 7810735020036720784}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3459,6 +3474,7 @@ MonoBehaviour:
   RoleSelectNumberTMP: {fileID: 3121451920920336563}
   TrainBtn: {fileID: 3692846969806881561}
   AutoTrainBtn: {fileID: 4420634708857283113}
+  m_ScrollRectAutoAdjustPosition: {fileID: 1558460076780962313}
   m_MiddleTrainingRoleUGridList: {fileID: 3967908146598473902}
   m_BottomTrainingRoleUList: {fileID: 5748566756126989049}
 --- !u!1 &7561815362281361095
@@ -3714,7 +3730,7 @@ RectTransform:
   m_Children:
   - {fileID: 3695907882153561963}
   m_Father: {fileID: 7810735020036720784}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -4100,7 +4116,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 7556378392382210392}
+    m_TransformParent: {fileID: 7810735020036720784}
     m_Modifications:
     - target: {fileID: 420962207970017165, guid: 172bdc5961163d744ba7c506272546b7,
         type: 3}
@@ -4185,12 +4201,12 @@ PrefabInstance:
     - target: {fileID: 420962207970017165, guid: 172bdc5961163d744ba7c506272546b7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 75
+      value: 812
       objectReference: {fileID: 0}
     - target: {fileID: 420962207970017165, guid: 172bdc5961163d744ba7c506272546b7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -43
       objectReference: {fileID: 0}
     - target: {fileID: 420962207970017165, guid: 172bdc5961163d744ba7c506272546b7,
         type: 3}

@@ -34,6 +34,12 @@ namespace GameWish.Game
 		private void BindUIToModel()
 		{
 		}
-		
+		private void OnClickAddListener()
+		{
+            BlackExitBg.OnClickAsObservable().Subscribe(_ =>
+            {
+				BlackExitBgEvent();
+            });
+        }
 	}
 }

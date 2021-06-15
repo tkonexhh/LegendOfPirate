@@ -11,7 +11,7 @@ namespace GameWish.Game
         {
             base.Awake();
 
-            m_Collider = GetComponentInChildren<Collider>();
+            //m_Collider = GetComponentInChildren<Collider>();
         }
 
         public override int GetSortingLayer()

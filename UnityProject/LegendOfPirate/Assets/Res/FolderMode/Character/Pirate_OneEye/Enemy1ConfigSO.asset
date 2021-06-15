@@ -42,7 +42,7 @@ MonoBehaviour:
       Data: 1|GameWish.Game.Attack, Assembly-CSharp
     - Name: AttackType
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: DamageRangeType
       Entry: 3
       Data: 0
@@ -60,9 +60,8 @@ MonoBehaviour:
       Data: 
   ID: 0
   RoleName: SkillName
-  AtkRange: 25
-  EnableAttackBuff: 0
-  BuffConfigSO: {fileID: 0}
+  AtkRange: 2
   childSkills: []
   prefab: {fileID: 3212148170728413058, guid: 3442515a72b7d4a8ca290139ada825a2, type: 3}
   Icon: {fileID: 21300000, guid: ea1536afefd944341a76beb0bf20dbbc, type: 3}
+  StatusDescription: 

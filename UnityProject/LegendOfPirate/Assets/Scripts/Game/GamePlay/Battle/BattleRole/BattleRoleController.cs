@@ -26,6 +26,8 @@ namespace GameWish.Game
 
         public BattleCamp camp { get; private set; }//阵营
 
+        public Run onUpdate;
+
         public BattleRoleController()
         {
             Renderer = AddBattleRoleComponent(new BattleRoleRenderer(this)) as BattleRoleRenderer;
@@ -57,6 +59,11 @@ namespace GameWish.Game
             for (int i = 0; i < m_Components.Count; i++)
             {
                 m_Components[i].OnUpdate();
+            }
+
+            if (onUpdate != null)
+            {
+                onUpdate();
             }
         }
 
@@ -107,8 +114,10 @@ namespace GameWish.Game
         #region override
         public void DealDamage()
         {
+
             if (AI.onAttack != null)
             {
+                Debug.LogError("Attack");
                 AI.onAttack();
             }
 

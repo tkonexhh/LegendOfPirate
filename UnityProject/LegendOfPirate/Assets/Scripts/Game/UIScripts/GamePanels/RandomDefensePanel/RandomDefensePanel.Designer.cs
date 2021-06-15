@@ -13,9 +13,9 @@ namespace GameWish.Game
 		public const string Name = "RandomDefensePanel";
 		
 		[SerializeField]
-		public UnityEngine.UI.Image Bg;
+		public GFrame.Editor.GButton BlackExitBg;
 		[SerializeField]
-		public TMPro.TextMeshProUGUI Title;
+		public UnityEngine.UI.Image Bg;
 		[SerializeField]
 		public UnityEngine.UI.Image Icon;
 		[SerializeField]

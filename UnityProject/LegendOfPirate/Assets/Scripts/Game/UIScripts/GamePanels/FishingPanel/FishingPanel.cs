@@ -8,6 +8,7 @@ namespace GameWish.Game
 {
 	public partial class FishingPanel : AbstractAnimPanel
 	{
+
 		protected override void OnUIInit()
 		{
 			base.OnUIInit();

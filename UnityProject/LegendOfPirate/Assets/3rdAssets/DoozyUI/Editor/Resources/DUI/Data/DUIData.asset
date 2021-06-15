@@ -25,6 +25,8 @@ MonoBehaviour:
       - CongratulationPanel
       - EffectActivePanel
       - EvolutionSolePanel
+      - ForgePanel
+      - GardenPanel
       - LandUpgradePanel
       - LibraryRoomPanel
       - MagicCloudPanel
