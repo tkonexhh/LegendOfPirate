@@ -12,17 +12,17 @@ namespace GameWish.Game
 	public enum TrainintRoomRoleState
 	{
 		/// <summary>
-		/// Œ¥—°‘Ò
+		/// ø’œ–÷–
 		/// </summary>
-		NotSelected,
+		Freeing = 0,
 		/// <summary>
 		/// —µ¡∑÷–
 		/// </summary>
-		Training,
+		Training = 1,
 		/// <summary>
 		/// Œ¥Ω‚À¯
 		/// </summary>
-		NotUnlocked,
+		NotUnlocked = 2,
 	}
 	public class BottomTrainingRoleModule
 	{
@@ -41,15 +41,12 @@ namespace GameWish.Game
 	{
 		public IntReactiveProperty index;
 
-		public TrainingSlotModel mtrainingSlotModel;
+		public TrainingSlotModel trainingSlotModel;
 
-		public BoolReactiveProperty isUnlock;
-
-		public MiddleTrainingRoleModule(int index, TrainingSlotModel trainingSlotModel,bool isUnlock)
+		public MiddleTrainingRoleModule(int index, TrainingSlotModel trainingSlotModel)
 		{
 			this.index = new IntReactiveProperty(index);
-			mtrainingSlotModel = trainingSlotModel;
-			this.isUnlock = new BoolReactiveProperty(isUnlock);
+			this.trainingSlotModel = trainingSlotModel;
 		}
 	}
 	#endregion
@@ -157,7 +154,7 @@ namespace GameWish.Game
 
 			m_ScrollRectAutoAdjustPosition.EnableAutoAdjust(m_PanelData.GetSlotModelListCount());
 
-			m_MiddleTrainingRoleUGridList.SetDataCount(m_PanelData.GetTrainingRoomCapacity());
+			m_MiddleTrainingRoleUGridList.SetDataCount(m_PanelData.GetSlotModelListCount());
 			m_BottomTrainingRoleUList.SetDataCount(m_PanelData.GetSlotModelListCount());
 		}
 		private void OnBottomCellRenderer(Transform root, int index)
@@ -186,18 +183,10 @@ namespace GameWish.Game
 			{
 				MiddleTrainingRoleModule newMiddleTrainingRoleModule;
 
-				if (index< m_PanelData.GetTrainingRoomCapacity())
-                {
-					newMiddleTrainingRoleModule = new MiddleTrainingRoleModule(index, (m_PanelData.trainingRoomModel.slotModelList)[index],true);
-			
-				}
-                else
-                {
-					newMiddleTrainingRoleModule = new MiddleTrainingRoleModule(index, (m_PanelData.trainingRoomModel.slotModelList)[index], false);
-				}
+				newMiddleTrainingRoleModule = new MiddleTrainingRoleModule(index, (m_PanelData.trainingRoomModel.slotModelList)[index]);
+
 				middleTrainingRoleDatas.Add(newMiddleTrainingRoleModule);
 				root.GetComponent<MiddleTrainingRole>().OnInit(newMiddleTrainingRoleModule);
-
 			}
 		}
 

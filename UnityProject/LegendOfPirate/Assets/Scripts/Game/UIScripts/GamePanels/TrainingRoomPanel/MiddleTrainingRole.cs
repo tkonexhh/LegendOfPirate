@@ -32,13 +32,25 @@ namespace GameWish.Game
         #region Method
         private void OnReset()
         {
-           
+            m_RoleIconBg.gameObject.SetActive(false);
+            m_Plug.gameObject.SetActive(false);
+            m_LockBg.gameObject.SetActive(false);
+
+
         }
         private void OnRefresh()
         {
-            switch (switch_on)
+            switch (m_MiddleTrainingRoleModule.trainingSlotModel.trainState.Value)
             {
-                default:
+                case TrainintRoomRoleState.Freeing:
+                    m_Plug.gameObject.SetActive(true);
+                    break;
+                case TrainintRoomRoleState.Training:
+                    m_RoleIconBg.gameObject.SetActive(true);
+                    break;
+                case TrainintRoomRoleState.NotUnlocked:
+                    m_LockBg.gameObject.SetActive(true);
+                    break;
             }
         }
 

@@ -25,9 +25,6 @@ namespace GameWish.Game
         {
         }
 
-    
-
-
         public void OnInit(BottomTrainingRoleModule bottomTrainingRoleData, IntReactiveProperty intReactiveProperty)
         {
             OnReset();
