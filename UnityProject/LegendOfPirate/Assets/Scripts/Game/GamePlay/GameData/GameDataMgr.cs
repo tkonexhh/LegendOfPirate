@@ -96,9 +96,9 @@ namespace GameWish.Game
             return pathList;
         }
 
-        public void Save()
+        public void SaveDataToLocal()
         {
-            //m_PlayerInfoDataHandler.Save(null, null);
+            m_DataHanlderList.ForEach(i => i.SaveDataToLocal());
         }
 
         /// <summary>
@@ -109,6 +109,12 @@ namespace GameWish.Game
         /// <param name="failedCallback"></param>
         public void SaveDataToServer<T>(Action successCallback, Action failedCallback) where T : IDataClass
         {
+            if (GameDataMgr.s_DataMode != DataMode.Server)
+            {
+                failedCallback?.Invoke();
+                return;
+            }
+
             IDataHandler dataHandler = m_DataHanlderList.FirstOrDefault(i => i.GetDataClass().GetType() == typeof(T));
             if (dataHandler != null)
             {

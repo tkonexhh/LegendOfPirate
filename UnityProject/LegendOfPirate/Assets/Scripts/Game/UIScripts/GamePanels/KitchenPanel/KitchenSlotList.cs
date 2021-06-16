@@ -27,7 +27,7 @@ namespace GameWish.Game
             }
             else 
             {
-                FloatMessage.S.ShowMsg("There is not enough space for cooking");
+                FloatMessageTMP.S.ShowMsg("There is not enough space for cooking");
             }
         }
     }

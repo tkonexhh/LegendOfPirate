@@ -25,9 +25,7 @@ namespace GameWish.Game
 		[SerializeField]
 		public GFrame.Editor.GButton TrainingUpgradeBtn;
 		[SerializeField]
-		public TMPro.TextMeshProUGUI TrainingUpgradeBtnTMP;
-		[SerializeField]
-		public UnityEngine.UI.ScrollRect MiddleUGridListView;
+		public IUListView MiddleUGridListView;
 		[SerializeField]
 		public UnityEngine.UI.Image MiddleTrainingRoleTra;
 		[SerializeField]

@@ -36,7 +36,7 @@ namespace GameWish.Game
                 slotModelList[i].OnTrainingRoomLevelUp();
             }
 
-            EventSystem.S.Send(EventID.OnTrainingRoomUpgradeRefresh);
+            EventSystem.S.Send(EventID.OnTrainingUpgradeRefresh);
         }
 
         private float m_RefreshTime = 0;
@@ -62,7 +62,7 @@ namespace GameWish.Game
         public int heroId = -1;
         public FloatReactiveProperty trainRemainTime = new FloatReactiveProperty(-1);
 
-        public ReactiveProperty<TrainingRoomRoleState> trainState;
+        public ReactiveProperty<TrainingSlotState> trainState;
 
         private DateTime m_StartTime = default(DateTime);
         private DateTime m_EndTime = default(DateTime);
@@ -77,25 +77,24 @@ namespace GameWish.Game
 
             this.slotId = dbItem.slotId;
             this.heroId = dbItem.heroId;
-            this.trainState = new ReactiveProperty<TrainingRoomRoleState>(dbItem.trainState);
+            this.trainState = new ReactiveProperty<TrainingSlotState>(dbItem.trainState);
 
             switch (trainState.Value)
             {
-                case TrainingRoomRoleState.Free:
+                case TrainingSlotState.Free:
                     break;
-                case TrainingRoomRoleState.Training:
+                case TrainingSlotState.Training:
                     SetTime(dbItem.trainingStartTime);
                     RefreshRemainTime();
                     break;
-                case TrainingRoomRoleState.Locked:
+                case TrainingSlotState.Locked:
                     break;
             }
         }
 
         #region Public Set
-        public void StartTraining(int heroId, DateTime startTime)
+        public void StartTraining(DateTime startTime)
         {
-            this.heroId = heroId;
             SetTime(startTime);
 
             m_DbItem.OnStartTraining(heroId, startTime);
@@ -105,7 +104,7 @@ namespace GameWish.Game
         {
             heroId = -1;
             trainRemainTime.Value = -1f;
-            trainState.Value = TrainingRoomRoleState.Free;
+            trainState.Value = TrainingSlotState.Free;
             m_StartTime = default(DateTime);
             m_EndTime = default(DateTime);
 
@@ -115,14 +114,14 @@ namespace GameWish.Game
         public void OnHeroUnselected()
         {
             heroId = -1;
-            trainState.Value = TrainingRoomRoleState.Free;
+            trainState.Value = TrainingSlotState.Free;
             m_DbItem.OnHeroUnselected();
         }
 
         public void OnHeroSelected(int id)
         {
             heroId = id;
-            trainState.Value = TrainingRoomRoleState.HeroSelected;
+            trainState.Value = TrainingSlotState.HeroSelected;
             m_DbItem.OnHeroSelected(id);
         }
 
@@ -135,9 +134,9 @@ namespace GameWish.Game
 
         public void OnTrainingRoomLevelUp()
         {
-            if (trainState.Value == TrainingRoomRoleState.Locked && m_TrainingRoomMode.tableConfig.capacity >= slotId)
+            if (trainState.Value == TrainingSlotState.Locked && m_TrainingRoomMode.tableConfig.capacity >= slotId)
             {
-                trainState.Value = TrainingRoomRoleState.Free;
+                trainState.Value = TrainingSlotState.Free;
 
                 m_DbItem.OnUnlocked();
             }

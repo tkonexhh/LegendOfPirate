@@ -33,21 +33,9 @@ namespace GameWish.Game
             }
         }
 
-        public void Save(Action successCallback, Action failedCallback)
+        public void SaveDataToLocal()
         {
-            if (GameDataMgr.s_DataMode == DataMode.Server)
-            {
-                SaveDataToServer(successCallback, failedCallback);
-            }
-            else
-            {
-                Save(true);
-
-                if (successCallback != null)
-                {
-                    successCallback.Invoke();
-                }
-            }
+            Save(true);
         }
 
         public virtual void LoadDataFromServer(Action callback)
