@@ -8,6 +8,8 @@ namespace GameWish.Game
 {
     public class TrainingDataHandler : DataHandlerBase<TrainingData>, IDataHandler
     {
+        private const string DATA_NAME = "TrainingData";
+
         public TrainingDataHandler()
         {
 
@@ -20,19 +22,15 @@ namespace GameWish.Game
 
         public override void LoadDataFromServer(Action callback)
         {
-            NetDataMgr.S.LoadNetData("TrainingData", ParseJson, callback);
+            NetDataMgr.S.LoadNetData(DATA_NAME, ParseJson, callback);
         }
 
-        public override void SaveDataToServer(Action callback)
+        public override void SaveDataToServer(Action successCallback, Action failCallback)
         {
-            if (callback != null)
-            {
-                callback.Invoke();
-            }
+            base.SaveDataToServer(successCallback, failCallback);
 
-            NetDataMgr.S.SaveNetData("TrainingData", m_Data);
+            NetDataMgr.S.SaveNetData(DATA_NAME, m_Data, successCallback, failCallback);
         }
-
     }
 
 }

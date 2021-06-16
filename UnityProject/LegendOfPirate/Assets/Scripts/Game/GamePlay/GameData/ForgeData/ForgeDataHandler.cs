@@ -8,6 +8,8 @@ namespace GameWish.Game
 {
     public class ForgeDataHandler : DataHandlerBase<ForgeData>, IDataHandler
     {
+        private const string DATA_NAME = "ForgeData";
+
         public ForgeDataHandler()
         {
 
@@ -20,17 +22,14 @@ namespace GameWish.Game
 
         public override void LoadDataFromServer(Action callback)
         {
-            NetDataMgr.S.LoadNetData("ForgeData", ParseJson, callback);
+            NetDataMgr.S.LoadNetData(DATA_NAME, ParseJson, callback);
         }
 
-        public override void SaveDataToServer(Action callback)
+        public override void SaveDataToServer(Action successCallback, Action failCallback)
         {
-            if (callback != null)
-            {
-                callback.Invoke();
-            }
+            base.SaveDataToServer(successCallback, failCallback);
 
-            NetDataMgr.S.SaveNetData("ForgeData", m_Data);
+            NetDataMgr.S.SaveNetData(DATA_NAME, m_Data, successCallback, failCallback);
         }
     }
 }

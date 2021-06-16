@@ -24,10 +24,11 @@ namespace GameWish.Game
         /// </summary>
         Locked = 2,
         /// <summary>
-        /// 选择但是未开始
+        /// 已选择英雄但是未开始
         /// </summary>
-        SelectedNotStart = 3,
+        HeroSelected = 3,
     }
+
     public class BottomTrainingRoleModule
     {
         public IntReactiveProperty index;
@@ -117,7 +118,7 @@ namespace GameWish.Game
         #region ButtonEvent
         public void TrainingUpgradeBtnEvent()
         {
-            m_PanelData.trainingRoomModel.OnUpgrade(1);
+            m_PanelData.trainingRoomModel.OnLevelUpgrade(1);
         }
         public void TrainBtnEvent()
         {
@@ -168,7 +169,7 @@ namespace GameWish.Game
                             case TrainingRoomRoleState.Locked:
 
                                 break;
-                            case TrainingRoomRoleState.SelectedNotStart:
+                            case TrainingRoomRoleState.HeroSelected:
                                 Debug.LogError("id = "+ (int)param[0]);
                                 if (item.trainingSlotModel.heroId == (int)param[0])
                                 {
@@ -180,13 +181,13 @@ namespace GameWish.Game
 
                     if (selectedmiddleTrainingRoleModule!=null)
                     {
-                        selectedmiddleTrainingRoleModule.trainingSlotModel.SetTrainingSlotModelFree();
+                        selectedmiddleTrainingRoleModule.trainingSlotModel.OnHeroUnselected();
                         selectedmiddleTrainingRoleModule.middleTrainingRole.OnRefresh();
                         break;
                     }
                     if (spareMiddleTrainingRoleModule!=null && spareMiddleTrainingRoleModule.trainingSlotModel.trainState.Value == TrainingRoomRoleState.Free )
                     {
-                        spareMiddleTrainingRoleModule.trainingSlotModel.SetTrainingSlotModelSelectedNotStart((int)param[0]);
+                        spareMiddleTrainingRoleModule.trainingSlotModel.OnHeroSelected((int)param[0]);
                         spareMiddleTrainingRoleModule.middleTrainingRole.OnInit(spareMiddleTrainingRoleModule);
                         break;
                     }

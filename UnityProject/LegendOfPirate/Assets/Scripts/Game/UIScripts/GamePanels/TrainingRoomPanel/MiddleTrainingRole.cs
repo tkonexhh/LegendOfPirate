@@ -52,7 +52,7 @@ namespace GameWish.Game
                 case TrainingRoomRoleState.Locked:
                     m_LockBg.gameObject.SetActive(true);
                     break;
-                case TrainingRoomRoleState.SelectedNotStart:
+                case TrainingRoomRoleState.HeroSelected:
                     m_RoleIconBg.gameObject.SetActive(true);
                     m_Time.text = "选择";
                     break;

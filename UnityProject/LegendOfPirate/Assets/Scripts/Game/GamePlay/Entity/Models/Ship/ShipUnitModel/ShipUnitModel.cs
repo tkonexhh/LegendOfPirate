@@ -17,7 +17,7 @@ namespace GameWish.Game
             level = new IntReactiveProperty(shipUnitData.level);
         }
 
-        public virtual void OnUpgrade(int delta)
+        public virtual void OnLevelUpgrade(int delta)
         {
             if (level.Value+delta<=Define.TRAINING_ROOM_MAX_SLOT)
             {

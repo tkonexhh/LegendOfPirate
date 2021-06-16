@@ -8,6 +8,8 @@ namespace GameWish.Game
 {
     public class GardenDataHandler : DataHandlerBase<GardenData>, IDataHandler
     {
+        private const string DATA_NAME = "GardenData";
+
         public GardenDataHandler()
         {
 
@@ -20,17 +22,14 @@ namespace GameWish.Game
 
         public override void LoadDataFromServer(Action callback)
         {
-            NetDataMgr.S.LoadNetData("GardenData", ParseJson, callback);
+            NetDataMgr.S.LoadNetData(DATA_NAME, ParseJson, callback);
         }
 
-        public override void SaveDataToServer(Action callback)
+        public override void SaveDataToServer(Action successCallback, Action failCallback)
         {
-            if (callback != null)
-            {
-                callback.Invoke();
-            }
+            base.SaveDataToServer(successCallback, failCallback);
 
-            NetDataMgr.S.SaveNetData("GardenData", m_Data);
+            NetDataMgr.S.SaveNetData(DATA_NAME, m_Data, successCallback, failCallback);
         }
     }
 }

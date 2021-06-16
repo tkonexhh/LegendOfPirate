@@ -25,9 +25,9 @@ namespace GameWish.Game
             }
         }
 
-        public override void OnUpgrade(int delta)
+        public override void OnLevelUpgrade(int delta)
         {
-            base.OnUpgrade(delta);
+            base.OnLevelUpgrade(delta);
 
             tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
 
@@ -54,9 +54,8 @@ namespace GameWish.Game
                 }
             }
         }
-
-
     }
+
     public class TrainingSlotModel : Model
     {
         public int slotId;
@@ -89,15 +88,14 @@ namespace GameWish.Game
                     RefreshRemainTime();
                     break;
                 case TrainingRoomRoleState.Locked:
-
                     break;
             }
         }
 
+        #region Public Set
         public void StartTraining(int heroId, DateTime startTime)
         {
             this.heroId = heroId;
-
             SetTime(startTime);
 
             m_DbItem.OnStartTraining(heroId, startTime);
@@ -114,29 +112,18 @@ namespace GameWish.Game
             m_DbItem.OnEndTraining();
         }
 
-        public void SetTrainingSlotModelFree()
+        public void OnHeroUnselected()
         {
-            EndTraining();
+            heroId = -1;
+            trainState.Value = TrainingRoomRoleState.Free;
+            m_DbItem.OnHeroUnselected();
         }
 
-        public void SetTrainingSlotModelSelectedNotStart(int id)
+        public void OnHeroSelected(int id)
         {
             heroId = id;
-            trainState.Value = TrainingRoomRoleState.SelectedNotStart;
-            m_DbItem.SetTrainState(TrainingRoomRoleState.SelectedNotStart);
-        }
-
-        public void SetTrainingRoomRoleState(TrainingRoomRoleState trainingRoomRoleState)
-        {
-            trainState.Value = trainingRoomRoleState;
-            m_DbItem.SetTrainState(trainingRoomRoleState);
-        }
-
-        private void SetTime(DateTime startTime)
-        {
-            m_StartTime = startTime;
-            int totalTime = m_TrainingRoomMode.tableConfig.trainingTime;
-            m_EndTime = m_StartTime + TimeSpan.FromSeconds(totalTime);
+            trainState.Value = TrainingRoomRoleState.HeroSelected;
+            m_DbItem.OnHeroSelected(id);
         }
 
         public void RefreshRemainTime()
@@ -155,6 +142,15 @@ namespace GameWish.Game
                 m_DbItem.OnUnlocked();
             }
         }
+        #endregion
+
+        private void SetTime(DateTime startTime)
+        {
+            m_StartTime = startTime;
+            int totalTime = m_TrainingRoomMode.tableConfig.trainingTime;
+            m_EndTime = m_StartTime + TimeSpan.FromSeconds(totalTime);
+        }
+
     }
 
 }

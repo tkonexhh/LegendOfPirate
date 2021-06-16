@@ -8,6 +8,7 @@ namespace GameWish.Game
 {
     public class LibraryDataHandler : DataHandlerBase<LibraryData>, IDataHandler
     {
+        private const string DATA_NAME = "LibraryData";
         public LibraryDataHandler()
         {
 
@@ -20,17 +21,14 @@ namespace GameWish.Game
 
         public override void LoadDataFromServer(Action callback)
         {
-            NetDataMgr.S.LoadNetData("LibraryData", ParseJson, callback);
+            NetDataMgr.S.LoadNetData(DATA_NAME, ParseJson, callback);
         }
 
-        public override void SaveDataToServer(Action callback)
+        public override void SaveDataToServer(Action successCallback, Action failCallback)
         {
-            if (callback != null)
-            {
-                callback.Invoke();
-            }
+            base.SaveDataToServer(successCallback, failCallback);
 
-            NetDataMgr.S.SaveNetData("LibraryData", m_Data);
+            NetDataMgr.S.SaveNetData(DATA_NAME, m_Data, successCallback, failCallback);
         }
     }
 }
