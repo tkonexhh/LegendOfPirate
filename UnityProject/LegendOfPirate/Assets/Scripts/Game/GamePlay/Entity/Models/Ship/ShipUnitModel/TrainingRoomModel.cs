@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using System;
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -15,24 +16,34 @@ namespace GameWish.Game
 
         public TrainingRoomModel(ShipUnitData shipUnitData) : base(shipUnitData)
         {
-            tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
-
+            //tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
             m_DbData = GameDataMgr.S.GetData<TrainingData>();
             for (int i = 0; i < m_DbData.trainingItemList.Count; i++)
             {
                 TrainingSlotModel slotModel = new TrainingSlotModel(this, m_DbData.trainingItemList[i]);
                 slotModelList.Add(slotModel);
             }
+            level.Subscribe(_ => {
+
+                tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
+
+                for (int i = 0; i < slotModelList.Count; i++)
+                {
+                    slotModelList[i].OnTrainingRoomLevelUp();
+                }
+            });
         }
 
         public override void OnUpgrade(int delta)
         {
             base.OnUpgrade(delta);
-        
+
             for (int i = 0; i < slotModelList.Count; i++)
             {
                 slotModelList[i].OnTrainingRoomLevelUp();
             }
+
+            EventSystem.S.Send(EventID.OnUpgradeRefresh);
         }
 
         private float m_RefreshTime = 0;
@@ -74,7 +85,7 @@ namespace GameWish.Game
 
             this.slotId = dbItem.slotId;
             this.heroId = dbItem.heroId;
-            this.trainState = new ReactiveProperty<TrainintRoomRoleState>((TrainintRoomRoleState)dbItem.trainState);
+            this.trainState = new ReactiveProperty<TrainintRoomRoleState>(dbItem.trainState);
 
             switch (trainState.Value)
             {
