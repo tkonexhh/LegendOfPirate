@@ -20,6 +20,30 @@ namespace GameWish.Game
             }
         }
 
+        public static int GetOppoLayerByCamp(BattleCamp camp)
+        {
+            if (camp == BattleCamp.Our)
+            {
+                return LayerDefine.LAYER_ROLE_ENEMY;
+            }
+            else
+            {
+                return LayerDefine.LAYER_ROLE_OUR;
+            }
+        }
+
+        public static int GetLayerByCamp(BattleCamp camp)
+        {
+            if (camp == BattleCamp.Our)
+            {
+                return LayerDefine.LAYER_ROLE_OUR;
+            }
+            else
+            {
+                return LayerDefine.LAYER_ROLE_ENEMY;
+            }
+        }
+
 
         public static int CalcAtkDamage(BattleRoleRuntimeModel model)
         {

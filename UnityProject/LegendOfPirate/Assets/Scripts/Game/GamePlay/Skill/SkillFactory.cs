@@ -40,6 +40,7 @@ namespace GameWish.Game
                 if (configs[i] is SkillActionConfig_RangeDamage rangeDamageConfig) { skill.SkillActions.Add(CreateSkillAction_RangeDamage(rangeDamageConfig)); }
                 if (configs[i] is SkillActionConfig_HitBack hitbackConfig) { skill.SkillActions.Add(CreateSkillAction_Hitback(hitbackConfig)); }
                 if (configs[i] is SkillActionConfig_Pull pullConfig) { skill.SkillActions.Add(CreateSkillAction_Pull(pullConfig)); }
+                if (configs[i] is SkillActionConfig_Summon summonConfig) { skill.SkillActions.Add(CreateSkillAction_Summon(summonConfig)); }
             }
         }
 
@@ -105,6 +106,11 @@ namespace GameWish.Game
         private static SkillAction CreateSkillAction_Pull(SkillActionConfig_Pull config)
         {
             return new SkillAction_Pull(config.range, config.speed);
+        }
+
+        private static SkillAction CreateSkillAction_Summon(SkillActionConfig_Summon config)
+        {
+            return new SkillAction_Summon(config.RoleConfigSO, config.ATKRate, config.HPRate, config.lifeTime);
         }
     }
 

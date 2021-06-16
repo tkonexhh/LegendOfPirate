@@ -147,4 +147,15 @@ namespace GameWish.Game
         [LabelText("距离")] public float range = 10;
         [LabelText("速度")] public float speed = 20;
     }
+
+
+    [LabelText("召唤")]
+    [HideReferenceObjectPicker]
+    public class SkillActionConfig_Summon : SkillActionConfig
+    {
+        [LabelText("召唤角色")] public RoleConfigSO RoleConfigSO;
+        [LabelText("持续时间")] public float lifeTime = 30;
+        [LabelText("攻击比例")] public float ATKRate = 1;
+        [LabelText("生命比例")] public float HPRate = 1;
+    }
 }
