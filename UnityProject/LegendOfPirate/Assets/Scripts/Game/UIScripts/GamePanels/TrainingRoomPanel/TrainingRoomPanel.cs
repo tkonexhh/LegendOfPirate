@@ -76,7 +76,7 @@ namespace GameWish.Game
             {
                 if (item.trainingSlotModel.trainState.Value ==  TrainingSlotState.HeroSelected)
                 {
-                    item.trainingSlotModel.StartTraining(1,DateTime.Now);
+                    item.trainingSlotModel.StartTraining(DateTime.Now);
                 }
             }
         }
