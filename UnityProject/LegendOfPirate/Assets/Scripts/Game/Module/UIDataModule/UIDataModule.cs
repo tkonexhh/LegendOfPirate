@@ -64,6 +64,10 @@ namespace GameWish.Game
             //UIDataTable.AddPanelData(UIID.SettingPanel, null, "GamePanels/SettingPanel/SettingPanel");
 
             //UIDataTable.AddPanelData(UIID.MyFloatMessagePanel, null, "GamePanels/MyFloatMessagePanel/MyFloatMessagePanel");
+            #region 登录注册创角
+            UIDataTable.AddPanelData(UIID.LoginPanel, null, "LoginPanel/LoginPanel");
+            UIDataTable.AddPanelData(UIID.CreateUserPanel, null, "GamePanels/CreateUserPanel/CreateUserPanel");
+            #endregion
 
             UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuPanel/MainMenuPanel");
 
@@ -77,7 +81,6 @@ namespace GameWish.Game
             #endregion
             //UIDataTable.AddPanelData(UIID.TestPanel, null, "GamePanels/TestPanel/TestPanel");
 
-            UIDataTable.AddPanelData(UIID.FloatMeshMessagePanel, null, "Common/FloatMeshMessagePanel");
             //Warship Management System
             #region 训练室
             UIDataTable.AddPanelData(UIID.TrainingRoomPanel, null, "GamePanels/WarshipManagement/TrainingRoomPanel/TrainingRoomPanel");
@@ -98,7 +101,6 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.GardenPanel,null, "GamePanels/WarshipManagement/GardenPanel/GardenPanel");
             UIDataTable.AddPanelData(UIID.ProgressingRoomPanel,null, "GamePanels/WarshipManagement/ProgressRoomPanel/ProgressRoomPanel");
 
-
             //Land Management System  
             UIDataTable.AddPanelData(UIID.CongratulationPanel, null, "GamePanels/LandManagement/CongratulationPanel/CongratulationPanel");
             UIDataTable.AddPanelData(UIID.LandUpgradePanel, null, "GamePanels/LandManagement/LandUpgradePanel/LandUpgradePanel");
@@ -114,6 +116,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.SmuggleChooseRolePanel, null, "GamePanels/LandManagement/SmuggleChooseRolePanel/SmuggleChooseRolePanel");
             #endregion
 
+            UIDataTable.AddPanelData(UIID.BuildingLevelUpPanel, null, "GamePanels/BuildingLevelUpPanel/BuildingLevelUpPanel");
         }
     }
 }

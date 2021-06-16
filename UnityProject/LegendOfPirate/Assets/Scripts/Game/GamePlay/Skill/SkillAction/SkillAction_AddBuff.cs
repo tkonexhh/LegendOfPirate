@@ -18,6 +18,7 @@ namespace GameWish.Game
 
         public override void ExcuteAction(Skill skill)
         {
+            skill.SkillActionStepEnd();
             var buff = BuffFactory.CreateBuff(m_BuffConfig);
             switch (m_Target)
             {

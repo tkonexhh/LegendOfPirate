@@ -14,7 +14,7 @@ namespace GameWish.Game
         {
             for (int i = 1; i <= Define.TRAINING_ROOM_MAX_SLOT; i++)
             {
-                TrainingDataItem item = new TrainingDataItem(i);
+                TrainingDataItem item = new TrainingDataItem(this, i);
                 trainingItemList.Add(item);
             }
         }
@@ -24,23 +24,23 @@ namespace GameWish.Game
 
         }
 
-        public void StartTrainingHero(int slotId, int heroId, DateTime time)
-        {
-            TrainingDataItem? item = GetTrainDataItem(slotId);
-            if (item != null)
-            {
-                item.Value.OnStartTraining(heroId, time);
-            }
-        }
+        //public void StartTrainingHero(int slotId, int heroId, DateTime time)
+        //{
+        //    TrainingDataItem? item = GetTrainDataItem(slotId);
+        //    if (item != null)
+        //    {
+        //        item.Value.OnStartTraining(heroId, time);
+        //    }
+        //}
 
-        public void EndTrainingHero(int slotId)
-        {
-            TrainingDataItem? item = GetTrainDataItem(slotId);
-            if (item != null)
-            {
-                item.Value.OnEndTraining();
-            }
-        }
+        //public void EndTrainingHero(int slotId)
+        //{
+        //    TrainingDataItem? item = GetTrainDataItem(slotId);
+        //    if (item != null)
+        //    {
+        //        item.Value.OnEndTraining();
+        //    }
+        //}
 
         private TrainingDataItem? GetTrainDataItem(int slotId)
         {
@@ -60,28 +60,58 @@ namespace GameWish.Game
             public int slotId;
             public int heroId;
             public DateTime trainingStartTime;
-            public bool isTraining;
+            public TrainingRoomRoleState trainState;
 
-            public TrainingDataItem(int slot)
+            private TrainingData m_TrainingData;
+
+            public TrainingDataItem(TrainingData trainingData, int slot)
             {
+                m_TrainingData = trainingData;
+
                 slotId = slot;
                 heroId = -1;
                 trainingStartTime = default(DateTime);
-                isTraining = false;
+                trainState = TrainingRoomRoleState.Locked;
             }
 
             public void OnStartTraining(int heroId, DateTime time)
             {
                 this.heroId = heroId;
                 this.trainingStartTime = time;
-                isTraining = true;
+                trainState = TrainingRoomRoleState.Training;
+
+                m_TrainingData.SetDataDirty();
+            }
+
+            public void OnHeroSelected(int heroId)
+            {
+                this.heroId = heroId;
+                trainState = TrainingRoomRoleState.HeroSelected;
+
+                m_TrainingData.SetDataDirty();
+            }
+
+            public void OnHeroUnselected()
+            {
+                trainState = TrainingRoomRoleState.Free;
+
+                m_TrainingData.SetDataDirty();
             }
 
             public void OnEndTraining()
             {
                 this.heroId = -1;
                 this.trainingStartTime = default(DateTime);
-                isTraining = false;
+                trainState = TrainingRoomRoleState.Free;
+
+                m_TrainingData.SetDataDirty();
+            }
+
+            public void OnUnlocked()
+            {
+                trainState = TrainingRoomRoleState.Free;
+
+                m_TrainingData.SetDataDirty();
             }
         }
     }

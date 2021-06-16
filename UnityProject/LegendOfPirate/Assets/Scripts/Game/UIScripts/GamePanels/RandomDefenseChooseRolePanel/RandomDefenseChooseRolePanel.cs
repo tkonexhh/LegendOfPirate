@@ -23,13 +23,13 @@ namespace GameWish.Game
 		}
 
 		#region Public
-		public int GetRoleID()
+		public int GetIndexID()
 		{
 			return roleModel.id;
 		}
         #endregion
     }
-    public class TopSelectedRoleModule
+	public class TopSelectedRoleModule
 	{
 		public ReactiveProperty<RandomDefenseChooseRoleModule> randomDefenseChooseRoleModule = new ReactiveProperty<RandomDefenseChooseRoleModule>();
 		public IReadOnlyReactiveProperty<bool> isEmpty;
@@ -39,9 +39,27 @@ namespace GameWish.Game
 			//new BoolReactiveProperty(randomDefenseChooseRoleModule == null ? true : false);
 			this.isEmpty = randomDefenseChooseRoleModule.Select(x => x == null ? true : false).ToReactiveProperty();
 		}
+        #region Public
+
+        public int GetIndexID()
+		{
+            if (randomDefenseChooseRoleModule.Value!=null)
+            {
+				return randomDefenseChooseRoleModule.Value.GetIndexID();
+			}
+			Debug.LogError("Target is  null");
+			return -1;
+		}
+
+		public bool IsSameAsModule(RandomDefenseChooseRoleModule randomDefenseChooseRoleModule)
+		{
+			return this.randomDefenseChooseRoleModule.Value.index == randomDefenseChooseRoleModule.index;
+		}
+
+		#endregion
 	}
-	#endregion
-	public partial class RandomDefenseChooseRolePanel : AbstractAnimPanel
+    #endregion
+    public partial class RandomDefenseChooseRolePanel : AbstractAnimPanel
 	{
 		[Header("额外")]
 		[SerializeField]
@@ -117,7 +135,7 @@ namespace GameWish.Game
 		{
 			switch ((EventID)key)
 			{
-				case EventID.OnSelectedRole:
+				case EventID.OnRandomDefenseChooseSelectedRole:
 					HandleSelected((RandomDefenseChooseRoleModule)param[0]);
 					break;
 			}
@@ -161,15 +179,25 @@ namespace GameWish.Game
 		}
 		private void HandleSelected(RandomDefenseChooseRoleModule randomDefenseChooseRoleModule)
 		{
-			TopSelectedRole topSelectedRole = m_TopSelectedRoles.FirstOrDefault(x => x.topSelectedRoleModule.isEmpty.Value);
-            if (topSelectedRole!=null)
+			TopSelectedRole have = m_TopSelectedRoles.FirstOrDefault(x => !x.topSelectedRoleModule.isEmpty.Value && x.topSelectedRoleModule.IsSameAsModule(randomDefenseChooseRoleModule));
+            if (have)//已经在列表中了
             {
-				topSelectedRole.OnRefreshTopSelectedRoleModule(randomDefenseChooseRoleModule);
+				have.ClearSelf();
 			}
             else
-            {
-				Debug.LogError("没有空位");
-            }
+			{
+				TopSelectedRole topSelectedRole = m_TopSelectedRoles.FirstOrDefault(x => x.topSelectedRoleModule.isEmpty.Value);
+				if (topSelectedRole != null)
+				{
+					topSelectedRole.OnRefreshTopSelectedRoleModule(randomDefenseChooseRoleModule);
+				}
+				else
+				{
+					Debug.LogError("没有空位");
+				}
+			}
+
+		
         }
 		#endregion
 	}

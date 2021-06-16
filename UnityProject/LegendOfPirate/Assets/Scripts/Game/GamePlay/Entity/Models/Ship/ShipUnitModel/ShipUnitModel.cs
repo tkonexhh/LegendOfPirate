@@ -16,5 +16,16 @@ namespace GameWish.Game
             unitType = shipUnitData.unitType;
             level = new IntReactiveProperty(shipUnitData.level);
         }
+
+        public virtual void OnLevelUpgrade(int delta)
+        {
+            if (level.Value+delta<=Define.TRAINING_ROOM_MAX_SLOT)
+            {
+                level.Value += delta;
+
+                GameDataMgr.S.GetData<ShipData>().OnUnitUpgrade(unitType, delta);
+            }
+
+        }
     }
 }

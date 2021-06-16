@@ -15,13 +15,27 @@ namespace GameWish.Game
         {
 
         }
+
+        #region Public
+        /// <summary>
+        /// 获取当前等级可训练的槽位数
+        /// </summary>
+        /// <returns></returns>
+        public int GetTrainingRoomCapacity()
+        {
+            return trainingRoomModel.tableConfig.capacity;
+        }
+
+        public int GetSlotModelListCount()
+        {
+            return trainingRoomModel.slotModelList.Count;
+        }
+        #endregion
     }
 
     public partial class TrainingRoomPanel
     {
-
         private TrainingRoomPanelData m_PanelData = null;
-
 
         private void AllocatePanelData(params object[] args)
         {
@@ -32,6 +46,7 @@ namespace GameWish.Game
                 m_PanelData.shipModel = ModelMgr.S.GetModel<ShipModel>();
 
                 m_PanelData.trainingRoomModel = m_PanelData.shipModel.GetShipUnitModel(ShipUnitType.TrainingRoom) as TrainingRoomModel;
+
             }
             catch (Exception e)
             {
@@ -58,6 +73,8 @@ namespace GameWish.Game
 
         private void RegisterEvents()
         {
+            EventSystem.S.Register(EventID.OnTrainingRoomUpgradeRefresh, HandlerEvent);
+            EventSystem.S.Register(EventID.OnTrainingRoomSelectRole, HandlerEvent);
         }
 
         private void OnClickAddListener()
@@ -89,6 +106,8 @@ namespace GameWish.Game
         }
         private void UnregisterEvents()
         {
+            EventSystem.S.UnRegister(EventID.OnTrainingRoomUpgradeRefresh, HandlerEvent);
+            EventSystem.S.UnRegister(EventID.OnTrainingRoomSelectRole, HandlerEvent);
         }
     }
 }

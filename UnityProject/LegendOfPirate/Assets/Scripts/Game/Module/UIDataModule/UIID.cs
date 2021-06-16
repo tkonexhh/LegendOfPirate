@@ -1,7 +1,7 @@
 ﻿
 namespace GameWish.Game
 {
-    public enum UIID:byte
+    public enum UIID : byte
     {
         LogPanel = 0,
         LogoPanel = 1,
@@ -31,15 +31,23 @@ namespace GameWish.Game
         RoleGroupPanel,
         #endregion
 
-        FloatMeshMessagePanel,
 
+        //战船经营
+        #region 厨房
         KitchenPanel,
-        FishingPanel,
+        #endregion
+        #region 锻造
         ForgePanel,
+        #endregion
+        #region 钓鱼
+        FishingPanel,
+        #endregion
+        #region 菜园
         GardenPanel,
+        #endregion
+        #region 加工室
         ProgressingRoomPanel,
-
-
+        #endregion
         #region 训练室
         TrainingRoomPanel,
         #endregion
@@ -49,9 +57,14 @@ namespace GameWish.Game
         #region 实验室
         LaboratoryRoomPanel,
         #endregion
-        #region 战船系统
+        #region 战船升级
         WarshipUpgradePanel,
         #endregion
+        #region 建筑升级
+        BuildingLevelUpPanel,
+        #endregion
+
+        //海岛经营
         #region 随机防御
         RandomDefensePanel,
         RandomDefenseChooseRolePanel,
@@ -66,5 +79,10 @@ namespace GameWish.Game
 
         CongratulationPanel,
         LandUpgradePanel,
+
+        #region 登录注册创角
+        LoginPanel,
+        CreateUserPanel,
+        #endregion
     }
 }

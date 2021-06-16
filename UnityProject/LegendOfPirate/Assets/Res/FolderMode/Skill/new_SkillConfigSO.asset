@@ -15,62 +15,43 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 3964941d191e6480c8f6f13d409d88b6, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: PickTarget
+      Entry: 7
+      Data: 0|GameWish.Game.PickTarget, Assembly-CSharp
+    - Name: PickTargetType
+      Entry: 3
+      Data: 0
+    - Name: SensorTypeEnum
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: SkillActionConfigs
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[GameWish.Game.SkillActionConfig,
+      Data: 1|System.Collections.Generic.List`1[[GameWish.Game.SkillActionConfig,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 3
-    - Name: 
-      Entry: 7
-      Data: 1|GameWish.Game.SkillActionConfig_Damage, Assembly-CSharp
-    - Name: Damage
-      Entry: 3
       Data: 1
-    - Name: DamageType
+    - Name: 
+      Entry: 7
+      Data: 2|GameWish.Game.SkillActionConfig_Sprint, Assembly-CSharp
+    - Name: range
+      Entry: 4
+      Data: 10
+    - Name: speed
+      Entry: 4
+      Data: 20
+    - Name: targetType
       Entry: 3
       Data: 0
-    - Name: target
-      Entry: 7
-      Data: 2|GameWish.Game.SkillTargetConfig_Caster, Assembly-CSharp
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 3|GameWish.Game.SkillActionConfig_AddBuff, Assembly-CSharp
-    - Name: buffConfigSO
-      Entry: 10
-      Data: 0
-    - Name: target
-      Entry: 7
-      Data: 4|GameWish.Game.SkillTargetConfig_Caster, Assembly-CSharp
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 5|GameWish.Game.SkillActionConfig_PlaySound, Assembly-CSharp
-    - Name: audio
-      Entry: 6
-      Data: 
-    - Name: target
-      Entry: 6
-      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -80,44 +61,8 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: PickTarget
-      Entry: 7
-      Data: 6|GameWish.Game.PickTarget, Assembly-CSharp
-    - Name: PickTargetType
-      Entry: 3
-      Data: 0
-    - Name: SensorTypeEnum
-      Entry: 3
-      Data: 0
-    - Name: PickNum
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: Attack
-      Entry: 7
-      Data: 7|GameWish.Game.Attack, Assembly-CSharp
-    - Name: AttackType
-      Entry: 3
-      Data: 0
-    - Name: DamageRangeType
-      Entry: 3
-      Data: 3
-    - Name: RangeArgs
-      Entry: 1
-      Data: 10;20
-    - Name: Bullet
-      Entry: 6
-      Data: 
-    - Name: BulletNum
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
   ID: 0
   SkillName: Demo Skill
   Range: 200
-  CD: 6
+  CD: 5
   SkillTriggerType: 0

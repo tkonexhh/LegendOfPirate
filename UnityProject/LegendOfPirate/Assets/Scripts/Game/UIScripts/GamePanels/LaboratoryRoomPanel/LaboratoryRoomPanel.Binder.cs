@@ -78,6 +78,7 @@ namespace GameWish.Game
             {
 				BgBtnEvent();
             });
+	
         }
 		private void UnregisterEvents()
 		{

@@ -8,7 +8,7 @@ namespace GameWish.Game
     public class RoleMonoReference : MonoBehaviour
     {
         public AIPath AstarAI;
-        public Collider Collider;
+        public CapsuleCollider Collider;
     }
 
 }

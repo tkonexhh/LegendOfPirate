@@ -8,6 +8,7 @@ namespace GameWish.Game
 {
     public class RoleGroupDataHandler : DataHandlerBase<RoleGroupData>, IDataHandler
     {
+        private const string DATA_NAME = "RoleGroupData";
         public RoleGroupDataHandler()
         {
 
@@ -20,16 +21,14 @@ namespace GameWish.Game
 
         public override void LoadDataFromServer(Action callback)
         {
-            NetDataMgr.S.LoadNetData("RoleGroupData", ParseJson, callback);
+            NetDataMgr.S.LoadNetData(DATA_NAME, ParseJson, callback);
         }
 
-        public override void SaveDataToServer(Action callback)
+        public override void SaveDataToServer(Action successCallback, Action failCallback)
         {
-            if (callback != null)
-            {
-                callback.Invoke();
-            }
-            NetDataMgr.S.SaveNetData("RoleGroupData", m_Data);
+            base.SaveDataToServer(successCallback, failCallback);
+
+            NetDataMgr.S.SaveNetData(DATA_NAME, m_Data, successCallback, failCallback);
         }
     }
 }

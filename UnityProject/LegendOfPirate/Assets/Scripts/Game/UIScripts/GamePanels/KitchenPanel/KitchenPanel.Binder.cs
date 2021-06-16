@@ -61,7 +61,8 @@ namespace GameWish.Game
         }
 		private void OnLevelUpBtnClick() 
 		{
-		
-		}
+            
+                UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.Kitchen);
+        }
     }
 }

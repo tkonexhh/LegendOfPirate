@@ -1,4 +1,4 @@
-using Qarth;
+ï»¿using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,22 +7,6 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public enum TrainintRoomRoleState
-    {
-        /// <summary>
-        /// Î´Ñ¡Ôñ
-        /// </summary>
-        NotSelected,
-        /// <summary>
-        /// ÑµÁ·ÖÐ
-        /// </summary>
-        Training,
-        /// <summary>
-        /// Î´½âËø
-        /// </summary>
-        NotUnlocked,
-    }
-
 	public class MiddleTrainingRole : UListItemView
 	{
         [SerializeField]
@@ -45,16 +29,38 @@ namespace GameWish.Game
         #region Data
         private MiddleTrainingRoleModule m_MiddleTrainingRoleModule;
         #endregion
-
-        private void ResetState()
+        #region Method
+        private void OnReset()
         {
-           
+            m_RoleIconBg.gameObject.SetActive(false);
+            m_Plug.gameObject.SetActive(false);
+            m_LockBg.gameObject.SetActive(false);
+
+
+        }
+        public void OnRefresh()
+        {
+            OnReset();
+            switch (m_MiddleTrainingRoleModule.trainingSlotModel.trainState.Value)
+            {
+                case TrainingRoomRoleState.Free:
+                    m_Plug.gameObject.SetActive(true);
+                    break;
+                case TrainingRoomRoleState.Training:
+                    m_RoleIconBg.gameObject.SetActive(true);
+                    break;
+                case TrainingRoomRoleState.Locked:
+                    m_LockBg.gameObject.SetActive(true);
+                    break;
+                case TrainingRoomRoleState.HeroSelected:
+                    m_RoleIconBg.gameObject.SetActive(true);
+                    m_Time.text = "é€‰æ‹©";
+                    break;
+            }
         }
 
         public void OnInit(MiddleTrainingRoleModule middleTrainingRoleModule)
         {
-            ResetState();
-
             if (middleTrainingRoleModule == null)
             {
                 Debug.LogWarning("bottomTrainingRoleData is null");
@@ -62,7 +68,10 @@ namespace GameWish.Game
             }
 
             m_MiddleTrainingRoleModule = middleTrainingRoleModule;
+
+            OnRefresh();
         }
+        #endregion
     }
-	
+
 }
