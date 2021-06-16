@@ -43,16 +43,16 @@ namespace GameWish.Game
             OnReset();
             switch (m_MiddleTrainingRoleModule.trainingSlotModel.trainState.Value)
             {
-                case TrainintRoomRoleState.Free:
+                case TrainingRoomRoleState.Free:
                     m_Plug.gameObject.SetActive(true);
                     break;
-                case TrainintRoomRoleState.Training:
+                case TrainingRoomRoleState.Training:
                     m_RoleIconBg.gameObject.SetActive(true);
                     break;
-                case TrainintRoomRoleState.Locked:
+                case TrainingRoomRoleState.Locked:
                     m_LockBg.gameObject.SetActive(true);
                     break;
-                case TrainintRoomRoleState.SelectedNotStart:
+                case TrainingRoomRoleState.SelectedNotStart:
                     m_RoleIconBg.gameObject.SetActive(true);
                     m_Time.text = "选择";
                     break;

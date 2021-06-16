@@ -9,7 +9,7 @@ using System.Linq;
 namespace GameWish.Game
 {
     #region Other Data Class
-    public enum TrainintRoomRoleState
+    public enum TrainingRoomRoleState
     {
         /// <summary>
         /// 空闲中
@@ -158,17 +158,17 @@ namespace GameWish.Game
                     {
                         switch (item.trainingSlotModel.trainState.Value)
                         {
-                            case TrainintRoomRoleState.Free:
+                            case TrainingRoomRoleState.Free:
                                 if (spareMiddleTrainingRoleModule == null)
                                 {
                                     spareMiddleTrainingRoleModule = item;
                                 }
                                 break;
-                            case TrainintRoomRoleState.Training:
-                            case TrainintRoomRoleState.Locked:
+                            case TrainingRoomRoleState.Training:
+                            case TrainingRoomRoleState.Locked:
 
                                 break;
-                            case TrainintRoomRoleState.SelectedNotStart:
+                            case TrainingRoomRoleState.SelectedNotStart:
                                 Debug.LogError("id = "+ (int)param[0]);
                                 if (item.trainingSlotModel.heroId == (int)param[0])
                                 {
@@ -184,7 +184,7 @@ namespace GameWish.Game
                         selectedmiddleTrainingRoleModule.middleTrainingRole.OnRefresh();
                         break;
                     }
-                    if (spareMiddleTrainingRoleModule!=null && spareMiddleTrainingRoleModule.trainingSlotModel.trainState.Value == TrainintRoomRoleState.Free )
+                    if (spareMiddleTrainingRoleModule!=null && spareMiddleTrainingRoleModule.trainingSlotModel.trainState.Value == TrainingRoomRoleState.Free )
                     {
                         spareMiddleTrainingRoleModule.trainingSlotModel.SetTrainingSlotModelSelectedNotStart((int)param[0]);
                         spareMiddleTrainingRoleModule.middleTrainingRole.OnInit(spareMiddleTrainingRoleModule);
