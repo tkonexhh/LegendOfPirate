@@ -33,7 +33,7 @@ namespace GameWish.Game
             //WeGameSdkAdapter.S.ExitGame(null);
             if (PlayerPrefs.GetInt("channel_exit_key", 0) == 1)
             {
-                FloatMessage.S.ShowMsg(TDLanguageTable.Get("Press Again to Quit"));
+                FloatMessageTMP.S.ShowMsg(TDLanguageTable.Get("Press Again to Quit"));
             }           
         }
 
