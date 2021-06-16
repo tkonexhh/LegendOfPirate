@@ -13,6 +13,8 @@ namespace GameWish.Game
 		public const string Name = "LandUpgradePanel";
 		
 		[SerializeField]
+		public GFrame.Editor.GButton ExitBtn;
+		[SerializeField]
 		public UnityEngine.UI.Image Bg;
 		[SerializeField]
 		public GFrame.Editor.GButton LeftArrowBtn;

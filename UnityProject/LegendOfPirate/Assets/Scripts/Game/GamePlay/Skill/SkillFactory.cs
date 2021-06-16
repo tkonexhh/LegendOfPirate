@@ -28,15 +28,27 @@ namespace GameWish.Game
 
             for (int i = 0; i < configs.Count; i++)
             {
-                if (configs[i] is SkillActionConfig_AddBuff addBuffConfig) { skill.SkillActions.Add(CreateSkillAction_AddBuff(skill, addBuffConfig)); }
+                if (configs[i] is SkillActionConfig_Delay delayConfig) { skill.SkillActions.Add(CreateSkillAction_Delay(delayConfig)); }
+                if (configs[i] is SkillActionConfig_AddBuff addBuffConfig) { skill.SkillActions.Add(CreateSkillAction_AddBuff(addBuffConfig)); }
                 if (configs[i] is SkillActionConfig_Damage damageConfig) { skill.SkillActions.Add(CreateSkillAction_Damage(skill, damageConfig)); }
                 if (configs[i] is SkillActionConfig_Heal healConfig) { skill.SkillActions.Add(CreateSkillAction_Heal(skill, healConfig)); }
                 if (configs[i] is SkillActionConfig_PlaySound soundConfig) { skill.SkillActions.Add(CreateSkillAction_PlaySound(skill, soundConfig)); }//TODO
+                if (configs[i] is SkillActionConfig_PlayEffect effectConfig) { skill.SkillActions.Add(CreateSkillAction_PlayEffect(skill, effectConfig)); }//TODO
                 if (configs[i] is SkillActionConfig_Sprint sprintConfig) { skill.SkillActions.Add(CreateSkillAction_Sprint(skill, sprintConfig)); }
+                if (configs[i] is SkillActionConfig_FlashForward flashForwardConfig) { skill.SkillActions.Add(CreateSkillAction_FlashForward(flashForwardConfig)); }
+                if (configs[i] is SkillActionConfig_FlashBackward flashBackwardConfig) { skill.SkillActions.Add(CreateSkillAction_FlashBackward(flashBackwardConfig)); }
+                if (configs[i] is SkillActionConfig_RangeDamage rangeDamageConfig) { skill.SkillActions.Add(CreateSkillAction_RangeDamage(rangeDamageConfig)); }
+                if (configs[i] is SkillActionConfig_HitBack hitbackConfig) { skill.SkillActions.Add(CreateSkillAction_Hitback(hitbackConfig)); }
+                if (configs[i] is SkillActionConfig_Pull pullConfig) { skill.SkillActions.Add(CreateSkillAction_Pull(pullConfig)); }
             }
         }
 
-        private static SkillAction CreateSkillAction_AddBuff(Skill skill, SkillActionConfig_AddBuff actionConfig)
+        private static SkillAction CreateSkillAction_Delay(SkillActionConfig_Delay config)
+        {
+            return new SkillAction_Delay(config.Delay);
+        }
+
+        private static SkillAction CreateSkillAction_AddBuff(SkillActionConfig_AddBuff actionConfig)
         {
             return new SkillAction_AddBuff(actionConfig.buffConfigSO, actionConfig.targetType);
         }
@@ -56,9 +68,43 @@ namespace GameWish.Game
             return new SkillAction_PlaySound(config.audio, config.targetType);
         }
 
+        private static SkillAction CreateSkillAction_PlayEffect(Skill skill, SkillActionConfig_PlayEffect config)
+        {
+            return new SkillAction_PlayEffect(config.effect, config.targetType);
+        }
+
         private static SkillAction CreateSkillAction_Sprint(Skill skill, SkillActionConfig_Sprint config)
         {
             return new SkillAction_Sprint(config.range, config.speed, config.targetType);
+        }
+
+        private static SkillAction CreateSkillAction_FlashForward(SkillActionConfig_FlashForward config)
+        {
+            return new SkillAction_FlashForward(config.fashForwardType);
+        }
+
+        private static SkillAction CreateSkillAction_FlashBackward(SkillActionConfig_FlashBackward config)
+        {
+            return new SkillAction_FlashBackward(config.distance);
+        }
+
+        private static SkillAction CreateSkillAction_RangeDamage(SkillActionConfig_RangeDamage config)
+        {
+            RangeDamage rangeDamage = null;
+            if (config.RangeDamage is RangeDamageConfig_Circle circleConfig) rangeDamage = new RangeDamage_Circle(circleConfig.Radius);
+            else if (config.RangeDamage is RangeDamageConfig_Rect rectConfig) rangeDamage = new RangeDamage_Rect(rectConfig.Width, rectConfig.Height);
+
+            return new SkillAction_RangeDamage(rangeDamage, config.targetType, config.Damage);
+        }
+
+        private static SkillAction CreateSkillAction_Hitback(SkillActionConfig_HitBack config)
+        {
+            return new SkillAction_HitBack(config.Distance);
+        }
+
+        private static SkillAction CreateSkillAction_Pull(SkillActionConfig_Pull config)
+        {
+            return new SkillAction_Pull(config.range, config.speed);
         }
     }
 

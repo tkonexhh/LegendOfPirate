@@ -78,9 +78,15 @@ namespace GameWish.Game
         public void MakeBtnEvent()
         { }
         public void LaboratoryUpgradeBtnEvent()
-        { }
-        #endregion
+        {
+            UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.Laboratory);
+        }
 
+        public void BgBtnEvent()
+        {
+            HideSelfWithAnim();
+        }
+        #endregion
         #region Private
         private void InitData()
         {

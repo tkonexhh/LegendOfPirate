@@ -33,6 +33,8 @@ namespace GameWish.Game
 		[SerializeField]
 		public TMPro.TextMeshProUGUI Timer;
 		[SerializeField]
+		public UnityEngine.UI.Image Element_Temp;
+		[SerializeField]
 		public GFrame.Editor.GButton LevelUpBtn;
 		
 		

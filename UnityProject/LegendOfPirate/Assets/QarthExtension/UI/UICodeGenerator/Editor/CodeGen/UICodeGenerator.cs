@@ -102,6 +102,24 @@ namespace Qarth.Extension
             Debug.Log(">>>>>>>Success Create UIPrefab Code: " + behaviourName);
         }
 
+        private void CreateUIPanelBinderCode(string behaviourName, string uiUIPanelfilePath, PanelCodeInfo panelCodeInfo)
+        {
+            var dir = uiUIPanelfilePath.Replace(behaviourName + ".cs", "");
+            var generateFilePath = dir + behaviourName + ".Binder.cs";
+
+            UIPanelBinderTemplate.Write(behaviourName, dir, UIKitSettingData.GetProjectNamespace(), panelCodeInfo);
+
+            //foreach (var elementCodeData in panelCodeInfo.ElementCodeDatas)
+            //{
+            //    var elementDir = string.Empty;
+            //    elementDir = elementCodeData.BindInfo.BindScript.GetBindType() == BindType.Element
+            //        ? (dir + behaviourName + "/").CreateDirIfNotExists()
+            //        : (Application.dataPath + "/" + UIKitSettingData.GetScriptsPath() + "/Components/").CreateDirIfNotExists();
+            //    CreateUIElementCode(elementDir, elementCodeData);
+            //}
+        }
+
+
         private void CreateUIPanelDesignerCode(string behaviourName, string uiUIPanelfilePath, PanelCodeInfo panelCodeInfo)
         {
             var dir = uiUIPanelfilePath.Replace(behaviourName + ".cs", "");
@@ -126,31 +144,16 @@ namespace Qarth.Extension
 
             foreach (var elementCodeData in panelCodeInfo.ElementCodeDatas)
             {
-                var elementDir = string.Empty;
-                elementDir = elementCodeData.BindInfo.BindScript.GetBindType() == BindType.Element
-                    ? (dir + behaviourName + "/").CreateDirIfNotExists()
-                    : (dir + behaviourName + "/" + "/Components/").CreateDirIfNotExists();
-                CreateUIElementCode(elementDir, elementCodeData);
+                if (elementCodeData.BindInfo.BindScript.GetBindType() == BindType.Element)
+                {
+                    var elementDir = string.Empty;
+                    elementDir = (dir  + "/" + "/ListViewItem/").CreateDirIfNotExists();
+                    CreateUIElementCode(elementDir, elementCodeData);
+                }
             }
         }
 
-        private void CreateUIPanelBinderCode(string behaviourName, string uiUIPanelfilePath, PanelCodeInfo panelCodeInfo)
-        {
-            var dir = uiUIPanelfilePath.Replace(behaviourName + ".cs", "");
-            var generateFilePath = dir + behaviourName + ".Binder.cs";
-
-            UIPanelBinderTemplate.Write(behaviourName, dir, UIKitSettingData.GetProjectNamespace(), panelCodeInfo);
-
-            //foreach (var elementCodeData in panelCodeInfo.ElementCodeDatas)
-            //{
-            //    var elementDir = string.Empty;
-            //    elementDir = elementCodeData.BindInfo.BindScript.GetBindType() == BindType.Element
-            //        ? (dir + behaviourName + "/").CreateDirIfNotExists()
-            //        : (Application.dataPath + "/" + UIKitSettingData.GetScriptsPath() + "/Components/").CreateDirIfNotExists();
-            //    CreateUIElementCode(elementDir, elementCodeData);
-            //}
-        }
-
+     
         private static void CreateUIElementCode(string generateDirPath, ElementCodeInfo elementCodeInfo)
         {
             var panelFilePathWhithoutExt = generateDirPath + elementCodeInfo.BehaviourName;

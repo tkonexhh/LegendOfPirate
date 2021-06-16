@@ -32,12 +32,6 @@ namespace GameWish.Game
         public List<SkillActionConfig> SkillActionConfigs = new List<SkillActionConfig>();
 
 
-
-        // //===主动技能相关
-        // [HideReferenceObjectPicker]
-        // [ShowIf("SkillTriggerType", SkillTriggerType.OnSpellStart), Space(40)]
-        // public Attack Attack;//=new Attack();
-        // //===
     }
 
 

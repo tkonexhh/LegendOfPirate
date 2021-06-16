@@ -135,6 +135,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!114 &790230944626763969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +428,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!1 &235629969736587361
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +656,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!114 &160148835840411510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -841,6 +844,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!1 &659294169727679607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,6 +1074,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!114 &8766684933761454408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1630,6 +1635,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!1 &2051669959618832213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,6 +2145,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!114 &7139187885760179173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,6 +2297,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!114 &8694419669304995233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3030,8 +3038,9 @@ GameObject:
   - component: {fileID: 8116843333528086125}
   - component: {fileID: 229258740851149090}
   - component: {fileID: 1469081022302088084}
+  - component: {fileID: 2118702181761456717}
   m_Layer: 0
-  m_Name: Bg
+  m_Name: BgBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3077,8 +3086,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3110,6 +3119,54 @@ MonoBehaviour:
   ComponentGeneratePath: 
   CustomComment: 
   mComponentName: 
+--- !u!114 &2118702181761456717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670514365029787310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9462c512071144765bbcb38e86a321e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 229258740851149090}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  scaleAnim: 0
+  clickDownScale: {x: 0.95, y: 0.95, z: 0.95}
+  normalScale: {x: 1, y: 1, z: 1}
+  sound: 0
+  clickEffect: 
 --- !u!1 &5675975190216331726
 GameObject:
   m_ObjectHideFlags: 0
@@ -3422,6 +3479,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!1 &6553795986589175845
 GameObject:
   m_ObjectHideFlags: 0
@@ -3644,7 +3702,7 @@ MonoBehaviour:
   inAnimations:
     animationType: 0
     move:
-      enabled: 1
+      enabled: 0
       animationType: 0
       moveDirection: 0
       customPosition: {x: 0, y: 0, z: 0}
@@ -3688,7 +3746,7 @@ MonoBehaviour:
       startDelay: 0
       duration: 0.5
     fade:
-      enabled: 0
+      enabled: 1
       animationType: 0
       alpha: 1
       easeType: 0
@@ -3700,11 +3758,11 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       startDelay: 0
-      duration: 0.5
+      duration: 0.1
     moveIsExpanded:
-      m_Target: 1
+      m_Target: 0
       speed: 2
-      m_Value: 1
+      m_Value: 0
     rotateIsExpanded:
       m_Target: 0
       speed: 2
@@ -3714,9 +3772,9 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
     fadeIsExpanded:
-      m_Target: 0
+      m_Target: 1
       speed: 2
-      m_Value: 0
+      m_Value: 1
   OnInAnimationsStart:
     m_PersistentCalls:
       m_Calls: []
@@ -3724,7 +3782,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   inAnimationsPresetCategoryName: Fade
-  inAnimationsPresetName: FoldHorizontal
+  inAnimationsPresetName: InNormal
   loadInAnimationsPresetAtRuntime: 0
   inAnimationsSoundAtStart: ~No Sound~
   customInAnimationsSoundAtStart: 0
@@ -3733,7 +3791,7 @@ MonoBehaviour:
   outAnimations:
     animationType: 1
     move:
-      enabled: 1
+      enabled: 0
       animationType: 1
       moveDirection: 0
       customPosition: {x: 0, y: 0, z: 0}
@@ -3777,7 +3835,7 @@ MonoBehaviour:
       startDelay: 0
       duration: 0.5
     fade:
-      enabled: 0
+      enabled: 1
       animationType: 1
       alpha: 1
       easeType: 0
@@ -3789,11 +3847,11 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       startDelay: 0
-      duration: 0.5
+      duration: 0.1
     moveIsExpanded:
-      m_Target: 1
+      m_Target: 0
       speed: 2
-      m_Value: 1
+      m_Value: 0
     rotateIsExpanded:
       m_Target: 0
       speed: 2
@@ -3803,9 +3861,9 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
     fadeIsExpanded:
-      m_Target: 0
+      m_Target: 1
       speed: 2
-      m_Value: 0
+      m_Value: 1
   OnOutAnimationsStart:
     m_PersistentCalls:
       m_Calls: []
@@ -3813,7 +3871,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   outAnimationsPresetCategoryName: Fade
-  outAnimationsPresetName: FoldHorizontal
+  outAnimationsPresetName: OutFast
   loadOutAnimationsPresetAtRuntime: 0
   outAnimationsSoundAtStart: ~No Sound~
   customOutAnimationsSoundAtStart: 0
@@ -3921,7 +3979,7 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  Bg: {fileID: 229258740851149090}
+  BgBtn: {fileID: 2118702181761456717}
   TitleBg: {fileID: 4345214937124685109}
   TitleIcon: {fileID: 8763189335784135290}
   TitileCont: {fileID: 8974728815070553472}
@@ -3950,7 +4008,6 @@ MonoBehaviour:
   UpgradeResTra: {fileID: 3515812643653640881}
   UpgradeResTimeValue: {fileID: 8220122548323458566}
   UpgradeBtn: {fileID: 1993728722343264040}
-  LeftTopTitleValue: {fileID: 6045875181060213619}
   LeftDownExitBtn: {fileID: 7099496942720108010}
 --- !u!1 &7806406318975632063
 GameObject:
@@ -4311,6 +4368,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!1 &8401873372922514687
 GameObject:
   m_ObjectHideFlags: 0
@@ -4715,6 +4773,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!1 &8728407277324496793
 GameObject:
   m_ObjectHideFlags: 0
@@ -5031,6 +5090,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!114 &938492273452950505
 MonoBehaviour:
   m_ObjectHideFlags: 0

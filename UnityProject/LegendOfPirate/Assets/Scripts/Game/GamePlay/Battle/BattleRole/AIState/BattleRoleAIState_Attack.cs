@@ -33,6 +33,8 @@ namespace GameWish.Game
                 m_AttackTimer = 0;
             }
 
+            // FaceToTarget();
+
             //检测Target是否太远
             if (Vector3.Distance(ai.controller.transform.position, ai.Target.transform.position) > ai.controller.Data.AtkRange + 0.05f)
             {
@@ -54,7 +56,15 @@ namespace GameWish.Game
             m_AI.controller.Data.Attacker.Attack(m_AI.controller, m_AI.Target);
         }
 
-
+        private void FaceToTarget()
+        {
+            Debug.LogError("FaceToTarget");
+            m_AI.controller.transform.localRotation = Quaternion.RotateTowards(
+                m_AI.controller.transform.localRotation,
+                Quaternion.Euler(0, 180 - m_AI.Target.transform.rotation.y, 0),
+                10.0f * Time.deltaTime);
+            //(Vector3.up, 180 - m_AI.Target.transform.rotation.y);//旋转角色
+        }
     }
 
 }

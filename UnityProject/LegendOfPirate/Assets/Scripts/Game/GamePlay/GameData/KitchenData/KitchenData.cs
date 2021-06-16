@@ -7,6 +7,7 @@ namespace GameWish.Game
 {   
     public class KitchenData : IDataClass
     {
+        public string cookStartTime = string.Empty;
 
         public override void InitWithEmptyData()
         {
@@ -16,6 +17,13 @@ namespace GameWish.Game
         public override void OnDataLoadFinish()
         {
 
+        }
+
+
+        public void OnStartCook(DateTime dateTime)
+        {
+            cookStartTime = dateTime.ToString();
+            SetDataDirty();
         }
     }
 }

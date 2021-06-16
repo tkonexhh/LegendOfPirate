@@ -65,7 +65,6 @@ namespace GameWish.Game
             {
                 if (m_SkillLst[i].isReady)
                     return m_SkillLst[i];
-
             }
             return null;
         }

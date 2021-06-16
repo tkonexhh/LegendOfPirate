@@ -81,7 +81,6 @@ namespace GameWish.Game
             #endregion
             //UIDataTable.AddPanelData(UIID.TestPanel, null, "GamePanels/TestPanel/TestPanel");
 
-            UIDataTable.AddPanelData(UIID.FloatMeshMessagePanel, null, "Common/FloatMeshMessagePanel");
             //Warship Management System
             #region 训练室
             UIDataTable.AddPanelData(UIID.TrainingRoomPanel, null, "GamePanels/WarshipManagement/TrainingRoomPanel/TrainingRoomPanel");
@@ -96,12 +95,11 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.WarshipUpgradePanel, null, "GamePanels/WarshipManagement/WarshipUpgradePanel/WarshipUpgradePanel");
             #endregion
 
-            UIDataTable.AddPanelData(UIID.KitchenPanel, null, "GamePanels/LandManagement/KitchenPanel/KitchenPanel");
-            UIDataTable.AddPanelData(UIID.FishingPanel, null, "GamePanels/LandManagement/FishingPanel/FishingPanel");
-            UIDataTable.AddPanelData(UIID.ForgePanel, null, "GamePanels/LandManagement/ForgePanel/ForgePanel");
-            UIDataTable.AddPanelData(UIID.GardenPanel, null, "GamePanels/LandManagement/GardenPanel/GardenPanel");
-            UIDataTable.AddPanelData(UIID.ProgressingRoomPanel, null, "GamePanels/LandManagement/ProgressRoomPanel/ProgressRoomPanel");
-
+            UIDataTable.AddPanelData(UIID.KitchenPanel,null, "GamePanels/WarshipManagement/KitchenPanel/KitchenPanel");
+            UIDataTable.AddPanelData(UIID.FishingPanel,null, "GamePanels/WarshipManagement/FishingPanel/FishingPanel");
+            UIDataTable.AddPanelData(UIID.ForgePanel,null, "GamePanels/WarshipManagement/ForgePanel/ForgePanel");
+            UIDataTable.AddPanelData(UIID.GardenPanel,null, "GamePanels/WarshipManagement/GardenPanel/GardenPanel");
+            UIDataTable.AddPanelData(UIID.ProgressingRoomPanel,null, "GamePanels/WarshipManagement/ProgressRoomPanel/ProgressRoomPanel");
 
             //Land Management System  
             UIDataTable.AddPanelData(UIID.CongratulationPanel, null, "GamePanels/LandManagement/CongratulationPanel/CongratulationPanel");
@@ -118,6 +116,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.SmuggleChooseRolePanel, null, "GamePanels/LandManagement/SmuggleChooseRolePanel/SmuggleChooseRolePanel");
             #endregion
 
+            UIDataTable.AddPanelData(UIID.BuildingLevelUpPanel, null, "GamePanels/BuildingLevelUpPanel/BuildingLevelUpPanel");
         }
     }
 }

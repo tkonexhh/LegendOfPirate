@@ -22,11 +22,13 @@ MonoBehaviour:
       - AlchemyRoomPanel
       - BlackMarketPanel
       - BoostPanel
+      - BuildingLevelUpPanel
       - CongratulationPanel
       - EffectActivePanel
       - EvolutionSolePanel
       - ForgePanel
       - GardenPanel
+      - LaboratoryRoomPanel
       - LandUpgradePanel
       - LibraryRoomPanel
       - MagicCloudPanel

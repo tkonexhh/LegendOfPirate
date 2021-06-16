@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
@@ -21,7 +21,8 @@ namespace GameWish.Game
 
         private void OnCollisionEnter(Collision other)
         {
-            Debug.LogError(other.gameObject.name);
+            //Debug.LogError(other.gameObject.name);
+
             if (onCollisionEnter != null)
                 onCollisionEnter(other);
         }

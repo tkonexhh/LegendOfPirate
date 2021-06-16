@@ -58,7 +58,7 @@ namespace GameWish.Game
                     break;
             }
             buffedData.Hp -= damage;
-            WorldUIPanel.S.ShowAbnormalInjuryText(controller.transform, damage);
+            // WorldUIPanel.S.ShowAbnormalInjuryText(controller.transform, damage);
             // Debug.LogError(buffedData.Hp + ":" + damage);
         }
 

@@ -34,6 +34,13 @@ namespace GameWish.Game
 		private void BindUIToModel()
 		{
 		}
-		
+
+		private void OnClickAddListener()
+		{
+			ExitBtn.OnClickAsObservable().Subscribe(_ =>
+            {
+				ExitBtnEvent();
+            });
+        }
 	}
 }

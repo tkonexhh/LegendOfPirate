@@ -11,7 +11,7 @@ namespace GameWish.Game
 {
 	public class ForgePanelData : UIPanelData
 	{
-		public ForgeModel forgeModel;
+		public ForgeRoomModel forgeModel;
 		public ForgePanelData()
 		{
 		}
@@ -24,7 +24,7 @@ namespace GameWish.Game
 		private void AllocatePanelData(params object[] args)
 		{
 			m_PanelData = UIPanelData.Allocate<ForgePanelData>();
-			m_PanelData.forgeModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.ForgeRoom) as ForgeModel;
+			m_PanelData.forgeModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.ForgeRoom) as ForgeRoomModel;
 
 		}
 
@@ -52,7 +52,8 @@ namespace GameWish.Game
         }
         private void OnLevelBtnClick()
         {
-
+        
+                UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.ForgeRoom);
         }
 
         private void OnBuildingLevelUp(int level) 

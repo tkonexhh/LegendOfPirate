@@ -4,6 +4,7 @@ using UnityEngine;
 using Qarth;
 using System;
 using System.Reflection;
+using System.Linq;
 
 namespace GameWish.Game
 {
@@ -14,7 +15,8 @@ namespace GameWish.Game
 	public class ModelMgr : TSingleton<ModelMgr>, IMgr
 	{
         private Dictionary<Type, IModel> m_ModelDic = new Dictionary<Type, IModel>();
-       
+        private List<IModel> m_ModelList;
+
         #region IMgr
         public void OnInit()
         {
@@ -23,6 +25,10 @@ namespace GameWish.Game
 
         public void OnUpdate()
         {
+            for (int i = 0; i < m_ModelList.Count; i++)
+            {
+                m_ModelList[i].OnUpdate();
+            }
         }
 
         public void OnDestroyed()
@@ -73,6 +79,8 @@ namespace GameWish.Game
                     }
 
                 }
+
+                m_ModelList = m_ModelDic.Values.ToList();
             }
         }
 

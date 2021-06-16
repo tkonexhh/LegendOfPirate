@@ -1,4 +1,4 @@
-using Qarth;
+ï»¿using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,22 +7,6 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public enum TrainintRoomRoleState
-    {
-        /// <summary>
-        /// Î´Ñ¡Ôñ
-        /// </summary>
-        NotSelected,
-        /// <summary>
-        /// ÑµÁ·ÖÐ
-        /// </summary>
-        Training,
-        /// <summary>
-        /// Î´½âËø
-        /// </summary>
-        NotUnlocked,
-    }
-
 	public class MiddleTrainingRole : UListItemView
 	{
         [SerializeField]
@@ -45,15 +29,34 @@ namespace GameWish.Game
         #region Data
         private MiddleTrainingRoleModule m_MiddleTrainingRoleModule;
         #endregion
-
-        private void ResetState()
+        #region Method
+        private void OnReset()
         {
-           
+            m_RoleIconBg.gameObject.SetActive(false);
+            m_Plug.gameObject.SetActive(false);
+            m_LockBg.gameObject.SetActive(false);
+
+
+        }
+        private void OnRefresh()
+        {
+            switch (m_MiddleTrainingRoleModule.trainingSlotModel.trainState.Value)
+            {
+                case TrainintRoomRoleState.Free:
+                    m_Plug.gameObject.SetActive(true);
+                    break;
+                case TrainintRoomRoleState.Training:
+                    m_RoleIconBg.gameObject.SetActive(true);
+                    break;
+                case TrainintRoomRoleState.Locked:
+                    m_LockBg.gameObject.SetActive(true);
+                    break;
+            }
         }
 
         public void OnInit(MiddleTrainingRoleModule middleTrainingRoleModule)
         {
-            ResetState();
+            OnReset();
 
             if (middleTrainingRoleModule == null)
             {
@@ -62,7 +65,10 @@ namespace GameWish.Game
             }
 
             m_MiddleTrainingRoleModule = middleTrainingRoleModule;
+
+            OnRefresh();
         }
+        #endregion
     }
-	
+
 }
