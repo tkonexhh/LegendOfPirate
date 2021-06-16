@@ -38,8 +38,9 @@ namespace GameWish.Game
 
 
         }
-        private void OnRefresh()
+        public void OnRefresh()
         {
+            OnReset();
             switch (m_MiddleTrainingRoleModule.trainingSlotModel.trainState.Value)
             {
                 case TrainintRoomRoleState.Free:

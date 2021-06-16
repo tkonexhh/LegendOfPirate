@@ -16,34 +16,27 @@ namespace GameWish.Game
 
         public TrainingRoomModel(ShipUnitData shipUnitData) : base(shipUnitData)
         {
-            //tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
+            tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
             m_DbData = GameDataMgr.S.GetData<TrainingData>();
             for (int i = 0; i < m_DbData.trainingItemList.Count; i++)
             {
                 TrainingSlotModel slotModel = new TrainingSlotModel(this, m_DbData.trainingItemList[i]);
                 slotModelList.Add(slotModel);
             }
-            level.Subscribe(_ => {
-
-                tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
-
-                for (int i = 0; i < slotModelList.Count; i++)
-                {
-                    slotModelList[i].OnTrainingRoomLevelUp();
-                }
-            });
         }
 
         public override void OnUpgrade(int delta)
         {
             base.OnUpgrade(delta);
 
+            tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
+
             for (int i = 0; i < slotModelList.Count; i++)
             {
                 slotModelList[i].OnTrainingRoomLevelUp();
             }
 
-            EventSystem.S.Send(EventID.OnUpgradeRefresh);
+            EventSystem.S.Send(EventID.OnTrainingRoomUpgradeRefresh);
         }
 
         private float m_RefreshTime = 0;

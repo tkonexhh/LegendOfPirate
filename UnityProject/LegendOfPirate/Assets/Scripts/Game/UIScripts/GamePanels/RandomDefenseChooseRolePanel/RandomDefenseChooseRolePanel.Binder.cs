@@ -58,11 +58,11 @@ namespace GameWish.Game
 		}
 		private void RegisterEvents()
 		{
-			EventSystem.S.Register(EventID.OnSelectedRole, HandlerEvent);
+			EventSystem.S.Register(EventID.OnRandomDefenseChooseSelectedRole, HandlerEvent);
 		}
 		private void UnregisterEvents()
 		{
-			EventSystem.S.UnRegister(EventID.OnSelectedRole, HandlerEvent);
+			EventSystem.S.UnRegister(EventID.OnRandomDefenseChooseSelectedRole, HandlerEvent);
 		}
 	}
 }
