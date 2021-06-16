@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -8,7 +8,6 @@ namespace GameWish.Game
 {
 	public partial class MainMenuPanel : AbstractAnimPanel
 	{
-		#region AbstractAnimPanel
 		protected override void OnUIInit()
 		{
 			base.OnUIInit();
@@ -18,12 +17,10 @@ namespace GameWish.Game
 		{
 			base.OnPanelOpen(args);
 			
-			AllocatePanelData();
+			AllocatePanelData(args);
 			
 			BindModelToUI();
 			BindUIToModel();
-
-			OnClickAddListener();
 		}
 		
 		protected override void OnPanelHideComplete()
@@ -39,13 +36,6 @@ namespace GameWish.Game
 			
 			ReleasePanelData();
 		}
-		#endregion
-		#region Button Event
-
-		private void OpenPanel()
-		{
-			UIMgr.S.OpenPanel(UIID.TrainingRoomPanel);
-		}
-        #endregion
-    }
+		
+	}
 }
