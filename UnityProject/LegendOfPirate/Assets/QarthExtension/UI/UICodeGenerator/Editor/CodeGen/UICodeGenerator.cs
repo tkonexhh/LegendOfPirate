@@ -73,7 +73,9 @@ namespace Qarth.Extension
             var behaviourName = uiPrefab.name;
 
             //var strFilePath = CodeGenUtil.GenSourceFilePathFromPrefabPath(uiPrefabPath, behaviourName);
-            string folderDir = Application.dataPath + @"\Scripts\Game\UIScripts\GamePanels\" + behaviourName;
+            
+            string folderDir = Application.dataPath + @"/Scripts/Game/UIScripts/GamePanels/" + behaviourName;
+
             if (!Directory.Exists(folderDir))
             {
                 Directory.CreateDirectory(folderDir);
