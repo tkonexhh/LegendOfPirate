@@ -25,8 +25,10 @@ namespace GameWish.Game
 
         public SkillTargetInfo TargetInfo => m_TargetInfo;
 
-        protected float m_Timer;
+        public Run onSkillEnd;
 
+        protected float m_Timer;
+        private int m_ActionStep = 0;
 
         public void OnCreate(BattleRoleController owner)
         {
@@ -46,7 +48,6 @@ namespace GameWish.Game
             {
                 onCast();
             }
-
         }
 
         public void ExcuteSkill()
@@ -55,14 +56,36 @@ namespace GameWish.Game
             m_TargetInfo = new SkillTargetInfo();
             m_TargetInfo.Caster = Owner;
             m_TargetInfo.Target = target;
-            if (SkillActions != null)
+            if (SkillActions != null && SkillActions.Count > 0)
             {
-                for (int i = 0; i < SkillActions.Count; i++)
+                m_ActionStep = 0;
+                SkillActions[m_ActionStep].ExcuteAction(this);
+            }
+            else
+            {
+                if (onSkillEnd != null)
                 {
-                    SkillActions[i].ExcuteAction(this);
+                    onSkillEnd();
                 }
             }
         }
+
+        public void SkillActionStepEnd()
+        {
+            m_ActionStep++;
+            if (m_ActionStep >= SkillActions.Count)
+            {
+                if (onSkillEnd != null)
+                {
+                    onSkillEnd();
+                }
+            }
+            else
+            {
+                SkillActions[m_ActionStep].ExcuteAction(this);
+            }
+        }
+
 
         public void Release()
         {
@@ -78,7 +101,7 @@ namespace GameWish.Game
             m_Timer = Mathf.Clamp(m_Timer, 0, CD);
         }
 
-        public BattleRoleController PicketTarget()
+        private BattleRoleController PicketTarget()
         {
             return Sensor.PickTarget(Owner);
         }
@@ -86,6 +109,9 @@ namespace GameWish.Game
         //是否可以释放
         public bool CanCast()
         {
+            if (!isReady)
+                return false;
+
             var target = PicketTarget();
             if (target == null)
                 return false;
@@ -114,66 +140,5 @@ namespace GameWish.Game
         #endregion
 
     }
-
-    // /// <summary>
-    // /// 主动技能
-    // /// </summary>
-    // public class InitiativeSkill : Skill, IDealDamage
-    // {
-    //     public BattleAttacker attacker;
-    //     public DamageRange damageRange;
-
-    //     public override void Cast()
-    //     {
-    //         m_Timer = 0;
-    //         Debug.LogError("InitiativeSkill Cast");
-    //         attacker.Attack(this, PicketTarget());
-    //     }
-
-    //     public override void Release()
-    //     {
-    //         damageRange = null;
-    //         attacker = null;
-    //     }
-
-    //     #region IDealDamage
-    //     public void DealDamage()
-    //     {
-    //         Debug.LogError("Skill Deal Damage");
-    //         var targets = damageRange.PickTargets(Owner.camp);
-    //         int damage = BattleHelper.CalcSkillDamage(Owner.Data.buffedData);
-    //         for (int i = 0; i < targets.Count; i++)
-    //         {
-    //             RoleDamagePackage damagePackage = new RoleDamagePackage();
-    //             damagePackage.damageType = BattleDamageType.Skill;
-    //             damagePackage.damage = damage;
-    //             BattleMgr.S.SendDamage(targets[i], damagePackage);
-    //         }
-    //     }
-
-    //     //TODO修改实现
-    //     public Vector3 DamageCenter()
-    //     {
-    //         return PicketTarget().transform.position;
-    //     }
-
-    //     //TODO修改实现
-    //     public Vector3 DamageForward()
-    //     {
-    //         return PicketTarget().transform.forward;
-    //     }
-
-    //     public Transform DamageTransform()
-    //     {
-    //         return Owner.transform;
-    //     }
-
-    //     public DamageRange GetDamageRange()
-    //     {
-    //         return damageRange;
-    //     }
-    //     #endregion
-
-    //}
 
 }

@@ -112,7 +112,7 @@ namespace GameWish.Game
             {
                 BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
                 role.gameObject.layer = LayerDefine.LAYER_ROLE_OUR;
-                role.gameObject.name = "Our_" + i;
+                // role.gameObject.name = "Our_" + i;
                 role.SetCamp(BattleCamp.Our);
                 int x = i % width;
                 int y = i / width;
@@ -130,7 +130,7 @@ namespace GameWish.Game
             {
                 BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
                 role.gameObject.layer = LayerDefine.LAYER_ROLE_ENEMY;
-                role.gameObject.name = "Enemy_" + i;
+                // role.gameObject.name = "Enemy_" + i;
                 role.SetCamp(BattleCamp.Enemy);
                 int x = i % width;
                 int y = i / width;

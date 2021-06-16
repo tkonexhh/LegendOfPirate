@@ -5,20 +5,20 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class SkillAction_PlaySound : SkillAction
+    public class SkillAction_PlayEffect : SkillAction
     {
-        private AudioClip m_AudioClip;
+        private GameObject m_Effect;
         private SkillTargetType m_Target;
 
-        public SkillAction_PlaySound(AudioClip audioClip, SkillTargetType target) //: base(owner)
+        public SkillAction_PlayEffect(GameObject effect, SkillTargetType target) //: base(owner)
         {
-            this.m_AudioClip = audioClip;
+            this.m_Effect = effect;
             this.m_Target = target;
         }
 
         public override void ExcuteAction(Skill skill)
         {
-            Debug.LogError("播放音效啦!");
+            Debug.LogError("播放特效啦!");
             skill.SkillActionStepEnd();
             switch (m_Target)
             {
