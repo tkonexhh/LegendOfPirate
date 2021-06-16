@@ -43,7 +43,7 @@ namespace GameWish.Game
         /// <summary>
         /// 选择角色
         /// </summary>
-        OnSelectRole,
+        OnTrainingRoomSelectRole,
         /// <summary>
         /// 升级刷新事件
         /// </summary>

@@ -49,7 +49,7 @@ namespace GameWish.Game
                 //m_BottomTrainingRoleData.bottomTrainingRoleType.Value = (m_BottomTrainingRoleData.bottomTrainingRoleType.Value. == BottomTrainingRoleType.NotSelected ? BottomTrainingRoleType.Selected : BottomTrainingRoleType.NotSelected);
                 m_IntReactiveSelectedCount.Value += (m_BottomTrainingRoleData.isSelected.Value ? 1 : -1);
                 //EventSystem.S.Send(EventID.OnBottomTrainingRole, );
-                EventSystem.S.Send(EventID.OnSelectRole, m_BottomTrainingRoleData.roleID);
+                EventSystem.S.Send(EventID.OnTrainingRoomSelectRole, m_BottomTrainingRoleData.roleID.Value);
                 OnRefresh();
             });
         }

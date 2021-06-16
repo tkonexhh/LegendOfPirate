@@ -77,13 +77,17 @@ namespace GameWish.Game
                 trainState = TrainintRoomRoleState.Training;
             }
 
+            public void SetTrainState(TrainintRoomRoleState trainintRoomRoleState)
+            {
+                trainState = trainintRoomRoleState;
+            }
+
             public void OnEndTraining()
             {
                 this.heroId = -1;
                 this.trainingStartTime = default(DateTime);
                 trainState = TrainintRoomRoleState.Free;
             }
-
             public void OnUnlocked()
             {
                 trainState = TrainintRoomRoleState.Free;

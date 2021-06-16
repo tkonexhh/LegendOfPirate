@@ -74,7 +74,7 @@ namespace GameWish.Game
         private void RegisterEvents()
         {
             EventSystem.S.Register(EventID.OnTrainingRoomUpgradeRefresh, HandlerEvent);
-            EventSystem.S.Register(EventID.OnSelectRole, HandlerEvent);
+            EventSystem.S.Register(EventID.OnTrainingRoomSelectRole, HandlerEvent);
         }
 
         private void OnClickAddListener()
@@ -107,7 +107,7 @@ namespace GameWish.Game
         private void UnregisterEvents()
         {
             EventSystem.S.UnRegister(EventID.OnTrainingRoomUpgradeRefresh, HandlerEvent);
-            EventSystem.S.UnRegister(EventID.OnSelectRole, HandlerEvent);
+            EventSystem.S.UnRegister(EventID.OnTrainingRoomSelectRole, HandlerEvent);
         }
     }
 }
