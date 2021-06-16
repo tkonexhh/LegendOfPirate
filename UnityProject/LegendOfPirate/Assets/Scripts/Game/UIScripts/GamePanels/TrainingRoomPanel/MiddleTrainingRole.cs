@@ -38,26 +38,29 @@ namespace GameWish.Game
 
 
         }
-        private void OnRefresh()
+        public void OnRefresh()
         {
+            OnReset();
             switch (m_MiddleTrainingRoleModule.trainingSlotModel.trainState.Value)
             {
-                case TrainintRoomRoleState.Free:
+                case TrainingRoomRoleState.Free:
                     m_Plug.gameObject.SetActive(true);
                     break;
-                case TrainintRoomRoleState.Training:
+                case TrainingRoomRoleState.Training:
                     m_RoleIconBg.gameObject.SetActive(true);
                     break;
-                case TrainintRoomRoleState.Locked:
+                case TrainingRoomRoleState.Locked:
                     m_LockBg.gameObject.SetActive(true);
+                    break;
+                case TrainingRoomRoleState.SelectedNotStart:
+                    m_RoleIconBg.gameObject.SetActive(true);
+                    m_Time.text = "选择";
                     break;
             }
         }
 
         public void OnInit(MiddleTrainingRoleModule middleTrainingRoleModule)
         {
-            OnReset();
-
             if (middleTrainingRoleModule == null)
             {
                 Debug.LogWarning("bottomTrainingRoleData is null");

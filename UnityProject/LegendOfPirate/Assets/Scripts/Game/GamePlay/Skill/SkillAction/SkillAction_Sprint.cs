@@ -55,7 +55,7 @@ namespace GameWish.Game
 
         private void onCollisionEnter(Collision other)
         {
-            if (other.gameObject.layer == GetOppoLayerByCamp())
+            if (other.gameObject.layer == BattleHelper.GetOppoLayerByCamp(m_Skill.Owner.camp))
             {
                 OnSprintEnd();
             }
@@ -71,18 +71,6 @@ namespace GameWish.Game
             m_Skill.Owner.MonoReference.Rigidbody.velocity = Vector3.zero;
             Debug.LogError("冲刺结束");
             m_Skill.SkillActionStepEnd();
-        }
-
-        private int GetOppoLayerByCamp()
-        {
-            if (m_Skill.Owner.camp == BattleCamp.Our)
-            {
-                return LayerDefine.LAYER_ROLE_ENEMY;
-            }
-            else
-            {
-                return LayerDefine.LAYER_ROLE_OUR;
-            }
         }
 
         class Sprint

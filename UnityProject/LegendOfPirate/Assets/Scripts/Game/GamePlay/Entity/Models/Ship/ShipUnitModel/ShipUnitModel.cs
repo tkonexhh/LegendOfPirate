@@ -19,7 +19,12 @@ namespace GameWish.Game
 
         public virtual void OnUpgrade(int delta)
         {
-            level.Value += delta;
+            if (level.Value+delta<=Define.TRAINING_ROOM_MAX_SLOT)
+            {
+                level.Value += delta;
+
+                GameDataMgr.S.GetData<ShipData>().OnUnitUpgrade(unitType, delta);
+            }
 
         }
     }

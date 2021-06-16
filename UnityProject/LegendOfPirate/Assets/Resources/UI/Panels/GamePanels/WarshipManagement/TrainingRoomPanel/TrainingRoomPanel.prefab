@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fixed_Title_TrainingRoom
+  m_text: Training Room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95510714052484116952359d06d42892, type: 2}
   m_sharedMaterial: {fileID: 6911236400702945317, guid: 95510714052484116952359d06d42892,
@@ -1547,7 +1547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0.000061035156}
   m_SizeDelta: {x: -515, y: -532.1}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &36888845058920456
@@ -4227,31 +4227,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MiddleTrainingRole
-      objectReference: {fileID: 0}
-    - target: {fileID: 4295588075490166859, guid: 172bdc5961163d744ba7c506272546b7,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.088643625
-      objectReference: {fileID: 0}
-    - target: {fileID: 4295588075490166859, guid: 172bdc5961163d744ba7c506272546b7,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.16862707
-      objectReference: {fileID: 0}
-    - target: {fileID: 4295588075490166859, guid: 172bdc5961163d744ba7c506272546b7,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.7830189
-      objectReference: {fileID: 0}
-    - target: {fileID: 7092657029142588674, guid: 172bdc5961163d744ba7c506272546b7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7503824710049694049, guid: 172bdc5961163d744ba7c506272546b7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 172bdc5961163d744ba7c506272546b7, type: 3}
