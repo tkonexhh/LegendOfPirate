@@ -19,11 +19,13 @@ namespace GameWish.Game
 
         public virtual void OnUpgrade(int delta)
         {
-            level.First(x => x + delta <= Define.TRAINING_ROOM_MAX_SLOT).Subscribe(_ => {
+            if (level.Value+delta<=Define.TRAINING_ROOM_MAX_SLOT)
+            {
                 level.Value += delta;
-            });
 
-            GameDataMgr.S.GetData<ShipData>().OnUnitUpgrade(unitType,delta);
+                GameDataMgr.S.GetData<ShipData>().OnUnitUpgrade(unitType, delta);
+            }
+
         }
     }
 }

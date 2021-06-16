@@ -28,12 +28,14 @@ namespace GameWish.Game
 	{
 		public IntReactiveProperty index;
 		public BoolReactiveProperty isSelected;
+		public IntReactiveProperty roleID;
 
 
 		public BottomTrainingRoleModule(int index,bool selected)
 		{
 			this.index = new IntReactiveProperty(index);
 			this.isSelected = new BoolReactiveProperty(selected);
+			this.roleID = new IntReactiveProperty();
 		}
 	}
 
@@ -42,11 +44,13 @@ namespace GameWish.Game
 		public IntReactiveProperty index;
 
 		public TrainingSlotModel trainingSlotModel;
+		public MiddleTrainingRole middleTrainingRole;
 
-		public MiddleTrainingRoleModule(int index, TrainingSlotModel trainingSlotModel)
+		public MiddleTrainingRoleModule(int index, TrainingSlotModel trainingSlotModel, MiddleTrainingRole middleTrainingRole)
 		{
 			this.index = new IntReactiveProperty(index);
 			this.trainingSlotModel = trainingSlotModel;
+			this.middleTrainingRole = middleTrainingRole;
 		}
 	}
 	#endregion
@@ -63,6 +67,7 @@ namespace GameWish.Game
 		private IntReactiveProperty m_SelectedCount = new IntReactiveProperty(0);
 		private ReactiveCollection<BottomTrainingRoleModule> bottomTrainingRoleDatas = new ReactiveCollection<BottomTrainingRoleModule>();
 		private ReactiveCollection<MiddleTrainingRoleModule> middleTrainingRoleDatas = new ReactiveCollection<MiddleTrainingRoleModule>();
+		private ReactiveCollection<MiddleTrainingRole> middleTrainingRoles = new ReactiveCollection<MiddleTrainingRole>();
         #endregion
 
         #region AbstractAnimPanel
@@ -108,7 +113,7 @@ namespace GameWish.Game
 		#region ButtonEvent
 		public void TrainingUpgradeBtnEvent()
 		{
-			m_PanelData.trainingRoomModel.level.Value++;
+			m_PanelData.trainingRoomModel.OnUpgrade(1);
 		}
 		public void TrainBtnEvent()
 		{
@@ -134,11 +139,35 @@ namespace GameWish.Game
 		#region EventSystem
 		private void HandlerEvent(int key, object[] param)
 		{
-            //switch ((EventID)key)
-            //{
-            //    case EventID.OnBottomTrainingRole:
-            //        break;
-            //}
+            switch ((EventID)key)
+            {
+                case EventID.OnTrainingRoomUpgradeRefresh:
+                    foreach (var item in middleTrainingRoleDatas)
+                    {
+						item.middleTrainingRole.OnRefresh();
+					}
+                    break;
+				case EventID.OnSelectRole:
+					MiddleTrainingRoleModule middleTrainingRoleModule = null;
+
+					foreach (var item in middleTrainingRoleDatas)
+                    {
+						if (middleTrainingRoleModule==null && item.trainingSlotModel.trainState.Value == TrainintRoomRoleState.Free)
+						{
+							middleTrainingRoleModule = item;
+						}
+						if (middleTrainingRoleModule.trainingSlotModel.heroId = )
+                        {
+
+                        }
+
+                        if (item.trainingSlotModel.trainState.Value== TrainintRoomRoleState.Free)
+                        {
+							middleTrainingRoleModule = item;
+						}
+                    }
+					break;
+			}
         }
         #endregion
 
@@ -183,10 +212,13 @@ namespace GameWish.Game
 			{
 				MiddleTrainingRoleModule newMiddleTrainingRoleModule;
 
-				newMiddleTrainingRoleModule = new MiddleTrainingRoleModule(index, (m_PanelData.trainingRoomModel.slotModelList)[index]);
+				MiddleTrainingRole middleTrainingRole = root.GetComponent<MiddleTrainingRole>();
 
+				newMiddleTrainingRoleModule = new MiddleTrainingRoleModule(index, (m_PanelData.trainingRoomModel.slotModelList)[index], middleTrainingRole);
 				middleTrainingRoleDatas.Add(newMiddleTrainingRoleModule);
-				root.GetComponent<MiddleTrainingRole>().OnInit(newMiddleTrainingRoleModule);
+
+				//middleTrainingRoles.Add(middleTrainingRole);
+				middleTrainingRole.OnInit(newMiddleTrainingRoleModule);
 			}
 		}
 

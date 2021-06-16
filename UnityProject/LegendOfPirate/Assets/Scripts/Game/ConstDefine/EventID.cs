@@ -32,11 +32,22 @@ namespace GameWish.Game
         OnTipCountChange,
 
 
-        #region Common
+        #region RandomDefenseChoose
         /// <summary>
         /// 选择弟子事件
         /// </summary>
-        OnSelectedRole,
+        OnRandomDefenseChooseSelectedRole,
+        #endregion
+
+        #region TrainingRoom
+        /// <summary>
+        /// 选择角色
+        /// </summary>
+        OnSelectRole,
+        /// <summary>
+        /// 升级刷新事件
+        /// </summary>
+        OnTrainingRoomUpgradeRefresh,
         #endregion
     }
 

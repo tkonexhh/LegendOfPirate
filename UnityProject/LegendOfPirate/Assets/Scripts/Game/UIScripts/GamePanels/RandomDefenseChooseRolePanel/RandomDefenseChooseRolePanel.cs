@@ -135,7 +135,7 @@ namespace GameWish.Game
 		{
 			switch ((EventID)key)
 			{
-				case EventID.OnSelectedRole:
+				case EventID.OnRandomDefenseChooseSelectedRole:
 					HandleSelected((RandomDefenseChooseRoleModule)param[0]);
 					break;
 			}

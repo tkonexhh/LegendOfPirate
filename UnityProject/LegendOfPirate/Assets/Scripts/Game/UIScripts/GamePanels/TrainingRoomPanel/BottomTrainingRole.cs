@@ -18,14 +18,14 @@ namespace GameWish.Game
 
         #region Data
         private BottomTrainingRoleModule m_BottomTrainingRoleData;
-        private IntReactiveProperty m_IntReactiveIndex;
+        private IntReactiveProperty m_IntReactiveSelectedCount;
         #endregion
 
         private void Awake()
         {
         }
 
-        public void OnInit(BottomTrainingRoleModule bottomTrainingRoleData, IntReactiveProperty intReactiveProperty)
+        public void OnInit(BottomTrainingRoleModule bottomTrainingRoleData, IntReactiveProperty selectedCount)
         {
             OnReset();
             if (bottomTrainingRoleData == null)
@@ -34,7 +34,7 @@ namespace GameWish.Game
                 return;
             }
             m_BottomTrainingRoleData = bottomTrainingRoleData;
-            m_IntReactiveIndex = intReactiveProperty;
+            m_IntReactiveSelectedCount = selectedCount;
 
             OnRefresh();
         }
@@ -47,8 +47,9 @@ namespace GameWish.Game
             {
                 m_BottomTrainingRoleData.isSelected.Value = !m_BottomTrainingRoleData.isSelected.Value;
                 //m_BottomTrainingRoleData.bottomTrainingRoleType.Value = (m_BottomTrainingRoleData.bottomTrainingRoleType.Value. == BottomTrainingRoleType.NotSelected ? BottomTrainingRoleType.Selected : BottomTrainingRoleType.NotSelected);
-                m_IntReactiveIndex.Value += (m_BottomTrainingRoleData.isSelected.Value ? 1 : -1);
+                m_IntReactiveSelectedCount.Value += (m_BottomTrainingRoleData.isSelected.Value ? 1 : -1);
                 //EventSystem.S.Send(EventID.OnBottomTrainingRole, );
+                EventSystem.S.Send(EventID.OnSelectRole, m_BottomTrainingRoleData.roleID);
                 OnRefresh();
             });
         }

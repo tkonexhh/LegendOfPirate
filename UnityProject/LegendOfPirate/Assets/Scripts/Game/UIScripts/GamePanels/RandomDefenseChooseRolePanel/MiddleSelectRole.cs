@@ -33,7 +33,7 @@ namespace GameWish.Game
 			m_MiddleSelectRole.OnClickAsObservable().Subscribe(_ =>
 			{
 				m_RandomDefenseChooseRoleModule.isSelected.Value = !m_RandomDefenseChooseRoleModule.isSelected.Value;
-				EventSystem.S.Send(EventID.OnSelectedRole, m_RandomDefenseChooseRoleModule);
+				EventSystem.S.Send(EventID.OnRandomDefenseChooseSelectedRole, m_RandomDefenseChooseRoleModule);
 				////m_BottomTrainingRoleData.bottomTrainingRoleType.Value = (m_BottomTrainingRoleData.bottomTrainingRoleType.Value. == BottomTrainingRoleType.NotSelected ? BottomTrainingRoleType.Selected : BottomTrainingRoleType.NotSelected);
 				//m_IntReactiveIndex.Value += (m_BottomTrainingRoleData.isSelected.Value ? 1 : -1);
 				//EventSystem.S.Send(EventID.OnBottomTrainingRole, );
