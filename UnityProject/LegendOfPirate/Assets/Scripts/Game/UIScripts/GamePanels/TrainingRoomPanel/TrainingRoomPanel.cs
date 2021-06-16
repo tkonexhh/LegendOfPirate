@@ -113,8 +113,11 @@ namespace GameWish.Game
 		#region ButtonEvent
 		public void TrainingUpgradeBtnEvent()
 		{
+            UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.TrainingRoom);
+
 			m_PanelData.trainingRoomModel.OnUpgrade(1);
 		}
+
 		public void TrainBtnEvent()
 		{
 
@@ -156,10 +159,10 @@ namespace GameWish.Game
 						{
 							middleTrainingRoleModule = item;
 						}
-						if (middleTrainingRoleModule.trainingSlotModel.heroId = )
-                        {
+						//if (middleTrainingRoleModule.trainingSlotModel.heroId = )
+      //                  {
 
-                        }
+      //                  }
 
                         if (item.trainingSlotModel.trainState.Value== TrainintRoomRoleState.Free)
                         {
