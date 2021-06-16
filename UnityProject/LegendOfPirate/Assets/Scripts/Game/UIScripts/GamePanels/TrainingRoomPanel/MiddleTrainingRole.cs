@@ -52,13 +52,15 @@ namespace GameWish.Game
                 case TrainintRoomRoleState.Locked:
                     m_LockBg.gameObject.SetActive(true);
                     break;
+                case TrainintRoomRoleState.SelectedNotStart:
+                    m_RoleIconBg.gameObject.SetActive(true);
+                    m_Time.text = "选择";
+                    break;
             }
         }
 
         public void OnInit(MiddleTrainingRoleModule middleTrainingRoleModule)
         {
-            OnReset();
-
             if (middleTrainingRoleModule == null)
             {
                 Debug.LogWarning("bottomTrainingRoleData is null");

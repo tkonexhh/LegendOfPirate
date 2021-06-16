@@ -114,6 +114,23 @@ namespace GameWish.Game
             m_DbItem.OnEndTraining();
         }
 
+        public void SetTrainingSlotModelFree()
+        {
+            EndTraining();
+        }
+        public void SetTrainingSlotModelSelectedNotStart(int id)
+        {
+            heroId = id;
+            trainState.Value = TrainintRoomRoleState.SelectedNotStart;
+            m_DbItem.SetTrainState(TrainintRoomRoleState.SelectedNotStart);
+        }
+
+        public void SetTrainintRoomRoleState(TrainintRoomRoleState trainintRoomRoleState)
+        {
+            trainState.Value = trainintRoomRoleState;
+            m_DbItem.SetTrainState(trainintRoomRoleState);
+        }
+
         private void SetTime(DateTime startTime)
         {
             m_StartTime = startTime;
