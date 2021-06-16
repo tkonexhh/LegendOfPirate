@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 224844214114138480}
   - component: {fileID: 223055571625650876}
   - component: {fileID: 2760971704205776549}
-  - component: {fileID: 2333849547078525602}
+  - component: {fileID: -7627727894910307776}
   m_Layer: 5
   m_Name: LoginPanel
   m_TagString: Untagged
@@ -30,7 +30,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5881884649819569971}
   - {fileID: 6273765252456146075}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -78,7 +77,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 311
---- !u!114 &2333849547078525602
+--- !u!114 &-7627727894910307776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1637668456022314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96d85bb8374d2422eac5a02f52fd6b07, type: 3}
+  m_Script: {fileID: 11500000, guid: 404621e1ceb304e449429aacd7d2c28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ParentPage: {fileID: 0}
@@ -96,12 +95,18 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  m_RootObjects: {fileID: 1315984011598085306}
-  m_LoginBtns: {fileID: 3245205487156595346}
-  m_RegisterBtns: {fileID: 8734619799238363419}
-  m_UsernameInputField: {fileID: 8885871290058891885}
-  m_PasswordInputField: {fileID: 5194224380440148819}
-  m_TipsText: {fileID: 8763949038548983248}
+  TipsText: {fileID: 8763949038548983248}
+  Root: {fileID: 6273765252456146075}
+  UsernameText: {fileID: 4252659376255599832}
+  UsernameInputField: {fileID: 8885871290058891885}
+  PasswordText: {fileID: 5194224380973812211}
+  PasswordInputField: {fileID: 5194224380440148819}
+  LoginRoot: {fileID: 6638227413591975969}
+  OpenRegisterBtn: {fileID: 7894571656015846952}
+  LoginBtn: {fileID: 571153435475252871}
+  RegisterRoot: {fileID: 4515120842832771156}
+  BackBtn: {fileID: 963530250981988435}
+  RegisterBtn: {fileID: 850082318252594754}
 --- !u!1 &86319741677572368
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,6 +408,7 @@ GameObject:
   - component: {fileID: 850082318252594754}
   - component: {fileID: 8121399637186687437}
   - component: {fileID: 1050001504300361240}
+  - component: {fileID: 1589512781718386852}
   m_Layer: 0
   m_Name: RegisterBtn
   m_TagString: Untagged
@@ -472,18 +478,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1050001504300361240}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2333849547078525602}
-        m_MethodName: OnRegisterClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   scaleAnim: 0
   clickDownScale: {x: 0.95, y: 0.95, z: 0.95}
   normalScale: {x: 1, y: 1, z: 1}
@@ -527,6 +522,22 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
+--- !u!114 &1589512781718386852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622452947809483111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &787204305617754279
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +549,7 @@ GameObject:
   - component: {fileID: 1656804443842108535}
   - component: {fileID: 9137132820981573309}
   - component: {fileID: 4252659376255599832}
+  - component: {fileID: 5153321524108500597}
   m_Layer: 0
   m_Name: UsernameText
   m_TagString: Untagged
@@ -662,6 +674,22 @@ MonoBehaviour:
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
   I18Nkey: 
+--- !u!114 &5153321524108500597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787204305617754279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &1315984011598085306
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +699,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6273765252456146075}
+  - component: {fileID: 3561619694412450086}
   m_Layer: 5
   m_Name: Root
   m_TagString: Untagged
@@ -689,17 +718,34 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 5881884649819569971}
   - {fileID: 6558978366241668558}
   - {fileID: 2209471713991147031}
   - {fileID: 817997490296740273}
   m_Father: {fileID: 224844214114138480}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3561619694412450086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315984011598085306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &2032605617660225576
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,6 +758,7 @@ GameObject:
   - component: {fileID: 4616089626096524687}
   - component: {fileID: 1590181946031868955}
   - component: {fileID: 8885871290058891885}
+  - component: {fileID: 8928060323830959131}
   m_Layer: 5
   m_Name: UsernameInputField
   m_TagString: Untagged
@@ -873,6 +920,22 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
+--- !u!114 &8928060323830959131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032605617660225576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &2176615195891572223
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,7 +966,7 @@ RectTransform:
   - {fileID: 1656804443842108535}
   - {fileID: 5117182608629607125}
   m_Father: {fileID: 6273765252456146075}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1055,8 +1118,9 @@ GameObject:
   - component: {fileID: 7894571656015846952}
   - component: {fileID: 6597718112152316474}
   - component: {fileID: 2764274049337959975}
+  - component: {fileID: 3421229403465601319}
   m_Layer: 0
-  m_Name: RegisterBtn
+  m_Name: OpenRegisterBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1124,18 +1188,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2764274049337959975}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2333849547078525602}
-        m_MethodName: OnOpenRegister
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   scaleAnim: 0
   clickDownScale: {x: 0.95, y: 0.95, z: 0.95}
   normalScale: {x: 1, y: 1, z: 1}
@@ -1179,6 +1232,22 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
+--- !u!114 &3421229403465601319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3198132733540175340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &3241907807753392738
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,8 +1393,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6638227413591975969}
   - component: {fileID: 3972733568642203508}
+  - component: {fileID: 3362452321419916013}
   m_Layer: 5
-  m_Name: Login
+  m_Name: LoginRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1377,6 +1447,22 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &3362452321419916013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3245205487156595346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &4660127500165646704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,6 +1474,7 @@ GameObject:
   - component: {fileID: 5881884649819569971}
   - component: {fileID: 5338794216130382262}
   - component: {fileID: 8763949038548983248}
+  - component: {fileID: 5362911712940013214}
   m_Layer: 0
   m_Name: TipsText
   m_TagString: Untagged
@@ -1406,7 +1493,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 224844214114138480}
+  m_Father: {fileID: 6273765252456146075}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1441,7 +1528,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\u6CA1\u6709\u8D26\u53F7\u7684\u8BF7\u5148\u6CE8\u518C\u4E00\u4E2A\u8D26\u53F7\u767B\u9646\uFF0C\u518D\u6B21\u767B\u9646\u4F1A\u76F4\u63A5\u8FDB\u5165\u6E38\u620F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95510714052484116952359d06d42892, type: 2}
   m_sharedMaterial: {fileID: 6911236400702945317, guid: 95510714052484116952359d06d42892,
@@ -1512,6 +1599,22 @@ MonoBehaviour:
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
   I18Nkey: 
+--- !u!114 &5362911712940013214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4660127500165646704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &5090033685536050677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,6 +1627,7 @@ GameObject:
   - component: {fileID: 963530250981988435}
   - component: {fileID: 7061915469013020796}
   - component: {fileID: 6943817500710335522}
+  - component: {fileID: 1813942133586868649}
   m_Layer: 0
   m_Name: BackBtn
   m_TagString: Untagged
@@ -1593,18 +1697,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6943817500710335522}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2333849547078525602}
-        m_MethodName: OnBackClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   scaleAnim: 0
   clickDownScale: {x: 0.95, y: 0.95, z: 0.95}
   normalScale: {x: 1, y: 1, z: 1}
@@ -1648,6 +1741,22 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
+--- !u!114 &1813942133586868649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5090033685536050677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &5194224379446790329
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,7 +2261,7 @@ RectTransform:
   - {fileID: 6638227413591975969}
   - {fileID: 4515120842832771156}
   m_Father: {fileID: 6273765252456146075}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2170,6 +2279,7 @@ GameObject:
   - component: {fileID: 9015104054634876258}
   - component: {fileID: 5031425431920819660}
   - component: {fileID: 5194224380973812211}
+  - component: {fileID: 2513319600037500867}
   m_Layer: 0
   m_Name: PasswordText
   m_TagString: Untagged
@@ -2294,6 +2404,22 @@ MonoBehaviour:
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
   I18Nkey: 
+--- !u!114 &2513319600037500867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399649754143198072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &8619343562977004429
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,7 +2450,7 @@ RectTransform:
   - {fileID: 9015104054634876258}
   - {fileID: 7752612839930837997}
   m_Father: {fileID: 6273765252456146075}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2393,8 +2519,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4515120842832771156}
   - component: {fileID: 4493627556267140389}
+  - component: {fileID: 7473590046952460806}
   m_Layer: 5
-  m_Name: Register
+  m_Name: RegisterRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2446,6 +2573,22 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &7473590046952460806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8734619799238363419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &8853978803704737675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,6 +2601,7 @@ GameObject:
   - component: {fileID: 571153435475252871}
   - component: {fileID: 4693992939241592892}
   - component: {fileID: 4000325780532244547}
+  - component: {fileID: 6708394794506041907}
   m_Layer: 0
   m_Name: LoginBtn
   m_TagString: Untagged
@@ -2527,18 +2671,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4000325780532244547}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2333849547078525602}
-        m_MethodName: OnLoginClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   scaleAnim: 0
   clickDownScale: {x: 0.95, y: 0.95, z: 0.95}
   normalScale: {x: 1, y: 1, z: 1}
@@ -2582,6 +2715,22 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
+--- !u!114 &6708394794506041907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8853978803704737675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &8935623049934069863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,6 +2743,7 @@ GameObject:
   - component: {fileID: 8388835825361217678}
   - component: {fileID: 7237376188353767164}
   - component: {fileID: 5194224380440148819}
+  - component: {fileID: 7121570947456793502}
   m_Layer: 5
   m_Name: PasswordInputField
   m_TagString: Untagged
@@ -2755,6 +2905,22 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
+--- !u!114 &7121570947456793502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935623049934069863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &9163159067927860118
 GameObject:
   m_ObjectHideFlags: 0
