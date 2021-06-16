@@ -27,7 +27,7 @@ namespace GameWish.Game
         private Image m_Lock;
 
         #region Data
-        private MiddleTrainingSlotModel m_MiddleTrainingRoleModule;
+        private MiddleSlotModel m_MiddleTrainingRoleModule;
         #endregion
         #region Method
         private void OnReset()
@@ -43,23 +43,23 @@ namespace GameWish.Game
             OnReset();
             switch (m_MiddleTrainingRoleModule.trainingSlotModel.trainState.Value)
             {
-                case TrainingRoomRoleState.Free:
+                case TrainingSlotState.Free:
                     m_Plug.gameObject.SetActive(true);
                     break;
-                case TrainingRoomRoleState.Training:
+                case TrainingSlotState.Training:
                     m_RoleIconBg.gameObject.SetActive(true);
                     break;
-                case TrainingRoomRoleState.Locked:
+                case TrainingSlotState.Locked:
                     m_LockBg.gameObject.SetActive(true);
                     break;
-                case TrainingRoomRoleState.SelectedNotStart:
+                case TrainingSlotState.SelectedNotStart:
                     m_RoleIconBg.gameObject.SetActive(true);
                     m_Time.text = "选择";
                     break;
             }
         }
 
-        public void OnInit(MiddleTrainingSlotModel middleTrainingRoleModule)
+        public void OnInit(MiddleSlotModel middleTrainingRoleModule)
         {
             if (middleTrainingRoleModule == null)
             {

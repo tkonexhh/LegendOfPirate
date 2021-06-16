@@ -17,7 +17,7 @@ namespace GameWish.Game
         private Image m_State;
 
         #region Data
-        private BottomTrainingModel m_BottomTrainingData;
+        private BottomRoleModel m_BottomTrainingData;
         private IntReactiveProperty m_IntReactiveSelectedCount;
         #endregion
 
@@ -25,7 +25,7 @@ namespace GameWish.Game
         {
         }
 
-        public void OnInit(BottomTrainingModel bottomTrainingRoleData, IntReactiveProperty selectedCount)
+        public void OnInit(BottomRoleModel bottomTrainingRoleData, IntReactiveProperty selectedCount)
         {
             OnReset();
             if (bottomTrainingRoleData == null)
@@ -45,7 +45,7 @@ namespace GameWish.Game
             m_State.gameObject.SetActive(false);
             m_BottomTrainingRole.OnClickAsObservable().Subscribe(_ =>
             {
-                EventSystem.S.Send(EventID.OnTrainingRoomSelectRole, m_BottomTrainingData);
+                EventSystem.S.Send(EventID.OnTrainingSelectRole, m_BottomTrainingData);
             });
         }
 

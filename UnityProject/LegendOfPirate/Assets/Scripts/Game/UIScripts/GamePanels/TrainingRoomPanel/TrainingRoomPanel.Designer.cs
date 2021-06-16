@@ -41,7 +41,7 @@ namespace GameWish.Game
 		[SerializeField]
 		public UnityEngine.UI.Image RoleSelectNumberIcon;
 		[SerializeField]
-		public TMPro.TextMeshProUGUI RoleSelectNumberTMP;
+		public TMPro.TextMeshProUGUI RSelectNumberTMP;
 		[SerializeField]
 		public GFrame.Editor.GButton TrainBtn;
 		[SerializeField]
