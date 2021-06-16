@@ -8,6 +8,7 @@ namespace GameWish.Game
 {
     public class PlayerInfoDataHandler : DataHandlerBase<PlayerInfoData>, IDataHandler
     {
+        private const string DATA_NAME = "PlayerInfoData";
         public PlayerInfoDataHandler()
         {
 
@@ -20,16 +21,14 @@ namespace GameWish.Game
 
         public override void LoadDataFromServer(Action callback)
         {
-            NetDataMgr.S.LoadNetData("PlayerInfoData", ParseJson, callback, () => { Log.i("存档读取成功!!!"); }, () => { Log.e("存档读取失败,加载网络重连面板!!!"); });
+            NetDataMgr.S.LoadNetData(DATA_NAME, ParseJson, callback, () => { Log.i("存档读取成功!!!"); }, () => { Log.e("存档读取失败,加载网络重连面板!!!"); });
         }
 
-        public override void SaveDataToServer(Action callback)
+        public override void SaveDataToServer(Action successCallback, Action failCallback)
         {
-            if (callback != null)
-            {
-                callback.Invoke();
-            }
-            NetDataMgr.S.SaveNetData("PlayerInfoData", m_Data);
+            base.SaveDataToServer(successCallback, failCallback);
+
+            NetDataMgr.S.SaveNetData(DATA_NAME, m_Data, successCallback, failCallback);
         }
 
     }

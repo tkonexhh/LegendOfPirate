@@ -33,19 +33,19 @@ namespace GameWish.Game
             }
         }
 
-        public void Save(Action callback)
+        public void Save(Action successCallback, Action failedCallback)
         {
             if (GameDataMgr.s_DataMode == DataMode.Server)
             {
-                SaveDataToServer(callback);
+                SaveDataToServer(successCallback, failedCallback);
             }
             else
             {
                 Save(true);
 
-                if (callback != null)
+                if (successCallback != null)
                 {
-                    callback.Invoke();
+                    successCallback.Invoke();
                 }
             }
         }
@@ -55,9 +55,10 @@ namespace GameWish.Game
 
         }
 
-        public virtual void SaveDataToServer(Action callback)
+        public virtual void SaveDataToServer(Action successCallback, Action failCallback)
         {
-
+            if (m_DataDirtyRecorder.GetIsDirty() == false)
+                return;
         }
 
         protected void ParseJson(string json)

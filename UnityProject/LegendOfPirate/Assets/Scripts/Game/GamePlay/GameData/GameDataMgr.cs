@@ -98,7 +98,26 @@ namespace GameWish.Game
 
         public void Save()
         {
-            m_PlayerInfoDataHandler.Save(null);
+            //m_PlayerInfoDataHandler.Save(null, null);
+        }
+
+        /// <summary>
+        /// 当需要保存数据到服务器时，手动调用此方法
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="successCallback"></param>
+        /// <param name="failedCallback"></param>
+        public void SaveDataToServer<T>(Action successCallback, Action failedCallback) where T : IDataClass
+        {
+            IDataHandler dataHandler = m_DataHanlderList.FirstOrDefault(i => i.GetDataClass().GetType() == typeof(T));
+            if (dataHandler != null)
+            {
+                dataHandler.SaveDataToServer(successCallback, failedCallback);
+            }
+            else
+            {
+                Log.e("Data Not Found: " + typeof(T).ToString());
+            }
         }
 
         public T GetData<T>() where T : IDataClass
