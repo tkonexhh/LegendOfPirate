@@ -39,7 +39,7 @@ namespace GameWish.Game
         {
             RegisterBtn.OnClickAsObservable().Subscribe(_ => OnRegisterClicked()).AddTo(this);
             BackBtn.OnClickAsObservable().Subscribe(_ => OnBackClicked()).AddTo(this);
-            OpenRegisterBtn.OnClickAsObservable().Subscribe(_ => OnOpenRegister()).AddTo(this);
+            OpenRegisterBtn.OnClickAsObservable().Subscribe(_ => OnRegisterClicked()).AddTo(this);
             LoginBtn.OnClickAsObservable().Subscribe(_ => OnLoginClicked()).AddTo(this);
 
             SetBtnsStates(false);
@@ -110,11 +110,13 @@ namespace GameWish.Game
             string username = UsernameInputField.text;
             if (string.IsNullOrEmpty(username))
             {
+                TipsText.text = "账号不能为空";
                 return;
             }
             string password = PasswordInputField.text;
             if (string.IsNullOrEmpty(password))
             {
+                TipsText.text = "密码不能为空";
                 return;
             }
 
