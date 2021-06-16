@@ -158,4 +158,16 @@ namespace GameWish.Game
         [LabelText("攻击比例")] public float ATKRate = 1;
         [LabelText("生命比例")] public float HPRate = 1;
     }
+
+    [LabelText("发射子弹")]
+    [HideReferenceObjectPicker]
+    public class SkillActionConfig_Bullet : SkillActionConfig
+    {
+        [LabelText("伤害")] public int Damage;
+        [LabelText("子弹配置")] public BulletConfigSO BulletConfigSO;
+
+        public DamageRangeType DamageRangeType;
+        [HideIf("DamageRangeType", DamageRangeType.Single), LabelText("伤害范围参数")]
+        public string RangeArgs;
+    }
 }

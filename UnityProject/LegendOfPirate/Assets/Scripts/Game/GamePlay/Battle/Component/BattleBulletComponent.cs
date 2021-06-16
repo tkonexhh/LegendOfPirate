@@ -16,8 +16,9 @@ namespace GameWish.Game
             m_Bullet = new List<Bullet>();
         }
 
-        public override void OnBattleInit()
+        public override void OnBattleInit(BattleFieldConfigSO enemyConfigSO)
         {
+
         }
 
         public override void OnBattleUpdate()

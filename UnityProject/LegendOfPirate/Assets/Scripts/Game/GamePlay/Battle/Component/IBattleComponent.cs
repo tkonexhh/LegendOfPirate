@@ -7,8 +7,10 @@ namespace GameWish.Game
 {
     public interface IBattleComponent
     {
+        BattleMgr BattleMgr { get; set; }
+
         void Init();
-        void OnBattleInit();
+        void OnBattleInit(BattleFieldConfigSO enemyConfigSO);
         void OnBattleStart();
         void OnBattleUpdate();
         void OnBattleEnd(bool isSuccess);
