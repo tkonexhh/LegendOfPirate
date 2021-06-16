@@ -19,6 +19,8 @@ namespace GameWish.Game
 		[SerializeField]
 		public TMPro.TextMeshProUGUI BuildingName;
 		[SerializeField]
+		public GFrame.Editor.GButton LevelUpBtn;
+		[SerializeField]
 		public TMPro.TextMeshProUGUI BuildingLevel;
 		[SerializeField]
 		public RectTransform FishingPoint0;

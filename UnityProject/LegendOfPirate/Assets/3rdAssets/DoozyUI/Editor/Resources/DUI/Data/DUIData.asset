@@ -22,6 +22,7 @@ MonoBehaviour:
       - AlchemyRoomPanel
       - BlackMarketPanel
       - BoostPanel
+      - BuildingLevelUpPanel
       - CongratulationPanel
       - EffectActivePanel
       - EvolutionSolePanel

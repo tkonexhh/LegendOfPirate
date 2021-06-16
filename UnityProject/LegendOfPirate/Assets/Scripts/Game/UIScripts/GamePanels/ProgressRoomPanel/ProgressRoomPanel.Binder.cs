@@ -44,7 +44,12 @@ namespace GameWish.Game
 			ProgressBtn.OnClickAsObservable().Subscribe(_ => OnProgressBtnClick()).AddTo(this);
 			AddItemBtn.OnClickAsObservable().Subscribe(_ => OnAddItemBtnClick()).AddTo(this);
 		}
-		private void OnLevelUpBtnClick() { }
+		private void OnLevelUpBtnClick()
+		{
+           
+                UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.ProcessingRoom);
+    
+        }
 		private void OnProgressBtnClick() { }
 		private void OnAddItemBtnClick() { }
 		private void OnLevelChange(int level) 

@@ -60,6 +60,9 @@ namespace GameWish.Game
         #region 战船升级
         WarshipUpgradePanel,
         #endregion
+        #region 建筑升级
+        BuildingLevelUpPanel,
+        #endregion
 
         //海岛经营
         #region 随机防御
