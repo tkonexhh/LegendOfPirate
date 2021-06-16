@@ -11,6 +11,8 @@ namespace GameWish.Game
         {
             base.OnBegin();
 
+            LeanCloudMgr.S.OnInit();
+
             Log.i("------start load data from server");
 
             GameDataMgr.S.Init(()=> 
