@@ -1,4 +1,4 @@
-using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -10,10 +10,12 @@ namespace GameWish.Game
 	public class ProgressRoomPanelData : UIPanelData
 	{
 		public ProcessingRoomModel processingRoomModel;
-
+		public List<GImage> lockerList;
 		public ProgressRoomPanelData()
-		{
-		}
+        {
+			lockerList = new List<GImage>();
+
+        }
 	}
 	
 	public partial class ProgressRoomPanel
@@ -24,11 +26,18 @@ namespace GameWish.Game
 		{
 			 m_PanelData = UIPanelData.Allocate<ProgressRoomPanelData>();
 			m_PanelData.processingRoomModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.ProcessingRoom)as ProcessingRoomModel;
-		}
+            var plantSlots = Content.GetComponentsInChildren<Toggle>();
+            foreach (var item in plantSlots)
+            {
+                var Locker = item.GetComponentInChildren<GImage>();
+                m_PanelData.lockerList.Add(Locker);
+            }
+        }
 		
 		private void ReleasePanelData()
 		{
 			ObjectPool<ProgressRoomPanelData>.S.Recycle(m_PanelData);
+			m_PanelData.lockerList.Clear();
 		}
 		
 		private void BindModelToUI()
@@ -46,9 +55,7 @@ namespace GameWish.Game
 		}
 		private void OnLevelUpBtnClick()
 		{
-           
-                UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.ProcessingRoom);
-    
+            UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.ProcessingRoom);
         }
 		private void OnProgressBtnClick() { }
 		private void OnAddItemBtnClick() { }
@@ -59,11 +66,12 @@ namespace GameWish.Game
             {
                 if (level >= TDFacilityProcessingRoomTable.dataList[i].level)
                 {
-                    PlantSlots[i].GetComponentInChildren<GImage>().gameObject.SetActive(false);
+                    m_PanelData.lockerList[i].gameObject.SetActive(false);
                     PlantSlots[i].GetComponentInChildren<TextMeshProUGUI>().text = TDFacilityProcessingRoomTable.dataList[i].unlockPartID.ToString();
                 }
                 else
                 {
+					PlantSlots[i].interactable = false;
                     PlantSlots[i].GetComponentInChildren<TextMeshProUGUI>().text = string.Format("ProgressingRoomLevel {0}", TDFacilityProcessingRoomTable.dataList[i].level);
                 }
             }
