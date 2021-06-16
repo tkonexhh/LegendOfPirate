@@ -27,7 +27,7 @@ namespace GameWish.Game
         private Image m_Lock;
 
         #region Data
-        private MiddleTrainingRoleModule m_MiddleTrainingRoleModule;
+        private MiddleTrainingSlotModel m_MiddleTrainingRoleModule;
         #endregion
         #region Method
         private void OnReset()
@@ -59,7 +59,7 @@ namespace GameWish.Game
             }
         }
 
-        public void OnInit(MiddleTrainingRoleModule middleTrainingRoleModule)
+        public void OnInit(MiddleTrainingSlotModel middleTrainingRoleModule)
         {
             if (middleTrainingRoleModule == null)
             {

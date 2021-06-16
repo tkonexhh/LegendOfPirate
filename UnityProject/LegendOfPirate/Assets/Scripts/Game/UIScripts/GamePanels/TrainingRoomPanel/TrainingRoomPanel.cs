@@ -8,56 +8,7 @@ using System.Linq;
 
 namespace GameWish.Game
 {
-    #region Other Data Class
-    public enum TrainingRoomRoleState
-    {
-        /// <summary>
-        /// 空闲中
-        /// </summary>
-        Free = 0,
-        /// <summary>
-        /// 训练中
-        /// </summary>
-        Training = 1,
-        /// <summary>
-        /// 未解锁
-        /// </summary>
-        Locked = 2,
-        /// <summary>
-        /// 选择但是未开始
-        /// </summary>
-        SelectedNotStart = 3,
-    }
-    public class BottomTrainingRoleModule
-    {
-        public IntReactiveProperty index;
-        public BoolReactiveProperty isSelected;
-        public IntReactiveProperty roleID;
-
-
-        public BottomTrainingRoleModule(int index, bool selected)
-        {
-            this.index = new IntReactiveProperty(index);
-            this.isSelected = new BoolReactiveProperty(selected);
-            this.roleID = new IntReactiveProperty();
-        }
-    }
-
-    public class MiddleTrainingRoleModule
-    {
-        public IntReactiveProperty index;
-
-        public TrainingSlotModel trainingSlotModel;
-        public MiddleTrainingRole middleTrainingRole;
-
-        public MiddleTrainingRoleModule(int index, TrainingSlotModel trainingSlotModel, MiddleTrainingRole middleTrainingRole)
-        {
-            this.index = new IntReactiveProperty(index);
-            this.trainingSlotModel = trainingSlotModel;
-            this.middleTrainingRole = middleTrainingRole;
-        }
-    }
-    #endregion
+ 
     public partial class TrainingRoomPanel : AbstractAnimPanel
     {
         [SerializeField]
@@ -69,9 +20,10 @@ namespace GameWish.Game
 
         #region Data
         private IntReactiveProperty m_SelectedCount = new IntReactiveProperty(0);
-        private ReactiveCollection<BottomTrainingRoleModule> bottomTrainingRoleDatas = new ReactiveCollection<BottomTrainingRoleModule>();
-        private ReactiveCollection<MiddleTrainingRoleModule> middleTrainingRoleDatas = new ReactiveCollection<MiddleTrainingRoleModule>();
-        private ReactiveCollection<MiddleTrainingRole> middleTrainingRoles = new ReactiveCollection<MiddleTrainingRole>();
+        private ReactiveCollection<BottomTrainingModel> m_BottomTrainingRoleDatas = new ReactiveCollection<BottomTrainingModel>();
+        private ReactiveCollection<MiddleTrainingSlotModel> m_MiddleTrainingRoleDatas = new ReactiveCollection<MiddleTrainingSlotModel>();
+
+        private ReactiveCollection<int> m_SelectedRoleID = new ReactiveCollection<int>();
         #endregion
 
         #region AbstractAnimPanel
@@ -146,51 +98,62 @@ namespace GameWish.Game
             switch ((EventID)key)
             {
                 case EventID.OnTrainingRoomUpgradeRefresh:
-                    foreach (var item in middleTrainingRoleDatas)
+                    foreach (var item in m_MiddleTrainingRoleDatas)
                     {
                         item.middleTrainingRole.OnRefresh();
                     }
                     break;
                 case EventID.OnTrainingRoomSelectRole:
-                    MiddleTrainingRoleModule spareMiddleTrainingRoleModule = null;
-                    MiddleTrainingRoleModule selectedmiddleTrainingRoleModule = null;
-                    foreach (var item in middleTrainingRoleDatas)
+                    MiddleTrainingSlotModel spareSelectedModel = null;
+                    MiddleTrainingSlotModel selectedSlot = null;
+                    BottomTrainingModel bottomTrainingRoleModel = (BottomTrainingModel)param[0];
+
+                    foreach (var item in m_MiddleTrainingRoleDatas)
                     {
                         switch (item.trainingSlotModel.trainState.Value)
                         {
-                            case TrainingRoomRoleState.Free:
-                                if (spareMiddleTrainingRoleModule == null)
+                            case TrainintRoomRoleState.Free:
+                                if (spareSelectedModel == null)
                                 {
-                                    spareMiddleTrainingRoleModule = item;
+                                    spareSelectedModel = item;
                                 }
                                 break;
-                            case TrainingRoomRoleState.Training:
-                            case TrainingRoomRoleState.Locked:
+                            case TrainintRoomRoleState.Training:
+                            case TrainintRoomRoleState.Locked:
 
                                 break;
-                            case TrainingRoomRoleState.SelectedNotStart:
-                                Debug.LogError("id = "+ (int)param[0]);
-                                if (item.trainingSlotModel.heroId == (int)param[0])
+                            case TrainintRoomRoleState.SelectedNotStart:
+                                if (item.trainingSlotModel.heroId == bottomTrainingRoleModel.roleID.Value)
                                 {
-                                    selectedmiddleTrainingRoleModule = item;
+                                    selectedSlot = item;
                                 }
                                 break;
                         }
                     }
 
-                    if (selectedmiddleTrainingRoleModule!=null)
+                    if (selectedSlot != null)//Selected remove
                     {
-                        selectedmiddleTrainingRoleModule.trainingSlotModel.SetTrainingSlotModelFree();
-                        selectedmiddleTrainingRoleModule.middleTrainingRole.OnRefresh();
+                        selectedSlot.trainingSlotModel.SetTraingRRS2Free();
+                        selectedSlot.middleTrainingRole.OnRefresh();
+                        m_SelectedRoleID.Remove(bottomTrainingRoleModel.roleID.Value);
+                        bottomTrainingRoleModel.bottomTrainingRole.HandleSelectedRole();
                         break;
                     }
-                    if (spareMiddleTrainingRoleModule!=null && spareMiddleTrainingRoleModule.trainingSlotModel.trainState.Value == TrainingRoomRoleState.Free )
+                    //Unselected add
+                    if (spareSelectedModel != null && spareSelectedModel.trainingSlotModel.trainState.Value == TrainintRoomRoleState.Free)
                     {
-                        spareMiddleTrainingRoleModule.trainingSlotModel.SetTrainingSlotModelSelectedNotStart((int)param[0]);
-                        spareMiddleTrainingRoleModule.middleTrainingRole.OnInit(spareMiddleTrainingRoleModule);
+                        spareSelectedModel.trainingSlotModel.SetTraingRRS2SNS(bottomTrainingRoleModel.roleID.Value);
+                        spareSelectedModel.middleTrainingRole.OnInit(spareSelectedModel);
+                        m_SelectedRoleID.Add(bottomTrainingRoleModel.roleID.Value);
+                        bottomTrainingRoleModel.bottomTrainingRole.HandleSelectedRole();
                         break;
                     }
-                    Debug.LogError("出现未知错误");
+                    if (selectedSlot==null && spareSelectedModel == null)
+                    {
+                        Debug.LogError("Full");
+                        break;
+                    }
+                    Debug.LogWarning("Warning!");
                     break;
             }
         }
@@ -213,34 +176,35 @@ namespace GameWish.Game
         }
         private void OnBottomCellRenderer(Transform root, int index)
         {
-            BottomTrainingRoleModule bottomTrainingRoleData = bottomTrainingRoleDatas.FirstOrDefault(item => item.index.Value == index);
+            BottomTrainingModel bottomTrainingRoleData = m_BottomTrainingRoleDatas.FirstOrDefault(item => item.index.Value == index);
             if (bottomTrainingRoleData != null)
             {
                 root.GetComponent<BottomTrainingRole>().OnInit(bottomTrainingRoleData, m_SelectedCount);
             }
             else
             {
-                BottomTrainingRoleModule newBottomTrainingRoleModule = new BottomTrainingRoleModule(index, false);
-                bottomTrainingRoleDatas.Add(newBottomTrainingRoleModule);
-                root.GetComponent<BottomTrainingRole>().OnInit(newBottomTrainingRoleModule, m_SelectedCount);
+                BottomTrainingRole bottomTrainingRole = root.GetComponent<BottomTrainingRole>();
+                BottomTrainingModel newBottomTrainingRoleModule = new BottomTrainingModel(index, false, index, bottomTrainingRole);
+                m_BottomTrainingRoleDatas.Add(newBottomTrainingRoleModule);
+                bottomTrainingRole.OnInit(newBottomTrainingRoleModule, m_SelectedCount);
             }
         }
 
         private void OnMiddleCellRenderer(Transform root, int index)
         {
-            MiddleTrainingRoleModule middleTrainingRoleModule = middleTrainingRoleDatas.FirstOrDefault(item => item.index.Value == index);
+            MiddleTrainingSlotModel middleTrainingRoleModule = m_MiddleTrainingRoleDatas.FirstOrDefault(item => item.index.Value == index);
             if (middleTrainingRoleModule != null)
             {
                 root.GetComponent<MiddleTrainingRole>().OnInit(middleTrainingRoleModule);
             }
             else
             {
-                MiddleTrainingRoleModule newMiddleTrainingRoleModule;
+                MiddleTrainingSlotModel newMiddleTrainingRoleModule;
 
                 MiddleTrainingRole middleTrainingRole = root.GetComponent<MiddleTrainingRole>();
 
-                newMiddleTrainingRoleModule = new MiddleTrainingRoleModule(index, (m_PanelData.trainingRoomModel.slotModelList)[index], middleTrainingRole);
-                middleTrainingRoleDatas.Add(newMiddleTrainingRoleModule);
+                newMiddleTrainingRoleModule = new MiddleTrainingSlotModel(index, (m_PanelData.trainingRoomModel.slotModelList)[index], middleTrainingRole);
+                m_MiddleTrainingRoleDatas.Add(newMiddleTrainingRoleModule);
 
                 //middleTrainingRoles.Add(middleTrainingRole);
                 middleTrainingRole.OnInit(newMiddleTrainingRoleModule);
@@ -258,5 +222,57 @@ namespace GameWish.Game
 
         }
         #endregion
+       
     }
+    #region Other Data Class
+    public enum TrainintRoomRoleState
+    {
+        /// <summary>
+        /// 空闲中
+        /// </summary>
+        Free = 0,
+        /// <summary>
+        /// 训练中
+        /// </summary>
+        Training = 1,
+        /// <summary>
+        /// 未解锁
+        /// </summary>
+        Locked = 2,
+        /// <summary>
+        /// 选择但是未开始
+        /// </summary>
+        SelectedNotStart = 3,
+    }
+    public class BottomTrainingModel
+    {
+        public IntReactiveProperty index;
+        public BoolReactiveProperty isSelected;
+        public IntReactiveProperty roleID;
+        public BottomTrainingRole bottomTrainingRole;
+
+        public BottomTrainingModel(int index, bool selected, int roleID, BottomTrainingRole bottomTrainingRole)
+        {
+            this.index = new IntReactiveProperty(index);
+            this.isSelected = new BoolReactiveProperty(selected);
+            this.roleID = new IntReactiveProperty(roleID);
+            this.bottomTrainingRole = bottomTrainingRole;
+        }
+    }
+
+    public class MiddleTrainingSlotModel
+    {
+        public IntReactiveProperty index;
+
+        public TrainingSlotModel trainingSlotModel;
+        public MiddleTrainingRole middleTrainingRole;
+
+        public MiddleTrainingSlotModel(int index, TrainingSlotModel trainingSlotModel, MiddleTrainingRole middleTrainingRole)
+        {
+            this.index = new IntReactiveProperty(index);
+            this.trainingSlotModel = trainingSlotModel;
+            this.middleTrainingRole = middleTrainingRole;
+        }
+    }
+    #endregion
 }
