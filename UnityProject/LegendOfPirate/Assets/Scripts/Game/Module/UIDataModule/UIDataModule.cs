@@ -66,7 +66,7 @@ namespace GameWish.Game
             //UIDataTable.AddPanelData(UIID.MyFloatMessagePanel, null, "GamePanels/MyFloatMessagePanel/MyFloatMessagePanel");
             #region 登录注册创角
             UIDataTable.AddPanelData(UIID.LoginPanel, null, "LoginPanel/LoginPanel");
-            UIDataTable.AddPanelData(UIID.CreateHeroPanel, null, "GamePanels/CreateHeroPanel/CreateHeroPanel");
+            UIDataTable.AddPanelData(UIID.CreateUserPanel, null, "GamePanels/CreateUserPanel/CreateUserPanel");
             #endregion
 
             UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuPanel/MainMenuPanel");

@@ -9,7 +9,7 @@ using TMPro;
 
 namespace GameWish.Game
 {
-    public class CreateHeroPanel : AbstractPanel
+    public class CreateUserPanel : AbstractPanel
     {
         [SerializeField]
         private TMP_InputField m_NameInputField;

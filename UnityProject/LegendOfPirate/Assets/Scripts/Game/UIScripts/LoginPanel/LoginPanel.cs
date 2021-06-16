@@ -123,7 +123,7 @@ namespace GameWish.Game
                 PlayerPrefs.SetString("token", currentUser.SessionToken);
                 // 注册成功
                 CloseSelfPanel();
-                UIMgr.S.OpenPanel(UIID.CreateHeroPanel);
+                UIMgr.S.OpenPanel(UIID.CreateUserPanel);
             }
             catch (LCException e)
             {
@@ -144,7 +144,7 @@ namespace GameWish.Game
             }
             else
             {
-                UIMgr.S.OpenPanel(UIID.CreateHeroPanel);
+                UIMgr.S.OpenPanel(UIID.CreateUserPanel);
             }
         }
     }

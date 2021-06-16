@@ -69,7 +69,7 @@ namespace GameWish.Game
 
         #region 登录注册创角
         LoginPanel,
-        CreateHeroPanel,
+        CreateUserPanel,
         #endregion
     }
 }
