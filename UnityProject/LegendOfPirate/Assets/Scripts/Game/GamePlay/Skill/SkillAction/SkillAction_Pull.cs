@@ -24,11 +24,15 @@ namespace GameWish.Game
             m_Skill = skill;
             Vector3 hitDir = skill.TargetInfo.Caster.transform.forward;
             Vector3 targetPos = skill.TargetInfo.Target.transform.position;
+            Vector3 selfPos = skill.TargetInfo.Caster.transform.position;
 
-            m_EndPos = targetPos + hitDir * m_Distance;
+            float distance = Mathf.Min(m_Distance, Vector3.Distance(selfPos, targetPos));
+
+            m_EndPos = targetPos - hitDir * m_Distance;
 
             skill.Owner.AI.Pause();
             skill.TargetInfo.Target.onUpdate += OnUpdate;
+            skill.Owner.MonoReference.onCollisionEnter += onCollisionEnter;
         }
 
 
@@ -38,13 +42,22 @@ namespace GameWish.Game
 
             if (Vector3.Distance(m_Skill.TargetInfo.Target.transform.position, m_EndPos) < 0.01f)
             {
-                OnHitBackEnd();
+                OnPullEnd();
             }
         }
 
-        private void OnHitBackEnd()
+        private void onCollisionEnter(Collision other)
+        {
+            if (other.gameObject.layer == BattleHelper.GetOppoLayerByCamp(m_Skill.Owner.camp))
+            {
+                OnPullEnd();
+            }
+        }
+
+        private void OnPullEnd()
         {
             m_Skill.TargetInfo.Target.onUpdate -= OnUpdate;
+            m_Skill.Owner.MonoReference.onCollisionEnter -= onCollisionEnter;
             m_Skill.Owner.AI.Resume();
             m_Skill.SkillActionStepEnd();
         }
