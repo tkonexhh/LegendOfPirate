@@ -6,7 +6,7 @@ using UniRx;
 
 namespace GameWish.Game
 {
-	public partial class CreateUserPanel : AbstractAnimPanel
+	public partial class LoginPanel : AbstractAnimPanel
 	{
 		protected override void OnUIInit()
 		{

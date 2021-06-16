@@ -55,9 +55,9 @@ namespace GameWish.Game
     ///<summary>
     /// 玩家个人信息
     ///</summary>
-    internal class HeroStorage : LCObject
+    internal class UserStorage : LCObject
     {
-        internal HeroStorage() : base("HeroStorage") { }
+        internal UserStorage() : base("UserStorage") { }
         ///<summary>
         /// 玩家姓名
         ///</summary>
@@ -144,7 +144,7 @@ namespace GameWish.Game
             LCObject.RegisterSubclass("Hello", () => new Hello());
             LCObject.RegisterSubclass("World", () => new World());
             LCObject.RegisterSubclass("AccountStorage", () => new AccountStorage());
-            LCObject.RegisterSubclass("HeroStorage", () => new HeroStorage());
+            LCObject.RegisterSubclass("UserStorage", () => new UserStorage());
             LCObject.RegisterSubclass("AwardStorage", () => new AwardStorage());
         }
     }
