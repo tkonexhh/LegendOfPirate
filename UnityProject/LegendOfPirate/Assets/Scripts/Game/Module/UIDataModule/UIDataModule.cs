@@ -115,7 +115,9 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.SmugglePanel, null, "GamePanels/LandManagement/SmugglePanel/SmugglePanel");
             UIDataTable.AddPanelData(UIID.SmuggleChooseRolePanel, null, "GamePanels/LandManagement/SmuggleChooseRolePanel/SmuggleChooseRolePanel");
             #endregion
-
+            #region FloatMessageTMP
+            UIDataTable.AddPanelData(UIID.FloatMessageTMPanel, null, "GamePanels/Common/FloatMessageTMPanel", true, 1);
+            #endregion
             UIDataTable.AddPanelData(UIID.BuildingLevelUpPanel, null, "GamePanels/BuildingLevelUpPanel/BuildingLevelUpPanel");
         }
     }

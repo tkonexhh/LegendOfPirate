@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
 
 namespace GameWish.Game
 {
@@ -27,7 +28,7 @@ namespace GameWish.Game
         private Image m_Lock;
 
         #region Data
-        private MiddleTrainingRoleModule m_MiddleTrainingRoleModule;
+        private MiddleSlotModel m_MiddleTrainingRoleModule;
         #endregion
         #region Method
         private void OnReset()
@@ -43,23 +44,23 @@ namespace GameWish.Game
             OnReset();
             switch (m_MiddleTrainingRoleModule.trainingSlotModel.trainState.Value)
             {
-                case TrainingRoomRoleState.Free:
+                case TrainingSlotState.Free:
                     m_Plug.gameObject.SetActive(true);
                     break;
-                case TrainingRoomRoleState.Training:
+                case TrainingSlotState.Training:
                     m_RoleIconBg.gameObject.SetActive(true);
                     break;
-                case TrainingRoomRoleState.Locked:
+                case TrainingSlotState.Locked:
                     m_LockBg.gameObject.SetActive(true);
                     break;
-                case TrainingRoomRoleState.HeroSelected:
+                case TrainingSlotState.HeroSelected:
                     m_RoleIconBg.gameObject.SetActive(true);
                     m_Time.text = "选择";
                     break;
             }
         }
 
-        public void OnInit(MiddleTrainingRoleModule middleTrainingRoleModule)
+        public void OnInit(MiddleSlotModel middleTrainingRoleModule)
         {
             if (middleTrainingRoleModule == null)
             {
@@ -68,6 +69,8 @@ namespace GameWish.Game
             }
 
             m_MiddleTrainingRoleModule = middleTrainingRoleModule;
+
+            m_MiddleTrainingRoleModule.trainingSlotModel.trainRemainTime.SubscribeToTextMeshPro(m_Time).AddTo(this);
 
             OnRefresh();
         }

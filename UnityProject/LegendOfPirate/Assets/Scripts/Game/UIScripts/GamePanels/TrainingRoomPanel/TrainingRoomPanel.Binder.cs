@@ -26,7 +26,7 @@ namespace GameWish.Game
             return trainingRoomModel.tableConfig.capacity;
         }
 
-        public int GetSlotModelListCount()
+        public int GetSlotLCount()
         {
             return trainingRoomModel.slotModelList.Count;
         }
@@ -73,41 +73,41 @@ namespace GameWish.Game
 
         private void RegisterEvents()
         {
-            EventSystem.S.Register(EventID.OnTrainingRoomUpgradeRefresh, HandlerEvent);
-            EventSystem.S.Register(EventID.OnTrainingRoomSelectRole, HandlerEvent);
+            EventSystem.S.Register(EventID.OnTrainingUpgradeRefresh, HandlerEvent);
+            EventSystem.S.Register(EventID.OnTrainingSelectRole, HandlerEvent);
         }
 
         private void OnClickAddListener()
         {
             LeftArrowBtn.OnClickAsObservable().Subscribe(_ =>
             {
-                LeftArrowBtnEvent();
+                LeftArrowBtnEnt();
             });
             RightArrowBtn.OnClickAsObservable().Subscribe(_ =>
             {
-                RightArrowBtnEvent();
+                RightArrowBtnEnt();
             });
             TrainingUpgradeBtn.OnClickAsObservable().Subscribe(_ =>
             {
-                TrainingUpgradeBtnEvent();
+                TUpgradeBtnEnt();
             });
             TrainBtn.OnClickAsObservable().Subscribe(_ =>
             {
-                TrainBtnEvent();
+                TrainBtnEnt();
             });
             AutoTrainBtn.OnClickAsObservable().Subscribe(_ =>
             {
-                AutoTrainBtnEvent();
+                AutoTrainBtnEnt();
             });
             BgBtn.OnClickAsObservable().Subscribe(_ =>
             {
-                BgBtnEvent();
+                BgBtnEnt();
             });
         }
         private void UnregisterEvents()
         {
-            EventSystem.S.UnRegister(EventID.OnTrainingRoomUpgradeRefresh, HandlerEvent);
-            EventSystem.S.UnRegister(EventID.OnTrainingRoomSelectRole, HandlerEvent);
+            EventSystem.S.UnRegister(EventID.OnTrainingUpgradeRefresh, HandlerEvent);
+            EventSystem.S.UnRegister(EventID.OnTrainingSelectRole, HandlerEvent);
         }
     }
 }

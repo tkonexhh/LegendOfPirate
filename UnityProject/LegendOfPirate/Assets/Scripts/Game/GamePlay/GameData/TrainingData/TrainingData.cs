@@ -60,7 +60,7 @@ namespace GameWish.Game
             public int slotId;
             public int heroId;
             public DateTime trainingStartTime;
-            public TrainingRoomRoleState trainState;
+            public TrainingSlotState trainState;
 
             private TrainingData m_TrainingData;
 
@@ -71,14 +71,14 @@ namespace GameWish.Game
                 slotId = slot;
                 heroId = -1;
                 trainingStartTime = default(DateTime);
-                trainState = TrainingRoomRoleState.Locked;
+                trainState = TrainingSlotState.Locked;
             }
 
             public void OnStartTraining(int heroId, DateTime time)
             {
                 this.heroId = heroId;
                 this.trainingStartTime = time;
-                trainState = TrainingRoomRoleState.Training;
+                trainState = TrainingSlotState.Training;
 
                 m_TrainingData.SetDataDirty();
             }
@@ -86,14 +86,14 @@ namespace GameWish.Game
             public void OnHeroSelected(int heroId)
             {
                 this.heroId = heroId;
-                trainState = TrainingRoomRoleState.HeroSelected;
+                trainState = TrainingSlotState.HeroSelected;
 
                 m_TrainingData.SetDataDirty();
             }
 
             public void OnHeroUnselected()
             {
-                trainState = TrainingRoomRoleState.Free;
+                trainState = TrainingSlotState.Free;
 
                 m_TrainingData.SetDataDirty();
             }
@@ -102,14 +102,14 @@ namespace GameWish.Game
             {
                 this.heroId = -1;
                 this.trainingStartTime = default(DateTime);
-                trainState = TrainingRoomRoleState.Free;
+                trainState = TrainingSlotState.Free;
 
                 m_TrainingData.SetDataDirty();
             }
 
             public void OnUnlocked()
             {
-                trainState = TrainingRoomRoleState.Free;
+                trainState = TrainingSlotState.Free;
 
                 m_TrainingData.SetDataDirty();
             }
