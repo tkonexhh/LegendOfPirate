@@ -3463,8 +3463,7 @@ MonoBehaviour:
   TitileCont: {fileID: 8974728815070553472}
   TrainingLevelTMP: {fileID: 1222264747794609341}
   TrainingUpgradeBtn: {fileID: 3563372089484757010}
-  TrainingUpgradeBtnTMP: {fileID: 0}
-  MiddleUGridListView: {fileID: 2181551898610122347}
+  MiddleUGridListView: {fileID: 3967908146598473902}
   MiddleTrainingRoleTra: {fileID: 865230367213769078}
   BottomRegionBg: {fileID: 8543107674581887091}
   LeftArrowBtn: {fileID: 3523745070731068530}

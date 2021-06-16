@@ -72,7 +72,13 @@ namespace GameWish.Game
         }
         public void TrainBtnEnt()
         {
-
+            foreach (var item in m_MiddleTRoleDatas)
+            {
+                if (item.trainingSlotModel.trainState.Value ==  TrainingSlotState.SelectedNotStart)
+                {
+                    item.trainingSlotModel.StartTraining(DateTime.Now);
+                }
+            }
         }
         public void AutoTrainBtnEnt()
         {
@@ -149,7 +155,7 @@ namespace GameWish.Game
                     }
                     if (selectedSlot==null && spareSelectedModel == null)
                     {
-                        Debug.LogError("Full");
+                        FloatMessageTMP.S.ShowMsg("Full");
                         break;
                     }
                     Debug.LogWarning("Warning!");
@@ -212,7 +218,7 @@ namespace GameWish.Game
 
         private void BindUniRxUI()
         {
-            m_SelectedCount.Select(count => count + "/" + 10).SubscribeToTextMeshPro(RSelectNumberTMP);
+            m_SelectedCount.Select(count => count + "/" + 10).SubscribeToTextMeshPro(RoleSelectNumberTMP);
         }
 
         public void CreateMiddleTRole()

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
 
 namespace GameWish.Game
 {
@@ -68,6 +69,8 @@ namespace GameWish.Game
             }
 
             m_MiddleTrainingRoleModule = middleTrainingRoleModule;
+
+            m_MiddleTrainingRoleModule.trainingSlotModel.trainRemainTime.SubscribeToTextMeshPro(m_Time).AddTo(this);
 
             OnRefresh();
         }
