@@ -18,7 +18,7 @@ namespace Qarth.Extension
                 .Using("UnityEngine.UI")
                 .Using("Qarth.Extension")
                 .Using("Qarth")
-                .Using("GFrame.Editor")
+                .Using("TMPro")
                 .EmptyLine()
                 .Namespace(scriptNamespace.IsTrimNullOrEmpty()
                     ? UIKitSettingData.Namespace
@@ -39,9 +39,10 @@ namespace Qarth.Extension
                                 classScope.Custom("/// </summary>");
                             }
 
-                            classScope.Custom("[SerializeField]");
-                            classScope.Custom("public " + bindInfo.BindScript.ComponentName + " " + bindInfo.Name +
-                                              ";");
+                            // classScope.Custom("");
+                            string propName = UISerializer.GetPropName(bindInfo.Name);
+
+                            classScope.Custom("[SerializeField] private " + bindInfo.BindScript.ComponentName + " " + propName + ";");
                         }
 
                         classScope.EmptyLine();
