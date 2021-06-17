@@ -14,6 +14,7 @@ namespace GameWish.Game
         public const int DEFAULT_TIP_NUM = 5;
 
         public const string DEFAULT_SOUND = "";
+        public const string SYMBOL_SLASH = "/";
 
         public const string NAME_SPACE_PREFIX = "GameWish.Game.";
 

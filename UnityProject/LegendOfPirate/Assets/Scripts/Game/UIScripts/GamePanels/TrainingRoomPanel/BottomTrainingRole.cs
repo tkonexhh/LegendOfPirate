@@ -21,8 +21,31 @@ namespace GameWish.Game
         private IntReactiveProperty m_IntReactiveSelectedCount;
         #endregion
 
-        private void Awake()
+        private void HandlerEvent(int key, object[] param)
         {
+            switch ((EventID)key)
+            {
+                case EventID.OnTRoomStartTraining:
+                    if (m_BottomTrainingData==null)
+                        return;
+                    if (m_BottomTrainingData.roleID.Value == (int)(param[0]))
+                    {
+                        //m_BottomTrainingRole.gameObject.SetActive(false);
+                    }
+                    break;
+
+            }
+        }
+
+        private void Start()
+        {
+            EventSystem.S.Register(EventID.OnTRoomStartTraining, HandlerEvent);
+        }
+
+        private void OnDestroy()
+        {
+            EventSystem.S.UnRegister(EventID.OnTRoomStartTraining, HandlerEvent);
+
         }
 
         public void OnInit(BottomRoleModel bottomTrainingRoleData, IntReactiveProperty selectedCount)
@@ -45,14 +68,17 @@ namespace GameWish.Game
             m_State.gameObject.SetActive(false);
             m_BottomTrainingRole.OnClickAsObservable().Subscribe(_ =>
             {
+                if (m_BottomTrainingData.bottomTrainingRole)
+                {
+
+                }
                 EventSystem.S.Send(EventID.OnTrainingSelectRole, m_BottomTrainingData);
-            });
+            }).AddTo(this);
         }
 
         public void HandleSelectedRole()
         {
             m_BottomTrainingData.isSelected.Value = !m_BottomTrainingData.isSelected.Value;
-            m_IntReactiveSelectedCount.Value += (m_BottomTrainingData.isSelected.Value ? 1 : -1);
             OnRefresh();
         }
 
@@ -61,10 +87,12 @@ namespace GameWish.Game
             if (m_BottomTrainingData.isSelected.Value)
             {
                 m_State.gameObject.SetActive(true);
+                m_BottomTrainingRole.enabled = false;
             }
             else
             {
                 m_State.gameObject.SetActive(false);
+                m_BottomTrainingRole.enabled = true;
             }
         }
         #endregion

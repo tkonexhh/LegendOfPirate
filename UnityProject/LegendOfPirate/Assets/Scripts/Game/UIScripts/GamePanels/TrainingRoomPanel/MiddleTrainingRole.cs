@@ -70,7 +70,7 @@ namespace GameWish.Game
 
             m_MiddleTrainingRoleModule = middleTrainingRoleModule;
 
-            m_MiddleTrainingRoleModule.trainingSlotModel.trainRemainTime.SubscribeToTextMeshPro(m_Time).AddTo(this);
+            m_MiddleTrainingRoleModule.trainingSlotModel.trainRemainTime.Select(x=>(int)x).SubscribeToTextMeshPro(m_Time).AddTo(this);
 
             OnRefresh();
         }

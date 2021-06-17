@@ -95,8 +95,10 @@ namespace GameWish.Game
         #region Public Set
         public void StartTraining(int heroId, DateTime startTime)
         {
-            this.heroId = heroId;
+            //this.heroId = heroId;
             SetTime(startTime);
+
+            trainState.Value = TrainingSlotState.Training;
 
             m_DbItem.OnStartTraining(heroId, startTime);
         }

@@ -5,13 +5,14 @@ using Qarth;
 using UniRx;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace GameWish.Game
 {
     public partial class TrainingRoomPanel : AbstractAnimPanel
     {
         [SerializeField]
-        private ScrollRectAutoAdjustPosition m_SRAutoAdjustPos;
+        private ScrollRectAutoAdjustPosition m_ScrollRectAdjustPos;
         [SerializeField]
         private UGridListView m_MiddleTRoleUGL;
         [SerializeField]
@@ -23,6 +24,7 @@ namespace GameWish.Game
         private ReactiveCollection<MiddleSlotModel> m_MiddleTRoleDatas = new ReactiveCollection<MiddleSlotModel>();
 
         private ReactiveCollection<int> m_SelectedRoleID = new ReactiveCollection<int>();
+        private ReactiveCollection<int> m_SimulationRoleID = new ReactiveCollection<int>();
         #endregion
 
         #region AbstractAnimPanel
@@ -43,6 +45,16 @@ namespace GameWish.Game
             BindModelToUI();
             BindUIToModel();
             OnClickAddListener();
+
+            m_SimulationRoleID.Add(10);
+            m_SimulationRoleID.Add(9);
+            m_SimulationRoleID.Add(8);
+            m_SimulationRoleID.Add(7);
+            m_SimulationRoleID.Add(5);
+            m_SimulationRoleID.Add(32);
+            m_SimulationRoleID.Add(132);
+            m_SimulationRoleID.Add(654651);
+            m_SimulationRoleID.Add(23132);
 
             InitData();
         }
@@ -77,9 +89,39 @@ namespace GameWish.Game
                 if (item.trainingSlotModel.trainState.Value ==  TrainingSlotState.HeroSelected)
                 {
                     item.trainingSlotModel.StartTraining(1,DateTime.Now);
+                    EventSystem.S.Send(EventID.OnTRoomStartTraining, item.trainingSlotModel.heroId);
+                    SelectedRoleSort();
                 }
             }
+            RefreshSelectedCount();
         }
+
+        private void SelectedRoleSort()
+        {
+            //List<TrainingSlotModel> trainingSlotModels = m_BottomTrainingRoleDatas;
+            for (var i = 0; i < m_BottomTrainingRoleDatas.Count - 1; i++)
+            {
+                for (var j = 0; j < m_BottomTrainingRoleDatas.Count - 1 - i; j++)
+                {
+                    if (m_SelectedRoleID.Contains(m_BottomTrainingRoleDatas[j].roleID.Value))
+                    {
+                        BottomRoleModel trainingSlotModel = m_BottomTrainingRoleDatas[j];
+                        m_BottomTrainingRoleDatas[j] = m_BottomTrainingRoleDatas[j + 1];
+                        m_BottomTrainingRoleDatas[j + 1] = trainingSlotModel;
+
+                        //Debug.LogError("isSelected = " + m_BottomTrainingRoleDatas[j].isSelected.Value);
+                        //BottomRoleModel bottomRoleModel = BottomRoleModel.ExchangeEachOther(m_BottomTrainingRoleDatas[j]);
+                        //m_BottomTrainingRoleDatas[j] = BottomRoleModel.ExchangeEachOther(m_BottomTrainingRoleDatas[j + 1]);
+                        //m_BottomTrainingRoleDatas[j].bottomTrainingRole.OnRefresh();
+                        //m_BottomTrainingRoleDatas[j + 1] = bottomRoleModel;
+                        //m_BottomTrainingRoleDatas[j + 1].bottomTrainingRole.OnRefresh();
+
+                    }
+                }
+            }
+            m_BottomTRoleUL.SetDataCount(m_BottomTrainingRoleDatas.Count);
+        }
+
         public void AutoTrainBtnEnt()
         {
         }
@@ -89,11 +131,11 @@ namespace GameWish.Game
         }
         public void LeftArrowBtnEnt()
         {
-            m_SRAutoAdjustPos?.Move2Pre();
+            m_ScrollRectAdjustPos?.Move2Pre();
         }
         public void RightArrowBtnEnt()
         {
-            m_SRAutoAdjustPos?.Move2Next();
+            m_ScrollRectAdjustPos?.Move2Next();
         }
         #endregion
 
@@ -165,34 +207,110 @@ namespace GameWish.Game
         #endregion
 
         #region Other Method
+
+        public void RefreshSelectedCount()
+        {
+            int number = 0;
+            foreach (var item in m_PanelData.trainingRoomModel.slotModelList)
+            {
+                if (item.trainState.Value == TrainingSlotState.Training)
+                {
+                    number++;
+                }
+            }
+            m_SelectedCount.Value = number;
+        }
+
+        private ReactiveCollection<int> GetCorrespondingStateList(TrainingSlotState trainingSlotState)
+        {
+            ReactiveCollection<int> heroSelectedRoleID = new ReactiveCollection<int>();
+
+            foreach (var item in m_PanelData.trainingRoomModel.slotModelList)
+            {
+                if (item.trainState.Value == trainingSlotState)
+                {
+                    heroSelectedRoleID.Add(item.heroId);
+                }
+            }
+            return heroSelectedRoleID;
+        }
+
         private void InitData()
         {
             BindUniRxUI();
+            RefreshSelectedCount();
 
+            ReactiveCollection<int> trainingStates = GetCorrespondingStateList(TrainingSlotState.Training);
+            ReactiveCollection<int> heroSelectedStates = GetCorrespondingStateList(TrainingSlotState.HeroSelected);
+
+            ReactiveCollection<BottomRoleModel> tempSelectedDatas = new ReactiveCollection<BottomRoleModel>();
+            for (int i = 0; i < m_SimulationRoleID.Count; i++)
+            {
+                if (trainingStates.Contains(m_SimulationRoleID[i]))
+                {
+                    BottomRoleModel newBottomTRoleM = new BottomRoleModel(m_SimulationRoleID[i], this,true);
+
+                    tempSelectedDatas.Add(newBottomTRoleM);
+                }
+                else
+                {
+                    if (heroSelectedStates.Contains(m_SimulationRoleID[i]))
+                    {
+                        BottomRoleModel newBottomTRoleM = new BottomRoleModel(m_SimulationRoleID[i], this, true);
+
+                        m_SelectedRoleID.Add(m_SimulationRoleID[i]);
+
+                        m_BottomTrainingRoleDatas.Add(newBottomTRoleM);
+                    }
+                    else
+                    {
+                        BottomRoleModel newBottomTRoleM = new BottomRoleModel(m_SimulationRoleID[i], this, false);
+
+                        m_BottomTrainingRoleDatas.Add(newBottomTRoleM);
+                    }
+                }
+            }
+
+            foreach (var item in tempSelectedDatas)
+            {
+                m_BottomTrainingRoleDatas.Add(item);
+            }
+            tempSelectedDatas.Clear();
+            trainingStates.Clear();
+            heroSelectedStates.Clear();
             //TitleIcon.sprite = SpriteHandler.S.GetSprite(AtlasDefine.TestAtlas, iconName);
 
             m_MiddleTRoleUGL.SetCellRenderer(OnMiddleCellRenderer);
             m_BottomTRoleUL.SetCellRenderer(OnBottomCellRenderer);
 
-            m_SRAutoAdjustPos.EnableAutoAdjust(m_PanelData.GetSlotLCount());
+            m_ScrollRectAdjustPos.EnableAutoAdjust(m_SimulationRoleID.Count);
 
             m_MiddleTRoleUGL.SetDataCount(m_PanelData.GetSlotLCount());
-            m_BottomTRoleUL.SetDataCount(m_PanelData.GetSlotLCount());
+            m_BottomTRoleUL.SetDataCount(m_BottomTrainingRoleDatas.Count);
         }
         private void OnBottomCellRenderer(Transform root, int index)
         {
-            BottomRoleModel bottomTrainingRoleData = m_BottomTrainingRoleDatas.FirstOrDefault(item => item.index.Value == index);
-            if (bottomTrainingRoleData != null)
-            {
-                root.GetComponent<BottomTrainingRole>().OnInit(bottomTrainingRoleData, m_SelectedCount);
-            }
-            else
-            {
-                BottomTrainingRole bottomTrainingRole = root.GetComponent<BottomTrainingRole>();
-                BottomRoleModel newBottomTRoleM = new BottomRoleModel(index, false, index, bottomTrainingRole);
-                m_BottomTrainingRoleDatas.Add(newBottomTRoleM);
-                bottomTrainingRole.OnInit(newBottomTRoleM, m_SelectedCount);
-            }
+            BottomRoleModel bottomRoleModel = m_BottomTrainingRoleDatas[index];
+
+            BottomTrainingRole bottomTR = root.GetComponent<BottomTrainingRole>();
+
+            bottomRoleModel.SetTRoleData(index, bottomTR);
+
+            bottomTR.OnInit(bottomRoleModel,m_SelectedCount);
+
+
+            //BottomRoleModel bottomTrainingRoleData = m_BottomTrainingRoleDatas.FirstOrDefault(item => item.index.Value == index);
+            //if (bottomTrainingRoleData != null)
+            //{
+            //    root.GetComponent<BottomTrainingRole>().OnInit(bottomTrainingRoleData, m_SelectedCount);
+            //}
+            //else
+            //{
+            //    BottomTrainingRole bottomTrainingRole = root.GetComponent<BottomTrainingRole>();
+            //    BottomRoleModel newBottomTRoleM = new BottomRoleModel(index, false, test[index], bottomTrainingRole,this);
+            //    m_BottomTrainingRoleDatas.Add(newBottomTRoleM);
+            //    bottomTrainingRole.OnInit(newBottomTRoleM, m_SelectedCount);
+            //}
         }
 
         private void OnMiddleCellRenderer(Transform root, int index)
@@ -218,7 +336,7 @@ namespace GameWish.Game
 
         private void BindUniRxUI()
         {
-            m_SelectedCount.Select(count => count + "/" + 10).SubscribeToTextMeshPro(RoleSelectNumberTMP);
+            m_SelectedCount.Select(count => count + Define.SYMBOL_SLASH + m_PanelData.GetSlotLCount()).SubscribeToTextMeshPro(RoleSelectNumberTMP);
         }
 
         public void CreateMiddleTRole()
@@ -255,12 +373,27 @@ namespace GameWish.Game
         public BoolReactiveProperty isSelected;
         public IntReactiveProperty roleID;
         public BottomTrainingRole bottomTrainingRole;
+        public TrainingRoomPanel trainingRoomPanel;
 
-        public BottomRoleModel(int index, bool selected, int roleID, BottomTrainingRole bottomTrainingRole)
+        public BottomRoleModel(int index, bool selected, int roleID, BottomTrainingRole bottomTrainingRole, TrainingRoomPanel trainingRoomPanel)
         {
             this.index = new IntReactiveProperty(index);
             this.isSelected = new BoolReactiveProperty(selected);
             this.roleID = new IntReactiveProperty(roleID);
+            this.bottomTrainingRole = bottomTrainingRole;
+            this.trainingRoomPanel = trainingRoomPanel;
+        }
+
+        public BottomRoleModel(int roleID, TrainingRoomPanel trainingRoomPanel,bool selected)
+        {
+            this.roleID = new IntReactiveProperty(roleID);
+            this.trainingRoomPanel = trainingRoomPanel;
+            this.isSelected = new BoolReactiveProperty(selected);
+        }
+
+        public void SetTRoleData(int index, BottomTrainingRole bottomTrainingRole)
+        {
+            this.index = new IntReactiveProperty(index);
             this.bottomTrainingRole = bottomTrainingRole;
         }
     }

@@ -48,6 +48,10 @@ namespace GameWish.Game
         /// 升级刷新事件
         /// </summary>
         OnTrainingUpgradeRefresh,
+        /// <summary>
+        /// 开始训练
+        /// </summary>
+        OnTRoomStartTraining,
         #endregion
     }
 
