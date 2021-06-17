@@ -43,6 +43,7 @@ namespace Qarth.Extension
                             string propName = UISerializer.GetPropName(bindInfo.Name);
 
                             classScope.Custom("[SerializeField] private " + bindInfo.BindScript.ComponentName + " " + propName + ";");
+
                         }
 
                         classScope.EmptyLine();

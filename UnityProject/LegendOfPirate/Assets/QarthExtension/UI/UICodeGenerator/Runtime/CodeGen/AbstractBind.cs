@@ -1,4 +1,4 @@
-
+﻿
 using UnityEngine;
 using UnityEngine.UI;
 using GFrame.Editor;
@@ -68,6 +68,7 @@ namespace Qarth.Extension
             //ugui expand
             if (GetComponent<SoundButton>()) return "SoundButton";
             if (GetComponent<PopButton>()) return "PopButton";
+
             if (GetComponent<IUListView>()) return "IUListView";
 
             // ugui bind

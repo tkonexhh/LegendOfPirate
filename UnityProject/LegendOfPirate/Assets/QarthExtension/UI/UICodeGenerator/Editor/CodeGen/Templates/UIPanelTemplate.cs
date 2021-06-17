@@ -36,6 +36,11 @@ namespace Qarth.Extension
                             (function) => 
                             {
                                 function.Custom("base.OnUIInit();");
+                                function.EmptyLine();
+                                function.Custom("BindModelToUI();");
+                                function.EmptyLine();
+                                function.Custom("BindUIToModel();");
+                               
                             });
 
                         classScope.EmptyLine();
@@ -46,9 +51,8 @@ namespace Qarth.Extension
                                 function.Custom("base.OnPanelOpen(args);");
                                 function.EmptyLine();
                                 function.Custom("AllocatePanelData(args);");
-                                function.EmptyLine();
-                                function.Custom("BindModelToUI();");
-                                function.Custom("BindUIToModel();");
+
+
                             });
 
                         classScope.EmptyLine();
