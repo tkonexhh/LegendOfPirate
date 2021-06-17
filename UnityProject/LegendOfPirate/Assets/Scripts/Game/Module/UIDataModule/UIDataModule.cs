@@ -122,7 +122,7 @@ namespace GameWish.Game
 
 
             #region 战斗相关
-            UIDataTable.AddPanelData(UIID.BattlePreparePanel, null, "GamePanels/BuildingLevelUpPanel/BuildingLevelUpPanel", true, 1);//战斗排兵布阵界面
+            //UIDataTable.AddPanelData(UIID.BattlePreparePanel, null, "GamePanels/BuildingLevelUpPanel/BuildingLevelUpPanel", true, 1);//战斗排兵布阵界面
 
             #endregion
         }

@@ -40,7 +40,8 @@ namespace Qarth.Extension
                                 function.Custom("BindModelToUI();");
                                 function.EmptyLine();
                                 function.Custom("BindUIToModel();");
-                               
+                                function.EmptyLine();
+                                function.Custom("AllocatePanelData();");
                             });
 
                         classScope.EmptyLine();
@@ -50,9 +51,6 @@ namespace Qarth.Extension
                             {
                                 function.Custom("base.OnPanelOpen(args);");
                                 function.EmptyLine();
-                                function.Custom("AllocatePanelData(args);");
-
-
                             });
 
                         classScope.EmptyLine();
@@ -71,6 +69,15 @@ namespace Qarth.Extension
                              function =>
                              {
                                  function.Custom("base.OnClose();");
+                                 function.EmptyLine();
+                             });
+
+                        classScope.EmptyLine();
+
+                        classScope.CustomScope("protected override void BeforDestroy()", false,
+                             function =>
+                             {
+                                 function.Custom("base.BeforDestroy();");
                                  function.EmptyLine();
                                  function.Custom("ReleasePanelData();");
                              });

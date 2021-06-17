@@ -42,7 +42,7 @@ namespace Qarth.Extension
 
                         classScope.EmptyLine();
 
-                        classScope.CustomScope("private void AllocatePanelData(params object[] args)", false,
+                        classScope.CustomScope("private void AllocatePanelData()", false,
                             function =>
                             {
                                 function.Custom("m_PanelData = UIPanelData.Allocate<" + name + "Data>();");

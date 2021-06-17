@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6335331362040332364}
   - component: {fileID: 6335331362040332363}
   - component: {fileID: 6335331362040332362}
-  - component: {fileID: 8985932030137962317}
+  - component: {fileID: 3880684622978384767}
   m_Layer: 5
   m_Name: TestPanel
   m_TagString: Untagged
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 55
---- !u!114 &8985932030137962317
+--- !u!114 &3880684622978384767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,8 +215,8 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  Txt_: {fileID: 6335331361228488521}
-  Btn_: {fileID: 6335331362502366272}
+  m_Txt: {fileID: 6335331361228488521}
+  m_Btn: {fileID: 6335331362502366272}
 --- !u!1 &6335331362295653293
 GameObject:
   m_ObjectHideFlags: 0
