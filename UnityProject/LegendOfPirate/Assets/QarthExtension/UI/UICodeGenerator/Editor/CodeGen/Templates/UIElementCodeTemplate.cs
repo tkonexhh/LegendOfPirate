@@ -69,6 +69,7 @@ namespace Qarth.Extension
             strBuilder.AppendLine("using UnityEngine;");
 			strBuilder.AppendLine("using UnityEngine.UI;");
 			strBuilder.AppendLine("using Qarth;");
+			strBuilder.AppendLine("using TMPro;");
 			strBuilder.AppendLine();
 			strBuilder.AppendLine("namespace " + nameSpace);
 			strBuilder.AppendLine("{");
@@ -79,8 +80,9 @@ namespace Qarth.Extension
 			foreach (var markInfo in elementCodeInfo.BindInfos)
 			{
 				var strUIType = markInfo.BindScript.ComponentName;
-				strBuilder.AppendFormat("\t\t[SerializeField] public {0} {1};\r\n",
-					strUIType, markInfo.Name);
+				string propName = UISerializer.GetPropName(markInfo.Name);
+				strBuilder.AppendFormat("\t\t[SerializeField] private {0} {1};\r\n",
+					strUIType, propName);
 			}
 
 			strBuilder.AppendLine();
