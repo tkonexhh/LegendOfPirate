@@ -127,9 +127,18 @@ namespace GameWish.Game
 
         public void RefreshRemainTime()
         {
+            if (m_DbItem.trainState != TrainingSlotState.Training)
+                return;
+
             double remainTime = (m_EndTime - DateTime.Now).TotalSeconds;
 
             trainRemainTime.Value = (float)remainTime;
+            if (trainRemainTime.Value <= 0f)
+            {
+                EndTraining();
+
+                //TODO...   增加人物经验
+            }
         }
 
         public void OnTrainingRoomLevelUp()
