@@ -16,7 +16,10 @@ namespace GameWish.Game
 		public IUListView ScrollView;
 		[SerializeField]
 		public GFrame.Editor.GButton CloseBtn;
-		
-		
+		[SerializeField]
+		public RoleGroupItem RoleGroupItem;
+
+
+
 	}
 }

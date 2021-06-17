@@ -31,23 +31,30 @@ namespace GameWish.Game
             this.starLevel = 1;
             equipList = new List<RoleEquipData>();
             skillList = new List<RoleSkillData>();
+            SetDataDirty();
         }
 
         #region Public
 
-        public void SetUnlocked()
+        public void SetRoleUnlocked()
         {
             isUnlock = true;
             SetDataDirty();
         }
 
-        public void AddLevel(int deltaLevel)
+        public void SetRoleSpiritCount(int count)
+        {
+            spiritCount = count;
+            SetDataDirty();
+        }
+
+        public void SetRoleLevel(int deltaLevel)
         {
             level = deltaLevel;
             SetDataDirty();
         }
 
-        public bool AddSkill(int id)
+        public bool AddRoleSkill(int id)
         {
             RoleSkillData? skill = GetRoleSkillData(id);
 
@@ -61,7 +68,7 @@ namespace GameWish.Game
             return false;
         }
 
-        public bool UpgradeSkill(int id, int deltaLevel)
+        public bool UpgradeRoleSkill(int id, int deltaLevel)
         {
             RoleSkillData? skill = GetRoleSkillData(id);
 
@@ -75,7 +82,7 @@ namespace GameWish.Game
             return false;
         }
 
-        public bool AddEquip(int id)
+        public bool AddRoleEquip(int id)
         {
             RoleEquipData? equip = GetRoleEquipData(id);
 
@@ -89,7 +96,7 @@ namespace GameWish.Game
             return false;
         }
 
-        public bool UpgradeEquip(int id, int deltaLevel)
+        public bool UpgradeRoleEquip(int id, int deltaLevel)
         {
             RoleEquipData? equip = GetRoleEquipData(id);
 
