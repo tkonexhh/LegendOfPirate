@@ -13,26 +13,30 @@ namespace GameWish.Game
 
         public RoleConfigSO DemoRoleSO;
         public SkillConfigSO DemoSkillSO;
+        public BattleFieldConfigSO DemoEnemyFieldConfigSO;
+
 
         private List<IBattleComponent> m_BattleComponentList;
         public bool Started { get; private set; }
 
-
-        public BattleRendererComponent BattleRendererComponent { get; private set; }
+        public BattleFieldComponent Field { get; private set; }
+        public BattleRendererComponent Role { get; private set; }
         public BattleBulletComponent Bullet { get; private set; }
 
 
         public override void OnSingletonInit()
         {
-
             m_BattleComponentList = new List<IBattleComponent>();
             AddComponent(new BattlePoolComponent());
-            BattleRendererComponent = AddComponent(new BattleRendererComponent()) as BattleRendererComponent;
+            Field = AddComponent(new BattleFieldComponent()) as BattleFieldComponent;
+            Role = AddComponent(new BattleRendererComponent()) as BattleRendererComponent;
             Bullet = AddComponent(new BattleBulletComponent()) as BattleBulletComponent;
+
         }
 
         private IBattleComponent AddComponent(IBattleComponent component)
         {
+            component.BattleMgr = this;
             m_BattleComponentList.Add(component);
             return component;
         }
@@ -55,13 +59,11 @@ namespace GameWish.Game
         #endregion
 
 
-
-
-        public void BattleInit()
+        public void BattleInit(BattleFieldConfigSO enemyConfigSO)
         {
             for (int i = 0; i < m_BattleComponentList.Count; i++)
             {
-                m_BattleComponentList[i].OnBattleInit();
+                m_BattleComponentList[i].OnBattleInit(enemyConfigSO);
             }
         }
 
@@ -106,9 +108,9 @@ namespace GameWish.Game
             if (Input.GetKeyDown(KeyCode.W))
             {
                 Buff buff = BuffFactory.CreateBuff(m_DemoBuffSO);
-                for (int i = 0; i < BattleRendererComponent.ourControllers.Count; i++)
+                for (int i = 0; i < Role.ourControllers.Count; i++)
                 {
-                    BattleRendererComponent.ourControllers[i].Buff.AddBuff(buff);
+                    Role.ourControllers[i].Buff.AddBuff(buff);
                 }
             }
         }

@@ -15,7 +15,7 @@ namespace GameWish.Game
         public override BattleRoleController PickTarget(BattleRoleController picker)
         {
             GetPickBattleCamp(picker);
-            var controllers = BattleMgr.S.BattleRendererComponent.GetControllersByCamp(m_OppositeCamp);
+            var controllers = BattleMgr.S.Role.GetControllersByCamp(m_OppositeCamp);
             float distance = float.MaxValue;
             int index = -1;
             for (int i = 0; i < controllers.Count; i++)

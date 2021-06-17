@@ -21,7 +21,7 @@ namespace GameWish.Game
         public override List<BattleRoleController> PickTargets(BattleCamp camp)
         {
             List<BattleRoleController> targets = new List<BattleRoleController>();
-            var enemys = BattleMgr.S.BattleRendererComponent.GetControllersByCamp(BattleHelper.GetOppositeCamp(camp));
+            var enemys = BattleMgr.S.Role.GetControllersByCamp(BattleHelper.GetOppositeCamp(camp));
             for (int i = 0; i < enemys.Count; i++)
             {
                 float distance = Vector3.Distance(owner.DamageCenter(), enemys[i].transform.position);

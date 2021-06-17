@@ -8,17 +8,12 @@ namespace GameWish.Game
 {
 	public class RoleDetailsPanelData : UIPanelData
 	{
-		public RoleGroupModel roleGroupModel { get; private set; }
-		public RoleDetailsPanelData()
-		{
-			roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
-		}
+
 	}
 	
 	public partial class RoleDetailsPanel
 	{
 		private RoleDetailsPanelData m_PanelData = null;
-		private int m_RoleId;
 		private RoleModel m_RoleModel;
 		private bool m_IsUnlock;
 
@@ -29,10 +24,10 @@ namespace GameWish.Game
             {
                 if (args.Length >= 1)
                 {
-                    m_RoleId = (int)args[0];
+					m_RoleModel = (RoleModel)args[0];
                 }
             }
-			m_RoleModel = m_PanelData.roleGroupModel.GetRoleModel(m_RoleId);//new RoleModel(new RoleData(1, 99, "Jack", 88, 2)); //
+
 			RoleName.text = m_RoleModel.name;
 			m_IsUnlock = m_RoleModel.isUnlcok.Value;
 
@@ -85,7 +80,7 @@ namespace GameWish.Game
         {
 			StoryBtn.onClick.AddListener(() => 
 			{
-				UIMgr.S.OpenPanel(UIID.RoleStoryPanel,m_RoleId);
+				UIMgr.S.OpenPanel(UIID.RoleStoryPanel,m_RoleModel.id);
 			});
 			//LeftRoleBtn.OnClickAsObservable().Subscribe();
 			//RightRoleBtn.OnClickAsObservable().Subscribe();
@@ -117,7 +112,7 @@ namespace GameWish.Game
             skillBtn.transform.SetParent(SkillRegion);
             skillBtn.onClick.AddListener(() =>
             {
-                UIMgr.S.OpenPanel(UIID.RoleSkillPanel, m_RoleId);
+                UIMgr.S.OpenPanel(UIID.RoleSkillPanel, m_RoleModel.id);
             });
 
 		}

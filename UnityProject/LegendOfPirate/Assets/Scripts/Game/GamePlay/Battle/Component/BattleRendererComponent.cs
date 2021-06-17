@@ -21,10 +21,10 @@ namespace GameWish.Game
             m_EnemyRoleControllerLst = new List<BattleRoleController>();
         }
 
-        public override void OnBattleInit()
+        public override void OnBattleInit(BattleFieldConfigSO enemyConfigSO)
         {
             InitOwerRole();
-            InitEnemyRole();
+            InitEnemyRole(enemyConfigSO);
         }
 
         public override void OnBattleStart()
@@ -106,36 +106,31 @@ namespace GameWish.Game
 
         private void InitOwerRole()
         {
-            Vector3 startPos = new Vector3(-70, 0, 40);
-            int width = 80;
             for (int i = 0; i < 5; i++)
             {
                 BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
                 role.gameObject.layer = LayerDefine.LAYER_ROLE_OUR;
-                // role.gameObject.name = "Our_" + i;
                 role.SetCamp(BattleCamp.Our);
-                int x = i % width;
-                int y = i / width;
-                role.transform.localPosition = startPos + new Vector3(4.5f * x, 0, 1.5f * y);
-                role.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                role.transform.position = BattleMgr.Field.GetOurBattleField(i).Position;
+                role.transform.localRotation = Quaternion.identity;
                 m_OurRoleControllerLst.Add(role);
             }
         }
 
-        private void InitEnemyRole()
+        private void InitEnemyRole(BattleFieldConfigSO enemyConfigSO)
         {
-            Vector3 startPos = new Vector3(-70, 0, -40);
-            int width = 80;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < enemyConfigSO.Enemys.Length; i++)
             {
-                BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
+                // Debug.LogError(i + ":" + i % BattleDefine.BATTLE_WIDTH + ":" + i / BattleDefine.BATTLE_WIDTH);
+                var enemy = enemyConfigSO.Enemys[i % BattleDefine.BATTLE_WIDTH, i / BattleDefine.BATTLE_WIDTH];
+                if (enemy == null)
+                    continue;
+
+                BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(enemy);
                 role.gameObject.layer = LayerDefine.LAYER_ROLE_ENEMY;
-                // role.gameObject.name = "Enemy_" + i;
                 role.SetCamp(BattleCamp.Enemy);
-                int x = i % width;
-                int y = i / width;
-                role.transform.localPosition = startPos + new Vector3(4.5f * x, 0, 1.5f * y);
-                role.transform.localRotation = Quaternion.identity;
+                role.transform.position = BattleMgr.Field.GetEnemyPos(i);
+                role.transform.localRotation = Quaternion.Euler(0, 180, 0);
                 m_EnemyRoleControllerLst.Add(role);
             }
         }

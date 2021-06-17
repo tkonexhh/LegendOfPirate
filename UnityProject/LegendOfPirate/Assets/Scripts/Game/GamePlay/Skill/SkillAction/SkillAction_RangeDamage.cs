@@ -20,7 +20,7 @@ namespace GameWish.Game
         public override void ExcuteAction(Skill skill)
         {
             var oppoCamp = BattleHelper.GetOppositeCamp(skill.Owner.camp);
-            var roles = BattleMgr.S.BattleRendererComponent.GetControllersByCamp(oppoCamp);
+            var roles = BattleMgr.S.Role.GetControllersByCamp(oppoCamp);
             Transform transform = null;
             switch (m_TargetType)
             {

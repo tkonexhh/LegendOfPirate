@@ -21,6 +21,7 @@ namespace GameWish.Game
 			
 			BindModelToUI();
 			BindUIToModel();
+			OnClickAddListener();
 		}
 		
 		protected override void OnPanelHideComplete()

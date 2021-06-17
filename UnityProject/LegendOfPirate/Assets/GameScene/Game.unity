@@ -172,7 +172,7 @@ MonoBehaviour:
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
     cacheStartup: 0
-  showNavGraphs: 1
+  showNavGraphs: 0
   showUnwalkableNodes: 1
   debugMode: 0
   debugFloor: 0
@@ -1204,6 +1204,8 @@ MonoBehaviour:
   m_DemoBuffSO: {fileID: 11400000, guid: 3964941d191e6480c8f6f13d409d88b6, type: 2}
   DemoRoleSO: {fileID: 11400000, guid: ce5a2c7566c03446b96a94b8c9e4622b, type: 2}
   DemoSkillSO: {fileID: 11400000, guid: 48ff19146024b4d2e852c835423a421f, type: 2}
+  DemoEnemyFieldConfigSO: {fileID: 11400000, guid: e24832982c76b4e62b18e06af845e73e,
+    type: 2}
 --- !u!1 &1760948562
 GameObject:
   m_ObjectHideFlags: 0
