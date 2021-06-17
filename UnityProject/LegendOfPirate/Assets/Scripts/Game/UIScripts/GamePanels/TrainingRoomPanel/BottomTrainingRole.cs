@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using System;
 
 namespace GameWish.Game
 {
@@ -18,14 +19,10 @@ namespace GameWish.Game
 
         #region Data
         private BottomRoleModel m_BottomTrainingData;
-        private IntReactiveProperty m_IntReactiveSelectedCount;
+        private IDisposable m_StateSubscribe;
         #endregion
 
-        private void Awake()
-        {
-        }
-
-        public void OnInit(BottomRoleModel bottomTrainingRoleData, IntReactiveProperty selectedCount)
+        public void OnInit(BottomRoleModel bottomTrainingRoleData)
         {
             OnReset();
             if (bottomTrainingRoleData == null)
@@ -34,40 +31,39 @@ namespace GameWish.Game
                 return;
             }
             m_BottomTrainingData = bottomTrainingRoleData;
-            m_IntReactiveSelectedCount = selectedCount;
+            BindPropToUI();
 
-            OnRefresh();
+            ChangeBtnState();
+        }
+
+        private void BindPropToUI()
+        {
+            m_StateSubscribe = m_BottomTrainingData.isSelected.Subscribe(val =>
+            {
+                m_State.gameObject.SetActive(val);
+            });
         }
         #region IItemCom
         public void OnReset()
         {
+            m_StateSubscribe?.Dispose();
             m_BottomTrainingRole.onClick.RemoveAllListeners();
             m_State.gameObject.SetActive(false);
             m_BottomTrainingRole.OnClickAsObservable().Subscribe(_ =>
             {
                 EventSystem.S.Send(EventID.OnTrainingSelectRole, m_BottomTrainingData);
-            });
+            }).AddTo(this);
         }
 
         public void HandleSelectedRole()
         {
             m_BottomTrainingData.isSelected.Value = !m_BottomTrainingData.isSelected.Value;
-            m_IntReactiveSelectedCount.Value += (m_BottomTrainingData.isSelected.Value ? 1 : -1);
-            OnRefresh();
         }
 
-        public void OnRefresh()
+        private void ChangeBtnState()
         {
-            if (m_BottomTrainingData.isSelected.Value)
-            {
-                m_State.gameObject.SetActive(true);
-            }
-            else
-            {
-                m_State.gameObject.SetActive(false);
-            }
+            m_BottomTrainingRole.enabled = !m_BottomTrainingData.isSelected.Value;
         }
         #endregion
     }
-
 }

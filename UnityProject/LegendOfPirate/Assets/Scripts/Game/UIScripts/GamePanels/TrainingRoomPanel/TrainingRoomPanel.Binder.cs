@@ -61,52 +61,51 @@ namespace GameWish.Game
 
         private void BindModelToUI()
         {
+            m_SelectedCount.Select(count => count + Define.SYMBOL_SLASH + m_PanelData.GetSlotLCount()).SubscribeToTextMeshPro(RoleSelectNumberTMP);
             m_PanelData.trainingRoomModel
-                .level
-                .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.Fixed_Title_Lv) + level.ToString())
-                .SubscribeToTextMeshPro(TrainingLevelTMP).AddTo(this);
+                       .level
+                       .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.Fixed_Title_Lv) + level.ToString())
+                       .SubscribeToTextMeshPro(TrainingLevelTMP).AddTo(this);
+            m_PanelData.trainingRoomModel.level.Subscribe(val=> {
+                foreach (var item in m_MiddleTRoleDatas)
+                {
+                    item.middleTrainingRole.OnRefresh();
+                }
+            }).AddTo(this);
         }
 
         private void BindUIToModel()
         {
+            TrainingUpgradeBtn.OnClickAsObservable().Subscribe(_ =>
+            {
+                m_PanelData.trainingRoomModel.OnLevelUpgrade(1);
+
+            }).AddTo(this);
+            AutoTrainBtn.OnClickAsObservable().Subscribe(_ =>
+            {
+
+            }).AddTo(this);
+            TrainBtn.OnClickAsObservable().Subscribe(_ =>
+            {
+                foreach (var item in m_MiddleTRoleDatas)
+                {
+                    if (item.trainingSlotModel.trainState.Value == TrainingSlotState.HeroSelected)
+                    {
+                        item.trainingSlotModel.StartTraining(1, DateTime.Now);
+                        SelectedRoleSort();
+                    }
+                }
+            }).AddTo(this);
         }
 
         private void RegisterEvents()
         {
-            EventSystem.S.Register(EventID.OnTrainingUpgradeRefresh, HandlerEvent);
             EventSystem.S.Register(EventID.OnTrainingSelectRole, HandlerEvent);
         }
 
-        private void OnClickAddListener()
-        {
-            LeftArrowBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                LeftArrowBtnEnt();
-            });
-            RightArrowBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                RightArrowBtnEnt();
-            });
-            TrainingUpgradeBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                TUpgradeBtnEnt();
-            });
-            TrainBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                TrainBtnEnt();
-            });
-            AutoTrainBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                AutoTrainBtnEnt();
-            });
-            BgBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                BgBtnEnt();
-            });
-        }
+
         private void UnregisterEvents()
         {
-            EventSystem.S.UnRegister(EventID.OnTrainingUpgradeRefresh, HandlerEvent);
             EventSystem.S.UnRegister(EventID.OnTrainingSelectRole, HandlerEvent);
         }
     }
