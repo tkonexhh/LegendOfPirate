@@ -14,6 +14,7 @@ namespace GameWish.Game
         public const int DEFAULT_TIP_NUM = 5;
 
         public const string DEFAULT_SOUND = "";
+        public const string SYMBOL_SLASH = "/";
 
         public const string NAME_SPACE_PREFIX = "GameWish.Game.";
 
@@ -33,5 +34,10 @@ namespace GameWish.Game
 
         // Ship Unit Const
         public const int TRAINING_ROOM_MAX_SLOT = 9;
+
+        //Ship Unit Max Level
+        public const int TRAINING_ROOM_MAX_LEVEL = 9;
+
+
     }
 }

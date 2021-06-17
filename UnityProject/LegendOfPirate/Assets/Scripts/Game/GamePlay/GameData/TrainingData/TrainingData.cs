@@ -8,13 +8,13 @@ namespace GameWish.Game
 {   
     public class TrainingData : IDataClass
     {
-        public List<TrainingDataItem> trainingItemList = new List<TrainingDataItem>();
+        public List<TrainingSlotData> trainingItemList = new List<TrainingSlotData>();
 
         public override void InitWithEmptyData()
         {
             for (int i = 1; i <= Define.TRAINING_ROOM_MAX_SLOT; i++)
             {
-                TrainingDataItem item = new TrainingDataItem(i);
+                TrainingSlotData item = new TrainingSlotData(i);
                 trainingItemList.Add(item);
             }
         }
@@ -45,9 +45,9 @@ namespace GameWish.Game
         //    }
         //}
 
-        private TrainingDataItem? GetTrainDataItem(int slotId)
+        private TrainingSlotData? GetTrainDataItem(int slotId)
         {
-            TrainingDataItem? item = trainingItemList.FirstOrDefault(i => i.slotId == slotId);
+            TrainingSlotData? item = trainingItemList.FirstOrDefault(i => i.slotId == slotId);
             if (item == null)
             {
                 Log.e("TrainingDataItem Not Found: " + slotId);
@@ -58,7 +58,7 @@ namespace GameWish.Game
 
 
         [Serializable]
-        public struct TrainingDataItem
+        public struct TrainingSlotData
         {
             public int slotId;
             public int heroId;
@@ -67,7 +67,7 @@ namespace GameWish.Game
 
             private TrainingData m_TrainingData;
 
-            public TrainingDataItem(int slot)
+            public TrainingSlotData(int slot)
             {
                 m_TrainingData = null;
                 slotId = slot;
@@ -75,7 +75,6 @@ namespace GameWish.Game
                 trainingStartTime = default(DateTime);
                 trainState = TrainingSlotState.Locked;
             }
-
 
             public void OnStartTraining(int heroId, DateTime time)
             {

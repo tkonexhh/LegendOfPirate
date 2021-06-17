@@ -16,6 +16,14 @@ namespace GameWish.Game
 
         public TrainingRoomModel(ShipUnitData shipUnitData) : base(shipUnitData)
         {
+            level.Subscribe(val => {
+                tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
+                for (int i = 0; i < slotModelList.Count; i++)
+                {
+                    slotModelList[i].OnTrainingRoomLevelUp();
+                }
+            });
+
             tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
             m_DbData = GameDataMgr.S.GetData<TrainingData>();
             for (int i = 0; i < m_DbData.trainingItemList.Count; i++)
@@ -23,20 +31,6 @@ namespace GameWish.Game
                 TrainingSlotModel slotModel = new TrainingSlotModel(this, m_DbData.trainingItemList[i]);
                 slotModelList.Add(slotModel);
             }
-        }
-
-        public override void OnLevelUpgrade(int delta)
-        {
-            base.OnLevelUpgrade(delta);
-
-            tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
-
-            for (int i = 0; i < slotModelList.Count; i++)
-            {
-                slotModelList[i].OnTrainingRoomLevelUp();
-            }
-
-            EventSystem.S.Send(EventID.OnTrainingUpgradeRefresh);
         }
 
         private float m_RefreshTime = 0;
@@ -68,9 +62,9 @@ namespace GameWish.Game
         private DateTime m_EndTime = default(DateTime);
 
         private TrainingRoomModel m_TrainingRoomMode;
-        private TrainingData.TrainingDataItem m_DbItem;
+        private TrainingData.TrainingSlotData m_DbItem;
 
-        public TrainingSlotModel(TrainingRoomModel trainingRoomModel, TrainingData.TrainingDataItem dbItem)
+        public TrainingSlotModel(TrainingRoomModel trainingRoomModel, TrainingData.TrainingSlotData dbItem)
         {
             m_TrainingRoomMode = trainingRoomModel;
             m_DbItem = dbItem;
@@ -96,6 +90,8 @@ namespace GameWish.Game
         public void StartTraining(DateTime startTime)
         {
             SetTime(startTime);
+
+            trainState.Value = TrainingSlotState.Training;
 
             m_DbItem.OnStartTraining(heroId, startTime);
         }

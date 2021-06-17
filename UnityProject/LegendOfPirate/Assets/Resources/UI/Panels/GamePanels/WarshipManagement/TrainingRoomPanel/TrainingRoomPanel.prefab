@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fixed_Title_TrainingRoom
+  m_text: Training Room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95510714052484116952359d06d42892, type: 2}
   m_sharedMaterial: {fileID: 6911236400702945317, guid: 95510714052484116952359d06d42892,
@@ -1547,7 +1547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0.00015258789, y: 0.000061035156}
   m_SizeDelta: {x: -515, y: -532.1}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &36888845058920456
@@ -2503,7 +2503,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 55347477843870896}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99145716
+  m_Size: 0.99961567
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3473,9 +3473,9 @@ MonoBehaviour:
   RoleSelectNumberTMP: {fileID: 3121451920920336563}
   TrainBtn: {fileID: 3692846969806881561}
   AutoTrainBtn: {fileID: 4420634708857283113}
-  m_SRAutoAdjustPos: {fileID: 1558460076780962313}
-  m_MiddleTRoleUGL: {fileID: 3967908146598473902}
-  m_BottomTRoleUL: {fileID: 5748566756126989049}
+  m_ScrollRectAdjustPos: {fileID: 1558460076780962313}
+  m_MiddleTRoleUGList: {fileID: 3967908146598473902}
+  m_BottomTRoleUList: {fileID: 5748566756126989049}
 --- !u!1 &7561815362281361095
 GameObject:
   m_ObjectHideFlags: 0
