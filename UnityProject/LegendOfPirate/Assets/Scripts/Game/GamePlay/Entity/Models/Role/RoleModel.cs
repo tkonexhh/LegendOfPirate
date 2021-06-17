@@ -135,9 +135,14 @@ namespace GameWish.Game
 
         }
 
-        public void SetCurHp(int value)
+        public void AddCurHp(int value)
         {
             curHp.Value += value;
+        }
+
+        public void AddCurExp(int value)
+        {
+            curExp.Value += value;
         }
         #endregion
 
