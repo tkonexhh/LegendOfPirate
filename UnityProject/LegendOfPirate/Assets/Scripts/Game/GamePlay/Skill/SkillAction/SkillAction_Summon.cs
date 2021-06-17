@@ -38,7 +38,7 @@ namespace GameWish.Game
 
             m_SummonRole.transform.localPosition = summonPos;
             m_SummonRole.transform.localRotation = skill.Owner.transform.localRotation;
-            BattleMgr.S.BattleRendererComponent.GetControllersByCamp(camp).Add(m_SummonRole);
+            BattleMgr.S.Role.GetControllersByCamp(camp).Add(m_SummonRole);
 
             m_SummonRole.Data.buffedData.BasicATK = (int)(skill.Owner.Data.buffedData.BasicATK * m_ATKRate);
             m_SummonRole.Data.buffedData.MaxHp = (int)(skill.Owner.Data.buffedData.MaxHp * m_HPRate);

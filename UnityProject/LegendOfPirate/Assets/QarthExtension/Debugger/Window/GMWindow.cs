@@ -42,7 +42,7 @@ namespace GameWish.Game
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("BattleInit", GUILayout.Width(100f)))
             {
-                BattleMgr.S.BattleInit();
+                BattleMgr.S.BattleInit(BattleMgr.S.DemoEnemyFieldConfigSO);
             }
 
             if (GUILayout.Button("BattleStart", GUILayout.Width(100f)))

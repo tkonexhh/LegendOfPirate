@@ -38,7 +38,7 @@ namespace GameWish.Game
             Vector3 downLine = rightdown - leftdown;
             Vector3 rightLine = rightdown - rightup;
 
-            var enemys = BattleMgr.S.BattleRendererComponent.GetControllersByCamp(BattleHelper.GetOppositeCamp(camp));
+            var enemys = BattleMgr.S.Role.GetControllersByCamp(BattleHelper.GetOppositeCamp(camp));
             for (int i = 0; i < enemys.Count; i++)
             {
                 Vector3 p = enemys[i].transform.position;

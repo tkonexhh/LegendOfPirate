@@ -15,8 +15,13 @@ namespace GameWish.Game
         public const string ROLEANIM_SKILL02 = "skill002";
         public const string ROLEANIM_VICTORY = "victory";
 
-        public const int BATTLE_WIDTH = 6;
-        public const int BATTLE_HEIGHT = 4;
+        public const int BATTLE_WIDTH = 4;
+        public const int BATTLE_HEIGHT = 3;
+        public const float BATTLE_CELL_WIDTH = 5;
+        public const float BATTLE_CELL_HEIGHT = 5;
+        public const float BATTLE_HALF_CENTERHEIGHT = 15;
+
+        public const string POOLNAME_BATTLEFIELD = "BattleField";
     }
 
     /// <summary>
