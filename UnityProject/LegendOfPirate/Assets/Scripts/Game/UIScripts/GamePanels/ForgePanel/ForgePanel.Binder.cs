@@ -77,7 +77,7 @@ namespace GameWish.Game
 
                 if (level >= TDFacilityForgeTable.dataList[i].level)
                 {
-					
+					toggles[i].interactable = true;
 					m_PanelData.lockerList[i].SetActive(false);
 					toggles[i].GetComponentInChildren<TextMeshProUGUI>().text = TDFacilityForgeTable.dataList[i].unlockEquipmentID.ToString();
                 }

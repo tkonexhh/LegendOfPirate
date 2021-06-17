@@ -19,7 +19,7 @@ namespace GameWish.Game
 		
 		private void AllocatePanelData()
 		{
-			 m_PanelData = UIPanelData.Allocate<TestPanelData>();
+			m_PanelData = UIPanelData.Allocate<TestPanelData>();
 		}
 		
 		private void ReleasePanelData()

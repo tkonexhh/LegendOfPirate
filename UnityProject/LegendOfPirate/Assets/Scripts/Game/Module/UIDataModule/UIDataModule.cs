@@ -95,11 +95,11 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.WarshipUpgradePanel, null, "GamePanels/WarshipManagement/WarshipUpgradePanel/WarshipUpgradePanel");
             #endregion
 
-            UIDataTable.AddPanelData(UIID.KitchenPanel,null, "GamePanels/WarshipManagement/KitchenPanel/KitchenPanel");
-            UIDataTable.AddPanelData(UIID.FishingPanel,null, "GamePanels/WarshipManagement/FishingPanel/FishingPanel");
-            UIDataTable.AddPanelData(UIID.ForgePanel,null, "GamePanels/WarshipManagement/ForgePanel/ForgePanel");
-            UIDataTable.AddPanelData(UIID.GardenPanel,null, "GamePanels/WarshipManagement/GardenPanel/GardenPanel");
-            UIDataTable.AddPanelData(UIID.ProgressingRoomPanel,null, "GamePanels/WarshipManagement/ProgressRoomPanel/ProgressRoomPanel");
+            UIDataTable.AddPanelData(UIID.KitchenPanel, null, "GamePanels/WarshipManagement/KitchenPanel/KitchenPanel");
+            UIDataTable.AddPanelData(UIID.FishingPanel, null, "GamePanels/WarshipManagement/FishingPanel/FishingPanel");
+            UIDataTable.AddPanelData(UIID.ForgePanel, null, "GamePanels/WarshipManagement/ForgePanel/ForgePanel");
+            UIDataTable.AddPanelData(UIID.GardenPanel, null, "GamePanels/WarshipManagement/GardenPanel/GardenPanel");
+            UIDataTable.AddPanelData(UIID.ProgressingRoomPanel, null, "GamePanels/WarshipManagement/ProgressRoomPanel/ProgressRoomPanel");
 
             //Land Management System  
             UIDataTable.AddPanelData(UIID.CongratulationPanel, null, "GamePanels/LandManagement/CongratulationPanel/CongratulationPanel");
@@ -119,6 +119,14 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.FloatMessageTMPanel, null, "GamePanels/Common/FloatMessageTMPanel", true, 1);
             #endregion
             UIDataTable.AddPanelData(UIID.BuildingLevelUpPanel, null, "GamePanels/BuildingLevelUpPanel/BuildingLevelUpPanel");
+
+
+            #region 战斗相关
+
+            UIDataTable.AddPanelData(UIID.BattlePreparePanel, null, "GamePanels/BattlePanel/BattlePreparePanel/BattlePreparePanel", true, 1);//战斗排兵布阵界面
+            UIDataTable.AddPanelData(UIID.BattleFieldPanel, null, "GamePanels/BattlePanel/BattleFieldPanel/BattleFieldPanel", true, 1);//战斗排兵布阵界面
+
+            #endregion
         }
     }
 }

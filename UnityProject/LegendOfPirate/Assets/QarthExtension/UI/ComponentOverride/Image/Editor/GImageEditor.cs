@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 
-namespace GFrame.Editor
+namespace Qarth.Editor
 {
     [CustomEditor(typeof(GImage))]
     public class GImageEditor : UnityEditor.UI.ImageEditor

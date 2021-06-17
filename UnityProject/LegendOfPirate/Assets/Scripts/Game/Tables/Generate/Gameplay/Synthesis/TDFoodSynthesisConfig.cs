@@ -55,7 +55,7 @@ namespace GameWish.Game
         public  string  buffType {get { return m_BuffType; } }
        
         /// <summary>
-        /// 增益效率（%）
+        /// 增益效率（%增加岛资源产出效率）
         /// </summary>
         public  int  buffRate {get { return m_BuffRate; } }
        

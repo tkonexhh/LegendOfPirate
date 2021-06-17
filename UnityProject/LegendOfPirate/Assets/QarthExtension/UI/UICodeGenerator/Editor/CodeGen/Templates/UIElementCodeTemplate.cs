@@ -31,8 +31,7 @@ namespace Qarth.Extension
 
 			strBuilder.AppendLine("namespace " + nameSpace);
 			strBuilder.AppendLine("{");
-			strBuilder.AppendFormat("\tpublic partial class {0} : {1}", behaviourName,
-				"IUListItemView");
+			strBuilder.AppendFormat("\tpublic partial class {0}", behaviourName);
 			strBuilder.AppendLine();
 			strBuilder.AppendLine("\t{");
 			strBuilder.Append("\t\t").AppendLine("private void Awake()");

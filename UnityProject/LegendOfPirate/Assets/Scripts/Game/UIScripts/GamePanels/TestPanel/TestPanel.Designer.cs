@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,10 +12,9 @@ namespace GameWish.Game
 	{
 		public const string Name = "TestPanel";
 		
-		[SerializeField]
-		public UnityEngine.UI.Text Txt_;
-		[SerializeField]
-		public UnityEngine.UI.Button Btn_;
+		[SerializeField] private Text m_Txt;
+		[SerializeField] private Button m_Btn;
+		
 		
 	}
 }

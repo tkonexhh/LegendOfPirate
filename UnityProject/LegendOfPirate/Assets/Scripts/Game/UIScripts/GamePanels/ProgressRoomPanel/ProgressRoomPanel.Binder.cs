@@ -66,7 +66,8 @@ namespace GameWish.Game
             {
                 if (level >= TDFacilityProcessingRoomTable.dataList[i].level)
                 {
-                    m_PanelData.lockerList[i].gameObject.SetActive(false);
+					PlantSlots[i].interactable = true;
+					m_PanelData.lockerList[i].gameObject.SetActive(false);
                     PlantSlots[i].GetComponentInChildren<TextMeshProUGUI>().text = TDFacilityProcessingRoomTable.dataList[i].unlockPartID.ToString();
                 }
                 else

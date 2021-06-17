@@ -73,7 +73,7 @@ namespace Qarth.Extension
             var behaviourName = uiPrefab.name;
 
             //var strFilePath = CodeGenUtil.GenSourceFilePathFromPrefabPath(uiPrefabPath, behaviourName);
-            
+
             string folderDir = Application.dataPath + @"/Scripts/Game/UIScripts/GamePanels/" + behaviourName;
 
             if (!Directory.Exists(folderDir))
@@ -81,7 +81,7 @@ namespace Qarth.Extension
                 Directory.CreateDirectory(folderDir);
             }
 
-            var strFilePath = folderDir + @"\" + behaviourName + ".cs";
+            var strFilePath = folderDir + @"/" + behaviourName + ".cs";
             //if (mScriptKitInfo.IsNotNull())
             //{
             //    if (File.Exists(strFilePath) == false)
@@ -149,13 +149,13 @@ namespace Qarth.Extension
                 if (elementCodeData.BindInfo.BindScript.GetBindType() == BindType.Element)
                 {
                     var elementDir = string.Empty;
-                    elementDir = (dir  + "/" + "/ListViewItem/").CreateDirIfNotExists();
+                    elementDir = (dir + "/" + "/ListViewItem/").CreateDirIfNotExists();
                     CreateUIElementCode(elementDir, elementCodeData);
                 }
             }
         }
 
-     
+
         private static void CreateUIElementCode(string generateDirPath, ElementCodeInfo elementCodeInfo)
         {
             var panelFilePathWhithoutExt = generateDirPath + elementCodeInfo.BehaviourName;

@@ -6,7 +6,26 @@ using UniRx;
 
 namespace GameWish.Game
 {
-	public partial class GardenPanel : AbstractAnimPanel
+    public enum GardenState
+    {
+        /// <summary>
+        /// 空闲中
+        /// </summary>
+        Free = 0,
+        /// <summary>
+        /// 种植中
+        /// </summary>
+        Plant= 1,
+		///<summary>
+		///选中
+		///</summary>
+		Select=2,
+		///<summary>
+		///成熟
+		///</summary>
+		WaitingHarvest=3
+	}
+    public partial class GardenPanel : AbstractAnimPanel
 	{
 		protected override void OnUIInit()
 		{
