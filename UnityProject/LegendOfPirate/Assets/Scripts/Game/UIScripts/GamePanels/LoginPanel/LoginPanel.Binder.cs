@@ -30,18 +30,16 @@ namespace GameWish.Game
             ObjectPool<LoginPanelData>.S.Recycle(m_PanelData);
         }
 
-        private void BindModelToUI()
-        {
-
-        }
-
-        private async void BindUIToModel()
+        private void OnClickAddListener()
         {
             RegisterBtn.OnClickAsObservable().Subscribe(_ => OnRegisterClicked()).AddTo(this);
             BackBtn.OnClickAsObservable().Subscribe(_ => OnBackClicked()).AddTo(this);
             OpenRegisterBtn.OnClickAsObservable().Subscribe(_ => OnRegisterClicked()).AddTo(this);
             LoginBtn.OnClickAsObservable().Subscribe(_ => OnLoginClicked()).AddTo(this);
+        }
 
+        private async void BindModelToUI()
+        {
             SetBtnsStates(false);
             string sessionToken = PlayerPrefs.GetString("token");
             if (!string.IsNullOrEmpty(sessionToken))
@@ -62,10 +60,16 @@ namespace GameWish.Game
                 Root.gameObject.SetActive(true);
             }
         }
+
+        private void BindUIToModel()
+        {
+        }
+
         public void OnOpenRegister()
         {
             SetBtnsStates(true);
         }
+
         private void SetBtnsStates(bool flag)
         {
             UsernameInputField.text = "";
@@ -73,6 +77,7 @@ namespace GameWish.Game
             RegisterRoot.gameObject.SetActive(flag);
             LoginRoot.gameObject.SetActive(!flag);
         }
+
         public async void OnLoginClicked()
         {
             string username = UsernameInputField.text;
@@ -100,6 +105,7 @@ namespace GameWish.Game
                 TipsText.text = e.ToString();
             }
         }
+
         public void OnBackClicked()
         {
             SetBtnsStates(false);
@@ -146,8 +152,8 @@ namespace GameWish.Game
             if (user["player"] != null)
             {
                 await user.Fetch(includes: new string[] { "player" });
-                UserStorage hero = user["player"] as UserStorage;
-                Debug.Log($"欢迎<b>{hero.Name}</b>来到 海盗世界");
+                UserStorage currentUser = user["player"] as UserStorage;
+                Debug.Log($"欢迎<b>{currentUser.Name}</b>来到 海盗世界");
                 UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             }
             else
