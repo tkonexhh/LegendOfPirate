@@ -109,6 +109,9 @@ namespace GameWish.Game
             m_EndTime = default(DateTime);
 
             m_DbItem.OnEndTraining();
+            //TODO...   增加人物经验
+            //ModelMgr.S.GetModel<RoleGroupModel>().GetRoleModel(heroId).AddCurExp(m_TrainingRoomMode.tableConfig.experience);
+
         }
 
         public void OnHeroUnselected()
@@ -137,7 +140,7 @@ namespace GameWish.Game
             {
                 EndTraining();
 
-                //TODO...   增加人物经验
+               
             }
         }
 
