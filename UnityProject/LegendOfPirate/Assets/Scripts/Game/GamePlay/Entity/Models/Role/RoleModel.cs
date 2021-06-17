@@ -135,24 +135,9 @@ namespace GameWish.Game
 
         }
 
-        public void SetCurExp(int value)
-        {
-            curExp.Value = value;
-        }
-
-        public void SetStaraLevel(int value)
-        {
-            starLevel.Value = value;
-        }
-
         public void SetCurHp(int value)
         {
             curHp.Value += value;
-        }
-
-        public void SetCurAtk(float value)
-        {
-            curAtk.Value = value;
         }
         #endregion
 
@@ -162,14 +147,17 @@ namespace GameWish.Game
         {
             isUnlcok.Subscribe(unlock =>
            {
-               roleData.SetUnlocked();
+               roleData.SetRoleUnlocked();
            });
 
-            spiritCount.Subscribe(count => { });
+            spiritCount.Subscribe(count => 
+            {
+                roleData.SetRoleSpiritCount(spiritCount.Value);
+            });
 
             level.Subscribe(lv =>
             {
-                roleData.AddLevel(level.Value);
+                roleData.SetRoleLevel(level.Value);
                 curHp.Value = tdRoleConfig.initHp * lv * starLevel.Value;
             });
 

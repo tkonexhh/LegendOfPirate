@@ -20,14 +20,6 @@ namespace GameWish.Game
 
         public override void InitWithEmptyData()
         {
-            if (roleList.Count <= 0)
-            {
-                foreach (var item in TDRoleConfigTable.dataList)
-                {
-                    OnAddRoleItem(item.roleId,false);
-                }
-            }
-
             SetDataDirty();
         }
 
@@ -49,22 +41,6 @@ namespace GameWish.Game
             else
             {
                 roleList.Add(new RoleData(id, isUnlock));
-
-                SetDataDirty();
-            }
-        }
-
-        public void OnRoleUpgraded(int id, int deltaLevel)
-        {
-            RoleData item = GetRoleItem(id);
-
-            if (item == null)
-            {
-                Log.e("Role not found: " + id);
-            }
-            else
-            {
-                item.AddLevel(deltaLevel);
 
                 SetDataDirty();
             }
