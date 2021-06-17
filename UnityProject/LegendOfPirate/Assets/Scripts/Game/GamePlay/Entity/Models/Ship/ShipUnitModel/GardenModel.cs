@@ -52,8 +52,17 @@ namespace GameWish.Game
             {
                 plantSlotModels[i].OnGardenLevelUp();
             }
-
-      
+        }
+        public PlantSlotModel GetPlantSlotModel(int slotindex)
+        {
+            if (plantSlotModels != null) 
+            {
+                return plantSlotModels[slotindex];
+            }
+            else 
+            {
+                return default(PlantSlotModel);
+            }
         }
     }
     public class GardenPlantModel : Model
@@ -150,7 +159,6 @@ namespace GameWish.Game
             this.plantName = TDFacilityGardenTable.dataList[slotid].seedUnlock;
             m_GardenModel = gardenModel;
             slotIslock = new BoolReactiveProperty(unlockStage);
-
         }
         public void OnGardenLevelUp() 
         {
@@ -160,7 +168,7 @@ namespace GameWish.Game
 
             }
         }
-
+     
     }
 
 }

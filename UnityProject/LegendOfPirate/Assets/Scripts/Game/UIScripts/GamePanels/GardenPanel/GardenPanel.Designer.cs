@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,30 +12,17 @@ namespace GameWish.Game
 	{
 		public const string Name = "GardenPanel";
 		
-		[SerializeField]
-		public UnityEngine.UI.Button CloseBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI Timer;
-		[SerializeField]
-		public UnityEngine.UI.Image BuildingNameBg;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI BuildingName;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI BuildingLevel;
-		[SerializeField]
-		public UnityEngine.UI.Button LevelUpBtn;
-		[SerializeField]
-		public RectTransform FishingPoint0;
-		[SerializeField]
-		public RectTransform FishingPoint1;
-		[SerializeField]
-		public RectTransform FishingPoint2;
-		[SerializeField]
-		public RectTransform FishingPoint3;
-		[SerializeField]
-		public UnityEngine.UI.ToggleGroup Content;
-		[SerializeField]
-		public GFrame.Editor.GButton PlantBtn;
+		[SerializeField] private Button m_CloseBtn;
+		[SerializeField] private TextMeshProUGUI m_Timer;
+		[SerializeField] private Image m_BuildingNameBg;
+		[SerializeField] private TextMeshProUGUI m_BuildingName;
+		[SerializeField] private TextMeshProUGUI m_BuildingLevel;
+		[SerializeField] private Button m_LevelUpBtn;
+		[SerializeField] private TextMeshProUGUI m_FishingPoint0;
+		[SerializeField] private ToggleGroup m_Content;
+		[SerializeField] private Button m_PlantBtn;
+		[SerializeField] private Button m_PrePageBtn;
+		[SerializeField] private Button m_NextPageBtn;
 		
 		
 	}
