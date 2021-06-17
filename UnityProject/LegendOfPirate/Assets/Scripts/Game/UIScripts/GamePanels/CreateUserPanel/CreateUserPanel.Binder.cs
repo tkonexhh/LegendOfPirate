@@ -30,14 +30,21 @@ namespace GameWish.Game
             ObjectPool<CreateUserPanelData>.S.Recycle(m_PanelData);
         }
 
+        private void OnClickAddListener()
+        {
+            CreateBtn.OnClickAsObservable().Subscribe(_ => OnCreateClicked()).AddTo(this);
+        }
+
         private void BindModelToUI()
         {
+
         }
 
         private void BindUIToModel()
         {
-            CreateBtn.OnClickAsObservable().Subscribe(_ => OnCreateClicked()).AddTo(this);
+
         }
+
         public async void OnCreateClicked()
         {
             string name = NameInputField.text;
@@ -48,7 +55,7 @@ namespace GameWish.Game
 
             try
             {
-                bool hasUser = await StorageHander.S.QueryUserName(name);
+                bool hasUser = await StorageHandler.S.QueryUserName(name);
                 if (!hasUser)
                 {
                     UserStorage player = new UserStorage
@@ -68,7 +75,6 @@ namespace GameWish.Game
                 {
                     TipsText.text = "该角色名已存在,请重新输入!";
                 }
-
             }
             catch (LCException e)
             {
@@ -76,6 +82,5 @@ namespace GameWish.Game
                 TipsText.text = e.ToString();
             }
         }
-
     }
 }

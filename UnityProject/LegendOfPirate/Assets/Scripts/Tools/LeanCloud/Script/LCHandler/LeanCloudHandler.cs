@@ -10,7 +10,7 @@ namespace GameWish.Game
     /// <summary>
     /// 云函数请求方法 待扩展
     /// </summary>
-    public class LeanCloudFuncs : TSingleton<LeanCloudFuncs>
+    public class LeanCloudHandler : TSingleton<LeanCloudHandler>
     {
         /// <summary>
         /// 云函数请求获取表的数据 Run方式 返回常规数据类型 int string 等
