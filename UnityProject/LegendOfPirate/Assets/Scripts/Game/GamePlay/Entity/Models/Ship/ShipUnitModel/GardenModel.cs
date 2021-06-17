@@ -14,5 +14,13 @@ namespace GameWish.Game
             tableConfig = TDFacilityGardenTable.GetConfig(level.Value);
         }
     }
+    public class GardenSlotModel : Model
+    {
+    
+    }
+    public class PlantSlotModel : Model 
+    {
+    
+    }
 
 }
