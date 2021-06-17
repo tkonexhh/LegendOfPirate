@@ -85,5 +85,9 @@ namespace GameWish.Game
         LoginPanel,
         CreateUserPanel,
         #endregion
+
+        #region 战斗相关
+        BattlePreparePanel,//战斗排兵布阵界面
+        #endregion
     }
 }
