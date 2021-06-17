@@ -13,7 +13,8 @@ namespace GameWish.Game
         {
             PlayerPrefs.DeleteAll();
 
-            List<string> pathList = GameDataMgr.GetAllDataPaths();
+            GameDataMgr.S.Init(null);
+            List<string> pathList = GameDataMgr.S.GetAllDataPaths();
 
             foreach (string path in pathList)
             {

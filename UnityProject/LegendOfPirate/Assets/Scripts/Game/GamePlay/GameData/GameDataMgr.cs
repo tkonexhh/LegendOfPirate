@@ -87,11 +87,15 @@ namespace GameWish.Game
             RegisterEvents();
         }
 
-        public static List<String> GetAllDataPaths()
+        public List<String> GetAllDataPaths()
         {
             List<String> pathList = new List<string>();
 
-            pathList.Add(PlayerInfoDataHandler.GetDataFilePathByType(typeof(PlayerInfoDataHandler)));
+            pathList.Add(PlayerInfoDataHandler.GetDataFilePathByType(typeof(PlayerInfoData)));
+            m_DataHanlderList.ForEach(i => {
+                string type = PlayerInfoDataHandler.GetDataFilePathByType(i.GetDataClass().GetType());
+                pathList.Add(type);
+            });
 
             return pathList;
         }
