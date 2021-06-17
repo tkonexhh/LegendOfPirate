@@ -34,6 +34,7 @@ namespace GameWish.Game
 
         private void BindUIToModel()
         {
+
         }
 
     }

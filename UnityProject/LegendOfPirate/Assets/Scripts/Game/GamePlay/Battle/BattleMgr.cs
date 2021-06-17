@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
+using Sirenix.OdinInspector;
+using Cinemachine;
 
 namespace GameWish.Game
 {
@@ -15,6 +17,10 @@ namespace GameWish.Game
         public SkillConfigSO DemoSkillSO;
         public BattleFieldConfigSO DemoEnemyFieldConfigSO;
 
+        //===
+        [LabelText("战场相机"), BoxGroup("Camera")] public CinemachineVirtualCameraBase CameraBattle;
+        [LabelText("排兵相机"), BoxGroup("Camera")] public CinemachineVirtualCameraBase CameraField;
+        //---
 
         private List<IBattleComponent> m_BattleComponentList;
         public bool Started { get; private set; }
@@ -22,7 +28,7 @@ namespace GameWish.Game
         public BattleFieldComponent Field { get; private set; }
         public BattleRendererComponent Role { get; private set; }
         public BattleBulletComponent Bullet { get; private set; }
-
+        public BattleCameraComponent Camera { get; private set; }
 
         public override void OnSingletonInit()
         {
@@ -31,7 +37,7 @@ namespace GameWish.Game
             Field = AddComponent(new BattleFieldComponent()) as BattleFieldComponent;
             Role = AddComponent(new BattleRendererComponent()) as BattleRendererComponent;
             Bullet = AddComponent(new BattleBulletComponent()) as BattleBulletComponent;
-
+            Camera = AddComponent(new BattleCameraComponent()) as BattleCameraComponent;
         }
 
         private IBattleComponent AddComponent(IBattleComponent component)

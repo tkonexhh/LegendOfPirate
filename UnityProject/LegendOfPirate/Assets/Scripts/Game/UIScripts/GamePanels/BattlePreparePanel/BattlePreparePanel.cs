@@ -13,6 +13,25 @@ namespace GameWish.Game
             base.OnUIInit();
             BindModelToUI();
             BindUIToModel();
+
+            m_BtnField.onClick.AddListener(() =>
+            {
+                HideSelfPanel();
+                UIMgr.S.OpenPanel(UIID.BattleFieldPanel);
+                // BattleMgr.S.Camera
+            });
+
+            m_BtnBack.onClick.AddListener(() =>
+            {
+                CloseSelfPanel();
+                GameCameraMgr.S.ToSea();
+            });
+
+            m_BtnBattleStart.onClick.AddListener(() =>
+            {
+                CloseSelfPanel();
+                BattleMgr.S.BattleStart();
+            });
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -21,7 +40,7 @@ namespace GameWish.Game
 
             AllocatePanelData(args);
 
-
+            BattleMgr.S.BattleInit(BattleMgr.S.DemoEnemyFieldConfigSO);
         }
 
         protected override void OnPanelHideComplete()

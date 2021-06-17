@@ -14,7 +14,6 @@ namespace GameWish.Game
 		
 		[SerializeField] private Button m_BtnBack;
 		[SerializeField] private IUListView m_ScrollView;
-		[SerializeField] private TextMeshProUGUI m_TMPT;
 		
 		
 	}
