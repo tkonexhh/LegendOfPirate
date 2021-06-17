@@ -29,6 +29,7 @@ namespace GameWish.Game
             EnvMgr.S.OnInit();
 
             ShipRolesMgr.S.OnInit();
+            GameCameraMgr.S.ToSea();
             //UIMgr.S.OpenPanel(UIID.TestPanel);
         }
 

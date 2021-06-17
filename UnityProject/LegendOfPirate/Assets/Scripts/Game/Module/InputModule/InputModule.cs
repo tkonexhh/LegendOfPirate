@@ -34,11 +34,12 @@ namespace GameWish.Game
             if (PlayerPrefs.GetInt("channel_exit_key", 0) == 1)
             {
                 FloatMessageTMP.S.ShowMsg(TDLanguageTable.Get("Press Again to Quit"));
-            }           
+            }
         }
 
         private void OnClickF1()
         {
+            UIMgr.S.OpenPanel(UIID.BattlePreparePanel);
         }
 
         private void OnClickF2()

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,12 +12,9 @@ namespace GameWish.Game
 	{
 		public const string Name = "BattlePreparePanel";
 		
-		[SerializeField]
-		public GFrame.Editor.GButton Btn_Back;
-		[SerializeField]
-		public GFrame.Editor.GButton Btn_ButtleStart;
-		[SerializeField]
-		public GFrame.Editor.GButton Btn_Field;
+		[SerializeField] private Button m_BtnBack;
+		[SerializeField] private Button m_BtnBattleStart;
+		[SerializeField] private Button m_BtnField;
 		
 		
 	}

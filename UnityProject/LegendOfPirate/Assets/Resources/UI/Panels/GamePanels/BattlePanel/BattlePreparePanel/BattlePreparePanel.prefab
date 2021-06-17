@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 293755083655531031}
   - component: {fileID: 8531575065202698913}
   m_Layer: 0
-  m_Name: Btn_ButtleStart
+  m_Name: Btn_BattleStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,12 +245,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4434333279154052939}
-  m_Father: {fileID: 5381313252281185817}
-  m_RootOrder: 2
+  m_Father: {fileID: 4679371103439691030}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -519}
+  m_AnchoredPosition: {x: 0, y: 25.699951}
   m_SizeDelta: {x: 242.31592, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3052671399302689213
@@ -372,7 +372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &505592130659062351
 RectTransform:
   m_ObjectHideFlags: 0
@@ -430,6 +430,43 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
+--- !u!1 &1915153660044504284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4679371103439691030}
+  m_Layer: 5
+  m_Name: Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4679371103439691030
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915153660044504284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 679651728906212127}
+  - {fileID: 1529731601971201561}
+  m_Father: {fileID: 5381313252281185817}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 122.3}
+  m_SizeDelta: {x: 0, y: 244.5531}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3035315461154146942
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,12 +499,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8775398717901102556}
-  m_Father: {fileID: 5381313252281185817}
-  m_RootOrder: 3
+  m_Father: {fileID: 4679371103439691030}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -273, y: -515}
+  m_AnchoredPosition: {x: -273, y: 29.699951}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6286224992169743152
@@ -740,8 +777,7 @@ RectTransform:
   m_Children:
   - {fileID: 505592130659062351}
   - {fileID: 4149776974099217434}
-  - {fileID: 679651728906212127}
-  - {fileID: 1529731601971201561}
+  - {fileID: 4679371103439691030}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -818,9 +854,9 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  Btn_Back: {fileID: 2947374441169726922}
-  Btn_ButtleStart: {fileID: 3052671399302689213}
-  Btn_Field: {fileID: 6286224992169743152}
+  m_BtnBack: {fileID: 2947374441169726922}
+  m_BtnBattleStart: {fileID: 3052671399302689213}
+  m_BtnField: {fileID: 6286224992169743152}
 --- !u!1 &6859593017891997481
 GameObject:
   m_ObjectHideFlags: 0
