@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using System;
 
 namespace GameWish.Game
 {
@@ -18,37 +19,10 @@ namespace GameWish.Game
 
         #region Data
         private BottomRoleModel m_BottomTrainingData;
-        private IntReactiveProperty m_IntReactiveSelectedCount;
+        private IDisposable m_StateSubscribe;
         #endregion
 
-        private void HandlerEvent(int key, object[] param)
-        {
-            switch ((EventID)key)
-            {
-                case EventID.OnTRoomStartTraining:
-                    if (m_BottomTrainingData==null)
-                        return;
-                    if (m_BottomTrainingData.roleID.Value == (int)(param[0]))
-                    {
-                        //m_BottomTrainingRole.gameObject.SetActive(false);
-                    }
-                    break;
-
-            }
-        }
-
-        private void Start()
-        {
-            EventSystem.S.Register(EventID.OnTRoomStartTraining, HandlerEvent);
-        }
-
-        private void OnDestroy()
-        {
-            EventSystem.S.UnRegister(EventID.OnTRoomStartTraining, HandlerEvent);
-
-        }
-
-        public void OnInit(BottomRoleModel bottomTrainingRoleData, IntReactiveProperty selectedCount)
+        public void OnInit(BottomRoleModel bottomTrainingRoleData)
         {
             OnReset();
             if (bottomTrainingRoleData == null)
@@ -57,21 +31,26 @@ namespace GameWish.Game
                 return;
             }
             m_BottomTrainingData = bottomTrainingRoleData;
-            m_IntReactiveSelectedCount = selectedCount;
+            BindPropToUI();
 
-            OnRefresh();
+            ChangeBtnState();
+        }
+
+        private void BindPropToUI()
+        {
+            m_StateSubscribe = m_BottomTrainingData.isSelected.Subscribe(val =>
+            {
+                m_State.gameObject.SetActive(val);
+            });
         }
         #region IItemCom
         public void OnReset()
         {
+            m_StateSubscribe?.Dispose();
             m_BottomTrainingRole.onClick.RemoveAllListeners();
             m_State.gameObject.SetActive(false);
             m_BottomTrainingRole.OnClickAsObservable().Subscribe(_ =>
             {
-                if (m_BottomTrainingData.bottomTrainingRole)
-                {
-
-                }
                 EventSystem.S.Send(EventID.OnTrainingSelectRole, m_BottomTrainingData);
             }).AddTo(this);
         }
@@ -79,23 +58,12 @@ namespace GameWish.Game
         public void HandleSelectedRole()
         {
             m_BottomTrainingData.isSelected.Value = !m_BottomTrainingData.isSelected.Value;
-            OnRefresh();
         }
 
-        public void OnRefresh()
+        private void ChangeBtnState()
         {
-            if (m_BottomTrainingData.isSelected.Value)
-            {
-                m_State.gameObject.SetActive(true);
-                m_BottomTrainingRole.enabled = false;
-            }
-            else
-            {
-                m_State.gameObject.SetActive(false);
-                m_BottomTrainingRole.enabled = true;
-            }
+            m_BottomTrainingRole.enabled = !m_BottomTrainingData.isSelected.Value;
         }
         #endregion
     }
-
 }

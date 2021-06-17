@@ -36,8 +36,6 @@ namespace GameWish.Game
             m_RoleIconBg.gameObject.SetActive(false);
             m_Plug.gameObject.SetActive(false);
             m_LockBg.gameObject.SetActive(false);
-
-
         }
         public void OnRefresh()
         {

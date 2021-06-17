@@ -44,14 +44,6 @@ namespace GameWish.Game
         /// 选择角色
         /// </summary>
         OnTrainingSelectRole,
-        /// <summary>
-        /// 升级刷新事件
-        /// </summary>
-        OnTrainingUpgradeRefresh,
-        /// <summary>
-        /// 开始训练
-        /// </summary>
-        OnTRoomStartTraining,
         #endregion
     }
 
