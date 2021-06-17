@@ -69,7 +69,7 @@ namespace Qarth.Extension
             //ugui expand
             if (GetComponent<SoundButton>()) return "SoundButton";
             if (GetComponent<PopButton>()) return "PopButton";
-            if (GetComponent<GButton>()) return "GFrame.Editor.GButton";
+            //if (GetComponent<GButton>()) return "GFrame.Editor.GButton";
             if (GetComponent<IUListView>()) return "IUListView";
 
             // ugui bind
