@@ -14,9 +14,11 @@ namespace GameWish.Game
        
         private EInt m_MaterialId = 0;   
         private string m_MaterialName;   
+        private string m_MaterialIcon;   
         private string m_MaterialDsc;   
         private string m_MaterialType;   
-        private EInt m_MaterialPrice = 0;  
+        private EInt m_MaterialPrice = 0;   
+        private EInt m_OutputWay = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -31,7 +33,12 @@ namespace GameWish.Game
         public  string  materialName {get { return m_MaterialName; } }
        
         /// <summary>
-        /// 角色描述
+        /// 材料icon
+        /// </summary>
+        public  string  materialIcon {get { return m_MaterialIcon; } }
+       
+        /// <summary>
+        /// 材料描述
         /// </summary>
         public  string  materialDsc {get { return m_MaterialDsc; } }
        
@@ -44,6 +51,11 @@ namespace GameWish.Game
         /// 出售价格
         /// </summary>
         public  int  materialPrice {get { return m_MaterialPrice; } }
+       
+        /// <summary>
+        /// 产出途径(1-资源岛，2-战斗奖励，3-菜园，4-钓鱼台，5-加工室,6-商城，7-活动)
+        /// </summary>
+        public  int  outputWay {get { return m_OutputWay; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -67,13 +79,19 @@ namespace GameWish.Game
                     m_MaterialName = dataR.ReadString();
                     break;
                 case 2:
-                    m_MaterialDsc = dataR.ReadString();
+                    m_MaterialIcon = dataR.ReadString();
                     break;
                 case 3:
-                    m_MaterialType = dataR.ReadString();
+                    m_MaterialDsc = dataR.ReadString();
                     break;
                 case 4:
+                    m_MaterialType = dataR.ReadString();
+                    break;
+                case 5:
                     m_MaterialPrice = dataR.ReadInt();
+                    break;
+                case 6:
+                    m_OutputWay = dataR.ReadInt();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -85,13 +103,15 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(5);
+          Dictionary<string, int> ret = new Dictionary<string, int>(7);
           
           ret.Add("MaterialId", 0);
           ret.Add("MaterialName", 1);
-          ret.Add("MaterialDsc", 2);
-          ret.Add("MaterialType", 3);
-          ret.Add("MaterialPrice", 4);
+          ret.Add("MaterialIcon", 2);
+          ret.Add("MaterialDsc", 3);
+          ret.Add("MaterialType", 4);
+          ret.Add("MaterialPrice", 5);
+          ret.Add("OutputWay", 6);
           return ret;
         }
     } 
