@@ -87,16 +87,16 @@ namespace Qarth.Extension
 
 			strBuilder.AppendLine();
 
-			strBuilder.Append("\t\t").AppendLine("public void Clear()");
-			strBuilder.Append("\t\t").AppendLine("{");
-			foreach (var markInfo in elementCodeInfo.BindInfos)
-			{
-				strBuilder.AppendFormat("\t\t\t{0} = null;\r\n",
-					markInfo.Name);
-			}
+			//strBuilder.Append("\t\t").AppendLine("public void Clear()");
+			//strBuilder.Append("\t\t").AppendLine("{");
+			//foreach (var markInfo in elementCodeInfo.BindInfos)
+			//{
+			//	strBuilder.AppendFormat("\t\t\t{0} = null;\r\n",
+			//		markInfo.Name);
+			//}
 
-			strBuilder.Append("\t\t").AppendLine("}");
-			strBuilder.AppendLine();
+			//strBuilder.Append("\t\t").AppendLine("}");
+			//strBuilder.AppendLine();
 
 			//strBuilder.Append("\t\t").AppendLine("public override string ComponentName");
 			//strBuilder.Append("\t\t").AppendLine("{");
