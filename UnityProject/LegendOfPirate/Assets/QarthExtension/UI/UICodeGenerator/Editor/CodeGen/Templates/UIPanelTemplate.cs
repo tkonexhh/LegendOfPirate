@@ -37,11 +37,12 @@ namespace Qarth.Extension
                             {
                                 function.Custom("base.OnUIInit();");
                                 function.EmptyLine();
+                                function.Custom("AllocatePanelData();");
+                                function.EmptyLine();
                                 function.Custom("BindModelToUI();");
                                 function.EmptyLine();
                                 function.Custom("BindUIToModel();");
                                 function.EmptyLine();
-                                function.Custom("AllocatePanelData();");
                             });
 
                         classScope.EmptyLine();
