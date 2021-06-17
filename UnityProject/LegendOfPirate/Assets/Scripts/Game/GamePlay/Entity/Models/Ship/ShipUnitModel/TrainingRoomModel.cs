@@ -68,9 +68,9 @@ namespace GameWish.Game
         private DateTime m_EndTime = default(DateTime);
 
         private TrainingRoomModel m_TrainingRoomMode;
-        private TrainingData.TrainingDataItem m_DbItem;
+        private TrainingData.TrainingSlotData m_DbItem;
 
-        public TrainingSlotModel(TrainingRoomModel trainingRoomModel, TrainingData.TrainingDataItem dbItem)
+        public TrainingSlotModel(TrainingRoomModel trainingRoomModel, TrainingData.TrainingSlotData dbItem)
         {
             m_TrainingRoomMode = trainingRoomModel;
             m_DbItem = dbItem;
