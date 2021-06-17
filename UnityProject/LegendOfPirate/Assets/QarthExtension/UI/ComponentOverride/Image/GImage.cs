@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GFrame
+namespace Qarth
 {
     public class GImage : Image
     {

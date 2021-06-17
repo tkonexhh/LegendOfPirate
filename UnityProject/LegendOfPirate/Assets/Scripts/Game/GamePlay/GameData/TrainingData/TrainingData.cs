@@ -14,14 +14,17 @@ namespace GameWish.Game
         {
             for (int i = 1; i <= Define.TRAINING_ROOM_MAX_SLOT; i++)
             {
-                TrainingDataItem item = new TrainingDataItem(this, i);
+                TrainingDataItem item = new TrainingDataItem(i);
                 trainingItemList.Add(item);
             }
         }
 
         public override void OnDataLoadFinish()
         {
-
+            //for (int i = 0; i < trainingItemList.Count; i++)
+            //{
+            //    trainingItemList[i].SetTrainingData(this);
+            //}
         }
 
         //public void StartTrainingHero(int slotId, int heroId, DateTime time)
@@ -64,14 +67,18 @@ namespace GameWish.Game
 
             private TrainingData m_TrainingData;
 
-            public TrainingDataItem(TrainingData trainingData, int slot)
+            public TrainingDataItem(int slot)
             {
-                m_TrainingData = trainingData;
-
+                m_TrainingData = null;
                 slotId = slot;
                 heroId = -1;
                 trainingStartTime = default(DateTime);
                 trainState = TrainingSlotState.Locked;
+            }
+
+            public void SetTrainingData(TrainingData trainingData)
+            {
+                m_TrainingData = trainingData;
             }
 
             public void OnStartTraining(int heroId, DateTime time)
@@ -111,7 +118,8 @@ namespace GameWish.Game
             {
                 trainState = TrainingSlotState.Free;
 
-                m_TrainingData.SetDataDirty();
+                //m_TrainingData.SetDataDirty();
+                GameDataMgr.S.GetData<TrainingData>().SetDataDirty();
             }
         }
     }

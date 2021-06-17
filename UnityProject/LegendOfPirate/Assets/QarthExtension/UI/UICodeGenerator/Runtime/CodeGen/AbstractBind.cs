@@ -1,4 +1,4 @@
-
+﻿
 using UnityEngine;
 using UnityEngine.UI;
 using GFrame.Editor;
@@ -58,32 +58,31 @@ namespace Qarth.Extension
 
 
             if (GetComponent("SkeletonAnimation")) return "SkeletonAnimation";
-           
+
 
             // text mesh pro supported
-            if (GetComponent("TMP.TextMeshProUGUI")) return "TMP.TextMeshProUGUI";
-            if (GetComponent("TMPro.TextMeshProUGUI")) return "TMPro.TextMeshProUGUI";
-            if (GetComponent("TMPro.TextMeshPro")) return "TMPro.TextMeshPro";
-            if (GetComponent("TMPro.TMP_InputField")) return "TMPro.TMP_InputField";
+            if (GetComponent("TextMeshProUGUI")) return "TextMeshProUGUI";
+            if (GetComponent("TextMeshPro")) return "TextMeshPro";
+            if (GetComponent("TMP_InputField")) return "TMP_InputField";
 
             //ugui expand
             if (GetComponent<SoundButton>()) return "SoundButton";
             if (GetComponent<PopButton>()) return "PopButton";
-            if (GetComponent<GButton>()) return "GFrame.Editor.GButton";
+
             if (GetComponent<IUListView>()) return "IUListView";
 
             // ugui bind
-            if (GetComponent<ScrollRect>()) return "UnityEngine.UI.ScrollRect";
-            if (GetComponent<InputField>()) return "UnityEngine.UI.InputField";
-            if (GetComponent<Dropdown>()) return "UnityEngine.UI.Dropdown";
-            if (GetComponent<Button>()) return "UnityEngine.UI.Button";
-            if (GetComponent<Text>()) return "UnityEngine.UI.Text";
-            if (GetComponent<RawImage>()) return "UnityEngine.UI.RawImage";
-            if (GetComponent<Toggle>()) return "UnityEngine.UI.Toggle";
-            if (GetComponent<Slider>()) return "UnityEngine.UI.Slider";
-            if (GetComponent<Scrollbar>()) return "UnityEngine.UI.Scrollbar";
-            if (GetComponent<Image>()) return "UnityEngine.UI.Image";
-            if (GetComponent<ToggleGroup>()) return "UnityEngine.UI.ToggleGroup";
+            if (GetComponent<ScrollRect>()) return "ScrollRect";
+            if (GetComponent<InputField>()) return "InputField";
+            if (GetComponent<Dropdown>()) return "Dropdown";
+            if (GetComponent<Button>()) return "Button";
+            if (GetComponent<Text>()) return "Text";
+            if (GetComponent<RawImage>()) return "RawImage";
+            if (GetComponent<Toggle>()) return "Toggle";
+            if (GetComponent<Slider>()) return "Slider";
+            if (GetComponent<Scrollbar>()) return "Scrollbar";
+            if (GetComponent<Image>()) return "Image";
+            if (GetComponent<ToggleGroup>()) return "ToggleGroup";
 
             // other
             if (GetComponent<Rigidbody>()) return "Rigidbody";
@@ -108,12 +107,12 @@ namespace Qarth.Extension
 
 
 
-            // NGUI 支持
-            if (GetComponent("UIButton")) return "UIButton";
-            if (GetComponent("UILabel")) return "UILabel";
-            if (GetComponent("UISprite")) return "UISprite";
-            if (GetComponent("UISlider")) return "UISlider";
-            if (GetComponent("UITexture")) return "UITexture";
+            // // NGUI 支持
+            // if (GetComponent("UIButton")) return "UIButton";
+            // if (GetComponent("UILabel")) return "UILabel";
+            // if (GetComponent("UISprite")) return "UISprite";
+            // if (GetComponent("UISlider")) return "UISlider";
+            // if (GetComponent("UITexture")) return "UITexture";
 
             return "Transform";
         }

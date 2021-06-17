@@ -26,7 +26,7 @@ namespace Qarth.Extension
                 .EmptyLine()
                 .Namespace(scriptNamespace, nsScope =>
                 {
-                    nsScope.Class(name + "Data", "UIPanelData", false, false, classScope => 
+                    nsScope.Class(name + "Data", "UIPanelData", false, false, classScope =>
                     {
                         classScope.CustomScope("public " + name + "Data()", false,
                             function =>
@@ -42,10 +42,10 @@ namespace Qarth.Extension
 
                         classScope.EmptyLine();
 
-                        classScope.CustomScope("private void AllocatePanelData(params object[] args)", false,
+                        classScope.CustomScope("private void AllocatePanelData()", false,
                             function =>
                             {
-                                function.Custom(" m_PanelData = UIPanelData.Allocate<" + name + "Data>();");
+                                function.Custom("m_PanelData = UIPanelData.Allocate<" + name + "Data>();");
                             });
 
                         classScope.EmptyLine();

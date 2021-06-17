@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEditor;
 using TMPro;
 using Qarth;
+using Qarth.Extension;
+
 namespace GFrame.Editor
 {
     public class OverrideCreateUI
@@ -117,6 +119,9 @@ namespace GFrame.Editor
                 RectTransform rectText = text.GetComponent<RectTransform>();
                 rectText.SetAnchor(AnchorPresets.StretchAll, 0, 0);
                 rectText.SetSize(button.GetComponent<RectTransform>().sizeDelta);
+
+
+                button.gameObject.AddComponent<UIMark>();
             };
             return CreateGO<GButton>("Btn_", callback);
         }
@@ -137,6 +142,9 @@ namespace GFrame.Editor
                 RectTransform rectText = text.GetComponent<RectTransform>();
                 rectText.SetAnchor(AnchorPresets.StretchAll, 0, 0);
                 rectText.SetSize(button.GetComponent<RectTransform>().sizeDelta);
+
+
+                button.gameObject.AddComponent<UIMark>();
             };
             return CreateGO<GButton>("Btn_", callback);
         }
