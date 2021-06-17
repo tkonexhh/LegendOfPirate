@@ -48,7 +48,7 @@ namespace GameWish.Game
 
             try
             {
-                bool hasUser = await StorageHander.S.QueryUserName(name);
+                bool hasUser = await StorageHandler.S.QueryUserName(name);
                 if (!hasUser)
                 {
                     UserStorage player = new UserStorage
