@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -18,7 +18,7 @@ namespace GameWish.Game
 
         #region Public
         /// <summary>
-        /// »ñÈ¡µ±Ç°µÈ¼¶¿ÉÑµÁ·µÄ²ÛÎ»Êı
+        /// è·å–å½“å‰ç­‰çº§å¯è®­ç»ƒçš„æ§½ä½æ•°
         /// </summary>
         /// <returns></returns>
         public int GetTrainingRoomCapacity()
@@ -91,7 +91,7 @@ namespace GameWish.Game
                 {
                     if (item.trainingSlotModel.trainState.Value == TrainingSlotState.HeroSelected)
                     {
-                        item.trainingSlotModel.StartTraining(1, DateTime.Now);
+                        item.trainingSlotModel.StartTraining(DateTime.Now);
                         SelectedRoleSort();
                     }
                 }
