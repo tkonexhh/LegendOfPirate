@@ -16,7 +16,7 @@ namespace GameWish.Game
 		protected override void OnPanelOpen(params object[] args)
 		{
 			base.OnPanelOpen(args);
-			
+			OpenDependPanel(EngineUI.MaskPanel, -1);
 			AllocatePanelData(args);
 			
 			BindModelToUI();
@@ -26,7 +26,7 @@ namespace GameWish.Game
 		protected override void OnPanelHideComplete()
 		{
 			base.OnPanelHideComplete();
-			
+			CloseDependPanel(EngineUI.MaskPanel);
 			CloseSelfPanel();
 		}
 		

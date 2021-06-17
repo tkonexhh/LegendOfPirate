@@ -38,6 +38,8 @@ namespace GameWish.Game
                 return;
 
             BattleMgr.S.OnUpdate();
+
+            ModelMgr.S.OnUpdate();
         }
 
         public void OnDestroyed()

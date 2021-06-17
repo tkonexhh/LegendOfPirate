@@ -71,7 +71,7 @@ namespace GameWish.Game
                 return;
             }
 
-            GameDataMgr.S.Save();
+            GameDataMgr.S.SaveDataToLocal();
         }
 
         private void ApplicationQuit(int key, params object[] args)

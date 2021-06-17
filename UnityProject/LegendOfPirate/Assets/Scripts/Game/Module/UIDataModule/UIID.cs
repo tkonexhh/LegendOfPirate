@@ -20,6 +20,7 @@ namespace GameWish.Game
         /// 消息提示界面
         /// </summary>
         MyFloatMessagePanel,
+        FloatMessageTMPanel,
         //TestPanel,
 
         #region Role

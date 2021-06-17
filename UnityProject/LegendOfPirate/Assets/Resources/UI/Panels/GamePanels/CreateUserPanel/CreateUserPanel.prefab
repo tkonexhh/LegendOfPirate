@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 224844214114138480}
   - component: {fileID: 223055571625650876}
   - component: {fileID: 2760971704205776549}
-  - component: {fileID: 7916485055707838713}
+  - component: {fileID: 8458956145446894145}
   m_Layer: 5
   m_Name: CreateUserPanel
   m_TagString: Untagged
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 311
---- !u!114 &7916485055707838713
+--- !u!114 &8458956145446894145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1637668456022314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7ede89757534c47a2808c98545e1d6, type: 3}
+  m_Script: {fileID: 11500000, guid: bd699ff95d649445ba0e699cda360a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ParentPage: {fileID: 0}
@@ -97,8 +97,9 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  m_NameInputField: {fileID: 8885871290058891885}
-  m_TipsText: {fileID: 8763949038548983248}
+  NameInputField: {fileID: 8885871290058891885}
+  CreateBtn: {fileID: 5656915886028782060}
+  TipsText: {fileID: 8763949038548983248}
 --- !u!1 &86319741677572368
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +401,7 @@ GameObject:
   - component: {fileID: 4616089626096524687}
   - component: {fileID: 1590181946031868955}
   - component: {fileID: 8885871290058891885}
+  - component: {fileID: 3272451352097371844}
   m_Layer: 5
   m_Name: NameInputField
   m_TagString: Untagged
@@ -561,6 +563,22 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
+--- !u!114 &3272451352097371844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032605617660225576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &2176615195891572223
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,6 +760,7 @@ GameObject:
   - component: {fileID: 5881884649819569971}
   - component: {fileID: 5338794216130382262}
   - component: {fileID: 8763949038548983248}
+  - component: {fileID: 4258850672491046112}
   m_Layer: 0
   m_Name: TipsText
   m_TagString: Untagged
@@ -795,7 +814,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u521B\u5EFA\u4E00\u4E2A\u89D2\u8272\u540D"
+  m_text: "\u521B\u5EFA\u4E00\u4E2A\u89D2\u8272"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95510714052484116952359d06d42892, type: 2}
   m_sharedMaterial: {fileID: 6911236400702945317, guid: 95510714052484116952359d06d42892,
@@ -866,6 +885,22 @@ MonoBehaviour:
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
   I18Nkey: 
+--- !u!114 &4258850672491046112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4660127500165646704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &5016485056751314343
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,6 +913,7 @@ GameObject:
   - component: {fileID: 5656915886028782060}
   - component: {fileID: 4300838648272865180}
   - component: {fileID: 9218796555512210839}
+  - component: {fileID: 342454704297305695}
   m_Layer: 0
   m_Name: CreateBtn
   m_TagString: Untagged
@@ -948,7 +984,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7916485055707838713}
+      - m_Target: {fileID: 0}
         m_MethodName: OnCreateClicked
         m_Mode: 1
         m_Arguments:
@@ -1002,6 +1038,22 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
+--- !u!114 &342454704297305695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5016485056751314343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &8692366867346994463
 GameObject:
   m_ObjectHideFlags: 0

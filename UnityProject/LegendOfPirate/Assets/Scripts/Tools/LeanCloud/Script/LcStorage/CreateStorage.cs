@@ -30,7 +30,7 @@ namespace GameWish.Game
         public async void CreateHero()
         {
             // 构建对象
-            LCObject heroStorage = new LCObject("HeroStorage");
+            LCObject heroStorage = new LCObject("UserStorage");
             // 为属性赋值
             heroStorage["name"] = "chuck";
             heroStorage["level"] = "20";
@@ -45,9 +45,9 @@ namespace GameWish.Game
         ///</summary>
         public async void CreateSubHero()
         {
-            // LCQuery<HeroStorage> query = new LCQuery<HeroStorage>("HeroStorage");
+            // LCQuery<UserStorage> query = new LCQuery<UserStorage>("UserStorage");
             // query.WhereExists("name");
-            HeroStorage heroStorage = new HeroStorage()
+            UserStorage heroStorage = new UserStorage()
             {
                 Name = "chuck",
                 Level = 20,
@@ -86,9 +86,9 @@ namespace GameWish.Game
         ///</summary>
         public async void QueryHero()
         {
-            LCQuery<HeroStorage> query = new LCQuery<HeroStorage>("HeroStorage");
+            LCQuery<UserStorage> query = new LCQuery<UserStorage>("UserStorage");
             // query.WhereEndsWith("name", "chuck");
-            HeroStorage hero = await query.Get(m_ObjectId);
+            UserStorage hero = await query.Get(m_ObjectId);
             if (hero.Name != null)
                 m_ShowText.text = hero.Name + "_" + hero.Level + "_" + hero.Balance.ToString();
             else
@@ -113,7 +113,7 @@ namespace GameWish.Game
         }
         public async void LiveQueryTest()
         {
-            LCQuery<HeroStorage> query = new LCQuery<HeroStorage>("HeroStorage");
+            LCQuery<UserStorage> query = new LCQuery<UserStorage>("UserStorage");
             query.WhereEndsWith("name", "chuck");
             liveQuery = await query.Subscribe();
             liveQuery.OnCreate = (obj) =>
@@ -149,7 +149,7 @@ namespace GameWish.Game
         ///</summary>
         public async void UpdateHero()
         {
-            HeroStorage hero = LCObject.CreateWithoutData("HeroStorage", m_ObjectId) as HeroStorage;
+            UserStorage hero = LCObject.CreateWithoutData("UserStorage", m_ObjectId) as UserStorage;
             hero.Name = "Chuck2";
             hero.Level = 40;
             await hero.Save();
@@ -163,7 +163,7 @@ namespace GameWish.Game
         ///</summary>
         public async void DeleteHero()
         {
-            LCObject hero = LCObject.CreateWithoutData("HeroStorage", m_ObjectId);
+            LCObject hero = LCObject.CreateWithoutData("UserStorage", m_ObjectId);
             await hero.Delete();
         }
         #endregion

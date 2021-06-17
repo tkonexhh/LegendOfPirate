@@ -11,7 +11,7 @@ namespace GameWish.Game
 	{
         IDataClass GetDataClass();
         void SaveDataToServer(Action successCallback, Action failCallback);
-
+        void SaveDataToLocal();
     }
 	
 }
