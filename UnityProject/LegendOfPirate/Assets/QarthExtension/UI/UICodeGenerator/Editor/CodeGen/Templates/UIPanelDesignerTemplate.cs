@@ -40,8 +40,8 @@ namespace Qarth.Extension
                             }
 
                             classScope.Custom("[SerializeField]");
-                            string bindInfo_Name = string.Format("m_{0}", bindInfo.Name.Replace(" ","_"));
-                            classScope.Custom("private " + bindInfo.BindScript.ComponentName + " " + bindInfo_Name +
+                            
+                            classScope.Custom("private " + bindInfo.BindScript.ComponentName + " " + string.Format("m_{0}", bindInfo.Name.Replace(" ", "_")) +
                                               ";");
                         }
 
