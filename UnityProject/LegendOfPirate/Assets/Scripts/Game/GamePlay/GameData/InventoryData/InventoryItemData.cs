@@ -8,19 +8,36 @@ namespace GameWish.Game
     [System.Serializable]
 	public struct InventoryItemData
 	{
+        public InventoryItemType itemType;
         public int id;
         public int count;
 
-        public InventoryItemData(int id, int count)
+        private InventoryData m_InventoryData;
+
+        public InventoryItemData(InventoryItemType itemType, int id, int count)
         {
+            m_InventoryData = null;
+
+            this.itemType = itemType;
             this.id = id;
             this.count = count;
         }
 
-        public void AddCount(int deltaCount)
+        public void OnValueChanged(int newValue)
         {
-            count += deltaCount;
-            count = Mathf.Max(0, count);
+            count = newValue;
+
+            SetDateDirty();
+        }
+
+        private void SetDateDirty()
+        {
+            if (m_InventoryData == null)
+            {
+                m_InventoryData = GameDataMgr.S.GetData<InventoryData>();
+            }
+
+            m_InventoryData.SetDataDirty();
         }
     }
 	

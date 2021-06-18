@@ -10,9 +10,9 @@ namespace GameWish.Game
         string GetName();
         string GetDesc();
         int GetCount();
+        InventoryItemType GetItemType();
         int GetId();
         void AddCount(int deltaCount);
-        void SubCount(int deltaCount);
 	}
 	
 }

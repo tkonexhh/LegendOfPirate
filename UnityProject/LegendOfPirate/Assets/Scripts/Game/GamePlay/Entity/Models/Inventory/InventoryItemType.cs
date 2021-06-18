@@ -5,12 +5,13 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public partial class InventoryMgr
-    {
-        private void LoadDataFromModel()
-        {
-
-        }
+	public enum InventoryItemType
+	{
+        None,
+        HeroChip,
+        Equip,
+        Material,
+        Food,
 	}
 	
 }
