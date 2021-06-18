@@ -1,9 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD:UnityProject/LegendOfPirate/Assets/Scripts/Game/Tables/Extend/Gameplay/TDMarinLevelConfigExtend.cs.meta
 guid: 1c966d1b0125f1b49a4679d46d2155f9
 =======
 guid: e52e789c4da15433aaf9c542033d524e
 >>>>>>> origin/hff:UnityProject/LegendOfPirate/Assets/Scripts/Game/Tables/Generate/Gameplay/TDGlobalConfig.cs.meta
+=======
+<<<<<<< HEAD:UnityProject/LegendOfPirate/Assets/Scripts/Game/GamePlay/Entity/VC/Role/ShipRole/ShipRoleState/ShipRoleStateMachine.cs.meta
+guid: 46fdc9dca21f57a4ea3a603dd3f22de3
+=======
+guid: 1bd0f6cec5c177b46983d83d1b6769f8
+>>>>>>> 8122a57... 训练室基础功能:UnityProject/LegendOfPirate/Assets/Scripts/Game/Tables/Generate/Gameplay/TDGlobalConfig.cs.meta
+>>>>>>> 8122a57... 训练室基础功能
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

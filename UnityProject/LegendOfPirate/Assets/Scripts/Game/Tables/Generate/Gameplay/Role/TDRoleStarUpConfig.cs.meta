@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: b41eda9a7b9ee43d0b6d5f3395b7bbe6
+=======
+guid: 6b9721fb8c5860b42ba374b1ee458c26
+>>>>>>> 8122a57... 训练室基础功能
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

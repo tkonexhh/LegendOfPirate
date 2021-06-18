@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using System;
 
 namespace GameWish.Game
 {
@@ -28,7 +29,7 @@ namespace GameWish.Game
         private Image m_Lock;
 
         #region Data
-        private MiddleSlotModel m_MiddleTrainingRoleModule;
+        private MiddleSlotModel m_MiddleTrainingRoleModel;
         #endregion
         #region Method
         private void OnReset()
@@ -39,23 +40,27 @@ namespace GameWish.Game
         }
         public void OnRefresh()
         {
-            OnReset();
-            switch (m_MiddleTrainingRoleModule.trainingSlotModel.trainState.Value)
-            {
-                case TrainingSlotState.Free:
-                    m_Plug.gameObject.SetActive(true);
-                    break;
-                case TrainingSlotState.Training:
-                    m_RoleIconBg.gameObject.SetActive(true);
-                    break;
-                case TrainingSlotState.Locked:
-                    m_LockBg.gameObject.SetActive(true);
-                    break;
-                case TrainingSlotState.HeroSelected:
-                    m_RoleIconBg.gameObject.SetActive(true);
-                    m_Time.text = "选择";
-                    break;
-            }
+            m_MiddleTrainingRoleModel.trainingSlotModel.trainState.Subscribe(val => {
+                OnReset();
+                switch (val)
+                {
+                    case TrainingSlotState.Free:
+                        m_Plug.gameObject.SetActive(true);
+                        break;
+                    case TrainingSlotState.Training:
+                        m_RoleIconBg.gameObject.SetActive(true);
+                        break;
+                    case TrainingSlotState.Locked:
+                        m_LockBg.gameObject.SetActive(true);
+                        break;
+                    case TrainingSlotState.HeroSelected:
+                        m_RoleIconBg.gameObject.SetActive(true);
+                        m_Time.text = "选择";
+                        break;
+                }
+
+            }).AddTo(this);
+          
         }
 
         public void OnInit(MiddleSlotModel middleTrainingRoleModule)
@@ -66,11 +71,34 @@ namespace GameWish.Game
                 return;
             }
 
-            m_MiddleTrainingRoleModule = middleTrainingRoleModule;
+            m_MiddleTrainingRoleModel = middleTrainingRoleModule;
 
-            m_MiddleTrainingRoleModule.trainingSlotModel.trainRemainTime.Select(x=>(int)x).SubscribeToTextMeshPro(m_Time).AddTo(this);
+            BindModelToUI();
+        }
 
-            OnRefresh();
+        private void BindModelToUI()
+        {
+            m_MiddleTrainingRoleModel.trainingSlotModel.trainRemainTime.Select(x => (int)x).SubscribeToTextMeshPro(m_Time).AddTo(this);
+
+            m_MiddleTrainingRoleModel.trainingSlotModel.trainState.Subscribe(val => {
+                OnReset();
+                switch (val)
+                {
+                    case TrainingSlotState.Free:
+                        m_Plug.gameObject.SetActive(true);
+                        break;
+                    case TrainingSlotState.Training:
+                        m_RoleIconBg.gameObject.SetActive(true);
+                        break;
+                    case TrainingSlotState.Locked:
+                        m_LockBg.gameObject.SetActive(true);
+                        break;
+                    case TrainingSlotState.HeroSelected:
+                        m_RoleIconBg.gameObject.SetActive(true);
+                        m_Time.text = "选择";
+                        break;
+                }
+            }).AddTo(this);
         }
         #endregion
     }

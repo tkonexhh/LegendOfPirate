@@ -140,9 +140,8 @@ namespace GameWish.Game
                     if (selectedSlot != null)//Selected remove
                     {
                         selectedSlot.trainingSlotModel.OnHeroUnselected();
-                        selectedSlot.middleTrainingRole.OnRefresh();
                         m_SelectedRoleID.Remove(bottomTRoleModel.roleID);
-                        bottomTRoleModel.bottomTrainingRole.HandleSelectedRole();
+                        bottomTRoleModel.bottomTrainingRole.HandleSelectedRole(false);
                         break;
                     }
                     //Unselected add
@@ -151,7 +150,7 @@ namespace GameWish.Game
                         spareSelectedModel.trainingSlotModel.OnHeroSelected(bottomTRoleModel.roleID);
                         spareSelectedModel.middleTrainingRole.OnInit(spareSelectedModel);
                         m_SelectedRoleID.Add(bottomTRoleModel.roleID);
-                        bottomTRoleModel.bottomTrainingRole.HandleSelectedRole();
+                        bottomTRoleModel.bottomTrainingRole.HandleSelectedRole(true,spareSelectedModel.trainingSlotModel);
                         break;
                     }
                     if (selectedSlot == null && spareSelectedModel == null)
@@ -166,7 +165,7 @@ namespace GameWish.Game
         #endregion
 
         #region Other Method
-        private void SelectedRoleSort()
+        public void SelectedRoleSort()
         {
             for (var i = 0; i < m_BottomTrainingRoleDatas.Count - 1; i++)
             {
@@ -184,7 +183,7 @@ namespace GameWish.Game
         }
 
 
-        public void RefreshSelectedCount()
+        private void RefreshSelectedCount()
         {
             int number = 0;
             foreach (var item in m_PanelData.trainingRoomModel.slotModelList)
