@@ -12,7 +12,7 @@ namespace GameWish.Game
 
         protected virtual void Awake()
         {
-            InputMgr.S.AddTouchObserver(this);    
+            InputMgr.S.AddTouchObserver(this);
         }
 
         public virtual bool BlockInput()
@@ -51,7 +51,7 @@ namespace GameWish.Game
                 return false;
 
             RaycastHit hit;
-            bool isHit = Physics.Raycast(Camera.main.ScreenPointToRay(gesture.position), out hit, 1000f, 1 << LayerMask.NameToLayer(Define.GAME_LAYER));
+            bool isHit = Physics.Raycast(GameCameraMgr.S.CurrentCamera.ScreenPointToRay(gesture.position), out hit, 1000f, 1 << LayerMask.NameToLayer(Define.GAME_LAYER));
             if (isHit && hit.collider != null && hit.collider == m_Collider)
             {
                 OnClicked();

@@ -32,6 +32,21 @@ namespace GameWish.Game
         }
 
         #endregion
+
+
+        public void AddGameObjectToPool(GameObject prefab)
+        {
+            if (GameObjectPoolMgr.S.group.HasPool(prefab.name))
+            {
+                return;
+            }
+            GameObjectPoolMgr.S.AddPool(prefab.name, prefab, 5, 5);
+        }
+
+        public GameObject GetGameObject(string prefab)
+        {
+            return GameObjectPoolMgr.S.Allocate(prefab);
+        }
     }
 
 }
