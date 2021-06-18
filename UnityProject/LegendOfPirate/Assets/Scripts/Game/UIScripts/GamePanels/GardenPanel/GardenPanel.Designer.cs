@@ -18,7 +18,7 @@ namespace GameWish.Game
 		[SerializeField] private TextMeshProUGUI m_BuildingName;
 		[SerializeField] private TextMeshProUGUI m_BuildingLevel;
 		[SerializeField] private Button m_LevelUpBtn;
-		[SerializeField] private TextMeshProUGUI m_FishingPoint0;
+		[SerializeField] private TextMeshProUGUI m_PlantMsg;
 		[SerializeField] private ToggleGroup m_Content;
 		[SerializeField] private Button m_PlantBtn;
 		[SerializeField] private Button m_PrePageBtn;

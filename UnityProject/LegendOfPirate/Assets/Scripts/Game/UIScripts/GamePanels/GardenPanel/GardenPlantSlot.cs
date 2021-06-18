@@ -14,13 +14,15 @@ namespace GameWish.Game
 		[SerializeField] private TextMeshProUGUI m_Label;
 
 		private GardenModel m_GardenModel;
+		private PlantSlotModel m_PlantSloyModel;
 		private List<IDisposable> m_DisPoseLst = new List<IDisposable>();
 		private int m_SlotCount;
 		
 		public void SetInit(ToggleGroup togglegroup, int slotcount) 
 		{
 			m_SlotCount = slotcount;
-			
+			m_GardenModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.Garden) as GardenModel;
+			m_PlantSloyModel = m_GardenModel.GetPlantSlotModel(m_SlotCount);
 			foreach (var item in m_DisPoseLst) 
 			{
 				item.Dispose();
@@ -28,11 +30,14 @@ namespace GameWish.Game
 			}
 			m_DisPoseLst.Clear();
 			m_Toggle.group = togglegroup;
-		    m_GardenModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.Garden)as GardenModel;
-			m_DisPoseLst.Add(m_GardenModel.GetPlantSlotModel(m_SlotCount).slotIslock.Subscribe(isLock => SetLocker(isLock)));
-			m_DisPoseLst .Add( m_Toggle.OnValueChangedAsObservable().Subscribe(value => OnToggleValudChange(value)).AddTo(this));
+			m_DisPoseLst.Add(m_Toggle.OnValueChangedAsObservable().Subscribe(value => OnToggleValudChange(value)).AddTo(this));
+			m_DisPoseLst.Add(m_PlantSloyModel.slotIsUnlock.Subscribe(isLock => SetLocker(isLock)).AddTo(this));
+		
 		}
-
+		//private void OnGardenLevelUp(int level) 
+		//{
+		
+		//}
 		private void SetLocker(bool isLock) 
 		{
             m_Locker.gameObject.SetActive(!isLock);
@@ -44,11 +49,13 @@ namespace GameWish.Game
 		{
 			if (value)
 			{
+				if(m_GardenModel.gardenPlantModel.gardenState.Value==GardenState.Free)
 				m_GardenModel.gardenPlantModel.OnPlantSelect(m_SlotCount);
 			}
-			else 
-			{
-				m_GardenModel.gardenPlantModel.OnPlantUnSelect();
+			else
+            {
+                if (m_GardenModel.gardenPlantModel.gardenState.Value == GardenState.Select)
+                    m_GardenModel.gardenPlantModel.OnPlantUnSelect();
 			}
 
 		}

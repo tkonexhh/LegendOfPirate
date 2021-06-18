@@ -690,7 +690,7 @@ MonoBehaviour:
   m_BuildingName: {fileID: 7709858060705950816}
   m_BuildingLevel: {fileID: 7709858060462738770}
   m_LevelUpBtn: {fileID: 6115052602498739637}
-  m_FishingPoint0: {fileID: 7072104235153648095}
+  m_PlantMsg: {fileID: 7072104235153648095}
   m_Content: {fileID: 5031238771161252579}
   m_PlantBtn: {fileID: 7709858060250160222}
   m_PrePageBtn: {fileID: 1555591291947278774}
@@ -2260,7 +2260,7 @@ GameObject:
   - component: {fileID: 511246642689895242}
   - component: {fileID: 7072104235153648095}
   m_Layer: 0
-  m_Name: FishingPoint0
+  m_Name: PlantMsg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -36,6 +36,8 @@ namespace GameWish.Game
 
             BindModelToUI();
             BindUIToModel();
+
+			InitPanelBtn();
         }
 		
 		protected override void OnPanelOpen(params object[] args)
@@ -71,8 +73,6 @@ namespace GameWish.Game
 			var slotItem = root.GetComponent<GardenPlantSlot>();
 			slotItem.SetInit(m_Content,index);
         }
-
-    
 		
 	}
 }
