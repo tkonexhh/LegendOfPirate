@@ -17,6 +17,8 @@ namespace GameWish.Game
             tableConfig = TDFacilityGardenTable.GetConfig(level.Value);
             m_DbData = GameDataMgr.S.GetData<GardenData>();
             gardenPlantModel = new GardenPlantModel(this, m_DbData.gardenDataItem);
+            gardenPlantModel.seedId = 0;
+            gardenPlantModel.gardenState.Value = GardenState.Free;
             for (int i = 0; i < TDFacilityGardenTable.dataList.Count; i++)
             {
                 PlantSlotModel item = default(PlantSlotModel);
@@ -52,8 +54,17 @@ namespace GameWish.Game
             {
                 plantSlotModels[i].OnGardenLevelUp();
             }
-
-      
+        }
+        public PlantSlotModel GetPlantSlotModel(int slotindex)
+        {
+            if (plantSlotModels != null) 
+            {
+                return plantSlotModels[slotindex];
+            }
+            else 
+            {
+                return default(PlantSlotModel);
+            }
         }
     }
     public class GardenPlantModel : Model
@@ -96,11 +107,11 @@ namespace GameWish.Game
             m_EndTime = startTime + TimeSpan.FromSeconds(m_GardenModel.tableConfig.plantingSped);
         }
         #region public
-        public void StartPlant(DateTime startTime, int seedid) 
+        public void StartPlant(DateTime startTime) 
         {
-            this.seedId = seedid;
+            gardenState.Value = GardenState.Plant;
             SetTime(startTime);
-            m_DbItem.OnStartPlant(seedid, startTime);
+            m_DbItem.OnStartPlant(seedId, startTime);
         }
         public void OnPlantSelect(int id) 
         {
@@ -138,7 +149,7 @@ namespace GameWish.Game
     }
     public class PlantSlotModel : Model 
     {
-        public BoolReactiveProperty slotIslock;
+        public BoolReactiveProperty slotIsUnlock;
         public string plantName;
         public int slotId;
         public int unlockLevel;
@@ -149,18 +160,22 @@ namespace GameWish.Game
             this.unlockLevel = TDFacilityGardenTable.dataList[slotid].level;
             this.plantName = TDFacilityGardenTable.dataList[slotid].seedUnlock;
             m_GardenModel = gardenModel;
-            slotIslock = new BoolReactiveProperty(unlockStage);
-
+            slotIsUnlock = new BoolReactiveProperty(unlockStage);
         }
         public void OnGardenLevelUp() 
         {
-            if (slotIslock.Value && m_GardenModel.level.Value >= unlockLevel) 
+
+            if (m_GardenModel.level.Value >= unlockLevel)
             {
-                slotIslock.Value = false;
-
+                slotIsUnlock.Value = true;
             }
+            else 
+            {
+                slotIsUnlock.Value = false;
+            }
+           
         }
-
+     
     }
 
 }
