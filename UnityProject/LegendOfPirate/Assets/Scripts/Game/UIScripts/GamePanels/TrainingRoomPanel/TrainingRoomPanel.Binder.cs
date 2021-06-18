@@ -32,7 +32,6 @@ namespace GameWish.Game
         }
         #endregion
     }
-
     public partial class TrainingRoomPanel
     {
         private TrainingRoomPanelData m_PanelData = null;
@@ -46,7 +45,7 @@ namespace GameWish.Game
                 m_PanelData.shipModel = ModelMgr.S.GetModel<ShipModel>();
 
                 m_PanelData.trainingRoomModel = m_PanelData.shipModel.GetShipUnitModel(ShipUnitType.TrainingRoom) as TrainingRoomModel;
-
+           
             }
             catch (Exception e)
             {
@@ -61,7 +60,10 @@ namespace GameWish.Game
 
         private void BindModelToUI()
         {
-            m_SelectedCount.Select(count => count + Define.SYMBOL_SLASH + m_PanelData.GetSlotLCount()).SubscribeToTextMeshPro(RoleSelectNumberTMP);
+            m_SelectedCount
+                .Select(count => count + Define.SYMBOL_SLASH + m_PanelData.GetSlotLCount())
+                .SubscribeToTextMeshPro(RoleSelectNumberTMP);
+
             m_PanelData.trainingRoomModel
                        .level
                        .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.Fixed_Title_Lv) + level.ToString())
@@ -75,13 +77,15 @@ namespace GameWish.Game
                 m_PanelData.trainingRoomModel.OnLevelUpgrade(1);
 
             }).AddTo(this);
+
             AutoTrainBtn.OnClickAsObservable().Subscribe(_ =>
             {
 
             }).AddTo(this);
+
             TrainBtn.OnClickAsObservable().Subscribe(_ =>
             {
-                foreach (var item in m_MiddleTRoleDatas)
+                foreach (var item in m_TraPosDatas)
                 {
                     if (item.trainingSlotModel.trainState.Value == TrainingSlotState.HeroSelected)
                     {
@@ -90,17 +94,6 @@ namespace GameWish.Game
                     }
                 }
             }).AddTo(this);
-        }
-
-        private void RegisterEvents()
-        {
-            EventSystem.S.Register(EventID.OnTrainingSelectRole, HandlerEvent);
-        }
-
-
-        private void UnregisterEvents()
-        {
-            EventSystem.S.UnRegister(EventID.OnTrainingSelectRole, HandlerEvent);
         }
     }
 }

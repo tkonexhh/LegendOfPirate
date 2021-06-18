@@ -1,97 +1,87 @@
 using Qarth;
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
-using System;
 
 namespace GameWish.Game
 {
-    public class BottomTrainingRole : UListItemView
+    public class PreparatorRole : UListItemView
     {
         [SerializeField]
-        private Button m_BottomTrainingRole;
+        private Button m_PrepRole;
         [SerializeField]
         private Image m_Icon;
         [SerializeField]
         private Image m_State;
 
         #region Data
-        private BottomRoleModel m_BottomTrainingData;
+        private PreparatorRoleModel m_PrepRoleModel;
         private IDisposable m_ImgStateSub;
         private IDisposable m_TrainStateSub;
         #endregion
 
-        public void OnInit(BottomRoleModel bottomTrainingRoleData)
+        public void OnRefresh(PreparatorRoleModel prepRoleModel)
         {
             OnReset();
-            if (bottomTrainingRoleData == null)
+            if (prepRoleModel == null)
             {
                 Debug.LogWarning("bottomTrainingRoleData is null");
                 return;
             }
-            m_BottomTrainingData = bottomTrainingRoleData;
+            m_PrepRoleModel = prepRoleModel;
             BindModelToUI();
-
-            //ChangeBtnState();
         }
-
         private void BindModelToUI()
         {
-            m_BottomTrainingRole.OnClickAsObservable().Subscribe(_ =>
+            m_PrepRole.OnClickAsObservable().Subscribe(_ =>
             {
-                EventSystem.S.Send(EventID.OnTrainingSelectRole, m_BottomTrainingData);
+                EventSystem.S.Send(EventID.OnTrainingSelectRole, m_PrepRoleModel);
             }).AddTo(this);
 
-            m_ImgStateSub = m_BottomTrainingData.isSelected.Subscribe(val =>
+            m_ImgStateSub = m_PrepRoleModel.isSelected.Subscribe(val =>
             {
                 m_State.gameObject.SetActive(val);
-            });
+            }).AddTo(this);
 
-            BindTrainState();
+            BindTraState();
         }
         #region IItemCom
         public void OnReset()
         {
             m_TrainStateSub?.Dispose();
             m_ImgStateSub?.Dispose();
-            m_BottomTrainingRole.onClick.RemoveAllListeners();
+            m_PrepRole.onClick.RemoveAllListeners();
             m_State.gameObject.SetActive(false);
         }
 
         public void HandleSelectedRole(bool select, TrainingSlotModel trainingSlotModel = null)
         {
-            m_BottomTrainingData.isSelected.Value = !m_BottomTrainingData.isSelected.Value;
+            m_PrepRoleModel.isSelected.Value = !m_PrepRoleModel.isSelected.Value;
             m_ImgStateSub?.Dispose();
-            m_BottomTrainingData.trainingSlotModel = trainingSlotModel;
+            m_PrepRoleModel.trainingSlotModel = trainingSlotModel;
             if (select)
             {
-                BindTrainState();
+                BindTraState();
             }
         }
 
-        private void BindTrainState()
+        private void BindTraState()
         {
-            m_ImgStateSub = m_BottomTrainingData.trainingSlotModel?.trainState.Subscribe(val =>
+            m_ImgStateSub = m_PrepRoleModel.trainingSlotModel?.trainState.Subscribe(val =>
             {
                 switch (val)
                 {
                     case TrainingSlotState.Free:
-                        m_BottomTrainingRole.enabled = true;
+                        m_PrepRole.enabled = true;
                         m_State.gameObject.SetActive(false);
                         break;
                     case TrainingSlotState.Training:
-                        m_BottomTrainingRole.enabled = false;
+                        m_PrepRole.enabled = false;
                         m_State.gameObject.SetActive(true);
                         break;
                 }
-            });
-        }
-
-        private void ChangeBtnState()
-        {
-            m_BottomTrainingRole.enabled = !m_BottomTrainingData.isSelected.Value;
+            }).AddTo(this);
         }
         #endregion
     }

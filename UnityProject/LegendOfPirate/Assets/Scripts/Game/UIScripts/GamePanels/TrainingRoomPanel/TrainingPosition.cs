@@ -1,15 +1,12 @@
 ﻿using Qarth;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
-using System;
 
 namespace GameWish.Game
 {
-	public class MiddleTrainingRole : UListItemView
+    public class TrainingPosition : UListItemView
 	{
         [SerializeField]
         private Image m_Plug;
@@ -29,7 +26,7 @@ namespace GameWish.Game
         private Image m_Lock;
 
         #region Data
-        private MiddleSlotModel m_MiddleTrainingRoleModel;
+        private TrainingPositionModel m_TraPosModel;
         #endregion
         #region Method
         private void OnReset()
@@ -38,49 +35,25 @@ namespace GameWish.Game
             m_Plug.gameObject.SetActive(false);
             m_LockBg.gameObject.SetActive(false);
         }
-        public void OnRefresh()
-        {
-            m_MiddleTrainingRoleModel.trainingSlotModel.trainState.Subscribe(val => {
-                OnReset();
-                switch (val)
-                {
-                    case TrainingSlotState.Free:
-                        m_Plug.gameObject.SetActive(true);
-                        break;
-                    case TrainingSlotState.Training:
-                        m_RoleIconBg.gameObject.SetActive(true);
-                        break;
-                    case TrainingSlotState.Locked:
-                        m_LockBg.gameObject.SetActive(true);
-                        break;
-                    case TrainingSlotState.HeroSelected:
-                        m_RoleIconBg.gameObject.SetActive(true);
-                        m_Time.text = "选择";
-                        break;
-                }
 
-            }).AddTo(this);
-          
-        }
-
-        public void OnInit(MiddleSlotModel middleTrainingRoleModule)
+        public void OnRefresh(TrainingPositionModel traPosModel)
         {
-            if (middleTrainingRoleModule == null)
+            if (traPosModel == null)
             {
-                Debug.LogWarning("bottomTrainingRoleData is null");
+                Debug.LogWarning("traPosModel is null");
                 return;
             }
 
-            m_MiddleTrainingRoleModel = middleTrainingRoleModule;
+            m_TraPosModel = traPosModel;
 
             BindModelToUI();
         }
 
         private void BindModelToUI()
         {
-            m_MiddleTrainingRoleModel.trainingSlotModel.trainRemainTime.Select(x => (int)x).SubscribeToTextMeshPro(m_Time).AddTo(this);
+            m_TraPosModel.trainingSlotModel.trainRemainTime.Select(x => (int)x).SubscribeToTextMeshPro(m_Time).AddTo(this);
 
-            m_MiddleTrainingRoleModel.trainingSlotModel.trainState.Subscribe(val => {
+            m_TraPosModel.trainingSlotModel.trainState.Subscribe(val => {
                 OnReset();
                 switch (val)
                 {
