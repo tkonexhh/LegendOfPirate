@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4193729157110347116}
   - component: {fileID: 4295588075490166859}
   m_Layer: 0
-  m_Name: Img_
+  m_Name: Plug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2260991087394611744}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -166,6 +166,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea15c095488091b41abbece8ed2cef4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Plug: {fileID: 4295588075490166859}
+  m_RoleIconBg: {fileID: 4573466090124123617}
+  m_RoleIcon: {fileID: 3755332451442872376}
+  m_Time: {fileID: 1094952960982899141}
+  m_LockBg: {fileID: 4327189103160155549}
+  m_Lock: {fileID: 3073591528069924273}
 --- !u!1 &6459192279054363629
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +184,7 @@ GameObject:
   - component: {fileID: 2496348949610099667}
   - component: {fileID: 3073591528069924273}
   m_Layer: 0
-  m_Name: Img_
+  m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,7 +259,7 @@ GameObject:
   - component: {fileID: 6009130466401722252}
   - component: {fileID: 4327189103160155549}
   m_Layer: 0
-  m_Name: Img_
+  m_Name: LockBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -329,7 +335,7 @@ GameObject:
   - component: {fileID: 2410243750685437472}
   - component: {fileID: 4573466090124123617}
   m_Layer: 0
-  m_Name: Img_
+  m_Name: RoleIconBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -406,7 +412,7 @@ GameObject:
   - component: {fileID: 2444079045924301039}
   - component: {fileID: 1094952960982899141}
   m_Layer: 0
-  m_Name: TMP_
+  m_Name: Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -528,6 +534,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!1 &9106587995963391111
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +547,7 @@ GameObject:
   - component: {fileID: 6208778972845167135}
   - component: {fileID: 3755332451442872376}
   m_Layer: 0
-  m_Name: Img_
+  m_Name: RoleIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
