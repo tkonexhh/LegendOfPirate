@@ -11,16 +11,22 @@ namespace GameWish.Game
 
     public class LibraryModel : ShipUnitModel
     {
-      
         public LibraryUnitConfig tableConfig; 
         public List<LibrarySlotModel> slotModelList = new List<LibrarySlotModel>();
 
         private LibraryData m_DbData;
 
-
         public LibraryModel(ShipUnitData shipUnitData) : base(shipUnitData)
         {
             tableConfig = TDFacilityLibraryTable.GetConfig(level.Value);
+
+            level.Subscribe(val => {
+                tableConfig = TDFacilityLibraryTable.GetConfig(level.Value);
+                for (int i = 0; i < slotModelList.Count; i++)
+                {
+                    slotModelList[i].OnLibraryLevelUp();
+                }
+            });
 
             m_DbData = GameDataMgr.S.GetData<LibraryData>();
             for (int i = 0; i < m_DbData.libraryItemList.Count; i++)
@@ -28,20 +34,6 @@ namespace GameWish.Game
                 LibrarySlotModel slotModel = new LibrarySlotModel(this, m_DbData.libraryItemList[i]);
                 slotModelList.Add(slotModel);
             }
-        }
-
-        public override void OnLevelUpgrade(int delta)
-        {
-            base.OnLevelUpgrade(delta);
-
-            tableConfig = TDFacilityLibraryTable.GetConfig(level.Value);
-
-            for (int i = 0; i < slotModelList.Count; i++)
-            {
-                slotModelList[i].OnLibraryLevelUp();
-            }
-
-            EventSystem.S.Send(EventID.OnLibraryUpgradeRefresh);
         }
 
         private float m_RefreshTime = 0;
@@ -97,8 +89,6 @@ namespace GameWish.Game
                     break;
             }
         }
-
-
 
         #region Public Set
         public void StartReading(DateTime startTime)

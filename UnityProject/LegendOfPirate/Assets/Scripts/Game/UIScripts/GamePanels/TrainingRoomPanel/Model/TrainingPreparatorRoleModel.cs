@@ -9,29 +9,29 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public class PreparatorRoleModel
+    public class TrainingPreparatorRoleModel
     {
         public int roleID;
         public BoolReactiveProperty isSelected;
         public TrainingSlotModel trainingSlotModel;
-        public PreparatorRole prepRole;
+        public TrainingPreparatorRole traPrepRole;
         public TrainingRoomPanel trainingRoomPanel;
 
-        public PreparatorRoleModel(TrainingSlotModel trainingSlotModel, TrainingRoomPanel trainingRoomPanel, bool selected)
+        public TrainingPreparatorRoleModel(TrainingSlotModel trainingSlotModel, TrainingRoomPanel trainingRoomPanel, bool selected)
         {
             this.trainingSlotModel = trainingSlotModel;
             this.trainingRoomPanel = trainingRoomPanel;
             this.isSelected = new BoolReactiveProperty(selected);
         }
-        public PreparatorRoleModel(int roleID, TrainingRoomPanel trainingRoomPanel, bool selected)
+        public TrainingPreparatorRoleModel(int roleID, TrainingRoomPanel trainingRoomPanel, bool selected)
         {
             this.roleID = roleID;
             this.trainingRoomPanel = trainingRoomPanel;
             this.isSelected = new BoolReactiveProperty(selected);
         }
-        public void SetPrepRoleData(PreparatorRole prepRole)
+        public void SetPrepRoleData(TrainingPreparatorRole prepRole)
         {
-            this.prepRole = prepRole;
+            this.traPrepRole = prepRole;
         }
 
       

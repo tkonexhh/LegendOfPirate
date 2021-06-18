@@ -4,6 +4,7 @@ using Qarth.Extension;
 using Qarth;
 using UniRx;
 using System;
+using System.Collections.Generic;
 
 namespace GameWish.Game
 {
@@ -13,6 +14,11 @@ namespace GameWish.Game
         public LibraryModel libraryModel;
         public LibraryRoomPanelData()
         {
+        }
+
+        public int GetLibSlotMCount()
+        {
+            return libraryModel.slotModelList.Count;
         }
     }
 
@@ -48,46 +54,27 @@ namespace GameWish.Game
              .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.Fixed_Title_Lv) + level.ToString())
              .SubscribeToTextMeshPro(LibraryLevelTMP).AddTo(this);
 
+            m_SelectedCount.Select(count => count + "/" + 10).SubscribeToTextMeshPro(RoleSelectNumberTMP).AddTo(this);
         }
 
         private void BindUIToModel()
         {
-        }
-        private void RegisterEvents()
-        {
-
-        }
-
-        private void OnClickAddListener()
-        {
-            LeftArrowBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                LeftArrowBtnEvent();
-            });
-            RightArrowBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                RightArrowBtnEvent();
-            });
             LibraryUpgradeBtn.OnClickAsObservable().Subscribe(_ =>
             {
-                LibraryUpgradeBtnEvent();
-            });
+                m_PanelData.libraryModel.OnLevelUpgrade(1);
+            }).AddTo(this);
+
             TrainBtn.OnClickAsObservable().Subscribe(_ =>
             {
-                TrainBtnEvent();
-            });
-            AutoTrainBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                AutoTrainBtnEvent();
-            });
-            BgBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                BgBtnEvent();
-            });
-        }
-        private void UnregisterEvents()
-        {
-
+                foreach (var item in m_ReadPosDatas)
+                {
+                    if (item.librarySlotModel.libraryState.Value == LibrarySlotState.HeroSelected)
+                    {
+                        item.librarySlotModel.StartReading(DateTime.Now);
+                        SelectedRoleSort();
+                    }
+                }
+            }).AddTo(this);
         }
     }
 }
