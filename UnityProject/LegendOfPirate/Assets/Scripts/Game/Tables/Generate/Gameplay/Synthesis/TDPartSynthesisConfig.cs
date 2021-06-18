@@ -17,7 +17,8 @@ namespace GameWish.Game
         private string m_SpriteName;   
         private string m_Desc;   
         private string m_MakeRes;   
-        private EInt m_MakeTime = 0;  
+        private EInt m_MakeTime = 0;   
+        private EInt m_MakeCost = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -50,6 +51,11 @@ namespace GameWish.Game
         /// 制作时间（s）
         /// </summary>
         public  int  makeTime {get { return m_MakeTime; } }
+       
+        /// <summary>
+        /// 制作花费
+        /// </summary>
+        public  int  makeCost {get { return m_MakeCost; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -84,6 +90,9 @@ namespace GameWish.Game
                 case 5:
                     m_MakeTime = dataR.ReadInt();
                     break;
+                case 6:
+                    m_MakeCost = dataR.ReadInt();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -94,7 +103,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(6);
+          Dictionary<string, int> ret = new Dictionary<string, int>(7);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
@@ -102,6 +111,7 @@ namespace GameWish.Game
           ret.Add("Desc", 3);
           ret.Add("MakeRes", 4);
           ret.Add("MakeTime", 5);
+          ret.Add("MakeCost", 6);
           return ret;
         }
     } 

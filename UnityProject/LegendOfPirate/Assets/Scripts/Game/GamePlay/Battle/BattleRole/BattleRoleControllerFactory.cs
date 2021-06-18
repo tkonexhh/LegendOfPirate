@@ -10,7 +10,10 @@ namespace GameWish.Game
         public static BattleRoleController CreateBattleRole(RoleConfigSO configSO)
         {
             BattleRoleController role = ObjectPool<BattleRoleController>.S.Allocate();
-            role.Renderer.prefab = configSO.prefab;
+            //TODO 
+            BattleMgr.S.Pool.AddGameObjectToPool(configSO.prefab);
+            // role.Renderer.prefab = configSO.prefab;
+            role.Renderer.prefabName = configSO.prefab.name;
             for (int i = 0; i < configSO.childSkills.Count; i++)
             {
                 role.Skill.AddSkill(SkillFactory.CreateSkill(configSO.childSkills[i]));

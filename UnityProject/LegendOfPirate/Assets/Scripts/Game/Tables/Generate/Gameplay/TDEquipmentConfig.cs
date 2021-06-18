@@ -19,6 +19,7 @@ namespace GameWish.Game
         private string m_EquipmentType;   
         private string m_ParamType;   
         private string m_StrengthenCost;   
+        private EInt m_IntensifyCost = 0;   
         private string m_ParamValue;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
@@ -44,7 +45,7 @@ namespace GameWish.Game
         public  string  roleName {get { return m_RoleName; } }
        
         /// <summary>
-        /// 装备类型
+        /// 装备类型（Weapon-武器，Armor-护具，Jewelry-饰品，Exclusive-专属）
         /// </summary>
         public  string  equipmentType {get { return m_EquipmentType; } }
        
@@ -57,6 +58,11 @@ namespace GameWish.Game
         /// 强化消耗
         /// </summary>
         public  string  strengthenCost {get { return m_StrengthenCost; } }
+       
+        /// <summary>
+        /// 强化花费
+        /// </summary>
+        public  int  intensifyCost {get { return m_IntensifyCost; } }
        
         /// <summary>
         /// 属性数值
@@ -100,6 +106,9 @@ namespace GameWish.Game
                     m_StrengthenCost = dataR.ReadString();
                     break;
                 case 7:
+                    m_IntensifyCost = dataR.ReadInt();
+                    break;
+                case 8:
                     m_ParamValue = dataR.ReadString();
                     break;
                 default:
@@ -112,7 +121,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(8);
+          Dictionary<string, int> ret = new Dictionary<string, int>(9);
           
           ret.Add("EquipmentId", 0);
           ret.Add("StarLevel", 1);
@@ -121,7 +130,8 @@ namespace GameWish.Game
           ret.Add("EquipmentType", 4);
           ret.Add("ParamType", 5);
           ret.Add("StrengthenCost", 6);
-          ret.Add("ParamValue", 7);
+          ret.Add("IntensifyCost", 7);
+          ret.Add("ParamValue", 8);
           return ret;
         }
     } 

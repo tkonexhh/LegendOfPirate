@@ -14,7 +14,7 @@ namespace GameWish.Game
         ///</summary>
         public async Task<string> Ping()
         {
-            m_ShowText = await LeanCloudFuncs.S.RunRequest("Ping") as string;
+            m_ShowText = await LeanCloudHandler.S.RunRequest("Ping") as string;
             return m_ShowText;
         }
 
@@ -23,7 +23,7 @@ namespace GameWish.Game
         ///</summary>
         public async Task<string> Hello()
         {
-            string result = await LeanCloudFuncs.S.RunRequest("Hello", new Dictionary<string, object> {
+            string result = await LeanCloudHandler.S.RunRequest("Hello", new Dictionary<string, object> {
                 { "name", "world" }
             }) as string;
             m_ShowText = result;
@@ -35,7 +35,7 @@ namespace GameWish.Game
         ///</summary>
         public async Task<string> GetDraw()
         {
-            object results = await LeanCloudFuncs.S.RunRequest("LuckyDraw", new Dictionary<string, object> { { "curKind", "nolucky" } });
+            object results = await LeanCloudHandler.S.RunRequest("LuckyDraw", new Dictionary<string, object> { { "curKind", "nolucky" } });
             List<object> heros = results as List<object>;
             string info = $"恭喜获得：{string.Join(", ", heros)}";
             m_ShowText = info;
@@ -47,7 +47,7 @@ namespace GameWish.Game
         ///</summary>
         public async Task<string> OnGetObject()
         {
-            object results = await LeanCloudFuncs.S.RPCRequest("GetObject", new Dictionary<string, object> { { "className", "Hero" }, { "name", "chuck" } });
+            object results = await LeanCloudHandler.S.RPCRequest("GetObject", new Dictionary<string, object> { { "className", "Hero" }, { "name", "chuck" } });
             List<object> heros = results as List<object>;
             foreach (object hero in heros)
             {
@@ -63,7 +63,7 @@ namespace GameWish.Game
         ///</summary>
         public async Task<string> OnGetObjectMap()
         {
-            object results = await LeanCloudFuncs.S.RPCRequest("GetObjectMap");
+            object results = await LeanCloudHandler.S.RPCRequest("GetObjectMap");
             Dictionary<string, object> dict = results as Dictionary<string, object>;
             Debug.Log(dict.Count);
             string info = "";
@@ -82,7 +82,7 @@ namespace GameWish.Game
         ///</summary>
         public async Task<string> OnGetObjects()
         {
-            object results = await LeanCloudFuncs.S.RPCRequest("GetObject_New", new Dictionary<string, object> { { "className", "Hero" } });
+            object results = await LeanCloudHandler.S.RPCRequest("GetObject_New", new Dictionary<string, object> { { "className", "Hero" } });
             List<object> heros = results as List<object>;
             string info = "";
             foreach (object hero in heros)

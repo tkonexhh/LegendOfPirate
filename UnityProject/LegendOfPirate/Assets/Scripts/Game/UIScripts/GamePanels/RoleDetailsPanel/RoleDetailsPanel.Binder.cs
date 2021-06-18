@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -29,7 +29,7 @@ namespace GameWish.Game
             }
 
 			RoleName.text = m_RoleModel.name;
-			m_IsUnlock = m_RoleModel.isUnlcok.Value;
+			m_IsUnlock = m_RoleModel.isUnlock.Value;
 
 			if (!m_IsUnlock)
             {

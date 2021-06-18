@@ -27,13 +27,14 @@ namespace GameWish.Game
 
         public BattleFieldComponent Field { get; private set; }
         public BattleRendererComponent Role { get; private set; }
+        public BattlePoolComponent Pool { get; private set; }
         public BattleBulletComponent Bullet { get; private set; }
         public BattleCameraComponent Camera { get; private set; }
 
         public override void OnSingletonInit()
         {
             m_BattleComponentList = new List<IBattleComponent>();
-            AddComponent(new BattlePoolComponent());
+            Pool = AddComponent(new BattlePoolComponent()) as BattlePoolComponent;
             Field = AddComponent(new BattleFieldComponent()) as BattleFieldComponent;
             Role = AddComponent(new BattleRendererComponent()) as BattleRendererComponent;
             Bullet = AddComponent(new BattleBulletComponent()) as BattleBulletComponent;

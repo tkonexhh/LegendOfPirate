@@ -45,6 +45,13 @@ namespace GameWish.Game
         /// </summary>
         OnTrainingSelectRole,
         #endregion
+
+        #region Library
+        /// <summary>
+        /// 升级刷新事件
+        /// </summary>
+        OnLibraryUpgradeRefresh,
+        #endregion
     }
 
 }

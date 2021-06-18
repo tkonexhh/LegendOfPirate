@@ -55,6 +55,15 @@ namespace GameWish.Game
                 }
         }
 
+
+        [Button("Save")]
+        public void Save()
+        {
+#if UNITY_EDIROT
+            UnityEditor.AssetDatabase.SaveAssets();
+#endif
+        }
+
     }
 
     [SerializeField]
