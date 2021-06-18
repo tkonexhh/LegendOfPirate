@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public class PreparatorRole : UListItemView
+    public class TrainingPreparatorRole : UListItemView
     {
         [SerializeField]
         private Button m_PrepRole;
@@ -16,20 +16,20 @@ namespace GameWish.Game
         private Image m_State;
 
         #region Data
-        private PreparatorRoleModel m_PrepRoleModel;
+        private TrainingPreparatorRoleModel m_PrepRoleModel;
         private IDisposable m_ImgStateSub;
         private IDisposable m_TrainStateSub;
         #endregion
 
-        public void OnRefresh(PreparatorRoleModel prepRoleModel)
+        public void OnRefresh(TrainingPreparatorRoleModel traPrepRoleModel)
         {
             OnReset();
-            if (prepRoleModel == null)
+            if (traPrepRoleModel == null)
             {
                 Debug.LogWarning("bottomTrainingRoleData is null");
                 return;
             }
-            m_PrepRoleModel = prepRoleModel;
+            m_PrepRoleModel = traPrepRoleModel;
             BindModelToUI();
         }
         private void BindModelToUI()

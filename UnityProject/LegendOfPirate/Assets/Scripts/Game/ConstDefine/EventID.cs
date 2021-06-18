@@ -48,9 +48,9 @@ namespace GameWish.Game
 
         #region Library
         /// <summary>
-        /// 升级刷新事件
+        /// 选择角色
         /// </summary>
-        OnLibraryUpgradeRefresh,
+        OnLibrarySelectRole,
         #endregion
     }
 

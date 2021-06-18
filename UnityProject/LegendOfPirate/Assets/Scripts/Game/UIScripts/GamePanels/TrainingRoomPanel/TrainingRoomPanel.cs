@@ -18,7 +18,7 @@ namespace GameWish.Game
 
         #region Data
         private IntReactiveProperty m_SelectedCount = new IntReactiveProperty(0);
-        private List<PreparatorRoleModel> m_PrepRoleDatas = new List<PreparatorRoleModel>();
+        private List<TrainingPreparatorRoleModel> m_PrepRoleDatas = new List<TrainingPreparatorRoleModel>();
         private List<TrainingPositionModel> m_TraPosDatas = new List<TrainingPositionModel>();
 
         private List<int> m_SelectedRoleID = new List<int>();
@@ -122,7 +122,7 @@ namespace GameWish.Game
                 case EventID.OnTrainingSelectRole:
                     TrainingPositionModel spareTraPosModel = null;
                     TrainingPositionModel selectedTraPosModel = null;
-                    PreparatorRoleModel prepRoleModel = (PreparatorRoleModel)param[0];
+                    TrainingPreparatorRoleModel prepRoleModel = (TrainingPreparatorRoleModel)param[0];
 
                     foreach (var item in m_TraPosDatas)
                     {
@@ -150,7 +150,7 @@ namespace GameWish.Game
                     {
                         selectedTraPosModel.trainingSlotModel.OnHeroUnselected();
                         m_SelectedRoleID.Remove(prepRoleModel.roleID);
-                        prepRoleModel.prepRole.HandleSelectedRole(false);
+                        prepRoleModel.traPrepRole.HandleSelectedRole(false);
                         break;
                     }
                     //Unselected add
@@ -159,7 +159,7 @@ namespace GameWish.Game
                         spareTraPosModel.trainingSlotModel.OnHeroSelected(prepRoleModel.roleID);
                         spareTraPosModel.traPos.OnRefresh(spareTraPosModel);
                         m_SelectedRoleID.Add(prepRoleModel.roleID);
-                        prepRoleModel.prepRole.HandleSelectedRole(true, spareTraPosModel.trainingSlotModel);
+                        prepRoleModel.traPrepRole.HandleSelectedRole(true, spareTraPosModel.trainingSlotModel);
                         break;
                     }
                     if (selectedTraPosModel == null && spareTraPosModel == null)
@@ -182,7 +182,7 @@ namespace GameWish.Game
                 {
                     if (m_SelectedRoleID.Contains(m_PrepRoleDatas[j].roleID))
                     {
-                        PreparatorRoleModel trainingSlotModel = m_PrepRoleDatas[j];
+                        TrainingPreparatorRoleModel trainingSlotModel = m_PrepRoleDatas[j];
                         m_PrepRoleDatas[j] = m_PrepRoleDatas[j + 1];
                         m_PrepRoleDatas[j + 1] = trainingSlotModel;
                     }
@@ -245,13 +245,13 @@ namespace GameWish.Game
             List<TrainingSlotModel> trainingStates = GetCorrespondingStateList(TrainingSlotState.Training);
             List<TrainingSlotModel> heroSelectedStates = GetCorrespondingStateList(TrainingSlotState.HeroSelected);
 
-            ReactiveCollection<PreparatorRoleModel> tempSelectedDatas = new ReactiveCollection<PreparatorRoleModel>();
+            ReactiveCollection<TrainingPreparatorRoleModel> tempSelectedDatas = new ReactiveCollection<TrainingPreparatorRoleModel>();
             for (int i = 0; i < m_SimulationRoleID.Count; i++)
             {
                 TrainingSlotModel trainingState = trainingStates.FirstOrDefault(x => x.heroId == m_SimulationRoleID[i]);
                 if (trainingState.IsNotNull())
                 {
-                    PreparatorRoleModel newPrepRoleModel = new PreparatorRoleModel(trainingState, this, true);
+                    TrainingPreparatorRoleModel newPrepRoleModel = new TrainingPreparatorRoleModel(trainingState, this, true);
 
                     tempSelectedDatas.Add(newPrepRoleModel);
                 }
@@ -261,7 +261,7 @@ namespace GameWish.Game
 
                     if (heroSelectedState.IsNotNull())
                     {
-                        PreparatorRoleModel newPrepRoleModel = new PreparatorRoleModel(heroSelectedState, this, true);
+                        TrainingPreparatorRoleModel newPrepRoleModel = new TrainingPreparatorRoleModel(heroSelectedState, this, true);
 
                         m_SelectedRoleID.Add(m_SimulationRoleID[i]);
 
@@ -269,7 +269,7 @@ namespace GameWish.Game
                     }
                     else
                     {
-                        PreparatorRoleModel newPrepRoleModel = new PreparatorRoleModel(m_SimulationRoleID[i], this, false);
+                        TrainingPreparatorRoleModel newPrepRoleModel = new TrainingPreparatorRoleModel(m_SimulationRoleID[i], this, false);
 
                         m_PrepRoleDatas.Add(newPrepRoleModel);
                     }
@@ -287,9 +287,9 @@ namespace GameWish.Game
 
         private void OnPropRoleCellRenderer(Transform root, int index)
         {
-            PreparatorRoleModel prepRoleModel = m_PrepRoleDatas[index];
+            TrainingPreparatorRoleModel prepRoleModel = m_PrepRoleDatas[index];
 
-            PreparatorRole prepRole = root.GetComponent<PreparatorRole>();
+            TrainingPreparatorRole prepRole = root.GetComponent<TrainingPreparatorRole>();
 
             prepRoleModel.SetPrepRoleData(prepRole);
 

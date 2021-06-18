@@ -10,10 +10,13 @@ namespace GameWish.Game
     {
         public List<LibraryDataItem> libraryItemList = new List<LibraryDataItem>();
 
-
         public override void InitWithEmptyData()
         {
-
+            for (int i = 1; i <= Define.TRAINING_ROOM_MAX_SLOT; i++)
+            {
+                LibraryDataItem item = new LibraryDataItem(i);
+                libraryItemList.Add(item);
+            }
         }
 
         public override void OnDataLoadFinish()
