@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: f36162f88e82748b2b333aed622de982
 =======
 guid: e54c7bcb322fa814e87c9ab6883e6572
 >>>>>>> 8122a57... 训练室基础功能
+=======
+guid: e54c7bcb322fa814e87c9ab6883e6572
+>>>>>>> 8122a57ce3dcd0ee2007b83a9e6212adc128ea86
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
