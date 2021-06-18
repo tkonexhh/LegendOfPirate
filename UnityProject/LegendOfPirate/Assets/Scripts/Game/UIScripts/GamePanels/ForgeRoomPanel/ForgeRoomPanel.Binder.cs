@@ -12,14 +12,18 @@ namespace GameWish.Game
 	public class ForgePanelData : UIPanelData
 	{
 		public ForgeRoomModel forgeModel;
-		public List<GameObject> lockerList;
+		public List<ForgeRoomWeaponSlot> lockerList;
 		public ForgePanelData()
 		{
-			lockerList = new List<GameObject>();
+			lockerList = new List<ForgeRoomWeaponSlot>();
+		}
+		public int GetSlotCount() 
+		{
+			return forgeModel.forgeWeaponSlotModels.Count;
 		}
 	}
 	
-	public partial class ForgePanel
+	public partial class ForgeRoomPanel
 	{
 		private ForgePanelData m_PanelData = null;
 
@@ -27,12 +31,8 @@ namespace GameWish.Game
 		{
 			m_PanelData = UIPanelData.Allocate<ForgePanelData>();
 			m_PanelData.forgeModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.ForgeRoom) as ForgeRoomModel;
-			var plantSlots = Content.GetComponentsInChildren<Toggle>();
-            foreach (var item in plantSlots)
-            {
-                var Locker = item.GetComponentInChildren<GImage>().gameObject;
-                m_PanelData.lockerList.Add(Locker);
-            }
+			var plantSlots = m_Content.GetComponentsInChildren<Toggle>();
+          
         }
 
 	    private void ReleasePanelData()
@@ -43,19 +43,24 @@ namespace GameWish.Game
 		
 		private void BindModelToUI()
 		{
-			m_PanelData.forgeModel.level.SubscribeToTextMeshPro(BuildingLevel,"Lv.{0}").AddTo(this);
+			m_PanelData.forgeModel.level.SubscribeToTextMeshPro(m_BuildingLevel,"Lv.{0}").AddTo(this);
 			m_PanelData.forgeModel.level.Subscribe(level => OnBuildingLevelUp(level)).AddTo(this);
 		}
 		
 		private void BindUIToModel()
 		{
-			CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
-			LevelUpBtn.OnClickAsObservable().Subscribe(_=>OnLevelBtnClick()).AddTo(this);
-			ForgeBtn.OnClickAsObservable().Subscribe(_ => OnForgeBtnClick()).AddTo(this);
+
             
         }
 
-        private void OnForgeBtnClick()
+		private void InitPanelBtn()
+		{
+            m_CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
+            m_LevelUpBtn.OnClickAsObservable().Subscribe(_ => OnLevelBtnClick()).AddTo(this);
+            m_ForgeBtn.OnClickAsObservable().Subscribe(_ => OnForgeBtnClick()).AddTo(this);
+        }
+
+		private void OnForgeBtnClick()
         {
             
         }
@@ -71,14 +76,14 @@ namespace GameWish.Game
 		}
 		private void SetUnlockedToggle(int level) 
 		{
-			var toggles = Content.GetComponentsInChildren<Toggle>();
+			var toggles = m_Content.GetComponentsInChildren<Toggle>();
 			for (int i = 0; i < toggles.Length; i++) 
 			{
 
                 if (level >= TDFacilityForgeTable.dataList[i].level)
                 {
 					toggles[i].interactable = true;
-					m_PanelData.lockerList[i].SetActive(false);
+
 					toggles[i].GetComponentInChildren<TextMeshProUGUI>().text = TDFacilityForgeTable.dataList[i].unlockEquipmentID.ToString();
                 }
                 else
