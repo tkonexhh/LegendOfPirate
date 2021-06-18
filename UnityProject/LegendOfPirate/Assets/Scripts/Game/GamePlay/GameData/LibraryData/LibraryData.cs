@@ -40,8 +40,11 @@ namespace GameWish.Game
             public DateTime ReadingStartTime;
             public LibrarySlotState libraryState;
 
+            private LibraryData m_LibraryData;
+
             public LibraryDataItem(int slot)
             {
+                m_LibraryData = null;
                 slotId = slot;
                 heroId = -1;
                 ReadingStartTime = default(DateTime);
@@ -55,7 +58,7 @@ namespace GameWish.Game
                 this.ReadingStartTime = time;
                 libraryState = LibrarySlotState.Reading;
 
-                GameDataMgr.S.GetData<LibraryData>().SetDataDirty();
+                SetDataDirty();
             }
 
             public void OnHeroSelected(int heroId)
@@ -63,14 +66,14 @@ namespace GameWish.Game
                 this.heroId = heroId;
                 libraryState = LibrarySlotState.HeroSelected;
 
-                GameDataMgr.S.GetData<LibraryData>().SetDataDirty();
+                SetDataDirty();
             }
 
             public void OnHeroUnselected()
             {
                 libraryState = LibrarySlotState.Free;
 
-                GameDataMgr.S.GetData<LibraryData>().SetDataDirty();
+                SetDataDirty();
             }
 
             public void OnEndTraining()
@@ -79,7 +82,7 @@ namespace GameWish.Game
                 this.ReadingStartTime = default(DateTime);
                 libraryState = LibrarySlotState.Free;
 
-                GameDataMgr.S.GetData<LibraryData>().SetDataDirty();
+                SetDataDirty();
             }
 
             public void OnUnlocked()
@@ -87,7 +90,16 @@ namespace GameWish.Game
                 libraryState = LibrarySlotState.Free;
 
                 //m_TrainingData.SetDataDirty();
-                GameDataMgr.S.GetData<LibraryData>().SetDataDirty();
+                SetDataDirty();
+            }
+
+            private void SetDataDirty()
+            {
+                if (m_LibraryData == null)
+                {
+                    m_LibraryData = GameDataMgr.S.GetData<LibraryData>();
+                }
+                m_LibraryData.SetDataDirty();
             }
         }
     }

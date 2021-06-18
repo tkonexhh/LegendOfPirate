@@ -82,7 +82,7 @@ namespace GameWish.Game
                 this.trainingStartTime = time;
                 trainState = TrainingSlotState.Training;
 
-                GameDataMgr.S.GetData<TrainingData>().SetDataDirty();
+                SetDataDirty();
             }
 
             public void OnHeroSelected(int heroId)
@@ -90,14 +90,14 @@ namespace GameWish.Game
                 this.heroId = heroId;
                 trainState = TrainingSlotState.HeroSelected;
 
-                GameDataMgr.S.GetData<TrainingData>().SetDataDirty();
+                SetDataDirty();
             }
 
             public void OnHeroUnselected()
             {
                 trainState = TrainingSlotState.Free;
 
-                GameDataMgr.S.GetData<TrainingData>().SetDataDirty();
+                SetDataDirty();
             }
 
             public void OnEndTraining()
@@ -106,7 +106,7 @@ namespace GameWish.Game
                 this.trainingStartTime = default(DateTime);
                 trainState = TrainingSlotState.Free;
 
-                GameDataMgr.S.GetData<TrainingData>().SetDataDirty();
+                SetDataDirty();
             }
 
             public void OnUnlocked()
@@ -114,7 +114,16 @@ namespace GameWish.Game
                 trainState = TrainingSlotState.Free;
 
                 //m_TrainingData.SetDataDirty();
-                GameDataMgr.S.GetData<TrainingData>().SetDataDirty();
+                SetDataDirty();
+            }
+
+            private void SetDataDirty()
+            {
+                if (m_TrainingData == null)
+                {
+                    m_TrainingData = GameDataMgr.S.GetData<TrainingData>();
+                }
+                m_TrainingData.SetDataDirty();
             }
         }
     }
