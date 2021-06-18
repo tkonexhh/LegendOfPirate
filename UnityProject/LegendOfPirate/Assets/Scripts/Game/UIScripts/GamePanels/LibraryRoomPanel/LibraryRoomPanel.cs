@@ -49,6 +49,13 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
+
+            AllocatePanelData();
+
+            BindModelToUI();
+            BindUIToModel();
+
+            OnClickAddListener();
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -58,14 +65,16 @@ namespace GameWish.Game
 
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
 
-            AllocatePanelData(args);
-
             BindModelToUI();
             BindUIToModel();
 
-            OnClickAddListener();
-
             InitData();
+        }
+        protected override void BeforDestroy()
+        {
+            base.BeforDestroy();
+
+            ReleasePanelData();
         }
 
         protected override void OnPanelHideComplete()
