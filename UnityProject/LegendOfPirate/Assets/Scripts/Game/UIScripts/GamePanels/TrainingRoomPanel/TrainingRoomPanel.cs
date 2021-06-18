@@ -1,11 +1,9 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using Qarth;
 using Qarth.Extension;
-using Qarth;
-using UniRx;
-using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using UniRx;
+using UnityEngine;
 
 namespace GameWish.Game
 {
@@ -14,17 +12,17 @@ namespace GameWish.Game
         [SerializeField]
         private ScrollRectAutoAdjustPosition m_ScrollRectAdjustPos;
         [SerializeField]
-        private UGridListView m_MiddleTRoleUGList;
+        private UGridListView m_TraPosUGList;
         [SerializeField]
-        private USimpleListView m_BottomTRoleUList;
+        private USimpleListView m_PrepRoleUList;
 
         #region Data
         private IntReactiveProperty m_SelectedCount = new IntReactiveProperty(0);
-        private ReactiveCollection<BottomRoleModel> m_BottomTrainingRoleDatas = new ReactiveCollection<BottomRoleModel>();
-        private ReactiveCollection<MiddleSlotModel> m_MiddleTRoleDatas = new ReactiveCollection<MiddleSlotModel>();
+        private List<PreparatorRoleModel> m_PrepRoleDatas = new List<PreparatorRoleModel>();
+        private List<TrainingPositionModel> m_TraPosDatas = new List<TrainingPositionModel>();
 
-        private ReactiveCollection<int> m_SelectedRoleID = new ReactiveCollection<int>();
-        private ReactiveCollection<int> m_SimulationRoleID = new ReactiveCollection<int>();
+        private List<int> m_SelectedRoleID = new List<int>();
+        private List<int> m_SimulationRoleID = new List<int>();
         #endregion
 
         #region AbstractAnimPanel
@@ -90,14 +88,17 @@ namespace GameWish.Game
             {
                 m_ScrollRectAdjustPos?.Move2Pre();
             }).AddTo(this);
+
             RightArrowBtn.OnClickAsObservable().Subscribe(_ =>
             {
                 m_ScrollRectAdjustPos?.Move2Next();
             }).AddTo(this);
+
             TrainBtn.OnClickAsObservable().Subscribe(_ =>
             {
                 RefreshSelectedCount();
             }).AddTo(this);
+
             BgBtn.OnClickAsObservable().Subscribe(_ =>
             {
                 HideSelfWithAnim();
@@ -106,55 +107,62 @@ namespace GameWish.Game
         #endregion
 
         #region EventSystem
+        private void RegisterEvents()
+        {
+            EventSystem.S.Register(EventID.OnTrainingSelectRole, HandlerEvent);
+        }
+        private void UnregisterEvents()
+        {
+            EventSystem.S.UnRegister(EventID.OnTrainingSelectRole, HandlerEvent);
+        }
         private void HandlerEvent(int key, object[] param)
         {
             switch ((EventID)key)
             {
                 case EventID.OnTrainingSelectRole:
-                    MiddleSlotModel spareSelectedModel = null;
-                    MiddleSlotModel selectedSlot = null;
-                    BottomRoleModel bottomTRoleModel = (BottomRoleModel)param[0];
+                    TrainingPositionModel spareTraPosModel = null;
+                    TrainingPositionModel selectedTraPosModel = null;
+                    PreparatorRoleModel prepRoleModel = (PreparatorRoleModel)param[0];
 
-                    foreach (var item in m_MiddleTRoleDatas)
+                    foreach (var item in m_TraPosDatas)
                     {
                         switch (item.trainingSlotModel.trainState.Value)
                         {
                             case TrainingSlotState.Free:
-                                if (spareSelectedModel == null)
+                                if (spareTraPosModel == null)
                                 {
-                                    spareSelectedModel = item;
+                                    spareTraPosModel = item;
                                 }
                                 break;
                             case TrainingSlotState.Training:
                             case TrainingSlotState.Locked:
                                 break;
                             case TrainingSlotState.HeroSelected:
-                                if (item.trainingSlotModel.heroId == bottomTRoleModel.roleID)
+                                if (item.trainingSlotModel.heroId == prepRoleModel.roleID)
                                 {
-                                    selectedSlot = item;
+                                    selectedTraPosModel = item;
                                 }
                                 break;
                         }
                     }
 
-                    if (selectedSlot != null)//Selected remove
+                    if (selectedTraPosModel != null)//Selected remove
                     {
-                        selectedSlot.trainingSlotModel.OnHeroUnselected();
-                        selectedSlot.middleTrainingRole.OnRefresh();
-                        m_SelectedRoleID.Remove(bottomTRoleModel.roleID);
-                        bottomTRoleModel.bottomTrainingRole.HandleSelectedRole();
+                        selectedTraPosModel.trainingSlotModel.OnHeroUnselected();
+                        m_SelectedRoleID.Remove(prepRoleModel.roleID);
+                        prepRoleModel.prepRole.HandleSelectedRole(false);
                         break;
                     }
                     //Unselected add
-                    if (spareSelectedModel != null && spareSelectedModel.trainingSlotModel.trainState.Value == TrainingSlotState.Free)
+                    if (spareTraPosModel != null && spareTraPosModel.trainingSlotModel.trainState.Value == TrainingSlotState.Free)
                     {
-                        spareSelectedModel.trainingSlotModel.OnHeroSelected(bottomTRoleModel.roleID);
-                        spareSelectedModel.middleTrainingRole.OnInit(spareSelectedModel);
-                        m_SelectedRoleID.Add(bottomTRoleModel.roleID);
-                        bottomTRoleModel.bottomTrainingRole.HandleSelectedRole();
+                        spareTraPosModel.trainingSlotModel.OnHeroSelected(prepRoleModel.roleID);
+                        spareTraPosModel.traPos.OnRefresh(spareTraPosModel);
+                        m_SelectedRoleID.Add(prepRoleModel.roleID);
+                        prepRoleModel.prepRole.HandleSelectedRole(true, spareTraPosModel.trainingSlotModel);
                         break;
                     }
-                    if (selectedSlot == null && spareSelectedModel == null)
+                    if (selectedTraPosModel == null && spareTraPosModel == null)
                     {
                         FloatMessageTMP.S.ShowMsg("Full");
                         break;
@@ -166,25 +174,24 @@ namespace GameWish.Game
         #endregion
 
         #region Other Method
-        private void SelectedRoleSort()
+        public void SelectedRoleSort()
         {
-            for (var i = 0; i < m_BottomTrainingRoleDatas.Count - 1; i++)
+            for (var i = 0; i < m_PrepRoleDatas.Count - 1; i++)
             {
-                for (var j = 0; j < m_BottomTrainingRoleDatas.Count - 1 - i; j++)
+                for (var j = 0; j < m_PrepRoleDatas.Count - 1 - i; j++)
                 {
-                    if (m_SelectedRoleID.Contains(m_BottomTrainingRoleDatas[j].roleID))
+                    if (m_SelectedRoleID.Contains(m_PrepRoleDatas[j].roleID))
                     {
-                        BottomRoleModel trainingSlotModel = m_BottomTrainingRoleDatas[j];
-                        m_BottomTrainingRoleDatas[j] = m_BottomTrainingRoleDatas[j + 1];
-                        m_BottomTrainingRoleDatas[j + 1] = trainingSlotModel;
+                        PreparatorRoleModel trainingSlotModel = m_PrepRoleDatas[j];
+                        m_PrepRoleDatas[j] = m_PrepRoleDatas[j + 1];
+                        m_PrepRoleDatas[j + 1] = trainingSlotModel;
                     }
                 }
             }
-            m_BottomTRoleUList.SetDataCount(m_BottomTrainingRoleDatas.Count);
+            m_PrepRoleUList.SetDataCount(m_PrepRoleDatas.Count);
         }
 
-
-        public void RefreshSelectedCount()
+        private void RefreshSelectedCount()
         {
             int number = 0;
             foreach (var item in m_PanelData.trainingRoomModel.slotModelList)
@@ -215,38 +222,38 @@ namespace GameWish.Game
         {
             RefreshSelectedCount();
 
-            InitBottomTRoleDatas();
-            InitMiddleTRoleDatas();
+            InitPrepRoleDatas();
+            InitTraPosDatas();
 
-            m_MiddleTRoleUGList.SetCellRenderer(OnMiddleCellRenderer);
-            m_BottomTRoleUList.SetCellRenderer(OnBottomCellRenderer);
+            m_TraPosUGList.SetCellRenderer(OnTraPosCellRenderer);
+            m_PrepRoleUList.SetCellRenderer(OnPropRoleCellRenderer);
 
             m_ScrollRectAdjustPos.EnableAutoAdjust(m_SimulationRoleID.Count);
 
-            m_MiddleTRoleUGList.SetDataCount(m_MiddleTRoleDatas.Count);
-            m_BottomTRoleUList.SetDataCount(m_BottomTrainingRoleDatas.Count);
+            m_TraPosUGList.SetDataCount(m_TraPosDatas.Count);
+            m_PrepRoleUList.SetDataCount(m_PrepRoleDatas.Count);
         }
-        private void InitMiddleTRoleDatas()
+        private void InitTraPosDatas()
         {
             foreach (var item in m_PanelData.trainingRoomModel.slotModelList)
             {
-                m_MiddleTRoleDatas.Add(new MiddleSlotModel(item));
+                m_TraPosDatas.Add(new TrainingPositionModel(item));
             }
         }
-        private void InitBottomTRoleDatas()
+        private void InitPrepRoleDatas()
         {
             List<TrainingSlotModel> trainingStates = GetCorrespondingStateList(TrainingSlotState.Training);
             List<TrainingSlotModel> heroSelectedStates = GetCorrespondingStateList(TrainingSlotState.HeroSelected);
 
-            ReactiveCollection<BottomRoleModel> tempSelectedDatas = new ReactiveCollection<BottomRoleModel>();
+            ReactiveCollection<PreparatorRoleModel> tempSelectedDatas = new ReactiveCollection<PreparatorRoleModel>();
             for (int i = 0; i < m_SimulationRoleID.Count; i++)
             {
                 TrainingSlotModel trainingState = trainingStates.FirstOrDefault(x => x.heroId == m_SimulationRoleID[i]);
                 if (trainingState.IsNotNull())
                 {
-                    BottomRoleModel newBottomTRoleM = new BottomRoleModel(trainingState, this, true);
+                    PreparatorRoleModel newPrepRoleModel = new PreparatorRoleModel(trainingState, this, true);
 
-                    tempSelectedDatas.Add(newBottomTRoleM);
+                    tempSelectedDatas.Add(newPrepRoleModel);
                 }
                 else
                 {
@@ -254,52 +261,51 @@ namespace GameWish.Game
 
                     if (heroSelectedState.IsNotNull())
                     {
-                        BottomRoleModel newBottomTRoleM = new BottomRoleModel(heroSelectedState, this, true);
+                        PreparatorRoleModel newPrepRoleModel = new PreparatorRoleModel(heroSelectedState, this, true);
 
                         m_SelectedRoleID.Add(m_SimulationRoleID[i]);
 
-                        m_BottomTrainingRoleDatas.Add(newBottomTRoleM);
+                        m_PrepRoleDatas.Add(newPrepRoleModel);
                     }
                     else
                     {
-                        BottomRoleModel newBottomTRoleM = new BottomRoleModel(m_SimulationRoleID[i], this, false);
+                        PreparatorRoleModel newPrepRoleModel = new PreparatorRoleModel(m_SimulationRoleID[i], this, false);
 
-                        m_BottomTrainingRoleDatas.Add(newBottomTRoleM);
+                        m_PrepRoleDatas.Add(newPrepRoleModel);
                     }
                 }
             }
 
             foreach (var item in tempSelectedDatas)
             {
-                m_BottomTrainingRoleDatas.Add(item);
+                m_PrepRoleDatas.Add(item);
             }
             tempSelectedDatas.Clear();
             trainingStates.Clear();
             heroSelectedStates.Clear();
         }
 
-        private void OnBottomCellRenderer(Transform root, int index)
+        private void OnPropRoleCellRenderer(Transform root, int index)
         {
-            BottomRoleModel bottomRoleModel = m_BottomTrainingRoleDatas[index];
+            PreparatorRoleModel prepRoleModel = m_PrepRoleDatas[index];
 
-            BottomTrainingRole bottomTRole = root.GetComponent<BottomTrainingRole>();
+            PreparatorRole prepRole = root.GetComponent<PreparatorRole>();
 
-            bottomRoleModel.SetTRoleData(bottomTRole);
+            prepRoleModel.SetPrepRoleData(prepRole);
 
-            bottomTRole.OnInit(bottomRoleModel);
+            prepRole.OnRefresh(prepRoleModel);
         }
 
-        private void OnMiddleCellRenderer(Transform root, int index)
+        private void OnTraPosCellRenderer(Transform root, int index)
         {
-            MiddleSlotModel middleSlotModel = m_MiddleTRoleDatas[index];
+            TrainingPositionModel traPosModel = m_TraPosDatas[index];
 
-            MiddleTrainingRole middleTrainingRole = root.GetComponent<MiddleTrainingRole>();
+            TrainingPosition traPos = root.GetComponent<TrainingPosition>();
 
-            middleSlotModel.SetTRoleData(middleTrainingRole);
+            traPosModel.SetTraPosData(traPos);
 
-            middleTrainingRole.OnInit(middleSlotModel);
+            traPos.OnRefresh(traPosModel);
         }
         #endregion
-
     }
 }

@@ -9,6 +9,9 @@ namespace GameWish.Game
     {
         None,
         Idle,
+        Wander,
+        Training,
+        Reading,
     }
 
     public class ShipRoleState : FSMState<ShipRoleController>
