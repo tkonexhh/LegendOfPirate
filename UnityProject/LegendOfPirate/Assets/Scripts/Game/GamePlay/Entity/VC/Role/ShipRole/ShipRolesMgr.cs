@@ -10,6 +10,8 @@ namespace GameWish.Game
         private ShipRoleControllerFactory m_RoleFactory = null;
         private Dictionary<int, ShipRoleController> m_ShipRoleDic = null;
 
+        public ShipRoleControllerFactory RoleFactory { get => m_RoleFactory;}
+
         #region IMgr
 
         public void OnInit()
@@ -30,6 +32,15 @@ namespace GameWish.Game
 
         #endregion
 
+
+        #region Public Set
+
+        //public void RecycleShipRoleController(ShipRoleController controller)
+        //{
+        //    m_RoleFactory.RecycleController(controller);
+        //}
+
+        #endregion
 
         #region Private
 

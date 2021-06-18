@@ -13,7 +13,7 @@ namespace GameWish.Game
         public IntReactiveProperty level;
         public string name;
         public string resName;
-        public BoolReactiveProperty isUnlcok;
+        public BoolReactiveProperty isUnlock;
         public IntReactiveProperty spiritCount;
 
         public IntReactiveProperty curHp;
@@ -22,6 +22,8 @@ namespace GameWish.Game
         public IntReactiveProperty starLevel;
         public ReactiveCollection<RoleEquipModel> equipList;
         public ReactiveCollection<RoleSkillModel> skillList;
+
+        public ReactiveProperty<ShipRoleStateId> stateId;
 
         public TDRoleConfig tdRoleConfig;
 
@@ -33,7 +35,7 @@ namespace GameWish.Game
             #region FormData
             this.roleData = data;
             id = roleData.id;
-            isUnlcok = new BoolReactiveProperty(roleData.isUnlock);
+            isUnlock = new BoolReactiveProperty(roleData.isUnlock);
             spiritCount = new IntReactiveProperty(roleData.spiritCount);
             level = new IntReactiveProperty(roleData.level);
 
@@ -62,7 +64,7 @@ namespace GameWish.Game
             curHp = new IntReactiveProperty();
             //攻击 = 基础攻击 * 攻击成长系数 ^ (等级 - 1) * 星级系数 ^ (星级 - 1)  TODO...
             //curAtk = new FloatReactiveProperty(tdRoleConfig.initAtk * Mathf.Pow());
-
+            stateId = new ReactiveProperty<ShipRoleStateId>(ShipRoleStateId.Idle);
 
             ModelSubscribe();
         }
@@ -150,7 +152,7 @@ namespace GameWish.Game
 
         private void ModelSubscribe()
         {
-            isUnlcok.Subscribe(unlock =>
+            isUnlock.Subscribe(unlock =>
            {
                roleData.SetRoleUnlocked();
            });

@@ -41,11 +41,6 @@ namespace GameWish.Game
 
         }
 
-        //public RoleController EquipSkill(RoleSkill roleSkill)
-        //{
-        //    return this;
-        //}
-
         #endregion
 
         #region Private

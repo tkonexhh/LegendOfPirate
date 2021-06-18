@@ -7,9 +7,7 @@ namespace GameWish.Game
 {
     public enum ShipRoleStateId
     {
-        Locked,
-        ReadyToBuild,
-        Building,
+        None,
         Idle,
     }
 

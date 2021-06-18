@@ -21,7 +21,7 @@ namespace GameWish.Game
                 RoleModel itemModel = new RoleModel(item);
                 roleItemList.Add(itemModel);
 
-                if (itemModel.isUnlcok.Value)
+                if (itemModel.isUnlock.Value)
                 {
                     if (roleUnlockedItemList.Any(i => i.id == itemModel.id))
                         return;
@@ -61,7 +61,7 @@ namespace GameWish.Game
         public void AddRoleUnlockedModel(int id)
         {
             RoleModel role = roleItemList.FirstOrDefault(item => item.id == id);
-            role.isUnlcok.Value = true;
+            role.isUnlock.Value = true;
             roleUnlockedItemList.Add(role);
         }
 
@@ -78,7 +78,7 @@ namespace GameWish.Game
             roleUnlockedList.OrderBy(item => item.GetStarLevel())
                     .ThenBy(item => item.level);
             roleModelList = roleItemList.ToList();
-            roleModelList.Where(i => i.isUnlcok.Value = false && i.spiritCount.Value != 0)
+            roleModelList.Where(i => i.isUnlock.Value = false && i.spiritCount.Value != 0)
                     .OrderBy(i => i.spiritCount);
             return (roleUnlockedList.Concat(roleModelList).ToList());
         }

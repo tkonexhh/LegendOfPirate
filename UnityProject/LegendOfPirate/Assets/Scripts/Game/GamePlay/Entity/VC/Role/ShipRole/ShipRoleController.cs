@@ -10,8 +10,36 @@ namespace GameWish.Game
 	{
         private ShipRoleView m_RoleView = null;
         private RoleModel m_RoleModel = null;
+        private ShipRoleStateMachine m_StateMachine = null;
+
+        #region Override
+
+        public override void OnCacheReset()
+        {
+            base.OnCacheReset();
+
+            m_StateMachine = null;
+            m_RoleView = null;
+            m_RoleModel = null;
+        }
+
+        public override void Recycle2Cache()
+        {
+            base.Recycle2Cache();
+
+            ShipRolesMgr.S.RoleFactory.RecycleController(this);
+        }
+
+        #endregion
 
         #region Public Set
+
+        public ShipRoleController InitWhenAllocated()
+        {
+            m_StateMachine = new ShipRoleStateMachine(this);
+
+            return this;
+        }
 
         public ShipRoleController SetRoleView(ShipRoleView roleView)
         {
