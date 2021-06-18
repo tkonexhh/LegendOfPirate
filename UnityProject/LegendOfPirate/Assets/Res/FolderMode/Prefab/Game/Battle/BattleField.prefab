@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8867540377400883735}
   - component: {fileID: 3606029567187880303}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Collider
   m_TagString: Battle_Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

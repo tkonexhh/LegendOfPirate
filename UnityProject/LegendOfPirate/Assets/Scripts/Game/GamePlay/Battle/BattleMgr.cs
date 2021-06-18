@@ -39,6 +39,7 @@ namespace GameWish.Game
             Role = AddComponent(new BattleRendererComponent()) as BattleRendererComponent;
             Bullet = AddComponent(new BattleBulletComponent()) as BattleBulletComponent;
             Camera = AddComponent(new BattleCameraComponent()) as BattleCameraComponent;
+            AddComponent(new BattleDragComponent());
         }
 
         private IBattleComponent AddComponent(IBattleComponent component)
@@ -72,6 +73,8 @@ namespace GameWish.Game
             {
                 m_BattleComponentList[i].OnBattleInit(enemyConfigSO);
             }
+
+            UIMgr.S.OpenPanel(UIID.BattlePreparePanel);
         }
 
         public void BattleStart()

@@ -16,7 +16,10 @@ namespace GameWish.Game
             ai.controller.MonoReference.AstarAI.canMove = false;
             ai.controller.MonoReference.Collider.enabled = false;
             //TODO 改为动画时间
-            Timer.S.Post2Really(i => { ai.controller.Recycle2Cache(); }, 3);
+            Timer.S.Post2Really(i =>
+            {
+                BattleRoleControllerFactory.RecycleBattleRole(ai.controller);
+            }, 3);
 
         }
 

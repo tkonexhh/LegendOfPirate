@@ -106,31 +106,6 @@ namespace GameWish.Game
         public RangeDamageConfig RangeDamage;
     }
 
-    public class RangeDamageConfig
-    {
-
-    }
-
-    [LabelText("圆形伤害")]
-    public class RangeDamageConfig_Circle : RangeDamageConfig
-    {
-        [LabelText("半径")] public float Radius;
-    }
-
-    [LabelText("矩形伤害")]
-    public class RangeDamageConfig_Rect : RangeDamageConfig
-    {
-        [LabelText("宽度")] public float Width;
-        [LabelText("高度")] public float Height;
-    }
-
-    [LabelText("扇形伤害")]
-    public class RangeDamageConfig_Sector : RangeDamageConfig
-    {
-        [LabelText("半径")] public float Radius;
-        [LabelText("角度")] public float Dregee;
-    }
-
     #endregion
 
     [LabelText("击退")]
@@ -167,7 +142,9 @@ namespace GameWish.Game
         [LabelText("子弹配置")] public BulletConfigSO BulletConfigSO;
 
         public DamageRangeType DamageRangeType;
-        [HideIf("DamageRangeType", DamageRangeType.Single), LabelText("伤害范围参数")]
-        public string RangeArgs;
+        [LabelText("伤害范围")]
+        [ShowIf("DamageRangeType", DamageRangeType.Range)]
+        public RangeDamageConfig RangeDamage;
     }
+
 }

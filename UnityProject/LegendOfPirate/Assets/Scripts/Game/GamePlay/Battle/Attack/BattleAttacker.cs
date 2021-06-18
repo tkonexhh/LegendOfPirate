@@ -32,7 +32,7 @@ namespace GameWish.Game
             {
                 Bullet bullet = BulletFactory.CreateBullet(bulletSO, target.transform);
                 bullet.owner = attacker;
-                bullet.DamageRange = attacker.GetDamageRange();
+                bullet.RangeDamage = attacker.GetRangeDamage();
                 bullet.Init(attacker.DamageTransform());
                 BattleMgr.S.Bullet.AddBullet(bullet);
             }

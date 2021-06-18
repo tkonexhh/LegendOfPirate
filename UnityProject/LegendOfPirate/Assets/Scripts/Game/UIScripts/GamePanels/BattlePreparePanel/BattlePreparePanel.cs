@@ -16,7 +16,7 @@ namespace GameWish.Game
 
             m_BtnField.onClick.AddListener(() =>
             {
-                HideSelfPanel();
+                CloseSelfPanel();
                 UIMgr.S.OpenPanel(UIID.BattleFieldPanel);
                 // BattleMgr.S.Camera
             });
@@ -40,7 +40,7 @@ namespace GameWish.Game
 
             AllocatePanelData(args);
 
-            BattleMgr.S.BattleInit(BattleMgr.S.DemoEnemyFieldConfigSO);
+            // BattleMgr.S.BattleInit(BattleMgr.S.DemoEnemyFieldConfigSO);
         }
 
         protected override void OnPanelHideComplete()

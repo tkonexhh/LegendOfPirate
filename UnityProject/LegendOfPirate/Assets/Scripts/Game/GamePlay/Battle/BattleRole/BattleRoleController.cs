@@ -46,6 +46,7 @@ namespace GameWish.Game
 
             base.OnInit();
             Renderer.OnInit();
+            MonoReference.Collider.enabled = false;
         }
 
         public override void OnFirstInit()
@@ -114,43 +115,38 @@ namespace GameWish.Game
         #region override
         public void DealDamage()
         {
-
             if (AI.onAttack != null)
             {
                 Debug.LogError("Attack");
                 AI.onAttack();
             }
 
-            var targets = Data.DamageRange.PickTargets(camp);
             int damage = BattleHelper.CalcAtkDamage(Data.buffedData);
-            for (int i = 0; i < targets.Count; i++)
+            RoleDamagePackage damagePackage = new RoleDamagePackage();
+            damagePackage.damageType = BattleDamageType.Normal;
+            damagePackage.damage = damage;
+
+
+            if (Data.RangeDamage == null)//不是范围伤害
             {
-                RoleDamagePackage damagePackage = new RoleDamagePackage();
-                damagePackage.damageType = BattleDamageType.Normal;
-                damagePackage.damage = damage;
-                BattleMgr.S.SendDamage(targets[i], damagePackage);
+                BattleMgr.S.SendDamage(AI.Target, damagePackage);
+            }
+            else
+            {
+                var roles = BattleMgr.S.Role.GetControllersByCamp(camp);
+                Data.RangeDamage.DealDamage(roles, transform, damagePackage);
             }
         }
-        //TODO修改实现
-        public Vector3 DamageCenter()
-        {
-            return transform.position;
-        }
 
-        //TODO修改实现
-        public Vector3 DamageForward()
-        {
-            return transform.forward;
-        }
 
         public Transform DamageTransform()
         {
             return MonoReference.ShootPos;
         }
 
-        public DamageRange GetDamageRange()
+        public RangeDamage GetRangeDamage()
         {
-            return Data.DamageRange;
+            return Data.RangeDamage;
         }
         #endregion
     }
