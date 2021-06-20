@@ -15,6 +15,7 @@ namespace GameWish.Game
         private EInt m_Id = 0;   
         private string m_Name;   
         private string m_SpriteName;   
+        private EInt m_Quality = 0;   
         private string m_Desc;   
         private string m_MakeRes;   
         private string m_BuffType;   
@@ -39,6 +40,11 @@ namespace GameWish.Game
         /// 贴图
         /// </summary>
         public  string  spriteName {get { return m_SpriteName; } }
+       
+        /// <summary>
+        /// 品质(道具名称及道具框颜色，1-红色，2-紫色，3-黑色)
+        /// </summary>
+        public  int  quality {get { return m_Quality; } }
        
         /// <summary>
         /// 说明
@@ -100,24 +106,27 @@ namespace GameWish.Game
                     m_SpriteName = dataR.ReadString();
                     break;
                 case 3:
-                    m_Desc = dataR.ReadString();
+                    m_Quality = dataR.ReadInt();
                     break;
                 case 4:
-                    m_MakeRes = dataR.ReadString();
+                    m_Desc = dataR.ReadString();
                     break;
                 case 5:
-                    m_BuffType = dataR.ReadString();
+                    m_MakeRes = dataR.ReadString();
                     break;
                 case 6:
-                    m_BuffRate = dataR.ReadInt();
+                    m_BuffType = dataR.ReadString();
                     break;
                 case 7:
-                    m_BuffTime = dataR.ReadInt();
+                    m_BuffRate = dataR.ReadInt();
                     break;
                 case 8:
-                    m_MakeTime = dataR.ReadInt();
+                    m_BuffTime = dataR.ReadInt();
                     break;
                 case 9:
+                    m_MakeTime = dataR.ReadInt();
+                    break;
+                case 10:
                     m_MakeCost = dataR.ReadInt();
                     break;
                 default:
@@ -130,18 +139,19 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(10);
+          Dictionary<string, int> ret = new Dictionary<string, int>(11);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
           ret.Add("SpriteName", 2);
-          ret.Add("Desc", 3);
-          ret.Add("MakeRes", 4);
-          ret.Add("BuffType", 5);
-          ret.Add("BuffRate", 6);
-          ret.Add("BuffTime", 7);
-          ret.Add("MakeTime", 8);
-          ret.Add("MakeCost", 9);
+          ret.Add("Quality", 3);
+          ret.Add("Desc", 4);
+          ret.Add("MakeRes", 5);
+          ret.Add("BuffType", 6);
+          ret.Add("BuffRate", 7);
+          ret.Add("BuffTime", 8);
+          ret.Add("MakeTime", 9);
+          ret.Add("MakeCost", 10);
           return ret;
         }
     } 

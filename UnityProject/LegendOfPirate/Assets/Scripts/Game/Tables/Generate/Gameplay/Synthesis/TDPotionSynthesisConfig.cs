@@ -17,6 +17,7 @@ namespace GameWish.Game
         private string m_Name;   
         private string m_SpriteName;   
         private EInt m_Superscript = 0;   
+        private EInt m_Quality = 0;   
         private string m_Desc;   
         private string m_MakeRes;   
         private string m_BuffType;   
@@ -52,6 +53,11 @@ namespace GameWish.Game
         /// 角标
         /// </summary>
         public  int  superscript {get { return m_Superscript; } }
+       
+        /// <summary>
+        /// 品质(道具名称及道具框颜色，1-红色，2-紫色，3-黑色)
+        /// </summary>
+        public  int  quality {get { return m_Quality; } }
        
         /// <summary>
         /// 说明
@@ -124,27 +130,30 @@ namespace GameWish.Game
                     m_Superscript = dataR.ReadInt();
                     break;
                 case 5:
-                    m_Desc = dataR.ReadString();
+                    m_Quality = dataR.ReadInt();
                     break;
                 case 6:
-                    m_MakeRes = dataR.ReadString();
+                    m_Desc = dataR.ReadString();
                     break;
                 case 7:
-                    m_BuffType = dataR.ReadString();
+                    m_MakeRes = dataR.ReadString();
                     break;
                 case 8:
-                    m_EffectObject = dataR.ReadInt();
+                    m_BuffType = dataR.ReadString();
                     break;
                 case 9:
-                    m_BuffRate = dataR.ReadInt();
+                    m_EffectObject = dataR.ReadInt();
                     break;
                 case 10:
-                    m_BuffTime = dataR.ReadInt();
+                    m_BuffRate = dataR.ReadInt();
                     break;
                 case 11:
-                    m_MakeTime = dataR.ReadInt();
+                    m_BuffTime = dataR.ReadInt();
                     break;
                 case 12:
+                    m_MakeTime = dataR.ReadInt();
+                    break;
+                case 13:
                     m_MakeCost = dataR.ReadInt();
                     break;
                 default:
@@ -157,21 +166,22 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(13);
+          Dictionary<string, int> ret = new Dictionary<string, int>(14);
           
           ret.Add("Id", 0);
           ret.Add("Type", 1);
           ret.Add("Name", 2);
           ret.Add("SpriteName", 3);
           ret.Add("Superscript", 4);
-          ret.Add("Desc", 5);
-          ret.Add("MakeRes", 6);
-          ret.Add("BuffType", 7);
-          ret.Add("EffectObject", 8);
-          ret.Add("BuffRate", 9);
-          ret.Add("BuffTime", 10);
-          ret.Add("MakeTime", 11);
-          ret.Add("MakeCost", 12);
+          ret.Add("Quality", 5);
+          ret.Add("Desc", 6);
+          ret.Add("MakeRes", 7);
+          ret.Add("BuffType", 8);
+          ret.Add("EffectObject", 9);
+          ret.Add("BuffRate", 10);
+          ret.Add("BuffTime", 11);
+          ret.Add("MakeTime", 12);
+          ret.Add("MakeCost", 13);
           return ret;
         }
     } 

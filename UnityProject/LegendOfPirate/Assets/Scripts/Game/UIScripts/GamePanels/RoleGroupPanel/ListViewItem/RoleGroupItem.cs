@@ -16,12 +16,16 @@ namespace GameWish.Game
 
         public void OnInit(RoleModel roleModel)
         {
-            NameTex.text = roleModel.name;
-            ItemLevelTex.text = string.Format("Lv:{0}" ,roleModel.level.Value);
-            ItemBgBtn.onClick.AddListener(() =>
-            {
-                UIMgr.S.OpenPanel(UIID.RoleDetailsPanel, roleModel);
-            });
+            //if (roleModel.isLocked.Value)
+            //{
+                NameTex.text = roleModel.name;
+                ItemLevelTex.text = string.Format("Lv:{0}", roleModel.level.Value);
+                ItemBgBtn.onClick.AddListener(() =>
+                {
+                    UIMgr.S.OpenPanel(UIID.RoleDetailsPanel, roleModel);
+                });
+            //}
+           
         }
 
     }

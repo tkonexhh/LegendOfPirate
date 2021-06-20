@@ -32,7 +32,7 @@ namespace GameWish.Game
 
         #region Public Set
 
-        public void OnAddRoleItem(int id,bool isUnlock)
+        public void OnAddRoleItem(int id)
         {
             if (roleList.Any(i => i.id == id))
             {
@@ -40,7 +40,7 @@ namespace GameWish.Game
             }
             else
             {
-                roleList.Add(new RoleData(id, isUnlock));
+                roleList.Add(new RoleData(id));
 
                 SetDataDirty();
             }
@@ -55,7 +55,12 @@ namespace GameWish.Game
 
         public RoleData GetRoleItem(int id)
         {
-            return roleList.FirstOrDefault(i => i.id == id);
+            RoleData? roleData = roleList.FirstOrDefault(i => i.id == id);
+            if (roleData == null)
+            {
+                Log.e("RoleData Not Found: " + id);
+            }
+            return (RoleData)roleData;
         }
 
         #endregion
@@ -65,6 +70,7 @@ namespace GameWish.Game
 
 
         #endregion
+
 
     }
 
