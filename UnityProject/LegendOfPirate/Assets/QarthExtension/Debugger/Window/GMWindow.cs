@@ -59,7 +59,7 @@ namespace GameWish.Game
             if (GUILayout.Button("AddSpiritRole1001", GUILayout.Width(150f)))
             {
                 RoleGroupModel roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
-                roleGroupModel.AddSpiritRoleModel(1001, 200);
+                roleGroupModel.AddSpiritRoleModel(1001, 100);
             }
 
             if (GUILayout.Button("AddSkillForRole1001", GUILayout.Width(170f)))
