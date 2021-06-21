@@ -20,15 +20,17 @@ namespace GameWish.Game
     }
 
     [Serializable]
-    public struct ForgeDataItem 
+    public class ForgeDataItem 
     {
         public int equipmentId;
         public DateTime forgingStartTime;
         public ForgeStage forgeState;
 
+        public ForgeDataItem() { }
+
         public ForgeDataItem(ForgeStage state)
         {
-            equipmentId = 1001;
+            equipmentId = TDEquipmentSynthesisConfigTable.dataList[0].id;
             forgingStartTime = default(DateTime);
             forgeState = ForgeStage.Free;
         }
@@ -53,7 +55,7 @@ namespace GameWish.Game
         public int OnGetWeapon()
         {
             int ret = equipmentId;
-            this.equipmentId = 1001;
+            equipmentId = TDEquipmentSynthesisConfigTable.dataList[0].id;
             forgeState = ForgeStage.Free;
 
             GameDataMgr.S.GetData<ForgeData>().SetDataDirty();
@@ -71,7 +73,7 @@ namespace GameWish.Game
 
         public void OnWeaponUnSelect()
         {
-            this.equipmentId = 1001;
+            equipmentId = TDEquipmentSynthesisConfigTable.dataList[0].id;
             forgeState = ForgeStage.Free;
 
             GameDataMgr.S.GetData<ForgeData>().SetDataDirty();

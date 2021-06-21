@@ -13,5 +13,13 @@ namespace GameWish.Game
         {
 
         }
+        public static TDPartSynthesisConfig GetConfigById(int partId) 
+        {
+            foreach (var item in dataList) 
+            {
+                if (item.id == partId) return item;
+            }
+            return null;
+        }
     }
 }

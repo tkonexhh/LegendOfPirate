@@ -26,7 +26,7 @@ namespace GameWish.Game
         // Prefab Name
         public const string SEA_PREFAB = "CartoonSea";
         public const string SHIP_PREFAB = "Ship";
-        public const string ROLE_PREFAB = "Role";
+        public const string ROLE_PREFAB = "ShipRole";
 
         public const int INPUT_SORTING_ORDER_DEFAULT = 0;
         public const int INPUT_SORTING_ORDER_SHIP_UNIT = 5;
@@ -35,10 +35,13 @@ namespace GameWish.Game
         // Ship Unit Const
         public const int TRAINING_ROOM_MAX_SLOT = 9;
         public const int LIBRARY_ROOM_MAX_SLOT = 9;
+        public const int PROCESSING_ROOM_MAX_SLOT = 4;
 
         //Ship Unit Max Level
         public const int TRAINING_ROOM_MAX_LEVEL = 9;
 
+        //Ship Unit Default ItemId
 
+        
     }
 }

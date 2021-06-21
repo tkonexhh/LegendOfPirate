@@ -20,6 +20,7 @@ MonoBehaviour:
       - AdDynamicShowPanel
       - AdStaticShowPanel
       - AlchemyRoomPanel
+      - BattleWinPanel
       - BlackMarketPanel
       - BoostPanel
       - BuildingLevelUpPanel
@@ -33,6 +34,7 @@ MonoBehaviour:
       - LibraryRoomPanel
       - MagicCloudPanel
       - MainMenuPanel
+      - MainSeaLevelPanel
       - OccupyOverPanel
       - OfflinePanel
       - OfflineRewardPanel

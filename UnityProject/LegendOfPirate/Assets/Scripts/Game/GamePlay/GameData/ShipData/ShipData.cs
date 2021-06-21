@@ -40,7 +40,7 @@ namespace GameWish.Game
         /// <param name="shipUnitType"></param>
         public void OnUnitUnlocked(ShipUnitType shipUnitType)
         {
-            ShipUnitData? unitData = GetUnitData(shipUnitType);
+            ShipUnitData unitData = GetUnitData(shipUnitType);
             if (unitData != null)
             {
                 Log.e("Ship Unit Already Exists : " + shipUnitType.ToString());
@@ -59,14 +59,14 @@ namespace GameWish.Game
         /// <param name="deltaLevel"></param>
         public void OnUnitUpgrade(ShipUnitType shipUnitType, int deltaLevel)
         {
-            ShipUnitData? unitData = GetUnitData(shipUnitType);
+            ShipUnitData unitData = GetUnitData(shipUnitType);
             if (unitData == null)
             {
                 Log.e("Ship Unit Not Found : " + shipUnitType.ToString());
             }
             else
             {
-                unitData.Value.Upgrade(deltaLevel);
+                unitData.Upgrade(deltaLevel);
             }
         }
 
@@ -79,7 +79,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="shipUnitType"></param>
         /// <returns></returns>
-        public ShipUnitData? GetUnitData(ShipUnitType shipUnitType)
+        public ShipUnitData GetUnitData(ShipUnitType shipUnitType)
         {
             return shipUnitDataList.FirstOrDefault(i => i.unitType == shipUnitType);
         }

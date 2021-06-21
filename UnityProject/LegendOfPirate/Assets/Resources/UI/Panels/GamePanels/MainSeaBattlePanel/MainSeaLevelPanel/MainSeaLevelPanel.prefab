@@ -1185,13 +1185,14 @@ GameObject:
   - component: {fileID: 1046038689176400078}
   - component: {fileID: 1046038689176400077}
   - component: {fileID: 7386271814456540428}
+  - component: {fileID: 251213918089425359}
   m_Layer: 0
   m_Name: LevelItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1046038689176400067
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1318,6 +1319,23 @@ MonoBehaviour:
   m_GetRewardBtn: {fileID: 1046038689218782828}
   m_Lock: {fileID: 1046038689970482835}
   m_LockBtn: {fileID: 1046038689831581224}
+  curLevelId: 0
+--- !u!114 &251213918089425359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046038689176400066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &1046038689218782817
 GameObject:
   m_ObjectHideFlags: 0
@@ -2088,16 +2106,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2544073728313156722}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6035535517671712084}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 92.70001, y: 97}
+  m_AnchoredPosition: {x: 92.70001, y: 89}
   m_SizeDelta: {x: 95, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7719321675976824483
@@ -2215,7 +2233,7 @@ GameObject:
   - component: {fileID: 8706175243577732582}
   - component: {fileID: 2186710349729046801}
   m_Layer: 0
-  m_Name: TMP_
+  m_Name: CurrentLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3637,8 +3655,8 @@ GameObject:
   - component: {fileID: 7865230462945012086}
   - component: {fileID: 6794515264229161031}
   - component: {fileID: 7942493416898971876}
-  - component: {fileID: 7942493416898971899}
   - component: {fileID: -3744519869630775627}
+  - component: {fileID: 6206892848884555468}
   m_Layer: 5
   m_Name: MainSeaLevelPanel
   m_TagString: Untagged
@@ -3720,7 +3738,46 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &7942493416898971899
+--- !u!114 &-3744519869630775627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7942493416898971898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7440a1751c4e340179d3ef9381c65bf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ParentPage: {fileID: 0}
+  m_SpritesData: []
+  m_PanelEventLogType: 0
+  m_HideMask: 0
+  m_CustomVisibleFlag: 1
+  m_SortingOrder: -1
+  m_DiamondCountTex: {fileID: 8100297545890949297}
+  m_DiamondAddBtn: {fileID: 7466739050124873747}
+  m_CoinCountTex: {fileID: 2744166793761568205}
+  m_CoinAddBtn: {fileID: 7462620648852054862}
+  m_BtnBoss: {fileID: 2435092468404402506}
+  m_BtnShop: {fileID: 2292582150387394644}
+  m_LevelItem: {fileID: 1046038689176400077}
+  m_UnLock: {fileID: 1046038688205728427}
+  m_TmpLevel: {fileID: 1046038688481123321}
+  m_Progress: {fileID: 1046038689038750635}
+  m_Slider: {fileID: 1046038689057837122}
+  m_GetRewardBtn: {fileID: 1046038689218782828}
+  m_Lock: {fileID: 1046038689970482835}
+  m_LockBtn: {fileID: 1046038689831581224}
+  m_BossBtn: {fileID: 617825400}
+  m_Ship: {fileID: 1099697717}
+  m_LevelSelectScrollView: {fileID: 1228078712817179591}
+  m_Content: {fileID: 7438002756888914083}
+  m_BackBtn: {fileID: 5540599632009682456}
+  m_AttackBtn: {fileID: 9213534992586877050}
+  m_CurrentLevel: {fileID: 8706175243577732582}
+--- !u!114 &6206892848884555468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3733,7 +3790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementCategory: Uncategorized
-  elementName: MainMenuPanel
+  elementName: MainSeaLevelPanel
   LANDSCAPE: 1
   PORTRAIT: 1
   startHidden: 0
@@ -4015,44 +4072,6 @@ MonoBehaviour:
   loopAnimationsPresetCategoryName: Uncategorized
   loopAnimationsPresetName: DefaultPreset
   loadLoopAnimationsPresetAtRuntime: 0
---- !u!114 &-3744519869630775627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7942493416898971898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7440a1751c4e340179d3ef9381c65bf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ParentPage: {fileID: 0}
-  m_SpritesData: []
-  m_PanelEventLogType: 0
-  m_HideMask: 0
-  m_CustomVisibleFlag: 1
-  m_SortingOrder: -1
-  m_DiamondCountTex: {fileID: 8100297545890949297}
-  m_DiamondAddBtn: {fileID: 7466739050124873747}
-  m_CoinCountTex: {fileID: 2744166793761568205}
-  m_CoinAddBtn: {fileID: 7462620648852054862}
-  m_BtnBoss: {fileID: 2435092468404402506}
-  m_BtnShop: {fileID: 2292582150387394644}
-  m_UnLock: {fileID: 1046038688205728427}
-  m_TmpLevel: {fileID: 1046038688481123321}
-  m_Progress: {fileID: 1046038689038750635}
-  m_Slider: {fileID: 1046038689057837122}
-  m_GetRewardBtn: {fileID: 1046038689218782828}
-  m_Lock: {fileID: 1046038689970482835}
-  m_LockBtn: {fileID: 1046038689831581224}
-  m_BossBtn: {fileID: 617825400}
-  m_Ship: {fileID: 1099697717}
-  m_LevelSelectScrollView: {fileID: 1228078712817179591}
-  m_Content: {fileID: 7438002756888914083}
-  m_BackBtn: {fileID: 5540599632009682456}
-  m_AttackBtn: {fileID: 9213534992586877050}
-  m_TMP: {fileID: 8706175243577732582}
 --- !u!1 &8800222374194967324
 GameObject:
   m_ObjectHideFlags: 0
