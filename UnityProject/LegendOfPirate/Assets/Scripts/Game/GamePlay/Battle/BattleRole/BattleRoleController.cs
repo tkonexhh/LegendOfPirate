@@ -126,7 +126,6 @@ namespace GameWish.Game
             damagePackage.damageType = BattleDamageType.Normal;
             damagePackage.damage = damage;
 
-
             if (Data.RangeDamage == null)//不是范围伤害
             {
                 BattleMgr.S.SendDamage(AI.Target, damagePackage);
@@ -136,17 +135,6 @@ namespace GameWish.Game
                 var roles = BattleMgr.S.Role.GetControllersByCamp(camp);
                 Data.RangeDamage.DealDamage(roles, transform, damagePackage);
             }
-        }
-
-
-        public Transform DamageTransform()
-        {
-            return MonoReference.ShootPos;
-        }
-
-        public RangeDamage GetRangeDamage()
-        {
-            return Data.RangeDamage;
         }
         #endregion
     }

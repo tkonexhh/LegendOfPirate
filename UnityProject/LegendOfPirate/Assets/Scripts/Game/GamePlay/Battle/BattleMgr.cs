@@ -17,6 +17,9 @@ namespace GameWish.Game
         public SkillConfigSO DemoSkillSO;
         public BattleFieldConfigSO DemoEnemyFieldConfigSO;
 
+
+
+        public Transform bulletRoot;
         //===
         [LabelText("战场相机"), BoxGroup("Camera")] public CinemachineVirtualCameraBase CameraBattle;
         [LabelText("排兵相机"), BoxGroup("Camera")] public CinemachineVirtualCameraBase CameraField;

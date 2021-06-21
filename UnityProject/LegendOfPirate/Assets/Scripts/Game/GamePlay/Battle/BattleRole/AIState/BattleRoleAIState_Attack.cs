@@ -14,6 +14,7 @@ namespace GameWish.Game
             m_AttackTimer = 0;
             ai.controller.Renderer.CrossFadeAnim(BattleDefine.ROLEANIM_IDLE, 0.1f);
             ai.controller.MonoReference.AstarAI.canMove = false;
+            ai.controller.Renderer.modelMonoReference.onAnimAttack += OnAnimDealDamage;
         }
 
         public override void Execute(BattleRoleAI ai, float dt)
@@ -47,13 +48,13 @@ namespace GameWish.Game
             base.Exit(ai);
             m_AttackTimer = 0;
             ai.controller.MonoReference.AstarAI.canMove = true;
+            ai.controller.Renderer.modelMonoReference.onAnimAttack -= OnAnimDealDamage;
         }
 
         private void PlayAttackAnim()
         {
             m_AI.controller.Renderer.CrossFadeAnim(BattleDefine.ROLEANIM_ATTACK01, 0.1f);
-            //TODO 需要改成动画事件
-            m_AI.controller.Data.Attacker.Attack(m_AI.controller, m_AI.Target);
+            // m_AI.controller.Data.Attacker.Attack(m_AI.controller, m_AI.Target);
         }
 
         private void FaceToTarget()
@@ -64,6 +65,11 @@ namespace GameWish.Game
                 Quaternion.Euler(0, 180 - m_AI.Target.transform.rotation.y, 0),
                 10.0f * Time.deltaTime);
             //(Vector3.up, 180 - m_AI.Target.transform.rotation.y);//旋转角色
+        }
+
+        private void OnAnimDealDamage()
+        {
+            m_AI.controller.Data.Attacker.Attack(m_AI.controller, m_AI.Target);
         }
     }
 
