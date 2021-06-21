@@ -7,6 +7,11 @@ namespace GameWish.Game
 {
 	public class ShipRoleView : ClickableView
 	{
+        private RoleMonoReference m_RoleMonoRef;
+        private PlayablesAnimation m_PlayableAnim;
+
+        public RoleMonoReference RoleMonoRef { get => m_RoleMonoRef; }
+
         protected override void Awake()
         {
             base.Awake();
@@ -24,6 +29,17 @@ namespace GameWish.Game
             base.OnClicked();
 
             Log.i("On Role Clicked");
+        }
+
+        public void Init()
+        {
+            m_RoleMonoRef = GetComponent<RoleMonoReference>();
+            m_PlayableAnim = gameObject.AddComponent<PlayablesAnimation>();
+        }
+
+        public void PlayAnim(string anim)
+        {
+            m_PlayableAnim.Play(anim);
         }
     }
 	

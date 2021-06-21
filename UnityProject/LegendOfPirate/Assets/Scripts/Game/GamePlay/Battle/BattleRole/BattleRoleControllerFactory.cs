@@ -10,8 +10,7 @@ namespace GameWish.Game
         public static BattleRoleController CreateBattleRole(RoleConfigSO configSO)
         {
             BattleRoleController role = ObjectPool<BattleRoleController>.S.Allocate();
-            //TODO 
-            BattleMgr.S.Pool.AddGameObjectToPool(configSO.prefab);
+            BattleMgr.S.Pool.AddGameObjectToPool(configSO.prefab);//将角色预制体添加到池
             // role.Renderer.prefab = configSO.prefab;
             role.Renderer.prefabName = configSO.prefab.name;
             for (int i = 0; i < configSO.childSkills.Count; i++)
@@ -23,11 +22,25 @@ namespace GameWish.Game
             role.Data.Attacker = BattleAttackerFactory.CreateBattleAttacker(configSO.Attack.AttackType);
             if (role.Data.Attacker is BattleAttacker_Shoot attacker)//配置远程攻击的子弹
             {
+                BattleMgr.S.Pool.AddGameObjectToPool(configSO.Attack.Bullet.Prefab);//将子弹预制体添加到池
                 BattleAttackerFactory.SetBullet(attacker, configSO.Attack.Bullet, configSO.Attack.BulletNum);
             }
-            role.Data.DamageRange = DamageRangeFactory.CreateDamageRange(configSO.Attack.DamageRangeType, role, configSO.Attack.RangeArgs);
+
+            if (configSO.Attack.DamageRangeType == DamageRangeType.Range)
+            {
+                role.Data.RangeDamage = RangeDamageConfig.CreateRangeDamage(configSO.Attack.RangeDamage);
+            }
+
+
             role.OnInit();
             return role;
+        }
+
+
+        public static void RecycleBattleRole(BattleRoleController controller)
+        {
+            controller.Recycle2Cache();
+            ObjectPool<BattleRoleController>.S.Recycle(controller);
         }
     }
 

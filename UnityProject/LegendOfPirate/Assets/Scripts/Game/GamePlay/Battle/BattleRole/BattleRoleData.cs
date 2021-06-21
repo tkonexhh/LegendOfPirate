@@ -9,7 +9,7 @@ namespace GameWish.Game
     {
         public IBattleSensor Sensor { get; set; }//索敌方式
         public BattleAttacker Attacker { get; set; }//攻击方式
-        public DamageRange DamageRange { get; set; }//伤害范围
+        public RangeDamage RangeDamage { get; set; }//范围伤害处理
 
         public BattleRoleModel originData;
         public BattleRoleRuntimeModel buffedData;
@@ -18,6 +18,7 @@ namespace GameWish.Game
 
         public BattleRoleData(BattleRoleController controller) : base(controller)
         {
+
             // Sensor = BattleSensorFactory.CreateBattleSensor(PickTargetType.Enemy, SensorTypeEnum.Nearest);
             // Attacker = new BattleAttacker_Lock();
             // DamageRange = new DamageRange_Target(controller);
@@ -36,6 +37,11 @@ namespace GameWish.Game
 
             controller.MonoReference.AstarAI.maxSpeed = buffedData.MoveSpeed;
             controller.MonoReference.AstarAI.endReachedDistance = AtkRange;
+        }
+
+        public override void OnDestroy()
+        {
+
         }
 
 

@@ -92,10 +92,7 @@ namespace GameWish.Game
 
         private static SkillAction CreateSkillAction_RangeDamage(SkillActionConfig_RangeDamage config)
         {
-            RangeDamage rangeDamage = null;
-            if (config.RangeDamage is RangeDamageConfig_Circle circleConfig) rangeDamage = new RangeDamage_Circle(circleConfig.Radius);
-            else if (config.RangeDamage is RangeDamageConfig_Rect rectConfig) rangeDamage = new RangeDamage_Rect(rectConfig.Width, rectConfig.Height);
-
+            RangeDamage rangeDamage = RangeDamageConfig.CreateRangeDamage(config.RangeDamage);
             return new SkillAction_RangeDamage(rangeDamage, config.targetType, config.Damage);
         }
 
@@ -116,8 +113,12 @@ namespace GameWish.Game
 
         private static SkillAction CreateSkillAction_Bullet(SkillActionConfig_Bullet config)
         {
-            return new SkillAction_Bullet(config.Damage, config.BulletConfigSO, config.DamageRangeType, config.RangeArgs);
+            BattleMgr.S.Pool.AddGameObjectToPool(config.BulletConfigSO.Prefab);//将技能子弹添加到pool
+            return new SkillAction_Bullet(config.Damage, config.BulletConfigSO, config.DamageRangeType, config.RangeDamage);
         }
+
+
+
     }
 
 }

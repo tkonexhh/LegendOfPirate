@@ -52,8 +52,10 @@ namespace GameWish.Game
     {
         public AttackType AttackType;
         public DamageRangeType DamageRangeType;
-        [HideIf("DamageRangeType", DamageRangeType.Single), LabelText("伤害范围参数")]
-        public string RangeArgs;
+        [LabelText("伤害范围")]
+        [ShowIf("DamageRangeType", DamageRangeType.Range)]
+        public RangeDamageConfig RangeDamage;
+
         //===
 
         //===远程攻击

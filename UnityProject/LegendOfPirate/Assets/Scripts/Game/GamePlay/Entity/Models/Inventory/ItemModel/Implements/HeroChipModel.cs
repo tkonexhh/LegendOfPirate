@@ -14,12 +14,12 @@ namespace GameWish.Game
 
         public override string GetDesc()
         {
-            return string.Empty;
+            return "英雄碎片";
         }
 
         public override string GetName()
         {
-            return string.Empty;
+            return "英雄碎片" + m_Id;
         }
     }
 

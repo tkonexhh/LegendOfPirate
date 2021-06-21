@@ -39,7 +39,7 @@ namespace GameWish.Game
         KitchenPanel,
         #endregion
         #region 锻造
-        ForgePanel,
+        ForgeRoomPanel,
         #endregion
         #region 钓鱼
         FishingPanel,

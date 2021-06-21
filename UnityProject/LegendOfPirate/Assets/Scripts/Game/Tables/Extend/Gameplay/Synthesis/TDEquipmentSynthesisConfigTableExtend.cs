@@ -13,5 +13,15 @@ namespace GameWish.Game
         {
 
         }
+
+        public static TDEquipmentSynthesisConfig GetEquipmentSynthesisById(int equipId) 
+        {
+            TDEquipmentSynthesisConfig ret = default(TDEquipmentSynthesisConfig);
+            foreach (TDEquipmentSynthesisConfig item in dataList) 
+            {
+                if (item.id == equipId) return item;
+            }
+            return ret;
+        }
     }
 }

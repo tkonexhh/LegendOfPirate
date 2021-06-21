@@ -1,29 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Qarth;
 
 namespace GameWish.Game
 {
-    public class Bullet : IDealDamage
+    public class Bullet
     {
         public GameObject gameObject { get; private set; }
         public Transform transform { get; private set; }
 
-        public GameObject prefab;
-        public IDealDamage owner;//所有者，可以是Role也可以是Skill
+
+        public string prefabName;
+        public BattleRoleController owner;
 
         public BulletMove move;
 
-        public DamageRange DamageRange { get; set; }//伤害范围
+        public RangeDamage RangeDamage { get; set; }//伤害范围
         public int Damage { get; set; }
 
 
         public void Init(Transform root)//初始位置
         {
-            gameObject = GameObject.Instantiate(prefab);//TODO 改为池
+            gameObject = BattleMgr.S.Pool.GetGameObject(prefabName);
             transform = gameObject.transform;
-            transform.SetParent(BattleMgr.S.transform);//TODO 改为子容器
+            transform.SetParent(BattleMgr.S.bulletRoot);
             transform.position = root.position;
             transform.rotation = root.rotation;
 
@@ -43,76 +44,35 @@ namespace GameWish.Game
 
         public void Release()
         {
-            BattleMgr.Destroy(gameObject);
+            GameObjectPoolMgr.S.Recycle(gameObject);
             gameObject = null;
             transform = null;
             owner = null;
             move = null;
         }
 
-        #region IDealDamage
-        public void DealDamage()
+
+        private void DealDamage()
         {
             Debug.LogError("DealDamage");
-            var targets = DamageRange.PickTargets(BattleHelper.GetOppositeCamp(GetBattleCamp()));
-            int damage = BattleHelper.CalcAtkDamage(GetATKModel());
-            for (int i = 0; i < targets.Count; i++)
+
+            if (RangeDamage == null)//单体攻击
             {
+
+            }
+            else
+            {
+                int damage = Damage;
                 RoleDamagePackage damagePackage = new RoleDamagePackage();
                 damagePackage.damageType = BattleDamageType.Normal;
                 damagePackage.damage = damage;
-                BattleMgr.S.SendDamage(targets[i], damagePackage);
+                var roles = BattleMgr.S.Role.GetControllersByCamp(owner.camp);
+                RangeDamage.DealDamage(roles, transform, damagePackage);
             }
         }
-        //TODO修改实现
-        public Vector3 DamageCenter()
-        {
-            return transform.position;
-        }
 
-        //TODO修改实现
-        public Vector3 DamageForward()
-        {
-            return transform.forward;
-        }
 
-        public Transform DamageTransform()
-        {
-            return null;
-        }
 
-        public DamageRange GetDamageRange()
-        {
-            return null;
-        }
-        #endregion
-
-        private BattleCamp GetBattleCamp()
-        {
-            if (owner is BattleRoleController role)
-            {
-                return role.camp;
-            }
-            else if (owner is Skill skill)
-            {
-                return skill.Owner.camp;
-            }
-
-            return BattleCamp.Enemy;
-        }
-
-        private BattleRoleRuntimeModel GetATKModel()
-        {
-            if (owner is BattleRoleController role)
-            {
-                return role.Data.buffedData;
-            }
-            else if (owner is Skill skill)
-            {
-                return skill.Owner.Data.buffedData;
-            }
-            return null;
-        }
     }
 
 }

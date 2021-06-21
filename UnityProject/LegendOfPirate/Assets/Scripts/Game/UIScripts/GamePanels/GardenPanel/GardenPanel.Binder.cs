@@ -83,8 +83,8 @@ namespace GameWish.Game
 
         private void OnLevelUpBtnClick() 
 		{
-			m_PanelData.gardenModel.OnLevelUpgrade(1);
-			//UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.Garden);
+			//m_PanelData.gardenModel.OnLevelUpgrade(1);
+			UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.Garden);
 		}
 
         private void OnGardenLevelChange(int level)

@@ -20,6 +20,9 @@ namespace GameWish.Game
 
         public override void InitWithEmptyData()
         {
+            //For Test
+            OnAddRoleItem(1001);
+
             SetDataDirty();
         }
 
@@ -55,7 +58,7 @@ namespace GameWish.Game
 
         public RoleData GetRoleItem(int id)
         {
-            RoleData? roleData = roleList.FirstOrDefault(i => i.id == id);
+            RoleData roleData = roleList.FirstOrDefault(i => i.id == id);
             if (roleData == null)
             {
                 Log.e("RoleData Not Found: " + id);

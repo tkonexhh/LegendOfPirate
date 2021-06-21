@@ -10,10 +10,13 @@ namespace GameWish.Game
     {
         public List<LibraryDataItem> libraryItemList = new List<LibraryDataItem>();
 
-
         public override void InitWithEmptyData()
         {
-
+            for (int i = 1; i <= Define.TRAINING_ROOM_MAX_SLOT; i++)
+            {
+                LibraryDataItem item = new LibraryDataItem(i);
+                libraryItemList.Add(item);
+            }
         }
 
         public override void OnDataLoadFinish()
@@ -21,9 +24,9 @@ namespace GameWish.Game
 
         }
 
-        private LibraryDataItem? GetLibraryDataItem(int slotId)
+        private LibraryDataItem GetLibraryDataItem(int slotId)
         {
-            LibraryDataItem? item = libraryItemList.FirstOrDefault(i => i.slotId == slotId);
+            LibraryDataItem item = libraryItemList.FirstOrDefault(i => i.slotId == slotId);
             if (item == null)
             {
                 Log.e("LibraryDataItem Not Found: " + slotId);
@@ -33,7 +36,7 @@ namespace GameWish.Game
         }
 
         [Serializable]
-        public struct LibraryDataItem
+        public class LibraryDataItem
         {
             public int slotId;
             public int heroId;
@@ -41,6 +44,8 @@ namespace GameWish.Game
             public LibrarySlotState libraryState;
 
             private LibraryData m_LibraryData;
+
+            public LibraryDataItem() { }
 
             public LibraryDataItem(int slot)
             {

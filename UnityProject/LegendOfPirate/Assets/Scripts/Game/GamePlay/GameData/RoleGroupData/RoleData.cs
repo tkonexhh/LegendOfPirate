@@ -8,7 +8,7 @@ using Qarth;
 namespace GameWish.Game
 {
     [Serializable]
-    public struct RoleData 
+    public class RoleData 
     {
         public int id;
         public bool isLocked;
@@ -21,6 +21,8 @@ namespace GameWish.Game
         public List<RoleSkillData> skillList;
 
         private RoleGroupData m_RoleGroupData;
+
+        public RoleData() { }
 
         public RoleData(int id)
         {

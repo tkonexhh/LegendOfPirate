@@ -14,9 +14,11 @@ namespace GameWish.Game
         [SerializeField] private BuffConfigSO m_DemoBuffSO;
 
         public RoleConfigSO DemoRoleSO;
-        public SkillConfigSO DemoSkillSO;
         public BattleFieldConfigSO DemoEnemyFieldConfigSO;
 
+
+
+        public Transform bulletRoot;
         //===
         [LabelText("战场相机"), BoxGroup("Camera")] public CinemachineVirtualCameraBase CameraBattle;
         [LabelText("排兵相机"), BoxGroup("Camera")] public CinemachineVirtualCameraBase CameraField;
@@ -39,6 +41,7 @@ namespace GameWish.Game
             Role = AddComponent(new BattleRendererComponent()) as BattleRendererComponent;
             Bullet = AddComponent(new BattleBulletComponent()) as BattleBulletComponent;
             Camera = AddComponent(new BattleCameraComponent()) as BattleCameraComponent;
+            AddComponent(new BattleDragComponent());
         }
 
         private IBattleComponent AddComponent(IBattleComponent component)
@@ -72,6 +75,8 @@ namespace GameWish.Game
             {
                 m_BattleComponentList[i].OnBattleInit(enemyConfigSO);
             }
+
+            UIMgr.S.OpenPanel(UIID.BattlePreparePanel);
         }
 
         public void BattleStart()
