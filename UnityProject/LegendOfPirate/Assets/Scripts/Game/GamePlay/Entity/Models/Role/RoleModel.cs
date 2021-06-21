@@ -165,7 +165,6 @@ namespace GameWish.Game
             spiritCount.Subscribe(count => 
             {
                 roleData.SetRoleSpiritCount(spiritCount.Value);
-                Log.e(" spiritCount.Subscribe");
             });
 
             level.Subscribe(lv =>

@@ -78,6 +78,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.RoleSkillPanel, null, "GamePanels/RolePanel/RoleSkillPanel/RoleSkillPanel");
             UIDataTable.AddPanelData(UIID.RoleStoryPanel, null, "GamePanels/RolePanel/RoleStoryPanel/RoleStoryPanel");
             UIDataTable.AddPanelData(UIID.RoleGroupPanel, null, "GamePanels/RolePanel/RoleGroupPanel/RoleGroupPanel");
+            UIDataTable.AddPanelData(UIID.RoleGetPanel, null, "GamePanels/RolePanel/RoleGetPanel/RoleGetPanel");
             #endregion
             //UIDataTable.AddPanelData(UIID.TestPanel, null, "GamePanels/TestPanel/TestPanel");
 

@@ -47,7 +47,7 @@ namespace GameWish.Game
             int roleId = TDRoleConfigTable.GetSpiritIdToRoleId(spiritId);
             if (roleItemList.Any(item => item.id == roleId))
             {
-                roleItemList.FirstOrDefault(i => i.id == roleId).spiritCount.Value += count;
+                roleItemList.FirstOrDefault(i => i.id == roleId).AddSpiritCount(count);
             }
             else
             {

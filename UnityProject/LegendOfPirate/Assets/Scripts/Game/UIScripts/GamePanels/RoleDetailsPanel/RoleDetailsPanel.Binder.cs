@@ -29,7 +29,8 @@ namespace GameWish.Game
             }
 
 			RoleName.text = m_RoleModel.name;
-			m_IsLocked = m_RoleModel.isLocked.Value;
+            m_IsLocked = m_RoleModel.isLocked.Value;
+			Log.e(m_IsLocked);
 
 			if (!m_IsLocked)
             {
@@ -57,7 +58,7 @@ namespace GameWish.Game
 			{
 				ExperienceBar.fillAmount = (float)value / 999f;
 			});
-			
+			m_RoleModel.spiritCount.SubscribeToTextMeshPro(UpgradeMaterialsValue, "{0}/200");
 		}
 		
 		private void BindUIToModel()
@@ -84,7 +85,27 @@ namespace GameWish.Game
 			});
 			//LeftRoleBtn.OnClickAsObservable().Subscribe();
 			//RightRoleBtn.OnClickAsObservable().Subscribe();
+			CloseBtn.onClick.AddListener(() =>
+			{
+				CloseSelfPanel();
+			});
 
+			UpgradeMaterialsBtn.onClick.AddListener(() =>
+			{
+                if (m_RoleModel.spiritCount.Value >= 200)
+                {
+					UIMgr.S.OpenPanel(UIID.RoleGetPanel);
+                    if (!m_RoleModel.isLocked.Value)
+                    {
+						ModelMgr.S.GetModel<RoleGroupModel>().SetRoleUnlockedModel(m_RoleModel.id);
+						RefreshRoleIsUnclockView(true);
+					}
+                }
+                else
+                {
+					Log.e("Not enough spirit ");
+                }
+			});
 
 		}
 
