@@ -14,6 +14,8 @@ namespace GameWish.Game
 
         private ShipRoleStateId m_CurState = ShipRoleStateId.None;
 
+        public ShipRoleView RoleView { get => m_RoleView;}
+
         #region Override
 
         public override void OnCacheReset()
@@ -47,6 +49,7 @@ namespace GameWish.Game
         public ShipRoleController SetRoleView(ShipRoleView roleView)
         {
             m_RoleView = roleView;
+            m_RoleView.Init();
 
             return this;
         }

@@ -9,13 +9,11 @@ namespace GameWish.Game
 	{
         private ShipBody m_ShipBody;
 
-        public ShipBody ShipBody { get => m_ShipBody;}
+        public ShipBody ShipBody { get => m_ShipBody; }
 
         protected override void Awake()
         {
             base.Awake();
-
-            //m_Collider = GetComponentInChildren<Collider>();
         }
 
         public override int GetSortingLayer()
@@ -34,6 +32,7 @@ namespace GameWish.Game
         {
             m_ShipBody = GetComponentInChildren<ShipBody>();
         }
+
     }
 	
 }
