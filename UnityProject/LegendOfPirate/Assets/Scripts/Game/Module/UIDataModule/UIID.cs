@@ -78,6 +78,12 @@ namespace GameWish.Game
         BlackMarketPanel,
         #endregion
 
+        //主菜单
+        #region 仓库
+        WareHousePanel,
+        ItemDetailsPanel,
+        #endregion
+
         CongratulationPanel,
         LandUpgradePanel,
 
