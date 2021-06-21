@@ -12,8 +12,6 @@ namespace GameWish.Game
 
         public BattleRoleSkill(BattleRoleController controller) : base(controller)
         {
-            //TODO Test Skill
-            m_SkillLst.Add(SkillFactory.CreateSkill(BattleMgr.S.DemoSkillSO));
         }
 
         public void AddSkill(Skill skill)

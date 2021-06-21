@@ -8,7 +8,7 @@ namespace GameWish.Game
     public class BattleRoleRenderer : BattleRoleComponent
     {
         private PlayablesAnimation animator;
-        // public GameObject prefab;
+        public RoleModelMonoReference modelMonoReference { get; private set; }
         public string prefabName;
         public GameObject renderObject;
         public BattleRoleRenderer(BattleRoleController controller) : base(controller) { }
@@ -20,6 +20,7 @@ namespace GameWish.Game
             renderObject.transform.localPosition = Vector3.zero;
             renderObject.transform.localRotation = Quaternion.identity;
             animator = renderObject.GetComponent<PlayablesAnimation>();
+            modelMonoReference = renderObject.GetComponent<RoleModelMonoReference>();
             PlayAnim(BattleDefine.ROLEANIM_IDLE);
         }
 

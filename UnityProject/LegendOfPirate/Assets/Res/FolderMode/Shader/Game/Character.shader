@@ -10,7 +10,7 @@
     }
     SubShader
     {
-        Tags { "RenderPipeline" = "UniversalPipeline" "RenderType" = "Opaque" }
+        Tags { "RenderPipeline" = "UniversalPipeline" "RenderType" = "Opaque" "RenderQueue" = "Geometry" }
 
         Pass
         {
@@ -19,7 +19,7 @@
             Cull Back
             
             HLSLPROGRAM
-            
+
             #pragma vertex vert
             #pragma fragment frag
 
@@ -91,7 +91,7 @@
             }
             
             ENDHLSL
-            
+
         }
     }
     FallBack "Diffuse"
