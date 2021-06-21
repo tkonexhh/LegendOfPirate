@@ -56,10 +56,16 @@ namespace GameWish.Game
                 BattleMgr.S.BattleClean();
             }
 
-            if (GUILayout.Button("AddSpiritRole1001", GUILayout.Width(100f)))
+            if (GUILayout.Button("AddSpiritRole1001", GUILayout.Width(150f)))
             {
                 RoleGroupModel roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
                 roleGroupModel.AddSpiritRoleModel(1001, 200);
+            }
+
+            if (GUILayout.Button("AddSkillForRole1001", GUILayout.Width(170f)))
+            {
+                RoleModel roleModel = ModelMgr.S.GetModel<RoleGroupModel>().GetRoleModel(1001);
+                roleModel.AddSkill(10011);
             }
 
 

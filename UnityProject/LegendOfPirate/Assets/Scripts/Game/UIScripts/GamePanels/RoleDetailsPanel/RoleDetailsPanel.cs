@@ -12,18 +12,21 @@ namespace GameWish.Game
 		{
 			base.OnUIInit();
 
-		}
+            AllocatePanelData();
+
+           
+        }
 		
 		protected override void OnPanelOpen(params object[] args)
 		{
 			base.OnPanelOpen(args);
-			
-			AllocatePanelData(args);
-			
-			BindModelToUI();
-			BindUIToModel();
-			RegisterEvents();
-			OnClickAddListener();
+
+			OnInit(args);
+
+            BindModelToUI();
+            BindUIToModel();
+            RegisterEvents();
+            OnClickAddListener();
 		}
 		
 		protected override void OnPanelHideComplete()

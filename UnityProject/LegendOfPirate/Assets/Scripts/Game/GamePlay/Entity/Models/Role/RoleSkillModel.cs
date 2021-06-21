@@ -10,7 +10,6 @@ namespace GameWish.Game
         public int skillId;
         public IntReactiveProperty skillLevel;
         public IntReactiveProperty upgradeCost;
-        public BoolReactiveProperty isLocked;
 
         private RoleSkillData m_DbData;
 
@@ -26,17 +25,9 @@ namespace GameWish.Game
             //TODO: Add Other Propterties
         }
 
-        public void SetUnlocked()
-        {
-            isLocked.Value = true;
-        }
-
         private void ModelSubscribe()
         {
-            isLocked.Subscribe(unlock =>
-            {
-                m_DbData.SetSkillUnlocked();
-            });
+
         }
     }
 	

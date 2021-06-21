@@ -87,11 +87,6 @@ namespace GameWish.Game
         {
             RoleSkillModel skillModel = skillList.FirstOrDefault(i => i.skillId == skillId);
 
-            if (skillModel == null)
-            {
-                Log.e("Skill Model Not Found: " + skillId);
-            }
-
             return skillModel;
         }
 
@@ -119,7 +114,12 @@ namespace GameWish.Game
         #region Public Set
         public void AddSkill(int skillId)
         {
-            roleData.AddRoleSkill(skillId);
+            RoleSkillData skilldata = roleData.AddRoleSkill(skillId);
+            if (skilldata != null)
+            {
+                RoleSkillModel skillModel = new RoleSkillModel(skilldata);
+                skillList.Add(skillModel);
+            }
         }
 
         public void UpgradeSkill()

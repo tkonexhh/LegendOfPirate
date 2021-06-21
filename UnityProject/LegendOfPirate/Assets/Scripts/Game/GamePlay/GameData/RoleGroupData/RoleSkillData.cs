@@ -7,19 +7,17 @@ using UnityEngine;
 namespace GameWish.Game
 {
     [Serializable]
-    public struct RoleSkillData
+    public class RoleSkillData
     {
         public int id;
         public int level;
-        public bool isLocked;
 
         private RoleGroupData m_RoleGroupData;
 
-        public RoleSkillData(int id, int level)
+        public RoleSkillData(int id)
         {
             this.id = id;
-            this.level = level;
-            isLocked = false;
+            this.level = 1;
 
             m_RoleGroupData = null;
         }
@@ -27,12 +25,6 @@ namespace GameWish.Game
         public void Upgrade(int deltaLevel)
         {
             level += deltaLevel;
-            SetDataDirty();
-        }
-
-        public void SetSkillUnlocked()
-        {
-            isLocked = true;
             SetDataDirty();
         }
 
