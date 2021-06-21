@@ -70,7 +70,7 @@ namespace GameWish.Game
 		private void OnLevelUpBtnClick() 
 		{
 #if UNITY_EDITOR
-			m_PanelData.buidingModel.level.Value++;
+			m_PanelData.buidingModel.OnLevelUpgrade(1);
 #endif
 		}
 		private void CleanLevelUpElement() 
