@@ -8,6 +8,8 @@ namespace GameWish.Game
 {
     public partial class BattleFieldPanel : AbstractAnimPanel
     {
+        private int m_Count = 10;
+
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -29,7 +31,7 @@ namespace GameWish.Game
             BindModelToUI();
             BindUIToModel();
 
-            m_ScrollView.SetDataCount(10);
+            m_ScrollView.SetDataCount(m_Count);
             BattleMgr.S.Camera.ToPrepare();
         }
 
@@ -49,7 +51,7 @@ namespace GameWish.Game
 
         private void OnCellRenderer(Transform root, int index)
         {
-            root.GetComponent<BattleFieldRole>().SetRole(index);
+            root.GetComponent<BattleFieldRole>().SetRole(index, BattleMgr.S.DemoRoleSO);
         }
 
     }

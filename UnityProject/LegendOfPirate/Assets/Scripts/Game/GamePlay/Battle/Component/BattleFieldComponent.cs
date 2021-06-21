@@ -10,6 +10,9 @@ namespace GameWish.Game
         private List<BattleField> m_OurBattleFieldLst = new List<BattleField>();
         private List<Vector3> m_EnemyPosLst = new List<Vector3>();
 
+        public int BattleFieldCount => m_OurBattleFieldLst.Count;
+
+
         public override void Init()
         {
             Vector3 center = BattleMgr.S.gameObject.transform.position;
@@ -33,6 +36,7 @@ namespace GameWish.Game
 
         public override void OnBattleInit(BattleFieldConfigSO enemyConfigSO)
         {
+            base.OnBattleInit(enemyConfigSO);
             for (int i = 0; i < m_OurBattleFieldLst.Count; i++)
             {
                 m_OurBattleFieldLst[i].gameObject.SetActive(true);
@@ -41,13 +45,16 @@ namespace GameWish.Game
 
         public override void OnBattleStart()
         {
+            base.OnBattleStart();
             for (int i = 0; i < m_OurBattleFieldLst.Count; i++)
             {
                 m_OurBattleFieldLst[i].gameObject.SetActive(false);
             }
         }
 
-        public BattleField CreateBattleField(Vector3 pos)
+        ///===
+
+        private BattleField CreateBattleField(Vector3 pos)
         {
             var go = GameObjectPoolMgr.S.Allocate(BattleDefine.POOLNAME_BATTLEFIELD);
             go.transform.position = pos;

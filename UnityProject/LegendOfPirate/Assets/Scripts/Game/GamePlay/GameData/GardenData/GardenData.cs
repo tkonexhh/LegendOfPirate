@@ -29,8 +29,11 @@ namespace GameWish.Game
         public DateTime plantingStartTime;
         public GardenState gardenState;
 
+        private GardenData m_GardenData;
+
         public GardenDataItem(GardenState state) 
         {
+            m_GardenData = null;
             seedId = -1;
             plantingStartTime = default(DateTime);
             gardenState = GardenState.Free;
@@ -42,7 +45,7 @@ namespace GameWish.Game
             this.plantingStartTime = time;
             gardenState = GardenState.Plant;
 
-            GameDataMgr.S.GetData<GardenData>().SetDataDirty();
+            SetDataDirty();
         }
 
         public void OnPlantFinish() 
@@ -50,7 +53,7 @@ namespace GameWish.Game
             this.plantingStartTime = default(DateTime);
             gardenState = GardenState.WaitingHarvest;
 
-            GameDataMgr.S.GetData<GardenData>().SetDataDirty();
+            SetDataDirty();
         }
 
         public void OnPlantHarvest() 
@@ -58,7 +61,7 @@ namespace GameWish.Game
             this.seedId = -1;
             gardenState = GardenState.Free;
 
-            GameDataMgr.S.GetData<GardenData>().SetDataDirty();
+            SetDataDirty();
         }
 
         public void OnPlantSelect(int seedid) 
@@ -66,7 +69,7 @@ namespace GameWish.Game
             this.seedId = seedid;
             gardenState = GardenState.Select;
 
-            GameDataMgr.S.GetData<GardenData>().SetDataDirty();
+            SetDataDirty();
         }
 
         public void OnPlantUnSelect()
@@ -74,7 +77,16 @@ namespace GameWish.Game
             this.seedId = -1;
             gardenState = GardenState.Free;
 
-            GameDataMgr.S.GetData<GardenData>().SetDataDirty();
+            SetDataDirty();
+        }
+
+        private void SetDataDirty()
+        {
+            if (m_GardenData == null)
+            {
+                m_GardenData = GameDataMgr.S.GetData<GardenData>();
+            }
+            m_GardenData.SetDataDirty();
         }
     }
 }

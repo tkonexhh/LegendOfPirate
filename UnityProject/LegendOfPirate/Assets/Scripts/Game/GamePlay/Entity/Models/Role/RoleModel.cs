@@ -13,7 +13,7 @@ namespace GameWish.Game
         public IntReactiveProperty level;
         public string name;
         public string resName;
-        public BoolReactiveProperty isUnlcok;
+        public BoolReactiveProperty isLocked;
         public IntReactiveProperty spiritCount;
 
         public IntReactiveProperty curHp;
@@ -23,17 +23,19 @@ namespace GameWish.Game
         public ReactiveCollection<RoleEquipModel> equipList;
         public ReactiveCollection<RoleSkillModel> skillList;
 
+        public ReactiveProperty<ShipRoleStateId> stateId;
+
         public TDRoleConfig tdRoleConfig;
 
         private RoleData roleData;
 
 
-        public RoleModel(RoleData data)
+        public RoleModel(int roleId)
         {
             #region FormData
-            this.roleData = data;
-            id = roleData.id;
-            isUnlcok = new BoolReactiveProperty(roleData.isUnlock);
+            this.roleData = GameDataMgr.S.GetData<RoleGroupData>().GetRoleItem(roleId);
+            id = roleId;
+            isLocked = new BoolReactiveProperty(roleData.isLocked);
             spiritCount = new IntReactiveProperty(roleData.spiritCount);
             level = new IntReactiveProperty(roleData.level);
 
@@ -62,7 +64,7 @@ namespace GameWish.Game
             curHp = new IntReactiveProperty();
             //攻击 = 基础攻击 * 攻击成长系数 ^ (等级 - 1) * 星级系数 ^ (星级 - 1)  TODO...
             //curAtk = new FloatReactiveProperty(tdRoleConfig.initAtk * Mathf.Pow());
-
+            stateId = new ReactiveProperty<ShipRoleStateId>(ShipRoleStateId.Idle);
 
             ModelSubscribe();
         }
@@ -135,9 +137,20 @@ namespace GameWish.Game
 
         }
 
-        public void SetCurHp(int value)
+        public void AddSpiritCount(int value)
+        {
+            spiritCount.Value += value;
+
+        }
+
+        public void AddCurHp(int value)
         {
             curHp.Value += value;
+        }
+
+        public void AddCurExp(int value)
+        {
+            curExp.Value += value;
         }
         #endregion
 
@@ -145,7 +158,7 @@ namespace GameWish.Game
 
         private void ModelSubscribe()
         {
-            isUnlcok.Subscribe(unlock =>
+            isLocked.Subscribe(unlock =>
            {
                roleData.SetRoleUnlocked();
            });

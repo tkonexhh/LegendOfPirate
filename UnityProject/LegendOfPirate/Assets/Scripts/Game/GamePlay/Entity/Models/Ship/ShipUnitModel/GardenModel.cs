@@ -11,28 +11,34 @@ namespace GameWish.Game
         public GardenPlantModel gardenPlantModel;
         public GardenUnitConfig tableConfig;
         public ReactiveCollection<PlantSlotModel> plantSlotModels = new ReactiveCollection<PlantSlotModel>();
+
         private GardenData m_DbData;
+        
         public GardenModel(ShipUnitData shipUnitData) : base(shipUnitData)
         {
             tableConfig = TDFacilityGardenTable.GetConfig(level.Value);
             m_DbData = GameDataMgr.S.GetData<GardenData>();
             gardenPlantModel = new GardenPlantModel(this, m_DbData.gardenDataItem);
+            gardenPlantModel.seedId = 0;
+            gardenPlantModel.gardenState.Value = GardenState.Free;
             for (int i = 0; i < TDFacilityGardenTable.dataList.Count; i++)
             {
                 PlantSlotModel item = default(PlantSlotModel);
                 if (level.Value >= TDFacilityGardenTable.dataList[i].level)
                 {
-                    item = new PlantSlotModel(this, i, true);
+                    item = new PlantSlotModel(this, i, false);
                 }
                 else 
                 {
-                    item = new PlantSlotModel(this, i, false);
+                    item = new PlantSlotModel(this, i, true);
                 }
                 plantSlotModels.Add(item);
             }
         }
+
         private float m_RefreshTime = 0;
         private float m_RefreshInterval = 0.3f;
+        
         public override void OnUpdate()
         {
             m_RefreshTime += Time.deltaTime;
@@ -52,8 +58,17 @@ namespace GameWish.Game
             {
                 plantSlotModels[i].OnGardenLevelUp();
             }
-
-      
+        }
+        public PlantSlotModel GetPlantSlotModel(int slotindex)
+        {
+            if (plantSlotModels != null) 
+            {
+                return plantSlotModels[slotindex];
+            }
+            else 
+            {
+                return default(PlantSlotModel);
+            }
         }
     }
     public class GardenPlantModel : Model
@@ -69,6 +84,7 @@ namespace GameWish.Game
 
         private GardenModel m_GardenModel;
         private GardenDataItem m_DbItem;
+
         public GardenPlantModel(GardenModel gardenModel, GardenDataItem gardenDataItem) 
         {
             m_GardenModel = gardenModel;
@@ -90,30 +106,36 @@ namespace GameWish.Game
                     break;
             }
         }
+        
         private void SetTime(DateTime startTime)
         {
             m_StartTime = startTime;
             m_EndTime = startTime + TimeSpan.FromSeconds(m_GardenModel.tableConfig.plantingSped);
         }
+        
         #region public
-        public void StartPlant(DateTime startTime, int seedid) 
+        
+        public void StartPlant(DateTime startTime) 
         {
-            this.seedId = seedid;
+            gardenState.Value = GardenState.Plant;
             SetTime(startTime);
-            m_DbItem.OnStartPlant(seedid, startTime);
+            m_DbItem.OnStartPlant(seedId, startTime);
         }
+        
         public void OnPlantSelect(int id) 
         {
             seedId = id;
             gardenState.Value = GardenState.Select;
             m_DbItem.OnPlantSelect(id);
         }
+
         public void OnPlantUnSelect() 
         {
             seedId = -1;
             gardenState.Value = GardenState.Free;
             m_DbItem.OnPlantUnSelect();
         }
+        
         public void EndPlant() 
         {
             plantRemainTime.Value = -1;
@@ -122,12 +144,14 @@ namespace GameWish.Game
             m_EndTime = default(DateTime);
             m_DbItem.OnPlantFinish();
         }
+        
         public void OnPlantHarvest() 
         {
             seedId = -1;
             gardenState.Value = GardenState.Free;
             m_DbItem.OnPlantHarvest();
         }
+        
         public void RefreshRemainTime()
         {
             double remainTime = (m_EndTime - DateTime.Now).TotalSeconds;
@@ -138,7 +162,7 @@ namespace GameWish.Game
     }
     public class PlantSlotModel : Model 
     {
-        public BoolReactiveProperty slotIslock;
+        public BoolReactiveProperty slotIsUnlock;
         public string plantName;
         public int slotId;
         public int unlockLevel;
@@ -149,18 +173,22 @@ namespace GameWish.Game
             this.unlockLevel = TDFacilityGardenTable.dataList[slotid].level;
             this.plantName = TDFacilityGardenTable.dataList[slotid].seedUnlock;
             m_GardenModel = gardenModel;
-            slotIslock = new BoolReactiveProperty(unlockStage);
-
+            slotIsUnlock = new BoolReactiveProperty(unlockStage);
         }
         public void OnGardenLevelUp() 
         {
-            if (slotIslock.Value && m_GardenModel.level.Value >= unlockLevel) 
+
+            if (m_GardenModel.level.Value >= unlockLevel)
             {
-                slotIslock.Value = false;
-
+                slotIsUnlock.Value = false;
             }
+            else 
+            {
+                slotIsUnlock.Value = true;
+            }
+           
         }
-
+     
     }
 
 }

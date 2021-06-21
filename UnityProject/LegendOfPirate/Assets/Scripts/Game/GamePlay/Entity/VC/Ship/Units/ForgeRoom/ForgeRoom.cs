@@ -16,7 +16,7 @@ namespace GameWish.Game
         {
             base.OnClicked();
 
-            Qarth.UIMgr.S.OpenPanel(UIID.ForgePanel);
+            Qarth.UIMgr.S.OpenPanel(UIID.ForgeRoomPanel);
         }
 
         public override ShipUnitType GetShipUnitType()

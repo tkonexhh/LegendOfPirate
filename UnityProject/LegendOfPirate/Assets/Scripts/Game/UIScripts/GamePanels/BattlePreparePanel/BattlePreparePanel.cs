@@ -16,7 +16,7 @@ namespace GameWish.Game
 
             m_BtnField.onClick.AddListener(() =>
             {
-                HideSelfPanel();
+                CloseSelfPanel();
                 UIMgr.S.OpenPanel(UIID.BattleFieldPanel);
                 // BattleMgr.S.Camera
             });

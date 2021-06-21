@@ -8,10 +8,10 @@ using Qarth;
 namespace GameWish.Game
 {
     [Serializable]
-    public class RoleData : IDataClass
+    public struct RoleData 
     {
         public int id;
-        public bool isUnlock;
+        public bool isLocked;
         public int spiritCount;
         public int level;
 
@@ -20,10 +20,12 @@ namespace GameWish.Game
         public List<RoleEquipData> equipList;
         public List<RoleSkillData> skillList;
 
-        public RoleData(int id, bool isUnlock)
+        private RoleGroupData m_RoleGroupData;
+
+        public RoleData(int id)
         {
             this.id = id;
-            this.isUnlock = isUnlock;
+            this.isLocked = false;
             this.level = 1;
             this.spiritCount = 0;
 
@@ -31,14 +33,15 @@ namespace GameWish.Game
             this.starLevel = 1;
             equipList = new List<RoleEquipData>();
             skillList = new List<RoleSkillData>();
-            SetDataDirty();
+
+            m_RoleGroupData = null;
         }
 
         #region Public
 
         public void SetRoleUnlocked()
         {
-            isUnlock = true;
+            isLocked = true;
             SetDataDirty();
         }
 
@@ -136,6 +139,16 @@ namespace GameWish.Game
             }
 
             return equip;
+        }
+
+        private void SetDataDirty()
+        {
+            if (m_RoleGroupData == null)
+            {
+                m_RoleGroupData = GameDataMgr.S.GetData<RoleGroupData>();
+            }
+
+            m_RoleGroupData.SetDataDirty();
         }
 
         #endregion

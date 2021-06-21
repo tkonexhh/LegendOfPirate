@@ -7,7 +7,7 @@ using UnityEngine;
 namespace GameWish.Game
 {
     /// <summary>
-    /// 将组装Controller的逻辑放在工厂类中，减少Controller的工作量
+    /// 将组装Controller的逻辑放在工厂类中
     /// </summary>
     /// <typeparam name="T"></typeparam>
 	public class ControllerFactory<T> where T : IController, new()

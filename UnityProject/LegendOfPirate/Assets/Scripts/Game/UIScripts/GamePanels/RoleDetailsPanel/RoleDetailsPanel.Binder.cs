@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -15,7 +15,7 @@ namespace GameWish.Game
 	{
 		private RoleDetailsPanelData m_PanelData = null;
 		private RoleModel m_RoleModel;
-		private bool m_IsUnlock;
+		private bool m_IsLocked;
 
 		private void AllocatePanelData(params object[] args)
 		{
@@ -29,11 +29,11 @@ namespace GameWish.Game
             }
 
 			RoleName.text = m_RoleModel.name;
-			m_IsUnlock = m_RoleModel.isUnlcok.Value;
+			m_IsLocked = m_RoleModel.isLocked.Value;
 
-			if (!m_IsUnlock)
+			if (!m_IsLocked)
             {
-				RefreshRoleIsUnclockView(m_IsUnlock);
+				RefreshRoleIsUnclockView(m_IsLocked);
 				return;
             }
 

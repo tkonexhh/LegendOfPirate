@@ -45,6 +45,13 @@ namespace GameWish.Game
         /// </summary>
         OnTrainingSelectRole,
         #endregion
+
+        #region Library
+        /// <summary>
+        /// 选择角色
+        /// </summary>
+        OnLibrarySelectRole,
+        #endregion
     }
 
 }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
 using UniRx;
+using System;
 
 namespace GameWish.Game
 {
@@ -27,19 +28,24 @@ namespace GameWish.Game
 	}
     public partial class GardenPanel : AbstractAnimPanel
 	{
+		[SerializeField] private USimpleListView m_PlantSlotlstView;
 		protected override void OnUIInit()
 		{
 			base.OnUIInit();
-		}
+            AllocatePanelData();
+
+            BindModelToUI();
+            BindUIToModel();
+
+			InitPanelBtn();
+        }
 		
 		protected override void OnPanelOpen(params object[] args)
 		{
 			base.OnPanelOpen(args);
 			OpenDependPanel(EngineUI.MaskPanel, -1);
-			AllocatePanelData(args);
-			
-			BindModelToUI();
-			BindUIToModel();
+		
+			InitUI();
 		}
 		
 		protected override void OnPanelHideComplete()
@@ -55,6 +61,18 @@ namespace GameWish.Game
 			
 			ReleasePanelData();
 		}
+
+		private void InitUI() 
+		{
+			m_PlantSlotlstView.SetCellRenderer(OnPlantSlotCellRenderer);
+			m_PlantSlotlstView.SetDataCount(m_PanelData.GetSlotCount());
+		}
+
+        private void OnPlantSlotCellRenderer(Transform root, int index)
+        {
+			var slotItem = root.GetComponent<GardenPlantSlot>();
+			slotItem.SetInit(m_Content,index);
+        }
 		
 	}
 }

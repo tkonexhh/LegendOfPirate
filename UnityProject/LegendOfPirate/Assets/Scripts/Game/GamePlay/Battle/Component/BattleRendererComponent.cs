@@ -29,6 +29,17 @@ namespace GameWish.Game
 
         public override void OnBattleStart()
         {
+            for (int i = 0; i < BattleMgr.Field.BattleFieldCount; i++)
+            {
+                var battleField = BattleMgr.Field.GetOurBattleField(i);
+                var controller = battleField.Controller;
+                if (controller != null)
+                {
+                    m_OurRoleControllerLst.Add(controller);
+                }
+            }
+
+
             for (int i = 0; i < m_OurRoleControllerLst.Count; i++)
             {
                 m_OurRoleControllerLst[i].BattleStart();
@@ -111,9 +122,10 @@ namespace GameWish.Game
                 BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
                 role.gameObject.layer = LayerDefine.LAYER_ROLE_OUR;
                 role.SetCamp(BattleCamp.Our);
-                role.transform.position = BattleMgr.Field.GetOurBattleField(i).Position;
+                var battleField = BattleMgr.Field.GetOurBattleField(i);
+                battleField.SetBattleRoleController(role);
                 role.transform.localRotation = Quaternion.identity;
-                m_OurRoleControllerLst.Add(role);
+                // m_OurRoleControllerLst.Add(role);
             }
         }
 
@@ -121,7 +133,6 @@ namespace GameWish.Game
         {
             for (int i = 0; i < enemyConfigSO.Enemys.Length; i++)
             {
-                // Debug.LogError(i + ":" + i % BattleDefine.BATTLE_WIDTH + ":" + i / BattleDefine.BATTLE_WIDTH);
                 var enemy = enemyConfigSO.Enemys[i % BattleDefine.BATTLE_WIDTH, i / BattleDefine.BATTLE_WIDTH];
                 if (enemy == null)
                     continue;

@@ -10,7 +10,10 @@ namespace GameWish.Game
         public static BattleRoleController CreateBattleRole(RoleConfigSO configSO)
         {
             BattleRoleController role = ObjectPool<BattleRoleController>.S.Allocate();
-            role.Renderer.prefab = configSO.prefab;
+            //TODO 
+            BattleMgr.S.Pool.AddGameObjectToPool(configSO.prefab);
+            // role.Renderer.prefab = configSO.prefab;
+            role.Renderer.prefabName = configSO.prefab.name;
             for (int i = 0; i < configSO.childSkills.Count; i++)
             {
                 role.Skill.AddSkill(SkillFactory.CreateSkill(configSO.childSkills[i]));
@@ -22,9 +25,22 @@ namespace GameWish.Game
             {
                 BattleAttackerFactory.SetBullet(attacker, configSO.Attack.Bullet, configSO.Attack.BulletNum);
             }
-            role.Data.DamageRange = DamageRangeFactory.CreateDamageRange(configSO.Attack.DamageRangeType, role, configSO.Attack.RangeArgs);
+
+            if (configSO.Attack.DamageRangeType == DamageRangeType.Range)
+            {
+                role.Data.RangeDamage = RangeDamageConfig.CreateRangeDamage(configSO.Attack.RangeDamage);
+            }
+
+
             role.OnInit();
             return role;
+        }
+
+
+        public static void RecycleBattleRole(BattleRoleController controller)
+        {
+            controller.Recycle2Cache();
+            ObjectPool<BattleRoleController>.S.Recycle(controller);
         }
     }
 

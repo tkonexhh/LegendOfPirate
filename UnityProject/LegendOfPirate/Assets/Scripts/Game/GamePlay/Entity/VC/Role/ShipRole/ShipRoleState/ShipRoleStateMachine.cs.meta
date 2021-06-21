@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:UnityProject/LegendOfPirate/Assets/Scripts/Game/GamePlay/Entity/VC/Role/ShipRole/ShipRoleState/ShipRoleStateMachine.cs.meta
+guid: 46fdc9dca21f57a4ea3a603dd3f22de3
+=======
+guid: 1bd0f6cec5c177b46983d83d1b6769f8
+>>>>>>> 8122a57... 训练室基础功能:UnityProject/LegendOfPirate/Assets/Scripts/Game/Tables/Generate/Gameplay/TDGlobalConfig.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

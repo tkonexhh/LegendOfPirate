@@ -18,6 +18,7 @@ namespace GameWish.Game
         private string m_RoleName;   
         private string m_EquipmentType;   
         private string m_ParamType;   
+        private EInt m_Quality = 0;   
         private string m_StrengthenCost;   
         private EInt m_IntensifyCost = 0;   
         private string m_ParamValue;  
@@ -53,6 +54,11 @@ namespace GameWish.Game
         /// 装备属性类型
         /// </summary>
         public  string  paramType {get { return m_ParamType; } }
+       
+        /// <summary>
+        /// 品质(道具名称及道具框颜色，1-红色，2-紫色，3-黑色)
+        /// </summary>
+        public  int  quality {get { return m_Quality; } }
        
         /// <summary>
         /// 强化消耗
@@ -103,12 +109,15 @@ namespace GameWish.Game
                     m_ParamType = dataR.ReadString();
                     break;
                 case 6:
-                    m_StrengthenCost = dataR.ReadString();
+                    m_Quality = dataR.ReadInt();
                     break;
                 case 7:
-                    m_IntensifyCost = dataR.ReadInt();
+                    m_StrengthenCost = dataR.ReadString();
                     break;
                 case 8:
+                    m_IntensifyCost = dataR.ReadInt();
+                    break;
+                case 9:
                     m_ParamValue = dataR.ReadString();
                     break;
                 default:
@@ -121,7 +130,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(9);
+          Dictionary<string, int> ret = new Dictionary<string, int>(10);
           
           ret.Add("EquipmentId", 0);
           ret.Add("StarLevel", 1);
@@ -129,9 +138,10 @@ namespace GameWish.Game
           ret.Add("RoleName", 3);
           ret.Add("EquipmentType", 4);
           ret.Add("ParamType", 5);
-          ret.Add("StrengthenCost", 6);
-          ret.Add("IntensifyCost", 7);
-          ret.Add("ParamValue", 8);
+          ret.Add("Quality", 6);
+          ret.Add("StrengthenCost", 7);
+          ret.Add("IntensifyCost", 8);
+          ret.Add("ParamValue", 9);
           return ret;
         }
     } 
