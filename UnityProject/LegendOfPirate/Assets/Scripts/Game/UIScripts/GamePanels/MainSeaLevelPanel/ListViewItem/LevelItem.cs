@@ -10,8 +10,12 @@ namespace GameWish.Game
 {
     public partial class LevelItem : MonoBehaviour
     {
-        private void Awake()
+        public int curLevelId;
+        public void OnUIInit(MainSeaLevelPanel mainSeaLevelPanel, TDMarinLevelConfig levelData)
         {
+            curLevelId = levelData.level;
+            m_TmpLevel.text = String.Format("LEVEL {0}", levelData.level);
+            // Debug.Log(m_TmpLevel.text);
         }
 
     }

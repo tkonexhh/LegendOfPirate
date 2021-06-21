@@ -41,6 +41,8 @@ namespace GameWish.Game
             BattleMgr.S.OnUpdate();
 
             ModelMgr.S.OnUpdate();
+
+            ShipRolesMgr.S.OnUpdate();
         }
 
         public void OnDestroyed()

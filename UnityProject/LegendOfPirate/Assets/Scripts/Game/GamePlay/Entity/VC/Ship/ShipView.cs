@@ -33,6 +33,17 @@ namespace GameWish.Game
             m_ShipBody = GetComponentInChildren<ShipBody>();
         }
 
+        public List<Vector3> GetWalkablePosList()
+        {
+            List<Vector3> list = new List<Vector3>();
+
+            for (int i = 0; i < m_ShipBody.randomPosList.Count; i++)
+            {
+                list.Add(m_ShipBody.randomPosList[i].position);
+            }
+
+            return list;
+        }
     }
 	
 }

@@ -15,6 +15,7 @@ namespace GameWish.Game
         private ShipRoleStateId m_CurState = ShipRoleStateId.None;
 
         public ShipRoleView RoleView { get => m_RoleView;}
+        public RoleModel RoleModel { get => m_RoleModel;}
 
         #region Override
 
@@ -34,6 +35,15 @@ namespace GameWish.Game
             ShipRolesMgr.S.RoleFactory.RecycleController(this);
         }
 
+        public override void OnUpdate()
+        {
+            base.OnUpdate();
+
+            if (m_StateMachine != null)
+            {
+                m_StateMachine.UpdateState(Time.deltaTime);
+            }
+        }
         #endregion
 
         #region Public Set

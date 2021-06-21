@@ -6,7 +6,7 @@ using UniRx;
 
 namespace GameWish.Game
 {
-    public partial class MainSeaLevelPanel : AbstractAnimPanel
+    public partial class BattleWinPanel : AbstractAnimPanel
     {
         protected override void OnUIInit()
         {
@@ -19,13 +19,17 @@ namespace GameWish.Game
             BindUIToModel();
 
             OnClickAddListener();
-
         }
 
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-            CreateLevel();
+            if (args != null && args.Length > 0)
+            {
+                string levelId = args[0].ToString();
+                
+                GetOnlineLevelReward(int.Parse(levelId));
+            }
         }
 
         protected override void OnPanelHideComplete()

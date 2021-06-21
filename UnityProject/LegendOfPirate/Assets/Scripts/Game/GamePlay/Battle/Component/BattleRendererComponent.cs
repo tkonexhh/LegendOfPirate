@@ -117,8 +117,10 @@ namespace GameWish.Game
 
         private void InitOwerRole()
         {
+            Debug.LogError("InitOwerRole");
             for (int i = 0; i < 5; i++)
             {
+                Debug.LogError(i);
                 BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
                 role.gameObject.layer = LayerDefine.LAYER_ROLE_OUR;
                 role.SetCamp(BattleCamp.Our);
