@@ -80,13 +80,6 @@ namespace GameWish.Game
 		protected override void OnUIInit()
 		{
 			base.OnUIInit();
-			m_SelectedRoles.Add(new RoleModel (new RoleData (0,true)));
-			m_SelectedRoles.Add(new RoleModel (new RoleData (1,true)));
-			m_SelectedRoles.Add(new RoleModel (new RoleData (2,true)));
-			m_SelectedRoles.Add(new RoleModel (new RoleData (3,true)));
-			m_SelectedRoles.Add(new RoleModel (new RoleData (4,true)));
-			m_SelectedRoles.Add(new RoleModel (new RoleData (5,true)));
-			m_SelectedRoles.Add(new RoleModel (new RoleData (6,true)));
 		}
 		
 		protected override void OnPanelOpen(params object[] args)

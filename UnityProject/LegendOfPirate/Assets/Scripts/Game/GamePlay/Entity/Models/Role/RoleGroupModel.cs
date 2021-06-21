@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using System.Linq;
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -18,10 +19,10 @@ namespace GameWish.Game
             roleGroupData = GameDataMgr.S.GetData<RoleGroupData>();
             foreach (var item in roleGroupData.roleList)
             {
-                RoleModel itemModel = new RoleModel(item);
+                RoleModel itemModel = new RoleModel(item.id);
                 roleItemList.Add(itemModel);
 
-                if (itemModel.isUnlock.Value)
+                if (itemModel.isLocked.Value)
                 {
                     if (roleUnlockedItemList.Any(i => i.id == itemModel.id))
                         return;
@@ -50,18 +51,17 @@ namespace GameWish.Game
             }
             else
             {
-                roleGroupData.OnAddRoleItem(roleId, false);
-                RoleData roleData = (RoleData)roleGroupData.GetRoleItem(roleId);
-                RoleModel itemModel = new RoleModel(roleData);
+                roleGroupData.OnAddRoleItem(roleId);
+                RoleModel itemModel = new RoleModel(roleId);
                 roleItemList.Add(itemModel);
-                roleUnlockedItemList.Add(itemModel);
+                itemModel.AddSpiritCount(count);
             }
         }
 
-        public void AddRoleUnlockedModel(int id)
+        public void SetRoleUnlockedModel(int id)
         {
             RoleModel role = roleItemList.FirstOrDefault(item => item.id == id);
-            role.isUnlock.Value = true;
+            role.isLocked.Value = true;
             roleUnlockedItemList.Add(role);
         }
 
@@ -75,11 +75,25 @@ namespace GameWish.Game
         public List<RoleModel> GetSortRoleItemList()
         {
             roleUnlockedList = roleUnlockedItemList.ToList();
-            roleUnlockedList.OrderBy(item => item.GetStarLevel())
-                    .ThenBy(item => item.level);
-            roleModelList = roleItemList.ToList();
-            roleModelList.Where(i => i.isUnlock.Value = false && i.spiritCount.Value != 0)
-                    .OrderBy(i => i.spiritCount);
+            if (roleUnlockedItemList.Count > 1)
+            {
+                roleUnlockedList.OrderBy(item => item.GetStarLevel())
+                   .ThenBy(item => item.level);
+            }
+           
+            roleModelList = roleItemList.Where(i => i.isLocked.Value == false && i.spiritCount.Value != 0).ToList();
+            foreach (var item in roleItemList)
+            {
+                Log.e(string.Format("id,{0}  islocked:{1}    spiritcout{2}",item.id,item.isLocked.Value,item.spiritCount.Value));
+            }
+            Log.e(roleModelList.Count);
+            if (roleModelList.Count > 1)
+            {
+                roleModelList.OrderBy(i => i.spiritCount);
+                Log.e(roleUnlockedList.Concat(roleModelList).ToList().Count);
+            }
+            
+           
             return (roleUnlockedList.Concat(roleModelList).ToList());
         }
     }    

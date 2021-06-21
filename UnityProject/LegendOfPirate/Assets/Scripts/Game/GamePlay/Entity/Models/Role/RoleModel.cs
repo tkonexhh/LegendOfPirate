@@ -13,7 +13,7 @@ namespace GameWish.Game
         public IntReactiveProperty level;
         public string name;
         public string resName;
-        public BoolReactiveProperty isUnlock;
+        public BoolReactiveProperty isLocked;
         public IntReactiveProperty spiritCount;
 
         public IntReactiveProperty curHp;
@@ -30,12 +30,12 @@ namespace GameWish.Game
         private RoleData roleData;
 
 
-        public RoleModel(RoleData data)
+        public RoleModel(int roleId)
         {
             #region FormData
-            this.roleData = data;
-            id = roleData.id;
-            isUnlock = new BoolReactiveProperty(roleData.isUnlock);
+            this.roleData = GameDataMgr.S.GetData<RoleGroupData>().GetRoleItem(roleId);
+            id = roleId;
+            isLocked = new BoolReactiveProperty(roleData.isLocked);
             spiritCount = new IntReactiveProperty(roleData.spiritCount);
             level = new IntReactiveProperty(roleData.level);
 
@@ -137,6 +137,12 @@ namespace GameWish.Game
 
         }
 
+        public void AddSpiritCount(int value)
+        {
+            spiritCount.Value += value;
+
+        }
+
         public void AddCurHp(int value)
         {
             curHp.Value += value;
@@ -152,7 +158,7 @@ namespace GameWish.Game
 
         private void ModelSubscribe()
         {
-            isUnlock.Subscribe(unlock =>
+            isLocked.Subscribe(unlock =>
            {
                roleData.SetRoleUnlocked();
            });

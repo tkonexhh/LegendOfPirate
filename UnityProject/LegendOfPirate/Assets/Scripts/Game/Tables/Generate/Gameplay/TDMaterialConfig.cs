@@ -15,6 +15,7 @@ namespace GameWish.Game
         private EInt m_MaterialId = 0;   
         private string m_MaterialName;   
         private string m_MaterialIcon;   
+        private EInt m_Quality = 0;   
         private string m_MaterialDsc;   
         private string m_MaterialType;   
         private EInt m_MaterialPrice = 0;   
@@ -36,6 +37,11 @@ namespace GameWish.Game
         /// 材料icon
         /// </summary>
         public  string  materialIcon {get { return m_MaterialIcon; } }
+       
+        /// <summary>
+        /// 品质(道具名称及道具框颜色，1-红色，2-紫色，3-黑色)
+        /// </summary>
+        public  int  quality {get { return m_Quality; } }
        
         /// <summary>
         /// 材料描述
@@ -82,15 +88,18 @@ namespace GameWish.Game
                     m_MaterialIcon = dataR.ReadString();
                     break;
                 case 3:
-                    m_MaterialDsc = dataR.ReadString();
+                    m_Quality = dataR.ReadInt();
                     break;
                 case 4:
-                    m_MaterialType = dataR.ReadString();
+                    m_MaterialDsc = dataR.ReadString();
                     break;
                 case 5:
-                    m_MaterialPrice = dataR.ReadInt();
+                    m_MaterialType = dataR.ReadString();
                     break;
                 case 6:
+                    m_MaterialPrice = dataR.ReadInt();
+                    break;
+                case 7:
                     m_OutputWay = dataR.ReadInt();
                     break;
                 default:
@@ -103,15 +112,16 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(7);
+          Dictionary<string, int> ret = new Dictionary<string, int>(8);
           
           ret.Add("MaterialId", 0);
           ret.Add("MaterialName", 1);
           ret.Add("MaterialIcon", 2);
-          ret.Add("MaterialDsc", 3);
-          ret.Add("MaterialType", 4);
-          ret.Add("MaterialPrice", 5);
-          ret.Add("OutputWay", 6);
+          ret.Add("Quality", 3);
+          ret.Add("MaterialDsc", 4);
+          ret.Add("MaterialType", 5);
+          ret.Add("MaterialPrice", 6);
+          ret.Add("OutputWay", 7);
           return ret;
         }
     } 

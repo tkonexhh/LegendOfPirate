@@ -55,6 +55,27 @@ namespace GameWish.Game
                 BattleMgr.S.BattleEnd(true);
                 BattleMgr.S.BattleClean();
             }
+
+            if (GUILayout.Button("AddSpiritRole1001", GUILayout.Width(100f)))
+            {
+                RoleGroupModel roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
+                roleGroupModel.AddSpiritRoleModel(1001, 200);
+            }
+
+            if (GUILayout.Button("AddSpiritRole1002", GUILayout.Width(100f)))
+            {
+                RoleGroupModel roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
+                roleGroupModel.AddSpiritRoleModel(1002, 200);
+                roleGroupModel.SetRoleUnlockedModel(1002);
+            }
+
+            if (GUILayout.Button("AddSpiritRole1003", GUILayout.Width(100f)))
+            {
+                RoleGroupModel roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
+                roleGroupModel.AddSpiritRoleModel(1003, 100);
+                roleGroupModel.SetRoleUnlockedModel(1003);
+            }
+
             GUILayout.EndHorizontal();
 
             GUILayout.EndVertical();
