@@ -6,20 +6,20 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class HeroChipModel : InventoryItemModel
+    public class HeroEquipModel : InventoryItemModel
     {
-        public HeroChipModel(InventoryItemData dbItem, InventoryItemType itemType, int id, int count) : base(dbItem, itemType, id, count)
+        public HeroEquipModel(InventoryItemData dbItem, InventoryItemType itemType, int id, int count) : base(dbItem, itemType, id, count)
         {
         }
 
         public override string GetDesc()
         {
-            return "英雄碎片";
+            return "装备";
         }
 
         public override string GetName()
         {
-            return "英雄碎片" + m_Id;
+            return "装备" + m_Id;
         }
     }
 

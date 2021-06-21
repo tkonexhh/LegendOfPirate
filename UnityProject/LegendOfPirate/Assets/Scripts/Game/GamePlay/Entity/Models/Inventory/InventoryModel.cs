@@ -43,7 +43,7 @@ namespace GameWish.Game
         #region Public Set
 
         /// <summary>
-        /// count为正则加，为负则减
+        /// 改变Item数量，count为正则加，为负则减
         /// </summary>
         public void AddInventoryItemCount(InventoryItemType itemType, int id, int count)
         {
