@@ -34,12 +34,19 @@ namespace GameWish.Game
         public void Init()
         {
             m_RoleMonoRef = GetComponent<RoleMonoReference>();
-            m_PlayableAnim = gameObject.AddComponent<PlayablesAnimation>();
+            m_PlayableAnim = GetComponentInChildren<PlayablesAnimation>();
         }
 
         public void PlayAnim(string anim)
         {
             m_PlayableAnim.Play(anim);
+        }
+
+        public void SetTargetPos(Vector3 pos)
+        {
+            m_RoleMonoRef.AstarAI.maxSpeed = 10;
+            m_RoleMonoRef.AstarAI.canMove = true;
+            m_RoleMonoRef.AstarAI.destination = pos;
         }
     }
 	

@@ -27,6 +27,7 @@ namespace GameWish.Game
 
         public override void OnUpdate()
         {
+
         }
 
         public override void OnDestroyed()

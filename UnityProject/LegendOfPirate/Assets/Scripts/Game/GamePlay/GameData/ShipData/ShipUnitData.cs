@@ -5,10 +5,12 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public struct ShipUnitData
+	public class ShipUnitData
 	{
         public ShipUnitType unitType;
         public int level;
+
+        public ShipUnitData() { }
 
         public ShipUnitData(ShipUnitType shipUnitType)
         {
