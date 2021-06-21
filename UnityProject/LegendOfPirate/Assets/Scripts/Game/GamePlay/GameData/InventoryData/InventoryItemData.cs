@@ -6,13 +6,15 @@ using UnityEngine;
 namespace GameWish.Game
 {
     [System.Serializable]
-	public struct InventoryItemData
+	public class InventoryItemData
 	{
         public InventoryItemType itemType;
         public int id;
         public int count;
 
         private InventoryData m_InventoryData;
+
+        public InventoryItemData() { }
 
         public InventoryItemData(InventoryItemType itemType, int id, int count)
         {

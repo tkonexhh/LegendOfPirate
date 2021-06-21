@@ -45,9 +45,9 @@ namespace GameWish.Game
         //    }
         //}
 
-        private TrainingSlotData? GetTrainDataItem(int slotId)
+        private TrainingSlotData GetTrainDataItem(int slotId)
         {
-            TrainingSlotData? item = trainingItemList.FirstOrDefault(i => i.slotId == slotId);
+            TrainingSlotData item = trainingItemList.FirstOrDefault(i => i.slotId == slotId);
             if (item == null)
             {
                 Log.e("TrainingDataItem Not Found: " + slotId);
@@ -58,7 +58,7 @@ namespace GameWish.Game
 
 
         [Serializable]
-        public struct TrainingSlotData
+        public class TrainingSlotData
         {
             public int slotId;
             public int heroId;
@@ -66,6 +66,8 @@ namespace GameWish.Game
             public TrainingSlotState trainState;
 
             private TrainingData m_TrainingData;
+
+            public TrainingSlotData() { }
 
             public TrainingSlotData(int slot)
             {

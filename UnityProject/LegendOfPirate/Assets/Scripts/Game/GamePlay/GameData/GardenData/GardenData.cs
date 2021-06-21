@@ -12,7 +12,7 @@ namespace GameWish.Game
 
         public override void InitWithEmptyData()
         {
-            gardenDataItem = new GardenDataItem(GardenState.Free);
+            gardenDataItem = new GardenDataItem();
         }
 
         public override void OnDataLoadFinish()
@@ -23,7 +23,7 @@ namespace GameWish.Game
     }
 
     [Serializable]
-    public struct GardenDataItem 
+    public class GardenDataItem 
     {
         public int seedId;
         public DateTime plantingStartTime;
@@ -31,7 +31,7 @@ namespace GameWish.Game
 
         private GardenData m_GardenData;
 
-        public GardenDataItem(GardenState state) 
+        public GardenDataItem() 
         {
             m_GardenData = null;
             seedId = -1;

@@ -20,11 +20,13 @@ namespace GameWish.Game
     }
 
     [Serializable]
-    public struct ForgeDataItem 
+    public class ForgeDataItem 
     {
         public int weaponId;
         public DateTime forgingStartTime;
         public ForgeStage forgeState;
+
+        public ForgeDataItem() { }
 
         public ForgeDataItem(ForgeStage state)
         {
