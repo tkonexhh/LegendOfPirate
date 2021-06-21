@@ -1,8 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
-using Qarth.Extension;
 using Qarth;
-using UniRx;
+
 
 namespace GameWish.Game
 {
@@ -24,6 +22,7 @@ namespace GameWish.Game
             m_BtnBack.onClick.AddListener(() =>
             {
                 CloseSelfPanel();
+                BattleMgr.S.BattleClean();
                 UIMgr.S.OpenPanel(UIID.MainMenuPanel);
                 GameCameraMgr.S.ToSea();
             });
@@ -45,11 +44,10 @@ namespace GameWish.Game
             {
                 string levelId = args[0].ToString();
                 Debug.Log("levelId=" + levelId);
-                BattleMgr.S.BattleClean();
-                BattleMgr.S.BattleInit(CreateEnemy(levelId) == null ? BattleMgr.S.DemoEnemyFieldConfigSO : CreateEnemy(levelId));
+                BattleFieldConfigSO curEnemy = CreateEnemy(levelId);
+                BattleMgr.S.BattleInit(curEnemy == null ? BattleMgr.S.DemoEnemyFieldConfigSO : curEnemy, int.Parse(levelId));
             }
         }
-
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();

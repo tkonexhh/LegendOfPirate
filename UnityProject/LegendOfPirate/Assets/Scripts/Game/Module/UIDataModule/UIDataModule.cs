@@ -124,6 +124,7 @@ namespace GameWish.Game
             #region 战斗相关
             UIDataTable.AddPanelData(UIID.BattlePreparePanel, null, "GamePanels/BattlePanel/BattlePreparePanel/BattlePreparePanel", true, 1);//战斗排兵布阵界面
             UIDataTable.AddPanelData(UIID.BattleFieldPanel, null, "GamePanels/BattlePanel/BattleFieldPanel/BattleFieldPanel", true, 1);//战斗排兵布阵界面
+            UIDataTable.AddPanelData(UIID.BattleWinPanel, null, "GamePanels/BattlePanel/BattleWinPanel/BattleWinPanel", true, 1);//战斗结束胜利界面
             #endregion
 
             #region 海战选关相关

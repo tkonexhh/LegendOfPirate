@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -10,6 +11,7 @@ namespace GameWish.Game
     {
         public MainSeaLevelModel mainSeaLevelModel;
         public IntReactiveProperty currentLevelId;
+        public List<GameObject> allLevelItems;
         public MainSeaLevelPanelData()
         {
         }
@@ -35,16 +37,19 @@ namespace GameWish.Game
             m_PanelData.currentLevelId = new IntReactiveProperty();
             m_PanelData.currentLevelId.Value = 101;
             m_PanelData.currentLevelId.AsObservable().SubscribeToTextMeshPro(m_CurrentLevel, "LEVEL {0}").AddTo(this);
+            m_PanelData.allLevelItems = new List<GameObject>();
         }
 
         private void BindUIToModel()
         {
         }
+
         private void OnClickAddListener()
         {
             m_BackBtn.OnClickAsObservable().Subscribe(_ => OnBackClicked()).AddTo(this);
             m_AttackBtn.OnClickAsObservable().Subscribe(_ => OnAttackClicked()).AddTo(this);
         }
+
         private void OnBackClicked()
         {
             CloseSelfPanel();
@@ -58,10 +63,20 @@ namespace GameWish.Game
         }
         private void CreateLevel()
         {
-            m_Content.DestroyChildren();
+            //m_Content.DestroyChildren();
             for (int i = 0; i < m_PanelData.mainSeaLevelModel.GetBattleLevelCount(); i++)
             {
-                var levelObj = Instantiate(m_LevelItem.gameObject);
+                GameObject levelObj = null;
+                if (m_PanelData.allLevelItems == null || m_PanelData.allLevelItems.Count < m_PanelData.mainSeaLevelModel.GetBattleLevelCount())
+                {
+                    levelObj = Instantiate(m_LevelItem.gameObject);
+                    m_PanelData.allLevelItems.Add(levelObj);
+                }
+                else
+                {
+                    levelObj = m_PanelData.allLevelItems[i];
+                }
+
                 levelObj.GetComponent<RectTransform>().SetParent(m_Content);
                 levelObj.GetComponent<RectTransform>().SetLocalZ(0);
                 levelObj.GetComponent<RectTransform>().localScale = Vector3.one;
