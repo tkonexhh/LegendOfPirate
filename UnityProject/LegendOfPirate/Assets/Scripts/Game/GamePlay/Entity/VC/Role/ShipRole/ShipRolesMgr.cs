@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
+using System.Linq;
 
 namespace GameWish.Game
 {
@@ -9,6 +10,7 @@ namespace GameWish.Game
     {
         private ShipRoleControllerFactory m_RoleFactory = null;
         private Dictionary<int, ShipRoleController> m_ShipRoleDic = null;
+        private List<ShipRoleController> m_ShipRoleList = null;
 
         public ShipRoleControllerFactory RoleFactory { get => m_RoleFactory;}
 
@@ -18,12 +20,17 @@ namespace GameWish.Game
         {
             m_RoleFactory = new ShipRoleControllerFactory();
             m_ShipRoleDic = new Dictionary<int, ShipRoleController>();
+            m_ShipRoleList = new List<ShipRoleController>();
 
             SpawnShipRoles();
         }
 
         public void OnUpdate()
         {
+            for (int i = 0; i < m_ShipRoleList.Count; i++)
+            {
+                m_ShipRoleList[i].OnUpdate();
+            }
         }
 
         public void OnDestroyed()
@@ -53,19 +60,33 @@ namespace GameWish.Game
                 roleModel = roleGroupModel.roleItemList[i];
                 ShipRoleController shipRoleController = m_RoleFactory.CreateController(roleModel);
   
-                AddRoleToDic(roleModel.id, shipRoleController);
+                AddRole(roleModel.id, shipRoleController);
             }
         }
 
-        private void AddRoleToDic(int id, ShipRoleController controller)
+        private void AddRole(int id, ShipRoleController controller)
         {
             if (!m_ShipRoleDic.ContainsKey(id))
             {
                 m_ShipRoleDic.Add(id, controller);
+                m_ShipRoleList.Add(controller);
             }
             else
             {
                 Log.e("Role Added Before: " + id.ToString());
+            }
+        }
+
+        private void RemoveRole(int id)
+        {
+            if (m_ShipRoleDic.ContainsKey(id))
+            {
+                m_ShipRoleDic.Remove(id);
+                m_ShipRoleList.Remove(m_ShipRoleList.FirstOrDefault(i => i.RoleModel.id == id));
+            }
+            else
+            {
+                Log.e("Role Not Found: " + id.ToString());
             }
         }
         #endregion

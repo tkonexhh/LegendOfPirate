@@ -26,7 +26,7 @@ namespace GameWish.Game
         // Prefab Name
         public const string SEA_PREFAB = "CartoonSea";
         public const string SHIP_PREFAB = "Ship";
-        public const string ROLE_PREFAB = "Role";
+        public const string ROLE_PREFAB = "ShipRole";
 
         public const int INPUT_SORTING_ORDER_DEFAULT = 0;
         public const int INPUT_SORTING_ORDER_SHIP_UNIT = 5;

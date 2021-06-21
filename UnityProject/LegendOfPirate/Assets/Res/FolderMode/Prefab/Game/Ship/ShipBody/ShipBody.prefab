@@ -217,8 +217,6 @@ MonoBehaviour:
   roleSpawnPos: {fileID: 5614704374443812950}
   randomPosList:
   - {fileID: 2507748987835681840}
-  - {fileID: 6952323234528704061}
-  - {fileID: 205688986383141770}
 --- !u!1 &4347987953296443729
 GameObject:
   m_ObjectHideFlags: 0

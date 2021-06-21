@@ -24,7 +24,7 @@ namespace GameWish.Game
             GameObject body = SpawnGameObject(roleModel.id);
             ShipRoleView shipRoleView = body.AddComponent<ShipRoleView>();
 
-            controller.SetRoleModel(roleModel).SetRoleView(shipRoleView).InitWhenAllocated(ShipRoleStateId.Idle);
+            controller.SetRoleModel(roleModel).SetRoleView(shipRoleView).InitWhenAllocated(ShipRoleStateId.Wander);
 
         }
 
