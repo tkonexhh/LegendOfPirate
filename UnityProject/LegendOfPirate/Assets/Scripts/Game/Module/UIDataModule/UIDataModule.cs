@@ -69,7 +69,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.CreateUserPanel, null, "GamePanels/CreateUserPanel/CreateUserPanel");
             #endregion
 
-            UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuPanel/MainMenuPanel");
+            UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuSystem/MainMenuPanel/MainMenuPanel");
 
             #region 角色相关
             UIDataTable.AddPanelData(UIID.RoleDetailsPanel, null, "GamePanels/RolePanel/RoleDetailsPanel/RoleDetailsPanel");
@@ -119,8 +119,6 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.FloatMessageTMPanel, null, "GamePanels/Common/FloatMessageTMPanel", true, 1);
             #endregion
             UIDataTable.AddPanelData(UIID.BuildingLevelUpPanel, null, "GamePanels/BuildingLevelUpPanel/BuildingLevelUpPanel");
-
-
             #region 战斗相关
 
             UIDataTable.AddPanelData(UIID.BattlePreparePanel, null, "GamePanels/BattlePanel/BattlePreparePanel/BattlePreparePanel", true, 1);//战斗排兵布阵界面
