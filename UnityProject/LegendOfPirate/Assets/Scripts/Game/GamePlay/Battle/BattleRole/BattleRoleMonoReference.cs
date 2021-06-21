@@ -26,6 +26,12 @@ namespace GameWish.Game
             if (onCollisionEnter != null)
                 onCollisionEnter(other);
         }
+
+
+
+
+        #region 动画事件
+        #endregion
     }
 
 }

@@ -14,10 +14,12 @@ namespace GameWish.Game
         [SerializeField] private BuffConfigSO m_DemoBuffSO;
 
         public RoleConfigSO DemoRoleSO;
-        public SkillConfigSO DemoSkillSO;
         public BattleFieldConfigSO DemoEnemyFieldConfigSO;
         private int m_LevelId;
 
+
+
+        public Transform bulletRoot;
         //===
         [LabelText("战场相机"), BoxGroup("Camera")] public CinemachineVirtualCameraBase CameraBattle;
         [LabelText("排兵相机"), BoxGroup("Camera")] public CinemachineVirtualCameraBase CameraField;

@@ -20,6 +20,9 @@ namespace GameWish.Game
 
         public override void InitWithEmptyData()
         {
+            //For Test
+            OnAddRoleItem(1001);
+
             SetDataDirty();
         }
 
