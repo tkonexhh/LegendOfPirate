@@ -12,6 +12,8 @@ namespace GameWish.Game
         private RoleModel m_RoleModel = null;
         private ShipRoleStateMachine m_StateMachine = null;
 
+        private ShipRoleStateId m_CurState = ShipRoleStateId.None;
+
         #region Override
 
         public override void OnCacheReset()
@@ -34,9 +36,10 @@ namespace GameWish.Game
 
         #region Public Set
 
-        public ShipRoleController InitWhenAllocated()
+        public ShipRoleController InitWhenAllocated(ShipRoleStateId state)
         {
             m_StateMachine = new ShipRoleStateMachine(this);
+            SetState(state);
 
             return this;
         }
@@ -56,6 +59,16 @@ namespace GameWish.Game
         }
 
         #endregion
+
+        private void SetState(ShipRoleStateId stateId)
+        {
+            if (m_CurState != stateId)
+            {
+                m_CurState = stateId;
+
+                m_StateMachine.SetCurrentStateByID(stateId);
+            }
+        }
     }
 
 }

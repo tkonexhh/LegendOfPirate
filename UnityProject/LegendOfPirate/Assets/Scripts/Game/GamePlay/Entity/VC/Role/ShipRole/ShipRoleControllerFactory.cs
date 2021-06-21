@@ -24,7 +24,7 @@ namespace GameWish.Game
             GameObject body = SpawnGameObject(roleModel.id);
             ShipRoleView shipRoleView = body.AddComponent<ShipRoleView>();
 
-            controller.InitWhenAllocated().SetRoleModel(roleModel).SetRoleView(shipRoleView);
+            controller.InitWhenAllocated(ShipRoleStateId.Idle).SetRoleModel(roleModel).SetRoleView(shipRoleView);
 
         }
 
@@ -34,11 +34,14 @@ namespace GameWish.Game
 
 
             GameObject role = GameObjectPoolMgr.S.Allocate(Define.ROLE_PREFAB);
-            role.transform.SetParent(GameplayMgr.S.EntityRoot);
+            role.transform.SetParent(EnvMgr.S.ShipController.ShipView.ShipBody.transform);
 
             GameObject bodyPrefab = m_ShipRoleResLoader.LoadSync("Pirate_Role_Enemy_OneEye_001@skin Variant") as GameObject;
             GameObject bodyObj = GameObject.Instantiate(bodyPrefab);
             bodyObj.transform.SetParent(role.transform);
+            bodyObj.transform.SetLocalPos(Vector3.zero);
+
+            role.transform.position = EnvMgr.S.ShipController.ShipView.ShipBody.roleSpawnPos.position;
 
             return role;
         }

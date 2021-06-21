@@ -7,6 +7,10 @@ namespace GameWish.Game
 {
 	public class ShipView : ClickableView
 	{
+        private ShipBody m_ShipBody;
+
+        public ShipBody ShipBody { get => m_ShipBody;}
+
         protected override void Awake()
         {
             base.Awake();
@@ -24,6 +28,11 @@ namespace GameWish.Game
             base.OnClicked();
 
             Log.i("On ShipView Clicked");
+        }
+
+        public void Init()
+        {
+            m_ShipBody = GetComponentInChildren<ShipBody>();
         }
     }
 	

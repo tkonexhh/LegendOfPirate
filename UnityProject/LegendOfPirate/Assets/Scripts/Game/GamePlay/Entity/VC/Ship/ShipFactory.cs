@@ -28,6 +28,8 @@ namespace GameWish.Game
 
             SpawnShipBody(ship.transform);
 
+            m_ShipController.ShipView.Init();
+
             SpawnShipUnits(ship);
         }
 
