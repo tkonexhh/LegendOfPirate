@@ -32,7 +32,6 @@ namespace GameWish.Game
         RoleGroupPanel,
         #endregion
 
-
         //战船经营
         #region 厨房
         KitchenPanel,

@@ -34,16 +34,5 @@ namespace GameWish.Game
 		private void BindUIToModel()
 		{
 		}
-
-
-        private void OnClickAddListener()
-        {
-			RoleBtn.onClick.AddListener(() =>
-			{
-				UIMgr.S.OpenPanel(UIID.RoleGroupPanel);
-			});
-
-        }
-
     }
 }

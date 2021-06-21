@@ -12,6 +12,7 @@ namespace GameWish.Game
 	{
 		public const string Name = "ItemDetailsPanel";
 		
+		[SerializeField] private Button m_ExitBtn;
 		[SerializeField] private Image m_Bg;
 		[SerializeField] private TextMeshProUGUI m_ItemName;
 		[SerializeField] private Image m_ItemIcon;

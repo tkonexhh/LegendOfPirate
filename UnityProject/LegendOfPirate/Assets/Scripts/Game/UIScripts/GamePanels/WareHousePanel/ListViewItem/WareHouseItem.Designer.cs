@@ -15,6 +15,5 @@ namespace GameWish.Game
 		[SerializeField] private TextMeshProUGUI m_Number;
 		[SerializeField] private Image m_Full;
 		[SerializeField] private Image m_RedPoint;
-
 	}
 }

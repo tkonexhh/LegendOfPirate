@@ -1340,7 +1340,7 @@ MonoBehaviour:
   needMask: 0
   content: {fileID: 3123135589687201720}
   viewPort: {fileID: 4070886153425748241}
-  m_MaxRow: 3
+  m_MaxRow: 4
   m_MaxCol: 0
 --- !u!1 &5747806149748551882
 GameObject:
@@ -2168,6 +2168,10 @@ MonoBehaviour:
   m_ExitBtn: {fileID: 5572722752188150294}
   m_DiamondsValue: {fileID: 4378554305342144246}
   m_CoinIValue: {fileID: 8203431291846306278}
+  m_ItemTypeTog: {fileID: 2991273012739403319, guid: c4c0568b6d24ddf4cab871172ff130cf,
+    type: 3}
+  m_ItemTogGroup: {fileID: 8915755861272589939}
+  m_WareHouseUGList: {fileID: 1963468706928395206}
 --- !u!1 &8310119427738090470
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -77,6 +78,24 @@ namespace GameWish.Game
             }
 
             GUILayout.EndHorizontal();
+
+            #region 仓库
+            GUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("仓库", new[] { GUILayout.Width(100) });
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("AddInventoryItem", GUILayout.Width(100f)))
+            {
+                InventoryModel inventoryModel = ModelMgr.S.GetModel<InventoryModel>();
+                inventoryModel.AddInventoryItemCount(InventoryItemType.Equip, 1, 1);
+                inventoryModel.AddInventoryItemCount(InventoryItemType.Equip, 2, 1);
+                inventoryModel.AddInventoryItemCount(InventoryItemType.Equip, 3, 1);
+                inventoryModel.AddInventoryItemCount(InventoryItemType.Equip, 4, 1);
+            }
+            GUILayout.EndHorizontal();
+            #endregion
 
             GUILayout.EndVertical();
         }

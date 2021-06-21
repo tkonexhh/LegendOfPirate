@@ -69,7 +69,12 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.CreateUserPanel, null, "GamePanels/CreateUserPanel/CreateUserPanel");
             #endregion
 
+            //主菜单功能
             UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuSystem/MainMenuPanel/MainMenuPanel");
+            #region 仓库
+            UIDataTable.AddPanelData(UIID.ItemDetailsPanel, null, "GamePanels/MainMenuSystem/WareHouse/ItemDetailsPanel/ItemDetailsPanel");
+            UIDataTable.AddPanelData(UIID.WareHousePanel, null, "GamePanels/MainMenuSystem/WareHouse/WareHousePanel/WareHousePanel");
+            #endregion
 
             #region 角色相关
             UIDataTable.AddPanelData(UIID.RoleDetailsPanel, null, "GamePanels/RolePanel/RoleDetailsPanel/RoleDetailsPanel");
@@ -115,6 +120,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.SmugglePanel, null, "GamePanels/LandManagement/SmugglePanel/SmugglePanel");
             UIDataTable.AddPanelData(UIID.SmuggleChooseRolePanel, null, "GamePanels/LandManagement/SmuggleChooseRolePanel/SmuggleChooseRolePanel");
             #endregion
+
             #region FloatMessageTMP
             UIDataTable.AddPanelData(UIID.FloatMessageTMPanel, null, "GamePanels/Common/FloatMessageTMPanel", true, 1);
             #endregion

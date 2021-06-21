@@ -9,8 +9,8 @@ using System.Linq;
 namespace GameWish.Game
 {
     [ModelAutoRegister]
-	public class InventoryModel : DbModel
-	{
+    public class InventoryModel : DbModel
+    {
         public IntReactiveProperty level;
 
         private Dictionary<InventoryItemType, Dictionary<int, IInventoryItemModel>> m_InventoryItemDics;
@@ -20,6 +20,7 @@ namespace GameWish.Game
         protected override void LoadDataFromDb()
         {
             m_InventoryData = GameDataMgr.S.GetData<InventoryData>();
+            m_InventoryItemDics = new Dictionary<InventoryItemType, Dictionary<int, IInventoryItemModel>>();
 
             for (int i = 0; i < m_InventoryData.itemList.Count; i++)
             {
@@ -41,19 +42,51 @@ namespace GameWish.Game
         }
 
         #region Public Set
-
         /// <summary>
         /// 改变Item数量，count为正则加，为负则减
         /// </summary>
         public void AddInventoryItemCount(InventoryItemType itemType, int id, int count)
         {
-            IInventoryItemModel itemModel = GetItemModel(itemType, id);
-            itemModel.AddCount(count);
+            if (CheckItemInInventory(itemType, id))
+            {
+                IInventoryItemModel itemModel = GetItemModel(itemType, id);
+                itemModel.AddCount(count);
+                if (itemModel.GetCount() == 0)
+                    RemoveInventoryItem(itemModel);
+            }
+            else
+            {
+                InventoryItemData newItemData = m_InventoryData.AddNewItemData(itemType, id, count);
+                if (!m_InventoryItemDics.ContainsKey(itemType))
+                    m_InventoryItemDics.Add(itemType, new Dictionary<int, IInventoryItemModel>());
+                m_InventoryItemDics[itemType].Add(id, InventoryItemModelFactory.CreateItemModel(newItemData, itemType, newItemData.id, newItemData.count));
+            }
         }
 
         #endregion
 
         #region Public Get
+        /// <summary>
+        /// 检查某Item是否拥有
+        /// </summary>
+        /// <param name="itemType"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool CheckItemInInventory(InventoryItemType itemType, int id)
+        {
+            if (m_InventoryItemDics.ContainsKey(itemType))
+            {
+                if (m_InventoryItemDics[itemType].ContainsKey(id))
+                {
+                    return true;
+                }
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// 获取所有的Item
@@ -68,7 +101,6 @@ namespace GameWish.Game
                     m_InventoryItemList.Add(item);
                 }
             }
-
             return m_InventoryItemList;
         }
 
@@ -98,6 +130,16 @@ namespace GameWish.Game
 
         #region Private
 
+        private void RemoveInventoryItem(IInventoryItemModel inventoryItemModel)
+        {
+            if (m_InventoryItemDics.ContainsKey(inventoryItemModel.GetItemType()))
+            {
+                m_InventoryItemDics[inventoryItemModel.GetItemType()].Remove(inventoryItemModel.GetId());
+                return;
+            }
+            Debug.LogError("仓库中未找到物品,ItemType = "+ inventoryItemModel.GetItemType());
+        }
+
         private Dictionary<int, IInventoryItemModel> GetDicByItemType(InventoryItemType itemType)
         {
             if (m_InventoryItemDics.ContainsKey(itemType))
@@ -111,7 +153,6 @@ namespace GameWish.Game
                 return null;
             }
         }
-
         #endregion
     }
 

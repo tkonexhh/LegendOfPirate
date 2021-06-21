@@ -19,7 +19,7 @@ namespace GameWish.Game
             m_Id = id;
             m_Count = new IntReactiveProperty(count);
 
-            m_Count.Subscribe((value) => { m_DbItem.OnValueChanged(value); });
+            m_Count.Where(val=> val > 0).Subscribe((value) => { m_DbItem.OnValueChanged(value); });
         }
 
         #region IInventoryItemModel
@@ -27,7 +27,7 @@ namespace GameWish.Game
         public void AddCount(int deltaCount)
         {
             int value = m_Count.Value + deltaCount;
-            value = Mathf.Max(0, value);
+            value = Mathf.Min(Define.INVENTORY_ITEM_MAX_COUNT,Mathf.Max(0, value));
 
             m_Count.Value = value;
         }
@@ -41,6 +41,10 @@ namespace GameWish.Game
         {
             return m_ItemType;
         }
+        public IntReactiveProperty GetReactiveCount()
+        {
+            return m_Count;
+        }
 
         public int GetId()
         {
@@ -50,7 +54,6 @@ namespace GameWish.Game
         public abstract string GetDesc();
 
         public abstract string GetName();
-
         #endregion
 
     }
