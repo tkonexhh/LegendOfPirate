@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -44,7 +44,7 @@ namespace GameWish.Game
 
         public void Release()
         {
-            BattleMgr.Destroy(gameObject);
+            GameObjectPoolMgr.S.Recycle(gameObject);
             gameObject = null;
             transform = null;
             owner = null;

@@ -14,7 +14,6 @@ namespace GameWish.Game
         [SerializeField] private BuffConfigSO m_DemoBuffSO;
 
         public RoleConfigSO DemoRoleSO;
-        public SkillConfigSO DemoSkillSO;
         public BattleFieldConfigSO DemoEnemyFieldConfigSO;
 
 
