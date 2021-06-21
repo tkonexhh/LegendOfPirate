@@ -117,9 +117,9 @@ namespace GameWish.Game
         #endregion
 
         #region Public Set
-        public bool AddSkill()
+        public void AddSkill(int skillId)
         {
-            return false;
+            roleData.AddRoleSkill(skillId);
         }
 
         public void UpgradeSkill()

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
 using UniRx;
+using System.Collections.Generic;
 
 namespace GameWish.Game
 {
@@ -17,6 +18,8 @@ namespace GameWish.Game
 		private RoleModel m_RoleModel;
 		private bool m_IsLocked;
 
+		private List<Button> m_SkillBtnList;
+
 		private void AllocatePanelData(params object[] args)
 		{
 			 m_PanelData = UIPanelData.Allocate<RoleDetailsPanelData>();
@@ -30,7 +33,8 @@ namespace GameWish.Game
 
 			RoleName.text = m_RoleModel.name;
             m_IsLocked = m_RoleModel.isLocked.Value;
-			Log.e(m_IsLocked);
+
+
 
 			if (!m_IsLocked)
             {
