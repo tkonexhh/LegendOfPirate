@@ -90,5 +90,9 @@ namespace GameWish.Game
         BattlePreparePanel,//战斗准备界面
         BattleFieldPanel,//战斗排兵布阵
         #endregion
+
+        #region 海战选关相关
+        MainSeaLevelPanel,//选关界面
+        #endregion
     }
 }

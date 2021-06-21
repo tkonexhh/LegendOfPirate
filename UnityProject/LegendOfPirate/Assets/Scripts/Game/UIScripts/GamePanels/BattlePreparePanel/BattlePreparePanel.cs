@@ -24,6 +24,7 @@ namespace GameWish.Game
             m_BtnBack.onClick.AddListener(() =>
             {
                 CloseSelfPanel();
+                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
                 GameCameraMgr.S.ToSea();
             });
 
@@ -40,7 +41,13 @@ namespace GameWish.Game
 
             AllocatePanelData(args);
 
-            BattleMgr.S.BattleInit(BattleMgr.S.DemoEnemyFieldConfigSO);
+            if (args != null && args.Length > 0)
+            {
+                string levelId = args[0].ToString();
+                Debug.Log("levelId=" + levelId);
+                BattleMgr.S.BattleClean();
+                BattleMgr.S.BattleInit(CreateEnemy(levelId) == null ? BattleMgr.S.DemoEnemyFieldConfigSO : CreateEnemy(levelId));
+            }
         }
 
         protected override void OnPanelHideComplete()
