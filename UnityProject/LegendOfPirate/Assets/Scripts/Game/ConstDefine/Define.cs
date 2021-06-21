@@ -34,6 +34,7 @@ namespace GameWish.Game
 
         // Ship Unit Const
         public const int TRAINING_ROOM_MAX_SLOT = 9;
+        public const int LIBRARY_ROOM_MAX_SLOT = 9;
 
         //Ship Unit Max Level
         public const int TRAINING_ROOM_MAX_LEVEL = 9;
