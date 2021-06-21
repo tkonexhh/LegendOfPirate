@@ -11,7 +11,7 @@ namespace GameWish.Game
             string aa = LeanCloudConfig.S.appid;
             LCApplication.Initialize(LeanCloudConfig.S.appid, LeanCloudConfig.S.appkey, LeanCloudConfig.S.server);
             //子类化对象注册
-            GameStorage.S.SetUp();
+            GameStorageMgr.S.SetUp();
             //回调监听
             LCLogger.LogDelegate = (level, log) =>
             {

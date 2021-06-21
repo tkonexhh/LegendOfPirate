@@ -103,12 +103,12 @@ namespace GameWish.Game
     //TODO 其他对象 怪物 武器
 
     ///<summary>
-    /// 奖励信息
+    /// 海战关卡以及奖励配置
     ///</summary>
-    internal class AwardStorage : LCObject
+    internal class MarinLevelConfig : LCObject
     {
         ///<summary>
-        /// 关卡等级
+        /// 关卡id
         ///</summary>
         internal int Level
         {
@@ -119,22 +119,33 @@ namespace GameWish.Game
             }
         }
         ///<summary>
-        /// 关卡奖励
+        /// 资源产出
         ///</summary>
-        internal string Award
+        internal string ResOutPut
         {
-            get => this["Award"] as string;
+            get => this["ResOutput"] as string;
             set
             {
-                this["Award"] = value;
+                this["ResOutput"] = value;
             }
         }
-        internal AwardStorage() : base("AwardStorage") { }
+        ///<summary>
+        /// 获胜奖励
+        ///</summary>
+        internal string Reward
+        {
+            get => this["Reward"] as string;
+            set
+            {
+                this["Reward"] = value;
+            }
+        }
+        internal MarinLevelConfig() : base("MarinLevelConfig") { }
     }
     ///<summary>
     /// 游戏数据存储 可拓展 每一个对象对应一个表 
     ///</summary>
-    public class GameStorage : TSingleton<GameStorage>
+    public class GameStorageMgr : TSingleton<GameStorageMgr>
     {
         ///<summary>
         /// 具体对象的子类化注册
@@ -145,7 +156,7 @@ namespace GameWish.Game
             LCObject.RegisterSubclass("World", () => new World());
             LCObject.RegisterSubclass("AccountStorage", () => new AccountStorage());
             LCObject.RegisterSubclass("UserStorage", () => new UserStorage());
-            LCObject.RegisterSubclass("AwardStorage", () => new AwardStorage());
+            LCObject.RegisterSubclass("MarinLevelConfig", () => new MarinLevelConfig());
         }
     }
 }

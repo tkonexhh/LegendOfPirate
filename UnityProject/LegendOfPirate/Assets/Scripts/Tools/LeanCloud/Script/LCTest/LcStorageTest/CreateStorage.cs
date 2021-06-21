@@ -102,13 +102,13 @@ namespace GameWish.Game
         ///</summary>
         public async void QueryLevelAward()
         {
-            LCQuery<AwardStorage> query = new LCQuery<AwardStorage>("AwardStorage");
+            LCQuery<MarinLevelConfig> query = new LCQuery<MarinLevelConfig>("AwardStorage");
             query.Limit(40);
             // query.WhereEndsWith("name", "chuck");
-            ReadOnlyCollection<AwardStorage> list = await query.Find();
-            foreach (AwardStorage item in list)
+            ReadOnlyCollection<MarinLevelConfig> list = await query.Find();
+            foreach (MarinLevelConfig item in list)
             {
-                m_ShowText.text += item.Level + "_" + item.Award + "\n";
+                m_ShowText.text += item.Level + "_" + item.Level + "\n";
             }
         }
         public async void LiveQueryTest()

@@ -15,6 +15,7 @@ namespace GameWish.Game
 
         public RoleConfigSO DemoRoleSO;
         public BattleFieldConfigSO DemoEnemyFieldConfigSO;
+        private int m_LevelId;
 
 
 
@@ -69,14 +70,13 @@ namespace GameWish.Game
         #endregion
 
 
-        public void BattleInit(BattleFieldConfigSO enemyConfigSO)
+        public void BattleInit(BattleFieldConfigSO enemyConfigSO, int levelId = 1)
         {
             for (int i = 0; i < m_BattleComponentList.Count; i++)
             {
                 m_BattleComponentList[i].OnBattleInit(enemyConfigSO);
             }
-
-            UIMgr.S.OpenPanel(UIID.BattlePreparePanel);
+            m_LevelId = levelId;
         }
 
         public void BattleStart()
@@ -96,6 +96,16 @@ namespace GameWish.Game
             {
                 m_BattleComponentList[i].OnBattleEnd(isSuccess);
             }
+            if (isSuccess)
+            {
+                UIMgr.S.ClosePanelAsUIID(UIID.BattlePreparePanel);
+                UIMgr.S.OpenPanel(UIID.BattleWinPanel, null, m_LevelId);
+            }
+            else
+            {
+                Debug.LogError("Open fail panel!");
+            }
+            BattleMgr.S.BattleClean();
         }
 
         public void BattleClean()

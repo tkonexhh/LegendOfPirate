@@ -18,6 +18,7 @@ namespace GameWish.Game
 		[SerializeField] private Button m_CoinAddBtn;
 		[SerializeField] private Button m_BtnBoss;
 		[SerializeField] private Button m_BtnShop;
+		[SerializeField] private Button m_LevelItem;
 		[SerializeField] private RectTransform m_UnLock;
 		[SerializeField] private TextMeshProUGUI m_TmpLevel;
 		[SerializeField] private RectTransform m_Progress;
@@ -31,7 +32,7 @@ namespace GameWish.Game
 		[SerializeField] private RectTransform m_Content;
 		[SerializeField] private Button m_BackBtn;
 		[SerializeField] private Button m_AttackBtn;
-		[SerializeField] private TextMeshProUGUI m_TMP;
+		[SerializeField] private TextMeshProUGUI m_CurrentLevel;
 		
 		
 	}

@@ -17,7 +17,6 @@ namespace GameWish.Game
         private string m_Type;   
         private string m_ResOutput;   
         private string m_EnemyHeadIcon;   
-        private string m_Enemies;   
         private string m_Reward;   
         private string m_RecommendAtkValue;   
         private string m_BattleName;  
@@ -48,11 +47,6 @@ namespace GameWish.Game
         /// 敌人头像
         /// </summary>
         public  string  enemyHeadIcon {get { return m_EnemyHeadIcon; } }
-       
-        /// <summary>
-        /// 敌人配置，格式ID:|数量|功力;…
-        /// </summary>
-        public  string  enemies {get { return m_Enemies; } }
        
         /// <summary>
         /// 奖励
@@ -100,15 +94,12 @@ namespace GameWish.Game
                     m_EnemyHeadIcon = dataR.ReadString();
                     break;
                 case 5:
-                    m_Enemies = dataR.ReadString();
-                    break;
-                case 6:
                     m_Reward = dataR.ReadString();
                     break;
-                case 7:
+                case 6:
                     m_RecommendAtkValue = dataR.ReadString();
                     break;
-                case 8:
+                case 7:
                     m_BattleName = dataR.ReadString();
                     break;
                 default:
@@ -121,17 +112,16 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(9);
+          Dictionary<string, int> ret = new Dictionary<string, int>(8);
           
           ret.Add("Level", 0);
           ret.Add("Chapter", 1);
           ret.Add("Type", 2);
           ret.Add("ResOutput", 3);
           ret.Add("EnemyHeadIcon", 4);
-          ret.Add("Enemies", 5);
-          ret.Add("Reward", 6);
-          ret.Add("RecommendAtkValue", 7);
-          ret.Add("BattleName", 8);
+          ret.Add("Reward", 5);
+          ret.Add("RecommendAtkValue", 6);
+          ret.Add("BattleName", 7);
           return ret;
         }
     } 

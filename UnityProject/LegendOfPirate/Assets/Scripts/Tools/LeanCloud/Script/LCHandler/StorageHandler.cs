@@ -47,6 +47,31 @@ namespace GameWish.Game
                 return null;
             }
         }
+
+        ///<summary>
+        /// 通用结构 获取某个数据对象 传入表的名字 以及该数据对象的key值 跟value值
+        ///</summary>
+        /// <param name="className">存储对象名</param>
+        /// <param name="successCallBack">成功回调</param>
+        /// <param name="failCallBack">失败回调</param>
+        public async Task<ReadOnlyCollection<T>> QuerySpecialObject<T>(string className, string key, int value, Action successCallBack = null, Action failCallBack = null) where T : LCObject
+        {
+            try
+            {
+                LCQuery<T> query = new LCQuery<T>(className);
+                query.WhereEqualTo(key, value);
+                ReadOnlyCollection<T> list = await query.Find();
+                Log.i(className + "数据查询成功");
+                successCallBack?.Invoke();
+                return list;
+            }
+            catch (LCException e)
+            {
+                Log.e(e);
+                failCallBack?.Invoke();
+                return null;
+            }
+        }
     }
 
 }
