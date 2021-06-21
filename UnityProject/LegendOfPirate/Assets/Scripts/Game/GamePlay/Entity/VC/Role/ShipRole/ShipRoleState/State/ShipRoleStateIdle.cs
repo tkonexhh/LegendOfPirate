@@ -11,6 +11,13 @@ namespace GameWish.Game
         {
 
         }
+
+        public override void Enter(ShipRoleController entity)
+        {
+            base.Enter(entity);
+
+            m_ShipRoleController.RoleView.PlayAnim(BattleDefine.ROLEANIM_IDLE);
+        }
     }
 
 }

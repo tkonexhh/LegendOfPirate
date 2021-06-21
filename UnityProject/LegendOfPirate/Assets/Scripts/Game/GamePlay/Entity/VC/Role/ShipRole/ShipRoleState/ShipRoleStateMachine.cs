@@ -12,6 +12,7 @@ namespace GameWish.Game
             stateFactory = new FSMStateFactory<ShipRoleController>(false);
 
             stateFactory.RegisterState(ShipRoleStateId.Idle, new ShipRoleStateIdle(ShipRoleStateId.Idle));
+            stateFactory.RegisterState(ShipRoleStateId.Wander, new ShipRoleStateWander(ShipRoleStateId.Wander));
         }
     }
 

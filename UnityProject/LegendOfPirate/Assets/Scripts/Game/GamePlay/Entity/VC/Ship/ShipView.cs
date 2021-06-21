@@ -7,11 +7,13 @@ namespace GameWish.Game
 {
 	public class ShipView : ClickableView
 	{
+        private ShipBody m_ShipBody;
+
+        public ShipBody ShipBody { get => m_ShipBody; }
+
         protected override void Awake()
         {
             base.Awake();
-
-            //m_Collider = GetComponentInChildren<Collider>();
         }
 
         public override int GetSortingLayer()
@@ -25,6 +27,12 @@ namespace GameWish.Game
 
             Log.i("On ShipView Clicked");
         }
+
+        public void Init()
+        {
+            m_ShipBody = GetComponentInChildren<ShipBody>();
+        }
+
     }
 	
 }

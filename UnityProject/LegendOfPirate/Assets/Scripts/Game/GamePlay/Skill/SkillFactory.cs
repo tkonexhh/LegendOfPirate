@@ -113,6 +113,7 @@ namespace GameWish.Game
 
         private static SkillAction CreateSkillAction_Bullet(SkillActionConfig_Bullet config)
         {
+            BattleMgr.S.Pool.AddGameObjectToPool(config.BulletConfigSO.Prefab);//将技能子弹添加到pool
             return new SkillAction_Bullet(config.Damage, config.BulletConfigSO, config.DamageRangeType, config.RangeDamage);
         }
 

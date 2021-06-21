@@ -10,7 +10,8 @@ namespace GameWish.Game
         public static Bullet CreateBullet(BulletConfigSO configSO, Transform target)
         {
             Bullet bullet = new Bullet();
-            bullet.prefab = configSO.Prefab;//TODO 改为池
+            bullet.prefabName = configSO.Prefab.name;
+            // bullet.prefab = configSO.Prefab;
             var bulletTarget = BulletTargetFactory.CreateBulletTarget(configSO.TargetType, target);
             bullet.move = BulletMoveFactory.CreateBulletMove(configSO.MoveType, bulletTarget);
             bullet.move.Speed = configSO.Speed;

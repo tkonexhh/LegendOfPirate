@@ -16,6 +16,8 @@ namespace GameWish.Game
 
     public class ShipRoleState : FSMState<ShipRoleController>
     {
+        protected ShipRoleController m_ShipRoleController = null;
+
         public ShipRoleStateId stateID
         {
             get;
@@ -25,6 +27,13 @@ namespace GameWish.Game
         public ShipRoleState(ShipRoleStateId stateEnum)
         {
             stateID = stateEnum;
+        }
+
+        public override void Enter(ShipRoleController entity)
+        {
+            base.Enter(entity);
+
+            m_ShipRoleController = entity;
         }
     }
 
