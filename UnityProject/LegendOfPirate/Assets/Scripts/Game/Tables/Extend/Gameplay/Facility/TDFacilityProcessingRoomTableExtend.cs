@@ -21,7 +21,7 @@ namespace GameWish.Game
             }
 
             processingRoomUnitProperties[level - 1] = new ProcessingRoomUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
-                tdData.upgradePreconditions, tdData.upgradeTime, tdData.modelResources, tdData.unlockPartID, tdData.unlockPartSpace, tdData.unlockSpaceCost);
+                tdData.upgradePreconditions, tdData.upgradeTime, tdData.modelResources, tdData.unlockPartSpace, tdData.unlockSpaceCost);
         }
 
         public static ProcessingRoomUnitConfig[] processingRoomUnitProperties = null;
@@ -46,7 +46,7 @@ namespace GameWish.Game
         public int unlockSpaceCost;
 
         public ProcessingRoomUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
-            int upgradeTime, string modelRes, int unlockPartId, int unlockPartSpace, int unlockSpaceCost
+            int upgradeTime, string modelRes, int unlockPartSpace, int unlockSpaceCost
             )
         {
             baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.33881366, g: 0.82238126, b: 0.9296663, a: 1}
+  m_IndirectSpecularColor: {r: 0.33881372, g: 0.8223812, b: 0.9296663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -514,6 +514,98 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SeaCamera: {fileID: 1001805194}
   m_BattleCamera: {fileID: 1551111132}
+--- !u!1 &535180310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 535180314}
+  - component: {fileID: 535180313}
+  - component: {fileID: 535180312}
+  - component: {fileID: 535180311}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &535180311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535180310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416d1b88f605d1346b10fa8fc191de1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugGameEvents: 0
+  debugUIButtons: 0
+  debugUIElements: 0
+  debugUINotifications: 0
+  debugUICanvases: 0
+  autoDisableButtonClicks: 1
+  gamePaused: 0
+  currentGameTimeScale: 1
+  isSoundOn: 1
+  isMusicOn: 1
+  backButtonInputMode: 2
+  enableBackButtonAlternateInputs: 0
+  backButtonKeyCode: 27
+  backButtonKeyCodeAlt: 8
+  backButtonVirtualButtonName: Cancel
+  backButtonVirtualButtonNameAlt: Cancel
+  currentOrientation: 2
+  useTextMeshPro: 0
+--- !u!114 &535180312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535180310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96124914bff0e8c4a860edd2b48124e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NotificationItems: []
+--- !u!114 &535180313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535180310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490c78ed3279eba42a5f8a5fe316e81a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixerGroup: {fileID: 0}
+  masterVolume: 1
+  masterPitch: 1
+  numberOfChannels: 20
+--- !u!4 &535180314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535180310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &693561741
 GameObject:
   m_ObjectHideFlags: 0

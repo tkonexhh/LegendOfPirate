@@ -23,6 +23,9 @@ namespace GameWish.Game
 		[SerializeField] private Image m_ForgeElement1;
 		[SerializeField] private TextMeshProUGUI m_NeedCount;
 		[SerializeField] private Image m_ForgeElement2;
+		[SerializeField] private Image m_Timer;
+		[SerializeField] private Image m_TimerFill;
+		[SerializeField] private TextMeshProUGUI m_TimerText;
 		[SerializeField] private Button m_ForgeBtn;
 		[SerializeField] private ToggleGroup m_Content;
 		

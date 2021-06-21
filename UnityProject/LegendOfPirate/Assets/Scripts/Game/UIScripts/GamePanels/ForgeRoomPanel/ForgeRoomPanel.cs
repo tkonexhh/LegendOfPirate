@@ -30,19 +30,22 @@ namespace GameWish.Game
 		[SerializeField] private USimpleListView m_WeaponSlotLstView;
 		protected override void OnUIInit()
 		{
+
 			base.OnUIInit();
-		}
+            AllocatePanelData();
+
+            BindModelToUI();
+            BindUIToModel();
+
+            InitPanelBtn();
+        }
 		
 		protected override void OnPanelOpen(params object[] args)
 		{
 			base.OnPanelOpen(args);
 			OpenDependPanel(EngineUI.MaskPanel, -1);
-			AllocatePanelData(args);
-			
-			BindModelToUI();
-			BindUIToModel();
 
-			InitPanelBtn();
+			InitUI();
 		}
 		
 		protected override void OnPanelHideComplete()
