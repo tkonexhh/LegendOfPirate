@@ -14,12 +14,12 @@ namespace GameWish.Game
        
         private EInt m_Level = 0;   
         private string m_Name;   
-        private EInt m_ResourceID = 0;   
-        private EInt m_OutputSpeed = 0;   
-        private EInt m_StorageLimits = 0;   
         private string m_UpgradeRes;   
-        private EInt m_UpgradeCost = 0;   
-        private EInt m_UpgradeTime = 0;  
+        private string m_UpgradeCost;   
+        private string m_UpgradeTime;   
+        private string m_ResourceID;   
+        private string m_OutputSpeed;   
+        private string m_StorageLimits;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -34,21 +34,6 @@ namespace GameWish.Game
         public  string  name {get { return m_Name; } }
        
         /// <summary>
-        /// 资源产出（id）
-        /// </summary>
-        public  int  resourceID {get { return m_ResourceID; } }
-       
-        /// <summary>
-        /// 产出速率（每秒产出数量）
-        /// </summary>
-        public  int  outputSpeed {get { return m_OutputSpeed; } }
-       
-        /// <summary>
-        /// 存储上限
-        /// </summary>
-        public  int  storageLimits {get { return m_StorageLimits; } }
-       
-        /// <summary>
         /// 升级资源（id|数量）
         /// </summary>
         public  string  upgradeRes {get { return m_UpgradeRes; } }
@@ -56,12 +41,27 @@ namespace GameWish.Game
         /// <summary>
         /// 升级花费
         /// </summary>
-        public  int  upgradeCost {get { return m_UpgradeCost; } }
+        public  string  upgradeCost {get { return m_UpgradeCost; } }
        
         /// <summary>
         /// 升级时间（s）
         /// </summary>
-        public  int  upgradeTime {get { return m_UpgradeTime; } }
+        public  string  upgradeTime {get { return m_UpgradeTime; } }
+       
+        /// <summary>
+        /// 资源产出（id|概率%）
+        /// </summary>
+        public  string  resourceID {get { return m_ResourceID; } }
+       
+        /// <summary>
+        /// 产出速率（每秒产出数量，资源岛等级|数量）
+        /// </summary>
+        public  string  outputSpeed {get { return m_OutputSpeed; } }
+       
+        /// <summary>
+        /// 存储上限 资源岛等级|数量
+        /// </summary>
+        public  string  storageLimits {get { return m_StorageLimits; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -85,22 +85,22 @@ namespace GameWish.Game
                     m_Name = dataR.ReadString();
                     break;
                 case 2:
-                    m_ResourceID = dataR.ReadInt();
-                    break;
-                case 3:
-                    m_OutputSpeed = dataR.ReadInt();
-                    break;
-                case 4:
-                    m_StorageLimits = dataR.ReadInt();
-                    break;
-                case 5:
                     m_UpgradeRes = dataR.ReadString();
                     break;
+                case 3:
+                    m_UpgradeCost = dataR.ReadString();
+                    break;
+                case 4:
+                    m_UpgradeTime = dataR.ReadString();
+                    break;
+                case 5:
+                    m_ResourceID = dataR.ReadString();
+                    break;
                 case 6:
-                    m_UpgradeCost = dataR.ReadInt();
+                    m_OutputSpeed = dataR.ReadString();
                     break;
                 case 7:
-                    m_UpgradeTime = dataR.ReadInt();
+                    m_StorageLimits = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -116,12 +116,12 @@ namespace GameWish.Game
           
           ret.Add("Level", 0);
           ret.Add("Name", 1);
-          ret.Add("ResourceID", 2);
-          ret.Add("OutputSpeed", 3);
-          ret.Add("StorageLimits", 4);
-          ret.Add("UpgradeRes", 5);
-          ret.Add("UpgradeCost", 6);
-          ret.Add("UpgradeTime", 7);
+          ret.Add("UpgradeRes", 2);
+          ret.Add("UpgradeCost", 3);
+          ret.Add("UpgradeTime", 4);
+          ret.Add("ResourceID", 5);
+          ret.Add("OutputSpeed", 6);
+          ret.Add("StorageLimits", 7);
           return ret;
         }
     } 
