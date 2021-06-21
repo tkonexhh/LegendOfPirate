@@ -140,7 +140,6 @@ namespace GameWish.Game
         public void AddSpiritCount(int value)
         {
             spiritCount.Value += value;
-
         }
 
         public void AddCurHp(int value)
@@ -166,6 +165,7 @@ namespace GameWish.Game
             spiritCount.Subscribe(count => 
             {
                 roleData.SetRoleSpiritCount(spiritCount.Value);
+                Log.e(" spiritCount.Subscribe");
             });
 
             level.Subscribe(lv =>
