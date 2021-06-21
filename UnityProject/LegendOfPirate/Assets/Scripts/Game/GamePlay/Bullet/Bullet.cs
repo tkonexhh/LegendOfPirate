@@ -15,7 +15,7 @@ namespace GameWish.Game
 
         public BulletMove move;
 
-        public DamageRange DamageRange { get; set; }//伤害范围
+        public RangeDamage RangeDamage { get; set; }//伤害范围
         public int Damage { get; set; }
 
 
@@ -54,26 +54,22 @@ namespace GameWish.Game
         public void DealDamage()
         {
             Debug.LogError("DealDamage");
-            var targets = DamageRange.PickTargets(BattleHelper.GetOppositeCamp(GetBattleCamp()));
-            int damage = BattleHelper.CalcAtkDamage(GetATKModel());
-            for (int i = 0; i < targets.Count; i++)
+
+            if (RangeDamage == null)
             {
+
+            }
+            else
+            {
+                int damage = BattleHelper.CalcAtkDamage(GetATKModel());
                 RoleDamagePackage damagePackage = new RoleDamagePackage();
                 damagePackage.damageType = BattleDamageType.Normal;
                 damagePackage.damage = damage;
-                BattleMgr.S.SendDamage(targets[i], damagePackage);
+                var roles = BattleMgr.S.Role.GetControllersByCamp(GetBattleCamp());
+                RangeDamage.DealDamage(roles, transform, damagePackage);
             }
-        }
-        //TODO修改实现
-        public Vector3 DamageCenter()
-        {
-            return transform.position;
-        }
 
-        //TODO修改实现
-        public Vector3 DamageForward()
-        {
-            return transform.forward;
+
         }
 
         public Transform DamageTransform()
@@ -81,7 +77,7 @@ namespace GameWish.Game
             return null;
         }
 
-        public DamageRange GetDamageRange()
+        public RangeDamage GetRangeDamage()
         {
             return null;
         }

@@ -25,9 +25,22 @@ namespace GameWish.Game
             {
                 BattleAttackerFactory.SetBullet(attacker, configSO.Attack.Bullet, configSO.Attack.BulletNum);
             }
-            role.Data.DamageRange = DamageRangeFactory.CreateDamageRange(configSO.Attack.DamageRangeType, role, configSO.Attack.RangeArgs);
+
+            if (configSO.Attack.DamageRangeType == DamageRangeType.Range)
+            {
+                role.Data.RangeDamage = RangeDamageConfig.CreateRangeDamage(configSO.Attack.RangeDamage);
+            }
+
+
             role.OnInit();
             return role;
+        }
+
+
+        public static void RecycleBattleRole(BattleRoleController controller)
+        {
+            controller.Recycle2Cache();
+            ObjectPool<BattleRoleController>.S.Recycle(controller);
         }
     }
 

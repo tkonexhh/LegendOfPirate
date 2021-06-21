@@ -10,14 +10,14 @@ namespace GameWish.Game
         private int m_Damage;
         private BulletConfigSO m_BulletConfigSO;
         private DamageRangeType m_DamageRangeType;
-        private string m_RangeArgs;
+        private RangeDamageConfig m_RangeDamageConfig;
 
-        public SkillAction_Bullet(int damage, BulletConfigSO bulletConfig, DamageRangeType damageRangeType, string rangeArgs) //: base(owner)
+        public SkillAction_Bullet(int damage, BulletConfigSO bulletConfig, DamageRangeType damageRangeType, RangeDamageConfig range) //: base(owner)
         {
             m_Damage = damage;
             m_BulletConfigSO = bulletConfig;
             m_DamageRangeType = damageRangeType;
-            m_RangeArgs = rangeArgs;
+            m_RangeDamageConfig = range;
         }
 
         public override void ExcuteAction(Skill skill)
@@ -25,9 +25,7 @@ namespace GameWish.Game
             Bullet bullet = BulletFactory.CreateBullet(m_BulletConfigSO, skill.TargetInfo.Target.transform);
             bullet.owner = skill.Owner;
             bullet.Damage = m_Damage;
-
-            var damageRange = DamageRangeFactory.CreateDamageRange(m_DamageRangeType, skill.Owner, m_RangeArgs);
-            bullet.DamageRange = damageRange;
+            bullet.RangeDamage = RangeDamageConfig.CreateRangeDamage(m_RangeDamageConfig);
             bullet.Init(skill.Owner.transform);
             BattleMgr.S.Bullet.AddBullet(bullet);
 

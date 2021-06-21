@@ -21,21 +21,19 @@ namespace GameWish.Game
         {
             var oppoCamp = BattleHelper.GetOppositeCamp(skill.Owner.camp);
             var roles = BattleMgr.S.Role.GetControllersByCamp(oppoCamp);
-            Transform transform = null;
+            Transform transform = skill.TargetInfo.Target.transform;
             switch (m_TargetType)
             {
                 case SkillTargetType.Caster: transform = skill.TargetInfo.Caster.transform; break;
                 case SkillTargetType.Target: transform = skill.TargetInfo.Target.transform; break;
 
             }
-            var hits = m_RangeDamage.GetTargets(roles, transform);
-            for (int i = 0; i < hits.Count; i++)
-            {
-                RoleDamagePackage damagePackage = new RoleDamagePackage();
-                damagePackage.damageType = BattleDamageType.Skill;
-                damagePackage.damage = m_Damage;
-                BattleMgr.S.SendDamage(hits[i], damagePackage);
-            }
+
+            RoleDamagePackage damagePackage = new RoleDamagePackage();
+            damagePackage.damageType = BattleDamageType.Skill;
+            damagePackage.damage = m_Damage;
+
+            m_RangeDamage.DealDamage(roles, transform, damagePackage);
 
             skill.SkillActionStepEnd();
         }
@@ -43,7 +41,7 @@ namespace GameWish.Game
 
     public abstract class RangeDamage
     {
-        public List<BattleRoleController> GetTargets(List<BattleRoleController> roles, Transform transform)
+        private List<BattleRoleController> GetTargets(List<BattleRoleController> roles, Transform transform)
         {
             List<BattleRoleController> hits = new List<BattleRoleController>();
             for (int i = 0; i < roles.Count; i++)
@@ -54,6 +52,15 @@ namespace GameWish.Game
                 }
             }
             return hits;
+        }
+
+        public void DealDamage(List<BattleRoleController> roles, Transform transform, RoleDamagePackage damagePackage)
+        {
+            var hits = GetTargets(roles, transform);
+            for (int i = 0; i < hits.Count; i++)
+            {
+                BattleMgr.S.SendDamage(hits[i], damagePackage);
+            }
         }
 
         public abstract bool InRange(BattleRoleController role, Transform center);
@@ -115,6 +122,30 @@ namespace GameWish.Game
                 {
                     return true;
                 }
+            }
+
+            return false;
+        }
+    }
+
+    public class RangeDamage_Sector : RangeDamage
+    {
+        private float m_Radius;
+        private float m_Degree;
+
+        public RangeDamage_Sector(float radius, float degree)
+        {
+            this.m_Radius = radius;
+            this.m_Degree = degree;
+        }
+
+        public override bool InRange(BattleRoleController role, Transform center)
+        {
+            float distance = Vector3.Distance(role.transform.position, center.position);
+            float angle = Mathf.Acos(Vector3.Dot(center.forward, role.transform.position.normalized)) * Mathf.Rad2Deg;
+            if (distance <= m_Radius && angle * 2 < m_Degree)//是否在半径内
+            {
+                return true;
             }
 
             return false;
