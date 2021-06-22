@@ -418,8 +418,12 @@ MonoBehaviour:
   m_ForgeElement1: {fileID: 5708057467474538448}
   m_NeedCount: {fileID: 5708057466922026926}
   m_ForgeElement2: {fileID: 5708057467156164994}
+  m_Timer: {fileID: 4211403021294239195}
+  m_TimerFill: {fileID: 8041209876574332607}
+  m_TimerText: {fileID: 257507751434818336}
   m_ForgeBtn: {fileID: 5708057468675382388}
   m_Content: {fileID: 1095488818921706393}
+  m_WeaponSlotLstView: {fileID: 7516942168148739462}
 --- !u!114 &4202180277968359466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,7 +789,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -872,7 +876,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95510714052484116952359d06d42892, type: 2}
   m_sharedMaterial: {fileID: 6911236400702945317, guid: 95510714052484116952359d06d42892,
@@ -1577,7 +1581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -66.7, y: -153.50008}
+  m_AnchoredPosition: {x: -67.7, y: -153.5}
   m_SizeDelta: {x: 100, y: 122.65079}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5708057467474538449
@@ -1647,6 +1651,7 @@ GameObject:
   - component: {fileID: 5708057467528257665}
   - component: {fileID: 5708057467528257664}
   - component: {fileID: 7516942168148739462}
+  - component: {fileID: 2097410260331846911}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -1762,6 +1767,20 @@ MonoBehaviour:
   content: {fileID: 5708057467227804467}
   viewPort: {fileID: 5708057467013230211}
   alignment: 0
+--- !u!114 &2097410260331846911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708057467528257666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e005188a02338408a6245245dc13d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Layout: 0
+  m_ScrollRect: {fileID: 5708057467528257664}
 --- !u!1 &5708057467754833590
 GameObject:
   m_ObjectHideFlags: 0
@@ -3019,13 +3038,14 @@ GameObject:
   - component: {fileID: 3428409265808817405}
   - component: {fileID: 5200427998660760193}
   - component: {fileID: 4211403021294239195}
+  - component: {fileID: 7259852714138470244}
   m_Layer: 0
   m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3428409265808817405
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3085,6 +3105,22 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
+--- !u!114 &7259852714138470244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720367786372101860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  ComponentGeneratePath: 
+  CustomComment: 
+  mComponentName: 
 --- !u!1 &6501046030552076814
 GameObject:
   m_ObjectHideFlags: 0

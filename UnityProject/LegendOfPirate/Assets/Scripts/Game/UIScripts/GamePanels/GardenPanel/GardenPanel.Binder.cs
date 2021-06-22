@@ -103,7 +103,8 @@ namespace GameWish.Game
             {
                 case GardenState.Free:
 					m_Timer.gameObject.SetActive(false);
-					m_PlantMsg.text = string.Empty; m_PlantBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Plant";
+					m_PlantMsg.text = string.Empty;
+					m_PlantBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Plant";
 					m_PlantBtn.interactable = true;
 					break;
                 case GardenState.Plant:
