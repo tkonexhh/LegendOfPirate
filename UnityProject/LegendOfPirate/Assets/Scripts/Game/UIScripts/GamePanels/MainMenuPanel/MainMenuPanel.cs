@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -39,11 +39,13 @@ namespace GameWish.Game
         }
 
         #region  OnClickAddListener
+
         private void OnClickAddListener()
         {
             RoleBtn.OnClickAsObservable().Subscribe(_ => { OpenRolePanel(); }).AddTo(this);
             StorageBtn.OnClickAsObservable().Subscribe(_ => { OpenWareHousePanel(); }).AddTo(this);
         }
+
         private void OpenRolePanel()
         {
             UIMgr.S.OpenPanel(UIID.RoleGroupPanel);
