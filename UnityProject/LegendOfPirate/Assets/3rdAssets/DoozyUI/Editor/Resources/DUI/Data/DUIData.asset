@@ -28,7 +28,7 @@ MonoBehaviour:
       - EvolutionSolePanel
       - ForgePanel
       - GardenPanel
-      - ItemDetailsPanel
+      - InventoryItemDetailPanel
       - LaboratoryRoomPanel
       - LandUpgradePanel
       - LibraryRoomPanel

@@ -47,7 +47,7 @@ namespace GameWish.Game
             }
             else
             {
-                Log.e("ItemType不应该存在，ItemType =  " + inventoryItemType);
+                Log.e("ItemType should not exit，ItemType =  " + inventoryItemType);
                 return itemList.FirstOrDefault(i => i.itemType == inventoryItemType && i.id == id);
             }
         }
@@ -58,11 +58,10 @@ namespace GameWish.Game
             {
                 InventoryItemData inventoryItemData = itemList.FirstOrDefault(val => val.itemType == inventoryItemModel.GetItemType() && val.id == inventoryItemModel.GetId());
                 itemList.Remove(inventoryItemData);
+                SetDataDirty();
             }
             else
-            {
-                Log.e("ItemType应该存在，ItemType = " + inventoryItemModel);
-            }
+                Log.e("ItemType should exit，ItemType = " + inventoryItemModel);
         }
         #endregion
         #region Private
