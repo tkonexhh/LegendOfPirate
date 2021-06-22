@@ -2331,7 +2331,7 @@ GameObject:
   - component: {fileID: 7444070469043801601}
   - component: {fileID: 8426430989926539272}
   m_Layer: 5
-  m_Name: ItemDetailsPanel
+  m_Name: InventoryItemDetailPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2422,7 +2422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementCategory: Uncategorized
-  elementName: ItemDetailsPanel
+  elementName: InventoryItemDetailPanel
   LANDSCAPE: 1
   PORTRAIT: 1
   startHidden: 0

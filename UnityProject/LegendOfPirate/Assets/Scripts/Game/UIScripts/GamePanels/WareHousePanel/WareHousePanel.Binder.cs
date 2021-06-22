@@ -20,16 +20,9 @@ namespace GameWish.Game
 		private void AllocatePanelData()
 		{
 			m_PanelData = UIPanelData.Allocate<WareHousePanelData>();
-            try
-            {
-				m_PanelData.inventoryModel = ModelMgr.S.GetModel<InventoryModel>();
-			}
-            catch (System.Exception e)
-            {
-				Log.e("e = " + e);
-			}
+			m_PanelData.inventoryModel = ModelMgr.S.GetModel<InventoryModel>();
 		}
-		
+
 		private void ReleasePanelData()
 		{
 			ObjectPool<WareHousePanelData>.S.Recycle(m_PanelData);
@@ -37,13 +30,14 @@ namespace GameWish.Game
 		
 		private void BindModelToUI()
 		{
-            foreach (var item in m_PanelData.inventoryModel.InventoryItemDics)
-            {
-				item.Value.ObserveCountChanged().Subscribe(val => { OnRefreshItemListByType(openItemType); }).AddTo(this);
+			foreach (var item in m_PanelData.inventoryModel.InventoryItemDics)
+			{
+				item.Value.ObserveCountChanged()
+						  .Subscribe(val => { OnRefreshItemListByType(openItemType); })
+					  	  .AddTo(this);
 			}
+		
 		}
-        private void BindUIToModel()
-		{
-		}
+		private void BindUIToModel() { }
 	}
 }
