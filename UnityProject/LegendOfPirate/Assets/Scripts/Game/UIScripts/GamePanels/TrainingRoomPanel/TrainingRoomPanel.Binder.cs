@@ -68,6 +68,11 @@ namespace GameWish.Game
                        .level
                        .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.Fixed_Title_Lv) + level.ToString())
                        .SubscribeToTextMeshPro(TrainingLevelTMP).AddTo(this);
+
+            foreach (var item in m_PanelData.trainingRoomModel.slotModelList)
+            {
+                item.trainState.Subscribe(_ => RefreshSelectedCount()).AddTo(this);
+            }
         }
 
         private void BindUIToModel()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -77,6 +78,27 @@ namespace GameWish.Game
             }
 
             GUILayout.EndHorizontal();
+
+            #region 仓库
+            GUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("仓库", new[] { GUILayout.Width(100) });
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("AddInventoryItem", GUILayout.Width(100f)))
+            {
+                InventoryModel inventoryModel = ModelMgr.S.GetModel<InventoryModel>();
+                for (int i = (int)InventoryItemType.HeroChip; i <= (int)InventoryItemType.Food; i++)
+                {
+                    for (int j = 1; j < 30; j++)
+                    {
+                        inventoryModel.AddInventoryItemCount((InventoryItemType)i, j, j);
+                    }
+                }
+            }
+            GUILayout.EndHorizontal();
+            #endregion
 
             GUILayout.EndVertical();
         }

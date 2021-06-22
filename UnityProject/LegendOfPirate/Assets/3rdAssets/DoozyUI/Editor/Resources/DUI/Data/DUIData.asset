@@ -29,6 +29,7 @@ MonoBehaviour:
       - EvolutionSolePanel
       - ForgePanel
       - GardenPanel
+      - ItemDetailsPanel
       - LaboratoryRoomPanel
       - LandUpgradePanel
       - LibraryRoomPanel
@@ -54,6 +55,7 @@ MonoBehaviour:
       - UnlockEnemyPanel
       - UnlockSoldierPanel
       - UnlockWeaponPanel
+      - WareHousePanel
       - WarshipUpgradePanel
       isExpanded:
         m_Target: 1

@@ -69,7 +69,12 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.CreateUserPanel, null, "GamePanels/CreateUserPanel/CreateUserPanel");
             #endregion
 
-            UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuPanel/MainMenuPanel");
+            //主菜单功能
+            UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuSystem/MainMenuPanel/MainMenuPanel");
+            #region 仓库
+            UIDataTable.AddPanelData(UIID.ItemDetailsPanel, null, "GamePanels/MainMenuSystem/WareHouse/ItemDetailsPanel/ItemDetailsPanel");
+            UIDataTable.AddPanelData(UIID.WareHousePanel, null, "GamePanels/MainMenuSystem/WareHouse/WareHousePanel/WareHousePanel");
+            #endregion
 
             #region 角色相关
             UIDataTable.AddPanelData(UIID.RoleDetailsPanel, null, "GamePanels/RolePanel/RoleDetailsPanel/RoleDetailsPanel");
@@ -115,12 +120,11 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.SmugglePanel, null, "GamePanels/LandManagement/SmugglePanel/SmugglePanel");
             UIDataTable.AddPanelData(UIID.SmuggleChooseRolePanel, null, "GamePanels/LandManagement/SmuggleChooseRolePanel/SmuggleChooseRolePanel");
             #endregion
+
             #region FloatMessageTMP
             UIDataTable.AddPanelData(UIID.FloatMessageTMPanel, null, "GamePanels/Common/FloatMessageTMPanel", true, 1);
             #endregion
             UIDataTable.AddPanelData(UIID.BuildingLevelUpPanel, null, "GamePanels/BuildingLevelUpPanel/BuildingLevelUpPanel");
-
-
             #region 战斗相关
             UIDataTable.AddPanelData(UIID.BattlePreparePanel, null, "GamePanels/BattlePanel/BattlePreparePanel/BattlePreparePanel", true, 1);//战斗排兵布阵界面
             UIDataTable.AddPanelData(UIID.BattleFieldPanel, null, "GamePanels/BattlePanel/BattleFieldPanel/BattleFieldPanel", true, 1);//战斗排兵布阵界面
