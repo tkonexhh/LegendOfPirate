@@ -30,6 +30,7 @@ namespace GameWish.Game
         RoleSkillPanel,
         RoleStoryPanel,
         RoleGroupPanel,
+        RoleGetPanel,
         #endregion
 
         //战船经营

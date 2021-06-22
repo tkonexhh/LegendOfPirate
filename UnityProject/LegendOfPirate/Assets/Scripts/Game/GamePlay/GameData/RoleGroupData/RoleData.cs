@@ -59,27 +59,26 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public bool AddRoleSkill(int id)
+        public RoleSkillData AddRoleSkill(int id)
         {
-            RoleSkillData? skill = GetRoleSkillData(id);
+            RoleSkillData skill = GetRoleSkillData(id);
 
             if (skill == null)
             {
-                skillList.Add(new RoleSkillData());
+                skillList.Add(new RoleSkillData(id));
                 SetDataDirty();
-                return true;
+                return GetRoleSkillData(id);
             }
-
-            return false;
+            return null;
         }
 
         public bool UpgradeRoleSkill(int id, int deltaLevel)
         {
-            RoleSkillData? skill = GetRoleSkillData(id);
+            RoleSkillData skill = GetRoleSkillData(id);
 
             if (skill != null)
             {
-                skill.Value.Upgrade(deltaLevel);
+                skill.Upgrade(deltaLevel);
                 SetDataDirty();
                 return true;
             }
@@ -119,14 +118,9 @@ namespace GameWish.Game
 
         #region Private
 
-        private RoleSkillData? GetRoleSkillData(int id)
+        private RoleSkillData GetRoleSkillData(int id)
         {
-            RoleSkillData? skill = skillList.FirstOrDefault(i => i.id == id);
-
-            if (skill == null)
-            {
-                Log.e("Skill not found: " + id);
-            }
+            RoleSkillData skill = skillList.FirstOrDefault(i => i.id == id);
 
             return skill;
         }
