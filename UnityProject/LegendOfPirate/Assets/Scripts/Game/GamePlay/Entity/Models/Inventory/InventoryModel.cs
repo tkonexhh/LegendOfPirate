@@ -27,13 +27,9 @@ namespace GameWish.Game
             for (int i = (int)InventoryItemType.HeroChip; i <= (int)InventoryItemType.Food; i++)
             {
                 if (!m_InventoryItemDics.ContainsKey((InventoryItemType)i))
-                {
                     m_InventoryItemDics.Add((InventoryItemType)i, new ReactiveDictionary<int, IInventoryItemModel>());
-                }
                 else
-                {
                     Log.e("Inventory Same Key Added: " + (InventoryItemType)i);
-                }
             }
 
             for (int i = 0; i < m_InventoryData.itemList.Count; i++)
@@ -41,13 +37,9 @@ namespace GameWish.Game
                 InventoryItemType itemType = m_InventoryData.itemList[i].itemType;
 
                 if (!m_InventoryItemDics[itemType].ContainsKey(m_InventoryData.itemList[i].id))
-                {
                     m_InventoryItemDics[itemType].Add(m_InventoryData.itemList[i].id, InventoryItemModelFactory.CreateItemModel(m_InventoryData.itemList[i], itemType, m_InventoryData.itemList[i].id, m_InventoryData.itemList[i].count));
-                }
                 else
-                {
                     Log.e("Inventory Same Key Added: " + itemType.ToString());
-                }
             }
         }
 
@@ -61,6 +53,7 @@ namespace GameWish.Game
             {
                 IInventoryItemModel itemModel = GetItemModel(itemType, id);
                 itemModel.AddCount(count);
+
                 if (itemModel.GetCount() == 0)
                     RemoveInventoryItem(itemModel);
             }
@@ -70,11 +63,11 @@ namespace GameWish.Game
                 m_InventoryItemDics[itemType].Add(id, InventoryItemModelFactory.CreateItemModel(newItemData, itemType, newItemData.id, newItemData.count));
             }
         }
+
         public void AddInventoryItemCount(IInventoryItemModel inventoryItemModel, int count)
         {
             AddInventoryItemCount(inventoryItemModel.GetItemType(), inventoryItemModel.GetId(), count);
         }
-
         #endregion
 
         #region Public Get
@@ -133,15 +126,12 @@ namespace GameWish.Game
                 }
             }
             else
-            {
                 return null;
-            }
         }
 
         #endregion
 
         #region Private
-
         private void RemoveInventoryItem(IInventoryItemModel inventoryItemModel)
         {
             if (m_InventoryItemDics.ContainsKey(inventoryItemModel.GetItemType()))
@@ -152,7 +142,8 @@ namespace GameWish.Game
 
                 return;
             }
-            Log.e("仓库中未找到物品,ItemType = " + inventoryItemModel.GetItemType());
+
+            Log.e("Not Fint Item,ItemType = " + inventoryItemModel.GetItemType());
         }
 
         private ReactiveDictionary<int, IInventoryItemModel> GetDicByItemType(InventoryItemType itemType)
@@ -170,5 +161,4 @@ namespace GameWish.Game
         }
         #endregion
     }
-
 }

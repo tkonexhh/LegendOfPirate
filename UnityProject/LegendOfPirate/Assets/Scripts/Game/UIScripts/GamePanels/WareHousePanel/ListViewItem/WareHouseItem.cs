@@ -60,7 +60,7 @@ namespace GameWish.Game
 
         private void OpenItemDetailsPanel()
         {
-            UIMgr.S.OpenTopPanel(UIID.ItemDetailsPanel, PanelCallback, m_WareHouseItemModel.inventoryItemModel);
+            UIMgr.S.OpenTopPanel(UIID.InventoryItemDetailPanel, PanelCallback, m_WareHouseItemModel.inventoryItemModel);
         }
 
         private void PanelCallback(AbstractPanel obj)

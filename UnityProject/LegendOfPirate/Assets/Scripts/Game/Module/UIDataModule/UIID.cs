@@ -80,7 +80,7 @@ namespace GameWish.Game
         //主菜单
         #region 仓库
         WareHousePanel,
-        ItemDetailsPanel,
+        InventoryItemDetailPanel,
         #endregion
 
         CongratulationPanel,
