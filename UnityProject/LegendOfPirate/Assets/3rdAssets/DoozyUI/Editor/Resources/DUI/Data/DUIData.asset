@@ -28,6 +28,7 @@ MonoBehaviour:
       - EffectActivePanel
       - EvolutionSolePanel
       - ForgePanel
+      - ForgeRoomPanel
       - GardenPanel
       - LaboratoryRoomPanel
       - LandUpgradePanel
@@ -38,6 +39,7 @@ MonoBehaviour:
       - OccupyOverPanel
       - OfflinePanel
       - OfflineRewardPanel
+      - ProgressRoomPanel
       - RandomDefenseChooseRolePanel
       - RandomDefensePanel
       - RatePanel

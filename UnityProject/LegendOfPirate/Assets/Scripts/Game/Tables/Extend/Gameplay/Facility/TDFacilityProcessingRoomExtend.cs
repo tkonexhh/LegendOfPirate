@@ -13,9 +13,11 @@ namespace GameWish.Game
         {
 
         }
-        public  int[] GetUnlockPartIDBySlot()
+
+        public  int[] GetUnlockPartId()
         {
             return Helper.String2IntArray(unlockPartID, "|");
         }
+
     }
 }
