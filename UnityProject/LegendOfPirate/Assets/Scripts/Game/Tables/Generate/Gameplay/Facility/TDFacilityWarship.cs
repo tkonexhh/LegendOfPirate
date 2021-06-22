@@ -47,7 +47,7 @@ namespace GameWish.Game
         public  string  strengthenCost {get { return m_StrengthenCost; } }
        
         /// <summary>
-        /// 属性数值
+        /// 属性数值(参数|百分比%，参数：HP,ATK,Armor-护甲值)
         /// </summary>
         public  string  attributeValues {get { return m_AttributeValues; } }
        

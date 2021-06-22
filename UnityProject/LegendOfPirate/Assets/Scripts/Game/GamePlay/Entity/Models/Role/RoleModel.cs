@@ -27,6 +27,8 @@ namespace GameWish.Game
 
         public TDRoleConfig tdRoleConfig;
 
+
+
         private RoleData roleData;
 
 

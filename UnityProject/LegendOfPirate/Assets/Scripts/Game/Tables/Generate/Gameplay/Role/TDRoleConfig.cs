@@ -22,9 +22,7 @@ namespace GameWish.Game
         private EInt m_Equip3Id = 0;   
         private EInt m_Equip4Id = 0;   
         private EInt m_SpiritId = 0;   
-        private EInt m_Skill1 = 0;   
-        private EInt m_Skill2 = 0;   
-        private EInt m_Skill3 = 0;  
+        private string m_SkillId;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -79,19 +77,9 @@ namespace GameWish.Game
         public  int  spiritId {get { return m_SpiritId; } }
        
         /// <summary>
-        /// 技能1
+        /// 技能
         /// </summary>
-        public  int  skill1 {get { return m_Skill1; } }
-       
-        /// <summary>
-        /// 技能2
-        /// </summary>
-        public  int  skill2 {get { return m_Skill2; } }
-       
-        /// <summary>
-        /// 技能3
-        /// </summary>
-        public  int  skill3 {get { return m_Skill3; } }
+        public  string  skillId {get { return m_SkillId; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -139,13 +127,7 @@ namespace GameWish.Game
                     m_SpiritId = dataR.ReadInt();
                     break;
                 case 10:
-                    m_Skill1 = dataR.ReadInt();
-                    break;
-                case 11:
-                    m_Skill2 = dataR.ReadInt();
-                    break;
-                case 12:
-                    m_Skill3 = dataR.ReadInt();
+                    m_SkillId = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -157,7 +139,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(13);
+          Dictionary<string, int> ret = new Dictionary<string, int>(11);
           
           ret.Add("RoleId", 0);
           ret.Add("RoleName", 1);
@@ -169,9 +151,7 @@ namespace GameWish.Game
           ret.Add("Equip3Id", 7);
           ret.Add("Equip4Id", 8);
           ret.Add("SpiritId", 9);
-          ret.Add("Skill1", 10);
-          ret.Add("Skill2", 11);
-          ret.Add("Skill3", 12);
+          ret.Add("SkillId", 10);
           return ret;
         }
     } 
