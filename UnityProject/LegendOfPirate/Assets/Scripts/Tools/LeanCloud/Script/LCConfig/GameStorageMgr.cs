@@ -140,6 +140,17 @@ namespace GameWish.Game
                 this["Reward"] = value;
             }
         }
+        ///<summary>
+        /// 领取状态
+        ///</summary>
+        internal int GetState
+        {
+            get => (int)this["State"];
+            set
+            {
+                this["State"] = value;
+            }
+        }
         internal MarinLevelConfig() : base("MarinLevelConfig") { }
     }
     ///<summary>
