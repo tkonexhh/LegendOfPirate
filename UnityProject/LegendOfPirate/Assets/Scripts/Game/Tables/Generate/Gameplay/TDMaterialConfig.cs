@@ -39,7 +39,7 @@ namespace GameWish.Game
         public  string  materialIcon {get { return m_MaterialIcon; } }
        
         /// <summary>
-        /// 品质(道具名称及道具框颜色，1-红色，2-紫色，3-黑色)
+        /// 品质(白色-普通-Normal；绿色-进阶-Advanced；蓝色-稀有-Rare；紫色-史诗-Epic；红色-传说-Legendary；金色-不朽-Immortal)
         /// </summary>
         public  int  quality {get { return m_Quality; } }
        
@@ -49,7 +49,7 @@ namespace GameWish.Game
         public  string  materialDsc {get { return m_MaterialDsc; } }
        
         /// <summary>
-        /// 材料类型
+        /// 材料类型（HeroesPiece-英雄碎片，Material-材料）
         /// </summary>
         public  string  materialType {get { return m_MaterialType; } }
        

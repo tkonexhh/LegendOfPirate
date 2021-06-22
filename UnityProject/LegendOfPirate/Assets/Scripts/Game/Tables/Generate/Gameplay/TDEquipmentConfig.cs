@@ -56,7 +56,7 @@ namespace GameWish.Game
         public  string  paramValue {get { return m_ParamValue; } }
        
         /// <summary>
-        /// 品质(白色-普通-normal；绿色-进阶-advanced；蓝色-稀有-rare；紫色-史诗-epic；红色-传说-legendary；金色-不朽-immortal)
+        /// 品质(白色-普通-Normal；绿色-进阶-Advanced；蓝色-稀有-Rare；紫色-史诗-Epic；红色-传说-Legendary；金色-不朽-Immortal)
         /// </summary>
         public  string  quality {get { return m_Quality; } }
        
