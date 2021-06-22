@@ -13,22 +13,32 @@ namespace GameWish.Game
     {
         public IntReactiveProperty level;
 
-        private Dictionary<InventoryItemType, Dictionary<int, IInventoryItemModel>> m_InventoryItemDics;
+        private Dictionary<InventoryItemType, ReactiveDictionary<int, IInventoryItemModel>> m_InventoryItemDics;
         private InventoryData m_InventoryData = null;
         private List<IInventoryItemModel> m_InventoryItemList = new List<IInventoryItemModel>();
+
+        public Dictionary<InventoryItemType, ReactiveDictionary<int, IInventoryItemModel>> InventoryItemDics { get { return m_InventoryItemDics; } }
 
         protected override void LoadDataFromDb()
         {
             m_InventoryData = GameDataMgr.S.GetData<InventoryData>();
-            m_InventoryItemDics = new Dictionary<InventoryItemType, Dictionary<int, IInventoryItemModel>>();
+            m_InventoryItemDics = new Dictionary<InventoryItemType, ReactiveDictionary<int, IInventoryItemModel>>();
+
+            for (int i = (int)InventoryItemType.HeroChip; i <= (int)InventoryItemType.Food; i++)
+            {
+                if (!m_InventoryItemDics.ContainsKey((InventoryItemType)i))
+                {
+                    m_InventoryItemDics.Add((InventoryItemType)i, new ReactiveDictionary<int, IInventoryItemModel>());
+                }
+                else
+                {
+                    Log.e("Inventory Same Key Added: " + (InventoryItemType)i);
+                }
+            }
 
             for (int i = 0; i < m_InventoryData.itemList.Count; i++)
             {
                 InventoryItemType itemType = m_InventoryData.itemList[i].itemType;
-                if (!m_InventoryItemDics.ContainsKey(itemType))
-                {
-                    m_InventoryItemDics.Add(itemType, new Dictionary<int, IInventoryItemModel>());
-                }
 
                 if (!m_InventoryItemDics[itemType].ContainsKey(m_InventoryData.itemList[i].id))
                 {
@@ -57,10 +67,12 @@ namespace GameWish.Game
             else
             {
                 InventoryItemData newItemData = m_InventoryData.AddNewItemData(itemType, id, count);
-                if (!m_InventoryItemDics.ContainsKey(itemType))
-                    m_InventoryItemDics.Add(itemType, new Dictionary<int, IInventoryItemModel>());
                 m_InventoryItemDics[itemType].Add(id, InventoryItemModelFactory.CreateItemModel(newItemData, itemType, newItemData.id, newItemData.count));
             }
+        }
+        public void AddInventoryItemCount(IInventoryItemModel inventoryItemModel, int count)
+        {
+            AddInventoryItemCount(inventoryItemModel.GetItemType(), inventoryItemModel.GetId(), count);
         }
 
         #endregion
@@ -106,7 +118,7 @@ namespace GameWish.Game
 
         public IInventoryItemModel GetItemModel(InventoryItemType itemType, int id)
         {
-            Dictionary<int, IInventoryItemModel> dic = GetDicByItemType(itemType);
+            ReactiveDictionary<int, IInventoryItemModel> dic = GetDicByItemType(itemType);
             if (dic != null)
             {
                 if (dic.ContainsKey(id))
@@ -135,12 +147,15 @@ namespace GameWish.Game
             if (m_InventoryItemDics.ContainsKey(inventoryItemModel.GetItemType()))
             {
                 m_InventoryItemDics[inventoryItemModel.GetItemType()].Remove(inventoryItemModel.GetId());
+
+                m_InventoryData.RemoveItemData(inventoryItemModel);
+
                 return;
             }
-            Debug.LogError("仓库中未找到物品,ItemType = "+ inventoryItemModel.GetItemType());
+            Log.e("仓库中未找到物品,ItemType = " + inventoryItemModel.GetItemType());
         }
 
-        private Dictionary<int, IInventoryItemModel> GetDicByItemType(InventoryItemType itemType)
+        private ReactiveDictionary<int, IInventoryItemModel> GetDicByItemType(InventoryItemType itemType)
         {
             if (m_InventoryItemDics.ContainsKey(itemType))
             {

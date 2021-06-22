@@ -26,7 +26,7 @@ namespace GameWish.Game
 			}
             catch (System.Exception e)
             {
-				Debug.LogError("e = " + e);
+				Log.e("e = " + e);
 			}
 		}
 		
@@ -37,11 +37,13 @@ namespace GameWish.Game
 		
 		private void BindModelToUI()
 		{
+            foreach (var item in m_PanelData.inventoryModel.InventoryItemDics)
+            {
+				item.Value.ObserveCountChanged().Subscribe(val => { OnRefreshItemListByType(openItemType); }).AddTo(this);
+			}
 		}
-		
-		private void BindUIToModel()
+        private void BindUIToModel()
 		{
 		}
-		
 	}
 }

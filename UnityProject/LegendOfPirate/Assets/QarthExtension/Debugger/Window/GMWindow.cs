@@ -89,10 +89,13 @@ namespace GameWish.Game
             if (GUILayout.Button("AddInventoryItem", GUILayout.Width(100f)))
             {
                 InventoryModel inventoryModel = ModelMgr.S.GetModel<InventoryModel>();
-                inventoryModel.AddInventoryItemCount(InventoryItemType.Equip, 1, 1);
-                inventoryModel.AddInventoryItemCount(InventoryItemType.Equip, 2, 1);
-                inventoryModel.AddInventoryItemCount(InventoryItemType.Equip, 3, 1);
-                inventoryModel.AddInventoryItemCount(InventoryItemType.Equip, 4, 1);
+                for (int i = (int)InventoryItemType.HeroChip; i <= (int)InventoryItemType.Food; i++)
+                {
+                    for (int j = 1; j < 30; j++)
+                    {
+                        inventoryModel.AddInventoryItemCount((InventoryItemType)i, j, j);
+                    }
+                }
             }
             GUILayout.EndHorizontal();
             #endregion

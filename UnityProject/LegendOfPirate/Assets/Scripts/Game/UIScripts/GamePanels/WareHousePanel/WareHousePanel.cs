@@ -20,11 +20,12 @@ namespace GameWish.Game
         #endregion
 
         #region Data
-        public const InventoryItemType DefaultOpenItemType = InventoryItemType.Equip;
+        public InventoryItemType openItemType = InventoryItemType.Equip;
         //private List<IInventoryItemModel> m_InventoryItemList = new List<IInventoryItemModel>();
         private List<WareHouseItemModel> m_WareHouseItemModels = new List<WareHouseItemModel>();
 
         #endregion
+
         #region AbstractAnimPanel
         protected override void OnUIInit()
         {
@@ -43,14 +44,6 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
 
-            m_PanelData.inventoryModel.AddInventoryItemCount(InventoryItemType.Equip, 1, 1);
-            m_PanelData.inventoryModel.AddInventoryItemCount(InventoryItemType.Equip, 2, 1);
-            m_PanelData.inventoryModel.AddInventoryItemCount(InventoryItemType.Equip, 3, 1);
-            m_PanelData.inventoryModel.AddInventoryItemCount(InventoryItemType.Equip, 4, 1);
-            m_PanelData.inventoryModel.AddInventoryItemCount(InventoryItemType.Food, 4, 5);
-            m_PanelData.inventoryModel.AddInventoryItemCount(InventoryItemType.HeroChip, 4, 2);
-            m_PanelData.inventoryModel.AddInventoryItemCount(InventoryItemType.Material, 4, 23);
-
             InitData();
         }
 
@@ -64,7 +57,6 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
-
         }
 
         protected override void BeforDestroy()
@@ -81,12 +73,13 @@ namespace GameWish.Game
             m_ExitBtn.OnClickAsObservable().Subscribe(_ => { HideSelfWithAnim(); }).AddTo(this);
         }
         #endregion
-        #region Other Data
+
+        #region Other Method
         private void InitData()
         {
             InitItemTypeTog();
 
-            OnRefreshInventoryList(DefaultOpenItemType);
+            OnRefreshInventoryList(openItemType);
 
             m_WareHouseUGList.SetCellRenderer(OnWareHouseCellRenderer);
             m_WareHouseUGList.SetDataCount(m_WareHouseItemModels.Count);
@@ -113,20 +106,19 @@ namespace GameWish.Game
 
             WareHouseItem wareHouseItem = root.GetComponent<WareHouseItem>();
 
-            wareHouseItemModel.SetWareHouseItemData(wareHouseItem);
+            wareHouseItemModel.SetWareHouseItemData(wareHouseItem,this);
 
             wareHouseItem.OnRefresh(wareHouseItemModel);
         }
 
-        private void OnRefreshInventoryList(InventoryItemType inventoryItemType)
+        public void OnRefreshInventoryList(InventoryItemType inventoryItemType)
         {
+            openItemType = inventoryItemType;
             m_WareHouseItemModels.Clear();
-            foreach (var item in m_PanelData.inventoryModel.GetItemModelList())
+
+            foreach (var item in m_PanelData.inventoryModel.InventoryItemDics[inventoryItemType].Values)
             {
-                if (item.GetItemType() == inventoryItemType)
-                {
-                    m_WareHouseItemModels.Add(new WareHouseItemModel(item));
-                }
+                m_WareHouseItemModels.Add(new WareHouseItemModel(item));
             }
         }
         #endregion

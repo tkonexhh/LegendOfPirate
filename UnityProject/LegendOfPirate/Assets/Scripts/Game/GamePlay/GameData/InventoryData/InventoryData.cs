@@ -47,12 +47,23 @@ namespace GameWish.Game
             }
             else
             {
-                Debug.LogError("ItemType不应该存在，ItemType = " + inventoryItemType);
+                Log.e("ItemType不应该存在，ItemType =  " + inventoryItemType);
                 return itemList.FirstOrDefault(i => i.itemType == inventoryItemType && i.id == id);
             }
         }
 
-        //public void RemoveItemData()
+        public void RemoveItemData(IInventoryItemModel inventoryItemModel)
+        {
+            if (CheckItemDataInventory(inventoryItemModel.GetItemType(), inventoryItemModel.GetId()))
+            {
+                InventoryItemData inventoryItemData = itemList.FirstOrDefault(val => val.itemType == inventoryItemModel.GetItemType() && val.id == inventoryItemModel.GetId());
+                itemList.Remove(inventoryItemData);
+            }
+            else
+            {
+                Log.e("ItemType应该存在，ItemType = " + inventoryItemModel);
+            }
+        }
         #endregion
         #region Private
 

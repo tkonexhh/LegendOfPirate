@@ -38,7 +38,7 @@ namespace GameWish.Game
         {
             if (wareHouseItemModel == null)
             {
-                Debug.LogError("wareHouseItemModel is null");
+                Log.e("wareHouseItemModel is null");
                 return;
             }
 
