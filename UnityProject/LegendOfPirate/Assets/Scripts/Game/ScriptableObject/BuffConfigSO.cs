@@ -18,8 +18,11 @@ namespace GameWish.Game
         [PropertyTooltip("-1 是永久持续"), Range(-1, 200)]
         public float Time;
 
-        // [ToggleGroup("EnabledAttributeModify")]
         public BuffTriggerType BuffTriggerType;
+
+        [ToggleGroup("EnabledAttributeModify"), ShowIf("BuffTriggerType", BuffTriggerType.Interval), LabelText("间隔时间")]
+        public float Interval = 1;
+
 
         //---
         [ToggleGroup("EnabledStateModify", "状态控制")]
@@ -38,12 +41,6 @@ namespace GameWish.Game
         [LabelText("属性修饰列表")]
         [HideReferenceObjectPicker]
         public List<ModifierAttribute> ModifierAttributeLst = new List<ModifierAttribute>();
-
-
-
-        [ToggleGroup("EnabledAttributeModify"), ShowIf("BuffTriggerType", BuffTriggerType.Interval), LabelText("间隔时间")]
-        public float Interval = 1;
-
         //===
 
         //---

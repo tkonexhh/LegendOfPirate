@@ -18,11 +18,11 @@ namespace GameWish.Game
     {
         [LabelText("空")] None,
         [LabelText("生命值")] Hp,
-        [LabelText("最大生命值%(完成)")] MaxHp,
-        [LabelText("攻击力(完成)")] ATK,
-        [LabelText("移动速度%(完成)")] MoveSpeed,
+        [LabelText("最大生命值%")] MaxHp,
+        [LabelText("攻击力")] ATK,
+        [LabelText("移动速度%")] MoveSpeed,
         [LabelText("攻击间隔")] AttackRate,
-        [LabelText("护甲")] Amor,
+        [LabelText("护甲%")] Amor,
         [LabelText("暴击")] Critical,
     }
 
@@ -52,6 +52,7 @@ namespace GameWish.Game
         [LabelText("移动禁止")] MoveForbid = 1 << 0,
         [LabelText("施法禁止")] SkillForbid = 1 << 1,
         [LabelText("攻击禁止")] AttackForbid = 1 << 2,
+        [LabelText("免疫伤害")] HurtForbid = 1 << 3,
 
     }
 
