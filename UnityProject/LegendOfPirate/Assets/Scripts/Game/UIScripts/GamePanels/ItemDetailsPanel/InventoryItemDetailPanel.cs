@@ -7,7 +7,7 @@ using System;
 
 namespace GameWish.Game
 {
-    public partial class ItemDetailsPanel : AbstractAnimPanel
+    public partial class InventoryItemDetailPanel : AbstractAnimPanel
     {
         #region Data
         private IInventoryItemModel m_InventoryItemModel;
@@ -33,7 +33,6 @@ namespace GameWish.Game
             HandleTransmitValue(args);
 
             BindModelToUI();
-
             BindUIToModel();
 
             InitData();

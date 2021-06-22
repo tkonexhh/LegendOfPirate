@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD
 guid: 4fa28bc010dc4704286e249447cbe762
+=======
+guid: 4890fcd207a9ed24086bf95f8c752b69
+>>>>>>> 5e2f932... 最新的TDEquipmentConfigTable解析
+=======
+guid: 4890fcd207a9ed24086bf95f8c752b69
+>>>>>>> 5e2f932b2668f38ec76d52bf0d489b275e742f16
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

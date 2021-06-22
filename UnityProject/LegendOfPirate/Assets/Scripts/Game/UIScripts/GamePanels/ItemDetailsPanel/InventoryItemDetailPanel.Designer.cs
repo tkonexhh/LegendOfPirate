@@ -8,7 +8,7 @@ using TMPro;
 namespace GameWish.Game
 {
 	// Auto Generated Code. Don't Modify This Class 
-	public partial class ItemDetailsPanel
+	public partial class InventoryItemDetailPanel
 	{
 		public const string Name = "ItemDetailsPanel";
 		
