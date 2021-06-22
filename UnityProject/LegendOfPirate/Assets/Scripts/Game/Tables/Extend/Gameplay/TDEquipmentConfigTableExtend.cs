@@ -55,7 +55,14 @@ namespace GameWish.Game
     /// </summary>
     public struct EquipAttributeValue
     {
-
+        public EquipAttributeType equipAttrType;
+        public float percentage;
+        public EquipAttributeValue(string strs)
+        {
+            string[] subStrs = strs.Split('|');
+            this.equipAttrType = EnumUtil.ConvertStringToEnum<EquipAttributeType>(subStrs[0]);
+            this.percentage = float.Parse(subStrs[1]);
+        }
     }
 
     public struct EquipmentUnitConfig
@@ -65,11 +72,11 @@ namespace GameWish.Game
         public int nextEquipmentID;
         public string roleName;
         public EquipmentType equipmentType;
-
-
+        public EquipAttributeValue[] equipAttributeValues;
+        public EquipQualityType equipQualityType;
         public EquipStrengthenCost[] equipStrengthenCosts;
         public int coinCostNumber;
-        public EquipAttributeValue equipAttributeValue;
+        public string Desc;
 
         public EquipmentUnitConfig(TDEquipmentConfig tdData)
         {
@@ -78,7 +85,26 @@ namespace GameWish.Game
             this.nextEquipmentID = tdData.nextEquipment;
             this.roleName = tdData.roleName;
             this.equipmentType = EnumUtil.ConvertStringToEnum<EquipmentType>(tdData.equipmentType);
-
+            this.equipQualityType = EnumUtil.ConvertStringToEnum<EquipQualityType>(tdData.quality);
+            this.coinCostNumber = tdData.intensifyCost;
+            this.Desc = tdData.desc;
+            #region Analysis EquipAttributeValue
+            if (!string.IsNullOrEmpty(tdData.paramValue))
+            {
+                string[] strs = tdData.paramValue.Split(';');
+                equipAttributeValues = new EquipAttributeValue[strs.Length];
+                for (int i = 0; i < strs.Length; i++)
+                {
+                    EquipAttributeValue attr = new EquipAttributeValue(strs[i]);
+                    equipAttributeValues[i] = attr;
+                }
+            }
+            else
+            {
+                equipAttributeValues = new EquipAttributeValue[0];
+            }
+            #endregion
+            #region Analysis EquipStrengthenCost
             if (!string.IsNullOrEmpty(tdData.strengthenCost))
             {
                 string[] strs = tdData.strengthenCost.Split(';');
@@ -93,10 +119,8 @@ namespace GameWish.Game
             {
                 equipStrengthenCosts = new EquipStrengthenCost[0];
             }
-
-            this.coinCostNumber = tdData.intensifyCost;
-            equipAttributeValue = new EquipAttributeValue();
-        }
+            #endregion
+        }   
     }
     #endregion
 }
