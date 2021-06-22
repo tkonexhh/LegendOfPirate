@@ -12,7 +12,7 @@ namespace GameWish.Game
             var buff = new Buff();
             buff.id = configSO.ID;
             buff.time = configSO.Time;
-            buff.BuffTrigger = BuffTriggerFactory.CreateBuffTrigger(configSO.BuffTriggerType);
+            buff.BuffTrigger = BuffTriggerFactory.CreateBuffTrigger(configSO.BuffTriggerType, configSO.Interval);
             if (configSO.EnabledAttributeModify)
             {
                 for (int i = 0; i < configSO.ModifierAttributeLst.Count; i++)
@@ -48,6 +48,12 @@ namespace GameWish.Game
                     return new BuffModelHandler_ATK(value);
                 case AttributeType.MaxHp:
                     return new BuffModelHandler_MaxHp(value);
+                case AttributeType.Hp:
+                    return new BuffModelHandler_HP(value);
+                case AttributeType.Amor:
+                    return new BuffModelHandler_Amor(value);
+                case AttributeType.Critical:
+                    return new BuffModelHandler_Critical(value);
             }
             return null;
         }

@@ -7,7 +7,7 @@ namespace GameWish.Game
 {
     public class BuffTriggerFactory
     {
-        public static BuffTrigger CreateBuffTrigger(BuffTriggerType triggerType)
+        public static BuffTrigger CreateBuffTrigger(BuffTriggerType triggerType, float time)
         {
             switch (triggerType)
             {
@@ -18,7 +18,7 @@ namespace GameWish.Game
                 case BuffTriggerType.Create:
                     return new BuffTrigger_Forver();
                 case BuffTriggerType.Interval:
-                    return new BuffTrigger_Time();
+                    return new BuffTrigger_Interval(time);
                 case BuffTriggerType.Move:
                     return new BuffTrigger_Move();
             }

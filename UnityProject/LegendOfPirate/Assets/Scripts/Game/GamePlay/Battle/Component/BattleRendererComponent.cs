@@ -117,10 +117,22 @@ namespace GameWish.Game
 
         private void InitOwerRole()
         {
-            Debug.LogError("InitOwerRole");
+            // var battleFields = GameDataMgr.S.GetData<BattleData>().fieldData.battleFields;
+            // for (int i = 0; i < battleFields.Count; i++)
+            // {
+            //     if (battleFields[i].roleID != -1)
+            //     {
+            //         BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
+            //         role.gameObject.layer = LayerDefine.LAYER_ROLE_OUR;
+            //         role.SetCamp(BattleCamp.Our);
+            //         var battleField = BattleMgr.Field.GetOurBattleField(i);
+            //         battleField.SetBattleRoleController(role);
+            //         role.transform.localRotation = Quaternion.identity;
+            //     }
+            // }
+
             for (int i = 0; i < 5; i++)
             {
-                Debug.LogError(i);
                 BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
                 role.gameObject.layer = LayerDefine.LAYER_ROLE_OUR;
                 role.SetCamp(BattleCamp.Our);
@@ -135,10 +147,12 @@ namespace GameWish.Game
         {
             for (int i = 0; i < enemyConfigSO.Enemys.Length; i++)
             {
+                // Debug.LogError(i % BattleDefine.BATTLE_WIDTH + ":" + i / BattleDefine.BATTLE_WIDTH);
                 var enemy = enemyConfigSO.Enemys[i % BattleDefine.BATTLE_WIDTH, i / BattleDefine.BATTLE_WIDTH];
                 if (enemy == null)
                     continue;
-
+                // Debug.LogError("Pick:" + enemy.PickTarget);
+                //Debug.LogError("Attack:" + enemy.Attack);
                 BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(enemy);
                 role.gameObject.layer = LayerDefine.LAYER_ROLE_ENEMY;
                 role.SetCamp(BattleCamp.Enemy);
