@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -56,27 +57,41 @@ namespace GameWish.Game
                 BattleMgr.S.BattleClean();
             }
 
-            if (GUILayout.Button("AddSpiritRole1001", GUILayout.Width(100f)))
+            if (GUILayout.Button("AddSpiritRole1001", GUILayout.Width(150f)))
             {
                 RoleGroupModel roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
-                roleGroupModel.AddSpiritRoleModel(1001, 200);
+                roleGroupModel.AddSpiritRoleModel(1001, 100);
             }
 
-            if (GUILayout.Button("AddSpiritRole1002", GUILayout.Width(100f)))
+            if (GUILayout.Button("AddSkillForRole1001", GUILayout.Width(170f)))
             {
-                RoleGroupModel roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
-                roleGroupModel.AddSpiritRoleModel(1002, 200);
-                roleGroupModel.SetRoleUnlockedModel(1002);
+                RoleModel roleModel = ModelMgr.S.GetModel<RoleGroupModel>().GetRoleModel(1001);
+                roleModel.AddSkill(10011);
             }
 
-            if (GUILayout.Button("AddSpiritRole1003", GUILayout.Width(100f)))
-            {
-                RoleGroupModel roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
-                roleGroupModel.AddSpiritRoleModel(1003, 100);
-                roleGroupModel.SetRoleUnlockedModel(1003);
-            }
 
             GUILayout.EndHorizontal();
+
+            #region 仓库
+            GUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("仓库", new[] { GUILayout.Width(100) });
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("AddInventoryItem", GUILayout.Width(100f)))
+            {
+                InventoryModel inventoryModel = ModelMgr.S.GetModel<InventoryModel>();
+                for (int i = (int)InventoryItemType.HeroChip; i <= (int)InventoryItemType.Food; i++)
+                {
+                    for (int j = 1; j < 30; j++)
+                    {
+                        inventoryModel.AddInventoryItemCount((InventoryItemType)i, j, j);
+                    }
+                }
+            }
+            GUILayout.EndHorizontal();
+            #endregion
 
             GUILayout.EndVertical();
         }

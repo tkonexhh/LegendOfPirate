@@ -14,7 +14,7 @@ namespace GameWish.Game
 		[SerializeField] private Toggle m_Toggle;
 
 		private ForgeRoomModel m_ForgeRoomModel;
-		private ForgeWeaponSlotModel m_ForgeWeaponSlotModel;
+		private ForgeEquipmentSlotModel m_ForgeWeaponSlotModel;
 		private List<IDisposable> m_DisPoseLst = new List<IDisposable>();
 		private int m_SlotCount;
 
@@ -37,8 +37,8 @@ namespace GameWish.Game
             m_LockerImg.gameObject.SetActive(isLock);
             m_Toggle.interactable = !isLock;
             m_Label.text = !isLock
-                ? (TDEquipmentSynthesisConfigTable.GetEquipmentSynthesisById( TDFacilityForgeTable.dataList[m_SlotCount].unlockEquipmentID).name) 
-                : (string.Format("Garden Lv.{0}", TDFacilityForgeTable.dataList[m_SlotCount].level));
+                ? string.Format("WeaponName Lv.{0}", m_ForgeWeaponSlotModel.weaponName)
+                : (string.Format("Forge Lv.{0}",m_ForgeWeaponSlotModel.unlockLevel));
         }
 
         private void OnToggleValudChange(bool value)
@@ -46,14 +46,13 @@ namespace GameWish.Game
             if (value)
             {
                 if (m_ForgeRoomModel.forgeModel.forgeState.Value == ForgeStage.Free)
-                    m_ForgeRoomModel.forgeModel.OnWeaponSelect(m_SlotCount);
+                    m_ForgeRoomModel.forgeModel.OnWeaponSelect(TDFacilityForgeTable.dataList[m_SlotCount].unlockEquipmentID);
             }
             else
             {
                 if (m_ForgeRoomModel.forgeModel.forgeState.Value == ForgeStage.Select)
                     m_ForgeRoomModel.forgeModel.OnWeaponUnSelect();
             }
-
         }
     }
 	

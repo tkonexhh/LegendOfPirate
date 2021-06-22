@@ -30,8 +30,8 @@ namespace GameWish.Game
         RoleSkillPanel,
         RoleStoryPanel,
         RoleGroupPanel,
+        RoleGetPanel,
         #endregion
-
 
         //战船经营
         #region 厨房
@@ -76,6 +76,12 @@ namespace GameWish.Game
         #endregion
         #region 黑市
         BlackMarketPanel,
+        #endregion
+
+        //主菜单
+        #region 仓库
+        WareHousePanel,
+        InventoryItemDetailPanel,
         #endregion
 
         CongratulationPanel,

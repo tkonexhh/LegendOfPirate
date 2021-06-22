@@ -40,6 +40,8 @@ namespace GameWish.Game
     {
         public PickTargetType PickTargetType;
         public SensorTypeEnum SensorTypeEnum;
+
+        public RangeDamageConfig RangeDamage;
     }
 
 

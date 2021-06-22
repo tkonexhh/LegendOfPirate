@@ -17,11 +17,11 @@ namespace GameWish.Game
         private EInt m_NextEquipment = 0;   
         private string m_RoleName;   
         private string m_EquipmentType;   
-        private string m_ParamType;   
-        private EInt m_Quality = 0;   
+        private string m_ParamValue;   
+        private string m_Quality;   
         private string m_StrengthenCost;   
         private EInt m_IntensifyCost = 0;   
-        private string m_ParamValue;  
+        private string m_Desc;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -46,19 +46,19 @@ namespace GameWish.Game
         public  string  roleName {get { return m_RoleName; } }
        
         /// <summary>
-        /// 装备类型（Weapon-武器，Armor-护具，Jewelry-饰品，Exclusive-专属）
+        /// 装备类型（Weapon-武器，Armor-护具，Jewelry-饰品，Hallow-专属）
         /// </summary>
         public  string  equipmentType {get { return m_EquipmentType; } }
        
         /// <summary>
-        /// 装备属性类型
+        /// 属性数值（参数|百分比%，参数：HP,ATK,ACRJ-生命恢复，Dodge-闪避，CRI-暴击率，ASPD-攻速，Combos-连击，Armor-护甲）
         /// </summary>
-        public  string  paramType {get { return m_ParamType; } }
+        public  string  paramValue {get { return m_ParamValue; } }
        
         /// <summary>
-        /// 品质(道具名称及道具框颜色，1-红色，2-紫色，3-黑色)
+        /// 品质(白色-普通-Normal；绿色-进阶-Advanced；蓝色-稀有-Rare；紫色-史诗-Epic；红色-传说-Legendary；金色-不朽-Immortal)
         /// </summary>
-        public  int  quality {get { return m_Quality; } }
+        public  string  quality {get { return m_Quality; } }
        
         /// <summary>
         /// 强化消耗
@@ -71,9 +71,9 @@ namespace GameWish.Game
         public  int  intensifyCost {get { return m_IntensifyCost; } }
        
         /// <summary>
-        /// 属性数值
+        /// 说明
         /// </summary>
-        public  string  paramValue {get { return m_ParamValue; } }
+        public  string  desc {get { return m_Desc; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -106,10 +106,10 @@ namespace GameWish.Game
                     m_EquipmentType = dataR.ReadString();
                     break;
                 case 5:
-                    m_ParamType = dataR.ReadString();
+                    m_ParamValue = dataR.ReadString();
                     break;
                 case 6:
-                    m_Quality = dataR.ReadInt();
+                    m_Quality = dataR.ReadString();
                     break;
                 case 7:
                     m_StrengthenCost = dataR.ReadString();
@@ -118,7 +118,7 @@ namespace GameWish.Game
                     m_IntensifyCost = dataR.ReadInt();
                     break;
                 case 9:
-                    m_ParamValue = dataR.ReadString();
+                    m_Desc = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -137,11 +137,11 @@ namespace GameWish.Game
           ret.Add("NextEquipment", 2);
           ret.Add("RoleName", 3);
           ret.Add("EquipmentType", 4);
-          ret.Add("ParamType", 5);
+          ret.Add("ParamValue", 5);
           ret.Add("Quality", 6);
           ret.Add("StrengthenCost", 7);
           ret.Add("IntensifyCost", 8);
-          ret.Add("ParamValue", 9);
+          ret.Add("Desc", 9);
           return ret;
         }
     } 

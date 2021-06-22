@@ -28,12 +28,18 @@ namespace GameWish.Game
 		{
 			
 			 m_PanelData = UIPanelData.Allocate<BuildingLevelUpPanelData>();
-			if (args != null && args.Length > 0) 
-			{
-				m_PanelData.unitType = (ShipUnitType)args[0];
-				m_PanelData.buidingModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(m_PanelData.unitType);
-				m_PanelData.levelUpData = BuildingLevelUpDataFactory.S.GetBuildingLevelUpData(m_PanelData.unitType);
+			
+        }
+
+		private void SetPanelData(params object[] args) 
+		{
+            if (args != null && args.Length > 0)
+            {
+                m_PanelData.unitType = (ShipUnitType)args[0];
+                m_PanelData.buidingModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(m_PanelData.unitType);
+                m_PanelData.levelUpData = BuildingLevelUpDataFactory.S.GetBuildingLevelUpData(m_PanelData.unitType);
 			}
+			BindModelToUI();
         }
 
         private void ReleasePanelData()

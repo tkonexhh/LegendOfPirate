@@ -92,7 +92,6 @@ namespace GameWish.Game
                 roleModelList.OrderBy(i => i.spiritCount);
                 Log.e(roleUnlockedList.Concat(roleModelList).ToList().Count);
             }
-            
            
             return (roleUnlockedList.Concat(roleModelList).ToList());
         }

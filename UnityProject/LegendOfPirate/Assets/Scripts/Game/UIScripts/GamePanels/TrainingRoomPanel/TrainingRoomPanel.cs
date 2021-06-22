@@ -9,12 +9,14 @@ namespace GameWish.Game
 {
     public partial class TrainingRoomPanel : AbstractAnimPanel
     {
+        #region SerializeField
         [SerializeField]
         private ScrollRectAutoAdjustPosition m_ScrollRectAdjustPos;
         [SerializeField]
         private UGridListView m_TraPosUGList;
         [SerializeField]
         private USimpleListView m_PrepRoleUList;
+        #endregion
 
         #region Data
         private IntReactiveProperty m_SelectedCount = new IntReactiveProperty(0);
@@ -34,6 +36,7 @@ namespace GameWish.Game
 
             BindModelToUI();
             BindUIToModel();
+
             OnClickAddListener();
         }
 

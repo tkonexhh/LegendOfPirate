@@ -16,7 +16,7 @@ namespace GameWish.Game
         private string m_MaterialName;   
         private string m_MaterialIcon;   
         private EInt m_Quality = 0;   
-        private string m_MaterialDsc;   
+        private string m_MaterialDesc;   
         private string m_MaterialType;   
         private EInt m_MaterialPrice = 0;   
         private EInt m_OutputWay = 0;  
@@ -39,17 +39,17 @@ namespace GameWish.Game
         public  string  materialIcon {get { return m_MaterialIcon; } }
        
         /// <summary>
-        /// 品质(道具名称及道具框颜色，1-红色，2-紫色，3-黑色)
+        /// 品质(白色-普通-Normal；绿色-进阶-Advanced；蓝色-稀有-Rare；紫色-史诗-Epic；红色-传说-Legendary；金色-不朽-Immortal)
         /// </summary>
         public  int  quality {get { return m_Quality; } }
        
         /// <summary>
         /// 材料描述
         /// </summary>
-        public  string  materialDsc {get { return m_MaterialDsc; } }
+        public  string  materialDesc {get { return m_MaterialDesc; } }
        
         /// <summary>
-        /// 材料类型
+        /// 材料类型（HeroesPiece-英雄碎片，Material-材料）
         /// </summary>
         public  string  materialType {get { return m_MaterialType; } }
        
@@ -91,7 +91,7 @@ namespace GameWish.Game
                     m_Quality = dataR.ReadInt();
                     break;
                 case 4:
-                    m_MaterialDsc = dataR.ReadString();
+                    m_MaterialDesc = dataR.ReadString();
                     break;
                 case 5:
                     m_MaterialType = dataR.ReadString();
@@ -118,7 +118,7 @@ namespace GameWish.Game
           ret.Add("MaterialName", 1);
           ret.Add("MaterialIcon", 2);
           ret.Add("Quality", 3);
-          ret.Add("MaterialDsc", 4);
+          ret.Add("MaterialDesc", 4);
           ret.Add("MaterialType", 5);
           ret.Add("MaterialPrice", 6);
           ret.Add("OutputWay", 7);

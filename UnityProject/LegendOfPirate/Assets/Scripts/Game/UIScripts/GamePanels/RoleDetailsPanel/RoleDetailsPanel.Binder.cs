@@ -6,120 +6,67 @@ using UniRx;
 
 namespace GameWish.Game
 {
-	public class RoleDetailsPanelData : UIPanelData
-	{
+    public class RoleDetailsPanelData : UIPanelData
+    {
+        public RoleModel roleModel;
+    }
 
-	}
-	
-	public partial class RoleDetailsPanel
-	{
-		private RoleDetailsPanelData m_PanelData = null;
-		private RoleModel m_RoleModel;
-		private bool m_IsLocked;
+    public partial class RoleDetailsPanel
+    {
+        private RoleDetailsPanelData m_PanelData = null;
 
-		private void AllocatePanelData(params object[] args)
-		{
-			 m_PanelData = UIPanelData.Allocate<RoleDetailsPanelData>();
-            if (args != null && args.Length > 0)
-            {
-                if (args.Length >= 1)
-                {
-					m_RoleModel = (RoleModel)args[0];
-                }
-            }
+        private bool m_IsLocked;
 
-			RoleName.text = m_RoleModel.name;
-			m_IsLocked = m_RoleModel.isLocked.Value;
-
-			if (!m_IsLocked)
-            {
-				RefreshRoleIsUnclockView(m_IsLocked);
-				return;
-            }
-
-			//RegionRoleName.text		
-
-		}
+        private void AllocatePanelData(params object[] args)
+        {
+            m_PanelData = UIPanelData.Allocate<RoleDetailsPanelData>();
+        }
 
         #region RefreshPanelData
-
         private void ReleasePanelData()
-		{
-			ObjectPool<RoleDetailsPanelData>.S.Recycle(m_PanelData);
-			
-		}
-		
-		private void BindModelToUI()
-		{
-			m_RoleModel.level.SubscribeToTextMeshPro(RoleLevel,"Lv:{0}");
-			m_RoleModel.level.SubscribeToTextMeshPro(ExperienceValue, "{0}/999");
-			m_RoleModel.level.Subscribe( value => 
-			{
-				ExperienceBar.fillAmount = (float)value / 999f;
-			});
-			
-		}
-		
-		private void BindUIToModel()
-		{
+        {
+            ObjectPool<RoleDetailsPanelData>.S.Recycle(m_PanelData);
+        }
 
-		}
+        private void BindModelToUI()
+        {
+            m_PanelData.roleModel.level.SubscribeToTextMeshPro(RoleLevel, "Lv:{0}");
+            m_PanelData.roleModel.level.SubscribeToTextMeshPro(ExperienceValue, "{0}/999");
+            m_PanelData.roleModel.level.Subscribe(value =>
+           {
+               ExperienceBar.fillAmount = (float)value / 999f;
+           });
+        }
 
-
-        private void RegisterEvents()
+        private void BindUIToModel()
         {
 
         }
-
-        private void UnregisterEvents()
-        {
-
-        }
-
-		private void OnClickAddListener()
-        {
-			StoryBtn.onClick.AddListener(() => 
-			{
-				UIMgr.S.OpenPanel(UIID.RoleStoryPanel,m_RoleModel.id);
-			});
-			//LeftRoleBtn.OnClickAsObservable().Subscribe();
-			//RightRoleBtn.OnClickAsObservable().Subscribe();
-
-
-		}
-
         #endregion
 
-
         #region RefreshPanelView
-
-		private void RefreshRoleIsUnclockView(bool isUnlock)
+        private void RefreshRoleIsUnclockView(bool isUnlock)
         {
-			StartRegion.gameObject.SetActive(isUnlock);
-			RoleLevel.gameObject.SetActive(isUnlock);
-			ExperienceBar.gameObject.SetActive(isUnlock);
-			EquipRegion.gameObject.SetActive(isUnlock);
+            StartRegion.gameObject.SetActive(isUnlock);
+            RoleLevel.gameObject.SetActive(isUnlock);
+            ExperienceBar.gameObject.SetActive(isUnlock);
+            EquipRegion.gameObject.SetActive(isUnlock);
         }
 
-		private void RefreshRoleView()
+        private void RefreshRoleView()
         {
 
         }
 
-		private void AddSkillItem()
+        private void AddSkillItem()
         {
             SoundButton skillBtn = ((GameObject)LoadPageRes("SkillSubpart")).GetComponent<SoundButton>();
             skillBtn.transform.SetParent(SkillRegion);
             skillBtn.onClick.AddListener(() =>
             {
-                UIMgr.S.OpenPanel(UIID.RoleSkillPanel, m_RoleModel.id);
+                UIMgr.S.OpenPanel(UIID.RoleSkillPanel, m_PanelData.roleModel.id);
             });
-
-		}
-
-
-
+        }
         #endregion
-
     }
 }

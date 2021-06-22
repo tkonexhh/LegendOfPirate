@@ -20,7 +20,14 @@ namespace GameWish.Game
             skillId = equipData.id;
             skillLevel = new IntReactiveProperty(equipData.level);
 
+            ModelSubscribe();
+
             //TODO: Add Other Propterties
+        }
+
+        private void ModelSubscribe()
+        {
+
         }
     }
 	

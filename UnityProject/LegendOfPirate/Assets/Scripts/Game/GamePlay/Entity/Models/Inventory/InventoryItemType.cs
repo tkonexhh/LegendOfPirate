@@ -13,5 +13,9 @@ namespace GameWish.Game
         Material,
         Food,
 	}
-	
+
+    public enum MaterialType
+    {
+        
+    }
 }

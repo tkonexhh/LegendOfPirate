@@ -27,6 +27,8 @@ namespace GameWish.Game
 
         public TDRoleConfig tdRoleConfig;
 
+
+
         private RoleData roleData;
 
 
@@ -87,11 +89,6 @@ namespace GameWish.Game
         {
             RoleSkillModel skillModel = skillList.FirstOrDefault(i => i.skillId == skillId);
 
-            if (skillModel == null)
-            {
-                Log.e("Skill Model Not Found: " + skillId);
-            }
-
             return skillModel;
         }
 
@@ -117,9 +114,14 @@ namespace GameWish.Game
         #endregion
 
         #region Public Set
-        public bool AddSkill()
+        public void AddSkill(int skillId)
         {
-            return false;
+            RoleSkillData skilldata = roleData.AddRoleSkill(skillId);
+            if (skilldata != null)
+            {
+                RoleSkillModel skillModel = new RoleSkillModel(skilldata);
+                skillList.Add(skillModel);
+            }
         }
 
         public void UpgradeSkill()
@@ -140,7 +142,6 @@ namespace GameWish.Game
         public void AddSpiritCount(int value)
         {
             spiritCount.Value += value;
-
         }
 
         public void AddCurHp(int value)

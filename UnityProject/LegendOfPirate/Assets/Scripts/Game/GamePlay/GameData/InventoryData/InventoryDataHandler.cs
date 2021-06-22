@@ -19,7 +19,7 @@ namespace GameWish.Game
             return m_Data;
         }
 
-       public override void LoadDataFromServer(Action callback)
+        public override void LoadDataFromServer(Action callback)
         {
             NetDataMgr.S.LoadNetData(DATA_NAME, ParseJson, callback);
         }

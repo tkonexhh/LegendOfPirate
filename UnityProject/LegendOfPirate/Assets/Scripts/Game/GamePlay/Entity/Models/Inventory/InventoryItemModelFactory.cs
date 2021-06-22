@@ -26,7 +26,6 @@ namespace GameWish.Game
                     itemModel = new FoodModel(dbItem, itemType, id, count);
                     break;
             }
-
             return itemModel;
         }
 	}

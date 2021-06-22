@@ -21,7 +21,8 @@ namespace GameWish.Game
         private EInt m_Equip2Id = 0;   
         private EInt m_Equip3Id = 0;   
         private EInt m_Equip4Id = 0;   
-        private EInt m_SpiritId = 0;  
+        private EInt m_SpiritId = 0;   
+        private string m_SkillId;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -75,6 +76,11 @@ namespace GameWish.Game
         /// </summary>
         public  int  spiritId {get { return m_SpiritId; } }
        
+        /// <summary>
+        /// 技能
+        /// </summary>
+        public  string  skillId {get { return m_SkillId; } }
+       
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
         {
@@ -120,6 +126,9 @@ namespace GameWish.Game
                 case 9:
                     m_SpiritId = dataR.ReadInt();
                     break;
+                case 10:
+                    m_SkillId = dataR.ReadString();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -130,7 +139,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(10);
+          Dictionary<string, int> ret = new Dictionary<string, int>(11);
           
           ret.Add("RoleId", 0);
           ret.Add("RoleName", 1);
@@ -142,6 +151,7 @@ namespace GameWish.Game
           ret.Add("Equip3Id", 7);
           ret.Add("Equip4Id", 8);
           ret.Add("SpiritId", 9);
+          ret.Add("SkillId", 10);
           return ret;
         }
     } 
