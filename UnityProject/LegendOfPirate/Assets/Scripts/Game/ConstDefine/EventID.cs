@@ -52,6 +52,25 @@ namespace GameWish.Game
         /// </summary>
         OnLibrarySelectRole,
         #endregion
+
+        #region Task
+        /// <summary>
+        /// 日常任务完成加1
+        /// </summary>
+        DailyTimesAdd,
+        /// <summary>
+        /// 成就任务完成加1
+        /// </summary>
+        AchievementTimesAdd,
+        /// <summary>
+        /// 日常任务刷新
+        /// </summary>
+        DailyTaskRefresh,
+        /// <summary>
+        /// 成就任务刷新
+        /// </summary>
+        AchievementTaskRefresh,
+        #endregion
     }
 
 }

@@ -56,6 +56,11 @@ namespace GameWish.Game
                 TDFacilityTrainingRoomTable.metaData,
                 TDFacilityWarshipTable.metaData,
                 #endregion
+                
+                #region Task
+                TDDailyTaskTable.metaData,
+                TDDailyTaskRewardTable.metaData,
+                #endregion
             };
         }
     }

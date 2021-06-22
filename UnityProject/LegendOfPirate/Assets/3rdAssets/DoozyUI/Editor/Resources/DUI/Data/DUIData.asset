@@ -25,6 +25,7 @@ MonoBehaviour:
       - BoostPanel
       - BuildingLevelUpPanel
       - CongratulationPanel
+      - DailyTaskPanel
       - EffectActivePanel
       - EvolutionSolePanel
       - ForgePanel
