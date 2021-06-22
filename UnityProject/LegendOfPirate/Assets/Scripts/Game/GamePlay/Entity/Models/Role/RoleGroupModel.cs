@@ -47,7 +47,7 @@ namespace GameWish.Game
             int roleId = TDRoleConfigTable.GetSpiritIdToRoleId(spiritId);
             if (roleItemList.Any(item => item.id == roleId))
             {
-                roleItemList.FirstOrDefault(i => i.id == roleId).AddSpiritCount(count);
+                roleItemList.FirstOrDefault(i => i.id == roleId).spiritCount.Value += count;
             }
             else
             {
@@ -74,7 +74,6 @@ namespace GameWish.Game
         /// <returns></returns>
         public List<RoleModel> GetSortRoleItemList()
         {
-
             roleUnlockedList = roleUnlockedItemList.ToList();
             if (roleUnlockedItemList.Count > 1)
             {
@@ -83,13 +82,18 @@ namespace GameWish.Game
             }
            
             roleModelList = roleItemList.Where(i => i.isLocked.Value == false && i.spiritCount.Value != 0).ToList();
-
+            foreach (var item in roleItemList)
+            {
+                Log.e(string.Format("id,{0}  islocked:{1}    spiritcout{2}",item.id,item.isLocked.Value,item.spiritCount.Value));
+            }
+            Log.e(roleModelList.Count);
             if (roleModelList.Count > 1)
             {
                 roleModelList.OrderBy(i => i.spiritCount);
+                Log.e(roleUnlockedList.Concat(roleModelList).ToList().Count);
             }
-
-            return roleUnlockedList.Concat(roleModelList).ToList();
+           
+            return (roleUnlockedList.Concat(roleModelList).ToList());
         }
     }    
 }

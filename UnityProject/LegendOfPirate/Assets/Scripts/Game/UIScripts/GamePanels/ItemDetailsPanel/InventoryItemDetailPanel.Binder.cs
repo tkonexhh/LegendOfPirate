@@ -6,21 +6,21 @@ using UniRx;
 
 namespace GameWish.Game
 {
-    public class ItemDetailsPanelData : UIPanelData
+    public class InventoryItemDetailPanelData : UIPanelData
     {
         public InventoryModel inventoryModel;
-        public ItemDetailsPanelData()
+        public InventoryItemDetailPanelData()
         {
         }
     }
 
-    public partial class ItemDetailsPanel
+    public partial class InventoryItemDetailPanel
     {
-        private ItemDetailsPanelData m_PanelData = null;
+        private InventoryItemDetailPanelData m_PanelData = null;
 
         private void AllocatePanelData()
         {
-            m_PanelData = UIPanelData.Allocate<ItemDetailsPanelData>();
+            m_PanelData = UIPanelData.Allocate<InventoryItemDetailPanelData>();
             try
             {
                 m_PanelData.inventoryModel = ModelMgr.S.GetModel<InventoryModel>();
@@ -32,7 +32,7 @@ namespace GameWish.Game
         }
         private void ReleasePanelData()
         {
-            ObjectPool<ItemDetailsPanelData>.S.Recycle(m_PanelData);
+            ObjectPool<InventoryItemDetailPanelData>.S.Recycle(m_PanelData);
         }
         private void BindModelToUI()
         {

@@ -82,15 +82,11 @@ namespace GameWish.Game
             if (m_InventoryItemDics.ContainsKey(itemType))
             {
                 if (m_InventoryItemDics[itemType].ContainsKey(id))
-                {
                     return true;
-                }
                 return false;
             }
             else
-            {
                 return false;
-            }
         }
 
         /// <summary>

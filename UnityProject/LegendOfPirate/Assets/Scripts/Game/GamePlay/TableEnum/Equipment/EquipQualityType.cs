@@ -26,7 +26,7 @@ namespace GameWish.Game
 		/// <summary>
 		/// 紫色-史诗
 		/// </summary>
-		epic,
+		Epic,
 		/// <summary>
 		/// 红色-传说
 		/// </summary>
