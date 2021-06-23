@@ -13,8 +13,6 @@ namespace GameWish.Game
         
        
         private EInt m_Id = 0;   
-        private string m_Name;   
-        private string m_SpriteName;   
         private string m_Desc;   
         private string m_MakeRes;   
         private EInt m_MakeTime = 0;   
@@ -28,22 +26,12 @@ namespace GameWish.Game
         public  int  id {get { return m_Id; } }
        
         /// <summary>
-        /// 名称
-        /// </summary>
-        public  string  name {get { return m_Name; } }
-       
-        /// <summary>
-        /// 贴图
-        /// </summary>
-        public  string  spriteName {get { return m_SpriteName; } }
-       
-        /// <summary>
         /// 说明
         /// </summary>
         public  string  desc {get { return m_Desc; } }
        
         /// <summary>
-        /// 制作材料（id・数量）
+        /// 制作材料（id|数量）
         /// </summary>
         public  string  makeRes {get { return m_MakeRes; } }
        
@@ -76,21 +64,15 @@ namespace GameWish.Game
                     m_Id = dataR.ReadInt();
                     break;
                 case 1:
-                    m_Name = dataR.ReadString();
-                    break;
-                case 2:
-                    m_SpriteName = dataR.ReadString();
-                    break;
-                case 3:
                     m_Desc = dataR.ReadString();
                     break;
-                case 4:
+                case 2:
                     m_MakeRes = dataR.ReadString();
                     break;
-                case 5:
+                case 3:
                     m_MakeTime = dataR.ReadInt();
                     break;
-                case 6:
+                case 4:
                     m_MakeCost = dataR.ReadInt();
                     break;
                 default:
@@ -103,15 +85,13 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(7);
+          Dictionary<string, int> ret = new Dictionary<string, int>(5);
           
           ret.Add("Id", 0);
-          ret.Add("Name", 1);
-          ret.Add("SpriteName", 2);
-          ret.Add("Desc", 3);
-          ret.Add("MakeRes", 4);
-          ret.Add("MakeTime", 5);
-          ret.Add("MakeCost", 6);
+          ret.Add("Desc", 1);
+          ret.Add("MakeRes", 2);
+          ret.Add("MakeTime", 3);
+          ret.Add("MakeCost", 4);
           return ret;
         }
     } 

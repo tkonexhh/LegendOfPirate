@@ -13,21 +13,46 @@ MonoBehaviour:
   m_Name: new_BuffConfigSO
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 0101140000004d006f006400690066006900650072004100740074007200690062007500740065004c00730074002f00000000015f000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e004c00690073007400600031005b005b00470061006d00650057006900730068002e00470061006d0065002e004d006f006400690066006900650072004100740074007200690062007500740065002c00200041007300730065006d0062006c0079002d004300530068006100720070005d005d002c0020006d00730063006f0072006c006900620000000000060100000000000000022f010000000130000000470061006d00650057006900730068002e00470061006d0065002e004d006f006400690066006900650072004100740074007200690062007500740065002c00200041007300730065006d0062006c0079002d00430053006800610072007000010000001d010d0000004100740074007200690062007500740065005400790070006500040000000000000017010c0000004e0075006d006500720069006300560061006c007500650028000000050705
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: ModifierAttributeLst
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[GameWish.Game.ModifierAttribute,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|GameWish.Game.ModifierAttribute, Assembly-CSharp
+    - Name: AttributeType
+      Entry: 3
+      Data: 1
+    - Name: NumericValue
+      Entry: 3
+      Data: 27
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   ID: 0
   Name: Buff1
-  Time: 105
+  Time: 5
   BuffTriggerType: 4
   Interval: 1
-  EnabledStateModify: 0
-  StatusControls: 7
+  EnabledStateModify: 1
+  StatusControls: 8
   EnabledAttributeModify: 1
   EnabledAppend: 0
   AppendType: 0

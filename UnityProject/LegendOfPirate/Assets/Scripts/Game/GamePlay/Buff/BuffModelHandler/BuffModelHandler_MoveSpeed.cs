@@ -24,7 +24,10 @@ namespace GameWish.Game
 
         public override void OnAppendBuff(int appendNum, BattleRoleRuntimeModel model)
         {
-
+            var appendValue = (m_Value * 0.01f) * appendNum;
+            var deltaValue = appendValue - m_DeltaValue;
+            model.MoveSpeedAddRate.Value += deltaValue;
+            m_DeltaValue = appendValue;
         }
     }
 

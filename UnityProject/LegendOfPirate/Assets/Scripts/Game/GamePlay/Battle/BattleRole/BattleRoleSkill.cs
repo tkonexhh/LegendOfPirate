@@ -61,7 +61,7 @@ namespace GameWish.Game
         {
             for (int i = 0; i < m_SkillLst.Count; i++)
             {
-                if (m_SkillLst[i].isReady)
+                if (m_SkillLst[i].CanCast())
                     return m_SkillLst[i];
             }
             return null;

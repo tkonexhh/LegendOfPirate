@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: ce19f41e92b3f4db1b02111c79a8b83b
-PrefabImporter:
+guid: d1e30518f061f42fe992df87ed9e2b88
+NativeFormatImporter:
   externalObjects: {}
+  mainObjectFileID: 0
   userData: 
   assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain.bundle
   assetBundleVariant: 

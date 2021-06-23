@@ -14,4 +14,27 @@ namespace GameWish.Game
 
         }
     }
+    #region Struct
+
+    public struct MakeCostRes
+    {
+        public int matID;
+        public int number;
+    }
+
+    public struct FoodSynthesisUnitConfig
+    {
+        public int ID;
+        public string foodName;
+        public string spriteName;
+        //public  Quality
+        public string desc;
+        public MakeCostRes[] makeCostRes;
+        //public BuffType
+        //public BuffRate
+        public int buffTime;
+        public int makeTime;
+        public int costCoin;
+    }
+    #endregion
 }

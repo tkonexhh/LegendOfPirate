@@ -14,6 +14,7 @@ namespace GameWish.Game
             skill.skillTrigger = SkillTriggerFactory.CreateSkillTrigger(configSO.SkillTriggerType, skill);
             skill.id = configSO.ID;
             skill.CD = configSO.CD;
+            skill.range = configSO.Range;
             skill.name = configSO.name;
             skill.Sensor = BattleSensorFactory.CreateBattleSensor(configSO.PickTarget.PickTargetType, configSO.PickTarget.SensorTypeEnum);
 

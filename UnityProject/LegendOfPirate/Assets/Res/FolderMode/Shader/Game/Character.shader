@@ -86,7 +86,7 @@
                 half4 var_MainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv);
                 float4 finalRGB = lerp(var_MainTex, var_MainTex * _ShadowColor, 1 - NdotL);//1 - shadowStep
 
-                
+                return var_MainTex;
                 return finalRGB;
             }
             

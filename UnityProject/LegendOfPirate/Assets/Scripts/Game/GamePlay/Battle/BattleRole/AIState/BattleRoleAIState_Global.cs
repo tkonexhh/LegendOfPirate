@@ -45,9 +45,14 @@ namespace GameWish.Game
             }
 
             //TODO 检测技能
-            if (ai.controller.Skill.skillReady && BattleMgr.S.Started)
+            if (BattleMgr.S.Started &&
+                ai.controller.Skill.skillReady &&
+                !ai.controller.Data.buffedData.StatusMask.HasStatus(StatusControlType.SkillForbid))
             {
-                ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.Skill);
+                // ai.controller.Skill.
+                var skill = ai.controller.Skill.GetReadySkill();
+                if (skill != null)
+                    ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.Skill);
             }
         }
 

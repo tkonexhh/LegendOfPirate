@@ -1,14 +1,11 @@
 fileFormatVersion: 2
-guid: dbf28dfa4effd4899b2bc8ce179d8f0f
+guid: 1299477d2981046e29c2e7b1b65507bb
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
-      74: 7520883179324962769
-    second: Pirate_Role_Hero_ParrotCaptain_001@shot
-  - first:
-      74: 4751953353176668756
-    second: "\u9E66\u9E49\u8239\u957F@\u5C04\u51FB"
+      74: -7045724177415207008
+    second: "\u9E66\u9E49\u8239\u957F@death"
   externalObjects: {}
   materials:
     materialImportMode: 1

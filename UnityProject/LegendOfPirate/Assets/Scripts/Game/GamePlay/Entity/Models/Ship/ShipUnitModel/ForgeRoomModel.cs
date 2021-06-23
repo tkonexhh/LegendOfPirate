@@ -57,7 +57,7 @@ namespace GameWish.Game
 
             for (int i = 0; i < forgeWeaponSlotModels.Count; i++)
             {
-                forgeWeaponSlotModels[i].OnGardenLevelUp();
+                forgeWeaponSlotModels[i].OnForgeRoomLevelUp();
             }
         }
 
@@ -175,20 +175,20 @@ namespace GameWish.Game
         public int unlockLevel;
 
 
-        private ForgeRoomModel m_GardenModel;
+        private ForgeRoomModel m_ForgeRoomModel;
         public ForgeEquipmentSlotModel(ForgeRoomModel forgeRoomModel, int slotid, bool unlockStage)
         {
             this.slotId = slotid;
             this.unlockLevel = TDFacilityForgeTable.dataList[slotid].level;
             this.weaponName = TDEquipmentSynthesisConfigTable.GetEquipmentSynthesisById(TDFacilityForgeTable.dataList[slotid].unlockEquipmentID).name;
            
-            m_GardenModel = forgeRoomModel;
+            m_ForgeRoomModel = forgeRoomModel;
             slotIsUnlock = new BoolReactiveProperty(unlockStage);
         }
-        public void OnGardenLevelUp()
+        public void OnForgeRoomLevelUp()
         {
 
-            if (m_GardenModel.level.Value >= unlockLevel)
+            if (m_ForgeRoomModel.level.Value >= unlockLevel)
             {
                 slotIsUnlock.Value = false;
             }
@@ -203,7 +203,7 @@ namespace GameWish.Game
     public class MakeEquipmentMsgModel : Model 
     {
         public int makeTime;
-        public List<ForgeRoomEquipmentResPair> makeResList;
+        public List<ResPair> makeResList;
         public string equipmentName;
         public TDEquipmentSynthesisConfig equipmentConfig;
 
@@ -222,13 +222,12 @@ namespace GameWish.Game
             equipmentName = equipmentConfig.name;
         }
     }
-    public struct ForgeRoomEquipmentResPair 
+    public struct ResPair 
     {
         public int resId;
         public int resCount;
-   
         
-        public ForgeRoomEquipmentResPair(int resid,int rescount) 
+        public ResPair(int resid,int rescount) 
         {
             resCount = rescount;
             resId = resid;

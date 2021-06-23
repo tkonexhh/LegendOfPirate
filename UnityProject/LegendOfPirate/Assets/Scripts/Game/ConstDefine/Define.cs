@@ -35,7 +35,7 @@ namespace GameWish.Game
         // Ship Unit Const
         public const int TRAINING_ROOM_MAX_SLOT = 9;
         public const int LIBRARY_ROOM_MAX_SLOT = 9;
-        public const int PROCESSING_ROOM_MAX_SLOT = 4;
+        public const int PROCESSING_ROOM_MAX_SLOT = 9;
 
         //Ship Unit Max Level
         public const int TRAINING_ROOM_MAX_LEVEL = 9;
@@ -43,6 +43,8 @@ namespace GameWish.Game
         //Inventroy
         public const int INVENTORY_ITEM_MAX_COUNT = 9999;
 
+        //Ship Unit Default
+        public const int PROCESSING_ROOM_DEFAULT_SLOT_COUNT = 4;
         
     }
 }
