@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8074673259e714a71ae5d505f6021c1c, type: 3}
-  m_Name: Enemy1ConfigSO
+  m_Name: Role_ParrotCaption_ConfigSO
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -55,9 +55,9 @@ MonoBehaviour:
       Entry: 8
       Data: 
   ID: 0
-  RoleName: SkillName
+  RoleName: RoleName
   AtkRange: 2
   childSkills: []
-  prefab: {fileID: 3212148170728413058, guid: 3442515a72b7d4a8ca290139ada825a2, type: 3}
-  Icon: {fileID: 21300000, guid: ea1536afefd944341a76beb0bf20dbbc, type: 3}
+  prefab: {fileID: 6238772375247509523, guid: a418a37a0529443ce9618f208d7b2978, type: 3}
+  Icon: {fileID: 21300000, guid: 9d07a919bc9db4493822ca8a87bf1906, type: 3}
   StatusDescription: 

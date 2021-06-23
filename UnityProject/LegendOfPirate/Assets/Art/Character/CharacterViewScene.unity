@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18056467, g: 0.22605091, b: 0.30707765, a: 1}
+  m_IndirectSpecularColor: {r: 0.18056488, g: 0.22605118, b: 0.30707768, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -397,3 +397,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 408.922, y: -906.828, z: 121.495}
+--- !u!1001 &741910218759012262
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6238772375247509523, guid: a418a37a0529443ce9618f208d7b2978,
+        type: 3}
+      propertyPath: m_Name
+      value: Pirate_Role_Hero_ParrotCaptain_001 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764198588463809193, guid: a418a37a0529443ce9618f208d7b2978,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764198588463809193, guid: a418a37a0529443ce9618f208d7b2978,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.538
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764198588463809193, guid: a418a37a0529443ce9618f208d7b2978,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764198588463809193, guid: a418a37a0529443ce9618f208d7b2978,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764198588463809193, guid: a418a37a0529443ce9618f208d7b2978,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764198588463809193, guid: a418a37a0529443ce9618f208d7b2978,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764198588463809193, guid: a418a37a0529443ce9618f208d7b2978,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764198588463809193, guid: a418a37a0529443ce9618f208d7b2978,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764198588463809193, guid: a418a37a0529443ce9618f208d7b2978,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764198588463809193, guid: a418a37a0529443ce9618f208d7b2978,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764198588463809193, guid: a418a37a0529443ce9618f208d7b2978,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a418a37a0529443ce9618f208d7b2978, type: 3}

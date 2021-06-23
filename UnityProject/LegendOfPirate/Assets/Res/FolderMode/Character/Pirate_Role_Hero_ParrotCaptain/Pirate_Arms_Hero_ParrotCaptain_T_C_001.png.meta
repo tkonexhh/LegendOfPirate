@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 507db5dd688fe4eb49ed7aaae81bf011
+guid: 3b6ce6958d1e24ff2a1c4f9a7229bbcd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,5 +136,5 @@ TextureImporter:
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
   userData: 
-  assetBundleName: res/foldermode/character/pirate_oneeye.bundle
+  assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain.bundle
   assetBundleVariant: 

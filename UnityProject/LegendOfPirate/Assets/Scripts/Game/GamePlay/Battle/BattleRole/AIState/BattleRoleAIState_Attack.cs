@@ -35,7 +35,7 @@ namespace GameWish.Game
                 m_AttackTimer = 0;
             }
 
-            // FaceToTarget();
+            FaceToTarget();
 
             //检测Target是否太远
             if (Vector3.Distance(ai.controller.transform.position, ai.Target.transform.position) > ai.controller.Data.AtkRange + 0.05f)
