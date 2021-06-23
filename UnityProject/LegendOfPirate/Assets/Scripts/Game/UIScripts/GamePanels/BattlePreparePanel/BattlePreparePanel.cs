@@ -44,7 +44,6 @@ namespace GameWish.Game
             {
                 string levelId = args[0].ToString();
                 BattleFieldConfigSO curEnemy = CreateEnemy(levelId);
-                Debug.LogError(curEnemy.name);
                 BattleMgr.S.BattleInit(curEnemy == null ? BattleMgr.S.DemoEnemyFieldConfigSO : curEnemy, int.Parse(levelId));
             }
         }
