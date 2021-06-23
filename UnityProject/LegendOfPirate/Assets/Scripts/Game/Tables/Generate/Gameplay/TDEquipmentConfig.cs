@@ -19,6 +19,7 @@ namespace GameWish.Game
         private string m_EquipmentType;   
         private string m_ParamValue;   
         private string m_Quality;   
+        private string m_EquipmentIcon;   
         private string m_StrengthenCost;   
         private EInt m_IntensifyCost = 0;   
         private string m_Desc;  
@@ -59,6 +60,11 @@ namespace GameWish.Game
         /// 品质(白色-普通-Normal；绿色-进阶-Advanced；蓝色-稀有-Rare；紫色-史诗-Epic；红色-传说-Legendary；金色-不朽-Immortal)
         /// </summary>
         public  string  quality {get { return m_Quality; } }
+       
+        /// <summary>
+        /// 装备icon
+        /// </summary>
+        public  string  equipmentIcon {get { return m_EquipmentIcon; } }
        
         /// <summary>
         /// 强化消耗
@@ -112,12 +118,15 @@ namespace GameWish.Game
                     m_Quality = dataR.ReadString();
                     break;
                 case 7:
-                    m_StrengthenCost = dataR.ReadString();
+                    m_EquipmentIcon = dataR.ReadString();
                     break;
                 case 8:
-                    m_IntensifyCost = dataR.ReadInt();
+                    m_StrengthenCost = dataR.ReadString();
                     break;
                 case 9:
+                    m_IntensifyCost = dataR.ReadInt();
+                    break;
+                case 10:
                     m_Desc = dataR.ReadString();
                     break;
                 default:
@@ -130,7 +139,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(10);
+          Dictionary<string, int> ret = new Dictionary<string, int>(11);
           
           ret.Add("EquipmentId", 0);
           ret.Add("StarLevel", 1);
@@ -139,9 +148,10 @@ namespace GameWish.Game
           ret.Add("EquipmentType", 4);
           ret.Add("ParamValue", 5);
           ret.Add("Quality", 6);
-          ret.Add("StrengthenCost", 7);
-          ret.Add("IntensifyCost", 8);
-          ret.Add("Desc", 9);
+          ret.Add("EquipmentIcon", 7);
+          ret.Add("StrengthenCost", 8);
+          ret.Add("IntensifyCost", 9);
+          ret.Add("Desc", 10);
           return ret;
         }
     } 

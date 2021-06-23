@@ -53,7 +53,7 @@ namespace GameWish.Game
             this.materialName = tdData.materialName;
             this.materialIcon = tdData.materialIcon;
             this.matQualityType = EnumUtil.ConvertStringToEnum<MaterialQualityType>(tdData.quality.ToString());
-            this.matDesc = tdData.materialDsc;
+            this.matDesc = tdData.materialDesc;
             this.matBaseType = EnumUtil.ConvertStringToEnum<MaterialBaseType>(tdData.materialType);
             this.sellingPrice = tdData.materialPrice;
             this.matOutputWay = (MaterialOutputWay)tdData.outputWay;

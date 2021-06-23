@@ -16,13 +16,13 @@ namespace GameWish.Game
         private EInt m_Type = 0;   
         private string m_Name;   
         private string m_SpriteName;   
-        private EInt m_Superscript = 0;   
-        private EInt m_Quality = 0;   
+        private string m_Superscript;   
+        private string m_Quality;   
         private string m_Desc;   
         private string m_MakeRes;   
         private string m_BuffType;   
         private EInt m_EffectObject = 0;   
-        private EInt m_BuffRate = 0;   
+        private string m_BuffRate;   
         private EInt m_BuffTime = 0;   
         private EInt m_MakeTime = 0;   
         private EInt m_MakeCost = 0;  
@@ -52,12 +52,12 @@ namespace GameWish.Game
         /// <summary>
         /// 角标
         /// </summary>
-        public  int  superscript {get { return m_Superscript; } }
+        public  string  superscript {get { return m_Superscript; } }
        
         /// <summary>
-        /// 品质(道具名称及道具框颜色，1-红色，2-紫色，3-黑色)
+        /// 品质(白色-普通-Normal；绿色-进阶-Advanced；蓝色-稀有-Rare；紫色-史诗-Epic；红色-传说-Legendary；金色-不朽-Immortal)
         /// </summary>
-        public  int  quality {get { return m_Quality; } }
+        public  string  quality {get { return m_Quality; } }
        
         /// <summary>
         /// 说明
@@ -80,9 +80,9 @@ namespace GameWish.Game
         public  int  effectObject {get { return m_EffectObject; } }
        
         /// <summary>
-        /// 增益值（增伤，攻速，恢复血量为目标单位百分比提升；控制效果为秒；单（群）体伤害为固定值）
+        /// 增益值 参数|数值（Rate-比例单位%；Time-时间单位s；FixedValue-固定值）
         /// </summary>
-        public  int  buffRate {get { return m_BuffRate; } }
+        public  string  buffRate {get { return m_BuffRate; } }
        
         /// <summary>
         /// 维持时长（s）
@@ -127,10 +127,10 @@ namespace GameWish.Game
                     m_SpriteName = dataR.ReadString();
                     break;
                 case 4:
-                    m_Superscript = dataR.ReadInt();
+                    m_Superscript = dataR.ReadString();
                     break;
                 case 5:
-                    m_Quality = dataR.ReadInt();
+                    m_Quality = dataR.ReadString();
                     break;
                 case 6:
                     m_Desc = dataR.ReadString();
@@ -145,7 +145,7 @@ namespace GameWish.Game
                     m_EffectObject = dataR.ReadInt();
                     break;
                 case 10:
-                    m_BuffRate = dataR.ReadInt();
+                    m_BuffRate = dataR.ReadString();
                     break;
                 case 11:
                     m_BuffTime = dataR.ReadInt();
