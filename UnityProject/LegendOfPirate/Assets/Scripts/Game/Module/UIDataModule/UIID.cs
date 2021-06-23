@@ -104,6 +104,8 @@ namespace GameWish.Game
 
         #region 任务系统
         DailyTaskPanel,//日常任务界面
+
+        MainTaskPanel,//主线任务界面
         #endregion
     }
 }

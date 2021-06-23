@@ -54,7 +54,7 @@ namespace GameWish.Game
                 for (int i = 0; i < listTaskItemData.Count; i++)
                 {
                     //listTaskItemData[i].SetDirtyRecorder(m_Recorder);
-                    dicTaskItemData.Add(listTaskItemData[i].m_IdKey, listTaskItemData[i]);
+                    dicTaskItemData.Add(listTaskItemData[i].idKey, listTaskItemData[i]);
                 }
             }
             return dicTaskItemData;
@@ -78,7 +78,7 @@ namespace GameWish.Game
         //     int starSum = PuzzleMatchManager.instance.starSystem.GetAllStar();
         //     for (int i = 0; i < TDTaskAchievementTable.count; i++)
         //     {
-        //         if (!GetTaskItemData(TDTaskAchievementTable.dataList[i].id).m_IsGetRewardToday)
+        //         if (!GetTaskItemData(TDTaskAchievementTable.dataList[i].id).isGetRewardToday)
         //         {
         //             if (starSum >= TDTaskAchievementTable.dataList[i].targetTimes)
         //             {

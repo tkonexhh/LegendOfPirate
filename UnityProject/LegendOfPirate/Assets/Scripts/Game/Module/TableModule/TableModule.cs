@@ -61,6 +61,7 @@ namespace GameWish.Game
                 #region Task
                 TDDailyTaskTable.metaData,
                 TDDailyTaskRewardTable.metaData,
+                TDMainTaskTable.metaData,
                 #endregion
 
                 #region Synthesis

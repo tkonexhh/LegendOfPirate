@@ -42,8 +42,8 @@ namespace GameWish.Game
 
         private void OnClickAddListener()
         {
-            RoleBtn.OnClickAsObservable().Subscribe(_ => { OpenRolePanel(); }).AddTo(this);
-            StorageBtn.OnClickAsObservable().Subscribe(_ => { OpenWareHousePanel(); }).AddTo(this);
+            m_RoleBtn.OnClickAsObservable().Subscribe(_ => { OpenRolePanel(); }).AddTo(this);
+            m_StorageBtn.OnClickAsObservable().Subscribe(_ => { OpenWareHousePanel(); }).AddTo(this);
         }
 
         private void OpenRolePanel()

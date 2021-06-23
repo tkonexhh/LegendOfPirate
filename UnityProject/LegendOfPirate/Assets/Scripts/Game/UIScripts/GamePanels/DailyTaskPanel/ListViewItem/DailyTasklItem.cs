@@ -49,7 +49,7 @@ namespace GameWish.Game
         void RefreshUI()
         {
             int target = m_Conf.taskCount;
-            int cur = m_TaskItemData.m_CurCompleteTimes > target ? target : m_TaskItemData.m_CurCompleteTimes;
+            int cur = m_TaskItemData.curCompleteTimes > target ? target : m_TaskItemData.curCompleteTimes;
             m_TmpProgress.text = string.Format("{0}/{1}", cur, target);
             m_Slider.fillAmount = (float)cur / (float)target;
             string imgName = "";
@@ -115,11 +115,11 @@ namespace GameWish.Game
         TaskState GetTaskState()
         {
             TaskState taskState = TaskState.Complete;
-            if (m_TaskItemData.m_IsGetRewardToday)
+            if (m_TaskItemData.isGetRewardToday)
             {
                 taskState = TaskState.End;
             }
-            else if (m_TaskItemData.m_CurCompleteTimes >= m_Conf.taskCount)
+            else if (m_TaskItemData.curCompleteTimes >= m_Conf.taskCount)
             {
                 taskState = TaskState.Complete;
             }
