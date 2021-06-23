@@ -54,7 +54,12 @@ namespace GameWish.Game
              .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.Fixed_Title_Lv) + level.ToString())
              .SubscribeToTextMeshPro(LibraryLevelTMP).AddTo(this);
 
-            m_SelectedCount.Select(count => count + "/" + 10).SubscribeToTextMeshPro(RoleSelectNumberTMP).AddTo(this);
+            m_SelectedCount.Select(count => count + Define.SYMBOL_SLASH + m_PanelData.GetLibSlotMCount()).SubscribeToTextMeshPro(RoleSelectNumberTMP).AddTo(this);
+
+            foreach (var item in m_PanelData.libraryModel.slotModelList)
+            {
+                item.libraryState.Subscribe(_=> RefreshSelectedCount()).AddTo(this);
+            }
         }
 
         private void BindUIToModel()

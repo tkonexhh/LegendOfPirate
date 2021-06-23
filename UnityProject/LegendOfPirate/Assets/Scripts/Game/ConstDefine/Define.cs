@@ -43,5 +43,8 @@ namespace GameWish.Game
         //Ship Unit Default
         public const int PROCESSING_ROOM_DEFAULT_SLOT_COUNT = 4;
         
+        //Inventroy
+        public const int INVENTORY_ITEM_MAX_COUNT = 9999;
+
     }
 }

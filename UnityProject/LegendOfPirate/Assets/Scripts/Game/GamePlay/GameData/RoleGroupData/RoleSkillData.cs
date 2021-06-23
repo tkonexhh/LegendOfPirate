@@ -7,21 +7,37 @@ using UnityEngine;
 namespace GameWish.Game
 {
     [Serializable]
-    public struct RoleSkillData
+    public class RoleSkillData
     {
         public int id;
         public int level;
 
-        public RoleSkillData(int id, int level)
+        private RoleGroupData m_RoleGroupData;
+
+        public RoleSkillData(int id)
         {
             this.id = id;
-            this.level = level;
+            this.level = 1;
+
+            m_RoleGroupData = null;
         }
 
         public void Upgrade(int deltaLevel)
         {
             level += deltaLevel;
+            SetDataDirty();
         }
+
+        private void SetDataDirty()
+        {
+            if (m_RoleGroupData == null)
+            {
+                m_RoleGroupData = GameDataMgr.S.GetData<RoleGroupData>();
+            }
+
+            m_RoleGroupData.SetDataDirty();
+        }
+
 
     }
 

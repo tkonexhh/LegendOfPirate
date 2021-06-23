@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
@@ -33,19 +33,6 @@ namespace GameWish.Game
 
         private void BindUIToModel()
         {
-        }
-
-
-        private void OnClickAddListener()
-        {
-            RoleBtn.onClick.AddListener(() =>
-            {
-                UIMgr.S.OpenPanel(UIID.RoleGroupPanel);
-            });
-            MapBtn.onClick.AddListener(() =>
-            {
-                UIMgr.S.OpenPanel(UIID.MainSeaLevelPanel);
-            });
         }
 
     }

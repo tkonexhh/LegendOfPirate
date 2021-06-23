@@ -42,7 +42,7 @@ namespace GameWish.Game
             m_BottomTrainingRole.OnClickAsObservable().Subscribe(_ =>
             {
                 EventSystem.S.Send(EventID.OnLibrarySelectRole, m_BottomLibraryData);
-            });
+            }).AddTo(this);
         }
         private void BindModelToUI()
         {
@@ -66,7 +66,7 @@ namespace GameWish.Game
                         m_State.enabled = true;
                         break;
                 }
-            });
+            }).AddTo(this);
         }
         public void HandleSelectedRole(bool select, LibrarySlotModel librarySlotModel = null)
         {

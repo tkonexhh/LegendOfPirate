@@ -95,6 +95,8 @@ namespace GameWish.Game
         {
             SetTime(startTime);
 
+            libraryState.Value = LibrarySlotState.Reading;
+
             m_DbItem.OnStartReading(heroId, startTime);
         }
 
