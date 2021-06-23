@@ -31,6 +31,16 @@ namespace GameWish.Game
                 Log.e("e =" + e);
             }
         }
+
+        public static string GetEquipmentNameById(int id) 
+        {
+            var fitId = id * 10 + 1;
+            foreach (var item in dataList) 
+            {
+                if (item.equipmentId == fitId) return item.roleName.Replace("1", "");
+            }
+            return null;
+        }
     }
 
     #region Struct

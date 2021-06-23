@@ -37,7 +37,7 @@ namespace GameWish.Game
             m_LockerImg.gameObject.SetActive(isLock);
             m_Toggle.interactable = !isLock;
             m_Label.text = !isLock
-                ?  m_ForgeWeaponSlotModel.weaponName
+                ?  m_ForgeWeaponSlotModel.equipmentName
                 : (string.Format("Forge Lv.{0}",m_ForgeWeaponSlotModel.unlockLevel));
         }
 
