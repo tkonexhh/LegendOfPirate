@@ -28,7 +28,8 @@ namespace GameWish.Game
 
             m_AttackTimer += dt;
             //TODO 攻击速度从Data中读取
-            if (m_AttackTimer >= 2.1f)
+            if (m_AttackTimer >= 2.1f &&
+                !ai.controller.Data.buffedData.StatusMask.HasStatus(StatusControlType.AttackForbid))
             {
                 PlayAttackAnim();
                 m_AttackTimer = 0;
