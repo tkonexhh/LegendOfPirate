@@ -13,6 +13,15 @@ namespace GameWish.Game
         {
 
         }
+
+        public static TDFoodSynthesisConfig GetConfigById(int foodId) 
+        {
+            foreach (var item in dataList) 
+            {
+                if (item.id == foodId) return item;
+            }
+            return null;
+        }
     }
     #region Struct
 

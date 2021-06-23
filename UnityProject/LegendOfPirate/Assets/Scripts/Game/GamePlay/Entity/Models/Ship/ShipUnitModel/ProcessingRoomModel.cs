@@ -43,24 +43,23 @@ namespace GameWish.Game
 
         public ProcessingSlotModel GetSelectModel() 
         {
-            ProcessingSlotModel ret = null;
+         
             foreach (var item in processingSlotModelList)
             {
                 if (item.processState.Value == ProcessSlotState.Selected)
                     return item;
             }
-            return ret;
+            return null;
         }
 
         public ProcessingSlotModel GetAvailableSlot() 
         {
-            ProcessingSlotModel ret = null;
             foreach (var item in processingSlotModelList) 
             {
                 if (item.processState.Value == ProcessSlotState.Free)
                     return item;
             }
-            return ret;
+            return null;
         }
 
         public override void OnLevelUpgrade(int delta)
@@ -208,23 +207,21 @@ namespace GameWish.Game
     {
         public TDPartSynthesisConfig partConfig;
         public BoolReactiveProperty isLocked;
-        public int slotId;
-        public int unlockLevel;
+        public int unLockLevel;
 
         private ProcessingRoomModel m_ProcessingRoomModel;
-        public ProcessingPartModel(ProcessingRoomModel processingRoomModel ,int partId,bool isLocked,int unlockLevel) 
+        public ProcessingPartModel(ProcessingRoomModel processingRoomModel ,int partId,bool isLocked,int unLockLevel) 
         {
             this.isLocked = new BoolReactiveProperty(true);
             partConfig = TDPartSynthesisConfigTable.GetConfigById(partId);
-            slotId = partConfig.id;
             this.isLocked.Value = isLocked;
-            this.unlockLevel = unlockLevel;
+            this.unLockLevel = unLockLevel;
             m_ProcessingRoomModel = processingRoomModel;
         }
 
         public void OnProcessingRoomLevelUp() 
         {
-            if (m_ProcessingRoomModel.level.Value >= unlockLevel)
+            if (m_ProcessingRoomModel.level.Value >= unLockLevel)
             {
                 isLocked.Value = false;
             }
@@ -236,7 +233,7 @@ namespace GameWish.Game
 
         public string GetPartName() 
         {
-            return partConfig.name;
+            return TDEquipmentConfigTable.GetEquipmentNameById(partConfig.id);
         }
 
         public int GetPartMakeTime() 
@@ -248,5 +245,25 @@ namespace GameWish.Game
         {
             return partConfig.GetMakeResList();
         }
+    }
+
+    public enum ProcessSlotState
+    {
+        /// <summary>
+        /// 空闲中
+        /// </summary>
+        Free = 0,
+        /// <summary>
+        /// 加工中
+        /// </summary>
+        Processing = 1,
+        /// <summary>
+        /// 未解锁
+        /// </summary>
+        Locked = 2,
+        /// <summary>
+        /// 选择但是未开始
+        /// </summary>
+        Selected = 3,
     }
 }
