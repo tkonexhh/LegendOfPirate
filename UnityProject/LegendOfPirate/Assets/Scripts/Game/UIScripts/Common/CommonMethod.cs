@@ -1,6 +1,9 @@
+using DG.Tweening;
 using Qarth;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -8,7 +11,6 @@ namespace GameWish.Game
 {
 	public class CommonMethod 
 	{
-
         #region UI
         /// <summary>
         /// 根据表中的Key，获取相应的内容
@@ -19,6 +21,7 @@ namespace GameWish.Game
         {
             return TDLanguageTable.Get(key);
         }
+
         /// <summary>
         /// 空格
         /// </summary>
@@ -27,6 +30,7 @@ namespace GameWish.Game
         {
             return "<color=#FFFFFF00>----</color>";
         }
+
         /// <summary>
         /// 空格
         /// </summary>
@@ -35,6 +39,7 @@ namespace GameWish.Game
         {
             return "<color=#FFFFFF00>--</color>";
         }
+
         public static string GetStrForColor(string color, string cont, bool table = false)
         {
             if (!table)
@@ -47,7 +52,31 @@ namespace GameWish.Game
 
             }
         }
+
+        /// <summary>
+        /// TMP上翻效果
+        /// </summary>
+        /// <param name="currentScoreText"></param>
+        /// <param name="curValue"></param>
+        /// <param name="targetValue"></param>
+        public static void TMPFlipUpEffect(TextMeshProUGUI currentScoreText, float curValue, float targetValue)
+        {
+            Sequence mScoreSequence = DOTween.Sequence();
+
+            mScoreSequence.SetAutoKill(false);
+
+            mScoreSequence.Append(DOTween.To(delegate (float value)
+            {
+                //向下取整
+                var temp = Math.Floor(value);
+                //向Text组件赋值
+                currentScoreText.text = GetTenThousandOrMillion((long)temp);
+            }, curValue, targetValue, 1.0f));
+            //将更新后的值记录下来, 用于下一次滚动动画
+            curValue = targetValue;
+        }
         #endregion
+
         #region Other Method
         /// <summary>
         /// 获取万or亿or万亿
@@ -81,6 +110,7 @@ namespace GameWish.Game
                 return number.ToString();
             }
         }
+
         private static long GetThousand(long number)
         {
             string numStr = number.ToString();
@@ -88,5 +118,4 @@ namespace GameWish.Game
         }
         #endregion
     }
-
 }

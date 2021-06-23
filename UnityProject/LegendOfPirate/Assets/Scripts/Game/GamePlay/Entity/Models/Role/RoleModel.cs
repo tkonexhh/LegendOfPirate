@@ -24,13 +24,9 @@ namespace GameWish.Game
         public ReactiveCollection<RoleSkillModel> skillList;
 
         public ReactiveProperty<ShipRoleStateId> stateId;
-
         public TDRoleConfig tdRoleConfig;
 
-
-
         private RoleData roleData;
-
 
         public RoleModel(int roleId)
         {
@@ -124,15 +120,20 @@ namespace GameWish.Game
             }
         }
 
-        public void UpgradeSkill(int skillID,int delta = 1)
+        public bool UpgradeSkill(int skillID,int delta = 1)
         {
             if (roleData.UpgradeRoleSkill(skillID, delta))
             {
                 RoleSkillModel roleSkillModel = skillList.FirstOrDefault(i => i.skillId == skillID);
                 roleSkillModel.UpgradeSkill(delta);
+                roleSkillModel.SetLastSkillLevel(delta);
+                return true;
             }
             else
+            {
                 Log.e("Upgrade error: = skillID" + skillID);
+                return false;
+            }
         }
 
         public bool AddEquip()

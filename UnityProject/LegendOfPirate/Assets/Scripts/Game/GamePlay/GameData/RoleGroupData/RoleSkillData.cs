@@ -11,13 +11,17 @@ namespace GameWish.Game
     {
         public int id;
         public int level;
+        public int lastLevel;
 
         private RoleGroupData m_RoleGroupData;
 
+        #region Public
+        public RoleSkillData() { }
         public RoleSkillData(int id)
         {
             this.id = id;
             this.level = 0;
+            this.lastLevel = 0;
 
             m_RoleGroupData = null;
         }
@@ -28,6 +32,13 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
+        public void SetLastLevel(int lastLevel)
+        {
+            this.lastLevel = lastLevel;
+            SetDataDirty();
+        }
+        #endregion
+        #region Private
         private void SetDataDirty()
         {
             if (m_RoleGroupData == null)
@@ -37,8 +48,6 @@ namespace GameWish.Game
 
             m_RoleGroupData.SetDataDirty();
         }
-
-
+        #endregion
     }
-
 }

@@ -114,8 +114,18 @@ namespace GameWish.Game
         }  
         private void HandleSkillUpgradeBtn()
         {
-            m_RoleModel.UpgradeSkill(m_RoleSkillModel.skillId);
-        }  
+            //TODO ÅÐ¶ÏÌõ¼þ
+            if (m_RoleModel.UpgradeSkill(m_RoleSkillModel.skillId))
+            {
+                UIMgr.S.ClosePanelAsUIID(UIID.RoleSkillUpgradePanel);
+                UIMgr.S.OpenPanel(UIID.RoleSkillUpgradeSuccessPanel, m_RoleModel, m_RoleSkillModel);
+            }
+            else
+            {
+                Log.e("UpgradeSkill Fail");
+            }
+        }
+
         private string HandleUpgradeBtnTMP(int val)
         {
             if (val == 0)

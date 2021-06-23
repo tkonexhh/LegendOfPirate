@@ -33,6 +33,10 @@ namespace GameWish.Game
         RoleGetPanel,
         #endregion
 
+        #region 角色成长面板
+        RoleSkillUpgradeSuccessPanel,
+        #endregion
+
         //战船经营
         #region 厨房
         KitchenPanel,

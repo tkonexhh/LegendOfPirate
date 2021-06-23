@@ -16,6 +16,7 @@ namespace GameWish.Game
 
         private RoleSkillData m_DbData;
         private RoleSkillUnitConfig m_RoleSkillUnitConfig;
+        private int m_LastSkillLevel;
 
         public RoleSkillUnitConfig roleSkillUnitConfig { get { return m_RoleSkillUnitConfig; } }
 
@@ -32,6 +33,21 @@ namespace GameWish.Game
             ModelSubscribe();
         }
         #region Public
+        /// <summary>
+        /// 设置升级前的等级
+        /// </summary>
+        /// <param name="delta"></param>
+        public void SetLastSkillLevel(int delta)
+        {
+            m_LastSkillLevel = Mathf.Max(skillLevel.Value - delta,0);
+            m_DbData.SetLastLevel(m_LastSkillLevel);
+        }
+
+        public int GetLastSkillLevel()
+        {
+            return m_LastSkillLevel;
+        }
+
         /// <summary>
         /// 获取升到某一级所需要的角色等级
         /// </summary>

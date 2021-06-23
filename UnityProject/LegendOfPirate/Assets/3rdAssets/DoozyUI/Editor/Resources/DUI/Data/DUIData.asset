@@ -48,6 +48,7 @@ MonoBehaviour:
       - RoleDetailsPanel
       - RoleEquipDetailsPanel
       - RoleSkillUpgradePanel
+      - RoleSkillUpgradeSuccessPanel
       - RoleStoryPanel
       - SettingPanel
       - ShopPanel
