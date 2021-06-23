@@ -69,10 +69,13 @@ namespace GameWish.Game
 
         public void NewDay()
         {
+            activeNum = 0;
+            getRewardList = new int[] { 0, 0, 0, 0, 0 };
             for (int i = 0; i < TDDailyTaskTable.count; i++)
             {
                 GetTaskItemData(TDDailyTaskTable.dataList[i].taskID).NewDay();
             }
+            SetDataDirty();
         }
         //state = 1 代表已领取 0 代表未领取
         public void SetGetRewardState(int index, int state)
