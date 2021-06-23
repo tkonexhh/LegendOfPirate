@@ -187,7 +187,6 @@ namespace GameWish.Game
         }
         public void OnForgeRoomLevelUp()
         {
-
             if (m_ForgeRoomModel.level.Value >= unlockLevel)
             {
                 slotIsUnlock.Value = false;
@@ -196,7 +195,6 @@ namespace GameWish.Game
             {
                 slotIsUnlock.Value = true;
             }
-
         }
     }
 

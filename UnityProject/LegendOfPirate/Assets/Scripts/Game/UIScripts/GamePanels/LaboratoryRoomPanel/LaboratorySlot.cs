@@ -8,26 +8,24 @@ using UniRx;
 
 namespace GameWish.Game
 {
-	public class KitchenSlot : MonoBehaviour
+	public class LaboratorySlot : MonoBehaviour
 	{
         [SerializeField] private Image m_IcomImg;
         [SerializeField] private Image m_TimerFillImg;
         [SerializeField] private Image m_Locker;
         [SerializeField] private GameObject m_Timer;
 
-        private int m_SlotId;
-        private KitchenSlotModel m_KitchenSlotModel;
-        private KitchenModel m_KitchenModel;
+        private LaboratorySlotModel m_LaboratorySlotModel;
+        private LaboratoryModel m_LaboratoryModel;
         private List<IDisposable> m_DisposeLst = new List<IDisposable>();
 
         public void SetSlot(int slotId) 
         {
-            m_KitchenModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.Kitchen) as KitchenModel;
-            m_KitchenSlotModel = m_KitchenModel.kitchenSlotModelLst[slotId];
+            m_LaboratoryModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.Laboratory) as LaboratoryModel;
+            m_LaboratorySlotModel = m_LaboratoryModel.labaratorySlotModelList[slotId];
             foreach (var item in m_DisposeLst)
             {
                 item.Dispose();
-
             }
             m_DisposeLst.Clear();
             BindModelToUI();
@@ -35,34 +33,34 @@ namespace GameWish.Game
 
         private void BindModelToUI()
         {
-            m_DisposeLst.Add(m_KitchenSlotModel.kitchenSlotState.AsObservable().Subscribe(state => OnSlotStageChange(state)).AddTo(this));
-            m_DisposeLst.Add(m_KitchenSlotModel.cookingRemainTime.Where(time => time > 0).Subscribe(timer => OnTimerUpdate(timer)).AddTo(this));
+            m_DisposeLst.Add(m_LaboratorySlotModel.laboratorySlotState.AsObservable().Subscribe(state => OnSlotStageChange(state)).AddTo(this));
+            m_DisposeLst.Add(m_LaboratorySlotModel.makingRemainTime.Where(time => time > 0).Subscribe(time => OnTimerUpdate(time)).AddTo(this));
         }
 
-        private void OnTimerUpdate(float timer)
+        private void OnTimerUpdate(float time)
         {
-            var makeTime = m_KitchenSlotModel.GetMakeTime();
-            m_TimerFillImg.fillAmount = (makeTime - m_KitchenSlotModel.cookingRemainTime.Value) / makeTime;
+            var makeTime = m_LaboratorySlotModel.GetMakeTime();
+            m_TimerFillImg.fillAmount = (makeTime - m_LaboratorySlotModel.makingRemainTime.Value) / makeTime;
         }
 
-        private void OnSlotStageChange(KitchenSlotState state)
+        private void OnSlotStageChange(LaboratorySlotState state)
         {
             switch (state)
             {
-                case KitchenSlotState.Free:
+                case LaboratorySlotState.Free:
                     m_Locker.gameObject.SetActive(false);
                     break;
-                case KitchenSlotState.Cooking:
+                case LaboratorySlotState.Making:
                     m_Timer.gameObject.SetActive(true);
                     m_Locker.gameObject.SetActive(false);
                     break;
-                case KitchenSlotState.Locked:
+                case LaboratorySlotState.Locked:
                     m_Locker.gameObject.SetActive(true);
                     break;
-                case KitchenSlotState.Selected:
+                case LaboratorySlotState.Selected:
                     break;
             }
         }
     }
-
+	
 }

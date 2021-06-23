@@ -10,10 +10,9 @@ namespace GameWish.Game
 	public class ProgressRoomPanelData : UIPanelData
 	{
 		public ProcessingRoomModel processingRoomModel;
-		public List<GImage> lockerList;
 		public ProgressRoomPanelData()
         {
-			lockerList = new List<GImage>();
+			
 
         }
 
@@ -27,14 +26,6 @@ namespace GameWish.Game
 			return processingRoomModel.ProcessingPartModelList.Count;
 		}
 
-		public int GetDefaultElementCount() 
-		{
-			return processingRoomModel.ProcessingPartModelList[0].partConfig.GetMakeResList().Count;
-		}
-		public List<ResPair> GetDefaultElement() 
-		{
-			return processingRoomModel.ProcessingPartModelList[0].partConfig.GetMakeResList();
-		}
 	}
 	
 	public partial class ProgressRoomPanel
@@ -50,7 +41,6 @@ namespace GameWish.Game
 		private void ReleasePanelData()
 		{
 			ObjectPool<ProgressRoomPanelData>.S.Recycle(m_PanelData);
-			m_PanelData.lockerList.Clear();
 		}
 		
 		private void BindModelToUI()

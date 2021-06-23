@@ -32,6 +32,7 @@ namespace GameWish.Game
         private GardenDataHandler m_GardenDataHandler = null;
         private LibraryDataHandler m_LibraryDataHandler = null;
         private ProcessingDataHandler m_ProcessingDataHandler = null;
+        private LaboratoryDataHandler m_LaboratoryDataHandler = null;
         private TrainingDataHandler m_TrainingDataHandler = null;
         private BattleDataHandler m_BattleDataHandler = null;
         private TaskDataHandler m_TaskDataHandler = null;
@@ -58,6 +59,7 @@ namespace GameWish.Game
             m_GardenDataHandler = new GardenDataHandler();
             m_LibraryDataHandler = new LibraryDataHandler();
             m_ProcessingDataHandler = new ProcessingDataHandler();
+            m_LaboratoryDataHandler = new LaboratoryDataHandler();
             m_TrainingDataHandler = new TrainingDataHandler();
             m_BattleDataHandler = new BattleDataHandler();
             m_TaskDataHandler = new TaskDataHandler();
