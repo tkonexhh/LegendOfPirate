@@ -11,19 +11,18 @@ namespace GameWish.Game
     {
         public static EquipmentUnitConfig[] equipmentUnitProperites = null;
         private static int m_EquipUnitIndex = 0;
+
         static void CompleteRowAdd(TDEquipmentConfig tdData, int rowCount)
         {
             //Try Catch 防止表内数据有问题
             try
             {
                 if (equipmentUnitProperites==null)
-                {
                     equipmentUnitProperites = new EquipmentUnitConfig[rowCount];
-                }
+            
                 if (m_EquipUnitIndex > equipmentUnitProperites.Length)
-                {
                     throw new ArgumentOutOfRangeException("Equipment Data Out Of Range");
-                }
+            
                 equipmentUnitProperites[m_EquipUnitIndex] = new EquipmentUnitConfig(tdData);
                 m_EquipUnitIndex++;
             }
@@ -34,7 +33,7 @@ namespace GameWish.Game
         }
     }
 
-    #region struct
+    #region Struct
     /// <summary>
     /// 装备强化消耗
     /// </summary>
