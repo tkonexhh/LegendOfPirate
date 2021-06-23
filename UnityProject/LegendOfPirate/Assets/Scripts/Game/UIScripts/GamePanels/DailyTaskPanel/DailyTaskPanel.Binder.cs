@@ -39,7 +39,7 @@ namespace GameWish.Game
             m_PanelData.curActiveNum = new IntReactiveProperty(m_PanelData.dailyTaskModel.GetActiveNum());
             m_PanelData.curActiveNum.AsObservable().Subscribe(count =>
             {
-                Log.i(" m_PanelData.curActiveNum=" + m_PanelData.curActiveNum.Value + "___" + count);
+                // Log.i(" m_PanelData.curActiveNum=" + m_PanelData.curActiveNum.Value + "___" + count);
                 SetSliderState(count);
             }).AddTo(this);
         }
@@ -52,11 +52,6 @@ namespace GameWish.Game
         private void OnClickAddListener()
         {
             m_BackBtn.OnClickAsObservable().Subscribe(_ => OnBackClicked()).AddTo(this);
-            m_BtnAwardMask.OnClickAsObservable().Subscribe(_ =>
-            {
-                m_PanelData.dailyTaskAwardModel.curRewardBoxItem.rewardShow.SetActive(false);
-                m_BtnAwardMask.gameObject.SetActive(false);
-            }).AddTo(this);
         }
 
         private void RefreshPanelState()
@@ -99,8 +94,7 @@ namespace GameWish.Game
                 item.transform.SetParent(m_RewardContent);
                 item.transform.ResetTrans();
                 item.gameObject.SetActive(true);
-                item.GetComponent<Button>().OnClickAsObservable().Subscribe(_ => OnClickRewardBox(item)).AddTo(this);
-                item.OnInit(this, m_PanelData.dailyTaskAwardModel.tdDailyTaskAwardList[i]);
+                item.OnInit(this, m_PanelData.dailyTaskAwardModel.tdDailyTaskAwardList[i], m_PanelData.dailyTaskModel.taskData, i);
             }
         }
 
@@ -124,13 +118,6 @@ namespace GameWish.Game
                 item.OnInit(this, m_PanelData.dailyTaskModel.tdDailyTaskList[i], m_PanelData.dailyTaskModel.taskData);
             }
             m_DailyItemScrollView.SetLayoutVertical();
-        }
-
-        private void OnClickRewardBox(RewardBoxItem rewardObj)
-        {
-            m_PanelData.dailyTaskAwardModel.curRewardBoxItem = rewardObj;
-            rewardObj.rewardShow.SetActive(true);
-            m_BtnAwardMask.gameObject.SetActive(true);
         }
 
         public void UpdateItems(int key, params object[] args)

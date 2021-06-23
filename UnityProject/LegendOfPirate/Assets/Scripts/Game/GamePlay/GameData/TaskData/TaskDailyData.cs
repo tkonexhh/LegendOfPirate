@@ -17,10 +17,12 @@ namespace GameWish.Game
         public List<TaskItemData> listTaskItemData;
         Dictionary<int, TaskItemData> dicTaskItemData;
         public int activeNum = 0;
+        public int[] getRewardList;
         private TaskData m_TaskData;
         public void InitWithEmptyData()
         {
             listTaskItemData = new List<TaskItemData>();
+            getRewardList = new int[] { 0, 0, 0, 0, 0 };
             SetDataDirty();
         }
 
@@ -71,6 +73,12 @@ namespace GameWish.Game
             {
                 GetTaskItemData(TDDailyTaskTable.dataList[i].taskID).NewDay();
             }
+        }
+        //state = 1 代表已领取 0 代表未领取
+        public void SetGetRewardState(int index, int state)
+        {
+            getRewardList[index] = state;
+            SetDataDirty();
         }
 
         void AddTaskTimes(int key, params object[] parm)

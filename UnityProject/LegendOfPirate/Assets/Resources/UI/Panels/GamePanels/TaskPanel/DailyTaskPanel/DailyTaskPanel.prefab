@@ -1950,7 +1950,6 @@ GameObject:
   - component: {fileID: 2417171966882335625}
   - component: {fileID: 2132589728068080773}
   - component: {fileID: 8429599394518216553}
-  - component: {fileID: 1983119605654473231}
   m_Layer: 0
   m_Name: RewardBoxItem
   m_TagString: Untagged
@@ -2081,23 +2080,6 @@ MonoBehaviour:
   ComponentGeneratePath: 
   CustomComment: 
   mComponentName: 
---- !u!114 &1983119605654473231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3534826727857963400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 091d766a3da7c466387ef11a1ff94d24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TmpActive: {fileID: 5050481817408635461}
-  m_RewardShow: {fileID: 1296676746206487793}
-  m_RewardIcon: {fileID: 8153127418605704873}
-  m_TmpReward: {fileID: 7786213007049094507}
-  rewardShow: {fileID: 0}
 --- !u!1 &4894486119121551534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2854,7 +2836,7 @@ MonoBehaviour:
   m_RewardShow: {fileID: 6578315804743371842}
   m_RewardIcon: {fileID: 1551255097013673229}
   m_TmpReward: {fileID: 4600670649166557839}
-  rewardShow: {fileID: 0}
+  m_BtnRewardMask: {fileID: 1309186413820159870}
 --- !u!1 &6873007028564435829
 GameObject:
   m_ObjectHideFlags: 0
@@ -4181,7 +4163,6 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  m_BtnAwardMask: {fileID: 1309186413820159870}
   m_TmpRefreshTime: {fileID: 8201761799103445083}
   m_Slider: {fileID: 5379101972467020192}
   m_RewardBoxItem: {fileID: 4033011104265639226}

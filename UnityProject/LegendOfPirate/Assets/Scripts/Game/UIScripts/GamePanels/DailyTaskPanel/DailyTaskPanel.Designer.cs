@@ -11,7 +11,6 @@ namespace GameWish.Game
     public partial class DailyTaskPanel
     {
         public const string Name = "DailyTaskPanel";
-        [SerializeField] private Button m_BtnAwardMask;
         [SerializeField] private TextMeshProUGUI m_TmpRefreshTime;
         [SerializeField] private Image m_Slider;
         [SerializeField] private Button m_RewardBoxItem;
