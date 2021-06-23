@@ -44,7 +44,7 @@ namespace GameWish.Game
 		{
             m_PanelData.laboratoryModel
              .level
-             .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.Fixed_Title_Lv) + level.ToString())
+             .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.FIXED_TITLE_LV) + level.ToString())
              .SubscribeToTextMeshPro(LaboratoryTMP).AddTo(this);
         }
 		

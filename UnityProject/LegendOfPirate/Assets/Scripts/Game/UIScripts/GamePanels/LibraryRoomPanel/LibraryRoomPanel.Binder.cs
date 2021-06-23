@@ -51,7 +51,7 @@ namespace GameWish.Game
         {
             m_PanelData.libraryModel
              .level
-             .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.Fixed_Title_Lv) + level.ToString())
+             .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.FIXED_TITLE_LV) + level.ToString())
              .SubscribeToTextMeshPro(LibraryLevelTMP).AddTo(this);
 
             m_SelectedCount.Select(count => count + Define.SYMBOL_SLASH + m_PanelData.GetLibSlotMCount()).SubscribeToTextMeshPro(RoleSelectNumberTMP).AddTo(this);

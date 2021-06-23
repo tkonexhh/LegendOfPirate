@@ -80,10 +80,14 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.RoleDetailsPanel, null, "GamePanels/RolePanel/RoleDetailsPanel/RoleDetailsPanel");
             UIDataTable.AddPanelData(UIID.RoleEquipDetailsPanel, null, "GamePanels/RolePanel/RoleEquipDetailsPanel/RoleEquipDetailsPanel");
             UIDataTable.AddPanelData(UIID.EvolutionSolePanel, null, "GamePanels/RolePanel/EvolutionSolePanel/EvolutionSolePanel");
-            UIDataTable.AddPanelData(UIID.RoleSkillPanel, null, "GamePanels/RolePanel/RoleSkillPanel/RoleSkillPanel");
+            UIDataTable.AddPanelData(UIID.RoleSkillUpgradePanel, null, "GamePanels/RolePanel/RoleSkillUpgradePanel/RoleSkillUpgradePanel");
             UIDataTable.AddPanelData(UIID.RoleStoryPanel, null, "GamePanels/RolePanel/RoleStoryPanel/RoleStoryPanel");
             UIDataTable.AddPanelData(UIID.RoleGroupPanel, null, "GamePanels/RolePanel/RoleGroupPanel/RoleGroupPanel");
             UIDataTable.AddPanelData(UIID.RoleGetPanel, null, "GamePanels/RolePanel/RoleGetPanel/RoleGetPanel");
+            #endregion
+
+            #region 角色成长面板
+            UIDataTable.AddPanelData(UIID.RoleSkillUpgradeSuccessPanel, null, "GamePanels/RolePanel/RoleGroupPanel/RoleSkillUpgradeSuccessPanel");
             #endregion
             //UIDataTable.AddPanelData(UIID.TestPanel, null, "GamePanels/TestPanel/TestPanel");
 

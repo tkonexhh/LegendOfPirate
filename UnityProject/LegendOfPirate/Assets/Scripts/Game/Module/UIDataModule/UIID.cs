@@ -27,10 +27,14 @@ namespace GameWish.Game
         RoleDetailsPanel,
         RoleEquipDetailsPanel,
         EvolutionSolePanel,
-        RoleSkillPanel,
+        RoleSkillUpgradePanel,
         RoleStoryPanel,
         RoleGroupPanel,
         RoleGetPanel,
+        #endregion
+
+        #region 角色成长面板
+        RoleSkillUpgradeSuccessPanel,
         #endregion
 
         //战船经营
