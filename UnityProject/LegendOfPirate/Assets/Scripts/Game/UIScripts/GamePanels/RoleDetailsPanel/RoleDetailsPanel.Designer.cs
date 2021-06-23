@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,44 +12,25 @@ namespace GameWish.Game
 	{
 		public const string Name = "RoleDetailsPanel";
 		
-		[SerializeField]
-		public TMPro.TextMeshProUGUI RoleName;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI RegionRoleName;
-		[SerializeField]
-		public RectTransform StartRegion;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI RoleLevel;
-		[SerializeField]
-		public UnityEngine.UI.Image ExperienceBar;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI ExperienceValue;
-		[SerializeField]
-		public UnityEngine.UI.Image RoleModel;
-		[SerializeField]
-		public SoundButton StoryBtn;
-		[SerializeField]
-		public SoundButton LeftRoleBtn;
-		[SerializeField]
-		public SoundButton RightRoleBtn;
-		[SerializeField]
-		public RectTransform EquipRegion;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI SkillTitle;
-		[SerializeField]
-		public RectTransform SkillRegion;
-		[SerializeField]
-		public UnityEngine.UI.Image UpgradeMaterials;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI UpgradeMaterialsValue;
-		[SerializeField]
-		public SoundButton UpgradeMaterialsBtn;
-		[SerializeField]
-		public UnityEngine.UI.ScrollRect RoleSelecScrollView;
-		[SerializeField]
-		public RectTransform RoleSelectRegion;
-		[SerializeField]
-		public Button CloseBtn;
+		[SerializeField] private TextMeshProUGUI m_RoleName;
+		[SerializeField] private TextMeshProUGUI m_RegionRoleName;
+		[SerializeField] private RectTransform m_StartRegion;
+		[SerializeField] private TextMeshProUGUI m_RoleLevel;
+		[SerializeField] private Image m_ExperienceBar;
+		[SerializeField] private TextMeshProUGUI m_ExperienceValue;
+		[SerializeField] private Image m_RoleModel;
+		[SerializeField] private SoundButton m_StoryBtn;
+		[SerializeField] private SoundButton m_LeftRoleBtn;
+		[SerializeField] private SoundButton m_RightRoleBtn;
+		[SerializeField] private RectTransform m_EquipRegion;
+		[SerializeField] private TextMeshProUGUI m_SkillTitle;
+		[SerializeField] private RectTransform m_SkillRegion;
+		[SerializeField] private Image m_UpgradeMaterials;
+		[SerializeField] private TextMeshProUGUI m_UpgradeMaterialsValue;
+		[SerializeField] private SoundButton m_UpgradeMaterialsBtn;
+		[SerializeField] private ScrollRect m_RoleSelecScrollView;
+		[SerializeField] private RectTransform m_RoleSelectRegion;
+		[SerializeField] private Button m_CloseBtn;
 		
 		
 	}

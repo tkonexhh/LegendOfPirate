@@ -1683,7 +1683,7 @@ GameObject:
   - component: {fileID: 7444070469043801601}
   - component: {fileID: 7160054222889378433}
   m_Layer: 5
-  m_Name: RoleSkillPanel
+  m_Name: RoleSkillUpgradePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1773,7 +1773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementCategory: Uncategorized
-  elementName: RoleSkillPanel
+  elementName: RoleSkillUpgradePanel
   LANDSCAPE: 1
   PORTRAIT: 1
   startHidden: 0
@@ -1796,7 +1796,7 @@ MonoBehaviour:
   inAnimations:
     animationType: 0
     move:
-      enabled: 1
+      enabled: 0
       animationType: 0
       moveDirection: 0
       customPosition: {x: 0, y: 0, z: 0}
@@ -1840,7 +1840,7 @@ MonoBehaviour:
       startDelay: 0
       duration: 0.5
     fade:
-      enabled: 0
+      enabled: 1
       animationType: 0
       alpha: 1
       easeType: 0
@@ -1852,11 +1852,11 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       startDelay: 0
-      duration: 0.5
+      duration: 0.1
     moveIsExpanded:
-      m_Target: 1
+      m_Target: 0
       speed: 2
-      m_Value: 1
+      m_Value: 0
     rotateIsExpanded:
       m_Target: 0
       speed: 2
@@ -1866,9 +1866,9 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
     fadeIsExpanded:
-      m_Target: 0
+      m_Target: 1
       speed: 2
-      m_Value: 0
+      m_Value: 1
   OnInAnimationsStart:
     m_PersistentCalls:
       m_Calls: []
@@ -1876,7 +1876,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   inAnimationsPresetCategoryName: Fade
-  inAnimationsPresetName: FoldHorizontal
+  inAnimationsPresetName: InNormal
   loadInAnimationsPresetAtRuntime: 0
   inAnimationsSoundAtStart: ~No Sound~
   customInAnimationsSoundAtStart: 0
@@ -1885,7 +1885,7 @@ MonoBehaviour:
   outAnimations:
     animationType: 1
     move:
-      enabled: 1
+      enabled: 0
       animationType: 1
       moveDirection: 0
       customPosition: {x: 0, y: 0, z: 0}
@@ -1929,7 +1929,7 @@ MonoBehaviour:
       startDelay: 0
       duration: 0.5
     fade:
-      enabled: 0
+      enabled: 1
       animationType: 1
       alpha: 1
       easeType: 0
@@ -1941,11 +1941,11 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       startDelay: 0
-      duration: 0.5
+      duration: 0.1
     moveIsExpanded:
-      m_Target: 1
+      m_Target: 0
       speed: 2
-      m_Value: 1
+      m_Value: 0
     rotateIsExpanded:
       m_Target: 0
       speed: 2
@@ -1955,9 +1955,9 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
     fadeIsExpanded:
-      m_Target: 0
+      m_Target: 1
       speed: 2
-      m_Value: 0
+      m_Value: 1
   OnOutAnimationsStart:
     m_PersistentCalls:
       m_Calls: []
@@ -1965,7 +1965,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   outAnimationsPresetCategoryName: Fade
-  outAnimationsPresetName: FoldHorizontal
+  outAnimationsPresetName: OutFast
   loadOutAnimationsPresetAtRuntime: 0
   outAnimationsSoundAtStart: ~No Sound~
   customOutAnimationsSoundAtStart: 0
@@ -2073,15 +2073,15 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  Bg: {fileID: 229258740851149090}
-  RoleSkillTitle: {fileID: 6341724794762634403}
-  UpperRegion: {fileID: 9191012442233836144}
-  RoleSkillIcon: {fileID: 468877192302355745}
-  RoleSkillLevel: {fileID: 8611771535091959384}
-  RoleSkillExplain: {fileID: 3186168499656591302}
-  NextLevelTitle: {fileID: 3605138817940937240}
-  NextLevelExplain: {fileID: 735320697142012345}
-  SkillUpgradeMaterialsIcon: {fileID: 4451739203496139070}
-  SkillUpgradeMaterialsnumber: {fileID: 7388935203175641007}
-  SkillUogradeBtn: {fileID: 0}
-  SkillUogradeText: {fileID: 3923301820371756803}
+  m_Bg: {fileID: 229258740851149090}
+  m_RoleSkillTitle: {fileID: 6341724794762634403}
+  m_UpperRegion: {fileID: 9191012442233836144}
+  m_RoleSkillIcon: {fileID: 468877192302355745}
+  m_RoleSkillLevel: {fileID: 8611771535091959384}
+  m_RoleSkillExplain: {fileID: 3186168499656591302}
+  m_NextLevelTitle: {fileID: 3605138817940937240}
+  m_NextLevelExplain: {fileID: 735320697142012345}
+  m_SkillUpgradeMaterialsIcon: {fileID: 4451739203496139070}
+  m_SkillUpgradeMaterialsnumber: {fileID: 7388935203175641007}
+  m_SkillUogradeBtn: {fileID: 8357741279063265320}
+  m_SkillUogradeText: {fileID: 3923301820371756803}

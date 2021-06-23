@@ -30,11 +30,11 @@ namespace GameWish.Game
 
         private void BindModelToUI()
         {
-            m_PanelData.roleModel.level.SubscribeToTextMeshPro(RoleLevel, "Lv:{0}");
-            m_PanelData.roleModel.level.SubscribeToTextMeshPro(ExperienceValue, "{0}/999");
+            m_PanelData.roleModel.level.SubscribeToTextMeshPro(m_RoleLevel, "Lv:{0}");
+            m_PanelData.roleModel.level.SubscribeToTextMeshPro(m_ExperienceValue, "{0}/999");
             m_PanelData.roleModel.level.Subscribe(value =>
            {
-               ExperienceBar.fillAmount = (float)value / 999f;
+               m_ExperienceBar.fillAmount = (float)value / 999f;
            });
         }
 
@@ -47,10 +47,10 @@ namespace GameWish.Game
         #region RefreshPanelView
         private void RefreshRoleIsUnclockView(bool isUnlock)
         {
-            StartRegion.gameObject.SetActive(isUnlock);
-            RoleLevel.gameObject.SetActive(isUnlock);
-            ExperienceBar.gameObject.SetActive(isUnlock);
-            EquipRegion.gameObject.SetActive(isUnlock);
+            m_StartRegion.gameObject.SetActive(isUnlock);
+            m_RoleLevel.gameObject.SetActive(isUnlock);
+            m_ExperienceBar.gameObject.SetActive(isUnlock);
+            m_EquipRegion.gameObject.SetActive(isUnlock);
         }
 
         private void RefreshRoleView()
@@ -61,10 +61,10 @@ namespace GameWish.Game
         private void AddSkillItem()
         {
             SoundButton skillBtn = ((GameObject)LoadPageRes("SkillSubpart")).GetComponent<SoundButton>();
-            skillBtn.transform.SetParent(SkillRegion);
+            skillBtn.transform.SetParent(m_SkillRegion);
             skillBtn.onClick.AddListener(() =>
             {
-                UIMgr.S.OpenPanel(UIID.RoleSkillPanel, m_PanelData.roleModel.id);
+                UIMgr.S.OpenPanel(UIID.RoleSkillUpgradePanel, m_PanelData.roleModel.id);
             });
         }
         #endregion
