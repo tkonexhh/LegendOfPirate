@@ -74,7 +74,7 @@ namespace GameWish.Game
             this.foodQualityType = EnumUtil.ConvertStringToEnum<FoodQualityType>(tdData.quality);
             this.desc = tdData.desc;
             this.foodBuffType = EnumUtil.ConvertStringToEnum<FoodBuffType>(tdData.buffType);
-            this.buffRate = float.Parse(tdData.buffRate);
+            this.buffRate = tdData.buffRate;
             this.buffTime = tdData.buffTime;
             this.makeTime = tdData.makeTime;
             this.costCoin = tdData.makeCost;

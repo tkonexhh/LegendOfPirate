@@ -37,6 +37,7 @@ namespace GameWish.Game
                 TDGlobalConfigTable.metaData,
                 TDMaterialConfigTable.metaData,
                 TDRoleConfigTable.metaData,
+                TDRoleSkillConfigTable.metaData,
                 TDMarinLevelConfigTable.metaData,
                 
 

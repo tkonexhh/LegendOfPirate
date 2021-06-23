@@ -124,9 +124,15 @@ namespace GameWish.Game
             }
         }
 
-        public void UpgradeSkill()
+        public void UpgradeSkill(int skillID,int delta = 1)
         {
-
+            if (roleData.UpgradeRoleSkill(skillID, delta))
+            {
+                RoleSkillModel roleSkillModel = skillList.FirstOrDefault(i => i.skillId == skillID);
+                roleSkillModel.UpgradeSkill(delta);
+            }
+            else
+                Log.e("Upgrade error: = skillID" + skillID);
         }
 
         public bool AddEquip()

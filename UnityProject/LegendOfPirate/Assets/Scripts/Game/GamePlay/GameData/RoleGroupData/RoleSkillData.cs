@@ -17,7 +17,7 @@ namespace GameWish.Game
         public RoleSkillData(int id)
         {
             this.id = id;
-            this.level = 1;
+            this.level = 0;
 
             m_RoleGroupData = null;
         }

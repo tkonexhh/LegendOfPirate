@@ -23,13 +23,7 @@ namespace GameWish.Game
 		private int m_RoleID;
 		#endregion
 
-		#region Method
-		private void OnReset()
-		{
-			m_RoleSkillIcon.enabled = false;
-			m_RoleSkillLock.enabled = false;
-		}
-
+		#region Public
 		public void OnInit(int roleID, RoleSkillModel roleSkillModel)
 		{
 			OnReset();
@@ -42,32 +36,43 @@ namespace GameWish.Game
 
 			OnRefresh();
 		}
+		#endregion
 
-        private void OnClickAddListener()
-        {
+		#region Private
+		private void OnReset()
+		{
+			m_RoleSkillIcon.enabled = false;
+			m_RoleSkillLock.enabled = false;
+		}
+		private void OnClickAddListener()
+		{
 			m_RoleSkillBtn.OnClickAsObservable().Subscribe(_ => { OpenRoleSkillPanel(); }).AddTo(this);
 		}
 
-        private void OpenRoleSkillPanel()
-        {
-			UIMgr.S.OpenTopPanel(UIID.RoleSkillUpgradePanel,PanelCallbakc, m_RoleID, m_RoleSkillModel);
-        }
-
-        private void PanelCallbakc(AbstractPanel obj)
-        {
-        }
-
-        private void BindModelToUI()
-        {
+		private void OpenRoleSkillPanel()
+		{
+			UIMgr.S.OpenTopPanel(UIID.RoleSkillUpgradePanel, PanelCallbakc, m_RoleID, m_RoleSkillModel);
+		}
+		private void PanelCallbakc(AbstractPanel obj)
+		{
+		}
+		private void BindModelToUI()
+		{
 			m_RoleSkillModel.skillLevel
-				.Select(val => CommonMethod.GetStringForTableKey(LanguageKeyDefine.FIXED_TITLE_LV) + val)
+				.Select(val => HandleRoleSkillLevel(val))
 				.SubscribeToTextMeshPro(m_RoleSkillLevel).AddTo(this);
 		}
 
-        private void OnRefresh()
+		private void OnRefresh()
 		{
 			//m_RoleSkillIcon.sprite = SpriteHandler.S.GetSprite();
 		}
-	    #endregion
+		private string HandleRoleSkillLevel(int val)
+		{
+			if (val == 0)
+				val++;
+			return CommonMethod.GetStringForTableKey(LanguageKeyDefine.FIXED_TITLE_LV) + val;
+		}
+		#endregion
 	}
 }

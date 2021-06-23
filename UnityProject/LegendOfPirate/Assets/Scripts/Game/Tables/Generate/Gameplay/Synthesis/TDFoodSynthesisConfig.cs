@@ -19,7 +19,7 @@ namespace GameWish.Game
         private string m_Desc;   
         private string m_MakeRes;   
         private string m_BuffType;   
-        private string m_BuffRate;   
+        private EInt m_BuffRate = 0;   
         private EInt m_BuffTime = 0;   
         private EInt m_MakeTime = 0;   
         private EInt m_MakeCost = 0;  
@@ -64,7 +64,7 @@ namespace GameWish.Game
         /// <summary>
         /// 增益效率（%增加岛资源产出效率）
         /// </summary>
-        public  string  buffRate {get { return m_BuffRate; } }
+        public  int  buffRate {get { return m_BuffRate; } }
        
         /// <summary>
         /// 维持时长（s）
@@ -118,7 +118,7 @@ namespace GameWish.Game
                     m_BuffType = dataR.ReadString();
                     break;
                 case 7:
-                    m_BuffRate = dataR.ReadString();
+                    m_BuffRate = dataR.ReadInt();
                     break;
                 case 8:
                     m_BuffTime = dataR.ReadInt();

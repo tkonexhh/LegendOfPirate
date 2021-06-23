@@ -12,6 +12,7 @@ namespace GameWish.Game
 	{
 		public const string Name = "RoleSkillUpgradePanel";
 		
+		[SerializeField] private Button m_BgExitBtn;
 		[SerializeField] private Image m_Bg;
 		[SerializeField] private TextMeshProUGUI m_RoleSkillTitle;
 		[SerializeField] private RectTransform m_UpperRegion;
@@ -22,8 +23,8 @@ namespace GameWish.Game
 		[SerializeField] private TextMeshProUGUI m_NextLevelExplain;
 		[SerializeField] private Image m_SkillUpgradeMaterialsIcon;
 		[SerializeField] private TextMeshProUGUI m_SkillUpgradeMaterialsnumber;
-		[SerializeField] private SoundButton m_SkillUogradeBtn;
-		[SerializeField] private TextMeshProUGUI m_SkillUogradeText;
+		[SerializeField] private SoundButton m_SkillUpgradeBtn;
+		[SerializeField] private TextMeshProUGUI m_SkillUpgradeText;
 		
 		
 	}

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
 using UniRx;
+using System;
 
 namespace GameWish.Game
 {
@@ -28,12 +29,26 @@ namespace GameWish.Game
 		}
 		
 		private void BindModelToUI()
-		{
-			m_RoleSkillModel?.skillLevel.SubscribeToTextMeshPro(m_RoleSkillTitle);
+        {
+            m_RoleSkillModel?.skillLevel
+				.Select(val=> HandleRoleSkillLevel(val))
+				.SubscribeToTextMeshPro(m_RoleSkillLevel).AddTo(this);
+
+			m_RoleSkillModel?.skillLevel
+				.Select(val=> HandleSkillDifferentStates(val))
+				.SubscribeToTextMeshPro(m_NextLevelExplain).AddTo(this);
+
+			m_RoleSkillModel?.skillLevel
+				.Select(val => HandleSkillUpgradeClip())
+				.SubscribeToTextMeshPro(m_SkillUpgradeMaterialsnumber).AddTo(this);
+
+			m_RoleSkillModel?.skillLevel
+			.Select(val => HandleUpgradeBtnTMP(val))
+			.SubscribeToTextMeshPro(m_SkillUpgradeText).AddTo(this);
 		}
-		
 		private void BindUIToModel()
 		{
+			m_SkillUpgradeBtn.OnClickAsObservable().Subscribe(_ => { HandleSkillUpgradeBtn(); }).AddTo(this);
 		}
 	}
 }

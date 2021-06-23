@@ -84,7 +84,7 @@ namespace GameWish.Game
                     GoComplete();
                     break;
                 case TaskState.End:
-                    FloatMessage.S.ShowMsg("The task has been completed today～～～");
+                    FloatMessageTMP.S.ShowMsg("The task has been completed today～～～");
                     break;
                 case TaskState.Complete:
                     // DataAnalysisMgr.S.CustomEvent(DefineTaskDot.Task_get_daily_reward, type);

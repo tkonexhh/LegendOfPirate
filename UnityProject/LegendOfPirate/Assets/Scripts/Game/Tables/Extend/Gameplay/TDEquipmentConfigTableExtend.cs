@@ -31,17 +31,16 @@ namespace GameWish.Game
                 Log.e("e =" + e);
             }
         }
-
-        public static string GetEquipmentNameById(int id) 
+        #region Public
+        public static string GetEquipmentNameById(int id)
         {
             var fitId = id * 10 + 1;
-            foreach (var item in dataList) 
+            foreach (var item in dataList)
             {
                 if (item.equipmentId == fitId) return item.roleName.Replace("1", "");
             }
             return null;
         }
-        #region Public
         public static EquipmentUnitConfig GetEquipmentConfigByID(int equipID)
         {
             EquipmentUnitConfig equipConfig;
@@ -57,7 +56,6 @@ namespace GameWish.Game
         }
         #endregion
     }
-
     #region Struct
     /// <summary>
     /// 装备强化消耗
