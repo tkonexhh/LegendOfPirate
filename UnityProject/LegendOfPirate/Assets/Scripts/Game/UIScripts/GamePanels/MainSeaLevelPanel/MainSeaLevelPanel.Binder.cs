@@ -78,8 +78,8 @@ namespace GameWish.Game
                 }
 
                 levelObj.GetComponent<RectTransform>().SetParent(m_Content);
-                levelObj.GetComponent<RectTransform>().SetLocalZ(0);
-                levelObj.GetComponent<RectTransform>().localScale = Vector3.one;
+                levelObj.transform.SetParent(m_Content);
+                levelObj.transform.ResetTrans();
                 levelObj.GetComponent<LevelItem>().OnUIInit(this, m_PanelData.mainSeaLevelModel.GetBattleLevelData(i + 101));
                 levelObj.GetComponent<Button>().OnClickAsObservable().Subscribe(_ => OnChooseLevel(levelObj.GetComponent<LevelItem>())).AddTo(this);
                 levelObj.SetActive(true);

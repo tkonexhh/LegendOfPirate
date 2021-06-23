@@ -45,7 +45,7 @@ namespace GameWish.Game
 
         private void OnClickF2()
         {
-
+            UIMgr.S.OpenPanel(UIID.DailyTaskPanel);
         }
 
         private void OnClickF3()
@@ -55,6 +55,7 @@ namespace GameWish.Game
             //  AdEffectHandleMgr.S.Handle(AdType.AutoDoubleSummon, null);
             // UIMgrExtend.S.OpenAdStaticShowPanel(AdType.AutoDoubleSummon);
             //MagicCloudMgr.S.StartCloudAttack();
+            Qarth.EventSystem.S.Send(EventID.DailyTimesAdd, (int)DailyTaskType.Login);
         }
         int add = 1;
         private void OnClickF4()

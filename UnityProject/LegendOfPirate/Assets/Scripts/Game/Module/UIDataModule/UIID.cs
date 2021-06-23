@@ -101,5 +101,9 @@ namespace GameWish.Game
         #region 海战选关相关
         MainSeaLevelPanel,//选关界面
         #endregion
+
+        #region 任务系统
+        DailyTaskPanel,//日常任务界面
+        #endregion
     }
 }
