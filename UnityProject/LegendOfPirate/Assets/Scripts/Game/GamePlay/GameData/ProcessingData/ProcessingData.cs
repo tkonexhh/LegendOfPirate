@@ -8,12 +8,12 @@ namespace GameWish.Game
 {
     public class ProcessingData : IDataClass
     {
-        public List<ProcessingSlotData> processingItemList = new List<ProcessingSlotData>();
+        public List<ProcessingSlotDataItem> processingItemList = new List<ProcessingSlotDataItem>();
         public override void InitWithEmptyData()
         {
             for (int i = 0; i < Define.PROCESSING_ROOM_MAX_SLOT; i++)
             {
-                var item = new ProcessingSlotData(i);
+                var item = new ProcessingSlotDataItem(i);
                 processingItemList.Add(item);
             }
         }
@@ -23,9 +23,9 @@ namespace GameWish.Game
 
         }
 
-        private ProcessingSlotData? GetProcessingDataItem(int slotId)
+        private ProcessingSlotDataItem? GetProcessingDataItem(int slotId)
         {
-            ProcessingSlotData? item = processingItemList.FirstOrDefault(i => i.slotId == slotId);
+            ProcessingSlotDataItem? item = processingItemList.FirstOrDefault(i => i.slotId == slotId);
             if (item == null)
             {
                 Log.e("ProcessingSlotDataItem Not Found: " + slotId);
@@ -35,7 +35,7 @@ namespace GameWish.Game
     }
 
     [Serializable]
-    public struct ProcessingSlotData
+    public struct ProcessingSlotDataItem
     {
         public int slotId;
         public int partId;
@@ -44,7 +44,7 @@ namespace GameWish.Game
 
         private ProcessingData m_ProcessingData;
 
-        public ProcessingSlotData(int slot)
+        public ProcessingSlotDataItem(int slot)
         {
             m_ProcessingData = null;
             slotId = slot;
