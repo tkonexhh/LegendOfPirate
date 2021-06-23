@@ -52,7 +52,15 @@ namespace GameWish.Game
             ReadOnlyCollection<MarinLevelConfig> list = await StorageHandler.S.QuerySpecialObject<MarinLevelConfig>("MarinLevelConfig", "Level", levelId);
             foreach (MarinLevelConfig item in list)
             {
-                CreateReward(item.Reward);
+                if (item.GetState == 0)//未领取
+                {
+                    CreateReward(item.Reward);
+                    StorageHandler.S.UpdateObject("MarinLevelConfig", item.ObjectId, "State", 1);
+                }
+                else
+                {
+                    CloseSelfPanel();
+                }
             }
             // string reward = list[0].Reward;
             m_PanelData.currentLevelId.Value = levelId;

@@ -33,10 +33,10 @@ MonoBehaviour:
       Data: 1|GameWish.Game.ModifierAttribute, Assembly-CSharp
     - Name: AttributeType
       Entry: 3
-      Data: 4
+      Data: 1
     - Name: NumericValue
       Entry: 3
-      Data: 40
+      Data: 27
     - Name: 
       Entry: 8
       Data: 
@@ -48,12 +48,12 @@ MonoBehaviour:
       Data: 
   ID: 0
   Name: Buff1
-  Time: 105
-  BuffTriggerType: 1
-  EnabledStateModify: 0
-  StatusControls: 7
-  EnabledAttributeModify: 1
+  Time: 5
+  BuffTriggerType: 4
   Interval: 1
+  EnabledStateModify: 1
+  StatusControls: 8
+  EnabledAttributeModify: 1
   EnabledAppend: 0
   AppendType: 0
   MaxAppendNum: 44

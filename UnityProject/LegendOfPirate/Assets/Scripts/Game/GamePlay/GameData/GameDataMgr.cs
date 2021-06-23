@@ -34,6 +34,7 @@ namespace GameWish.Game
         private ProcessingDataHandler m_ProcessingDataHandler = null;
         private TrainingDataHandler m_TrainingDataHandler = null;
         private BattleDataHandler m_BattleDataHandler = null;
+        private TaskDataHandler m_TaskDataHandler = null;
 
         private int m_LoadDoneCount = 0;
         private Action m_OnLoadDoneCallback = null;
@@ -59,6 +60,7 @@ namespace GameWish.Game
             m_ProcessingDataHandler = new ProcessingDataHandler();
             m_TrainingDataHandler = new TrainingDataHandler();
             m_BattleDataHandler = new BattleDataHandler();
+            m_TaskDataHandler = new TaskDataHandler();
 
             //2.Add To List
             m_DataHanlderList.Add(m_PlayerInfoDataHandler);
@@ -73,6 +75,7 @@ namespace GameWish.Game
             m_DataHanlderList.Add(m_ProcessingDataHandler);
             m_DataHanlderList.Add(m_TrainingDataHandler);
             m_DataHanlderList.Add(m_BattleDataHandler);
+            m_DataHanlderList.Add(m_TaskDataHandler);
 
             //3.Set Callback
             m_PlayerInfoDataHandler.LoadData(OnLoadDone);
@@ -87,7 +90,7 @@ namespace GameWish.Game
             m_ProcessingDataHandler.LoadData(OnLoadDone);
             m_TrainingDataHandler.LoadData(OnLoadDone);
             m_BattleDataHandler.LoadData(OnLoadDone);
-
+            m_TaskDataHandler.LoadData(OnLoadDone);
 
             RegisterEvents();
         }

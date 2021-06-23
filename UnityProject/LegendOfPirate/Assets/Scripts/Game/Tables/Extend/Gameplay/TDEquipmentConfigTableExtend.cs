@@ -11,19 +11,18 @@ namespace GameWish.Game
     {
         public static EquipmentUnitConfig[] equipmentUnitProperites = null;
         private static int m_EquipUnitIndex = 0;
+
         static void CompleteRowAdd(TDEquipmentConfig tdData, int rowCount)
         {
             //Try Catch 防止表内数据有问题
             try
             {
                 if (equipmentUnitProperites==null)
-                {
                     equipmentUnitProperites = new EquipmentUnitConfig[rowCount];
-                }
+            
                 if (m_EquipUnitIndex > equipmentUnitProperites.Length)
-                {
                     throw new ArgumentOutOfRangeException("Equipment Data Out Of Range");
-                }
+            
                 equipmentUnitProperites[m_EquipUnitIndex] = new EquipmentUnitConfig(tdData);
                 m_EquipUnitIndex++;
             }
@@ -32,9 +31,19 @@ namespace GameWish.Game
                 Log.e("e =" + e);
             }
         }
+
+        public static string GetEquipmentNameById(int id) 
+        {
+            var fitId = id * 10 + 1;
+            foreach (var item in dataList) 
+            {
+                if (item.equipmentId == fitId) return item.roleName.Replace("1", "");
+            }
+            return null;
+        }
     }
 
-    #region struct
+    #region Struct
     /// <summary>
     /// 装备强化消耗
     /// </summary>
@@ -55,7 +64,14 @@ namespace GameWish.Game
     /// </summary>
     public struct EquipAttributeValue
     {
-
+        public EquipAttributeType equipAttrType;
+        public float percentage;
+        public EquipAttributeValue(string strs)
+        {
+            string[] subStrs = strs.Split('|');
+            this.equipAttrType = EnumUtil.ConvertStringToEnum<EquipAttributeType>(subStrs[0]);
+            this.percentage = float.Parse(subStrs[1]);
+        }
     }
 
     public struct EquipmentUnitConfig
@@ -65,11 +81,11 @@ namespace GameWish.Game
         public int nextEquipmentID;
         public string roleName;
         public EquipmentType equipmentType;
-
-
+        public EquipAttributeValue[] equipAttributeValues;
+        public EquipQualityType equipQualityType;
         public EquipStrengthenCost[] equipStrengthenCosts;
         public int coinCostNumber;
-        public EquipAttributeValue equipAttributeValue;
+        public string Desc;
 
         public EquipmentUnitConfig(TDEquipmentConfig tdData)
         {
@@ -78,7 +94,26 @@ namespace GameWish.Game
             this.nextEquipmentID = tdData.nextEquipment;
             this.roleName = tdData.roleName;
             this.equipmentType = EnumUtil.ConvertStringToEnum<EquipmentType>(tdData.equipmentType);
-
+            this.equipQualityType = EnumUtil.ConvertStringToEnum<EquipQualityType>(tdData.quality);
+            this.coinCostNumber = tdData.intensifyCost;
+            this.Desc = tdData.desc;
+            #region Analysis EquipAttributeValue
+            if (!string.IsNullOrEmpty(tdData.paramValue))
+            {
+                string[] strs = tdData.paramValue.Split(';');
+                equipAttributeValues = new EquipAttributeValue[strs.Length];
+                for (int i = 0; i < strs.Length; i++)
+                {
+                    EquipAttributeValue attr = new EquipAttributeValue(strs[i]);
+                    equipAttributeValues[i] = attr;
+                }
+            }
+            else
+            {
+                equipAttributeValues = new EquipAttributeValue[0];
+            }
+            #endregion
+            #region Analysis EquipStrengthenCost
             if (!string.IsNullOrEmpty(tdData.strengthenCost))
             {
                 string[] strs = tdData.strengthenCost.Split(';');
@@ -93,10 +128,8 @@ namespace GameWish.Game
             {
                 equipStrengthenCosts = new EquipStrengthenCost[0];
             }
-
-            this.coinCostNumber = tdData.intensifyCost;
-            equipAttributeValue = new EquipAttributeValue();
-        }
+            #endregion
+        }   
     }
     #endregion
 }

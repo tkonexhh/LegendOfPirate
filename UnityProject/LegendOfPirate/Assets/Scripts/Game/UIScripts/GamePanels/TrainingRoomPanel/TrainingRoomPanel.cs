@@ -36,6 +36,7 @@ namespace GameWish.Game
 
             BindModelToUI();
             BindUIToModel();
+
             OnClickAddListener();
         }
 

@@ -170,7 +170,7 @@ namespace GameWish.Game
     public class ForgeEquipmentSlotModel : Model 
     {
         public BoolReactiveProperty slotIsUnlock;
-        public string weaponName;
+        public string equipmentName;
         public int slotId;
         public int unlockLevel;
 
@@ -180,7 +180,7 @@ namespace GameWish.Game
         {
             this.slotId = slotid;
             this.unlockLevel = TDFacilityForgeTable.dataList[slotid].level;
-            this.weaponName = TDEquipmentSynthesisConfigTable.GetEquipmentSynthesisById(TDFacilityForgeTable.dataList[slotid].unlockEquipmentID).name;
+            this.equipmentName = TDEquipmentConfigTable.GetEquipmentNameById(TDFacilityForgeTable.dataList[slotid].unlockEquipmentID); 
            
             m_ForgeRoomModel = forgeRoomModel;
             slotIsUnlock = new BoolReactiveProperty(unlockStage);
@@ -212,14 +212,15 @@ namespace GameWish.Game
             equipmentConfig = TDEquipmentSynthesisConfigTable.GetEquipmentSynthesisById(equipmentId);
             makeTime = equipmentConfig.makeTime;
             makeResList = equipmentConfig.GetEquipmentResPairs();
-            equipmentName = equipmentConfig.name;
+            equipmentName = TDEquipmentConfigTable.GetEquipmentNameById(equipmentId);
+           
         }
         public void  ResetEquipmentMsg(int equipmentId) 
         {
             equipmentConfig = TDEquipmentSynthesisConfigTable.GetEquipmentSynthesisById(equipmentId);
             makeTime = equipmentConfig.makeTime;
             makeResList = equipmentConfig.GetEquipmentResPairs();
-            equipmentName = equipmentConfig.name;
+            equipmentName = TDEquipmentConfigTable.GetEquipmentNameById(equipmentId);
         }
     }
     public struct ResPair 

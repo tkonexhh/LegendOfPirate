@@ -7,25 +7,7 @@ using System;
 
 namespace GameWish.Game
 {
-	public enum ProcessSlotState 
-	{
-        /// <summary>
-        /// 空闲中
-        /// </summary>
-        Free = 0,
-		/// <summary>
-		/// 加工中
-		/// </summary>
-		Processing = 1,
-        /// <summary>
-        /// 未解锁
-        /// </summary>
-        Locked = 2,
-        /// <summary>
-        /// 选择但是未开始
-        /// </summary>
-        Selected = 3,
-    }
+
 	public partial class ProgressRoomPanel : AbstractAnimPanel
 	{
 		protected override void OnUIInit()

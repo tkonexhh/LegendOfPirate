@@ -28,13 +28,14 @@ namespace GameWish.Game
 
             m_AttackTimer += dt;
             //TODO 攻击速度从Data中读取
-            if (m_AttackTimer >= 2.1f)
+            if (m_AttackTimer >= 2.1f &&
+                !ai.controller.Data.buffedData.StatusMask.HasStatus(StatusControlType.AttackForbid))
             {
                 PlayAttackAnim();
                 m_AttackTimer = 0;
             }
 
-            // FaceToTarget();
+            FaceToTarget();
 
             //检测Target是否太远
             if (Vector3.Distance(ai.controller.transform.position, ai.Target.transform.position) > ai.controller.Data.AtkRange + 0.05f)

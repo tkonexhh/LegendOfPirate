@@ -57,6 +57,12 @@ namespace GameWish.Game
                 TDFacilityWarshipTable.metaData,
                 #endregion
 
+                
+                #region Task
+                TDDailyTaskTable.metaData,
+                TDDailyTaskRewardTable.metaData,
+                #endregion
+
                 #region Synthesis
                 TDEquipmentSynthesisConfigTable.metaData,
                 TDFoodSynthesisConfigTable.metaData,

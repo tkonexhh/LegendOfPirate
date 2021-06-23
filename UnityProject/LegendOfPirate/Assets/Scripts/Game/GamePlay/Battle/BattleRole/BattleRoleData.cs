@@ -47,6 +47,13 @@ namespace GameWish.Game
 
         public void GetDamage(RoleDamagePackage damagePackage)
         {
+            if (buffedData.StatusMask.HasStatus(StatusControlType.HurtForbid))
+            {
+                //伤害无效状态
+                return;
+            }
+
+
             int damage = 0;
             switch (damagePackage.damageType)
             {

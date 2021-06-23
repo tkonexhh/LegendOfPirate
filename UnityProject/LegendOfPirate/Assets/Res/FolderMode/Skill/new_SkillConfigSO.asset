@@ -42,16 +42,16 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 2|GameWish.Game.SkillActionConfig_Damage, Assembly-CSharp
-    - Name: Damage
-      Entry: 3
-      Data: 5
-    - Name: DamageType
-      Entry: 3
-      Data: 1
+      Data: 2|GameWish.Game.SkillActionConfig_Sprint, Assembly-CSharp
+    - Name: range
+      Entry: 4
+      Data: 10
+    - Name: speed
+      Entry: 4
+      Data: 20
     - Name: targetType
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -64,5 +64,5 @@ MonoBehaviour:
   ID: 0
   SkillName: Demo Skill
   Range: 200
-  CD: 5
+  CD: 4
   SkillTriggerType: 0

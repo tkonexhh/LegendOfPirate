@@ -15,7 +15,7 @@ namespace GameWish.Game
         private EInt m_Id = 0;   
         private string m_Name;   
         private string m_SpriteName;   
-        private EInt m_Quality = 0;   
+        private string m_Quality;   
         private string m_Desc;   
         private string m_MakeRes;   
         private string m_BuffType;   
@@ -42,9 +42,9 @@ namespace GameWish.Game
         public  string  spriteName {get { return m_SpriteName; } }
        
         /// <summary>
-        /// 品质(道具名称及道具框颜色，1-红色，2-紫色，3-黑色)
+        /// 品质(白色-普通-Normal；绿色-进阶-Advanced；蓝色-稀有-Rare；紫色-史诗-Epic；红色-传说-Legendary；金色-不朽-Immortal)
         /// </summary>
-        public  int  quality {get { return m_Quality; } }
+        public  string  quality {get { return m_Quality; } }
        
         /// <summary>
         /// 说明
@@ -106,7 +106,7 @@ namespace GameWish.Game
                     m_SpriteName = dataR.ReadString();
                     break;
                 case 3:
-                    m_Quality = dataR.ReadInt();
+                    m_Quality = dataR.ReadString();
                     break;
                 case 4:
                     m_Desc = dataR.ReadString();

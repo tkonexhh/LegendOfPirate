@@ -43,7 +43,7 @@ namespace GameWish.Game
             m_Toggle.interactable = !isLock;
             m_Label.text = !isLock
                 ?  m_ProcessingPartModel.GetPartName()
-                : (string.Format("ProcessingRoom Lv.{0}", m_ProcessingPartModel.unlockLevel));
+                : (string.Format("ProcessingRoom Lv.{0}", m_ProcessingPartModel.unLockLevel));
         }
 
         private void OnToggleValudChange(bool value)

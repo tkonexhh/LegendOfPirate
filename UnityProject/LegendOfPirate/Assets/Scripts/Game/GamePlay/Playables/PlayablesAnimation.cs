@@ -80,6 +80,7 @@ namespace GameWish.Game
 
         public void Play(AnimationClip clip)
         {
+            Debug.LogError(gameObject.name + ":" + clip.name);
             DisconnectPlayables();
 
             prePlayable = currentPlayable;
