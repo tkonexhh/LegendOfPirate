@@ -21,7 +21,7 @@ namespace GameWish.Game
 		[SerializeField] private Image m_PlayerExpImg;
 		[SerializeField] private TextMeshProUGUI m_PlayerTipsTex;
 		[SerializeField] private RectTransform m_TaskInfo;
-		[SerializeField] private Image m_TaskInfoBg;
+		[SerializeField] private Button m_TaskInfoBgBtn;
 		[SerializeField] private Image m_TaskTipsImg;
 		[SerializeField] private TextMeshProUGUI m_TaskTex;
 		[SerializeField] private Button m_RoleBtn;

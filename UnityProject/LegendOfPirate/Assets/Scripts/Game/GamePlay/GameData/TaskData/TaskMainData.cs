@@ -43,9 +43,13 @@ namespace GameWish.Game
             if (parm != null && parm.Length > 0)
             {
                 int idKey = (int)(parm[0]);
-                curCompleteTimes++;
-                EventSystem.S.Send(EventID.MainTaskRefresh, idKey);
-                SetDataDirty();
+                if (idKey == taskID)
+                {
+                    curCompleteTimes++;
+                    //Debug.LogError("curCompleteTimes=" + curCompleteTimes);
+                    EventSystem.S.Send(EventID.MainTaskRefresh, idKey);
+                    SetDataDirty();
+                }
             }
         }
 

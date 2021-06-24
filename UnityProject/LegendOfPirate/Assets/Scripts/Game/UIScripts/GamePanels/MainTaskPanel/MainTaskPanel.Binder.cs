@@ -48,7 +48,6 @@ namespace GameWish.Game
         private void OnBackClicked()
         {
             CloseSelfPanel();
-            UIMgr.S.OpenPanel(UIID.MainMenuPanel);
         }
         private void OnClaimClicked()
         {

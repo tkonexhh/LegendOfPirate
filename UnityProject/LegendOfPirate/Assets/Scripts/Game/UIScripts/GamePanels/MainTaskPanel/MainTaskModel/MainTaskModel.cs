@@ -1,4 +1,5 @@
 using UniRx;
+using Qarth;
 using System.Linq;
 using UnityEngine;
 
@@ -38,6 +39,7 @@ namespace GameWish.Game
             claimTex = new StringReactiveProperty("Claim");
             taskCount = GetCurMainTaskData().count;
         }
+
         public TDMainTask GetCurMainTaskData()
         {
             return GetMainTaskData(curTaskID.Value);
@@ -48,6 +50,7 @@ namespace GameWish.Game
             if (taskID == curTaskID.Value)
             {
                 curTaskID.Value = GetCurTaskID();
+                taskCount = GetCurMainTaskData().count;
                 curCompleteTimes.Value = GetCurCompleteTimes();
                 titleTex.Value = GetCurMainTaskData().taskTitle;
                 contentTex.Value = GetCurMainTaskData().type;
@@ -55,11 +58,16 @@ namespace GameWish.Game
                 bool isFinish = IsFinishTask();
                 claimTex.Value = isFinish ? "Claim" : "GoTo";
                 curMainTaskRewardType = isFinish ? MainTaskRewardType.Finished : MainTaskRewardType.UnFinished;
-                Debug.LogError("curCompleteTimes.Value =" + curCompleteTimes.Value);
             }
-            else
+        }
+        public void RefreshTitle(int taskID)
+        {
+            if (taskID == GetCurTaskID())
             {
-                ResetCompleteTimes();
+                curTaskID.Value = GetCurTaskID();
+                taskCount = GetCurMainTaskData().count;
+                curCompleteTimes.Value = GetCurCompleteTimes();
+                titleTex.Value = GetCurMainTaskData().taskTitle;
             }
         }
 
@@ -89,7 +97,7 @@ namespace GameWish.Game
         {
             taskData.GetTaskMainData().ResetTaskState(curTaskID.Value + 1);
             curTaskID.Value = GetCurTaskID();
-            RefreshData(curTaskID.Value);
+            EventSystem.S.Send(EventID.MainTaskRefresh, curTaskID.Value);
         }
 
     }

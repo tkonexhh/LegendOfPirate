@@ -17,6 +17,7 @@ MonoBehaviour:
     - categoryName: Uncategorized
       itemNames:
       - ~Element Name~
+      - AchievementTaskPanel
       - AdDynamicShowPanel
       - AdStaticShowPanel
       - AlchemyRoomPanel
