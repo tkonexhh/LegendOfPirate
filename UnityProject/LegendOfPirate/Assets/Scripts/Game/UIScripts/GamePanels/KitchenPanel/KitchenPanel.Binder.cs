@@ -46,7 +46,7 @@ namespace GameWish.Game
         {
             m_PanelData.kitchenModel.level.Subscribe(level => OnKitchenLevelChange(level)).AddTo(this);
             m_PanelData.kitchenModel.level.SubscribeToTextMeshPro(m_BuildingLevel,"Lv.{0}").AddTo(this);
-            m_PanelData.kitchenModel.kitchenSlotModelLst.ObserveCountChanged().Subscribe(count => m_KitchenSlotList.SetDataCount(count));
+            m_PanelData.kitchenModel.kitchenSlotModelLst.ObserveCountChanged().Subscribe(count => m_KitchenSlotList.SetDataCount(count)).AddTo(this);
         }
 
         private void BindUIToModel()

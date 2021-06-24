@@ -127,7 +127,7 @@ namespace GameWish.Game
             }
         }
 
-        public void StartProcessing(DateTime startTime)
+        public void StartMaking(DateTime startTime)
         {
             SetTime(startTime);
 

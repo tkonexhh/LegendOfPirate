@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,34 +12,17 @@ namespace GameWish.Game
 	{
 		public const string Name = "LaboratoryRoomPanel";
 		
-		[SerializeField]
-		public GFrame.Editor.GButton BgBtn;
-		[SerializeField]
-		public UnityEngine.UI.Image TitleBg;
-		[SerializeField]
-		public UnityEngine.UI.Image TitleIcon;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI LaboratoryTMP;
-		[SerializeField]
-		public GFrame.Editor.GButton LaboratoryUpgradeBtn;
-		[SerializeField]
-		public UnityEngine.UI.Image ReadyBuildBg;
-		[SerializeField]
-		public RectTransform LaboratoryGoodsTra;
-		[SerializeField]
-		public UnityEngine.UI.Image ReadyStateIcon;
-		[SerializeField]
-		public RectTransform MaterialsTra;
-		[SerializeField]
-		public GFrame.Editor.GButton MakeBtn;
-		[SerializeField]
-		public UnityEngine.UI.Image BottomRegionBg;
-		[SerializeField]
-		public GFrame.Editor.GButton LeftArrowBtn;
-		[SerializeField]
-		public GFrame.Editor.GButton RightArrowBtn;
-		[SerializeField]
-		public RectTransform BottomLaboratoryTra;
+		[SerializeField] private Button m_CloseBtn;
+		[SerializeField] private IUListView m_LaboratorySlotList;
+		[SerializeField] private Button m_MakeBtn;
+		[SerializeField] private Button m_AddItemBtn;
+		[SerializeField] private Image m_PotionImg;
+		[SerializeField] private IUListView m_ElementList;
+		[SerializeField] private IUListView m_PotionSlotList;
+		[SerializeField] private ToggleGroup m_PotionSlotToggleGroup;
+		[SerializeField] private TextMeshProUGUI m_BuilidingName;
+		[SerializeField] private TextMeshProUGUI m_BuildingLevel;
+		[SerializeField] private Button m_LevelUpBtn;
 		
 		
 	}

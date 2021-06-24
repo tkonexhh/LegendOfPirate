@@ -78,6 +78,7 @@ namespace GameWish.Game
             m_DataHanlderList.Add(m_TrainingDataHandler);
             m_DataHanlderList.Add(m_BattleDataHandler);
             m_DataHanlderList.Add(m_TaskDataHandler);
+            m_DataHanlderList.Add(m_LaboratoryDataHandler);
 
             //3.Set Callback
             m_PlayerInfoDataHandler.LoadData(OnLoadDone);
@@ -93,6 +94,7 @@ namespace GameWish.Game
             m_TrainingDataHandler.LoadData(OnLoadDone);
             m_BattleDataHandler.LoadData(OnLoadDone);
             m_TaskDataHandler.LoadData(OnLoadDone);
+            m_LaboratoryDataHandler.LoadData(OnLoadDone);
 
             RegisterEvents();
         }
