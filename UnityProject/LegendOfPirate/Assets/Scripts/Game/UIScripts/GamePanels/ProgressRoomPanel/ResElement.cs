@@ -8,7 +8,7 @@ using UniRx;
 
 namespace GameWish.Game
 {
-	public class ProcessingResElement : MonoBehaviour
+	public class ResElement : MonoBehaviour
 	{
 		[SerializeField] private Image m_ElementImg;
 		[SerializeField] private TextMeshProUGUI m_CountText;

@@ -13,5 +13,16 @@ namespace GameWish.Game
         {
 
         }
+        public List<ResPair> GetMakeResList() 
+        {
+            List<ResPair> ret = new List<ResPair>();
+            var resPairString = m_MakeRes.Split(';');
+            foreach (var item in resPairString)
+            {
+                var resMsg = Helper.String2IntArray(item, "|");
+                ret.Add(new ResPair(resMsg[0], resMsg[1]));
+            }
+            return ret;
+        }
     }
 }

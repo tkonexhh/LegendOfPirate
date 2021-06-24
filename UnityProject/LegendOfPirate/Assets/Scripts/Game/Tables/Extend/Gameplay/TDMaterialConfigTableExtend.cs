@@ -30,7 +30,16 @@ namespace GameWish.Game
                 Log.e("e =" + e);
             }
         }
+        public static TDMaterialConfig GetConfigById(int id) 
+        {
+            foreach (var item in dataList) 
+            {
+                if (item.materialId == id) return item;
+            }
+            return null;
+        }
     }
+
 
     #region Struct
     /// <summary>

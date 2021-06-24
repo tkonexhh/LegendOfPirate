@@ -13,5 +13,14 @@ namespace GameWish.Game
         {
 
         }
+
+        public static TDPotionSynthesisConfig GetConfigById(int id) 
+        {
+            foreach (var item in dataList) 
+            {
+                if (item.id == id) return item;
+            }
+            return null;
+        }
     }
 }

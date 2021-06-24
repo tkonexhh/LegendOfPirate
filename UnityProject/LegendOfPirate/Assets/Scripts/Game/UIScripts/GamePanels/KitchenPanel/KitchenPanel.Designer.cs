@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,32 +12,17 @@ namespace GameWish.Game
 	{
 		public const string Name = "KitchenPanel";
 		
-		[SerializeField]
-		public UnityEngine.UI.Button CloseBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI BuilidingName;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI BuildingLevel;
-		[SerializeField]
-		public GFrame.Editor.GButton LevelUpBtn;
-		[SerializeField]
-		public Canvas CookList;
-		[SerializeField]
-		public GFrame.Editor.GButton AddItemBtn;
-		[SerializeField]
-		public UnityEngine.UI.Image FoodImg;
-		[SerializeField]
-		public UnityEngine.UI.Image Element1Img;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI Element1Count;
-		[SerializeField]
-		public UnityEngine.UI.Image Element2Img;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI Element2Count;
-		[SerializeField]
-		public GFrame.Editor.GButton CookBtn;
-		[SerializeField]
-		public UnityEngine.UI.ToggleGroup Content;
+		[SerializeField] private Button m_CloseBtn;
+		[SerializeField] private Button m_AddItemBtn;
+		[SerializeField] private IUListView m_KitchenSlotList;
+		[SerializeField] private TextMeshProUGUI m_BuilidingName;
+		[SerializeField] private TextMeshProUGUI m_BuildingLevel;
+		[SerializeField] private Button m_LevelUpBtn;
+		[SerializeField] private Image m_FoodImg;
+		[SerializeField] private IUListView m_ElementList;
+		[SerializeField] private Button m_CookBtn;
+		[SerializeField] private IUListView m_FoodSlotList;
+		[SerializeField] private ToggleGroup m_FoodSlotToggleGroup;
 		
 		
 	}

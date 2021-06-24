@@ -100,17 +100,7 @@ namespace GameWish.Game
         }
         private void OnBottomCellRenderer(Transform root, int index)
         {
-            BottomLaboratoryPotionModule bottomLaboratoryPotionModule = bottomLaboratoryPotionModules.FirstOrDefault(item => item.index.Value == index);
-            if (bottomLaboratoryPotionModule != null)
-            {
-                root.GetComponent<BottomLaboratoryPotion>().OnInit(bottomLaboratoryPotionModule);
-            }
-            else
-            {
-                BottomLaboratoryPotionModule newBottomLaboratoryPotionModule = new BottomLaboratoryPotionModule(index, false);
-                bottomLaboratoryPotionModules.Add(newBottomLaboratoryPotionModule);
-                root.GetComponent<BottomLaboratoryPotion>().OnInit(newBottomLaboratoryPotionModule);
-            }
+          
         }
 
         #endregion

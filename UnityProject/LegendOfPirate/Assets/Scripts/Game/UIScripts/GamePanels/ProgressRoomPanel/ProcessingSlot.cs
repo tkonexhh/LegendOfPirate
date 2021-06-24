@@ -14,19 +14,16 @@ namespace GameWish.Game
 		[SerializeField] private Image m_TimerFillImg;
 		[SerializeField] private Image m_Locker;
         [SerializeField] private GameObject m_Timer;
-		private int m_SlotId;
 		private ProcessingSlotModel m_ProcessingSlotModel;
 		private ProcessingRoomModel m_ProcessingRoomModel;
 		private List<IDisposable> m_DisposeLst = new List<IDisposable>();
 		public void SetInit(int slotId) 
 		{
-			m_SlotId = slotId;
 			m_ProcessingRoomModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.ProcessingRoom) as ProcessingRoomModel;
 			m_ProcessingSlotModel = m_ProcessingRoomModel.processingSlotModelList[slotId];
 			foreach (var item in m_DisposeLst) 
 			{
 				item.Dispose();
-
 			}
 			m_DisposeLst.Clear();
 			BindModelToUI();
@@ -34,7 +31,7 @@ namespace GameWish.Game
 
 		private void BindModelToUI() 
 		{
-            m_DisposeLst.Add(m_ProcessingSlotModel.processState.AsObservable().Subscribe(stage => OnSlotStageChange(stage)).AddTo(this));
+            m_DisposeLst.Add(m_ProcessingSlotModel.processState.AsObservable().Subscribe(state => OnSlotStageChange(state)).AddTo(this));
             m_DisposeLst.Add(m_ProcessingSlotModel.ProcessingRemainTime.Where(time => time > 0).Subscribe(timer => OnTimerUpdate(timer)).AddTo(this));
 			//m_DisposeLst.Add(m_ProcessingSlotModel.ProcessingRemainTime.Where(time => time <= 0 &&m_ProcessingSlotModel.processState.Value == ProcessSlotState.Processing).Subscribe(_ => OnTimeUp()).AddTo(this));
 
