@@ -1185,7 +1185,6 @@ GameObject:
   - component: {fileID: 1046038689176400078}
   - component: {fileID: 1046038689176400077}
   - component: {fileID: 7386271814456540428}
-  - component: {fileID: 251213918089425359}
   m_Layer: 0
   m_Name: LevelItem
   m_TagString: Untagged
@@ -1320,22 +1319,6 @@ MonoBehaviour:
   m_Lock: {fileID: 1046038689970482835}
   m_LockBtn: {fileID: 1046038689831581224}
   curLevelId: 0
---- !u!114 &251213918089425359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1046038689176400066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!1 &1046038689218782817
 GameObject:
   m_ObjectHideFlags: 0

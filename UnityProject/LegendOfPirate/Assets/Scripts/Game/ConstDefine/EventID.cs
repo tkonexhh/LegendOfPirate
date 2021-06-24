@@ -63,6 +63,10 @@ namespace GameWish.Game
         /// </summary>
         AchievementTimesAdd,
         /// <summary>
+        /// 主线任务完成加1
+        /// </summary>
+        MainTaskTimesAdd,
+        /// <summary>
         /// 日常任务刷新
         /// </summary>
         DailyTaskRefresh,
@@ -70,6 +74,10 @@ namespace GameWish.Game
         /// 成就任务刷新
         /// </summary>
         AchievementTaskRefresh,
+        /// <summary>
+        /// 主线任务刷新
+        /// </summary>
+        MainTaskRefresh,
         #endregion
     }
 

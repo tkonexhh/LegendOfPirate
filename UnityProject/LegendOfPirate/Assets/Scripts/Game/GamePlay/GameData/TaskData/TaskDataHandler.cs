@@ -17,6 +17,13 @@ namespace GameWish.Game
         Ads,//广告
         Login,//登录
     }
+    public enum MainTaskType
+    {
+        BuildWarShip,//建造***
+        BuildWarShip1,//建造***
+        BuildWarShip2,//建造***
+    }
+
     public class TaskDataHandler : DataHandlerBase<TaskData>, IDataHandler
     {
         private const string DATA_NAME = "TaskData";

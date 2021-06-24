@@ -20,6 +20,7 @@ namespace GameWish.Game
         {
             base.Enter(entity);
 
+            //Log.e("Enter wander");
             m_WalkablePosList = EnvMgr.S.ShipController.ShipView.GetWalkablePosList();
 
             int random = Random.Range(0, m_WalkablePosList.Count);

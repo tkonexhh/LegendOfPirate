@@ -34,8 +34,8 @@ namespace GameWish.Game
         #region Public
         public static string GetEquipmentNameById(int id)
         {
-            var fitId = id * 10 + 1;
-            foreach (var item in dataList)
+            var fitId = id * 100 + 1;
+            foreach (var item in dataList) 
             {
                 if (item.equipmentId == fitId) return item.roleName.Replace("1", "");
             }

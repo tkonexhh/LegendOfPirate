@@ -44,6 +44,7 @@ namespace GameWish.Game
 
         public void SetTargetPos(Vector3 pos)
         {
+            //Log.e("Role Set Target Pos: " + pos.ToString());
             m_RoleMonoRef.AstarAI.maxSpeed = 10;
             m_RoleMonoRef.AstarAI.canMove = true;
             m_RoleMonoRef.AstarAI.destination = pos;

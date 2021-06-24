@@ -61,7 +61,7 @@ namespace GameWish.Game
 
                 for (int i = 0; i < listTaskItemData.Count; i++)
                 {
-                    dicTaskItemData.Add(listTaskItemData[i].m_IdKey, listTaskItemData[i]);
+                    dicTaskItemData.Add(listTaskItemData[i].idKey, listTaskItemData[i]);
                 }
             }
             return dicTaskItemData;
@@ -69,10 +69,13 @@ namespace GameWish.Game
 
         public void NewDay()
         {
+            activeNum = 0;
+            getRewardList = new int[] { 0, 0, 0, 0, 0 };
             for (int i = 0; i < TDDailyTaskTable.count; i++)
             {
                 GetTaskItemData(TDDailyTaskTable.dataList[i].taskID).NewDay();
             }
+            SetDataDirty();
         }
         //state = 1 代表已领取 0 代表未领取
         public void SetGetRewardState(int index, int state)
@@ -100,9 +103,9 @@ namespace GameWish.Game
             bool exist = false;
             for (int i = 0; i < TDDailyTaskTable.count; i++)
             {
-                if (!GetTaskItemData(TDDailyTaskTable.dataList[i].taskID).m_IsGetRewardToday)
+                if (!GetTaskItemData(TDDailyTaskTable.dataList[i].taskID).isGetRewardToday)
                 {
-                    if (GetTaskItemData(TDDailyTaskTable.dataList[i].taskID).m_CurCompleteTimes >= TDDailyTaskTable.dataList[i].taskCount)
+                    if (GetTaskItemData(TDDailyTaskTable.dataList[i].taskID).curCompleteTimes >= TDDailyTaskTable.dataList[i].taskCount)
                     {
                         exist = true;
                     }

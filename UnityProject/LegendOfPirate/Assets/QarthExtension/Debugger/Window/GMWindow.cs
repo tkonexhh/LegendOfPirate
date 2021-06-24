@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -74,7 +74,8 @@ namespace GameWish.Game
 
             #region 仓库
             GUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("仓库", new[] { GUILayout.Width(100) });
+            GUILayout.Label("仓库");
+            //EditorGUILayout.LabelField("仓库", new[] { GUILayout.Width(100) });
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();

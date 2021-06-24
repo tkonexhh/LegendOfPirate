@@ -10,23 +10,26 @@ namespace GameWish.Game
 
         }
 
-        public TaskDailyData m_TaskDailyData;
-        public TaskAchievementData m_TaskAchievementData;
+        public TaskDailyData taskDailyData;
+        public TaskAchievementData taskAchievementData;
+        public TaskMainData taskMainData;
 
         public override void InitWithEmptyData()
         {
             CurDayInYear = -1;
-            m_TaskDailyData = new TaskDailyData();
-            m_TaskDailyData.InitWithEmptyData();
-            m_TaskAchievementData = new TaskAchievementData();
-            m_TaskAchievementData.InitWithEmptyData();
+            taskDailyData = new TaskDailyData();
+            taskDailyData.InitWithEmptyData();
+            taskAchievementData = new TaskAchievementData();
+            taskAchievementData.InitWithEmptyData();
+            taskMainData = new TaskMainData();
+            taskMainData.InitWithEmptyData();
         }
 
         public override void OnDataLoadFinish()
         {
-
-            m_TaskDailyData.OnDataLoadFinish();
-            m_TaskAchievementData.OnDataLoadFinish();
+            taskDailyData.OnDataLoadFinish();
+            taskAchievementData.OnDataLoadFinish();
+            taskMainData.OnDataLoadFinish();
             if (CurDayInYear != System.DateTime.Now.DayOfYear)
             {
                 CurDayInYear = System.DateTime.Now.DayOfYear;
@@ -37,24 +40,29 @@ namespace GameWish.Game
 
         public TaskDailyData GetTaskDailyData()
         {
-            return m_TaskDailyData;
+            return taskDailyData;
         }
 
         public TaskAchievementData GetTaskAchievementData()
         {
-            return m_TaskAchievementData;
+            return taskAchievementData;
+        }
+        
+        public TaskMainData GetTaskMainData()
+        {
+            return taskMainData;
         }
 
         //此处需要初始化就每天
         public void NewDay()
         {
-            m_TaskDailyData.NewDay();
+            taskDailyData.NewDay();
         }
 
         public bool CheckExistReward()
         {
             //return m_TaskDailyData.CheckExistReward() || m_TaskAchievementData.CheckExistReward();
-            return m_TaskDailyData.CheckExistReward();
+            return taskDailyData.CheckExistReward();
         }
 
     }
@@ -62,35 +70,35 @@ namespace GameWish.Game
     [Serializable]
     public class TaskItemData
     {
-        public int m_IdKey;
-        public int m_CurCompleteTimes;
-        public bool m_IsGetRewardToday;
+        public int idKey;
+        public int curCompleteTimes;
+        public bool isGetRewardToday;
         private TaskData m_TaskData;
         public TaskItemData() { }
 
         public TaskItemData(int key)
         {
-            m_IdKey = key;
+            idKey = key;
             NewDay();
         }
 
         public void NewDay()
         {
-            m_CurCompleteTimes = 0;
-            m_IsGetRewardToday = false;
+            curCompleteTimes = 0;
+            isGetRewardToday = false;
             SetDataDirty();
         }
 
         public void AddTaskTimes()
         {
-            m_CurCompleteTimes++;
+            curCompleteTimes++;
             SetDataDirty();
         }
 
         public void SetComplete(int completeSum)
         {
-            m_IsGetRewardToday = true;
-            m_CurCompleteTimes = completeSum;
+            isGetRewardToday = true;
+            curCompleteTimes = completeSum;
             SetDataDirty();
         }
         private void SetDataDirty()

@@ -333,7 +333,7 @@ RectTransform:
   m_Children:
   - {fileID: 3603962315352400264}
   m_Father: {fileID: 7863705691535923470}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -426,7 +426,6 @@ GameObject:
   - component: {fileID: 1046038689176400067}
   - component: {fileID: 1046038689176400079}
   - component: {fileID: 1046038689176400078}
-  - component: {fileID: 251213918089425359}
   - component: {fileID: 885239518355370811}
   m_Layer: 0
   m_Name: DailyTasklItem
@@ -497,22 +496,6 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
---- !u!114 &251213918089425359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1046038689176400066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!114 &885239518355370811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,7 +547,7 @@ RectTransform:
   - {fileID: 1046038689176400067}
   - {fileID: 1968651119006259168}
   m_Father: {fileID: 7863705691535923470}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1308,13 +1291,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7863705691535923470}
+  m_Father: {fileID: 1009349555912288856}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -464.9032}
+  m_SizeDelta: {x: 650, y: 1234}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6797416532766815974
 CanvasRenderer:
@@ -2688,7 +2671,6 @@ GameObject:
   - component: {fileID: 3269393516958275489}
   - component: {fileID: 7508421857418361297}
   - component: {fileID: 4033011104265639226}
-  - component: {fileID: 3934998374437922463}
   - component: {fileID: 6978153697128771338}
   m_Layer: 0
   m_Name: RewardBoxItem
@@ -2710,6 +2692,7 @@ RectTransform:
   m_Children:
   - {fileID: 2366105317572403644}
   - {fileID: 6558569933716859637}
+  - {fileID: 1913496306804228085}
   m_Father: {fileID: 1591005594691277935}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2804,22 +2787,6 @@ MonoBehaviour:
   normalScale: {x: 1, y: 1, z: 1}
   sound: 0
   clickEffect: 
---- !u!114 &3934998374437922463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6653759899161969212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!114 &6978153697128771338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3789,7 +3756,6 @@ RectTransform:
   m_Children:
   - {fileID: 1046038689105196162}
   - {fileID: 5559841823205036572}
-  - {fileID: 1913496306804228085}
   - {fileID: 1046038689829449558}
   - {fileID: 6035535517671712084}
   m_Father: {fileID: 0}
@@ -4166,20 +4132,8 @@ MonoBehaviour:
   m_TmpRefreshTime: {fileID: 8201761799103445083}
   m_Slider: {fileID: 5379101972467020192}
   m_RewardBoxItem: {fileID: 4033011104265639226}
-  m_TmpActive: {fileID: 21009741129693323}
-  m_RewardShow: {fileID: 2036321757577179430}
-  m_RewardIcon: {fileID: 1551255097013673229}
-  m_TmpReward: {fileID: 4600670649166557839}
   m_RewardContent: {fileID: 4219030863700338066}
   m_DailyTasklItem: {fileID: 1046038689176400078}
-  m_TmpLimit: {fileID: 3299331178178447933}
-  m_ItemBg: {fileID: 4617691431273853315}
-  m_TmpProgress: {fileID: 372843650744247774}
-  m_TmpTitle: {fileID: 3367797570404918413}
-  m_ActiveIcon: {fileID: 6365973973817506202}
-  m_TmpActiveCount: {fileID: 1250488505763359275}
-  m_BtnGet: {fileID: 167045995065341523}
-  m_TmpState: {fileID: 4009612494139774563}
   m_DailyItemScrollView: {fileID: 1228078712817179591}
   m_DailyTaskContent: {fileID: 7438002756888914083}
   m_BackBtn: {fileID: 5540599632009682456}

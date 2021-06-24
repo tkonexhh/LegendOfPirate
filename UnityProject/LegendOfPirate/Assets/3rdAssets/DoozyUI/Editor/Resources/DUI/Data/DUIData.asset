@@ -17,6 +17,7 @@ MonoBehaviour:
     - categoryName: Uncategorized
       itemNames:
       - ~Element Name~
+      - AchievementTaskPanel
       - AdDynamicShowPanel
       - AdStaticShowPanel
       - AlchemyRoomPanel
@@ -38,6 +39,7 @@ MonoBehaviour:
       - MagicCloudPanel
       - MainMenuPanel
       - MainSeaLevelPanel
+      - MainTaskPanel
       - OccupyOverPanel
       - OfflinePanel
       - OfflineRewardPanel

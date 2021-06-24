@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,50 +12,32 @@ namespace GameWish.Game
 	{
 		public const string Name = "MainMenuPanel";
 		
-		[SerializeField]
-		public TMPro.TextMeshProUGUI DiamondCountTex;
-		[SerializeField]
-		public GFrame.Editor.GButton DiamondAddBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI CoinCountTex;
-		[SerializeField]
-		public GFrame.Editor.GButton CoinAddBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI PlayerNameTex;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI PlayerLevelTex;
-		[SerializeField]
-		public UnityEngine.UI.Image PlayerExpImg;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI PlayerTipsTex;
-		[SerializeField]
-		public GFrame.Editor.GButton RoleBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI RoleTipsTex;
-		[SerializeField]
-		public GFrame.Editor.GButton StorageBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI StorageTipsTex;
-		[SerializeField]
-		public GFrame.Editor.GButton ShipBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI ShipTipsTex;
-		[SerializeField]
-		public GFrame.Editor.GButton MapBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI MapTipsTex;
-		[SerializeField]
-		public GFrame.Editor.GButton ShopBtn;
-		[SerializeField]
-		public GFrame.Editor.GButton CheckBtn;
-		[SerializeField]
-		public GFrame.Editor.GButton AchivBtn;
-		[SerializeField]
-		public GFrame.Editor.GButton OailyBtn;
-		[SerializeField]
-		public GFrame.Editor.GButton Gift1Btn;
-		[SerializeField]
-		public GFrame.Editor.GButton Gift2Btn;
+		[SerializeField] private TextMeshProUGUI m_DiamondCountTex;
+		[SerializeField] private Button m_DiamondAddBtn;
+		[SerializeField] private TextMeshProUGUI m_CoinCountTex;
+		[SerializeField] private Button m_CoinAddBtn;
+		[SerializeField] private TextMeshProUGUI m_PlayerNameTex;
+		[SerializeField] private TextMeshProUGUI m_PlayerLevelTex;
+		[SerializeField] private Image m_PlayerExpImg;
+		[SerializeField] private TextMeshProUGUI m_PlayerTipsTex;
+		[SerializeField] private RectTransform m_TaskInfo;
+		[SerializeField] private Button m_TaskInfoBgBtn;
+		[SerializeField] private Image m_TaskTipsImg;
+		[SerializeField] private TextMeshProUGUI m_TaskTex;
+		[SerializeField] private Button m_RoleBtn;
+		[SerializeField] private TextMeshProUGUI m_RoleTipsTex;
+		[SerializeField] private Button m_StorageBtn;
+		[SerializeField] private TextMeshProUGUI m_StorageTipsTex;
+		[SerializeField] private Button m_ShipBtn;
+		[SerializeField] private TextMeshProUGUI m_ShipTipsTex;
+		[SerializeField] private Button m_MapBtn;
+		[SerializeField] private TextMeshProUGUI m_MapTipsTex;
+		[SerializeField] private Button m_ShopBtn;
+		[SerializeField] private Button m_CheckBtn;
+		[SerializeField] private Button m_AchivBtn;
+		[SerializeField] private Button m_OailyBtn;
+		[SerializeField] private Button m_Gift1Btn;
+		[SerializeField] private Button m_Gift2Btn;
 		
 		
 	}
