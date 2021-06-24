@@ -11,6 +11,8 @@ namespace GameWish.Game
 
         public ShipBody ShipBody { get => m_ShipBody; }
 
+        private List<Vector3> m_WalkablePosList = null;
+
         protected override void Awake()
         {
             base.Awake();
@@ -35,14 +37,15 @@ namespace GameWish.Game
 
         public List<Vector3> GetWalkablePosList()
         {
-            List<Vector3> list = new List<Vector3>();
-
-            for (int i = 0; i < m_ShipBody.randomPosList.Count; i++)
+            if (m_WalkablePosList == null)
             {
-                list.Add(m_ShipBody.randomPosList[i].position);
+                for (int i = 0; i < m_ShipBody.randomPosList.Count; i++)
+                {
+                    m_WalkablePosList.Add(m_ShipBody.randomPosList[i].position);
+                }
             }
 
-            return list;
+            return m_WalkablePosList;
         }
     }
 	
