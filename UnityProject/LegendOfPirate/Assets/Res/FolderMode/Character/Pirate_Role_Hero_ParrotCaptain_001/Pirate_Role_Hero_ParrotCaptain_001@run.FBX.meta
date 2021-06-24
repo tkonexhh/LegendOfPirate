@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 75cbac89a830841f4a52dda706cdde54
+guid: 2ea55699944d743c98142a8c328bf2db
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
-      74: 4800017031479802196
-    second: walk
+      74: 6764006969326823072
+    second: run
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: walk
-      takeName: "\u9E66\u9E49\u8239\u957F@walk"
+      name: run
+      takeName: "\u9E66\u9E49\u8239\u957F@run"
       internalID: 0
       firstFrame: 0
-      lastFrame: 40
+      lastFrame: 22
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -125,5 +125,5 @@ ModelImporter:
   avatarSetup: 0
   additionalBone: 0
   userData: 
-  assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain.bundle
+  assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain_001.bundle
   assetBundleVariant: 

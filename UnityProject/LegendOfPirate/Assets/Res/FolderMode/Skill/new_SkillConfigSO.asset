@@ -39,22 +39,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 2|GameWish.Game.SkillActionConfig_Sprint, Assembly-CSharp
-    - Name: range
-      Entry: 4
-      Data: 10
-    - Name: speed
-      Entry: 4
-      Data: 20
-    - Name: targetType
-      Entry: 3
       Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 

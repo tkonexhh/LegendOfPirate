@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 1299477d2981046e29c2e7b1b65507bb
+guid: 75cbac89a830841f4a52dda706cdde54
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
-      74: -7045724177415207008
-    second: "\u9E66\u9E49\u8239\u957F@death"
+      74: 4800017031479802196
+    second: walk
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -33,7 +33,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: walk
+      takeName: "\u9E66\u9E49\u8239\u957F@walk"
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -96,5 +125,5 @@ ModelImporter:
   avatarSetup: 0
   additionalBone: 0
   userData: 
-  assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain.bundle
+  assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain_001.bundle
   assetBundleVariant: 

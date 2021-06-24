@@ -1,14 +1,11 @@
 fileFormatVersion: 2
-guid: 9a3771c9a1e06413a9ab4d247325db89
+guid: 08e634be1c8244ec489a385ad3fd0d6f
 ModelImporter:
   serializedVersion: 19301
-  internalIDToNameTable:
-  - first:
-      74: 8364194309945998388
-    second: "\u9E66\u9E49\u8239\u957F@skin"
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
-    materialImportMode: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -71,15 +68,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - 20d9f1d06f0644fe29c01dabbd84afc9
-  - 1299477d2981046e29c2e7b1b65507bb
-  - cb546bc9c7278430193867c564f679cf
-  - 2ea55699944d743c98142a8c328bf2db
-  - d4bb41bf880b2420abe81810d2e29665
-  - 311325ae8a35146f4b4f1ad6f5dd0d79
-  - 904f47a471a414bd48c138461393b2d4
-  - 75cbac89a830841f4a52dda706cdde54
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
@@ -104,5 +93,5 @@ ModelImporter:
   avatarSetup: 0
   additionalBone: 0
   userData: 
-  assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain.bundle
+  assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain_001.bundle
   assetBundleVariant: 

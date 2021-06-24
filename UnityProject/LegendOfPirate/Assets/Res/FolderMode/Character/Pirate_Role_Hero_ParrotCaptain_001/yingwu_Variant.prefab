@@ -1,18 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &5584124485249944124
+--- !u!114 &3764431268351279905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7276938192120020870}
+  m_GameObject: {fileID: 9083015633714380496}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a97511c46d389f74fb1b6b1ca03f0818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &7511310846140891863
+--- !u!1001 &8272043007231935361
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -26,18 +26,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 517096f0e62b24067b3b4611256a1479,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 517096f0e62b24067b3b4611256a1479,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 517096f0e62b24067b3b4611256a1479,
-        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 517096f0e62b24067b3b4611256a1479,
         type: 3}
@@ -52,22 +42,22 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 517096f0e62b24067b3b4611256a1479,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 517096f0e62b24067b3b4611256a1479,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 517096f0e62b24067b3b4611256a1479,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.000000011853801
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 517096f0e62b24067b3b4611256a1479,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.0000000065854455
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 517096f0e62b24067b3b4611256a1479,
         type: 3}
@@ -88,17 +78,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d1e30518f061f42fe992df87ed9e2b88, type: 2}
+      objectReference: {fileID: 2100000, guid: 4013d88674ac34841ac6385cc999aed4, type: 2}
     - target: {fileID: 919132149155446097, guid: 517096f0e62b24067b3b4611256a1479,
         type: 3}
       propertyPath: m_Name
-      value: yingwu Variant
+      value: yingwu_Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 517096f0e62b24067b3b4611256a1479, type: 3}
---- !u!1 &7276938192120020870 stripped
+--- !u!1 &9083015633714380496 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 517096f0e62b24067b3b4611256a1479,
     type: 3}
-  m_PrefabInstance: {fileID: 7511310846140891863}
+  m_PrefabInstance: {fileID: 8272043007231935361}
   m_PrefabAsset: {fileID: 0}
