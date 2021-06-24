@@ -16,12 +16,12 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-
             AllocatePanelData(args);
-
             BindModelToUI();
             BindUIToModel();
             OnClickAddListener();
+            RegisterEvents();
+            InitPanelData();
         }
 
         protected override void OnPanelHideComplete()
@@ -36,25 +36,9 @@ namespace GameWish.Game
             base.OnClose();
 
             ReleasePanelData();
+
+            UnregisterEvents();
         }
 
-        #region  OnClickAddListener
-
-        private void OnClickAddListener()
-        {
-            m_RoleBtn.OnClickAsObservable().Subscribe(_ => { OpenRolePanel(); }).AddTo(this);
-            m_StorageBtn.OnClickAsObservable().Subscribe(_ => { OpenWareHousePanel(); }).AddTo(this);
-        }
-
-        private void OpenRolePanel()
-        {
-            //UIMgr.S.OpenPanel(UIID.RoleGroupPanel);
-            UIMgr.S.OpenPanel(UIID.RoleDetailsPanel);
-        }
-        private void OpenWareHousePanel()
-        {
-            UIMgr.S.OpenPanel(UIID.WareHousePanel);
-        }
-        #endregion
     }
 }

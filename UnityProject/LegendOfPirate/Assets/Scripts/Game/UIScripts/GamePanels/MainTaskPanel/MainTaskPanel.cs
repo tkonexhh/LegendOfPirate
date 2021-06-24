@@ -25,6 +25,7 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
             RegisterEvents();
             InitPanelData();
         }
@@ -34,6 +35,8 @@ namespace GameWish.Game
             base.OnPanelHideComplete();
 
             CloseSelfPanel();
+
+            CloseDependPanel(EngineUI.MaskPanel);
         }
 
         protected override void OnClose()
