@@ -4,11 +4,18 @@ using Qarth.Extension;
 using Qarth;
 using UniRx;
 using System;
+using System.Collections.Generic;
 
 namespace GameWish.Game
 {
     public partial class RoleDetailsPanel : AbstractAnimPanel
     {
+        #region SerializeField
+        [SerializeField] private GameObject m_SkillSubpart;
+        #endregion
+        #region Data
+        private List<SkillSubpart> m_RoleSkillSubs = new List<SkillSubpart>();
+        #endregion
         #region AbstractAnimPanel
         protected override void OnUIInit()
         {
@@ -52,11 +59,10 @@ namespace GameWish.Game
         #region OnClickAddListener
         private void OnClickAddListener()
         {
-            StoryBtn.onClick.AddListener(() =>
-            {
-                UIMgr.S.OpenPanel(UIID.RoleStoryPanel, m_PanelData.roleModel.id);
-            });
+            m_StoryBtn.OnClickAsObservable().Subscribe(_ => { OpenRoleStoryPanel(); });
+            m_CloseBtn.OnClickAsObservable().Subscribe(_ => { HideSelfWithAnim(); });
         }
+
         #endregion
 
         #region EventSystem
@@ -70,12 +76,22 @@ namespace GameWish.Game
 
         }
         #endregion
-
-        #region Ohter Method
+        #region Private
+        private void OpenRoleStoryPanel()
+        {
+            UIMgr.S.OpenPanel(UIID.RoleStoryPanel, m_PanelData.roleModel.id);
+        }
+        private void InitData()
+        {
+            InitRoleSkillsData();
+        }
 
         private void HandleTransmitValue(params object[] args)
         {
             RoleGroupModel roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
+
+            roleGroupModel.AddSpiritRoleModel(1001, 100);
+
             m_PanelData.roleModel = roleGroupModel.GetRoleModel(1001);
             //if (args != null && args.Length > 0)
             //{
@@ -85,8 +101,11 @@ namespace GameWish.Game
             //        m_PanelData.roleModel = (RoleModel)args[0];
             //    }
             //}
+            m_PanelData.roleModel.AddSkill(10011);
+            m_PanelData.roleModel.AddSkill(10012);
+            m_PanelData.roleModel.AddSkill(10013);
 
-            RoleName.text = m_PanelData.roleModel.name;
+            m_RoleName.text = m_PanelData.roleModel.name;
             m_IsLocked = m_PanelData.roleModel.isLocked.Value;
 
             if (!m_IsLocked)
@@ -95,16 +114,18 @@ namespace GameWish.Game
                 return;
             }
         }
-
-        private void InitData()
-        {
-            InitRoleSkillsData();
-        }
-
         private void InitRoleSkillsData()
         {
-
+            foreach (var item in m_PanelData.roleModel.skillList)
+            {
+                SkillSubpart skillSubpart = Instantiate(m_SkillSubpart, m_SkillRegion.transform).GetComponent<SkillSubpart>();
+                skillSubpart.OnInit(m_PanelData.roleModel.id, item);
+                m_RoleSkillSubs.Add(skillSubpart);
+            }
         }
+        #endregion
+
+        #region Public
         #endregion
     }
 }

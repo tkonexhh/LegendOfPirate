@@ -50,6 +50,5 @@ namespace GameWish.Game
         //Inventroy
         public const int INVENTORY_ITEM_MAX_COUNT = 9999;
 
-
     }
 }

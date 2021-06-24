@@ -9,7 +9,7 @@ namespace GameWish.Game
 	{
 		public const string TestKey = "";
         #region Common
-        public const string Fixed_Title_Lv = "Fixed_Title_Lv";
+        public const string FIXED_TITLE_LV = "Fixed_Title_Lv";
         public const string Fixed_Title_Upgrade = "Fixed_Title_Upgrade";
         public const string Fixed_Title_Train= "Fixed_Title_Train";
         public const string Fixed_Title_Auto= "Fixed_Title_Auto";

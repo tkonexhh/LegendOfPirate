@@ -177,7 +177,6 @@ namespace GameWish.Game
         }
         public void OnGardenLevelUp() 
         {
-
             if (m_GardenModel.level.Value >= unlockLevel)
             {
                 slotIsUnlock.Value = false;
@@ -186,9 +185,6 @@ namespace GameWish.Game
             {
                 slotIsUnlock.Value = true;
             }
-           
         }
-     
     }
-
 }

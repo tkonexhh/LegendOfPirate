@@ -17,10 +17,8 @@ namespace GameWish.Game
         private string m_RoleDsc;   
         private EInt m_InitHp = 0;   
         private EInt m_InitAtk = 0;   
-        private EInt m_Equip1Id = 0;   
-        private EInt m_Equip2Id = 0;   
-        private EInt m_Equip3Id = 0;   
-        private EInt m_Equip4Id = 0;   
+        private EFloat m_GrowRate = 0.0f;   
+        private string m_EquipId;   
         private EInt m_SpiritId = 0;   
         private string m_SkillId;  
         
@@ -52,24 +50,14 @@ namespace GameWish.Game
         public  int  initAtk {get { return m_InitAtk; } }
        
         /// <summary>
-        /// 装备1ID
+        /// 血量/攻击成长系数
         /// </summary>
-        public  int  equip1Id {get { return m_Equip1Id; } }
+        public  float  growRate {get { return m_GrowRate; } }
        
         /// <summary>
-        /// 装备2ID
+        /// 装备
         /// </summary>
-        public  int  equip2Id {get { return m_Equip2Id; } }
-       
-        /// <summary>
-        /// 装备3ID
-        /// </summary>
-        public  int  equip3Id {get { return m_Equip3Id; } }
-       
-        /// <summary>
-        /// 装备4ID
-        /// </summary>
-        public  int  equip4Id {get { return m_Equip4Id; } }
+        public  string  equipId {get { return m_EquipId; } }
        
         /// <summary>
         /// 升星材料
@@ -112,21 +100,15 @@ namespace GameWish.Game
                     m_InitAtk = dataR.ReadInt();
                     break;
                 case 5:
-                    m_Equip1Id = dataR.ReadInt();
+                    m_GrowRate = dataR.ReadFloat();
                     break;
                 case 6:
-                    m_Equip2Id = dataR.ReadInt();
+                    m_EquipId = dataR.ReadString();
                     break;
                 case 7:
-                    m_Equip3Id = dataR.ReadInt();
-                    break;
-                case 8:
-                    m_Equip4Id = dataR.ReadInt();
-                    break;
-                case 9:
                     m_SpiritId = dataR.ReadInt();
                     break;
-                case 10:
+                case 8:
                     m_SkillId = dataR.ReadString();
                     break;
                 default:
@@ -139,19 +121,17 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(11);
+          Dictionary<string, int> ret = new Dictionary<string, int>(9);
           
           ret.Add("RoleId", 0);
           ret.Add("RoleName", 1);
           ret.Add("RoleDsc", 2);
           ret.Add("InitHp", 3);
           ret.Add("InitAtk", 4);
-          ret.Add("Equip1Id", 5);
-          ret.Add("Equip2Id", 6);
-          ret.Add("Equip3Id", 7);
-          ret.Add("Equip4Id", 8);
-          ret.Add("SpiritId", 9);
-          ret.Add("SkillId", 10);
+          ret.Add("GrowRate", 5);
+          ret.Add("EquipId", 6);
+          ret.Add("SpiritId", 7);
+          ret.Add("SkillId", 8);
           return ret;
         }
     } 

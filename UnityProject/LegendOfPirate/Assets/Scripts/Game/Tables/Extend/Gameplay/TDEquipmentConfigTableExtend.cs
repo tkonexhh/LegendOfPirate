@@ -31,18 +31,31 @@ namespace GameWish.Game
                 Log.e("e =" + e);
             }
         }
-
-        public static string GetEquipmentNameById(int id) 
+        #region Public
+        public static string GetEquipmentNameById(int id)
         {
-            var fitId = id * 100 + 1;
-            foreach (var item in dataList) 
+            var fitId = id * 10 + 1;
+            foreach (var item in dataList)
             {
                 if (item.equipmentId == fitId) return item.roleName.Replace("1", "");
             }
             return null;
         }
+        public static EquipmentUnitConfig GetEquipmentConfigByID(int equipID)
+        {
+            EquipmentUnitConfig equipConfig;
+            foreach (var item in equipmentUnitProperites)
+            {
+                if (item.equipmentID == equipID)
+                {
+                    equipConfig = item;
+                    return equipConfig;
+                }
+            }
+            return default(EquipmentUnitConfig);
+        }
+        #endregion
     }
-
     #region Struct
     /// <summary>
     /// 装备强化消耗
@@ -79,7 +92,7 @@ namespace GameWish.Game
         public int equipmentID;
         public int startLevel;
         public int nextEquipmentID;
-        public string roleName;
+        public string equipName;
         public EquipmentType equipmentType;
         public EquipAttributeValue[] equipAttributeValues;
         public EquipQualityType equipQualityType;
@@ -92,7 +105,7 @@ namespace GameWish.Game
             this.equipmentID = tdData.equipmentId;
             this.startLevel = tdData.starLevel;
             this.nextEquipmentID = tdData.nextEquipment;
-            this.roleName = tdData.roleName;
+            this.equipName = tdData.roleName;
             this.equipmentType = EnumUtil.ConvertStringToEnum<EquipmentType>(tdData.equipmentType);
             this.equipQualityType = EnumUtil.ConvertStringToEnum<EquipQualityType>(tdData.quality);
             this.coinCostNumber = tdData.intensifyCost;

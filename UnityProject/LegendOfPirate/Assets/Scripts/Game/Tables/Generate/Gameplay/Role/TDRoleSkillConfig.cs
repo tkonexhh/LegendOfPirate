@@ -16,7 +16,8 @@ namespace GameWish.Game
         private string m_SkillName;   
         private string m_SkillParams;   
         private string m_SkillDsc;   
-        private string m_SkillUpCost;  
+        private string m_SkillUpCost;   
+        private string m_SkillUpRequirement;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -41,9 +42,14 @@ namespace GameWish.Game
         public  string  skillDsc {get { return m_SkillDsc; } }
        
         /// <summary>
-        /// 技能升级消耗
+        /// 技能解锁/升级消耗
         /// </summary>
         public  string  skillUpCost {get { return m_SkillUpCost; } }
+       
+        /// <summary>
+        /// 技能解锁/升级条件（角色等级）
+        /// </summary>
+        public  string  skillUpRequirement {get { return m_SkillUpRequirement; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -75,6 +81,9 @@ namespace GameWish.Game
                 case 4:
                     m_SkillUpCost = dataR.ReadString();
                     break;
+                case 5:
+                    m_SkillUpRequirement = dataR.ReadString();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -85,13 +94,14 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(5);
+          Dictionary<string, int> ret = new Dictionary<string, int>(6);
           
           ret.Add("SkillId", 0);
           ret.Add("SkillName", 1);
           ret.Add("SkillParams", 2);
           ret.Add("SkillDsc", 3);
           ret.Add("SkillUpCost", 4);
+          ret.Add("SkillUpRequirement", 5);
           return ret;
         }
     } 
