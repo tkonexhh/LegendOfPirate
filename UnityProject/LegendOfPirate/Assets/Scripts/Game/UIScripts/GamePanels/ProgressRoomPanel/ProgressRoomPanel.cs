@@ -45,7 +45,7 @@ namespace GameWish.Game
         private void OnPartSlotCellRenderer(Transform root, int index)
         {
             var slotItem = root.GetComponent<ProcessingPart>();
-            slotItem.SetInit(m_PartToggleGroup,index,m_ElementList.GetComponent<ResElementLst>());
+            slotItem.SetSlot(m_PartToggleGroup,index,m_ElementList.GetComponent<ResElementLst>());
         }
 
         private void OnProcessingSlotCellRenderer(Transform root, int index)

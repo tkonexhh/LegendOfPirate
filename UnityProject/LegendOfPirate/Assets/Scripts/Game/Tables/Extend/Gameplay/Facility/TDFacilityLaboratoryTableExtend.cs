@@ -21,7 +21,7 @@ namespace GameWish.Game
             }
 
             laboratoryUnitProperties[level - 1] = new LaboratoryUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
-                tdData.upgradePreconditions, tdData.upgradeTime, tdData.modelResources, tdData.unlockSpaceCost);
+                tdData.upgradePreconditions, tdData.upgradeTime, tdData.modelResources, tdData.unlockSpaceCost,tdData.unlockPartSpace);
         }
 
         public static LaboratoryUnitConfig[] laboratoryUnitProperties = null;
@@ -42,13 +42,14 @@ namespace GameWish.Game
     {
         public ShipUnitBaseConfig baseProperty;
         public int unlockSpaceCost;
-
+        public int unlockSpaceCount;
         public LaboratoryUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
-            int upgradeTime, string modelRes, int unlockSpaceCost
+            int upgradeTime, string modelRes, int unlockSpaceCost,int unlockSpaceCount
             )
         {
             baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
             this.unlockSpaceCost = unlockSpaceCost;
+            this.unlockSpaceCount = unlockSpaceCount;
         }
     }
 }

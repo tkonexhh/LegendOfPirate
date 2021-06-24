@@ -13,6 +13,15 @@ namespace GameWish.Game
 		public LaboratoryModel laboratoryModel;
 		public LaboratoryRoomPanelData()
 		{
+
+		}
+		public int GetLaboratorySlotCount() 
+		{
+			return Math.Max(laboratoryModel.tableConfig.unlockSpaceCount, Define.LABORATORY_DEFAULT_SLOT_COUNT);
+		}
+		public int GetPotionSlotCount() 
+		{
+			return laboratoryModel.potionSlotModelList.Count;
 		}
 	}
 	
@@ -44,11 +53,17 @@ namespace GameWish.Game
 		{
             m_PanelData.laboratoryModel
              .level
-             .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.FIXED_TITLE_LV) + level.ToString())
-             .SubscribeToTextMeshPro(LaboratoryTMP).AddTo(this);
+             .SubscribeToTextMeshPro(m_BuildingLevel,"Lv.{0}").AddTo(this);
+			m_PanelData.laboratoryModel.level.AsObservable().Subscribe(level => OnLaboratoryLevelChange()).AddTo(this);
+			m_PanelData.laboratoryModel.labaratorySlotModelList.ObserveCountChanged().Subscribe(count => m_LaboratorySlotList.SetDataCount(count)).AddTo(this);
         }
-		
-		private void BindUIToModel()
+
+        private object OnLaboratoryLevelChange()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BindUIToModel()
 		{
 		}
 		private void RegisterEvents()
@@ -58,26 +73,23 @@ namespace GameWish.Game
 
 		private void OnClickAddListener()
 		{
-			RightArrowBtn.OnClickAsObservable().Subscribe(_ =>
-			{
-				RightArrowBtnEvent();
-			});
-			LeftArrowBtn.OnClickAsObservable().Subscribe(_ =>
-			{
-				LeftArrowBtnEvent();
-			});
-			MakeBtn.OnClickAsObservable().Subscribe(_ =>
+			
+			m_MakeBtn.OnClickAsObservable().Subscribe(_ =>
 			{
 				MakeBtnEvent();
-			});
-			LaboratoryUpgradeBtn.OnClickAsObservable().Subscribe(_ =>
+			}).AddTo(this);
+			m_LevelUpBtn.OnClickAsObservable().Subscribe(_ =>
 			{
 				LaboratoryUpgradeBtnEvent();
-			});
-            BgBtn.OnClickAsObservable().Subscribe(_ =>
+			}).AddTo(this);
+			m_AddItemBtn.OnClickAsObservable().Subscribe(_ =>
             {
-				BgBtnEvent();
-            });
+				AddItemBtnEvent();
+            }).AddTo(this);
+			m_CloseBtn.OnClickAsObservable().Subscribe(_ =>
+			{
+				HideSelfWithAnim();
+			}).AddTo(this);
 	
         }
 		private void UnregisterEvents()

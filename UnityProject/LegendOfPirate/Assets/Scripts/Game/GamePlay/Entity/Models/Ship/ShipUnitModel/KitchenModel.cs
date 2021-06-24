@@ -66,6 +66,21 @@ namespace GameWish.Game
         public override void OnLevelUpgrade(int delta)
         {
             base.OnLevelUpgrade(delta);
+
+            tableConfig = TDFacilityKitchenTable.GetConfig(level.Value);
+            for (int i = 0; i < foodSlotModelLst.Count; i++)
+            {
+                foodSlotModelLst[i].OnKitchenLevelUp();
+            }
+            var SlotId = kitchenSlotModelLst.Count;
+            if (tableConfig.unlockSpaceCount > Define.KITCHEN_DEFAULTS_SLOT_COUNT && tableConfig.unlockSpaceCount > kitchenSlotModelLst.Count) 
+            {
+                kitchenSlotModelLst.Add(new KitchenSlotModel(this, dbData.kitchenSlotDataLst[SlotId], SlotId));
+            }
+            for (int i = 0; i < kitchenSlotModelLst.Count; i++) 
+            {
+                kitchenSlotModelLst[i].OnKitchenSlotLevelUp();
+            }
         }
 
         private float m_RefreshTime = 0;
@@ -73,7 +88,15 @@ namespace GameWish.Game
 
         public override void OnUpdate()
         {
-            base.OnUpdate();
+            m_RefreshTime += Time.deltaTime;
+            if (m_RefreshTime >= m_RefreshInterval)
+            {
+                m_RefreshTime = 0;
+                foreach (var item in kitchenSlotModelLst)
+                {
+                    item.RefreshRemainTime();
+                }
+            }
         }
     }
     public class KitchenSlotModel : Model
@@ -154,7 +177,7 @@ namespace GameWish.Game
             }
         }
 
-        public void OnProcessingSlotLevelUp()
+        public void OnKitchenSlotLevelUp()
         {
             if (kitchenSlotState.Value == KitchenSlotState.Locked && m_KitchenModel.tableConfig.unlockSpaceCount >= slotId + 1)
             {
@@ -168,6 +191,11 @@ namespace GameWish.Game
         {
             m_StartTime = startTime;
             m_EndTime = startTime + TimeSpan.FromSeconds(TDFoodSynthesisConfigTable.GetConfigById(foodId).makeTime);
+        }
+
+        public int GetMakeTime() 
+        {
+            return TDFoodSynthesisConfigTable.GetConfigById(foodId).makeTime;
         }
     }
 
@@ -189,7 +217,7 @@ namespace GameWish.Game
             m_KitchenModel = kitchenModel;
         }
 
-        public void OnProcessingRoomLevelUp()
+        public void OnKitchenLevelUp()
         {
             if (m_KitchenModel.level.Value >= unLockLevel)
             {

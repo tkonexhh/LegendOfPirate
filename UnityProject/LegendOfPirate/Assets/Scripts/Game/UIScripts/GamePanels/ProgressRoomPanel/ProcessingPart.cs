@@ -15,14 +15,12 @@ namespace GameWish.Game
         [SerializeField] private Toggle m_Toggle;
 
 		private ProcessingRoomModel m_ProcessingRoomModel;
-		private ProcessingPartModel m_ProcessingPartModel;
+		private PartSlotModel m_ProcessingPartModel;
 		private List<IDisposable> m_DisposableList = new List<IDisposable>();
         private ResElementLst m_ResElementLst;
-		private int m_SlotCount;
-		public void SetInit(ToggleGroup toggleGroup, int slotCount,ResElementLst elementLst) 
+		public void SetSlot(ToggleGroup toggleGroup, int slotCount,ResElementLst elementLst) 
 		{
 			m_Toggle.group = toggleGroup;
-			m_SlotCount = slotCount;
             m_ResElementLst = elementLst;
 
 			m_ProcessingRoomModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.ProcessingRoom) as ProcessingRoomModel;

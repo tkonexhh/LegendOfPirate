@@ -10,7 +10,7 @@ namespace GameWish.Game
     {
         public ProcessingRoomUnitConfig tableConfig;
         public ReactiveCollection<ProcessingSlotModel> processingSlotModelList = new ReactiveCollection<ProcessingSlotModel>();
-        public List<ProcessingPartModel> ProcessingPartModelList = new List<ProcessingPartModel>();
+        public List<PartSlotModel> ProcessingPartModelList = new List<PartSlotModel>();
 
         private ProcessingData m_DbData;
         public ProcessingRoomModel(ShipUnitData shipUnitData) : base(shipUnitData)
@@ -21,7 +21,7 @@ namespace GameWish.Game
                 var UnlockParts = item.GetUnlockPartId();
                 foreach (var unLockPart in UnlockParts) 
                 {
-                    ProcessingPartModelList.Add(new ProcessingPartModel(this,unLockPart, level.Value < item.level,item.level));
+                    ProcessingPartModelList.Add(new PartSlotModel(this,unLockPart, level.Value < item.level,item.level));
                 }
             }
             m_DbData = GameDataMgr.S.GetData<ProcessingData>();
@@ -203,14 +203,15 @@ namespace GameWish.Game
 
     }
 
-    public class ProcessingPartModel : Model 
+    public class PartSlotModel : Model 
     {
         public TDPartSynthesisConfig partConfig;
         public BoolReactiveProperty isLocked;
         public int unLockLevel;
 
         private ProcessingRoomModel m_ProcessingRoomModel;
-        public ProcessingPartModel(ProcessingRoomModel processingRoomModel ,int partId,bool isLocked,int unLockLevel) 
+
+        public PartSlotModel(ProcessingRoomModel processingRoomModel ,int partId,bool isLocked,int unLockLevel) 
         {
             this.isLocked = new BoolReactiveProperty(true);
             partConfig = TDPartSynthesisConfigTable.GetConfigById(partId);
@@ -233,7 +234,8 @@ namespace GameWish.Game
 
         public string GetPartName() 
         {
-            return TDEquipmentConfigTable.GetEquipmentNameById(partConfig.id);
+            return TDMaterialConfigTable.GetConfigById(partConfig.id).materialName;
+               
         }
 
         public int GetPartMakeTime() 
