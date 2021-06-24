@@ -19,13 +19,6 @@ namespace GameWish.Game
 		[SerializeField] private Button m_BtnBoss;
 		[SerializeField] private Button m_BtnShop;
 		[SerializeField] private Button m_LevelItem;
-		[SerializeField] private RectTransform m_UnLock;
-		[SerializeField] private TextMeshProUGUI m_TmpLevel;
-		[SerializeField] private RectTransform m_Progress;
-		[SerializeField] private Image m_Slider;
-		[SerializeField] private Button m_GetRewardBtn;
-		[SerializeField] private RectTransform m_Lock;
-		[SerializeField] private Button m_LockBtn;
 		[SerializeField] private Button m_BossBtn;
 		[SerializeField] private Image m_Ship;
 		[SerializeField] private ScrollRect m_LevelSelectScrollView;
