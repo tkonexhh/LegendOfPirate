@@ -39,8 +39,8 @@ namespace GameWish.Game
 
         private void OnClickF1()
         {
-            BattleMgr.S.BattleInit(BattleMgr.S.DemoEnemyFieldConfigSO);
-            // UIMgr.S.OpenPanel(UIID.BattlePreparePanel);
+            // BattleMgr.S.BattleInit(BattleMgr.S.DemoEnemyFieldConfigSO);
+            UIMgr.S.OpenPanel(UIID.BattlePreparePanel, "1");
         }
 
         private void OnClickF2()

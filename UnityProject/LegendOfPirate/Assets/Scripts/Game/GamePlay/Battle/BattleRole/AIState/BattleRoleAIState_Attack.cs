@@ -60,7 +60,7 @@ namespace GameWish.Game
 
         private void FaceToTarget()
         {
-            Debug.LogError("FaceToTarget");
+            // Debug.LogError("FaceToTarget");
             m_AI.controller.transform.localRotation = Quaternion.RotateTowards(
                 m_AI.controller.transform.localRotation,
                 Quaternion.Euler(0, 180 - m_AI.Target.transform.rotation.y, 0),

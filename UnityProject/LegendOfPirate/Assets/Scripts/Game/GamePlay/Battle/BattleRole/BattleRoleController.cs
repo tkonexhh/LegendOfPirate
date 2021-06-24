@@ -118,7 +118,7 @@ namespace GameWish.Game
             if (AI.onAttack != null)
             {
                 Debug.LogError("Attack");
-                AI.onAttack();
+                AI.onAttack.Invoke();
             }
 
             int damage = BattleHelper.CalcAtkDamage(Data.buffedData);

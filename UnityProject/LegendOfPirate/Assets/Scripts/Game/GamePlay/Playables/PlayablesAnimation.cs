@@ -45,16 +45,6 @@ namespace GameWish.Game
 
         private void Update()
         {
-            // if (Input.GetKeyDown(KeyCode.W))
-            // {
-            //     CrossFade("run", 0.3f);
-            // }
-
-            // if (Input.GetKeyDown(KeyCode.E))
-            // {
-            //     CrossFade("idle", 0.3f);
-            // }
-
             if (m_Fading)
             {
                 m_FadingTime += Time.deltaTime * m_FadingSpeed;
@@ -66,6 +56,12 @@ namespace GameWish.Game
                     m_Fading = false;
                 }
             }
+
+            // if (currentPlayable.GetTime() >= currentPlayable.GetAnimationClip().length)
+            // {
+            //     Debug.LogError("Complete");
+            // }
+            // Debug.LogError(currentPlayable;
         }
 
         private void OnDestroy()
@@ -80,7 +76,6 @@ namespace GameWish.Game
 
         public void Play(AnimationClip clip)
         {
-            Debug.LogError(gameObject.name + ":" + clip.name);
             DisconnectPlayables();
 
             prePlayable = currentPlayable;
