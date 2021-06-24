@@ -10,7 +10,7 @@ namespace GameWish.Game
     {
 
         public ForgeUnitConfig tableConfig;
-        public ForgeModel forgeModel;
+        public ForgeSlotModel forgeModel;
         public ReactiveCollection<ForgeEquipmentSlotModel> forgeWeaponSlotModels = new ReactiveCollection<ForgeEquipmentSlotModel>();
 
         private ForgeData m_DbData;
@@ -18,7 +18,7 @@ namespace GameWish.Game
         {
             tableConfig = TDFacilityForgeTable.GetConfig(level.Value);
             m_DbData = GameDataMgr.S.GetData<ForgeData>();
-            forgeModel = new ForgeModel(this, m_DbData.forgeDataItem);
+            forgeModel = new ForgeSlotModel(this, m_DbData.forgeDataItem);
             forgeModel.equipmentId.Value = 0;
             forgeModel.forgeState.Value = ForgeStage.Free;
             for (int i = 0; i < TDFacilityForgeTable.dataList.Count; i++) 
@@ -73,14 +73,14 @@ namespace GameWish.Game
             }
         }
     }
-    public class ForgeModel : Model 
+    public class ForgeSlotModel : Model 
     {
         public IntReactiveProperty equipmentId;
         public DateTime startTime;
         public FloatReactiveProperty forgeRemainTime = new FloatReactiveProperty(-1);
 
         public ReactiveProperty<ForgeStage> forgeState;
-        public MakeEquipmentMsgModel makeEquipmentMsgModel;
+        public ForgeEquipmentMsgModel makeEquipmentMsgModel;
 
         private DateTime m_StartTime = default(DateTime);
         private DateTime m_EndTime = default(DateTime);
@@ -89,14 +89,14 @@ namespace GameWish.Game
         private ForgeDataItem m_DbItem;
 
 
-        public ForgeModel(ForgeRoomModel forgeRoomModel, ForgeDataItem forgeDataItem) 
+        public ForgeSlotModel(ForgeRoomModel forgeRoomModel, ForgeDataItem forgeDataItem) 
         {
             m_ForgeRoomModel = forgeRoomModel;
             m_DbItem = forgeDataItem;
 
             this.equipmentId =  new IntReactiveProperty( forgeDataItem.equipmentId);
             this.forgeState = new ReactiveProperty<ForgeStage>(forgeDataItem.forgeState);
-            this.makeEquipmentMsgModel = new MakeEquipmentMsgModel(forgeDataItem.equipmentId);
+            this.makeEquipmentMsgModel = new ForgeEquipmentMsgModel(forgeDataItem.equipmentId);
             switch (forgeState.Value)
             {
                 case ForgeStage.Free:
@@ -167,7 +167,7 @@ namespace GameWish.Game
         #endregion
 
     }
-    public class ForgeEquipmentSlotModel : Model 
+    public class ForgeEquipmentSlotModel 
     {
         public BoolReactiveProperty slotIsUnlock;
         public string equipmentName;
@@ -198,14 +198,14 @@ namespace GameWish.Game
         }
     }
 
-    public class MakeEquipmentMsgModel : Model 
+    public class ForgeEquipmentMsgModel
     {
         public int makeTime;
         public List<ResPair> makeResList;
         public string equipmentName;
         public TDEquipmentSynthesisConfig equipmentConfig;
 
-        public MakeEquipmentMsgModel(int equipmentId) 
+        public ForgeEquipmentMsgModel(int equipmentId) 
         {
             equipmentConfig = TDEquipmentSynthesisConfigTable.GetEquipmentSynthesisById(equipmentId);
             makeTime = equipmentConfig.makeTime;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UniRx;
-
+using System.Linq;
 namespace GameWish.Game
 {
     public class KitchenModel : ShipUnitModel
@@ -39,30 +39,6 @@ namespace GameWish.Game
             }
         }
 
-        public KitchenSlotModel GetSelectModel() 
-        {
-            foreach (var item in kitchenSlotModelLst) 
-            {
-                if (item.kitchenSlotState.Value == KitchenSlotState.Selected) 
-                {
-                    return item;
-                }
-            }
-            return null;
-        }
-
-        public KitchenSlotModel GetAvailableSlot()
-        {
-            foreach (var item in kitchenSlotModelLst)
-            {
-                if (item.kitchenSlotState.Value == KitchenSlotState.Free)
-                {
-                    return item;
-                }
-            }
-            return null;
-        }
-
         public override void OnLevelUpgrade(int delta)
         {
             base.OnLevelUpgrade(delta);
@@ -73,7 +49,9 @@ namespace GameWish.Game
                 foodSlotModelLst[i].OnKitchenLevelUp();
             }
             var SlotId = kitchenSlotModelLst.Count;
-            if (tableConfig.unlockSpaceCount > Define.KITCHEN_DEFAULTS_SLOT_COUNT && tableConfig.unlockSpaceCount > kitchenSlotModelLst.Count) 
+            if (tableConfig.unlockSpaceCount > Define.KITCHEN_DEFAULTS_SLOT_COUNT 
+                && tableConfig.unlockSpaceCount > kitchenSlotModelLst.Count
+                && kitchenSlotModelLst.Count<Define.KITCHEN_MAX_SLOT) 
             {
                 kitchenSlotModelLst.Add(new KitchenSlotModel(this, dbData.kitchenSlotDataLst[SlotId], SlotId));
             }
@@ -97,6 +75,21 @@ namespace GameWish.Game
                     item.RefreshRemainTime();
                 }
             }
+        }
+
+        /// <summary>
+        /// 默认获取可用Slot
+        /// </summary>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public KitchenSlotModel GetSlotModel(KitchenSlotState state = KitchenSlotState.Free)
+        {
+            return kitchenSlotModelLst.FirstOrDefault(slot => slot.kitchenSlotState.Value == state);
+        }
+
+        public void AddKitchenSlot() 
+        {
+            kitchenSlotModelLst.First(slot => slot.kitchenSlotState.Value == KitchenSlotState.Locked).kitchenSlotState.Value = KitchenSlotState.Free;
         }
     }
     public class KitchenSlotModel : Model

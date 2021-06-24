@@ -87,7 +87,7 @@ namespace GameWish.Game
         }
         private void OnAddItemBtnClick()
 		{
-			
+			m_PanelData.processingRoomModel.AddProcessingSlot();	
 		}
 		private void OnLevelChange(int level)
         {

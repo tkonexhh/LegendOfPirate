@@ -46,7 +46,7 @@ namespace GameWish.Game
 
         private void OnToggleValudChange(bool value)
         {
-            var SelectedModel = m_ProcessingRoomModel.GetSelectModel();
+            var SelectedModel = m_ProcessingRoomModel.GetProcessSlot(ProcessSlotState.Selected);
             if (value)
             {
               
@@ -57,9 +57,9 @@ namespace GameWish.Game
                 }
                 else
                 {
-                    if (m_ProcessingRoomModel.GetAvailableSlot() != null)
+                    if (m_ProcessingRoomModel.GetProcessSlot(ProcessSlotState.Free) != null)
                     {
-                        m_ProcessingRoomModel.GetAvailableSlot().OnPartSelected(m_ProcessingPartModel.partConfig.id);
+                        m_ProcessingRoomModel.GetProcessSlot(ProcessSlotState.Free).OnPartSelected(m_ProcessingPartModel.partConfig.id);
                         m_ResElementLst.SetElement(m_ProcessingPartModel.GetResPairs());
                     }
                     else

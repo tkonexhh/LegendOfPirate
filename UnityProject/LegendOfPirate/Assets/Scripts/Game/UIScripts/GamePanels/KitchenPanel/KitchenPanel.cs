@@ -33,8 +33,8 @@ namespace GameWish.Game
 			m_KitchenSlotList.SetCellRenderer(OnKitchenSlotCellRenderer);
 			m_KitchenSlotList.SetDataCount(m_PanelData.GetKitchenSlotCount());
 
-			m_KitchenSlotList.SetCellRenderer(OnFoodSlotCellRenderer);
-			m_KitchenSlotList.SetDataCount(m_PanelData.GetFoodSlotCount());
+			m_FoodSlotList.SetCellRenderer(OnFoodSlotCellRenderer);
+			m_FoodSlotList.SetDataCount(m_PanelData.GetFoodSlotCount());
         }
 
         private void OnFoodSlotCellRenderer(Transform root, int index)

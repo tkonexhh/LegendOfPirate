@@ -99,7 +99,7 @@ namespace GameWish.Game
 
         public void AddItemBtnEvent()
         {
-            HideSelfWithAnim();
+            m_PanelData.laboratoryModel.AddProcessingSlot();
         }
         #endregion
         #region Private

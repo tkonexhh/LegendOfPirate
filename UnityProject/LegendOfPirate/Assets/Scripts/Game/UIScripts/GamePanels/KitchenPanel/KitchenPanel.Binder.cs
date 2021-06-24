@@ -85,7 +85,7 @@ namespace GameWish.Game
         }
         private void AddCookSlotBtnClick()
         {
-
+            m_PanelData.kitchenModel.AddKitchenSlot();
         }
         private void OnLevelUpBtnClick()
         {

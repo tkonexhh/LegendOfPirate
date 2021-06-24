@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UniRx;
 using UnityEngine;
-
+using System.Linq;
 namespace GameWish.Game
 {
     public class ProcessingRoomModel : ShipUnitModel
@@ -11,11 +11,14 @@ namespace GameWish.Game
         public ProcessingRoomUnitConfig tableConfig;
         public ReactiveCollection<ProcessingSlotModel> processingSlotModelList = new ReactiveCollection<ProcessingSlotModel>();
         public List<PartSlotModel> ProcessingPartModelList = new List<PartSlotModel>();
+        public int unlockedSlotCount;
 
         private ProcessingData m_DbData;
+       
         public ProcessingRoomModel(ShipUnitData shipUnitData) : base(shipUnitData)
         {
             tableConfig = TDFacilityProcessingRoomTable.GetConfig(level.Value);
+           
             foreach (var item in TDFacilityProcessingRoomTable.dataList) 
             {
                 var UnlockParts = item.GetUnlockPartId();
@@ -41,25 +44,14 @@ namespace GameWish.Game
             }
         }
 
-        public ProcessingSlotModel GetSelectModel() 
+        /// <summary>
+        /// 默认获取可用Slot
+        /// </summary>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public ProcessingSlotModel GetProcessSlot(ProcessSlotState state = ProcessSlotState.Free) 
         {
-         
-            foreach (var item in processingSlotModelList)
-            {
-                if (item.processState.Value == ProcessSlotState.Selected)
-                    return item;
-            }
-            return null;
-        }
-
-        public ProcessingSlotModel GetAvailableSlot() 
-        {
-            foreach (var item in processingSlotModelList) 
-            {
-                if (item.processState.Value == ProcessSlotState.Free)
-                    return item;
-            }
-            return null;
+            return processingSlotModelList.FirstOrDefault(slot => slot.processState.Value == state);
         }
 
         public override void OnLevelUpgrade(int delta)
@@ -71,7 +63,9 @@ namespace GameWish.Game
             {
                 ProcessingPartModelList[i].OnProcessingRoomLevelUp();
             }
-            if (tableConfig.unlockPartSpace > Define.PROCESSING_ROOM_DEFAULT_SLOT_COUNT&&tableConfig.unlockPartSpace>processingSlotModelList.Count) 
+            if (tableConfig.unlockPartSpace > Define.PROCESSING_ROOM_DEFAULT_SLOT_COUNT
+                && tableConfig.unlockPartSpace > processingSlotModelList.Count
+                && processingSlotModelList.Count < Define.PROCESSING_ROOM_MAX_SLOT) 
             {
                 processingSlotModelList.Add(new ProcessingSlotModel(this, m_DbData.processingItemList[processingSlotModelList.Count], processingSlotModelList.Count));
             }
@@ -95,6 +89,11 @@ namespace GameWish.Game
                     item.RefreshRemainTime();               
                 }
             }
+        }
+
+        public void AddProcessingSlot() 
+        {
+            processingSlotModelList.First(slot => slot.processState.Value == ProcessSlotState.Locked).processState.Value = ProcessSlotState.Free;
         }
     }
 

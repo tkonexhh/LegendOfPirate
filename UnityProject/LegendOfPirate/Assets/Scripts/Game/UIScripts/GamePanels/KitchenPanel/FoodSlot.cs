@@ -46,7 +46,7 @@ namespace GameWish.Game
 
         private void OnToggleValueChange(bool value)
         {
-            var SelectedModel = m_KitchenModel.GetSelectModel();
+            var SelectedModel = m_KitchenModel.GetSlotModel(KitchenSlotState.Selected);
             if (value)
             {
 
@@ -57,9 +57,9 @@ namespace GameWish.Game
                 }
                 else
                 {
-                    if (m_KitchenModel.GetAvailableSlot() != null)
+                    if (m_KitchenModel.GetSlotModel() != null)
                     {
-                        m_KitchenModel.GetAvailableSlot().OnFoodSelect(m_FoodSlotModel.tableConfig.id);
+                        m_KitchenModel.GetSlotModel().OnFoodSelect(m_FoodSlotModel.tableConfig.id);
                         m_ResElementLst.SetElement(m_FoodSlotModel.GetResPairs());
                     }
                     else
