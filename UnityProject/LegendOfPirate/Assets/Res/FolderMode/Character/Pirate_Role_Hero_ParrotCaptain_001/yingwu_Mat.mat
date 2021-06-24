@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pirate_Arms_Hero_ParrotCaptain_Mat
+  m_Name: yingwu_Mat
   m_Shader: {fileID: 4800000, guid: a6a0c67eafe6b42848bf097b15360e7b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -20,12 +20,12 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 3b6ce6958d1e24ff2a1c4f9a7229bbcd, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _ShadowMid: 0.3
-    - _ShadowSmooth: 0.03
+    - _ShadowMid: 0.02
+    - _ShadowSmooth: 0.01
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShadowColor: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 0}
+    - _ShadowColor: {r: 0.08235294, g: 0, b: 0.8196078, a: 0}

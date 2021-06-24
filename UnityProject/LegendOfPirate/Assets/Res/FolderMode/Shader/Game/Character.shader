@@ -4,9 +4,9 @@
     {
         _MainTex ("MainTex", 2D) = "white" { }
         _BaseColor ("BaseColor", color) = (1, 1, 1, 1)
-        _ShadowMid ("Shadow Mid", Range(0, 1)) = 0.5
-        _ShadowSmooth ("Shadow Smooth", Range(0, 1)) = 0.2
-        _ShadowColor ("Shadow Color", color) = (0, 0, 0, 0)
+        _ShadowMid ("Shadow Mid", Range(0, 1)) = 0.02
+        _ShadowSmooth ("Shadow Smooth", Range(0, 1)) = 0.01
+        _ShadowColor ("Shadow Color", color) = (0.08235294, 0, 0.8196078, 0)
     }
     SubShader
     {

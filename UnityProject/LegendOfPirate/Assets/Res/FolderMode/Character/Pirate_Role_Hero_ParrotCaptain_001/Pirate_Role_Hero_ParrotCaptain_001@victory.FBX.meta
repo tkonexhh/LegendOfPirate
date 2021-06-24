@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: cb546bc9c7278430193867c564f679cf
+guid: 904f47a471a414bd48c138461393b2d4
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
-      74: -1615515830502971899
-    second: idle
+      74: -1282300442551608461
+    second: victory
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: idle
-      takeName: "\u9E66\u9E49\u8239\u957F@idle"
+      name: victory
+      takeName: "\u9E66\u9E49\u8239\u957F@victory"
       internalID: 0
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -125,5 +125,5 @@ ModelImporter:
   avatarSetup: 0
   additionalBone: 0
   userData: 
-  assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain.bundle
+  assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain_001.bundle
   assetBundleVariant: 
