@@ -8,6 +8,7 @@ namespace GameWish.Game
     public class Skill : ICacheAble
     {
         public int id;
+        public int level;//技能等级
         public string name;
         public float range;
         public float CD;

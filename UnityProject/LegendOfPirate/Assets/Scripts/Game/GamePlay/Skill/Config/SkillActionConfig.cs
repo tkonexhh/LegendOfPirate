@@ -23,9 +23,10 @@ namespace GameWish.Game
     [HideReferenceObjectPicker]
     public class SkillActionConfig_Damage : SkillActionConfig
     {
-        [LabelText("伤害量")]
-        public int Damage;
-        public BattleDamageType DamageType;
+        [LabelText("伤害%")] public int Damage;
+        [LabelText("伤害等级增量")] public int DamagePlus;
+
+        public BattleDamageType DamageType = BattleDamageType.Skill;
         public SkillTargetType targetType;
     }
 

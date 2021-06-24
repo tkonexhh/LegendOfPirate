@@ -20,9 +20,13 @@ namespace GameWish.Game
         [LabelText("技能CD")]
         [PropertyTooltip("CD:主动技能CD 被动技能间隔CD")]
         public float CD;
-
-
+        [OnValueChanged("OnSkillTriggerTypeChange")]
         public SkillTriggerType SkillTriggerType;
+        [LabelText("触发CD")]
+        [HideIf("SkillTriggerType", SkillTriggerType.OnSpellStart)]
+        public float TriggerCD;
+
+
         [HideReferenceObjectPicker]
         public PickTarget PickTarget = new PickTarget();
 
@@ -31,6 +35,18 @@ namespace GameWish.Game
         [LabelText("技能操作")]
         public List<SkillActionConfig> SkillActionConfigs = new List<SkillActionConfig>();
 
+
+        private void OnSkillTriggerTypeChange()
+        {
+            if (SkillTriggerType == SkillTriggerType.OnAttack || SkillTriggerType == SkillTriggerType.OnCreate)
+            {
+                CD = -1;
+            }
+            else
+            {
+                CD = 1;
+            }
+        }
 
     }
 
