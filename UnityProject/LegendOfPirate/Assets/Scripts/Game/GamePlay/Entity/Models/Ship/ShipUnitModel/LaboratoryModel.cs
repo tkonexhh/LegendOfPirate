@@ -195,7 +195,7 @@ namespace GameWish.Game
         private void SetTime(DateTime startTime)
         {
             m_StartTime = startTime;
-            m_EndTime = startTime + TimeSpan.FromSeconds(TDPartSynthesisConfigTable.GetConfigById(potionId).makeTime);
+            m_EndTime = startTime + TimeSpan.FromSeconds(TDPotionSynthesisConfigTable.GetConfigById(potionId).makeTime);
         }
     }
 
