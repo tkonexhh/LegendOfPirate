@@ -21,7 +21,7 @@ namespace GameWish.Game
         {
             skill.SkillActionStepEnd();
             RoleDamagePackage package = new RoleDamagePackage();
-            package.damage = m_Damage;
+            package.damage = (int)(m_Damage * 0.01) * skill.Owner.Data.buffedData.ATK;
             package.damageType = m_DamageType;
             switch (m_Target)
             {

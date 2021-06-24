@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: 08e634be1c8244ec489a385ad3fd0d6f
+guid: d4bb41bf880b2420abe81810d2e29665
 ModelImporter:
   serializedVersion: 19301
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 4921897181072587040
+    second: "\u9E66\u9E49\u8239\u957F@skill01"
   externalObjects: {}
   materials:
-    materialImportMode: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -93,5 +96,5 @@ ModelImporter:
   avatarSetup: 0
   additionalBone: 0
   userData: 
-  assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain.bundle
+  assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain_001.bundle
   assetBundleVariant: 

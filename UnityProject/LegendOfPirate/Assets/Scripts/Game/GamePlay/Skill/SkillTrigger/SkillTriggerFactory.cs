@@ -17,6 +17,9 @@ namespace GameWish.Game
                     return new SkillTrigger_Create();
                 case SkillTriggerType.OnSpellStart:
                     return new SkillTrigger_Cast();
+                case SkillTriggerType.OnAttack:
+                    skill.CD = SkillDefine.INFINITETIME;//默认触发的技能CD一定为-1
+                    return new SkillTrigger_Attack();
             }
             return null;
         }

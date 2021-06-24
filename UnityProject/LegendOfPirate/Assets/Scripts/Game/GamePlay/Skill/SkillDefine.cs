@@ -24,6 +24,7 @@ namespace GameWish.Game
     public enum SkillTriggerType
     {
         [LabelText("技能施法开始")] OnSpellStart,
+        [LabelText("攻击时")] OnAttack,
         [LabelText("默认添加")] OnCreate,
     }
 

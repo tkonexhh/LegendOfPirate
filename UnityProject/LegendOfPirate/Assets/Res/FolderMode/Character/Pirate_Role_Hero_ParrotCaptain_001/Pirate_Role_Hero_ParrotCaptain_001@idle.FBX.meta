@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 20d9f1d06f0644fe29c01dabbd84afc9
+guid: cb546bc9c7278430193867c564f679cf
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
-      74: 435037518698172711
-    second: "\u9E66\u9E49\u8239\u957F@attack01"
+      74: -1615515830502971899
+    second: idle
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -33,7 +33,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: "\u9E66\u9E49\u8239\u957F@idle"
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -96,5 +125,5 @@ ModelImporter:
   avatarSetup: 0
   additionalBone: 0
   userData: 
-  assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain.bundle
+  assetBundleName: res/foldermode/character/pirate_role_hero_parrotcaptain_001.bundle
   assetBundleVariant: 
