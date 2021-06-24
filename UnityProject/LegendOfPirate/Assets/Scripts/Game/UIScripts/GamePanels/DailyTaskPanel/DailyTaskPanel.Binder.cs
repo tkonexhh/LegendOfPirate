@@ -39,7 +39,6 @@ namespace GameWish.Game
             m_PanelData.curActiveNum = new IntReactiveProperty(m_PanelData.dailyTaskModel.GetActiveNum());
             m_PanelData.curActiveNum.AsObservable().Subscribe(count =>
             {
-                // Log.i(" m_PanelData.curActiveNum=" + m_PanelData.curActiveNum.Value + "___" + count);
                 SetSliderState(count);
             }).AddTo(this);
         }
@@ -120,7 +119,7 @@ namespace GameWish.Game
             m_DailyItemScrollView.SetLayoutVertical();
         }
 
-        public void UpdateItems(int key, params object[] args)
+        private void UpdateItems(int key, params object[] args)
         {
             m_PanelData.curActiveNum.Value = m_PanelData.dailyTaskModel.GetActiveNum();
             for (int i = 0; i < m_PanelData.dailyTaskModel.dailyItems.Count; i++)

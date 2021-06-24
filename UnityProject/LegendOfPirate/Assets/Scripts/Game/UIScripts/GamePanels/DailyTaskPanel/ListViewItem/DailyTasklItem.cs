@@ -22,6 +22,7 @@ namespace GameWish.Game
         private Image m_ImgBtn;
         private TaskData m_TaskData;
         private int m_ActiveNum;
+        private int m_PlayerLevel;
         public void OnInit(DailyTaskPanel panel, TDDailyTask conf, TaskData taskData)
         {
             m_Panel = panel;
@@ -31,6 +32,7 @@ namespace GameWish.Game
             m_ImgBtn = m_BtnGet.transform.GetComponent<GImage>();
             m_TmpTitle.text = string.Format(m_Conf.taskDescription, m_Conf.taskCount);
             m_TmpActiveCount.text = string.Format("{0}", m_Conf.reward);
+            m_PlayerLevel = conf.playerLevel;
             m_ActiveNum = int.Parse(m_Conf.reward.Split('|')[2]);
             m_BtnGet.onClick.AddListener(() =>
             {
@@ -47,7 +49,7 @@ namespace GameWish.Game
         void RefreshUI()
         {
             int target = m_Conf.taskCount;
-            int cur = m_TaskItemData.m_CurCompleteTimes > target ? target : m_TaskItemData.m_CurCompleteTimes;
+            int cur = m_TaskItemData.curCompleteTimes > target ? target : m_TaskItemData.curCompleteTimes;
             m_TmpProgress.text = string.Format("{0}/{1}", cur, target);
             m_Slider.fillAmount = (float)cur / (float)target;
             string imgName = "";
@@ -57,6 +59,7 @@ namespace GameWish.Game
                     imgName = "task_ann01";
                     m_TmpState.text = "Receive";
                     m_BtnGet.enabled = true;
+                    this.transform.SetAsFirstSibling();
                     break;
                 case TaskState.UnComplete:
                     imgName = "task_ann04";
@@ -67,15 +70,29 @@ namespace GameWish.Game
                     imgName = "task_ann03";
                     m_TmpState.text = "Already Received";
                     m_BtnGet.enabled = false;
+                    this.transform.SetAsLastSibling();
                     break;
+            }
+            //TODO 添加人物等级判断
+            if (m_PlayerLevel >= 5)
+            {
+                SetBtnsState(false);
+            }
+            else
+            {
+                SetBtnsState(true);
             }
             // SpriteAtlas atlas = GameplayMgr.S.ResLoader.LoadSync("task_sprite_atlas") as SpriteAtlas;
             // m_ImgBtn.sprite = atlas.GetSprite(imgName);
             // m_ImgBtn.SetNativeSize();
         }
 
-
-        void OnClickBtnOk()
+        private void SetBtnsState(bool flag)
+        {
+            m_TmpLimit.gameObject.SetActive(!flag);
+            m_ItemBg.gameObject.SetActive(flag);
+        }
+        private void OnClickBtnOk()
         {
             TaskState taskState = GetTaskState();
             switch (taskState)
@@ -98,11 +115,11 @@ namespace GameWish.Game
         TaskState GetTaskState()
         {
             TaskState taskState = TaskState.Complete;
-            if (m_TaskItemData.m_IsGetRewardToday)
+            if (m_TaskItemData.isGetRewardToday)
             {
                 taskState = TaskState.End;
             }
-            else if (m_TaskItemData.m_CurCompleteTimes >= m_Conf.taskCount)
+            else if (m_TaskItemData.curCompleteTimes >= m_Conf.taskCount)
             {
                 taskState = TaskState.Complete;
             }

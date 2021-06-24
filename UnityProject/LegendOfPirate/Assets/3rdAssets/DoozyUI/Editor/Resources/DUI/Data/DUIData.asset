@@ -38,6 +38,7 @@ MonoBehaviour:
       - MagicCloudPanel
       - MainMenuPanel
       - MainSeaLevelPanel
+      - MainTaskPanel
       - OccupyOverPanel
       - OfflinePanel
       - OfflineRewardPanel

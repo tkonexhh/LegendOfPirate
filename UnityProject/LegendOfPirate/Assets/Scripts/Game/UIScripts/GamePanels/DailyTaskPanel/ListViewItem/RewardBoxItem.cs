@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
-using Qarth;
 
 namespace GameWish.Game
 {
@@ -93,10 +91,10 @@ namespace GameWish.Game
                 case ActiveRewardState.CanOpen:
                     Debug.Log("this reward can open");
                     BtnsControl(true);
+                    m_TaskData.GetTaskDailyData().SetGetRewardState(m_Index, 1);
                     break;
                 case ActiveRewardState.Opened:
                     Debug.Log("this reward has opened");
-                    m_TaskData.GetTaskDailyData().SetGetRewardState(m_Index, 1);
                     break;
             }
         }

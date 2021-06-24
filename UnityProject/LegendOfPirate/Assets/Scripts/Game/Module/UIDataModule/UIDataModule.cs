@@ -142,6 +142,7 @@ namespace GameWish.Game
 
             #region 任务系统
             UIDataTable.AddPanelData(UIID.DailyTaskPanel, null, "GamePanels/TaskPanel/DailyTaskPanel/DailyTaskPanel", true, 1);//日常任务界面
+            UIDataTable.AddPanelData(UIID.MainTaskPanel, null, "GamePanels/TaskPanel/MainTaskPanel/MainTaskPanel", true, 1);//主线任务界面
             #endregion
         }
     }
