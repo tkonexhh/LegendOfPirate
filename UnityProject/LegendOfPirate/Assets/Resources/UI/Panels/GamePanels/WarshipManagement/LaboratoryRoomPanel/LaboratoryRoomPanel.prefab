@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 7852779415020319418}
   - component: {fileID: 3048633084404870684}
   m_Layer: 5
-  m_Name: FoodSlotToggleGroup
+  m_Name: PotionSlotToggleGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2529,22 +2529,17 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  BgBtn: {fileID: 0}
-  TitleBg: {fileID: 0}
-  TitleIcon: {fileID: 0}
-  LaboratoryTMP: {fileID: 0}
-  LaboratoryUpgradeBtn: {fileID: 0}
-  ReadyBuildBg: {fileID: 0}
-  LaboratoryGoodsTra: {fileID: 0}
-  ReadyStateIcon: {fileID: 0}
-  MaterialsTra: {fileID: 0}
-  MakeBtn: {fileID: 0}
-  BottomRegionBg: {fileID: 0}
-  LeftArrowBtn: {fileID: 0}
-  RightArrowBtn: {fileID: 0}
-  BottomLaboratoryTra: {fileID: 0}
-  m_BottomLaboratoryRoleUList: {fileID: 0}
-  m_ScrollRectAutoAdjustPosition: {fileID: 0}
+  m_CloseBtn: {fileID: 614769166167167593}
+  m_LaboratorySlotList: {fileID: 8279244606349968326}
+  m_MakeBtn: {fileID: 9021112921260260056}
+  m_AddItemBtn: {fileID: 6988233461804926455}
+  m_PotionImg: {fileID: 7780147848740829343}
+  m_ElementList: {fileID: 2072321842751027540}
+  m_PotionSlotList: {fileID: 3331081337614144021}
+  m_PotionSlotToggleGroup: {fileID: 3048633084404870684}
+  m_BuilidingName: {fileID: 7595764935554894423}
+  m_BuildingLevel: {fileID: 5336814950438386563}
+  m_LevelUpBtn: {fileID: 4051103198604243915}
 --- !u!1 &8019253118421415092
 GameObject:
   m_ObjectHideFlags: 0

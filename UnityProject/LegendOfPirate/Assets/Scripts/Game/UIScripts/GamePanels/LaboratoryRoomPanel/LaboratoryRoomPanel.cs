@@ -4,6 +4,7 @@ using Qarth.Extension;
 using Qarth;
 using UniRx;
 using System.Linq;
+using System;
 
 namespace GameWish.Game
 {
@@ -22,10 +23,7 @@ namespace GameWish.Game
     #endregion
     public partial class LaboratoryRoomPanel : AbstractAnimPanel
     {
-        [SerializeField]
-        private USimpleListView m_BottomLaboratoryRoleUList;
-        [SerializeField]
-        private ScrollRectAutoAdjustPosition m_ScrollRectAutoAdjustPosition;
+
         #region Data
 
         private ReactiveCollection<BottomLaboratoryPotionModule> bottomLaboratoryPotionModules = new ReactiveCollection<BottomLaboratoryPotionModule>();
@@ -51,7 +49,7 @@ namespace GameWish.Game
 
             OnClickAddListener();
 
-            InitData();
+            InitUI();
         }
         protected override void OnPanelHideComplete()
         {
@@ -72,32 +70,61 @@ namespace GameWish.Game
         #endregion
         #region ButtonEvent
         public void RightArrowBtnEvent()
-        { m_ScrollRectAutoAdjustPosition?.Move2Next(); }
+        {  }
         public void LeftArrowBtnEvent()
-        { m_ScrollRectAutoAdjustPosition?.Move2Pre(); }
+        {  }
         public void MakeBtnEvent()
-        { }
+        {
+            foreach (var item in m_PanelData.laboratoryModel.labaratorySlotModelList)
+            {
+                switch (item.laboratorySlotState.Value)
+                {
+                    case LaboratorySlotState.Free:
+                        break;
+                    case LaboratorySlotState.Making:
+                        break;
+                    case LaboratorySlotState.Locked:
+                        break;
+                    case LaboratorySlotState.Selected:
+                        item.StartMaking(DateTime.Now);
+                        break;
+                }
+            }
+        }
+
         public void LaboratoryUpgradeBtnEvent()
         {
             UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.Laboratory);
         }
 
-        public void BgBtnEvent()
+        public void AddItemBtnEvent()
         {
             HideSelfWithAnim();
         }
         #endregion
         #region Private
-        private void InitData()
+        private void InitUI()
         {
+            m_LaboratorySlotList.SetCellRenderer(OnLaboratorSlotCellRenderer);
+            m_LaboratorySlotList.SetDataCount(m_PanelData.GetLaboratorySlotCount());
 
-            //TitleIcon.sprite = SpriteHandler.S.GetSprite(AtlasDefine.TestAtlas,"");
-
-            m_BottomLaboratoryRoleUList.SetCellRenderer(OnBottomCellRenderer);
-            m_BottomLaboratoryRoleUList.SetDataCount(10);
-            m_ScrollRectAutoAdjustPosition.EnableAutoAdjust(10);
+            m_PotionSlotList.SetCellRenderer(OnPotionSloyCellRenderer);
+            m_PotionSlotList.SetDataCount(m_PanelData.GetPotionSlotCount());
+            //m_LaboratorySlotList
+            //m_PotionSlotList
 
         }
+
+        private void OnPotionSloyCellRenderer(Transform root, int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnLaboratorSlotCellRenderer(Transform root, int index)
+        {
+            throw new NotImplementedException();
+        }
+
         private void OnBottomCellRenderer(Transform root, int index)
         {
           

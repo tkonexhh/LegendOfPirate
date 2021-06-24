@@ -30,13 +30,11 @@ namespace GameWish.Game
 
         private void InitUI()
         {
-			var slotListView = m_KitchenSlotList.GetComponent<USimpleListView>();
-			slotListView.SetCellRenderer(OnKitchenSlotCellRenderer);
-			slotListView.SetDataCount(m_PanelData.GetKitchenSlotCount());
+			m_KitchenSlotList.SetCellRenderer(OnKitchenSlotCellRenderer);
+			m_KitchenSlotList.SetDataCount(m_PanelData.GetKitchenSlotCount());
 
-			slotListView = m_FoodSlotList.GetComponent<USimpleListView>();
-			slotListView.SetCellRenderer(OnFoodSlotCellRenderer);
-			slotListView.SetDataCount(m_PanelData.GetFoodSlotCount());
+			m_KitchenSlotList.SetCellRenderer(OnFoodSlotCellRenderer);
+			m_KitchenSlotList.SetDataCount(m_PanelData.GetFoodSlotCount());
         }
 
         private void OnFoodSlotCellRenderer(Transform root, int index)
