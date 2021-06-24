@@ -14,6 +14,7 @@ namespace GameWish.Game
     }
     public enum AchievementTaskType
     {
+        Min = 100,
         Ads,//广告
         Login,//登录
     }

@@ -356,15 +356,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20ce0559903f649b8b65fd1a33bfcc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DescTex: {fileID: 0}
-  m_ProgressBgImg: {fileID: 0}
-  m_SliderImg: {fileID: 0}
-  m_SliderTex: {fileID: 0}
-  m_AchievementRewardItem: {fileID: 0}
-  m_RewardCountTex: {fileID: 0}
-  m_GetBtn: {fileID: 0}
-  m_TmpState: {fileID: 0}
-  m_AchievementRewardContent: {fileID: 0}
+  m_DescTex: {fileID: 3367797570404918413}
+  m_ProgressBgImg: {fileID: 4617691431273853315}
+  m_SliderImg: {fileID: 7013356675242713079}
+  m_SliderTex: {fileID: 372843650744247774}
+  m_AchievementRewardItem: {fileID: 8255100633705950923}
+  m_RewardCountTex: {fileID: 1250488505763359275}
+  m_GetBtn: {fileID: 167045995065341523}
+  m_TmpState: {fileID: 4009612494139774563}
+  m_AchievementRewardContent: {fileID: 5773236296405662346}
 --- !u!1 &1046038689829449557
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,16 +2376,7 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  m_AchievementTasklItem: {fileID: 1046038689176400078}
-  m_DescTex: {fileID: 3367797570404918413}
-  m_ProgressBgImg: {fileID: 4617691431273853315}
-  m_SliderImg: {fileID: 7013356675242713079}
-  m_SliderTex: {fileID: 372843650744247774}
-  m_AchievementRewardItem: {fileID: 6365973973817506202}
-  m_RewardCountTex: {fileID: 1250488505763359275}
-  m_GetBtn: {fileID: 167045995065341523}
-  m_TmpState: {fileID: 4009612494139774563}
-  m_AchievementRewardContent: {fileID: 5773236296405662346}
+  m_AchievementTaskItem: {fileID: 1046038689176400066}
   m_AchievementItemScrollView: {fileID: 1228078712817179591}
   m_AchievementTaskContent: {fileID: 7438002756888914083}
   m_BackBtn: {fileID: 5540599632009682456}
@@ -2400,7 +2391,6 @@ GameObject:
   - component: {fileID: 6743067552819317065}
   - component: {fileID: 8409013811137342121}
   - component: {fileID: 6365973973817506202}
-  - component: {fileID: 8130091716642851095}
   m_Layer: 0
   m_Name: AchievementRewardItem
   m_TagString: Untagged
@@ -2466,22 +2456,6 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
---- !u!114 &8130091716642851095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8255100633705950923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e31a7f16a8e408d73a8e4bd12787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  ComponentGeneratePath: 
-  CustomComment: 
-  mComponentName: 
 --- !u!1 &8800222374194967324
 GameObject:
   m_ObjectHideFlags: 0

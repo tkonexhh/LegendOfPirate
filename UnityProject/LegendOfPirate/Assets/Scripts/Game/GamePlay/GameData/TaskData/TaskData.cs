@@ -47,7 +47,7 @@ namespace GameWish.Game
         {
             return taskAchievementData;
         }
-        
+
         public TaskMainData GetTaskMainData()
         {
             return taskMainData;
@@ -73,6 +73,8 @@ namespace GameWish.Game
         public int idKey;
         public int curCompleteTimes;
         public bool isGetRewardToday;
+        public int curTargetIndex = 0;
+        public int curAchievementTimes = 0;
         private TaskData m_TaskData;
         public TaskItemData() { }
 
@@ -95,10 +97,29 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
+        public void AddAchievementTimes()
+        {
+            curAchievementTimes++;
+            SetDataDirty();
+        }
+        public void AddTargetIndex(bool canAdd)
+        {
+            if (!canAdd)
+            {
+                curTargetIndex++;
+                SetDataDirty();
+            }
+
+        }
         public void SetComplete(int completeSum)
         {
             isGetRewardToday = true;
             curCompleteTimes = completeSum;
+            SetDataDirty();
+        }
+        public void SetAchievementComplete(int completeSum)
+        {
+            isGetRewardToday = true;
             SetDataDirty();
         }
         private void SetDataDirty()
