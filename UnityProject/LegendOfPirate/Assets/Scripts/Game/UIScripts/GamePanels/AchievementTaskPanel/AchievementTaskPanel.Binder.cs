@@ -68,14 +68,14 @@ namespace GameWish.Game
                 if (m_PanelData.achievementTaskModel.achievementItems == null || m_PanelData.achievementTaskModel.achievementItems.Count < m_PanelData.achievementTaskModel.GetAchievementTaskCount())
                 {
                     item = Instantiate(m_AchievementTaskItem.gameObject).GetComponent<AchievementTasklItem>();
+                    item.transform.SetParent(m_AchievementTaskContent);
+                    item.transform.ResetTrans();
                     m_PanelData.achievementTaskModel.achievementItems.Add(item);
                 }
                 else
                 {
                     item = m_PanelData.achievementTaskModel.achievementItems[i];
                 }
-                item.transform.SetParent(m_AchievementTaskContent);
-                item.transform.ResetTrans();
                 item.gameObject.SetActive(true);
                 item.OnInit(this, m_PanelData.achievementTaskModel.tdAchievementTaskList[i], m_PanelData.achievementTaskModel.taskData);
             }

@@ -59,7 +59,9 @@ namespace GameWish.Game
                 }
                 else
                 {
+                    //UIMgr.S.ClosePanelAsUIID(UIID.BattleWinPanel);
                     CloseSelfPanel();
+                    UIMgr.S.OpenPanel(UIID.MainSeaLevelPanel);
                 }
             }
             // string reward = list[0].Reward;
@@ -74,9 +76,8 @@ namespace GameWish.Game
             for (int i = 0; i < list.Length; i++)
             {
                 var levelObj = Instantiate(m_RewardItem.gameObject);
-                levelObj.GetComponent<RectTransform>().SetParent(m_RewardContent);
-                levelObj.GetComponent<RectTransform>().SetLocalZ(0);
-                levelObj.GetComponent<RectTransform>().localScale = Vector3.one;
+                levelObj.transform.SetParent(m_RewardContent);
+                levelObj.transform.ResetTrans();
                 levelObj.GetComponent<RewardItem>().OnUIInit(this, list[i]);
                 levelObj.SetActive(true);
             }
