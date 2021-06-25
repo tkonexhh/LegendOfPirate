@@ -96,14 +96,16 @@ namespace GameWish.Game
             {
                 m_BattleComponentList[i].OnBattleEnd(isSuccess);
             }
+            UIMgr.S.ClosePanelAsUIID(UIID.BattlePreparePanel);
             if (isSuccess)
             {
-                UIMgr.S.ClosePanelAsUIID(UIID.BattlePreparePanel);
                 UIMgr.S.OpenPanel(UIID.BattleWinPanel, null, m_LevelId);
             }
             else
             {
                 Debug.LogError("Open fail panel!");
+                //临时加一个跳转
+                UIMgr.S.OpenPanel(UIID.MainSeaLevelPanel);
             }
             BattleMgr.S.BattleClean();
         }

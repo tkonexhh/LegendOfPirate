@@ -24,7 +24,6 @@ namespace GameWish.Game
 
         public void OnDataLoadFinish()
         {
-            //SetDirtyRecorder(TaskDataMgr.dataDirtyRecorder);
             EventSystem.S.Register(EventID.AchievementTimesAdd, AddTaskTimes);
         }
 
@@ -33,7 +32,6 @@ namespace GameWish.Game
             if (!GetDicItemData().ContainsKey(keyId))
             {
                 TaskItemData record = new TaskItemData(keyId);
-                //record.SetDirtyRecorder(TaskDataMgr.dataDirtyRecorder);
                 GetDicItemData().TryAddKey(keyId, record);
                 listTaskItemData.Add(record);
                 SetDataDirty();
@@ -53,7 +51,6 @@ namespace GameWish.Game
 
                 for (int i = 0; i < listTaskItemData.Count; i++)
                 {
-                    //listTaskItemData[i].SetDirtyRecorder(m_Recorder);
                     dicTaskItemData.Add(listTaskItemData[i].idKey, listTaskItemData[i]);
                 }
             }
@@ -62,32 +59,27 @@ namespace GameWish.Game
 
         void AddTaskTimes(int key, params object[] parm)
         {
-            EventSystem.S.Send(EventID.AchievementTaskRefresh, null);
+            int idKey = (int)(parm[0]);
+            GetTaskItemData(idKey).AddAchievementTimes();
+            EventSystem.S.Send(EventID.AchievementTaskRefresh, idKey);
         }
 
-        // public void SetTaskComplete(int key)
-        // {
-        //     int sum = TDTaskAchievementTable.GetData(key).targetTimes;
-        //     GetTaskItemData(key).SetComplete(sum);
-        //     EventSystem.S.Send(TaskEventId.TaskRefreshOnce, key);
-        // }
+        public void SetTaskComplete(int key)
+        {
+            // string m_Target = TDAchievementTaskTable.GetData(key).taskCount;
+            // string[] temp = m_Target.Split('|');
+            // int[] m_TargetList = new int[temp.Length];
+            // for (int i = 0; i < temp.Length; i++)
+            // {
+            //     m_TargetList[i] = int.Parse(temp[i]);
+            // }
+            int[] targetList = TDAchievementTaskTable.GetTargetCountList(key);
+            int sum = GetTaskItemData(key).curTargetIndex == targetList.Length ? targetList[GetTaskItemData(key).curTargetIndex - 1] : targetList[GetTaskItemData(key).curTargetIndex];
+            GetTaskItemData(key).SetAchievementComplete(sum);
+            GetTaskItemData(key).AddTargetIndex(GetTaskItemData(key).curTargetIndex == targetList.Length);
+            EventSystem.S.Send(EventID.AchievementTaskRefresh, key);
+        }
 
-        // public bool CheckExistReward()
-        // {
-        //     bool exist = false;
-        //     int starSum = PuzzleMatchManager.instance.starSystem.GetAllStar();
-        //     for (int i = 0; i < TDTaskAchievementTable.count; i++)
-        //     {
-        //         if (!GetTaskItemData(TDTaskAchievementTable.dataList[i].id).isGetRewardToday)
-        //         {
-        //             if (starSum >= TDTaskAchievementTable.dataList[i].targetTimes)
-        //             {
-        //                 exist = true;
-        //             }
-        //         }
-        //     }
-        //     return exist;
-        // }
 
         private void SetDataDirty()
         {

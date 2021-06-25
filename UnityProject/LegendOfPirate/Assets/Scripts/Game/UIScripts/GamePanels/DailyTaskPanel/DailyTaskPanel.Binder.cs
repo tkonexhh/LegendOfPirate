@@ -84,14 +84,14 @@ namespace GameWish.Game
                 if (m_PanelData.dailyTaskAwardModel.rewardBoxItems == null || m_PanelData.dailyTaskAwardModel.rewardBoxItems.Count < m_PanelData.dailyTaskAwardModel.GetDailyTaskCount())
                 {
                     item = Instantiate(m_RewardBoxItem.gameObject).GetComponent<RewardBoxItem>();
+                    item.transform.SetParent(m_RewardContent);
+                    item.transform.ResetTrans();
                     m_PanelData.dailyTaskAwardModel.rewardBoxItems.Add(item);
                 }
                 else
                 {
                     item = m_PanelData.dailyTaskAwardModel.rewardBoxItems[i];
                 }
-                item.transform.SetParent(m_RewardContent);
-                item.transform.ResetTrans();
                 item.gameObject.SetActive(true);
                 item.OnInit(this, m_PanelData.dailyTaskAwardModel.tdDailyTaskAwardList[i], m_PanelData.dailyTaskModel.taskData, i);
             }
