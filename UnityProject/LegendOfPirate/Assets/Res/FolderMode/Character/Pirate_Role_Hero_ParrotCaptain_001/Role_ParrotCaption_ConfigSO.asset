@@ -13,52 +13,20 @@ MonoBehaviour:
   m_Name: Role_ParrotCaption_ConfigSO
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
+    SerializedFormat: 0
+    SerializedBytes: 01010a0000005000690063006b005400610072006700650074002f000000000129000000470061006d00650057006900730068002e00470061006d0065002e005000690063006b005400610072006700650074002c00200041007300730065006d0062006c0079002d00430053006800610072007000000000001d010e0000005000690063006b00540061007200670065007400540079007000650000000000000000001d010e000000530065006e0073006f007200540079007000650045006e0075006d00000000000000000005010106000000410074007400610063006b002f010000000125000000470061006d00650057006900730068002e00470061006d0065002e00410074007400610063006b002c00200041007300730065006d0062006c0079002d00430053006800610072007000010000001d010a000000410074007400610063006b00540079007000650000000000000000001d010f000000440061006d00610067006500520061006e0067006500540079007000650000000000000000002d010b000000520061006e0067006500440061006d006100670065002d0106000000420075006c006c0065007400170109000000420075006c006c00650074004e0075006d000100000005
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: PickTarget
-      Entry: 7
-      Data: 0|GameWish.Game.PickTarget, Assembly-CSharp
-    - Name: PickTargetType
-      Entry: 3
-      Data: 0
-    - Name: SensorTypeEnum
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: Attack
-      Entry: 7
-      Data: 1|GameWish.Game.Attack, Assembly-CSharp
-    - Name: AttackType
-      Entry: 3
-      Data: 0
-    - Name: DamageRangeType
-      Entry: 3
-      Data: 0
-    - Name: RangeDamage
-      Entry: 6
-      Data: 
-    - Name: Bullet
-      Entry: 6
-      Data: 
-    - Name: BulletNum
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   ID: 0
   RoleName: RoleName
   AtkRange: 2.5
+  ColliderRange: 0.3
   childSkills:
   - {fileID: 11400000, guid: 48ff19146024b4d2e852c835423a421f, type: 2}
-  prefab: {fileID: 7197673907520680025, guid: 1f8944f70dabb4e75ad60ba1f15d8d49, type: 3}
+  prefab: {fileID: 7303831480624309307, guid: 1f8944f70dabb4e75ad60ba1f15d8d49, type: 3}
   Icon: {fileID: 21300000, guid: 9d07a919bc9db4493822ca8a87bf1906, type: 3}
   StatusDescription: 

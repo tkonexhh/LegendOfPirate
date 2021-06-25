@@ -5,6 +5,7 @@ using UnityEngine.Playables;
 using UnityEngine.Animations;
 using UnityEngine.Audio;
 using Sirenix.OdinInspector;
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -20,6 +21,7 @@ namespace GameWish.Game
 
         private bool m_Fading;
         private float m_FadingTime, m_FadingSpeed;
+        public Run onAnimComplete;
 
         private void Awake()
         {
@@ -59,11 +61,14 @@ namespace GameWish.Game
 
 
             // currentPlayable.GetAnimationClip().isLooping
+            //当前如果不是循环动画，播放完成了的话
 
-            // if (currentPlayable.GetTime() >= currentPlayable.GetAnimationClip().length)
-            // {
-            //     Debug.LogError("Complete");
-            // }
+            if (!currentPlayable.GetAnimationClip().isLooping && currentPlayable.GetTime() >= currentPlayable.GetAnimationClip().length)
+            {
+
+                if (onAnimComplete != null)
+                    onAnimComplete();
+            }
             // Debug.LogError(currentPlayable;
         }
 
@@ -72,17 +77,18 @@ namespace GameWish.Game
             m_Graph.Destroy();
         }
 
-        public void Play(string name)
+        public void Play(string name, float speed = 0.1f)
         {
-            Play(clipsList.Find(c => c.name == name));
+            Play(clipsList.Find(c => c.name == name), speed);
         }
 
-        public void Play(AnimationClip clip)
+        public void Play(AnimationClip clip, float speed = 1.0f)
         {
             DisconnectPlayables();
 
             prePlayable = currentPlayable;
             currentPlayable = AnimationClipPlayable.Create(m_Graph, clip);
+            currentPlayable.SetSpeed(speed);
 
             animationMixer.ConnectInput(0, currentPlayable, 0);
             animationMixer.ConnectInput(1, prePlayable, 0);

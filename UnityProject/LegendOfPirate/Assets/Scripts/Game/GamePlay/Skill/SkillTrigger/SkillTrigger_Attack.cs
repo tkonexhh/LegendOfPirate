@@ -19,7 +19,6 @@ namespace GameWish.Game
         public override void Stop(Skill skill)
         {
             base.Stop(skill);
-            Debug.LogError("End Attack");
             skill.Owner.AI.onAttack -= OnAttack;//OnTrigger;
         }
 
@@ -27,7 +26,7 @@ namespace GameWish.Game
         {
             if (m_Skill.triggerCDTimer >= m_Skill.TriggerCD)
             {
-                Debug.LogError("SkillTrigger_Attack OnAttack");
+                // Debug.LogError("SkillTrigger_Attack OnAttack");
                 m_Skill.triggerCDTimer = 0;
                 OnTrigger();
             }

@@ -31,7 +31,8 @@ namespace GameWish.Game
             if (m_AttackTimer >= 2.1f &&
                 !ai.controller.Data.buffedData.StatusMask.HasStatus(StatusControlType.AttackForbid))
             {
-                PlayAttackAnim();
+                //动画进栈
+                m_AI.controller.Renderer.PushAnimFade(BattleDefine.ROLEANIM_ATTACK01, 0.1f);
                 m_AttackTimer = 0;
             }
 
@@ -52,19 +53,19 @@ namespace GameWish.Game
             ai.controller.Renderer.modelMonoReference.onAnimAttack -= OnAnimDealDamage;
         }
 
-        private void PlayAttackAnim()
-        {
-            m_AI.controller.Renderer.CrossFadeAnim(BattleDefine.ROLEANIM_ATTACK01, 0.1f);
-            // m_AI.controller.Data.Attacker.Attack(m_AI.controller, m_AI.Target);
-        }
-
         private void FaceToTarget()
         {
-            // Debug.LogError("FaceToTarget");
+            Vector3 faceDir = -m_AI.controller.transform.position + m_AI.Target.transform.position;
+            faceDir.Normalize();
+            // Debug.LogError("FaceDir:" + faceDir);
+            // faceDir.x = faceDir.z = 0;
+            Quaternion rotate = Quaternion.LookRotation(faceDir);
+
+            // Debug.LogError(rotate);
             m_AI.controller.transform.localRotation = Quaternion.RotateTowards(
                 m_AI.controller.transform.localRotation,
-                Quaternion.Euler(0, 180 - m_AI.Target.transform.rotation.y, 0),
-                10.0f * Time.deltaTime);
+                rotate,
+                30.0f * Time.deltaTime);
             //(Vector3.up, 180 - m_AI.Target.transform.rotation.y);//旋转角色
         }
 

@@ -23,13 +23,34 @@ namespace GameWish.Game
             renderObject.transform.localPosition = Vector3.zero;
             renderObject.transform.localRotation = Quaternion.identity;
             animator = renderObject.GetComponent<PlayablesAnimation>();
+            animator.onAnimComplete += OnAnimComplete;
             modelMonoReference = renderObject.GetComponent<RoleModelMonoReference>();
-            PlayAnim(BattleDefine.ROLEANIM_IDLE);
+            PushAnim(BattleDefine.ROLEANIM_IDLE);
         }
 
         public override void OnDestroy()
         {
             BattleMgr.DestroyImmediate(renderObject);
+        }
+
+        private void OnAnimComplete()//当一个不循环动画播放完成后
+        {
+            // Debug.LogError("Complete");
+            m_AnimationStack.Pop();
+            PlayAnim(m_AnimationStack.Peek());
+        }
+
+
+        public void PushAnim(string animName)
+        {
+            m_AnimationStack.Push(animName);
+            PlayAnim(animName);
+        }
+
+        public void PushAnimFade(string animName, float fadeTime)
+        {
+            m_AnimationStack.Push(animName);
+            CrossFadeAnim(animName, fadeTime);
         }
 
         public void PlayAnim(string animName)

@@ -115,6 +115,7 @@ namespace GameWish.Game
         #region override
         public void DealDamage()
         {
+            Debug.LogError("DealDamage");
             if (AI.onAttack != null)
             {
                 AI.onAttack.Invoke();
