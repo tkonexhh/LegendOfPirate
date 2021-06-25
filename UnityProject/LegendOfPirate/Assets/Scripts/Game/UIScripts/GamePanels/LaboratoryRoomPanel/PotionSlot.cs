@@ -47,7 +47,7 @@ namespace GameWish.Game
 
         private void OnToggleValudChange(bool value)
         {
-            var SelectedModel = m_LaboratoryModel.GetSelectModel();
+            var SelectedModel = m_LaboratoryModel.GetSlotModel(LaboratorySlotState.Selected);
             if (value)
             {
 
@@ -58,9 +58,9 @@ namespace GameWish.Game
                 }
                 else
                 {
-                    if (m_LaboratoryModel.GetAvailableSlot() != null)
+                    if (m_LaboratoryModel.GetSlotModel() != null)
                     {
-                        m_LaboratoryModel.GetAvailableSlot().OnPartSelected(m_PotionSlotModel.potionConfig.id);
+                        m_LaboratoryModel.GetSlotModel().OnPartSelected(m_PotionSlotModel.potionConfig.id);
                         m_ResElementLst.SetElement(m_PotionSlotModel.GetResPairs());
                     }
                     else

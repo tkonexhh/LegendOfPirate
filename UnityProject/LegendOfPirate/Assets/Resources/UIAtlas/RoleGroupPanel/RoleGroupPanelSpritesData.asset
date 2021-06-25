@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
+  m_Name: RoleGroupPanelSpritesData
+  m_EditorClassIdentifier: 
+  m_AtlasName: Assets/Resources/UIAtlas/RoleGroupPanel
+  m_SpriteList:
+  - {fileID: 21300000, guid: d6618f8665aa45143a9a484d2316aad2, type: 3}
+  - {fileID: 21300000, guid: f777a1b2ce7a9a04189bfc28555deb7f, type: 3}
+  - {fileID: 21300000, guid: 60c40f3cbf41719409e3744dede74410, type: 3}
+  - {fileID: 21300000, guid: ffe96968d4107344592c7bb732970bba, type: 3}
+  - {fileID: 21300000, guid: 81ce5d4a4cbabbb41a6efae442eb1ceb, type: 3}
+  - {fileID: 21300000, guid: c817b6db4a8133e4f976d9742b23d13b, type: 3}
+  - {fileID: 21300000, guid: dcb3407c21d628f43bbed5a1b5f5061f, type: 3}
+  - {fileID: 21300000, guid: 03bc7facf90be494491428011bdc328d, type: 3}
+  - {fileID: 21300000, guid: 06e0d957579706845916f8b5091202ee, type: 3}
+  - {fileID: 21300000, guid: c7f78d0c64fde184b8bffe506e15c9d5, type: 3}
+  - {fileID: 21300000, guid: 4ff9877f7b747f24c98fa2d7bfdd7dc4, type: 3}
+  - {fileID: 21300000, guid: 8e85ef88a654ad841aa4ec505ca76897, type: 3}
+  - {fileID: 21300000, guid: b90661e9e12e6bb41925d6440273118a, type: 3}
+  - {fileID: 21300000, guid: 5abc22cf67dbf6b419ed4f42a4c8deb4, type: 3}
+  - {fileID: 21300000, guid: 4d91cbd451e924148b2295e0ce74dcf4, type: 3}
+  - {fileID: 21300000, guid: dd6c6c96d42c3f747a8bb40d55097e2e, type: 3}
+  - {fileID: 21300000, guid: c9a8a636db562b7479b7625d756a3822, type: 3}

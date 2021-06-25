@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UniRx;
 using UnityEngine;
+using System.Linq;
 
 namespace GameWish.Game
 {
@@ -38,26 +39,14 @@ namespace GameWish.Game
             }
         }
 
-        public LaboratorySlotModel GetSelectModel() 
+        /// <summary>
+        /// 默认获取可用Slot
+        /// </summary>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public LaboratorySlotModel GetSlotModel(LaboratorySlotState state = LaboratorySlotState.Free) 
         {
-
-            foreach (var item in labaratorySlotModelList)
-            {
-                if (item.laboratorySlotState.Value == LaboratorySlotState.Selected)
-                    return item;
-            }
-            return null;
-        }
-
-        public LaboratorySlotModel GetAvailableSlot() 
-        {
-
-            foreach (var item in labaratorySlotModelList)
-            {
-                if (item.laboratorySlotState.Value == LaboratorySlotState.Free)
-                    return item;
-            }
-            return null;
+            return labaratorySlotModelList.FirstOrDefault(slot => slot.laboratorySlotState.Value == state);
         }
 
         public override void OnLevelUpgrade(int delta)
@@ -69,7 +58,9 @@ namespace GameWish.Game
             {
                 potionSlotModelList[i].OnLaboratoryLevelUp();
             }
-            if (tableConfig.unlockSpaceCount > Define.LABORATORY_DEFAULT_SLOT_COUNT && tableConfig.unlockSpaceCount > labaratorySlotModelList.Count)
+            if (tableConfig.unlockSpaceCount > Define.LABORATORY_DEFAULT_SLOT_COUNT 
+                && tableConfig.unlockSpaceCount > labaratorySlotModelList.Count
+                &&labaratorySlotModelList.Count<Define.LABORATORY_MAX_SLOT)
             {
                 labaratorySlotModelList.Add(new LaboratorySlotModel(this, m_DbData.laboratorySlotItemLst[labaratorySlotModelList.Count], labaratorySlotModelList.Count));
             }
@@ -93,6 +84,10 @@ namespace GameWish.Game
                     item.RefreshRemainTime();
                 }
             }
+        }
+        public void AddProcessingSlot()
+        {
+            labaratorySlotModelList.First(slot => slot.laboratorySlotState.Value == LaboratorySlotState.Locked).laboratorySlotState.Value = LaboratorySlotState.Free;
         }
     }
 
@@ -195,7 +190,7 @@ namespace GameWish.Game
         private void SetTime(DateTime startTime)
         {
             m_StartTime = startTime;
-            m_EndTime = startTime + TimeSpan.FromSeconds(TDPartSynthesisConfigTable.GetConfigById(potionId).makeTime);
+            m_EndTime = startTime + TimeSpan.FromSeconds(TDPotionSynthesisConfigTable.GetConfigById(potionId).makeTime);
         }
     }
 

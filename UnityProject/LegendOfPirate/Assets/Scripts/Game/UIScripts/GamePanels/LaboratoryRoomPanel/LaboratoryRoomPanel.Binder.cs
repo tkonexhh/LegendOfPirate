@@ -58,9 +58,9 @@ namespace GameWish.Game
 			m_PanelData.laboratoryModel.labaratorySlotModelList.ObserveCountChanged().Subscribe(count => m_LaboratorySlotList.SetDataCount(count)).AddTo(this);
         }
 
-        private object OnLaboratoryLevelChange()
+        private void OnLaboratoryLevelChange()
         {
-            throw new NotImplementedException();
+            
         }
 
         private void BindUIToModel()

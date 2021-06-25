@@ -99,7 +99,7 @@ namespace GameWish.Game
 
         public void AddItemBtnEvent()
         {
-            HideSelfWithAnim();
+            m_PanelData.laboratoryModel.AddProcessingSlot();
         }
         #endregion
         #region Private
@@ -108,21 +108,23 @@ namespace GameWish.Game
             m_LaboratorySlotList.SetCellRenderer(OnLaboratorSlotCellRenderer);
             m_LaboratorySlotList.SetDataCount(m_PanelData.GetLaboratorySlotCount());
 
-            m_PotionSlotList.SetCellRenderer(OnPotionSloyCellRenderer);
+            m_PotionSlotList.SetCellRenderer(OnPotionSlotCellRenderer);
             m_PotionSlotList.SetDataCount(m_PanelData.GetPotionSlotCount());
             //m_LaboratorySlotList
             //m_PotionSlotList
 
         }
 
-        private void OnPotionSloyCellRenderer(Transform root, int index)
+        private void OnPotionSlotCellRenderer(Transform root, int index)
         {
-            throw new NotImplementedException();
+            var slotItem = root.GetComponent<PotionSlot>();
+            slotItem.SetSlot(m_PotionSlotToggleGroup, index, m_ElementList.GetComponent<ResElementLst>());
         }
 
         private void OnLaboratorSlotCellRenderer(Transform root, int index)
         {
-            throw new NotImplementedException();
+            var slotItem = root.GetComponent<LaboratorySlot>();
+            slotItem.SetSlot(index);
         }
 
         private void OnBottomCellRenderer(Transform root, int index)
