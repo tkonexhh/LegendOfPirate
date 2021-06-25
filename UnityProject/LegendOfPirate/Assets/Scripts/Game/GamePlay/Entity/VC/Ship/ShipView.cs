@@ -39,6 +39,8 @@ namespace GameWish.Game
         {
             if (m_WalkablePosList == null)
             {
+                m_WalkablePosList = new List<Vector3>();
+
                 for (int i = 0; i < m_ShipBody.randomPosList.Count; i++)
                 {
                     m_WalkablePosList.Add(m_ShipBody.randomPosList[i].position);

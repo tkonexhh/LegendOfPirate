@@ -13,7 +13,7 @@ namespace GameWish.Game
         
        
         private EInt m_AchievementID = 0;   
-        private EInt m_AchievementType = 0;   
+        private string m_AchievementType;   
         private string m_AchievementDescription;   
         private string m_TaskCount;   
         private string m_Reward;  
@@ -28,7 +28,7 @@ namespace GameWish.Game
         /// <summary>
         /// 成就类型
         /// </summary>
-        public  int  achievementType {get { return m_AchievementType; } }
+        public  string  achievementType {get { return m_AchievementType; } }
        
         /// <summary>
         /// 成就描述
@@ -64,7 +64,7 @@ namespace GameWish.Game
                     m_AchievementID = dataR.ReadInt();
                     break;
                 case 1:
-                    m_AchievementType = dataR.ReadInt();
+                    m_AchievementType = dataR.ReadString();
                     break;
                 case 2:
                     m_AchievementDescription = dataR.ReadString();
