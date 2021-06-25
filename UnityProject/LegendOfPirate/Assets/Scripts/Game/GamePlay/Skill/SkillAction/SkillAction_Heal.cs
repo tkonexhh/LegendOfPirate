@@ -23,10 +23,10 @@ namespace GameWish.Game
             switch (m_Target)
             {
                 case SkillTargetType.Caster:
-                    skill.TargetInfo.Caster.Data.buffedData.Hp += m_HealAmount;
+                    skill.TargetInfo.Caster.Data.Heal(m_HealAmount);
                     break;
                 case SkillTargetType.Target:
-                    skill.TargetInfo.Target.Data.buffedData.Hp += m_HealAmount;
+                    skill.TargetInfo.Target.Data.Heal(m_HealAmount);
                     break;
             }
         }

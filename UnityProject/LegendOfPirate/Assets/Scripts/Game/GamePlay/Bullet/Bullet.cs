@@ -67,7 +67,7 @@ namespace GameWish.Game
                 damagePackage.damageType = BattleDamageType.Normal;
                 damagePackage.damage = damage;
                 var roles = BattleMgr.S.Role.GetControllersByCamp(owner.camp);
-                RangeDamage.DealDamage(roles, transform, damagePackage);
+                RangeDamage.DealWithRange(roles, transform, (r) => { BattleMgr.S.SendDamage(r, damagePackage); });
             }
         }
 

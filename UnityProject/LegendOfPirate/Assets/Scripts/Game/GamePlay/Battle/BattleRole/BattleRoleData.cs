@@ -78,6 +78,12 @@ namespace GameWish.Game
             // Debug.LogError(buffedData.Hp + ":" + damage);
         }
 
+
+        public void Heal(int amount)
+        {
+            buffedData.Hp += amount;
+        }
+
     }
 
     /// <summary>

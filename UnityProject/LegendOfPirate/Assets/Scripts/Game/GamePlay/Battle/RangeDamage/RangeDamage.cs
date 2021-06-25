@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,12 +22,12 @@ namespace GameWish.Game
             return hits;
         }
 
-        public void DealDamage(List<BattleRoleController> roles, Transform transform, RoleDamagePackage damagePackage)
+        public void DealWithRange(List<BattleRoleController> roles, Transform transform, Action<BattleRoleController> callback)
         {
             var hits = GetTargets(roles, transform);
             for (int i = 0; i < hits.Count; i++)
             {
-                BattleMgr.S.SendDamage(hits[i], damagePackage);
+                callback(hits[i]);
             }
         }
 

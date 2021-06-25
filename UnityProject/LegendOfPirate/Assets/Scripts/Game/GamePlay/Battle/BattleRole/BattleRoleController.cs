@@ -132,7 +132,7 @@ namespace GameWish.Game
             else
             {
                 var roles = BattleMgr.S.Role.GetControllersByCamp(camp);
-                Data.RangeDamage.DealDamage(roles, transform, damagePackage);
+                Data.RangeDamage.DealWithRange(roles, transform, (r) => { BattleMgr.S.SendDamage(r, damagePackage); });
             }
         }
         #endregion

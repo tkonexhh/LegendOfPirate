@@ -39,6 +39,16 @@ namespace GameWish.Game
         public SkillTargetType targetType;
     }
 
+    [LabelText("群体治愈")]
+    [HideReferenceObjectPicker]
+    public class SkillActionConfig_RangeHeal : SkillActionConfig
+    {
+        [LabelText("治愈量")]
+        public int HealAmount = 10;
+        // public SkillTargetType targetType;
+        public RangeDamageConfig RangeDamage;
+    }
+
     [LabelText("直接添加Buff")]
     [HideReferenceObjectPicker]
     public class SkillActionConfig_AddBuff : SkillActionConfig

@@ -33,7 +33,7 @@ namespace GameWish.Game
             damagePackage.damageType = BattleDamageType.Skill;
             damagePackage.damage = m_Damage;
 
-            m_RangeDamage.DealDamage(roles, transform, damagePackage);
+            m_RangeDamage.DealWithRange(roles, transform, (r) => { BattleMgr.S.SendDamage(r, damagePackage); });
 
             skill.SkillActionStepEnd();
         }
