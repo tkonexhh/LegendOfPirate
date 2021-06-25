@@ -14,7 +14,7 @@ namespace GameWish.Game
 		[SerializeField] public UnityEngine.UI.Image AvatarImg;
 		[SerializeField] public RectTransform StarGroup;
 		[SerializeField] public TMPro.TextMeshProUGUI ItemLevelTex;
-
+		[SerializeField] public GImage TargetImg;
 		public void Clear()
 		{
 			ItemBgBtn = null;
@@ -22,6 +22,7 @@ namespace GameWish.Game
 			AvatarImg = null;
 			StarGroup = null;
 			ItemLevelTex = null;
+			TargetImg = null;
 		}
 
 	}
