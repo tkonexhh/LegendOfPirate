@@ -58,7 +58,6 @@ Shader "Custom/UISketchWithOutline"
             #include "UnityCG.cginc"
             #include "UnityUI.cginc"
 
-            #pragma multi_compile __ UNITY_UI_CLIP_RECT
             #pragma multi_compile __ UNITY_UI_ALPHACLIP
 
             struct appdata_t
@@ -112,10 +111,6 @@ Shader "Custom/UISketchWithOutline"
 				float alpha1 = max(tex2D(_MainTex, up_uv).a, tex2D(_MainTex, down_uv).a);
 				float alpha2 = max(tex2D(_MainTex, left_uv).a , tex2D(_MainTex, right_uv).a);
 				color.a = max(alpha1, alpha2) * _Alpha;
-
-                #ifdef UNITY_UI_CLIP_RECT
-                color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
-                #endif
 
                 #ifdef UNITY_UI_ALPHACLIP
                 clip (color.a - 0.001);
