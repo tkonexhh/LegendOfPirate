@@ -31,6 +31,12 @@ namespace GameWish.Game
             }
         }
 
+        public List<RoleModel> GetRoleModelsByStarlevel(int startLevel) 
+        {
+            var ret = roleItemList.Where(role => role.starLevel.Value == startLevel).ToList();
+            return ret;
+        }
+
         public RoleModel GetRoleModel(int id)
         {
             RoleModel role = roleItemList.FirstOrDefault(i => i.id == id);

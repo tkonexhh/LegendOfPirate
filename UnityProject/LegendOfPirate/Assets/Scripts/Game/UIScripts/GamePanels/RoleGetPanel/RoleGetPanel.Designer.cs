@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -11,22 +12,14 @@ namespace GameWish.Game
 	{
 		public const string Name = "RoleGetPanel";
 		
-		[SerializeField]
-		public UnityEngine.UI.Button CloseBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI RoleName;
-		[SerializeField]
-		public UnityEngine.UI.Image RoleImage;
-		[SerializeField]
-		public Canvas RoleSkills;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI Attribute1;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI Attribute2;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI Attribute3;
-		[SerializeField]
-		public UnityEngine.UI.Image SkillIconTemp;
+		[SerializeField] private Button m_CloseBtn;
+		[SerializeField] private TextMeshProUGUI m_RoleName;
+		[SerializeField] private Image m_RoleImage;
+		[SerializeField] private IUListView m_RoleSkills;
+		[SerializeField] private TextMeshProUGUI m_Attribute1;
+		[SerializeField] private TextMeshProUGUI m_Attribute2;
+		[SerializeField] private TextMeshProUGUI m_Attribute3;
+		[SerializeField] private Image m_SkillIconTemp;
 		
 		
 	}
