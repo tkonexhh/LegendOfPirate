@@ -56,8 +56,9 @@ MonoBehaviour:
       Data: 
   ID: 0
   RoleName: RoleName
-  AtkRange: 2
-  childSkills: []
-  prefab: {fileID: 6566296323340276310, guid: 1f8944f70dabb4e75ad60ba1f15d8d49, type: 3}
+  AtkRange: 2.5
+  childSkills:
+  - {fileID: 11400000, guid: 48ff19146024b4d2e852c835423a421f, type: 2}
+  prefab: {fileID: 7197673907520680025, guid: 1f8944f70dabb4e75ad60ba1f15d8d49, type: 3}
   Icon: {fileID: 21300000, guid: 9d07a919bc9db4493822ca8a87bf1906, type: 3}
   StatusDescription: 

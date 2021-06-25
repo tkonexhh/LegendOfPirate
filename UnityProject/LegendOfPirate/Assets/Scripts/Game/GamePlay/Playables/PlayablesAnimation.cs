@@ -57,6 +57,9 @@ namespace GameWish.Game
                 }
             }
 
+
+            // currentPlayable.GetAnimationClip().isLooping
+
             // if (currentPlayable.GetTime() >= currentPlayable.GetAnimationClip().length)
             // {
             //     Debug.LogError("Complete");

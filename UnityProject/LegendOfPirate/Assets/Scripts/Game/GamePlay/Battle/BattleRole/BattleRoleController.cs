@@ -117,7 +117,6 @@ namespace GameWish.Game
         {
             if (AI.onAttack != null)
             {
-                Debug.LogError("Attack");
                 AI.onAttack.Invoke();
             }
 

@@ -13,6 +13,9 @@ namespace GameWish.Game
         public GameObject renderObject;
         public BattleRoleRenderer(BattleRoleController controller) : base(controller) { }
 
+
+        private Stack<string> m_AnimationStack = new Stack<string>();
+
         public override void OnInit()
         {
             renderObject = BattleMgr.S.Pool.GetGameObject(prefabName);//GameObject.Instantiate(prefab);

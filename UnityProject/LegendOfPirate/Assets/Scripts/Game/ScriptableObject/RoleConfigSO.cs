@@ -20,6 +20,7 @@ namespace GameWish.Game
         [BoxGroup("战斗")]
         [LabelText("攻击距离")]
         public float AtkRange = 2.0f;
+        public float ColliderRange = 0.3f;
 
         [BoxGroup("战斗")]
         [HideReferenceObjectPicker]

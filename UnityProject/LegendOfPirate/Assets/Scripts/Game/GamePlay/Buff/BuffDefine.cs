@@ -19,7 +19,7 @@ namespace GameWish.Game
         [LabelText("空")] None,
         [LabelText("生命值")] Hp,
         [LabelText("最大生命值%")] MaxHp,
-        [LabelText("攻击力")] ATK,
+        [LabelText("攻击力%")] ATK,
         [LabelText("移动速度%")] MoveSpeed,
         [LabelText("攻击间隔")] AttackRate,
         [LabelText("护甲%")] Amor,

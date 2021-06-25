@@ -21,6 +21,7 @@ namespace GameWish.Game
 
         protected void OnTrigger()
         {
+            Debug.LogError("OnTrigger");
             if (onSkillTrigger != null)
             {
                 onSkillTrigger();

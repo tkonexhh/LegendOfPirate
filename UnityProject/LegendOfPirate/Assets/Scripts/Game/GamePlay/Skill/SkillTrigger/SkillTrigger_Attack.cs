@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
+    // 注意动画事件
     public class SkillTrigger_Attack : SkillTrigger
     {
         private Skill m_Skill;
@@ -12,7 +13,6 @@ namespace GameWish.Game
         {
             base.Start(skill);
             m_Skill = skill;
-            Debug.LogError("Start Attack" + skill.Owner.AI.onAttack);
             skill.Owner.AI.onAttack += OnAttack;//OnTrigger;
         }
 
@@ -25,7 +25,6 @@ namespace GameWish.Game
 
         private void OnAttack()
         {
-            Debug.LogError("Onattack");
             if (m_Skill.triggerCDTimer >= m_Skill.TriggerCD)
             {
                 Debug.LogError("SkillTrigger_Attack OnAttack");

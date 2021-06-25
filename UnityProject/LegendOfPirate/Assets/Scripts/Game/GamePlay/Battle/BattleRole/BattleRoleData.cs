@@ -14,6 +14,7 @@ namespace GameWish.Game
         public BattleRoleModel originData;
         public BattleRoleRuntimeModel buffedData;
         public float AtkRange { get; set; }//攻击距离
+        public float ColliderRange { get; set; }//碰撞距离
         public bool IsDead => buffedData.Hp <= 0;
 
         public BattleRoleData(BattleRoleController controller) : base(controller)
@@ -37,6 +38,8 @@ namespace GameWish.Game
 
             controller.MonoReference.AstarAI.maxSpeed = buffedData.MoveSpeed;
             controller.MonoReference.AstarAI.endReachedDistance = AtkRange;
+
+            controller.MonoReference.Collider.radius = ColliderRange;
         }
 
         public override void OnDestroy()
