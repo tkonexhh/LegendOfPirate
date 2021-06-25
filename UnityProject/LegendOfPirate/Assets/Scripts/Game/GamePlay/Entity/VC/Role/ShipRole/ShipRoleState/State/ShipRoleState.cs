@@ -12,6 +12,7 @@ namespace GameWish.Game
         Wander,
         Training,
         Reading,
+        Fishing,
     }
 
     public class ShipRoleState : FSMState<ShipRoleController>
