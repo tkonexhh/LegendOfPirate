@@ -23,6 +23,7 @@ namespace GameWish.Game
                 ItemBgBtn.onClick.AddListener(() =>
                 {
                     UIMgr.S.OpenPanel(UIID.RoleDetailsPanel, roleModel);
+                    TargetImg.gameObject.SetActive(true);
                 });
             //}
            
