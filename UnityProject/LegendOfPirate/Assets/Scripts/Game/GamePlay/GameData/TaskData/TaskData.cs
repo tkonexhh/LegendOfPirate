@@ -33,8 +33,8 @@ namespace GameWish.Game
             if (CurDayInYear != System.DateTime.Now.DayOfYear)
             {
                 CurDayInYear = System.DateTime.Now.DayOfYear;
-                SetDataDirty();
-                NewDay();
+                // SetDataDirty();
+                // NewDay();
             }
         }
 

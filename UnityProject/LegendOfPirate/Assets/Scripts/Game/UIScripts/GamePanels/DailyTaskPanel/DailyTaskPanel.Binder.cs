@@ -41,12 +41,12 @@ namespace GameWish.Game
             {
                 SetSliderState(count);
             }).AddTo(this);
+            m_PanelData.dailyTaskModel.leftTime.AsObservable().SubscribeToTextMeshPro(m_TmpRefreshTime, m_TmpRefreshTime.text);
         }
 
         private void BindUIToModel()
         {
         }
-
 
         private void OnClickAddListener()
         {
@@ -55,15 +55,28 @@ namespace GameWish.Game
 
         private void RefreshPanelState()
         {
+            StartCurCoroutine();
             SetSliderState(m_PanelData.curActiveNum.Value);
             UpdateItems(0, 0);
         }
         private void OnBackClicked()
         {
             CloseSelfPanel();
+            CloseCoroutine();
             UIMgr.S.OpenPanel(UIID.MainMenuPanel);
         }
-
+        private void StartCurCoroutine()
+        {
+            CloseCoroutine();
+            m_PanelData.dailyTaskModel.refreshTimeCoroutine = StartCoroutine(m_PanelData.dailyTaskModel.GetRefreshTime());
+        }
+        private void CloseCoroutine()
+        {
+            if (m_PanelData.dailyTaskModel.refreshTimeCoroutine != null)
+            {
+                StopCoroutine(m_PanelData.dailyTaskModel.refreshTimeCoroutine);
+            }
+        }
         private void SetSliderState(int acitveNum)
         {
             m_Slider.fillAmount = (float)acitveNum / (float)m_PanelData.dailyTaskAwardModel.targetActive;
