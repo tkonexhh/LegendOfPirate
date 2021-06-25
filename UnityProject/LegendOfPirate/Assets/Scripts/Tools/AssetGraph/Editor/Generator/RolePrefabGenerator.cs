@@ -25,7 +25,7 @@ namespace GameWish.Game
                 // Debug.LogError(tempGo + ":" + generateAssetPath);
                 if (tempGo != null)
                 {
-                    return false;
+                    return true;
                 }
                 var go = AssetDatabase.LoadAssetAtPath<GameObject>(asset.importFrom);
                 GameObject objSource = (GameObject)PrefabUtility.InstantiatePrefab(go);
@@ -37,6 +37,7 @@ namespace GameWish.Game
                 // Debug.LogError(tempP + "---" + asset.fileName);
                 if (string.Equals(tempP, asset.fileName))
                 {
+                    objSource.AddComponent<RoleModelMonoReference>();
                     var playables = objSource.AddComponent<PlayablesAnimation>();
                     // Debug.LogError("Main Model");
 
@@ -62,6 +63,12 @@ namespace GameWish.Game
                             var model = AssetDatabase.LoadAssetAtPath(path, typeof(AnimationClip)) as AnimationClip;
                             if (model != null)
                             {
+                                if (model.name.Contains("idle") || model.name.Contains("run") || model.name.Contains("walk") || model.name.Contains("vectory"))
+                                {
+                                    var setting = AnimationUtility.GetAnimationClipSettings(model);
+                                    setting.loopTime = true;
+                                    AnimationUtility.SetAnimationClipSettings(model, setting);
+                                }
                                 playables.clipsList.Add(model);
                             }
 
