@@ -16,6 +16,7 @@ namespace GameWish.Game
         public StringReactiveProperty leftTime;
         public Coroutine refreshTimeCoroutine;
         private int m_RefreshTime = 6;
+        public bool m_CanStop = false;
         public DailyTaskModel()
         {
             taskData = GameDataMgr.S.GetData<TaskData>();
@@ -42,24 +43,26 @@ namespace GameWish.Game
         {
             return taskData.GetTaskDailyData().activeNum;
         }
-        public IEnumerator GetRefreshTime()
+        public IEnumerator GetRefreshTime(DailyTaskPanel myPanel)
         {
-            while (true)
+            m_CanStop = true;
+            while (myPanel.gameObject.layer == LayerDefine.LAYER_UI && m_CanStop)
             {
                 int day = DateTime.Now.DayOfYear;
                 int hour = DateTime.Now.Hour;
                 int minute = DateTime.Now.Minute;
                 int second = DateTime.Now.Second;
                 DateTime tomorrow = DateTime.Now.AddDays(1);
-                TimeSpan time = new TimeSpan(hour < 6 ? day : tomorrow.DayOfYear, m_RefreshTime, 0, 0) - new TimeSpan(day, hour, minute, second);
-                //Debug.LogError("time = " + time);
+                TimeSpan time = new TimeSpan(hour < m_RefreshTime ? day : tomorrow.DayOfYear, m_RefreshTime, 0, 0) - new TimeSpan(day, hour, minute, second);
+                //Debug.LogError("time.TotalSeconds = " + time.TotalSeconds);
                 leftTime.Value = time.ToString();
-                if (time.TotalSeconds == 0)
-                {
-                    taskData.NewDay();
-                    EventSystem.S.Send(EventID.DailyTaskRefresh, 0);
-                }
                 yield return new WaitForSeconds(1f);
+                if ((int)time.TotalSeconds == 86400)
+                {
+                    m_CanStop = false;
+                    taskData.NewDay();
+                    myPanel.NewDay();
+                }
             }
         }
 

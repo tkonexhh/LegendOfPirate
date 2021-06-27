@@ -40,6 +40,7 @@ namespace GameWish.Game
             {
                 BtnsControl(false);
             });
+            RefreshUI();
         }
         void RefreshUI()
         {

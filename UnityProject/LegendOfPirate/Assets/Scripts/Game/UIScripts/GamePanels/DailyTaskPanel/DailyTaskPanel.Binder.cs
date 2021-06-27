@@ -58,37 +58,56 @@ namespace GameWish.Game
             StartCurCoroutine();
             SetSliderState(m_PanelData.curActiveNum.Value);
             UpdateItems(0, 0);
+            // m_DailyTaskContent.GetComponent<VerticalLayoutGroup>().enabled = false;
+            // m_DailyTaskContent.GetComponent<VerticalLayoutGroup>().enabled = true;
         }
+
+        public void NewDay()
+        {
+            m_PanelData.dailyTaskModel.dailyItems.Clear();
+            m_DailyTaskContent.RemoveAllChild();
+            CreatRwardBoxItem();
+            CreatTaskItem();
+            RefreshPanelState();
+        }
+
         private void OnBackClicked()
         {
             CloseSelfPanel();
             CloseCoroutine();
             UIMgr.S.OpenPanel(UIID.MainMenuPanel);
         }
+
         private void StartCurCoroutine()
         {
             CloseCoroutine();
-            m_PanelData.dailyTaskModel.refreshTimeCoroutine = StartCoroutine(m_PanelData.dailyTaskModel.GetRefreshTime());
+            m_PanelData.dailyTaskModel.refreshTimeCoroutine = StartCoroutine(m_PanelData.dailyTaskModel.GetRefreshTime(this));
         }
+
         private void CloseCoroutine()
         {
             if (m_PanelData.dailyTaskModel.refreshTimeCoroutine != null)
             {
                 StopCoroutine(m_PanelData.dailyTaskModel.refreshTimeCoroutine);
+                m_PanelData.dailyTaskModel.refreshTimeCoroutine = null;
             }
         }
+
         private void SetSliderState(int acitveNum)
         {
             m_Slider.fillAmount = (float)acitveNum / (float)m_PanelData.dailyTaskAwardModel.targetActive;
         }
+
         private void RegisterEvents()
         {
             EventSystem.S.Register(EventID.DailyTaskRefresh, UpdateItems);
         }
+
         private void UnregisterEvents()
         {
             EventSystem.S.UnRegister(EventID.DailyTaskRefresh, UpdateItems);
         }
+
         private void CreatRwardBoxItem()
         {
             for (int i = 0; i < m_PanelData.dailyTaskAwardModel.GetDailyTaskCount(); i++)
@@ -129,7 +148,7 @@ namespace GameWish.Game
                 item.gameObject.SetActive(true);
                 item.OnInit(this, m_PanelData.dailyTaskModel.tdDailyTaskList[i], m_PanelData.dailyTaskModel.taskData);
             }
-            m_DailyItemScrollView.SetLayoutVertical();
+            // m_DailyItemScrollView.SetLayoutVertical();
         }
 
         private void UpdateItems(int key, params object[] args)
