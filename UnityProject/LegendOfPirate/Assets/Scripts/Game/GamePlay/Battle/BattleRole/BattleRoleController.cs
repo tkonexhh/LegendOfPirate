@@ -122,7 +122,7 @@ namespace GameWish.Game
             }
 
             int damage = BattleHelper.CalcAtkDamage(Data.buffedData);
-            RoleDamagePackage damagePackage = new RoleDamagePackage();
+            RoleDamagePackage damagePackage = new RoleDamagePackage(this);
             damagePackage.damageType = BattleDamageType.Normal;
             damagePackage.damage = damage;
 

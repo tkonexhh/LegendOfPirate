@@ -20,7 +20,7 @@ namespace GameWish.Game
 
         public BuffTriggerType BuffTriggerType;
 
-        [ToggleGroup("EnabledAttributeModify"), ShowIf("BuffTriggerType", BuffTriggerType.Interval), LabelText("间隔时间")]
+        [ShowIf("BuffTriggerType", BuffTriggerType.Interval), LabelText("间隔时间")]
         public float Interval = 1;
 
 

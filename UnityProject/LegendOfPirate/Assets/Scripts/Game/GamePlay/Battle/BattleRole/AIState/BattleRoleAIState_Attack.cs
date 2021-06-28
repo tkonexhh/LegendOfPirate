@@ -26,13 +26,22 @@ namespace GameWish.Game
                 return;//ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.PickTarget);
             }
 
+            //处理攻速动画
             m_AttackTimer += dt;
             //TODO 攻击速度从Data中读取
-            if (m_AttackTimer >= 2.1f &&
+            if (m_AttackTimer >= ai.controller.Data.buffedData.AtkTime &&
                 !ai.controller.Data.buffedData.StatusMask.HasStatus(StatusControlType.AttackForbid))
             {
+                //计算攻击动画缩放
+                float animScale = 1.0f;
+                float attackLen = ai.controller.Renderer.animator.GetLength(BattleDefine.ROLEANIM_ATTACK01);
+                if (ai.controller.Data.buffedData.AtkTime < attackLen)
+                {
+                    animScale = attackLen / ai.controller.Data.buffedData.AtkTime;
+                    // Debug.LogError(animScale);
+                }
                 //动画进栈
-                m_AI.controller.Renderer.PushAnimFade(BattleDefine.ROLEANIM_ATTACK01, 0.1f);
+                m_AI.controller.Renderer.PushAnimFade(BattleDefine.ROLEANIM_ATTACK01, 0.1f, animScale);
                 m_AttackTimer = 0;
             }
 

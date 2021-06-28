@@ -29,7 +29,7 @@ namespace GameWish.Game
 
             }
 
-            RoleDamagePackage damagePackage = new RoleDamagePackage();
+            RoleDamagePackage damagePackage = new RoleDamagePackage(skill.Owner);
             damagePackage.damageType = BattleDamageType.Skill;
             damagePackage.damage = m_Damage;
 

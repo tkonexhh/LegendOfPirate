@@ -63,7 +63,7 @@ namespace GameWish.Game
             else
             {
                 int damage = Damage;
-                RoleDamagePackage damagePackage = new RoleDamagePackage();
+                RoleDamagePackage damagePackage = new RoleDamagePackage(owner);
                 damagePackage.damageType = BattleDamageType.Normal;
                 damagePackage.damage = damage;
                 var roles = BattleMgr.S.Role.GetControllersByCamp(owner.camp);

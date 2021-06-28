@@ -77,6 +77,13 @@ namespace GameWish.Game
             m_Graph.Destroy();
         }
 
+        public float GetLength(string name)
+        {
+            var clip = clipsList.Find(c => c.name == name);
+            return clip.length;
+        }
+
+
         public void Play(string name, float speed = 0.1f)
         {
             Play(clipsList.Find(c => c.name == name), speed);
@@ -98,17 +105,18 @@ namespace GameWish.Game
         }
 
 
-        public void CrossFade(string name, float fadeLength)
+        public void CrossFade(string name, float fadeLength, float speed = 1.0f)
         {
             CrossFade(clipsList.Find(c => c.name == name), fadeLength);
         }
 
-        public void CrossFade(AnimationClip clip, float fadeLength)
+        public void CrossFade(AnimationClip clip, float fadeLength, float speed = 1.0f)
         {
             DisconnectPlayables();
 
             prePlayable = currentPlayable;
             currentPlayable = AnimationClipPlayable.Create(m_Graph, clip);
+            currentPlayable.SetSpeed(speed);
 
             animationMixer.ConnectInput(0, currentPlayable, 0);
             animationMixer.ConnectInput(1, prePlayable, 0);

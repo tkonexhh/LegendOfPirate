@@ -33,7 +33,7 @@ MonoBehaviour:
       Data: 1|GameWish.Game.ModifierAttribute, Assembly-CSharp
     - Name: AttributeType
       Entry: 3
-      Data: 1
+      Data: 5
     - Name: NumericValue
       Entry: 3
       Data: 27

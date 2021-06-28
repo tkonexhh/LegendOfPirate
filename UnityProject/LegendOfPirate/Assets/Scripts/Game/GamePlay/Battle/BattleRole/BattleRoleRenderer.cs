@@ -7,7 +7,7 @@ namespace GameWish.Game
 {
     public class BattleRoleRenderer : BattleRoleComponent
     {
-        private PlayablesAnimation animator;
+        public PlayablesAnimation animator { get; private set; }
         public RoleModelMonoReference modelMonoReference { get; private set; }
         public string prefabName;
         public GameObject renderObject;
@@ -41,24 +41,24 @@ namespace GameWish.Game
         }
 
 
-        public void PushAnim(string animName)
+        public void PushAnim(string animName, float speed = 1.0f)
         {
             m_AnimationStack.Push(animName);
             PlayAnim(animName);
         }
 
-        public void PushAnimFade(string animName, float fadeTime)
+        public void PushAnimFade(string animName, float fadeTime, float speed = 1.0f)
         {
             m_AnimationStack.Push(animName);
             CrossFadeAnim(animName, fadeTime);
         }
 
-        public void PlayAnim(string animName)
+        public void PlayAnim(string animName, float speed = 1.0f)
         {
             animator.Play(animName);
         }
 
-        public void CrossFadeAnim(string animName, float fadeTime)
+        public void CrossFadeAnim(string animName, float fadeTime, float speed = 1.0f)
         {
             animator.CrossFade(animName, fadeTime);
         }

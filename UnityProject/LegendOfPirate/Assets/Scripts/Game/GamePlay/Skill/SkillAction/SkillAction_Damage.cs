@@ -20,7 +20,7 @@ namespace GameWish.Game
         public override void ExcuteAction(Skill skill)
         {
             skill.SkillActionStepEnd();
-            RoleDamagePackage package = new RoleDamagePackage();
+            RoleDamagePackage package = new RoleDamagePackage(skill.Owner);
             package.damage = (int)(m_Damage * 0.01) * skill.Owner.Data.buffedData.ATK;
             package.damageType = m_DamageType;
             switch (m_Target)
