@@ -16,7 +16,7 @@ namespace GameWish.Game
 
         public BulletMove move;
 
-        public RangeDamage RangeDamage { get; set; }//伤害范围
+        public Picker RangeDamage { get; set; }
         public int Damage { get; set; }
 
 

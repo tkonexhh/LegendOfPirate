@@ -8,9 +8,9 @@ namespace GameWish.Game
     public class SkillAction_RangeHeal : SkillAction
     {
         private int m_HealAmount;
-        private RangeDamage m_RangeDamage;
+        private Picker m_RangeDamage;
 
-        public SkillAction_RangeHeal(RangeDamage rangeDamage, int healAmount) //: base(owner)
+        public SkillAction_RangeHeal(Picker rangeDamage, int healAmount) //: base(owner)
         {
             this.m_RangeDamage = rangeDamage;
             this.m_HealAmount = healAmount;

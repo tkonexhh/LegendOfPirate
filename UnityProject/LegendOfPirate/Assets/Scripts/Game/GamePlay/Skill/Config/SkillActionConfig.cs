@@ -26,7 +26,7 @@ namespace GameWish.Game
         [LabelText("伤害%")] public int Damage;
         [LabelText("伤害等级增量")] public int DamagePlus;
 
-        public BattleDamageType DamageType = BattleDamageType.Skill;
+        // public BattleDamageType DamageType = BattleDamageType.Skill;
         public SkillTargetType targetType;
     }
 

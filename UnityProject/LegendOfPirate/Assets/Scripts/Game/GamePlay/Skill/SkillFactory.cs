@@ -59,7 +59,7 @@ namespace GameWish.Game
 
         private static SkillAction CreateSkillAction_Damage(Skill skill, SkillActionConfig_Damage actionConfig)
         {
-            return new SkillAction_Damage(actionConfig.Damage, actionConfig.DamageType, actionConfig.targetType);
+            return new SkillAction_Damage(actionConfig.Damage, actionConfig.targetType);
         }
 
         private static SkillAction CreateSkillAction_Heal(Skill skill, SkillActionConfig_Heal healConfig)
@@ -69,7 +69,7 @@ namespace GameWish.Game
 
         private static SkillAction CreateSkillAction_RangeHeal(Skill skill, SkillActionConfig_RangeHeal config)
         {
-            RangeDamage rangeDamage = RangeDamageConfig.CreateRangeDamage(config.RangeDamage);
+            Picker rangeDamage = RangeDamageConfig.CreateRangeDamage(config.RangeDamage);
             return new SkillAction_RangeHeal(rangeDamage, config.HealAmount);
         }
 
@@ -100,7 +100,7 @@ namespace GameWish.Game
 
         private static SkillAction CreateSkillAction_RangeDamage(SkillActionConfig_RangeDamage config)
         {
-            RangeDamage rangeDamage = RangeDamageConfig.CreateRangeDamage(config.RangeDamage);
+            Picker rangeDamage = RangeDamageConfig.CreateRangeDamage(config.RangeDamage);
             return new SkillAction_RangeDamage(rangeDamage, config.targetType, config.Damage);
         }
 

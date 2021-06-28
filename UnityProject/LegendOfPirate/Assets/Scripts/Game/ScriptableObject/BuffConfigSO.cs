@@ -18,6 +18,9 @@ namespace GameWish.Game
         [PropertyTooltip("-1 是永久持续"), Range(-1, 200)]
         public float Time;
 
+        [LabelText("持续时间成长值")]
+        public float TimeDelta;
+
         public BuffTriggerType BuffTriggerType;
 
         [ShowIf("BuffTriggerType", BuffTriggerType.Interval), LabelText("间隔时间")]
@@ -69,6 +72,8 @@ namespace GameWish.Game
         public AttributeType AttributeType;
         [LabelText("数值参数")]
         public int NumericValue;
+        [LabelText("成长参数")]
+        public int NumericValueDelta;
         // public BuffTriggerType triggerType;
     }
 

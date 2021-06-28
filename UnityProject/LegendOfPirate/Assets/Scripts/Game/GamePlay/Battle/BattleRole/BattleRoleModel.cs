@@ -21,7 +21,7 @@ namespace GameWish.Game
         public int EvasionRate = 0;//闪避率
         public float SkillATKRate = 0;//技能伤害
         public float SkillAmorRate = 0;//技能保护
-        public float ATKResponseRate = 0;//吸血率
+        public float AtkHeal = 0;//吸血率
         public float ATKReflectRate = 0;//反伤率
         public float HPRecoverRate = 0;//生命回复率
 

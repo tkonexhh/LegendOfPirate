@@ -25,6 +25,9 @@ namespace GameWish.Game
         [LabelText("护甲%")] Amor,
         [LabelText("暴击")] Critical,
         [LabelText("额外生命值(最大生命值%)")] ExtraHp,
+        [LabelText("闪避%")] EvasionRate,
+        [LabelText("吸血%")] AtkHealRate,
+
     }
 
     [LabelText("Buff持续时间叠加类型(完成)")]
