@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.33881372, g: 0.8223812, b: 0.9296663, a: 1}
+  m_IndirectSpecularColor: {r: 0.33881366, g: 0.82238126, b: 0.9296663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1361,14 +1361,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 369659008}
     m_Modifications:
-    - target: {fileID: 1269676493, guid: 32ae81b9fbe8945c0a3bd5fe501a1b8c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 1269676493, guid: 32ae81b9fbe8945c0a3bd5fe501a1b8c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -25
-      objectReference: {fileID: 0}
     - target: {fileID: 1551111130, guid: 32ae81b9fbe8945c0a3bd5fe501a1b8c, type: 3}
       propertyPath: m_Cameras.Array.data[0]
       value: 
@@ -1377,11 +1369,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BattleRoot
-      objectReference: {fileID: 0}
-    - target: {fileID: 1194082207890510846, guid: 32ae81b9fbe8945c0a3bd5fe501a1b8c,
-        type: 3}
-      propertyPath: m_TagString
-      value: Battle_Ground
       objectReference: {fileID: 0}
     - target: {fileID: 1194082209648040906, guid: 32ae81b9fbe8945c0a3bd5fe501a1b8c,
         type: 3}

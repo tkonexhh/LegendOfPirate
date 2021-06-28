@@ -115,14 +115,14 @@ namespace GameWish.Game
         #region override
         public void DealDamage()
         {
+            Debug.LogError("DealDamage");
             if (AI.onAttack != null)
             {
-                Debug.LogError("Attack");
                 AI.onAttack.Invoke();
             }
 
             int damage = BattleHelper.CalcAtkDamage(Data.buffedData);
-            RoleDamagePackage damagePackage = new RoleDamagePackage();
+            RoleDamagePackage damagePackage = new RoleDamagePackage(this);
             damagePackage.damageType = BattleDamageType.Normal;
             damagePackage.damage = damage;
 
@@ -133,7 +133,7 @@ namespace GameWish.Game
             else
             {
                 var roles = BattleMgr.S.Role.GetControllersByCamp(camp);
-                Data.RangeDamage.DealDamage(roles, transform, damagePackage);
+                Data.RangeDamage.DealWithRange(roles, transform, (r) => { BattleMgr.S.SendDamage(r, damagePackage); });
             }
         }
         #endregion

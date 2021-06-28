@@ -36,6 +36,11 @@ namespace GameWish.Game
         public List<SkillActionConfig> SkillActionConfigs = new List<SkillActionConfig>();
 
 
+        [Space(50)]
+        [TextArea, LabelText("技能描述")]
+        public string StatusDescription;
+
+
         private void OnSkillTriggerTypeChange()
         {
             if (SkillTriggerType == SkillTriggerType.OnAttack || SkillTriggerType == SkillTriggerType.OnCreate)

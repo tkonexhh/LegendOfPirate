@@ -16,7 +16,7 @@ namespace GameWish.Game
 
         public BulletMove move;
 
-        public RangeDamage RangeDamage { get; set; }//伤害范围
+        public Picker RangeDamage { get; set; }
         public int Damage { get; set; }
 
 
@@ -63,11 +63,11 @@ namespace GameWish.Game
             else
             {
                 int damage = Damage;
-                RoleDamagePackage damagePackage = new RoleDamagePackage();
+                RoleDamagePackage damagePackage = new RoleDamagePackage(owner);
                 damagePackage.damageType = BattleDamageType.Normal;
                 damagePackage.damage = damage;
                 var roles = BattleMgr.S.Role.GetControllersByCamp(owner.camp);
-                RangeDamage.DealDamage(roles, transform, damagePackage);
+                RangeDamage.DealWithRange(roles, transform, (r) => { BattleMgr.S.SendDamage(r, damagePackage); });
             }
         }
 

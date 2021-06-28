@@ -54,6 +54,10 @@ namespace GameWish.Game
                     return new BuffModelHandler_Amor(value);
                 case AttributeType.Critical:
                     return new BuffModelHandler_Critical(value);
+                case AttributeType.AttackRate:
+                    return new BuffModelHandler_AttackRate(value);
+                case AttributeType.ExtraHp:
+                    return new BuffModelHandler_ExtraHp(value);
             }
             return null;
         }

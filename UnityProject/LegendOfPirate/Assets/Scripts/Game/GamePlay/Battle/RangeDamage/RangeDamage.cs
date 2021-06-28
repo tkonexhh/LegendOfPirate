@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,9 @@ using UnityEngine;
 namespace GameWish.Game
 {
 
-    public abstract class RangeDamage
+    public abstract class Picker
     {
-        private List<BattleRoleController> GetTargets(List<BattleRoleController> roles, Transform transform)
+        protected List<BattleRoleController> GetTargets(List<BattleRoleController> roles, Transform transform)
         {
             List<BattleRoleController> hits = new List<BattleRoleController>();
             for (int i = 0; i < roles.Count; i++)
@@ -21,20 +22,60 @@ namespace GameWish.Game
             return hits;
         }
 
-        public void DealDamage(List<BattleRoleController> roles, Transform transform, RoleDamagePackage damagePackage)
+        public void DealWithRange(List<BattleRoleController> roles, Transform transform, Action<BattleRoleController> callback)
         {
             var hits = GetTargets(roles, transform);
             for (int i = 0; i < hits.Count; i++)
             {
-                BattleMgr.S.SendDamage(hits[i], damagePackage);
+                callback(hits[i]);
             }
         }
 
         public abstract bool InRange(BattleRoleController role, Transform center);
     }
 
+    // public abstract class Picker1
+    // {
+    //     protected List<BattleRoleController> GetTargets()
+    //     {
+    //         List<BattleRoleController> targets = new List<BattleRoleController>();
+    //         List<BattleRoleController> roles = BattleMgr.S.Role.GetControllersByCamp(BattleCamp.Our);
+    //         for (int i = 0; i < roles.Count; i++)
+    //         {
+    //             if (DealWithTarget(roles[i]))
+    //             {
+    //                 targets.Add(roles[i]);
+    //             }
+    //         }
+    //         return targets;
+    //     }
 
-    public class RangeDamage_Circle : RangeDamage
+    //     public void DealWithPicker(Action<BattleRoleController> callback)
+    //     {
+    //         var picks = GetTargets();
+    //         for (int i = 0; i < picks.Count; i++)
+    //         {
+    //             callback(picks[i]);
+    //         }
+    //     }
+
+    //     protected virtual bool DealWithTarget(BattleRoleController role)
+    //     {
+    //         return false;
+    //     }
+    // }
+
+    // public abstract class RangePicker : Picker1
+    // {
+
+    //     protected override bool DealWithTarget(BattleRoleController role)
+    //     {
+    //         return false;
+    //     }
+    // }
+
+
+    public class RangeDamage_Circle : Picker
     {
         private float m_Radius;
 
@@ -49,7 +90,7 @@ namespace GameWish.Game
         }
     }
 
-    public class RangeDamage_Rect : RangeDamage
+    public class RangeDamage_Rect : Picker
     {
         private float m_Width;
         private float m_Height;
@@ -96,7 +137,7 @@ namespace GameWish.Game
         }
     }
 
-    public class RangeDamage_Sector : RangeDamage
+    public class RangeDamage_Sector : Picker
     {
         private float m_Radius;
         private float m_Degree;
@@ -117,6 +158,22 @@ namespace GameWish.Game
             }
 
             return false;
+        }
+    }
+
+    public class RangeDamage_All : Picker
+    {
+        private BattleCamp m_Camp;
+
+        public RangeDamage_All(BattleCamp camp)
+        {
+            m_Camp = camp;
+        }
+
+        public override bool InRange(BattleRoleController role, Transform center)
+        {
+
+            return true;
         }
     }
 

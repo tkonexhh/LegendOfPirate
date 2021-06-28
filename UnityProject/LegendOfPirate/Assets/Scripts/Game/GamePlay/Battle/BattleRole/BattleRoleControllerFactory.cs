@@ -18,6 +18,7 @@ namespace GameWish.Game
                 role.Skill.AddSkill(SkillFactory.CreateSkill(configSO.childSkills[i]));
             }
             role.Data.AtkRange = configSO.AtkRange;
+            role.Data.ColliderRange = configSO.ColliderRange;
             role.Data.Sensor = BattleSensorFactory.CreateBattleSensor(configSO.PickTarget.PickTargetType, configSO.PickTarget.SensorTypeEnum);
             role.Data.Attacker = BattleAttackerFactory.CreateBattleAttacker(configSO.Attack.AttackType);
             if (role.Data.Attacker is BattleAttacker_Shoot attacker)//配置远程攻击的子弹

@@ -19,11 +19,15 @@ namespace GameWish.Game
         [LabelText("空")] None,
         [LabelText("生命值")] Hp,
         [LabelText("最大生命值%")] MaxHp,
-        [LabelText("攻击力")] ATK,
+        [LabelText("攻击力%")] ATK,
         [LabelText("移动速度%")] MoveSpeed,
-        [LabelText("攻击间隔")] AttackRate,
+        [LabelText("攻击间隔%")] AttackRate,
         [LabelText("护甲%")] Amor,
         [LabelText("暴击")] Critical,
+        [LabelText("额外生命值(最大生命值%)")] ExtraHp,
+        [LabelText("闪避%")] EvasionRate,
+        [LabelText("吸血%")] AtkHealRate,
+
     }
 
     [LabelText("Buff持续时间叠加类型(完成)")]

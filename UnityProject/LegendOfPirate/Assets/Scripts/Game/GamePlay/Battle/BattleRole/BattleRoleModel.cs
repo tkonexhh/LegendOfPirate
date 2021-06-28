@@ -13,14 +13,15 @@ namespace GameWish.Game
 
         public float BasicMoveSpeed = 1;//移动速度
         public int BasicATK;//攻击力
-        public float BasicATKRate = 1.0f;//基础攻击速率
-        public float bounsATKRate = 0;//攻击加速
+        public float BasicATKTime = 2.0f;//基础攻击间隔
+
+
         public int CriticalRate = 0;//暴击率
         public float Amor = 0;//护甲
         public int EvasionRate = 0;//闪避率
         public float SkillATKRate = 0;//技能伤害
         public float SkillAmorRate = 0;//技能保护
-        public float ATKResponseRate = 0;//吸血率
+        public float AtkHeal = 0;//吸血率
         public float ATKReflectRate = 0;//反伤率
         public float HPRecoverRate = 0;//生命回复率
 
@@ -45,10 +46,12 @@ namespace GameWish.Game
         public int MaxHp;
         public float MaxHpAddRate = 0;
         public float ATKAddRate = 0;//攻击加成比例
+        public float bounsATKSpeedRate = 0;//攻击加速率
 
+        public float AtkTime => BasicATKTime / (1.0f + bounsATKSpeedRate);//最终攻击间隔
 
         public FloatReactiveProperty MoveSpeedAddRate = new FloatReactiveProperty(0);
-        public float ExtraHP = 0;//额外生命值 护盾
+        public int ExtraHP = 0;//额外生命值 护盾
         public StatusMask StatusMask = new StatusMask();//状态标识位
 
 
