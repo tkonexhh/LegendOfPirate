@@ -33,6 +33,7 @@ namespace GameWish.Game
                 if (configs[i] is SkillActionConfig_AddBuff addBuffConfig) { skill.SkillActions.Add(CreateSkillAction_AddBuff(addBuffConfig)); }
                 if (configs[i] is SkillActionConfig_Damage damageConfig) { skill.SkillActions.Add(CreateSkillAction_Damage(skill, damageConfig)); }
                 if (configs[i] is SkillActionConfig_Heal healConfig) { skill.SkillActions.Add(CreateSkillAction_Heal(skill, healConfig)); }
+                if (configs[i] is SkillActionConfig_RangeHeal rangeHealConfig) { skill.SkillActions.Add(CreateSkillAction_RangeHeal(skill, rangeHealConfig)); }
                 if (configs[i] is SkillActionConfig_PlaySound soundConfig) { skill.SkillActions.Add(CreateSkillAction_PlaySound(skill, soundConfig)); }//TODO
                 if (configs[i] is SkillActionConfig_PlayEffect effectConfig) { skill.SkillActions.Add(CreateSkillAction_PlayEffect(skill, effectConfig)); }//TODO
                 if (configs[i] is SkillActionConfig_Sprint sprintConfig) { skill.SkillActions.Add(CreateSkillAction_Sprint(skill, sprintConfig)); }
@@ -58,12 +59,18 @@ namespace GameWish.Game
 
         private static SkillAction CreateSkillAction_Damage(Skill skill, SkillActionConfig_Damage actionConfig)
         {
-            return new SkillAction_Damage(actionConfig.Damage, actionConfig.DamageType, actionConfig.targetType);
+            return new SkillAction_Damage(actionConfig.Damage, actionConfig.targetType);
         }
 
         private static SkillAction CreateSkillAction_Heal(Skill skill, SkillActionConfig_Heal healConfig)
         {
             return new SkillAction_Heal(healConfig.HealAmount, healConfig.targetType);
+        }
+
+        private static SkillAction CreateSkillAction_RangeHeal(Skill skill, SkillActionConfig_RangeHeal config)
+        {
+            Picker rangeDamage = RangeDamageConfig.CreateRangeDamage(config.RangeDamage);
+            return new SkillAction_RangeHeal(rangeDamage, config.HealAmount);
         }
 
         private static SkillAction CreateSkillAction_PlaySound(Skill skill, SkillActionConfig_PlaySound config)
@@ -93,7 +100,7 @@ namespace GameWish.Game
 
         private static SkillAction CreateSkillAction_RangeDamage(SkillActionConfig_RangeDamage config)
         {
-            RangeDamage rangeDamage = RangeDamageConfig.CreateRangeDamage(config.RangeDamage);
+            Picker rangeDamage = RangeDamageConfig.CreateRangeDamage(config.RangeDamage);
             return new SkillAction_RangeDamage(rangeDamage, config.targetType, config.Damage);
         }
 

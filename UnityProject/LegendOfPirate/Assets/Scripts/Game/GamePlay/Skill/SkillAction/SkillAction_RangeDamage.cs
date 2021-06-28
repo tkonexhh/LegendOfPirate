@@ -7,11 +7,11 @@ namespace GameWish.Game
 {
     public class SkillAction_RangeDamage : SkillAction
     {
-        private RangeDamage m_RangeDamage;
+        private Picker m_RangeDamage;
         private SkillTargetType m_TargetType;
         private int m_Damage;
 
-        public SkillAction_RangeDamage(RangeDamage rangeDamage, SkillTargetType targetType, int damage) //: base(owner)
+        public SkillAction_RangeDamage(Picker rangeDamage, SkillTargetType targetType, int damage) //: base(owner)
         {
             this.m_RangeDamage = rangeDamage;
             this.m_TargetType = targetType;
@@ -29,11 +29,11 @@ namespace GameWish.Game
 
             }
 
-            RoleDamagePackage damagePackage = new RoleDamagePackage();
+            RoleDamagePackage damagePackage = new RoleDamagePackage(skill.Owner);
             damagePackage.damageType = BattleDamageType.Skill;
             damagePackage.damage = m_Damage;
 
-            m_RangeDamage.DealDamage(roles, transform, damagePackage);
+            m_RangeDamage.DealWithRange(roles, transform, (r) => { BattleMgr.S.SendDamage(r, damagePackage); });
 
             skill.SkillActionStepEnd();
         }

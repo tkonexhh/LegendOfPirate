@@ -130,7 +130,7 @@ namespace GameWish.Game
             //     }
             // }
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 2; i++)
             {
                 BattleRoleController role = BattleRoleControllerFactory.CreateBattleRole(BattleMgr.S.DemoRoleSO);
                 role.gameObject.layer = LayerDefine.LAYER_ROLE_OUR;
