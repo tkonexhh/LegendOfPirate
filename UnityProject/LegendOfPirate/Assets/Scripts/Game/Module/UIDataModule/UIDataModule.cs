@@ -138,6 +138,7 @@ namespace GameWish.Game
 
             #region 海战选关相关
             UIDataTable.AddPanelData(UIID.MainSeaLevelPanel, null, "GamePanels/MainSeaBattlePanel/MainSeaLevelPanel/MainSeaLevelPanel");//选关界面
+            UIDataTable.AddPanelData(UIID.LevelPeviewPanel, null, "GamePanels/MainSeaBattlePanel/LevelPeviewPanel/LevelPeviewPanel");//选关预览界面
             #endregion
 
             #region 任务系统
