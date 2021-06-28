@@ -42,9 +42,9 @@ namespace GameWish.Game
             curRecommendAtkValue.Value = curLevelData.recommendAtkValue;
             curBattleName.Value = curLevelData.battleName;
         }
-        public string[] GetReward(string reward)
+        public string[] GetReward()
         {
-            string[] rewardList = reward.Split(';');
+            string[] rewardList = curReward.Value.Split(';');
             return rewardList;
         }
         

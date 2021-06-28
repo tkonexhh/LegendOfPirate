@@ -61,6 +61,19 @@ namespace GameWish.Game
         {
             m_PanelData.mainSeaLevelModel.curLevelID.Value = levelID;
             m_PanelData.mainSeaLevelModel.InitContent();
+            CreatRewardItem();
+        }
+        private void CreatRewardItem()
+        {
+            m_RewardContent.RemoveAllChild();
+
+            for (int i = 0; i < m_PanelData.mainSeaLevelModel.GetReward().Length; i++)
+            {
+                GameObject item = Instantiate(m_RewardItem.gameObject);
+                item.transform.SetParent(m_RewardContent);
+                item.transform.ResetTrans();
+                item.gameObject.SetActive(true);
+            }
         }
     }
 }

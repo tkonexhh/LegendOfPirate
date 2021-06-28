@@ -57,7 +57,8 @@ namespace GameWish.Game
 
         private void OnAttackClicked()
         {
-            UIMgr.S.OpenPanel(UIID.LevelPeviewPanel, null, m_PanelData.currentLevelId.Value);
+            CloseSelfPanel();
+            UIMgr.S.OpenPanel(UIID.BattlePreparePanel, null, m_PanelData.currentLevelId.Value);
         }
         private void CreateLevel()
         {
@@ -86,6 +87,7 @@ namespace GameWish.Game
         private void OnChooseLevel(LevelItem levelObj)
         {
             m_PanelData.currentLevelId.Value = levelObj.curLevelId;
+            UIMgr.S.OpenPanel(UIID.LevelPeviewPanel, null, m_PanelData.currentLevelId.Value);
         }
 
     }
