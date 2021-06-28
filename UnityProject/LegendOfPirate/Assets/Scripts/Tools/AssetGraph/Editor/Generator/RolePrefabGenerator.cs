@@ -69,6 +69,19 @@ namespace GameWish.Game
                                     setting.loopTime = true;
                                     AnimationUtility.SetAnimationClipSettings(model, setting);
                                 }
+
+                                // if (model.name.Contains("attack"))//事件添加失败 -- 手动添加事件
+                                // {
+                                //     Debug.LogError(model.name);
+                                //     AnimationEvent animEvent = new AnimationEvent();
+                                //     animEvent.functionName = "Attack";
+                                //     animEvent.objectReferenceParameter = objSource;
+                                //     animEvent.time = 0.35f;
+                                //     // model.AddEvent(animEvent);
+                                //     AnimationUtility.SetAnimationEvents(model, new AnimationEvent[] { animEvent });
+                                //     Debug.LogError(model.events.Length);
+                                // }
+
                                 playables.clipsList.Add(model);
                             }
 

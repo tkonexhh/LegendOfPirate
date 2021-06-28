@@ -19,8 +19,8 @@ namespace GameWish.Game
                 ai.FSM.SetCurrentStateByID(BattleRoleAIStateEnum.Attack);
                 return;
             }
-
-            ai.controller.Renderer.CrossFadeAnim(BattleDefine.ROLEANIM_SKILL01, 0.1f);
+            //动画进栈
+            ai.controller.Renderer.PushAnimFade(BattleDefine.ROLEANIM_SKILL01, 0.1f);
             m_CastSkill.onSkillEnd += OnSkillEnd;
             m_CastSkill.Cast();
         }

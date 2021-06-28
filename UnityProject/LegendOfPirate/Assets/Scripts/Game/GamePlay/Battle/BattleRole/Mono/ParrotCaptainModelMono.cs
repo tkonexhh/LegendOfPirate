@@ -7,7 +7,8 @@ namespace GameWish.Game
 {
     public class ParrotCaptainModelMono : RoleModelMonoReference
     {
-
+        public GameObject weapon;//刀
+        public GameObject skill;//鹦鹉 使用技能使用
     }
 
 }

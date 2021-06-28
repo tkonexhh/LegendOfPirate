@@ -22,6 +22,10 @@ namespace GameWish.Game
         public float AtkRange = 2.0f;
 
         [BoxGroup("战斗")]
+        [LabelText("碰撞半径")]
+        public float ColliderRange = 0.3f;
+
+        [BoxGroup("战斗")]
         [HideReferenceObjectPicker]
         public PickTarget PickTarget = new PickTarget();
 
