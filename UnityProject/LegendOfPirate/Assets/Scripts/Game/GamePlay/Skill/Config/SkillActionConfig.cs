@@ -141,6 +141,7 @@ namespace GameWish.Game
     {
         [LabelText("伤害")] public int Damage;
         [LabelText("子弹配置")] public BulletConfigSO BulletConfigSO;
+        [LabelText("子弹命中Buff")] public BuffConfigSO BuffConfigSO;
 
         public DamageRangeType DamageRangeType;
         [LabelText("伤害范围")]

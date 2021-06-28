@@ -25,7 +25,7 @@ namespace GameWish.Game
                 var tempMat = AssetDatabase.LoadAssetAtPath<Material>(generateAssetPath);//已经生成过了 不在生成了
                 if (tempMat != null)
                 {
-                    return false;
+                    return true;
                 }
                 Material material = new Material(Shader.Find(shaderName));
                 HandleMaterial(material, asset);

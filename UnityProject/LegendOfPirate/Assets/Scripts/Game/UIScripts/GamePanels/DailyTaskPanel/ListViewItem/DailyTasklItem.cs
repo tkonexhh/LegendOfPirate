@@ -57,7 +57,7 @@ namespace GameWish.Game
             {
                 case TaskState.Complete:
                     imgName = "task_ann01";
-                    m_TmpState.text = "Receive";
+                    m_TmpState.text = "Get";
                     m_BtnGet.enabled = true;
                     this.transform.SetAsFirstSibling();
                     break;
@@ -68,7 +68,7 @@ namespace GameWish.Game
                     break;
                 default:
                     imgName = "task_ann03";
-                    m_TmpState.text = "Already Received";
+                    m_TmpState.text = "Finished";
                     m_BtnGet.enabled = false;
                     this.transform.SetAsLastSibling();
                     break;

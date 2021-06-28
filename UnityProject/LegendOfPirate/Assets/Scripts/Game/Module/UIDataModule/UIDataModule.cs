@@ -133,16 +133,17 @@ namespace GameWish.Game
             #region 战斗相关
             UIDataTable.AddPanelData(UIID.BattlePreparePanel, null, "GamePanels/BattlePanel/BattlePreparePanel/BattlePreparePanel", true, 1);//战斗排兵布阵界面
             UIDataTable.AddPanelData(UIID.BattleFieldPanel, null, "GamePanels/BattlePanel/BattleFieldPanel/BattleFieldPanel", true, 1);//战斗排兵布阵界面
-            UIDataTable.AddPanelData(UIID.BattleWinPanel, null, "GamePanels/BattlePanel/BattleWinPanel/BattleWinPanel", true, 1);//战斗结束胜利界面
+            UIDataTable.AddPanelData(UIID.BattleWinPanel, null, "GamePanels/BattlePanel/BattleWinPanel/BattleWinPanel");//战斗结束胜利界面
             #endregion
 
             #region 海战选关相关
-            UIDataTable.AddPanelData(UIID.MainSeaLevelPanel, null, "GamePanels/MainSeaBattlePanel/MainSeaLevelPanel/MainSeaLevelPanel", true, 1);//选关界面
+            UIDataTable.AddPanelData(UIID.MainSeaLevelPanel, null, "GamePanels/MainSeaBattlePanel/MainSeaLevelPanel/MainSeaLevelPanel");//选关界面
             #endregion
 
             #region 任务系统
             UIDataTable.AddPanelData(UIID.DailyTaskPanel, null, "GamePanels/TaskPanel/DailyTaskPanel/DailyTaskPanel", true, 1);//日常任务界面
             UIDataTable.AddPanelData(UIID.MainTaskPanel, null, "GamePanels/TaskPanel/MainTaskPanel/MainTaskPanel", true, 1);//主线任务界面
+            UIDataTable.AddPanelData(UIID.AchievementTaskPanel, null, "GamePanels/TaskPanel/AchievementTaskPanel/AchievementTaskPanel", true, 1);//成就任务界面
             #endregion
         }
     }

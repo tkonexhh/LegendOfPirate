@@ -13,6 +13,9 @@ namespace GameWish.Game
 
             stateFactory.RegisterState(ShipRoleStateId.Idle, new ShipRoleStateIdle(ShipRoleStateId.Idle));
             stateFactory.RegisterState(ShipRoleStateId.Wander, new ShipRoleStateWander(ShipRoleStateId.Wander));
+            stateFactory.RegisterState(ShipRoleStateId.Training, new ShipRoleStateTraining(ShipRoleStateId.Training));
+            stateFactory.RegisterState(ShipRoleStateId.Reading, new ShipRoleStateReading(ShipRoleStateId.Reading));
+            stateFactory.RegisterState(ShipRoleStateId.Fishing, new ShipRoleStateFishing(ShipRoleStateId.Fishing));
         }
     }
 

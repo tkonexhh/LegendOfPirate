@@ -72,8 +72,7 @@ namespace GameWish.Game
                 {
                     BattleMgr.S.BattleEnd(false);
                 }
-
-                if (m_EnemyRoleControllerLst.Count == 0)
+                else if (m_EnemyRoleControllerLst.Count == 0)
                 {
                     BattleMgr.S.BattleEnd(true);
                 }

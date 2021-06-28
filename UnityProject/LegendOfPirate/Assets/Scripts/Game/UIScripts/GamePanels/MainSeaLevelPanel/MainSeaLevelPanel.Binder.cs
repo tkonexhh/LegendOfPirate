@@ -11,7 +11,6 @@ namespace GameWish.Game
     {
         public MainSeaLevelModel mainSeaLevelModel;
         public IntReactiveProperty currentLevelId;
-        public List<GameObject> allLevelItems;
         public MainSeaLevelPanelData()
         {
         }
@@ -34,10 +33,10 @@ namespace GameWish.Game
 
         private void BindModelToUI()
         {
-            m_PanelData.currentLevelId = new IntReactiveProperty();
-            m_PanelData.currentLevelId.Value = 101;
+            //test tmp
+            m_PanelData.currentLevelId = new IntReactiveProperty(101);
             m_PanelData.currentLevelId.AsObservable().SubscribeToTextMeshPro(m_CurrentLevel, "LEVEL {0}").AddTo(this);
-            m_PanelData.allLevelItems = new List<GameObject>();
+
         }
 
         private void BindUIToModel()
@@ -63,28 +62,27 @@ namespace GameWish.Game
         }
         private void CreateLevel()
         {
-            //m_Content.DestroyChildren();
             for (int i = 0; i < m_PanelData.mainSeaLevelModel.GetBattleLevelCount(); i++)
             {
                 GameObject levelObj = null;
-                if (m_PanelData.allLevelItems == null || m_PanelData.allLevelItems.Count < m_PanelData.mainSeaLevelModel.GetBattleLevelCount())
+                if (m_PanelData.mainSeaLevelModel.allLevelItems == null || m_PanelData.mainSeaLevelModel.allLevelItems.Count < m_PanelData.mainSeaLevelModel.GetBattleLevelCount())
                 {
                     levelObj = Instantiate(m_LevelItem.gameObject);
-                    m_PanelData.allLevelItems.Add(levelObj);
+                    levelObj.transform.SetParent(m_Content);
+                    levelObj.transform.ResetTrans();
+                    levelObj.transform.localEulerAngles = new Vector3(0, 0, 180);
+                    levelObj.GetComponent<Button>().OnClickAsObservable().Subscribe(_ => OnChooseLevel(levelObj.GetComponent<LevelItem>())).AddTo(this);
+                    m_PanelData.mainSeaLevelModel.allLevelItems.Add(levelObj);
                 }
                 else
                 {
-                    levelObj = m_PanelData.allLevelItems[i];
+                    levelObj = m_PanelData.mainSeaLevelModel.allLevelItems[i];
                 }
-
-                levelObj.GetComponent<RectTransform>().SetParent(m_Content);
-                levelObj.transform.SetParent(m_Content);
-                levelObj.transform.ResetTrans();
                 levelObj.GetComponent<LevelItem>().OnUIInit(this, m_PanelData.mainSeaLevelModel.GetBattleLevelData(i + 101));
-                levelObj.GetComponent<Button>().OnClickAsObservable().Subscribe(_ => OnChooseLevel(levelObj.GetComponent<LevelItem>())).AddTo(this);
                 levelObj.SetActive(true);
             }
             m_LevelSelectScrollView.SetLayoutVertical();
+            m_Content.SetLocalY(150);
         }
         private void OnChooseLevel(LevelItem levelObj)
         {
