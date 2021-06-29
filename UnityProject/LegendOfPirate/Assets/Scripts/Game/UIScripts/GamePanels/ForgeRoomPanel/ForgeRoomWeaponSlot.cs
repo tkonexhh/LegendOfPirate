@@ -46,7 +46,7 @@ namespace GameWish.Game
             if (value)
             {
                 if (m_ForgeRoomModel.forgeModel.forgeState.Value == ForgeStage.Free)
-                    m_ForgeRoomModel.forgeModel.OnWeaponSelect(TDFacilityForgeTable.dataList[m_SlotCount].unlockEquipmentID);
+                    m_ForgeRoomModel.forgeModel.OnWeaponSelect(m_ForgeWeaponSlotModel.equipmentId);
             }
             else
             {

@@ -16,13 +16,12 @@ namespace GameWish.Game
 		[SerializeField] private TextMeshProUGUI m_RegionRoleName;
 		[SerializeField] private RectTransform m_StartRegion;
 		[SerializeField] private TextMeshProUGUI m_RoleLevel;
+		[SerializeField] private Image m_RoleModel;
+		[SerializeField] private RectTransform m_EquipRegion;
+		[SerializeField] private Button m_SkinBtn;
+		[SerializeField] private Button m_StoryBtn;
 		[SerializeField] private Image m_ExperienceBar;
 		[SerializeField] private TextMeshProUGUI m_ExperienceValue;
-		[SerializeField] private Image m_RoleModel;
-		[SerializeField] private SoundButton m_StoryBtn;
-		[SerializeField] private SoundButton m_LeftRoleBtn;
-		[SerializeField] private SoundButton m_RightRoleBtn;
-		[SerializeField] private RectTransform m_EquipRegion;
 		[SerializeField] private TextMeshProUGUI m_SkillTitle;
 		[SerializeField] private RectTransform m_SkillRegion;
 		[SerializeField] private Image m_UpgradeMaterials;
@@ -31,6 +30,8 @@ namespace GameWish.Game
 		[SerializeField] private ScrollRect m_RoleSelecScrollView;
 		[SerializeField] private RectTransform m_RoleSelectRegion;
 		[SerializeField] private Button m_CloseBtn;
+		[SerializeField] private SoundButton m_RightRoleBtn;
+		[SerializeField] private SoundButton m_LeftRoleBtn;
 		
 		
 	}

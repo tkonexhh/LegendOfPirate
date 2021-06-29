@@ -26,13 +26,21 @@ namespace GameWish.Game
                 ForgeEquipmentSlotModel item = default(ForgeEquipmentSlotModel);
                 if (level.Value >= TDFacilityForgeTable.dataList[i].level)
                 {
-                    item = new ForgeEquipmentSlotModel(this, i, false);
+                    foreach (int equipid in TDFacilityForgeTable.dataList[i].GetUnlockEquipment()) 
+                    {
+                        item = new ForgeEquipmentSlotModel(this, i, false,equipid);
+                        forgeWeaponSlotModels.Add(item);
+                    }
                 }
                 else 
                 {
-                    item = new ForgeEquipmentSlotModel(this, i, true);
+                    foreach (int equipid in TDFacilityForgeTable.dataList[i].GetUnlockEquipment())
+                    {
+                        item = new ForgeEquipmentSlotModel(this, i, true, equipid);
+                        forgeWeaponSlotModels.Add(item);
+                    }
                 }
-                forgeWeaponSlotModels.Add(item);
+              
             }
         }
 
@@ -173,15 +181,17 @@ namespace GameWish.Game
         public string equipmentName;
         public int slotId;
         public int unlockLevel;
+        public int equipmentId;
 
 
         private ForgeRoomModel m_ForgeRoomModel;
-        public ForgeEquipmentSlotModel(ForgeRoomModel forgeRoomModel, int slotid, bool unlockStage)
+        public ForgeEquipmentSlotModel(ForgeRoomModel forgeRoomModel, int slotid, bool unlockStage,int equipmentId)
         {
             this.slotId = slotid;
             this.unlockLevel = TDFacilityForgeTable.dataList[slotid].level;
-            this.equipmentName = TDEquipmentConfigTable.GetEquipmentNameById(TDFacilityForgeTable.dataList[slotid].unlockEquipmentID); 
-           
+            this.equipmentName = TDEquipmentConfigTable.GetEquipmentNameById(equipmentId);
+            this.equipmentId = equipmentId;
+
             m_ForgeRoomModel = forgeRoomModel;
             slotIsUnlock = new BoolReactiveProperty(unlockStage);
         }

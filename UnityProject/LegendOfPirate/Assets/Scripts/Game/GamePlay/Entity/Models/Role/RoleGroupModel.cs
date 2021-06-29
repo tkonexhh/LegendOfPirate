@@ -43,6 +43,32 @@ namespace GameWish.Game
             return role;
         }
 
+        public RoleModel GetRoleModelWithUnlock(int id) 
+        {
+            var roleList = roleItemList.Concat(roleUnlockedList);
+            return roleList.FirstOrDefault(r => r.id == id);
+        }
+
+        public int GetRoleIndexById(int id) 
+        {
+            int ret = 0;
+            var roleList = roleItemList.Concat(roleUnlockedList);
+            foreach (var item in roleList) 
+            {
+                if (item.id == id) 
+                {
+                    return ret;
+                }
+                ret++;
+            }
+            return -1;
+        }
+
+        public RoleModel GetRoleModelByIndex(int index) 
+        {
+            return roleItemList.Concat(roleUnlockedList).ToList()[index];
+        }
+
         /// <summary>
         /// 获取碎片，添加到对应的role
         /// </summary>

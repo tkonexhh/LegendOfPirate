@@ -13,5 +13,10 @@ namespace GameWish.Game
         {
 
         }
+
+        public int[] GetUnlockEquipment() 
+        {
+            return Helper.String2IntArray(m_UnlockEquipmentID, ";");
+        }
     }
 }

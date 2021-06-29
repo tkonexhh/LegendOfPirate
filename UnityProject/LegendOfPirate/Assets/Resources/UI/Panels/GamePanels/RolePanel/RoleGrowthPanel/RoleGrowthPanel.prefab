@@ -134,6 +134,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!1 &1143717057623187867
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +270,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!114 &7205361896305343603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +513,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!1 &5413854715062038755
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +649,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!114 &236232644784359715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,6 +888,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!1 &6335331362040332360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,12 +1012,12 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  CloseBtn: {fileID: 6335331362502366272}
-  PanelTitle: {fileID: 4765888111356737122}
-  GrowthMsg: {fileID: 3926412324462514060}
-  Content: {fileID: 7943430094144755606}
-  GrowthMsgTamp: {fileID: 7490275614552693040}
-  RoleImage: {fileID: 1770994837730941285}
+  m_CloseBtn: {fileID: 6335331362502366272}
+  m_PanelTitle: {fileID: 4765888111356737122}
+  m_GrowthMsg: {fileID: 3926412324462514060}
+  m_Content: {fileID: 7943430094144755606}
+  m_GrowthMsgTamp: {fileID: 7490275614552693040}
+  m_RoleImage: {fileID: 1770994837730941285}
 --- !u!1 &6335331362502366300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,6 +1386,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!114 &8026648376217667293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1531,3 +1537,4 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
