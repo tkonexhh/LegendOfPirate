@@ -160,6 +160,7 @@ namespace GameWish.Game
         {
             curExp.Value += value;
         }
+
         #endregion
 
         #region Private

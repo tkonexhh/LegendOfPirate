@@ -1306,7 +1306,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5708057467227804467}
-  - component: {fileID: 5708057467227804464}
   - component: {fileID: 5668616453060794394}
   - component: {fileID: 1095488818921706393}
   m_Layer: 5
@@ -1335,31 +1334,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -417.22098, y: 202.49786}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &5708057467227804464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5708057467227804466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 16
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 3
-  m_Spacing: 37.9
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
 --- !u!114 &5668616453060794394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1761,8 +1735,8 @@ MonoBehaviour:
   itemPrefab: {fileID: 6417111156419061631, guid: ffd2d2163b76a764b893a369fcc4f2c7,
     type: 3}
   layout: 1
-  padding: {x: -15, y: 0}
-  spacing: {x: 15, y: 0}
+  padding: {x: 0, y: 0}
+  spacing: {x: 0, y: 0}
   needMask: 0
   content: {fileID: 5708057467227804467}
   viewPort: {fileID: 5708057467013230211}

@@ -21,7 +21,8 @@ namespace GameWish.Game
 
 			InitializePassValue(args);
 
-			GetInformationForNeed();
+			if (args != null && args.Length > 0)
+				GetRoleData((int)args[0]);
 
 			BindModelToUI();
 			BindUIToModel();
@@ -31,13 +32,6 @@ namespace GameWish.Game
 		{
 			m_PanelData.roleID = (int)args[0];
 		}
-
-		private void GetInformationForNeed()
-		{
-			m_PanelData.roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
-			m_PanelData.roleModel = m_PanelData.roleGroupModel.GetRoleModel(m_PanelData.roleID);
-		}
-
 
 		protected override void OnPanelHideComplete()
 		{

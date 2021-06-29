@@ -31,10 +31,42 @@ namespace GameWish.Game
             }
         }
 
+        public List<RoleModel> GetRoleModelsByStarlevel(int startLevel) 
+        {
+            var ret = roleItemList.Where(role => role.starLevel.Value == startLevel).ToList();
+            return ret;
+        }
+
         public RoleModel GetRoleModel(int id)
         {
             RoleModel role = roleItemList.FirstOrDefault(i => i.id == id);
             return role;
+        }
+
+        public RoleModel GetRoleModelWithUnlock(int id) 
+        {
+            var roleList = roleItemList.Concat(roleUnlockedList);
+            return roleList.FirstOrDefault(r => r.id == id);
+        }
+
+        public int GetRoleIndexById(int id) 
+        {
+            int ret = 0;
+            var roleList = roleItemList.Concat(roleUnlockedList);
+            foreach (var item in roleList) 
+            {
+                if (item.id == id) 
+                {
+                    return ret;
+                }
+                ret++;
+            }
+            return -1;
+        }
+
+        public RoleModel GetRoleModelByIndex(int index) 
+        {
+            return roleItemList.Concat(roleUnlockedList).ToList()[index];
         }
 
         /// <summary>

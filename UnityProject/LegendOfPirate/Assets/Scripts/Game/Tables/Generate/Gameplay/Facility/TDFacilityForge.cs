@@ -18,7 +18,7 @@ namespace GameWish.Game
         private EInt m_UpgradePreconditions = 0;   
         private EInt m_UpgradeTime = 0;   
         private string m_ModelResources;   
-        private EInt m_UnlockEquipmentID = 0;  
+        private string m_UnlockEquipmentID;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -53,9 +53,9 @@ namespace GameWish.Game
         public  string  modelResources {get { return m_ModelResources; } }
        
         /// <summary>
-        /// 解锁制作图（id）
+        /// 解锁制作图（id；id）
         /// </summary>
-        public  int  unlockEquipmentID {get { return m_UnlockEquipmentID; } }
+        public  string  unlockEquipmentID {get { return m_UnlockEquipmentID; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -91,7 +91,7 @@ namespace GameWish.Game
                     m_ModelResources = dataR.ReadString();
                     break;
                 case 6:
-                    m_UnlockEquipmentID = dataR.ReadInt();
+                    m_UnlockEquipmentID = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);

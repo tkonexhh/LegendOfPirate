@@ -42,10 +42,10 @@ namespace GameWish.Game
     public struct ForgeUnitConfig
     {
         public ShipUnitBaseConfig baseProperty;
-        public int unlockEuipId;
+        public string unlockEuipId;
 
         public ForgeUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
-            int upgradeTime, string modelRes, int unlockEquipId
+            int upgradeTime, string modelRes, string unlockEquipId
             )
         {
             baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);

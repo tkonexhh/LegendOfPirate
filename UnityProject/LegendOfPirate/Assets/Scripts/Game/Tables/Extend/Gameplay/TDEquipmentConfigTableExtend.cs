@@ -34,10 +34,10 @@ namespace GameWish.Game
         #region Public
         public static string GetEquipmentNameById(int id)
         {
-            var fitId = id * 100 + 1;
+         
             foreach (var item in dataList) 
             {
-                if (item.equipmentId == fitId) return item.roleName.Replace("1", "");
+                if (item.equipmentId == id) return item.roleName.Replace("1", "");
             }
             return null;
         }

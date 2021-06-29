@@ -37,6 +37,11 @@ namespace GameWish.Game
             BindModelToUI();
             BindUIToModel();
 
+            if (args != null && args.Length > 0) 
+            {
+                InitRoleMsg((int)args[0]);
+            }
+
             InitData();
         }
 
@@ -61,6 +66,7 @@ namespace GameWish.Game
         {
             m_StoryBtn.OnClickAsObservable().Subscribe(_ => { OpenRoleStoryPanel(); });
             m_CloseBtn.OnClickAsObservable().Subscribe(_ => { HideSelfWithAnim(); });
+           
         }
 
         #endregion
@@ -79,7 +85,7 @@ namespace GameWish.Game
         #region Private
         private void OpenRoleStoryPanel()
         {
-            UIMgr.S.OpenPanel(UIID.RoleStoryPanel, m_PanelData.roleModel.id);
+            UIMgr.S.OpenPanel(UIID.RoleStoryPanel, m_PanelData.curRoleModel.id);
         }
         private void InitData()
         {
@@ -92,7 +98,7 @@ namespace GameWish.Game
 
             roleGroupModel.AddSpiritRoleModel(1001, 100);
 
-            m_PanelData.roleModel = roleGroupModel.GetRoleModel(1001);
+            m_PanelData.curRoleModel = roleGroupModel.GetRoleModel(1001);
             //if (args != null && args.Length > 0)
             //{
             //    if (args.Length >= 1)
@@ -101,12 +107,12 @@ namespace GameWish.Game
             //        m_PanelData.roleModel = (RoleModel)args[0];
             //    }
             //}
-            m_PanelData.roleModel.AddSkill(10011);
-            m_PanelData.roleModel.AddSkill(10012);
-            m_PanelData.roleModel.AddSkill(10013);
+            m_PanelData.curRoleModel.AddSkill(10011);
+            m_PanelData.curRoleModel.AddSkill(10012);
+            m_PanelData.curRoleModel.AddSkill(10013);
 
-            m_RoleName.text = m_PanelData.roleModel.name;
-            m_IsLocked = m_PanelData.roleModel.isLocked.Value;
+            m_RoleName.text = m_PanelData.curRoleModel.name;
+            m_IsLocked = m_PanelData.curRoleModel.isLocked.Value;
 
             if (!m_IsLocked)
             {
@@ -116,10 +122,10 @@ namespace GameWish.Game
         }
         private void InitRoleSkillsData()
         {
-            foreach (var item in m_PanelData.roleModel.skillList)
+            foreach (var item in m_PanelData.curRoleModel.skillList)
             {
                 SkillSubpart skillSubpart = Instantiate(m_SkillSubpart, m_SkillRegion.transform).GetComponent<SkillSubpart>();
-                skillSubpart.OnInit(m_PanelData.roleModel.id, item);
+                skillSubpart.OnInit(m_PanelData.curRoleModel.id, item);
                 m_RoleSkillSubs.Add(skillSubpart);
             }
         }

@@ -13,12 +13,15 @@ namespace GameWish.Game
         public int level;
         public EquipType type;
         public int count;
-        public RoleEquipData(int id, int level,EquipType type,int count)
+        public EquipRarity rarity;
+
+        public RoleEquipData(int id, int level,EquipType type,int count,EquipRarity rarity)
         {
             this.id = id;
             this.level = level;
             this.type = type;
             this.count = count;
+            this.rarity = rarity;
         }
 
         public void Upgrade(int deltaLevel)

@@ -9,6 +9,7 @@ namespace GameWish.Game
 	{
         public int equipId;
         public EquipType equipType;
+        public EquipRarity equipRarity;
         public IntReactiveProperty equipLevel;
         public IntReactiveProperty upgradeCost;
         public IntReactiveProperty equipCount;
