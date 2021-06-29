@@ -12,7 +12,8 @@ namespace GameWish.Game
     {
         
        
-        private EInt m_EquipmentId = 0;   
+        private EInt m_WarshipId = 0;   
+        private EInt m_NextWarship = 0;   
         private string m_Name;   
         private string m_ModelResources;   
         private EInt m_UnlockAccountLevel = 0;   
@@ -24,7 +25,12 @@ namespace GameWish.Game
         /// <summary>
         /// 战船ID
         /// </summary>
-        public  int  equipmentId {get { return m_EquipmentId; } }
+        public  int  warshipId {get { return m_WarshipId; } }
+       
+        /// <summary>
+        /// 下一级战船
+        /// </summary>
+        public  int  nextWarship {get { return m_NextWarship; } }
        
         /// <summary>
         /// 战船名称
@@ -67,21 +73,24 @@ namespace GameWish.Game
             { 
             
                 case 0:
-                    m_EquipmentId = dataR.ReadInt();
+                    m_WarshipId = dataR.ReadInt();
                     break;
                 case 1:
-                    m_Name = dataR.ReadString();
+                    m_NextWarship = dataR.ReadInt();
                     break;
                 case 2:
-                    m_ModelResources = dataR.ReadString();
+                    m_Name = dataR.ReadString();
                     break;
                 case 3:
-                    m_UnlockAccountLevel = dataR.ReadInt();
+                    m_ModelResources = dataR.ReadString();
                     break;
                 case 4:
-                    m_StrengthenCost = dataR.ReadString();
+                    m_UnlockAccountLevel = dataR.ReadInt();
                     break;
                 case 5:
+                    m_StrengthenCost = dataR.ReadString();
+                    break;
+                case 6:
                     m_AttributeValues = dataR.ReadString();
                     break;
                 default:
@@ -94,14 +103,15 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(6);
+          Dictionary<string, int> ret = new Dictionary<string, int>(7);
           
-          ret.Add("EquipmentId", 0);
-          ret.Add("Name", 1);
-          ret.Add("ModelResources", 2);
-          ret.Add("UnlockAccountLevel", 3);
-          ret.Add("StrengthenCost", 4);
-          ret.Add("AttributeValues", 5);
+          ret.Add("WarshipId", 0);
+          ret.Add("NextWarship", 1);
+          ret.Add("Name", 2);
+          ret.Add("ModelResources", 3);
+          ret.Add("UnlockAccountLevel", 4);
+          ret.Add("StrengthenCost", 5);
+          ret.Add("AttributeValues", 6);
           return ret;
         }
     } 

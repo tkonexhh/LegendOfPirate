@@ -42,7 +42,7 @@ namespace GameWish.Game
 
         private static void OnAddRow(TDFacilityWarship memberInstance)
         {
-            int key = memberInstance.equipmentId;
+            int key = memberInstance.warshipId;
             if (m_DataCache.ContainsKey(key))
             {
                 Log.e(string.Format("Invaild,  TDFacilityWarshipTable Id already exists {0}", key));
