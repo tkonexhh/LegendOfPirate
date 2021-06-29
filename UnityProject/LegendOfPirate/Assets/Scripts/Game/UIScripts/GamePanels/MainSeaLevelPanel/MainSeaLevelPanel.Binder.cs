@@ -87,6 +87,7 @@ namespace GameWish.Game
         private void OnChooseLevel(LevelItem levelObj)
         {
             m_PanelData.currentLevelId.Value = levelObj.curLevelId;
+            UIMgr.S.OpenPanel(UIID.LevelPeviewPanel, null, m_PanelData.currentLevelId.Value);
         }
 
     }

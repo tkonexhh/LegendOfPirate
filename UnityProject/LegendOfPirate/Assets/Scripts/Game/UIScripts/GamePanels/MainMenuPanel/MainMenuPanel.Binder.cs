@@ -37,7 +37,6 @@ namespace GameWish.Game
         private void BindUIToModel()
         {
         }
-        #region  OnClickAddListener
 
         private void OnClickAddListener()
         {
@@ -86,6 +85,5 @@ namespace GameWish.Game
                 m_TaskTipsImg.gameObject.SetActive(m_PanelData.mainTaskModel.IsFinishTask());
             }
         }
-        #endregion
     }
 }

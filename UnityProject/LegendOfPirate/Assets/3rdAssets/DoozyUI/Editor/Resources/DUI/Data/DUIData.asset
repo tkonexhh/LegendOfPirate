@@ -35,6 +35,7 @@ MonoBehaviour:
       - InventoryItemDetailPanel
       - LaboratoryRoomPanel
       - LandUpgradePanel
+      - LevelPeviewPanel
       - LibraryRoomPanel
       - MagicCloudPanel
       - MainMenuPanel
