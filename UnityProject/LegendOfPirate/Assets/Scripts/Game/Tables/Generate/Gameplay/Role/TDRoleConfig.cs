@@ -13,6 +13,7 @@ namespace GameWish.Game
         
        
         private EInt m_RoleId = 0;   
+        private string m_Type;   
         private string m_RoleName;   
         private string m_RoleDsc;   
         private EInt m_InitHp = 0;   
@@ -28,6 +29,11 @@ namespace GameWish.Game
         /// 角色ID
         /// </summary>
         public  int  roleId {get { return m_RoleId; } }
+       
+        /// <summary>
+        /// 角色类型
+        /// </summary>
+        public  string  type {get { return m_Type; } }
        
         /// <summary>
         /// 角色名字
@@ -88,27 +94,30 @@ namespace GameWish.Game
                     m_RoleId = dataR.ReadInt();
                     break;
                 case 1:
-                    m_RoleName = dataR.ReadString();
+                    m_Type = dataR.ReadString();
                     break;
                 case 2:
-                    m_RoleDsc = dataR.ReadString();
+                    m_RoleName = dataR.ReadString();
                     break;
                 case 3:
-                    m_InitHp = dataR.ReadInt();
+                    m_RoleDsc = dataR.ReadString();
                     break;
                 case 4:
-                    m_InitAtk = dataR.ReadInt();
+                    m_InitHp = dataR.ReadInt();
                     break;
                 case 5:
-                    m_GrowRate = dataR.ReadFloat();
+                    m_InitAtk = dataR.ReadInt();
                     break;
                 case 6:
-                    m_EquipId = dataR.ReadString();
+                    m_GrowRate = dataR.ReadFloat();
                     break;
                 case 7:
-                    m_SpiritId = dataR.ReadInt();
+                    m_EquipId = dataR.ReadString();
                     break;
                 case 8:
+                    m_SpiritId = dataR.ReadInt();
+                    break;
+                case 9:
                     m_SkillId = dataR.ReadString();
                     break;
                 default:
@@ -121,17 +130,18 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(9);
+          Dictionary<string, int> ret = new Dictionary<string, int>(10);
           
           ret.Add("RoleId", 0);
-          ret.Add("RoleName", 1);
-          ret.Add("RoleDsc", 2);
-          ret.Add("InitHp", 3);
-          ret.Add("InitAtk", 4);
-          ret.Add("GrowRate", 5);
-          ret.Add("EquipId", 6);
-          ret.Add("SpiritId", 7);
-          ret.Add("SkillId", 8);
+          ret.Add("Type", 1);
+          ret.Add("RoleName", 2);
+          ret.Add("RoleDsc", 3);
+          ret.Add("InitHp", 4);
+          ret.Add("InitAtk", 5);
+          ret.Add("GrowRate", 6);
+          ret.Add("EquipId", 7);
+          ret.Add("SpiritId", 8);
+          ret.Add("SkillId", 9);
           return ret;
         }
     } 

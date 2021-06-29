@@ -14,7 +14,6 @@ namespace GameWish.Game
         public bool isLocked;
         public int spiritCount;
         public int level;
-
         public int curExp;
         public int starLevel;
         public List<RoleEquipData> equipList;

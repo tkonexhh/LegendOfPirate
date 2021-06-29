@@ -69,6 +69,12 @@ namespace GameWish.Game
             return roleItemList.Concat(roleUnlockedList).ToList()[index];
         }
 
+        public List<RoleModel> GetRoleModelsByType(RoleType roleType) 
+        {
+            var rolesList = roleItemList.Concat(roleUnlockedList);
+            return roleUnlockedList.Where(r => r.GetRoleType() == roleType).ToList();
+        }
+
         /// <summary>
         /// 获取碎片，添加到对应的role
         /// </summary>

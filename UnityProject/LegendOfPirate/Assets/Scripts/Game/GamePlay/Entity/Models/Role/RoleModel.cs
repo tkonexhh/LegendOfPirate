@@ -7,6 +7,12 @@ using Qarth;
 
 namespace GameWish.Game
 {
+    public enum RoleType 
+    {
+        Front,
+        Mid,
+        Back,
+    }
     public class RoleModel : Model
     {
         public int id;
@@ -107,6 +113,10 @@ namespace GameWish.Game
             return curAtk.Value;
         }
 
+        public RoleType GetRoleType()
+        {
+            return tdRoleConfig.GetRoleType();
+        }
         #endregion
 
         #region Public Set

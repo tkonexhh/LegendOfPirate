@@ -13,5 +13,20 @@ namespace GameWish.Game
         {
 
         }
+        public RoleType GetRoleType() 
+        {
+            if (m_Type == "Front")
+            {
+                return RoleType.Front;
+            }
+            else if (m_Type == "Mid")
+            {
+                return RoleType.Mid;
+            }
+            else 
+            {
+                return RoleType.Back;
+            }
+        }
     }
 }
