@@ -15,7 +15,8 @@ namespace GameWish.Game
 
             BindModelToUI();
             BindUIToModel();
-        }
+			m_CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
+		}
 		
 		protected override void OnPanelOpen(params object[] args)
 		{

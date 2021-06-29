@@ -11,6 +11,7 @@ namespace GameWish.Game
 		protected override void OnUIInit()
 		{
 			base.OnUIInit();
+			InitBtnEvent();
 		}
 		
 		protected override void OnPanelOpen(params object[] args)
@@ -36,6 +37,9 @@ namespace GameWish.Game
 			
 			ReleasePanelData();
 		}
-		
+		private void InitBtnEvent() 
+		{
+			m_CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
+		}
 	}
 }

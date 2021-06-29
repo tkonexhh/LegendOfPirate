@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,14 +12,11 @@ namespace GameWish.Game
 	{
 		public const string Name = "RoleGroupPanel";
 		
-		[SerializeField]
-		public IUListView ScrollView;
-		[SerializeField]
-		public GFrame.Editor.GButton CloseBtn;
-		[SerializeField]
-		public RoleGroupItem RoleGroupItem;
-
-
-
+		[SerializeField] private IUListView m_ScrollView;
+		[SerializeField] private RectTransform m_Content;
+		[SerializeField] private Button m_CloseBtn;
+		[SerializeField] private ToggleGroup m_ToggleGroup;
+		
+		
 	}
 }

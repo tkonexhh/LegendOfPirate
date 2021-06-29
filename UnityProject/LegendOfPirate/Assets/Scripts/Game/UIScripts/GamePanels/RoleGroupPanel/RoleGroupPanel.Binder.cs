@@ -11,7 +11,7 @@ namespace GameWish.Game
 {
     public class RoleGroupPanelData : UIPanelData
     {
-        //public List<RoleModel> roleModelList = new List<RoleModel>();
+        public RoleGroupModel roleGroupModel;
 
         public RoleGroupPanelData()
         {
@@ -22,25 +22,20 @@ namespace GameWish.Game
     public partial class RoleGroupPanel
     {
         private RoleGroupPanelData m_PanelData = null;
-        public List<RoleModel> roleModelList = new List<RoleModel>();
+        public List<RoleModel> roleModelList = null;
 
         private void AllocatePanelData()
         {
-            //m_PanelData = UIPanelData.Allocate<RoleGroupPanelData>();
-
+            m_PanelData = UIPanelData.Allocate<RoleGroupPanelData>();
+           // m_PanelData.roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
            
         }
 
         private void OnOpenInit(params object[] args)
         {
             roleModelList = ModelMgr.S.GetModel<RoleGroupModel>().GetSortRoleItemList();
-            ScrollView.SetCellRenderer(OnCellRenderer);
-            ScrollView.SetDataCount(roleModelList.Count);
-
-            CloseBtn.onClick.AddListener(() =>
-            {
-                CloseSelfPanel();
-            });
+            m_ScrollView.SetCellRenderer(OnCellRenderer);
+            m_ScrollView.SetDataCount(roleModelList.Count);
         }
 
         private void OnCellRenderer(Transform root, int index)

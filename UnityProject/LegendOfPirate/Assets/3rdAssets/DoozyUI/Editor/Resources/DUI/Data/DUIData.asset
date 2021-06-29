@@ -50,6 +50,7 @@ MonoBehaviour:
       - RatePanel
       - RoleDetailsPanel
       - RoleEquipDetailsPanel
+      - RoleGroupPanel
       - RoleSkillUpgradePanel
       - RoleSkillUpgradeSuccessPanel
       - RoleStoryPanel
