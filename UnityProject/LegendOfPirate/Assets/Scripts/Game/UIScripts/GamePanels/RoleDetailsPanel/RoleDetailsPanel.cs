@@ -37,11 +37,8 @@ namespace GameWish.Game
             BindModelToUI();
             BindUIToModel();
 
-            if (args != null && args.Length > 0) 
-            {
-                InitRoleMsg((int)args[0]);
-            }
-
+            var item = args[0] as RoleModel;
+            InitRoleMsg((item.id));
             InitData();
         }
 
@@ -66,7 +63,6 @@ namespace GameWish.Game
         {
             m_StoryBtn.OnClickAsObservable().Subscribe(_ => { OpenRoleStoryPanel(); });
             m_CloseBtn.OnClickAsObservable().Subscribe(_ => { HideSelfWithAnim(); });
-           
         }
 
         #endregion
@@ -90,6 +86,7 @@ namespace GameWish.Game
         private void InitData()
         {
             InitRoleSkillsData();
+            InitEquipSubpart();
         }
 
         private void HandleTransmitValue(params object[] args)
@@ -113,12 +110,14 @@ namespace GameWish.Game
 
             m_RoleName.text = m_PanelData.curRoleModel.name;
             m_IsLocked = m_PanelData.curRoleModel.isLocked.Value;
+            m_PanelData.curRoleModel.AddEquip(EquipmentType.Weapon);
 
             if (!m_IsLocked)
             {
                 RefreshRoleIsUnclockView(m_IsLocked);
                 return;
             }
+            
         }
         private void InitRoleSkillsData()
         {
@@ -127,6 +126,16 @@ namespace GameWish.Game
                 SkillSubpart skillSubpart = Instantiate(m_SkillSubpart, m_SkillRegion.transform).GetComponent<SkillSubpart>();
                 skillSubpart.OnInit(m_PanelData.curRoleModel.id, item);
                 m_RoleSkillSubs.Add(skillSubpart);
+            }
+        }
+        private void InitEquipSubpart()
+        {
+            var equipsSubpart = m_EquipRegion.GetComponentsInChildren<EquipSubpart>();
+            for (int i = 0; i < equipsSubpart.Length; i++)
+            {
+                RoleEquipModel output = null;
+                m_PanelData.curRoleModel.equipDic.TryGetValue((EquipmentType)i, out output);
+                equipsSubpart[i].InitEquipSubpart(output, m_PanelData.curRoleModel.id);
             }
         }
         #endregion

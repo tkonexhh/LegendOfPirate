@@ -20,12 +20,14 @@ namespace GameWish.Game
 		private int m_EquipId;
 		private RoleEquipModel m_RoleEquipModel;
 		private IDisposable m_CurBtnClickEvent;
+		private int m_RoleId;
 
 		public bool IsLocked = true;
 		
-		public void InitEquipSubpart(RoleEquipModel roleEquipModel) 
+		public void InitEquipSubpart(RoleEquipModel roleEquipModel,int roleId) 
 		{
-
+			m_RoleId = roleId;
+			m_RoleEquipModel = roleEquipModel;
 			if (roleEquipModel != null)
 			{
 				m_EquipId = m_RoleEquipModel.equipId;
@@ -60,21 +62,22 @@ namespace GameWish.Game
 				switch (m_RoleEquipModel.equipRarity)
 				{
 					//TODO ButtonImage TO EquipRarity
-					case EquipRarity.Normal:
+					case EquipQualityType.Normal:
 						break;
-					case EquipRarity.Advanced:
+					case EquipQualityType.Advanced:
 						break;
-					case EquipRarity.Rare:
+					case EquipQualityType.Rare:
 						break;
-					case EquipRarity.Epic:
+					case EquipQualityType.Epic:
 						break;
-					case EquipRarity.Legendary:
+					case EquipQualityType.Legendary:
 						break;
-					case EquipRarity.Immortal:
+					case EquipQualityType.Immortal:
 						break;
 				}
 				//TODO SetEquipImage
 				m_CurBtnClickEvent = m_EquipButton.OnClickAsObservable().Subscribe(_=>ShowEquipMsg()).AddTo(this);
+				
 			}
 			else 
 			{
@@ -88,13 +91,15 @@ namespace GameWish.Game
 
         private void OpenAddEquipPanel()
         {
-            //TODO OpenAddEquipPanel
+			//TODO OpenAddEquipPanel
+			FloatMessageTMP.S.ShowMsg("Empty Equipment");
         }
 
         private void ShowEquipMsg()
         {
-           //TODO ShowEquipMsg
-        }
+			//TODO ShowEquipMsg
+			UIMgr.S.OpenPanel(UIID.RoleEquipDetailsPanel, m_RoleId, m_EquipId);
+		}
 
         private void SetEquipStar(int starCount)
 		{

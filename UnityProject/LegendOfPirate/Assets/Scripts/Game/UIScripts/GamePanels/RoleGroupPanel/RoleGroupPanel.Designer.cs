@@ -16,6 +16,7 @@ namespace GameWish.Game
 		[SerializeField] private RectTransform m_Content;
 		[SerializeField] private Button m_CloseBtn;
 		[SerializeField] private ToggleGroup m_ToggleGroup;
+		[SerializeField] private Button m_TestBtn;
 		
 		
 	}

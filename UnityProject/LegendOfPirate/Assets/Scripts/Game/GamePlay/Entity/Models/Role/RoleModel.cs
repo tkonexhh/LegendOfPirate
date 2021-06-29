@@ -7,11 +7,11 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public enum RoleType 
+    public enum RoleType
     {
-        Front,
-        Mid,
-        Back,
+        Front = 1,
+        Mid = 2,
+        Back = 3,
     }
     public class RoleModel : Model
     {
@@ -26,13 +26,15 @@ namespace GameWish.Game
         public FloatReactiveProperty curAtk;
         public IntReactiveProperty curExp;
         public IntReactiveProperty starLevel;
-        public ReactiveCollection<RoleEquipModel> equipList;
+        public ReactiveDictionary<EquipmentType, RoleEquipModel> equipDic;
         public ReactiveCollection<RoleSkillModel> skillList;
-
+        public Dictionary<EquipmentType, int> equipLimitDic;
         public ReactiveProperty<ShipRoleStateId> stateId;
         public TDRoleConfig tdRoleConfig;
 
         private RoleData roleData;
+
+
 
         public RoleModel(int roleId)
         {
@@ -46,14 +48,17 @@ namespace GameWish.Game
 
             curExp = new IntReactiveProperty(roleData.curExp);
             starLevel = new IntReactiveProperty(roleData.starLevel);
-
-            equipList = new ReactiveCollection<RoleEquipModel>();
-            for (int i = 0; i < roleData.equipList.Count; i++)
+            tdRoleConfig = TDRoleConfigTable.GetData(id);
+            equipDic = new ReactiveDictionary<EquipmentType, RoleEquipModel>();
+            equipLimitDic = tdRoleConfig.GetEquipLimit();
+            for (int i = 0; i < roleData.equipDic.Count; i++)
             {
-                RoleEquipModel equipModel = new RoleEquipModel(roleData.equipList[i]);
-                equipList.Add(equipModel);
+                if (roleData.equipDic.ContainsKey((EquipmentType)i))
+                {
+                    RoleEquipModel equipModel = new RoleEquipModel(roleData.equipDic[(EquipmentType)i]);
+                    equipDic.Add((EquipmentType)i, equipModel);
+                }
             }
-
             skillList = new ReactiveCollection<RoleSkillModel>();
             for (int i = 0; i < roleData.skillList.Count; i++)
             {
@@ -62,7 +67,7 @@ namespace GameWish.Game
             }
             #endregion
 
-            tdRoleConfig = TDRoleConfigTable.GetData(id);
+
             name = tdRoleConfig.roleName;
             //血量 = 基础血量 * 等级系数 * 星级系数 * 装备系数  //还有一个装备系数未加
             curHp = new IntReactiveProperty();
@@ -77,7 +82,7 @@ namespace GameWish.Game
 
         public RoleEquipModel GetEquipModel(int equipId)
         {
-            RoleEquipModel equipModel = equipList.FirstOrDefault(i => i.equipId == equipId);
+            RoleEquipModel equipModel = equipDic.FirstOrDefault(i => i.Value.equipId == equipId).Value;
 
             if (equipModel == null)
             {
@@ -117,6 +122,13 @@ namespace GameWish.Game
         {
             return tdRoleConfig.GetRoleType();
         }
+
+        public RoleEquipModel GetEquipModelByType(EquipmentType type)
+        {
+            RoleEquipModel output = null;
+            equipDic.TryGetValue(type, out output);
+            return output;
+        }
         #endregion
 
         #region Public Set
@@ -130,7 +142,7 @@ namespace GameWish.Game
             }
         }
 
-        public bool UpgradeSkill(int skillID,int delta = 1)
+        public bool UpgradeSkill(int skillID, int delta = 1)
         {
             if (roleData.UpgradeRoleSkill(skillID, delta))
             {
@@ -146,14 +158,40 @@ namespace GameWish.Game
             }
         }
 
-        public bool AddEquip()
+        /// <summary>
+        /// 添加新装备
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        public void AddEquip(EquipmentType type)
         {
-            return false;
+            if (!equipDic.ContainsKey(type))
+            {
+                var id = equipLimitDic[type];
+                var equipConfig = TDEquipmentConfigTable.GetEquipmentConfigByID(id);
+                if (roleData.AddRoleEquip(equipConfig.equipmentType, id))
+                    equipDic.Add(equipConfig.equipmentType,
+                        new RoleEquipModel(
+                            new RoleEquipData(
+                            equipConfig.equipmentID,
+                            equipConfig.startLevel,
+                            equipConfig.equipmentType,
+                            1,
+                            equipConfig.equipQualityType
+                            )));
+            }
         }
-
-        public void UpgradeEquip()
+        /// <summary>
+        /// 升级已有装备
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="deleta"></param>
+        public void UpgradeEquip(EquipmentType type, int deleta = 1)
         {
-
+            if (equipDic.ContainsKey(type))
+            {
+                equipDic[type].OnLevelUp(deleta);
+            }
         }
 
         public void AddSpiritCount(int value)
@@ -182,7 +220,7 @@ namespace GameWish.Game
                roleData.SetRoleUnlocked();
            });
 
-            spiritCount.Subscribe(count => 
+            spiritCount.Subscribe(count =>
             {
                 roleData.SetRoleSpiritCount(spiritCount.Value);
             });
@@ -204,7 +242,6 @@ namespace GameWish.Game
                 curHp.Value = tdRoleConfig.initHp * level.Value * starlv;
             });
         }
-
         #endregion
     }
 

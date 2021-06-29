@@ -37,16 +37,7 @@ namespace GameWish.Game
             m_ScrollView.SetCellRenderer(OnCellRenderer);
             m_ScrollView.SetDataCount(roleModelList.Count);
         }
-        private void InitUIListener() 
-        {
 
-            m_CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
-            var toggles = m_ToggleGroup.GetComponentsInChildren<Toggle>();
-            for (int i = -1; i < toggles.Length - 1; i++) 
-            {
-                toggles[0].OnValueChangedAsObservable().Subscribe(_ => SetGroupList(i)).AddTo(this);
-            }
-        }
 
         private void OnCellRenderer(Transform root, int index)
         {
@@ -68,7 +59,8 @@ namespace GameWish.Game
 
         private void SetGroupList(int type) 
         {
-            if (type < 0)
+            
+            if (type <= 0)
             {
                 roleModelList = ModelMgr.S.GetModel<RoleGroupModel>().GetSortRoleItemList();
                 m_ScrollView.SetDataCount(roleModelList.Count);
@@ -78,6 +70,7 @@ namespace GameWish.Game
                 var roleType = (RoleType)type;
                 roleModelList = ModelMgr.S.GetModel<RoleGroupModel>().GetRoleModelsByType(roleType);
                 m_ScrollView.SetDataCount(roleModelList.Count);
+
             }
         }
 

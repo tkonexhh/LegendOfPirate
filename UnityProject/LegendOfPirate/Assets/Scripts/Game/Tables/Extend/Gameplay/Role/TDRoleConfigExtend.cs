@@ -28,5 +28,15 @@ namespace GameWish.Game
                 return RoleType.Back;
             }
         }
+        public Dictionary<EquipmentType, int> GetEquipLimit() 
+        {
+            var limitequip = Helper.String2IntArray(m_EquipId, ";");
+            Dictionary<EquipmentType, int> ret = new Dictionary<EquipmentType, int>();
+            for (int i = 0; i < limitequip.Length; i++) 
+            {
+                ret.Add((EquipmentType)i, limitequip[i]);
+            }
+            return ret;
+        }
     }
 }

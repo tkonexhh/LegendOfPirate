@@ -43,12 +43,6 @@ namespace GameWish.Game
             return role;
         }
 
-        public RoleModel GetRoleModelWithUnlock(int id) 
-        {
-            var roleList = roleItemList.Concat(roleUnlockedList);
-            return roleList.FirstOrDefault(r => r.id == id);
-        }
-
         public int GetRoleIndexById(int id) 
         {
             int ret = 0;

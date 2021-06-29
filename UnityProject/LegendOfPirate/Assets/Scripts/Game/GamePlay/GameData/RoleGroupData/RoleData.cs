@@ -16,7 +16,7 @@ namespace GameWish.Game
         public int level;
         public int curExp;
         public int starLevel;
-        public List<RoleEquipData> equipList;
+        public Dictionary<EquipmentType, RoleEquipData> equipDic;
         public List<RoleSkillData> skillList;
 
         private RoleGroupData m_RoleGroupData;
@@ -32,7 +32,7 @@ namespace GameWish.Game
 
             this.curExp = 1;
             this.starLevel = 1;
-            equipList = new List<RoleEquipData>();
+            equipDic = new Dictionary<EquipmentType, RoleEquipData>();
             skillList = new List<RoleSkillData>();
 
             m_RoleGroupData = null;
@@ -85,34 +85,54 @@ namespace GameWish.Game
             return false;
         }
 
-        public bool AddRoleEquip(int id)
+        public bool UpgradeRoleEquip(int id,EquipmentType equipType)
         {
             RoleEquipData? equip = GetRoleEquipData(id);
 
             if (equip == null)
             {
-                equipList.Add(new RoleEquipData());
+                //equipDic.Add(new RoleEquipData());
                 SetDataDirty();
                 return true;
             }
 
             return false;
         }
-
-        public bool UpgradeRoleEquip(int id, int deltaLevel)
+        /// <summary>
+        /// 添加新装备
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool AddRoleEquip(EquipmentType type, int id)
         {
-            RoleEquipData? equip = GetRoleEquipData(id);
+            var equipConfig = TDEquipmentConfigTable.GetEquipmentConfigByID(id);
 
-            if (equip != null)
+            if (!equipDic.ContainsKey(type)) 
             {
-                equip.Value.Upgrade(deltaLevel);
-                SetDataDirty();
+                equipDic.Add(type, new RoleEquipData(
+                        equipConfig.equipmentID,
+                        equipConfig.startLevel,
+                        equipConfig.equipmentType,
+                        1,
+                        equipConfig.equipQualityType
+                        ));
                 return true;
             }
-
             return false;
         }
 
+        public RoleEquipData? GetRoleEquipData(int id)
+        {
+            RoleEquipData? equip = equipDic.FirstOrDefault(i => i.Value.id == id).Value;
+
+            if (equip == null)
+            {
+                Log.e("Equip not found: " + id);
+            }
+
+            return equip;
+        }
         #endregion
 
         #region Private
@@ -122,18 +142,6 @@ namespace GameWish.Game
             RoleSkillData skill = skillList.FirstOrDefault(i => i.id == id);
 
             return skill;
-        }
-
-        private RoleEquipData? GetRoleEquipData(int id)
-        {
-            RoleEquipData? equip = equipList.FirstOrDefault(i => i.id == id);
-
-            if (equip == null)
-            {
-                Log.e("Equip not found: " + id);
-            }
-
-            return equip;
         }
 
         private void SetDataDirty()

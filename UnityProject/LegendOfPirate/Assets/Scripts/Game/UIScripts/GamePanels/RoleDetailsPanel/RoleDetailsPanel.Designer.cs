@@ -26,12 +26,12 @@ namespace GameWish.Game
 		[SerializeField] private RectTransform m_SkillRegion;
 		[SerializeField] private Image m_UpgradeMaterials;
 		[SerializeField] private TextMeshProUGUI m_UpgradeMaterialsValue;
-		[SerializeField] private SoundButton m_UpgradeMaterialsBtn;
+		[SerializeField] private Button m_UpgradeMaterialsBtn;
 		[SerializeField] private ScrollRect m_RoleSelecScrollView;
 		[SerializeField] private RectTransform m_RoleSelectRegion;
 		[SerializeField] private Button m_CloseBtn;
-		[SerializeField] private SoundButton m_RightRoleBtn;
-		[SerializeField] private SoundButton m_LeftRoleBtn;
+		[SerializeField] private Button m_RightRoleBtn;
+		[SerializeField] private Button m_LeftRoleBtn;
 		
 		
 	}

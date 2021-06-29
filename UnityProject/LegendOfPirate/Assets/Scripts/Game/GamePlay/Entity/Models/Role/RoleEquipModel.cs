@@ -8,8 +8,8 @@ namespace GameWish.Game
 	public class RoleEquipModel : Model
 	{
         public int equipId;
-        public EquipType equipType;
-        public EquipRarity equipRarity;
+        public EquipmentType equipType;
+        public EquipQualityType equipRarity;
         public IntReactiveProperty equipLevel;
         public IntReactiveProperty upgradeCost;
         public IntReactiveProperty equipCount;
@@ -27,6 +27,10 @@ namespace GameWish.Game
             equipLevel = new IntReactiveProperty(equipData.level);
 
             //TODO: Add Other Propterties
+        }
+        public void OnLevelUp(int deleta=1) 
+        {
+            m_DbData.Upgrade(deleta);
         }
     }
 	
