@@ -63,6 +63,12 @@ namespace GameWish.Game
         {
             m_StoryBtn.OnClickAsObservable().Subscribe(_ => { OpenRoleStoryPanel(); });
             m_CloseBtn.OnClickAsObservable().Subscribe(_ => { HideSelfWithAnim(); });
+            m_UpgradeMaterialsBtn.OnClickAsObservable().Subscribe(_ => { OpenRoleLevelUpPanel(); });
+        }
+
+        private void OpenRoleLevelUpPanel()
+        {
+            UIMgr.S.OpenTopPanel(UIID.RoleGrowthPanel,null, m_PanelData.curRoleModel.id);
         }
 
         #endregion

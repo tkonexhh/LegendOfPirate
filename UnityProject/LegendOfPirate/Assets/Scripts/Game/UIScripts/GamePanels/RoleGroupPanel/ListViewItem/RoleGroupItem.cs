@@ -22,6 +22,7 @@ namespace GameWish.Game
                 ItemLevelTex.text = string.Format("Lv:{0}", roleModel.level.Value);
                 ItemBgBtn.onClick.AddListener(() =>
                 {
+                    UIMgr.S.ClosePanelAsUIID(UIID.RoleDetailsPanel);
                     UIMgr.S.OpenPanel(UIID.RoleDetailsPanel, roleModel);
                     TargetImg.gameObject.SetActive(true);
                 });

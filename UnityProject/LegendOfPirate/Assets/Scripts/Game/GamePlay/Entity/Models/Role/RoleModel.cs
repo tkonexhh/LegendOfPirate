@@ -72,7 +72,7 @@ namespace GameWish.Game
             //血量 = 基础血量 * 等级系数 * 星级系数 * 装备系数  //还有一个装备系数未加
             curHp = new IntReactiveProperty();
             //攻击 = 基础攻击 * 攻击成长系数 ^ (等级 - 1) * 星级系数 ^ (星级 - 1)  TODO...
-            //curAtk = new FloatReactiveProperty(tdRoleConfig.initAtk * Mathf.Pow());
+            curAtk = new FloatReactiveProperty();
             stateId = new ReactiveProperty<ShipRoleStateId>(ShipRoleStateId.Idle);
 
             ModelSubscribe();
