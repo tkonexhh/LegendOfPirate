@@ -100,7 +100,7 @@ namespace GameWish.Game
         {
             RoleGroupModel roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
 
-            roleGroupModel.AddSpiritRoleModel(1001, 100);
+            roleGroupModel.AddSpiritRoleModel(1037, 100);
 
             m_PanelData.curRoleModel = roleGroupModel.GetRoleModel(1001);
             //if (args != null && args.Length > 0)
@@ -119,12 +119,13 @@ namespace GameWish.Game
             m_IsLocked = m_PanelData.curRoleModel.isLocked.Value;
             m_PanelData.curRoleModel.AddEquip(EquipmentType.Weapon);
 
-            if (!m_IsLocked)
-            {
-                RefreshRoleIsUnclockView(m_IsLocked);
-                return;
-            }
-            
+            RefreshRoleIsUnclockView(!m_IsLocked);
+            //if (!m_IsLocked)
+            //{
+            //    RefreshRoleIsUnclockView(m_IsLocked);
+            //    return;
+            //}
+
         }
         private void InitRoleSkillsData()
         {
