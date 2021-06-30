@@ -69,6 +69,7 @@ namespace GameWish.Game
         private void OpenRoleLevelUpPanel()
         {
             UIMgr.S.OpenTopPanel(UIID.RoleGrowthPanel,null, m_PanelData.curRoleModel.id);
+            HideSelfWithAnim();
         }
 
         #endregion

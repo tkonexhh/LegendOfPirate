@@ -27,6 +27,7 @@ namespace GameWish.Game
         public void Upgrade(int deltaLevel=1)
         {
             level += deltaLevel;
+            id = TDEquipmentConfigTable.GetEquipmentConfigByID(id).nextEquipmentID;
         }
     }
 

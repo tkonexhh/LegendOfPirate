@@ -12,5 +12,15 @@ namespace GameWish.Game
         static void CompleteRowAdd(TDGlobalConfig tdData, int rowCount)
         {
         }
+
+        public static float GetRoleAttributesGrowRateOfLevel() 
+        {
+            return m_DataList[0].roleAttributesGrowRateOfLevel;
+        }
+
+        public static float GetRoleAttributesGrowRateOfStar() 
+        {
+            return m_DataList[0].roleAttributesGrowRateOfStar;
+        }
     }
 }

@@ -70,9 +70,20 @@ namespace GameWish.Game
 
             name = tdRoleConfig.roleName;
             //血量 = 基础血量 * 等级系数 * 星级系数 * 装备系数  //还有一个装备系数未加
-            curHp = new IntReactiveProperty();
+            curHp = new IntReactiveProperty(
+                (int)
+                (tdRoleConfig.initHp *                                 //基础血量
+                 GetGrowRateOfLevel()*                                 //等级系数
+                 GetGrowRateOfStar() *                                 //星级系数
+                 GetEquipRateByAttributeType(EquipAttributeType.HP))   //装备系数
+                 ); 
             //攻击 = 基础攻击 * 攻击成长系数 ^ (等级 - 1) * 星级系数 ^ (星级 - 1)  TODO...
-            curAtk = new FloatReactiveProperty();
+            curAtk = new FloatReactiveProperty(
+                tdRoleConfig.initAtk *                                 //基础血量
+                GetGrowRateOfLevel()*                                  //等级系数
+                GetGrowRateOfStar()*                                   //星级系数
+                GetEquipRateByAttributeType(EquipAttributeType.ATK)    //装备系数
+                );
             stateId = new ReactiveProperty<ShipRoleStateId>(ShipRoleStateId.Idle);
 
             ModelSubscribe();
@@ -241,6 +252,29 @@ namespace GameWish.Game
             {
                 curHp.Value = tdRoleConfig.initHp * level.Value * starlv;
             });
+        }
+
+        private float GetEquipRateByAttributeType(EquipAttributeType type)
+        {
+            float ret=  1;
+            foreach (var equip in equipDic) 
+            {
+                if (equip.Value.equipAttributeDic.ContainsKey(type)) 
+                {
+                    ret *= equip.Value.equipAttributeDic[type];
+                }
+            }
+            return ret;
+        }
+
+        private float GetGrowRateOfLevel() 
+        {
+            return Mathf.Pow(TDGlobalConfigTable.GetRoleAttributesGrowRateOfLevel(), (level.Value - 1));
+        }
+
+        private float GetGrowRateOfStar()
+        {
+            return Mathf.Pow(TDGlobalConfigTable.GetRoleAttributesGrowRateOfStar(), (starLevel.Value - 1));
         }
         #endregion
     }

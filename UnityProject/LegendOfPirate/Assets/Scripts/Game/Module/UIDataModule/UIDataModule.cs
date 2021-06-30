@@ -77,6 +77,7 @@ namespace GameWish.Game
             #endregion
 
             #region 角色相关
+            UIDataTable.AddPanelData(UIID.RoleGrowthPanel, null, "GamePanels/RolePanel/RoleGrowthPanel/RoleGrowthPanel");
             UIDataTable.AddPanelData(UIID.RoleDetailsPanel, null, "GamePanels/RolePanel/RoleDetailsPanel/RoleDetailsPanel");
             UIDataTable.AddPanelData(UIID.RoleEquipDetailsPanel, null, "GamePanels/RolePanel/RoleEquipDetailsPanel/RoleEquipDetailsPanel");
             UIDataTable.AddPanelData(UIID.EvolutionSolePanel, null, "GamePanels/RolePanel/EvolutionSolePanel/EvolutionSolePanel");
@@ -84,7 +85,6 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.RoleStoryPanel, null, "GamePanels/RolePanel/RoleStoryPanel/RoleStoryPanel");
             UIDataTable.AddPanelData(UIID.RoleGroupPanel, null, "GamePanels/RolePanel/RoleGroupPanel/RoleGroupPanel");
             UIDataTable.AddPanelData(UIID.RoleGetPanel, null, "GamePanels/RolePanel/RoleGetPanel/RoleGetPanel");
-            UIDataTable.AddPanelData(UIID.RoleGrowthPanel, null, "GamePanels/RolePanel/RoleGrowthPanel/RoleGrowthPanel");
             #endregion
 
             #region 角色成长面板
