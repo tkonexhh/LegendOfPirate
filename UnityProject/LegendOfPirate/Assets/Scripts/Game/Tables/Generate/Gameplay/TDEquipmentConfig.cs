@@ -22,7 +22,8 @@ namespace GameWish.Game
         private string m_EquipmentIcon;   
         private string m_StrengthenCost;   
         private EInt m_IntensifyCost = 0;   
-        private string m_Desc;  
+        private string m_Desc;   
+        private EInt m_WearObject = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -81,6 +82,11 @@ namespace GameWish.Game
         /// </summary>
         public  string  desc {get { return m_Desc; } }
        
+        /// <summary>
+        /// 穿戴对象要求 英雄id（-1无穿戴对象要求）
+        /// </summary>
+        public  int  wearObject {get { return m_WearObject; } }
+       
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
         {
@@ -129,6 +135,9 @@ namespace GameWish.Game
                 case 10:
                     m_Desc = dataR.ReadString();
                     break;
+                case 11:
+                    m_WearObject = dataR.ReadInt();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -139,7 +148,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(11);
+          Dictionary<string, int> ret = new Dictionary<string, int>(12);
           
           ret.Add("EquipmentId", 0);
           ret.Add("StarLevel", 1);
@@ -152,6 +161,7 @@ namespace GameWish.Game
           ret.Add("StrengthenCost", 8);
           ret.Add("IntensifyCost", 9);
           ret.Add("Desc", 10);
+          ret.Add("WearObject", 11);
           return ret;
         }
     } 

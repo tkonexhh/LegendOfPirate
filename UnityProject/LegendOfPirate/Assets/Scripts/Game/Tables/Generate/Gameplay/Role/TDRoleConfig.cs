@@ -13,8 +13,8 @@ namespace GameWish.Game
         
        
         private EInt m_RoleId = 0;   
-        private string m_Type;   
         private string m_RoleName;   
+        private string m_Type;   
         private string m_RoleDsc;   
         private EInt m_InitHp = 0;   
         private EInt m_InitAtk = 0;   
@@ -31,14 +31,14 @@ namespace GameWish.Game
         public  int  roleId {get { return m_RoleId; } }
        
         /// <summary>
-        /// 角色类型
-        /// </summary>
-        public  string  type {get { return m_Type; } }
-       
-        /// <summary>
         /// 角色名字
         /// </summary>
         public  string  roleName {get { return m_RoleName; } }
+       
+        /// <summary>
+        /// 角色类型（Front-前排，Mid-中排，Back-后排）
+        /// </summary>
+        public  string  type {get { return m_Type; } }
        
         /// <summary>
         /// 角色描述
@@ -94,10 +94,10 @@ namespace GameWish.Game
                     m_RoleId = dataR.ReadInt();
                     break;
                 case 1:
-                    m_Type = dataR.ReadString();
+                    m_RoleName = dataR.ReadString();
                     break;
                 case 2:
-                    m_RoleName = dataR.ReadString();
+                    m_Type = dataR.ReadString();
                     break;
                 case 3:
                     m_RoleDsc = dataR.ReadString();
@@ -133,8 +133,8 @@ namespace GameWish.Game
           Dictionary<string, int> ret = new Dictionary<string, int>(10);
           
           ret.Add("RoleId", 0);
-          ret.Add("Type", 1);
-          ret.Add("RoleName", 2);
+          ret.Add("RoleName", 1);
+          ret.Add("Type", 2);
           ret.Add("RoleDsc", 3);
           ret.Add("InitHp", 4);
           ret.Add("InitAtk", 5);
