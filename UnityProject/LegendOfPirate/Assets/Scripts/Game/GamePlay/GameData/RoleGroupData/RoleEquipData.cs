@@ -7,13 +7,16 @@ using UnityEngine;
 namespace GameWish.Game
 {
     [Serializable]
-    public struct RoleEquipData
+    public class RoleEquipData
     {
         public int id;
         public int level;
         public EquipType type;
         public int count;
         public EquipRarity rarity;
+
+        public RoleEquipData()
+        { }
 
         public RoleEquipData(int id, int level,EquipType type,int count,EquipRarity rarity)
         {

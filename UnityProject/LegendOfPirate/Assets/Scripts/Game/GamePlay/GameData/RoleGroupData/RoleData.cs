@@ -87,7 +87,7 @@ namespace GameWish.Game
 
         public bool AddRoleEquip(int id)
         {
-            RoleEquipData? equip = GetRoleEquipData(id);
+            RoleEquipData equip = GetRoleEquipData(id);
 
             if (equip == null)
             {
@@ -101,11 +101,11 @@ namespace GameWish.Game
 
         public bool UpgradeRoleEquip(int id, int deltaLevel)
         {
-            RoleEquipData? equip = GetRoleEquipData(id);
+            RoleEquipData equip = GetRoleEquipData(id);
 
             if (equip != null)
             {
-                equip.Value.Upgrade(deltaLevel);
+                equip.Upgrade(deltaLevel);
                 SetDataDirty();
                 return true;
             }
@@ -124,9 +124,9 @@ namespace GameWish.Game
             return skill;
         }
 
-        private RoleEquipData? GetRoleEquipData(int id)
+        private RoleEquipData GetRoleEquipData(int id)
         {
-            RoleEquipData? equip = equipList.FirstOrDefault(i => i.id == id);
+            RoleEquipData equip = equipList.FirstOrDefault(i => i.id == id);
 
             if (equip == null)
             {
