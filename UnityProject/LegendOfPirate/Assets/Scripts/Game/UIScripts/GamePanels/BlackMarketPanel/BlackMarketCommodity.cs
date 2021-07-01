@@ -13,7 +13,7 @@ namespace GameWish.Game
 	{
 		#region  Ù–‘
 		[SerializeField]
-		private TextMeshProUGUI m_Name;	
+		private TextMeshProUGUI m_BlackMarketName;	
 		[SerializeField]
 		private Image m_Icom;	
 		

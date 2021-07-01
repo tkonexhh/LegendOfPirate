@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ChargingInterfacePanelAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 770781d390ca53c469f93fd2445250a2, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 6ffc0b30e595c294690aaa1bcd7ee430, type: 3}
+  - {fileID: 21300000, guid: f31e0931a000a584ba7a6dd39c4de73f, type: 3}
+  - {fileID: 21300000, guid: 8b4fa261596c37749987b2aa4a186cfb, type: 3}
+  - {fileID: 21300000, guid: 8157aec2d6455a34c8da9870175811e2, type: 3}
+  - {fileID: 21300000, guid: 8dc9f8132bb1b4f4b9698c7678a4b59c, type: 3}
+  - {fileID: 21300000, guid: eb36e724a08e7c54ba396948a3e2d6ea, type: 3}
+  - {fileID: 21300000, guid: 8586ee2474b0da24487b8b64037fbe59, type: 3}
+  - {fileID: 21300000, guid: 736b7044b2b350a41b8e8b163909409c, type: 3}
+  - {fileID: 21300000, guid: f6e6a9541ce18fe408635b2c9f83fd57, type: 3}
+  - {fileID: 21300000, guid: 01506ac4eb56d064bb1520af5830e28b, type: 3}
+  - {fileID: 21300000, guid: 84d55645365d84b489b200831135ce95, type: 3}
+  - {fileID: 21300000, guid: 7c84e7751d95bb9499bd4806693d37e0, type: 3}
+  - {fileID: 21300000, guid: 24ceaab52a79f474cad6739a23a93349, type: 3}
+  - {fileID: 21300000, guid: 96c40bf5a12e5b448a4a45287cdd3d38, type: 3}
+  - {fileID: 21300000, guid: 38cf5236d34e87b4faba5934f72e0f13, type: 3}
+  - {fileID: 21300000, guid: 3501c8662fe0cb547bc42c201cafa264, type: 3}
+  - {fileID: 21300000, guid: 042354a6f868b88489f97aee8da1b8bb, type: 3}
+  - {fileID: 21300000, guid: 13e4f3273f836494ba9ac6b5349333af, type: 3}
+  - {fileID: 21300000, guid: 31eb10c74cda3c748bc120c5025eba0b, type: 3}
+  - {fileID: 21300000, guid: 5054109883864d44b90ccd9248cdc7e5, type: 3}
+  - {fileID: 21300000, guid: a9f27ab80e0f6cb44ac90cb6a82677c5, type: 3}
+  - {fileID: 21300000, guid: 41624eb8f8c3feb4cb590e8acaf7dea6, type: 3}
+  - {fileID: 21300000, guid: c0f39ed8cdcfe7343a5746b63b512410, type: 3}
+  - {fileID: 21300000, guid: aceb4bf87fe56be4791a611d145740c5, type: 3}
+  - {fileID: 21300000, guid: ab6f6869dca955547bcd9b8c2fa55f09, type: 3}
+  - {fileID: 21300000, guid: 6502e2e9f72995646a28b2f29d19f933, type: 3}
+  - {fileID: 21300000, guid: fc78b74a97f491244b456d8ccd40e379, type: 3}
+  - {fileID: 21300000, guid: 7871667ae30b17048aa362207c4a6e64, type: 3}
+  - {fileID: 21300000, guid: 17f1da9b8c0448c4b811f1aaee281b9b, type: 3}
+  - {fileID: 21300000, guid: 33adabdb7f934fb4ebbab40ff7759151, type: 3}
+  - {fileID: 21300000, guid: c025bddb48937fb4dac33e6f8cce1311, type: 3}
+  - {fileID: 21300000, guid: 3aeeca5c1c08a444ca06637425de4a4f, type: 3}
+  - {fileID: 21300000, guid: 21a0958cbb8861d45af3c1e37d62f88c, type: 3}
+  - {fileID: 21300000, guid: 82b292bdb08373d44a567296e76d8d78, type: 3}
+  - {fileID: 21300000, guid: 0df1a1edc8ff10a449b9ec3f13697de2, type: 3}
+  - {fileID: 21300000, guid: 8f83851ee9c4cf34499f4ce8cb3059e5, type: 3}
+  - {fileID: 21300000, guid: ca60d74e67fe5e64ca98cd65b1a2d494, type: 3}
+  - {fileID: 21300000, guid: fd5e65ce02bd8814486adffd270b93ef, type: 3}
+  - {fileID: 21300000, guid: 4b129d6f121b8e443a00dbf308d958c4, type: 3}
+  - {fileID: 21300000, guid: 335fb29fa80fa294faa2e3edf26c5be4, type: 3}
+  - {fileID: 21300000, guid: 6ca105cfe88e05c49a7192b71d341255, type: 3}
+  - {fileID: 21300000, guid: d3c789ff8246d2b49a738a67d68ad1e1, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - shop-Bottom5
+  - shop-vip
+  - shop-Bottom3
+  - Lark20210630-170354
+  - shop-diamonds3
+  - shop-diamonds7
+  - shop-Cue The background2
+  - shop-BrownBg
+  - shop-Bottom2
+  - shop- Background
+  - shop-Tagsx2
+  - shop-diamonds2
+  - shop-Title4
+  - Shop-PurpleFrame
+  - shop-Bottom1
+  - shop-Title5
+  - shop-Shards
+  - shop-icons
+  - shop-Tags
+  - shop-daily
+  - shop-Headlines
+  - shop-Cue The background1
+  - shop-diamonds6
+  - shop-NPC
+  - shop-Bottom4
+  - shop-time
+  - shop-card vip
+  - shop-Title3
+  - shop-GreenHook
+  - shop-Roles
+  - shop-diamonds
+  - shop-diamonds1
+  - shop-card
+  - shop-diamonds8
+  - shop-Push Button
+  - shop-Advertising
+  - shop-Push Button2
+  - shop-diamonds9
+  - shop-Title1
+  - shop-diamonds5
+  - shop-shop
+  - shop-diamonds4
+  m_Tag: ChargingInterfacePanelAtlas
+  m_IsVariant: 0
