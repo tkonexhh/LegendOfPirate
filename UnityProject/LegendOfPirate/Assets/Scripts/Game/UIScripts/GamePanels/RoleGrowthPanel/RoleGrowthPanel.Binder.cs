@@ -4,7 +4,7 @@ using Qarth.Extension;
 using Qarth;
 using UniRx;
 using TMPro;
-
+using DG.Tweening;
 namespace GameWish.Game
 {
 	public class RoleGrowthPanelData : UIPanelData
@@ -43,11 +43,44 @@ namespace GameWish.Game
 
 		private void SetPanelMsg() 
 		{
-			var GrowthMsg = m_Content.GetComponentsInChildren<TextMeshProUGUI>();
-			GrowthMsg[0].text = string.Format("Hp:{0}→{1}", exHp, m_PanelData.roleModel.curHp.Value);
-			GrowthMsg[1].text = string.Format("Attack:{0}→{1}", exAtk, m_PanelData.roleModel.curAtk.Value);
-			GrowthMsg[2].text = string.Format("Exp:{0}→{1}", exExp, m_PanelData.roleModel.curExp.Value);
-		}
+			SetHpMsg();
+			SetAttackMsg();	
+        }
+		/// <summary>
+		/// 只实现显示功能 需要修改Model与Data
+		/// </summary>
+		private void SetExpMsg() 
+		{
+            var Attributes = m_GrowthMsgCap.GetComponentInChildren<TextMeshProUGUI>().GetComponentsInChildren<TextMeshProUGUI>();
+            Attributes[1].text = exExp.ToString();
+            DG.Tweening.Core.DOSetter<float> setter = (x) =>
+            {
+                Attributes[2].text = string.Format("{0}", (Mathf.RoundToInt(x)).ToString());
+            };
+            DOTween.To(setter, exExp, m_PanelData.roleModel.GetCurExp(), 1.0f);
+        }
+
+		private void SetHpMsg() 
+		{
+            var Attributes = m_GrowthMsgHp.GetComponentInChildren<TextMeshProUGUI>().GetComponentsInChildren<TextMeshProUGUI>();
+            Attributes[1].text = exHp.ToString();
+            DG.Tweening.Core.DOSetter<float> setter = (x) =>
+            {
+                Attributes[2].text = string.Format("{0}", (Mathf.RoundToInt(x)).ToString());
+            };
+            DOTween.To(setter, 0, m_PanelData.roleModel.GetCurHp(), 1.0f);
+        }
+
+		private void SetAttackMsg() 
+		{
+            var Attributes = m_GrowthMsgAtt.GetComponentInChildren<TextMeshProUGUI>().GetComponentsInChildren<TextMeshProUGUI>();
+            Attributes[1].text = exAtk.ToString();
+            DG.Tweening.Core.DOSetter<float> setter = (x) =>
+            {
+                Attributes[2].text = string.Format("{0}", (Mathf.RoundToInt(x)).ToString());
+            };
+            DOTween.To(setter, 0, m_PanelData.roleModel.GetCurAtk(), 1.0f);
+        }
 
 		private void ReleasePanelData()
 		{
