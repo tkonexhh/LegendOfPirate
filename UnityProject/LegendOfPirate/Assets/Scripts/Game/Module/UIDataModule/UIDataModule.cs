@@ -80,6 +80,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.RoleGrowthPanel, null, "GamePanels/RolePanel/RoleGrowthPanel/RoleGrowthPanel");
             UIDataTable.AddPanelData(UIID.RoleDetailsPanel, null, "GamePanels/RolePanel/RoleDetailsPanel/RoleDetailsPanel");
             UIDataTable.AddPanelData(UIID.RoleEquipDetailsPanel, null, "GamePanels/RolePanel/RoleEquipDetailsPanel/RoleEquipDetailsPanel");
+            UIDataTable.AddPanelData(UIID.RoleEquipGetPanel, null, "GamePanels/RolePanel/RoleEquipGetPanel/RoleEquipGetPanel");
             UIDataTable.AddPanelData(UIID.EvolutionSolePanel, null, "GamePanels/RolePanel/EvolutionSolePanel/EvolutionSolePanel");
             UIDataTable.AddPanelData(UIID.RoleSkillUpgradePanel, null, "GamePanels/RolePanel/RoleSkillUpgradePanel/RoleSkillUpgradePanel");
             UIDataTable.AddPanelData(UIID.RoleStoryPanel, null, "GamePanels/RolePanel/RoleStoryPanel/RoleStoryPanel");

@@ -15,7 +15,7 @@ namespace GameWish.Game
         public IntReactiveProperty equipCount;
         public Dictionary<EquipAttributeType,float> equipAttributeDic;
         private RoleEquipData m_DbData;
-        private EquipmentUnitConfig equipConfig;
+        public EquipmentUnitConfig equipConfig;
         public RoleEquipModel(RoleEquipData equipData)
         {
             m_DbData = equipData;

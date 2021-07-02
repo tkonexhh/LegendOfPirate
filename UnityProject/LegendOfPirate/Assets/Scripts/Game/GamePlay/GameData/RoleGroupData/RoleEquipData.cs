@@ -7,7 +7,7 @@ using UnityEngine;
 namespace GameWish.Game
 {
     [Serializable]
-    public struct RoleEquipData
+    public class RoleEquipData
     {
         public int id;
         public int level;
@@ -15,7 +15,10 @@ namespace GameWish.Game
         public int count;
         public EquipQualityType rarity;
 
-        public RoleEquipData(int id, int level,EquipmentType type,int count,EquipQualityType rarity)
+        public RoleEquipData()
+        { }
+
+        public RoleEquipData(int id, int level, EquipmentType type,int count, EquipQualityType rarity)
         {
             this.id = id;
             this.level = level;
@@ -24,11 +27,11 @@ namespace GameWish.Game
             this.rarity = rarity;
         }
 
-        public void Upgrade(int deltaLevel=1)
+        public void Upgrade(int deltaLevel)
         {
             level += deltaLevel;
-            id = TDEquipmentConfigTable.GetEquipmentConfigByID(id).nextEquipmentID;
         }
+
     }
 
 }

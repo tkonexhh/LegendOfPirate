@@ -8,11 +8,12 @@ namespace GameWish.Game
 {
     public class RoleEquipDetailsPanelData : UIPanelData
     {
-        public int roleID;
         public int roleEquipID;
-        public RoleGroupModel roleGroupModel = null;
-        public RoleModel roleModel = null;
-        public RoleEquipModel roleEquipModel = null;
+        public int roleID;
+        public bool IsLocked;
+        public EquipmentUnitConfig equipConfig;
+        public RoleEquipModel roleEquipModel;
+        public EquipmentType equipmentType;
         public RoleEquipDetailsPanelData()
         {
 
@@ -38,7 +39,7 @@ namespace GameWish.Game
             if (m_PanelData.roleEquipModel != null)
             {
                 //≤‚ ‘
-                m_PanelData.roleEquipModel.equipLevel.SubscribeToTextMeshPro(EquipName);
+                m_PanelData.roleEquipModel.equipLevel.SubscribeToTextMeshPro(m_EquipName);
             }
 
         }

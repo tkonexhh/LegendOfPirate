@@ -87,7 +87,7 @@ namespace GameWish.Game
 
         public bool UpgradeRoleEquip(int id,EquipmentType equipType)
         {
-            RoleEquipData? equip = GetRoleEquipData(id);
+            RoleEquipData equip = GetRoleEquipData(id);
 
             if (equip == null)
             {
@@ -122,9 +122,9 @@ namespace GameWish.Game
             return false;
         }
 
-        public RoleEquipData? GetRoleEquipData(int id)
+        public RoleEquipData GetRoleEquipData(int id)
         {
-            RoleEquipData? equip = equipDic.FirstOrDefault(i => i.Value.id == id).Value;
+            RoleEquipData equip = equipDic.FirstOrDefault(i => i.Value.id == id).Value;
 
             if (equip == null)
             {

@@ -21,23 +21,13 @@ namespace GameWish.Game
 		private RoleEquipModel m_RoleEquipModel;
 		private IDisposable m_CurBtnClickEvent;
 		private int m_RoleId;
+		private EquipmentType m_EquipmentType;
 
 		public bool IsLocked = true;
 		
-		public void InitEquipSubpart(RoleEquipModel roleEquipModel,int roleId) 
+		public void InitEquipSubpart(int roleId,EquipmentType equipmentType) 
 		{
-			m_RoleId = roleId;
-			m_RoleEquipModel = roleEquipModel;
-			if (roleEquipModel != null)
-			{
-				m_EquipId = m_RoleEquipModel.equipId;
-				IsLocked = false;
-			}
-			else 
-			{
-				m_EquipId = -1;			
-			}
-			m_RoleEquipModel = roleEquipModel;
+			SetData(roleId, equipmentType);
 			SetUI();
 		}
 
@@ -50,10 +40,20 @@ namespace GameWish.Game
             m_RoleEquipModel = roleEquipModel;
 			SetUI();
         }
-	
+
+		private void SetData(int roleId, EquipmentType equipmentType) 
+		{
+            m_RoleId = roleId;
+            var roleModel = ModelMgr.S.GetModel<RoleGroupModel>().GetRoleModel(roleId);
+            m_EquipId = roleModel.GetEquipModelIdByType(equipmentType);
+            IsLocked = !roleModel.equipDic.ContainsKey(equipmentType);
+            m_EquipmentType = equipmentType;
+            m_RoleEquipModel = roleModel.GetEquipModelByType(equipmentType);
+        }
+
 		private void SetUI() 
 		{
-			if (m_EquipId!= -1)
+			if (!IsLocked)
 			{
 				if(m_CurBtnClickEvent!=null) m_CurBtnClickEvent.Dispose();
 				m_EquipImg.gameObject.SetActive(true);
@@ -75,32 +75,29 @@ namespace GameWish.Game
 					case EquipQualityType.Immortal:
 						break;
 				}
+				m_CurBtnClickEvent = m_EquipButton.OnClickAsObservable().Subscribe(_ => ShowEquipMsg()).AddTo(this);
 				//TODO SetEquipImage
-				m_CurBtnClickEvent = m_EquipButton.OnClickAsObservable().Subscribe(_=>ShowEquipMsg()).AddTo(this);
-				
 			}
 			else 
 			{
 				if (m_CurBtnClickEvent != null) m_CurBtnClickEvent.Dispose();
 				m_EquipImg.gameObject.SetActive(false);
 				m_ListView.gameObject.SetActive(false);
-				m_CurBtnClickEvent = m_EquipButton.OnClickAsObservable().Subscribe(_ => OpenAddEquipPanel()).AddTo(this);
+				m_CurBtnClickEvent = m_EquipButton.OnClickAsObservable().Subscribe(_ => ShowEquipGet()).AddTo(this);
 				//TODO SetButtonImage TO AddEquip
 			}
-        }
 
-        private void OpenAddEquipPanel()
-        {
-			//TODO OpenAddEquipPanel
-			FloatMessageTMP.S.ShowMsg("Empty Equipment");
-        }
-
+		}
         private void ShowEquipMsg()
         {
 			//TODO ShowEquipMsg
-			UIMgr.S.OpenPanel(UIID.RoleEquipDetailsPanel, m_RoleId, m_EquipId);
+			UIMgr.S.OpenPanel(UIID.RoleEquipDetailsPanel,m_RoleId,m_EquipmentType);
 		}
 
+		private void ShowEquipGet() 
+		{
+			UIMgr.S.OpenPanel(UIID.RoleEquipGetPanel, m_EquipmentType,m_RoleId);
+		}
         private void SetEquipStar(int starCount)
 		{
 			m_ListView.SetDataCount(starCount);

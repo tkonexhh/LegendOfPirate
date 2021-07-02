@@ -140,6 +140,12 @@ namespace GameWish.Game
             equipDic.TryGetValue(type, out output);
             return output;
         }
+
+        public int GetEquipModelIdByType(EquipmentType type) 
+        {
+            return equipLimitDic[type];
+        }
+
         #endregion
 
         #region Public Set
@@ -173,7 +179,6 @@ namespace GameWish.Game
         /// 添加新装备
         /// </summary>
         /// <param name="type"></param>
-        /// <param name="id"></param>
         public void AddEquip(EquipmentType type)
         {
             if (!equipDic.ContainsKey(type))

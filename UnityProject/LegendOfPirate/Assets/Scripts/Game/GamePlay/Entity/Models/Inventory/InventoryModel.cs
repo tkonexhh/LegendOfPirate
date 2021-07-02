@@ -139,7 +139,7 @@ namespace GameWish.Game
                 return;
             }
 
-            Log.e("Not Fint Item,ItemType = " + inventoryItemModel.GetItemType());
+            Log.e("Not Find Item,ItemType = " + inventoryItemModel.GetItemType());
         }
 
         private ReactiveDictionary<int, IInventoryItemModel> GetDicByItemType(InventoryItemType itemType)
@@ -150,7 +150,7 @@ namespace GameWish.Game
             }
             else
             {
-                Log.e("Key Not Found In Inventroy Dic : " + itemType.ToString());
+                Log.e("Key Not Found In InventroyDic : " + itemType.ToString());
 
                 return null;
             }

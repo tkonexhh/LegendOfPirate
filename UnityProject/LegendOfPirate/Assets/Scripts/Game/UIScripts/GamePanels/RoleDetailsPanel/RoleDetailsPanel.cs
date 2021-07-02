@@ -61,9 +61,9 @@ namespace GameWish.Game
         #region OnClickAddListener
         private void OnClickAddListener()
         {
-            m_StoryBtn.OnClickAsObservable().Subscribe(_ => { OpenRoleStoryPanel(); });
-            m_CloseBtn.OnClickAsObservable().Subscribe(_ => { HideSelfWithAnim(); });
-            m_UpgradeMaterialsBtn.OnClickAsObservable().Subscribe(_ => { OpenRoleLevelUpPanel(); });
+            m_StoryBtn.OnClickAsObservable().Subscribe(_ => { OpenRoleStoryPanel(); }).AddTo(this);
+            m_CloseBtn.OnClickAsObservable().Subscribe(_ => { HideSelfWithAnim(); }).AddTo(this);
+            m_UpgradeMaterialsBtn.OnClickAsObservable().Subscribe(_ => { OpenRoleLevelUpPanel(); }).AddTo(this);
         }
 
         private void OpenRoleLevelUpPanel()
@@ -119,12 +119,12 @@ namespace GameWish.Game
             m_IsLocked = m_PanelData.curRoleModel.isLocked.Value;
             m_PanelData.curRoleModel.AddEquip(EquipmentType.Weapon);
 
-            RefreshRoleIsUnclockView(!m_IsLocked);
-            //if (!m_IsLocked)
-            //{
-            //    RefreshRoleIsUnclockView(m_IsLocked);
-            //    return;
-            //}
+            //RefreshRoleIsUnclockView(!m_IsLocked);
+            if (!m_IsLocked)
+            {
+                RefreshRoleIsUnclockView(m_IsLocked);
+                return;
+            }
 
         }
         private void InitRoleSkillsData()
@@ -141,9 +141,7 @@ namespace GameWish.Game
             var equipsSubpart = m_EquipRegion.GetComponentsInChildren<EquipSubpart>();
             for (int i = 0; i < equipsSubpart.Length; i++)
             {
-                RoleEquipModel output = null;
-                m_PanelData.curRoleModel.equipDic.TryGetValue((EquipmentType)i, out output);
-                equipsSubpart[i].InitEquipSubpart(output, m_PanelData.curRoleModel.id);
+                equipsSubpart[i].InitEquipSubpart( m_PanelData.curRoleModel.id, (EquipmentType)i);
             }
         }
         #endregion
