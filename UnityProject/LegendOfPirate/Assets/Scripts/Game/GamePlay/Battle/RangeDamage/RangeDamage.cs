@@ -34,45 +34,45 @@ namespace GameWish.Game
         public abstract bool InRange(BattleRoleController role, Transform center);
     }
 
-    // public abstract class Picker1
-    // {
-    //     protected List<BattleRoleController> GetTargets()
-    //     {
-    //         List<BattleRoleController> targets = new List<BattleRoleController>();
-    //         List<BattleRoleController> roles = BattleMgr.S.Role.GetControllersByCamp(BattleCamp.Our);
-    //         for (int i = 0; i < roles.Count; i++)
-    //         {
-    //             if (DealWithTarget(roles[i]))
-    //             {
-    //                 targets.Add(roles[i]);
-    //             }
-    //         }
-    //         return targets;
-    //     }
+    public abstract class Picker1
+    {
+        protected List<BattleRoleController> GetTargets()
+        {
+            List<BattleRoleController> targets = new List<BattleRoleController>();
+            List<BattleRoleController> roles = BattleMgr.S.Role.GetControllersByCamp(BattleCamp.Our);
+            for (int i = 0; i < roles.Count; i++)
+            {
+                if (DealWithTarget(roles[i]))
+                {
+                    targets.Add(roles[i]);
+                }
+            }
+            return targets;
+        }
 
-    //     public void DealWithPicker(Action<BattleRoleController> callback)
-    //     {
-    //         var picks = GetTargets();
-    //         for (int i = 0; i < picks.Count; i++)
-    //         {
-    //             callback(picks[i]);
-    //         }
-    //     }
+        public void DealWithPicker(Action<BattleRoleController> callback)
+        {
+            var picks = GetTargets();
+            for (int i = 0; i < picks.Count; i++)
+            {
+                callback(picks[i]);
+            }
+        }
 
-    //     protected virtual bool DealWithTarget(BattleRoleController role)
-    //     {
-    //         return false;
-    //     }
-    // }
+        protected virtual bool DealWithTarget(BattleRoleController role)
+        {
+            return false;
+        }
+    }
 
-    // public abstract class RangePicker : Picker1
-    // {
+    public abstract class RangePicker : Picker1
+    {
 
-    //     protected override bool DealWithTarget(BattleRoleController role)
-    //     {
-    //         return false;
-    //     }
-    // }
+        protected override bool DealWithTarget(BattleRoleController role)
+        {
+            return false;
+        }
+    }
 
 
     public class RangeDamage_Circle : Picker
@@ -172,7 +172,6 @@ namespace GameWish.Game
 
         public override bool InRange(BattleRoleController role, Transform center)
         {
-
             return true;
         }
     }

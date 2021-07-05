@@ -31,12 +31,12 @@ namespace GameWish.Game
             {
                 if (configs[i] is SkillActionConfig_Delay delayConfig) { skill.SkillActions.Add(CreateSkillAction_Delay(delayConfig)); }
                 if (configs[i] is SkillActionConfig_AddBuff addBuffConfig) { skill.SkillActions.Add(CreateSkillAction_AddBuff(addBuffConfig)); }
-                if (configs[i] is SkillActionConfig_Damage damageConfig) { skill.SkillActions.Add(CreateSkillAction_Damage(skill, damageConfig)); }
-                if (configs[i] is SkillActionConfig_Heal healConfig) { skill.SkillActions.Add(CreateSkillAction_Heal(skill, healConfig)); }
-                if (configs[i] is SkillActionConfig_RangeHeal rangeHealConfig) { skill.SkillActions.Add(CreateSkillAction_RangeHeal(skill, rangeHealConfig)); }
-                if (configs[i] is SkillActionConfig_PlaySound soundConfig) { skill.SkillActions.Add(CreateSkillAction_PlaySound(skill, soundConfig)); }//TODO
-                if (configs[i] is SkillActionConfig_PlayEffect effectConfig) { skill.SkillActions.Add(CreateSkillAction_PlayEffect(skill, effectConfig)); }//TODO
-                if (configs[i] is SkillActionConfig_Sprint sprintConfig) { skill.SkillActions.Add(CreateSkillAction_Sprint(skill, sprintConfig)); }
+                if (configs[i] is SkillActionConfig_Damage damageConfig) { skill.SkillActions.Add(CreateSkillAction_Damage(damageConfig)); }
+                if (configs[i] is SkillActionConfig_Heal healConfig) { skill.SkillActions.Add(CreateSkillAction_Heal(healConfig)); }
+                if (configs[i] is SkillActionConfig_RangeHeal rangeHealConfig) { skill.SkillActions.Add(CreateSkillAction_RangeHeal(rangeHealConfig)); }
+                if (configs[i] is SkillActionConfig_PlaySound soundConfig) { skill.SkillActions.Add(CreateSkillAction_PlaySound(soundConfig)); }//TODO
+                if (configs[i] is SkillActionConfig_PlayEffect effectConfig) { skill.SkillActions.Add(CreateSkillAction_PlayEffect(effectConfig)); }//TODO
+                if (configs[i] is SkillActionConfig_Sprint sprintConfig) { skill.SkillActions.Add(CreateSkillAction_Sprint(sprintConfig)); }
                 if (configs[i] is SkillActionConfig_FlashForward flashForwardConfig) { skill.SkillActions.Add(CreateSkillAction_FlashForward(flashForwardConfig)); }
                 if (configs[i] is SkillActionConfig_FlashBackward flashBackwardConfig) { skill.SkillActions.Add(CreateSkillAction_FlashBackward(flashBackwardConfig)); }
                 if (configs[i] is SkillActionConfig_RangeDamage rangeDamageConfig) { skill.SkillActions.Add(CreateSkillAction_RangeDamage(rangeDamageConfig)); }
@@ -57,33 +57,33 @@ namespace GameWish.Game
             return new SkillAction_AddBuff(actionConfig.buffConfigSO, actionConfig.targetType);
         }
 
-        private static SkillAction CreateSkillAction_Damage(Skill skill, SkillActionConfig_Damage actionConfig)
+        private static SkillAction CreateSkillAction_Damage(SkillActionConfig_Damage actionConfig)
         {
-            return new SkillAction_Damage(actionConfig.Damage, actionConfig.targetType);
+            return new SkillAction_Damage(actionConfig.Damage, actionConfig.DamagePlus, actionConfig.targetType);
         }
 
-        private static SkillAction CreateSkillAction_Heal(Skill skill, SkillActionConfig_Heal healConfig)
+        private static SkillAction CreateSkillAction_Heal(SkillActionConfig_Heal healConfig)
         {
-            return new SkillAction_Heal(healConfig.HealAmount, healConfig.targetType);
+            return new SkillAction_Heal(healConfig.HealPercent, healConfig.HealDelta, healConfig.targetType);
         }
 
-        private static SkillAction CreateSkillAction_RangeHeal(Skill skill, SkillActionConfig_RangeHeal config)
+        private static SkillAction CreateSkillAction_RangeHeal(SkillActionConfig_RangeHeal config)
         {
             Picker rangeDamage = RangeDamageConfig.CreateRangeDamage(config.RangeDamage);
-            return new SkillAction_RangeHeal(rangeDamage, config.HealAmount);
+            return new SkillAction_RangeHeal(rangeDamage, config.HealAmount, config.HealDelta);
         }
 
-        private static SkillAction CreateSkillAction_PlaySound(Skill skill, SkillActionConfig_PlaySound config)
+        private static SkillAction CreateSkillAction_PlaySound(SkillActionConfig_PlaySound config)
         {
             return new SkillAction_PlaySound(config.audio, config.targetType);
         }
 
-        private static SkillAction CreateSkillAction_PlayEffect(Skill skill, SkillActionConfig_PlayEffect config)
+        private static SkillAction CreateSkillAction_PlayEffect(SkillActionConfig_PlayEffect config)
         {
             return new SkillAction_PlayEffect(config.effect, config.targetType);
         }
 
-        private static SkillAction CreateSkillAction_Sprint(Skill skill, SkillActionConfig_Sprint config)
+        private static SkillAction CreateSkillAction_Sprint(SkillActionConfig_Sprint config)
         {
             return new SkillAction_Sprint(config.range, config.speed, config.targetType);
         }

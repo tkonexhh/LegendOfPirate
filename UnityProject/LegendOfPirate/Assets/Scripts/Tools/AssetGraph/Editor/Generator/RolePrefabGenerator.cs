@@ -29,7 +29,7 @@ namespace GameWish.Game
                 }
                 var go = AssetDatabase.LoadAssetAtPath<GameObject>(asset.importFrom);
                 GameObject objSource = (GameObject)PrefabUtility.InstantiatePrefab(go);
-
+                List<SerializedProperty> eventPropertyLst = new List<SerializedProperty>();
 
                 //判断是否是主人物模型
                 string folderPath = asset.importFrom.Substring(0, asset.importFrom.LastIndexOf("/"));
@@ -51,6 +51,9 @@ namespace GameWish.Game
                         }
                     }
 
+
+
+
                     //找到所有的动画文件
                     string[] allPath = AssetDatabase.FindAssets("t:model", new string[] { folderPath });
                     // Debug.LogError(folderPath + "-----" + allPath.Length);
@@ -61,29 +64,41 @@ namespace GameWish.Game
                         if (path.Contains("@"))
                         {
                             var model = AssetDatabase.LoadAssetAtPath(path, typeof(AnimationClip)) as AnimationClip;
-                            if (model != null)
+
+                            ModelImporter modelImporter = AssetImporter.GetAtPath(path) as ModelImporter;
+                            SerializedObject serializedObject = new SerializedObject(modelImporter);
+                            SerializedProperty clipAnimations = serializedObject.FindProperty("m_ClipAnimations");
+                            for (int j = 0; j < clipAnimations.arraySize; j++)
                             {
-                                if (model.name.Contains("idle") || model.name.Contains("run") || model.name.Contains("walk") || model.name.Contains("vectory"))
+                                SerializedProperty clipAnimationProperty = clipAnimations.GetArrayElementAtIndex(j);
+
+                                //处理循环
+                                if (clipAnimationProperty.displayName.Contains("idle") ||
+                                    clipAnimationProperty.displayName.Contains("run") ||
+                                    clipAnimationProperty.displayName.Contains("walk") ||
+                                    clipAnimationProperty.displayName.Contains("vectory"))
                                 {
-                                    var setting = AnimationUtility.GetAnimationClipSettings(model);
-                                    setting.loopTime = true;
-                                    AnimationUtility.SetAnimationClipSettings(model, setting);
+                                    clipAnimationProperty.FindPropertyRelative("loopTime").boolValue = true;
                                 }
 
-                                // if (model.name.Contains("attack"))//事件添加失败 -- 手动添加事件
-                                // {
-                                //     Debug.LogError(model.name);
-                                //     AnimationEvent animEvent = new AnimationEvent();
-                                //     animEvent.functionName = "Attack";
-                                //     animEvent.objectReferenceParameter = objSource;
-                                //     animEvent.time = 0.35f;
-                                //     // model.AddEvent(animEvent);
-                                //     AnimationUtility.SetAnimationEvents(model, new AnimationEvent[] { animEvent });
-                                //     Debug.LogError(model.events.Length);
-                                // }
-
-                                playables.clipsList.Add(model);
+                                if (clipAnimationProperty.displayName.Contains("attack"))
+                                {
+                                    SerializedProperty eventsProperty = clipAnimationProperty.FindPropertyRelative("events");
+                                    //清空事件
+                                    eventsProperty.ClearArray();
+                                    eventsProperty.InsertArrayElementAtIndex(0);
+                                    //重新写入
+                                    SerializedProperty eventProperty = eventsProperty.GetArrayElementAtIndex(0);
+                                    eventProperty.FindPropertyRelative("time").floatValue = 0.1f;
+                                    eventProperty.FindPropertyRelative("functionName").stringValue = "Attack";
+                                    eventPropertyLst.Add(eventProperty);
+                                    // 
+                                }
                             }
+                            serializedObject.ApplyModifiedProperties();
+                            AssetDatabase.ImportAsset(path);
+                            playables.clipsList.Add(model);
+
 
                         }
 
@@ -107,6 +122,12 @@ namespace GameWish.Game
                 }
 
                 GameObject obj = PrefabUtility.SaveAsPrefabAsset(objSource, generateAssetPath);
+                //处理动画事件对象
+                for (int i = 0; i < eventPropertyLst.Count; i++)
+                {
+                    Debug.LogError("i" + obj.name);
+                    eventPropertyLst[i].FindPropertyRelative("objectReferenceParameter").objectReferenceValue = obj;
+                }
 
                 UnityEngine.MonoBehaviour.DestroyImmediate(objSource);
 

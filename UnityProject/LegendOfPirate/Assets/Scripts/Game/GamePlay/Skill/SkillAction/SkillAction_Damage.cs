@@ -7,21 +7,25 @@ namespace GameWish.Game
     public class SkillAction_Damage : SkillAction
     {
         private int m_Damage;
-        // private BattleDamageType m_DamageType;
+        private int m_DamageDelta;
         private SkillTargetType m_Target;
 
-        public SkillAction_Damage(int damage, SkillTargetType target) //: base(owner)
+        public SkillAction_Damage(int damage, int damageDelta, SkillTargetType target) //: base(owner)
         {
             this.m_Damage = damage;
-            // this.m_DamageType = damageType;
+            this.m_DamageDelta = damageDelta;
             this.m_Target = target;
         }
 
         public override void ExcuteAction(Skill skill)
         {
             skill.SkillActionStepEnd();
+
+            if (skill.TargetInfo == null) return;
+
             RoleDamagePackage package = new RoleDamagePackage(skill.Owner);
-            package.damage = (int)((m_Damage * 0.01) * skill.Owner.Data.buffedData.ATK * skill.Owner.Data.buffedData.SkillATKRate);
+            int damagePercent = m_Damage + skill.level * m_DamageDelta;
+            package.damage = (int)((damagePercent * 0.01f) * skill.Owner.Data.buffedData.ATK * skill.Owner.Data.buffedData.SkillATKRate);
             package.damageType = BattleDamageType.Skill;
             switch (m_Target)
             {
@@ -29,7 +33,10 @@ namespace GameWish.Game
                     BattleMgr.S.SendDamage(skill.TargetInfo.Caster, package);
                     break;
                 case SkillTargetType.Target:
-                    BattleMgr.S.SendDamage(skill.TargetInfo.Target, package);
+                    if (skill.TargetInfo.Target != null)
+                    {
+                        BattleMgr.S.SendDamage(skill.TargetInfo.Target, package);
+                    }
                     break;
             }
 

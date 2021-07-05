@@ -34,8 +34,8 @@ namespace GameWish.Game
     [HideReferenceObjectPicker]
     public class SkillActionConfig_Heal : SkillActionConfig
     {
-        [LabelText("治愈量")]
-        public int HealAmount = 10;
+        [LabelText("治愈量%")] public int HealPercent = 10;
+        [LabelText("治愈成长量%")] public int HealDelta = 0;
         public SkillTargetType targetType;
     }
 
@@ -43,8 +43,8 @@ namespace GameWish.Game
     [HideReferenceObjectPicker]
     public class SkillActionConfig_RangeHeal : SkillActionConfig
     {
-        [LabelText("治愈量")]
-        public int HealAmount = 10;
+        [LabelText("治愈量")] public int HealAmount = 10;
+        [LabelText("治愈成长量%")] public int HealDelta = 0;
         // public SkillTargetType targetType;
         public RangeDamageConfig RangeDamage;
     }

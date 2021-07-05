@@ -16,10 +16,28 @@ namespace GameWish.Game
         //Attack 近战攻击事件 远程攻击发射子弹
 
         public Run onAnimAttack;
+        public Run onAnimSkillStart;
+        public Run onAnimSkillEnd;
 
 
+        /// <summary>
+        /// 开始施法
+        /// </summary>
+        public void SkillStart()
+        {
+            if (onAnimSkillStart != null)
+            {
+                onAnimSkillStart();
+            }
+        }
 
-
+        public void SkillEnd()
+        {
+            if (onAnimSkillEnd != null)
+            {
+                onAnimSkillEnd();
+            }
+        }
 
         public void Attack()//攻击动画事件
         {
