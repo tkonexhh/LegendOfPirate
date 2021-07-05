@@ -40,6 +40,7 @@ namespace GameWish.Game
             var item = args[0] as RoleModel;
             InitRoleMsg((item.id));
             InitData();
+            OpenDependPanel(EngineUI.MaskPanel, -1);
         }
 
         protected override void OnPanelHideComplete()
@@ -64,13 +65,11 @@ namespace GameWish.Game
             m_StoryBtn.OnClickAsObservable().Subscribe(_ => { OpenRoleStoryPanel(); }).AddTo(this);
             m_CloseBtn.OnClickAsObservable().Subscribe(_ => { HideSelfWithAnim(); }).AddTo(this);
             m_UpgradeMaterialsBtn.OnClickAsObservable().Subscribe(_ => { OpenRoleLevelUpPanel(); }).AddTo(this);
+            m_PreRoleBtn.OnClickAsObservable().Subscribe(_ => { OnPreRoleBtnClick(); }).AddTo(this);
+            m_NextRoleBtn.OnClickAsObservable().Subscribe(_ => { OnNextRoleBtnClick(); }).AddTo(this);
         }
 
-        private void OpenRoleLevelUpPanel()
-        {
-            UIMgr.S.OpenTopPanel(UIID.RoleGrowthPanel,null, m_PanelData.curRoleModel.id);
-            HideSelfWithAnim();
-        }
+
 
         #endregion
 
@@ -86,6 +85,23 @@ namespace GameWish.Game
         }
         #endregion
         #region Private
+
+        private void OnPreRoleBtnClick() 
+        {
+            FloatMessageTMP.S.ShowMsg("This Is First Role");
+        }
+
+        private void OnNextRoleBtnClick() 
+        {
+            FloatMessageTMP.S.ShowMsg("This Is Last Role");
+        }
+
+        private void OpenRoleLevelUpPanel()
+        {
+            UIMgr.S.OpenTopPanel(UIID.RoleGrowthPanel, null, m_PanelData.curRoleModel.id);
+            HideSelfWithAnim();
+        }
+
         private void OpenRoleStoryPanel()
         {
             UIMgr.S.OpenPanel(UIID.RoleStoryPanel, m_PanelData.curRoleModel.id);
@@ -100,6 +116,7 @@ namespace GameWish.Game
         {
             RoleGroupModel roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
 
+           if(roleGroupModel.GetRoleModel(1001)==null) 
             roleGroupModel.AddSpiritRoleModel(1037, 100);
 
             m_PanelData.curRoleModel = roleGroupModel.GetRoleModel(1001);
@@ -119,12 +136,13 @@ namespace GameWish.Game
             m_IsLocked = m_PanelData.curRoleModel.isLocked.Value;
             m_PanelData.curRoleModel.AddEquip(EquipmentType.Weapon);
 
-            //RefreshRoleIsUnclockView(!m_IsLocked);
-            if (!m_IsLocked)
-            {
-                RefreshRoleIsUnclockView(m_IsLocked);
-                return;
-            }
+            if(!m_IsLocked) RefreshRoleIsUnclockView();
+
+            //if (!m_IsLocked)
+            //{
+            //    RefreshRoleIsUnclockView(m_IsLocked);
+            //    return;
+            //}
 
         }
         private void InitRoleSkillsData()
@@ -143,6 +161,7 @@ namespace GameWish.Game
             {
                 equipsSubpart[i].InitEquipSubpart( m_PanelData.curRoleModel.id, (EquipmentType)i);
             }
+            
         }
         #endregion
 

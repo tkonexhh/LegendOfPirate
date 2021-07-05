@@ -13,13 +13,13 @@ namespace GameWish.Game
 		public const string Name = "RoleEquipDetailsPanel";
 		
 		[SerializeField] private Button m_CloseBtn;
-		[SerializeField] private TextMeshProUGUI m_EquipName;
-		[SerializeField] private RectTransform m_UpperRegion;
+		[SerializeField] private RectTransform m_StarRegion;
 		[SerializeField] private Image m_EquipIcon;
 		[SerializeField] private TextMeshProUGUI m_EquipType;
 		[SerializeField] private TextMeshProUGUI m_EquipAttribute;
-		[SerializeField] private TextMeshProUGUI m_EquipNumber;
+		[SerializeField] private IUListView m_StrengthMaterials;
 		[SerializeField] private Button m_StrengthBtn;
+		[SerializeField] private TextMeshProUGUI m_EquipName;
 		
 		
 	}

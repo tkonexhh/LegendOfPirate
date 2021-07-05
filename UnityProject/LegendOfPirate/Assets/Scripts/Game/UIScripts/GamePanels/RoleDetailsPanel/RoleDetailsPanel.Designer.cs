@@ -30,8 +30,8 @@ namespace GameWish.Game
 		[SerializeField] private ScrollRect m_RoleSelecScrollView;
 		[SerializeField] private RectTransform m_RoleSelectRegion;
 		[SerializeField] private Button m_CloseBtn;
-		[SerializeField] private Button m_RightRoleBtn;
-		[SerializeField] private Button m_LeftRoleBtn;
+		[SerializeField] private Button m_NextRoleBtn;
+		[SerializeField] private Button m_PreRoleBtn;
 		
 		
 	}

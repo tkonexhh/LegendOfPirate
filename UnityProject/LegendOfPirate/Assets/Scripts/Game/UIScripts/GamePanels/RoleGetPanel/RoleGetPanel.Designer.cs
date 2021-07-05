@@ -16,10 +16,9 @@ namespace GameWish.Game
 		[SerializeField] private TextMeshProUGUI m_RoleName;
 		[SerializeField] private Image m_RoleImage;
 		[SerializeField] private IUListView m_RoleSkills;
-		[SerializeField] private TextMeshProUGUI m_Attribute1;
-		[SerializeField] private TextMeshProUGUI m_Attribute2;
-		[SerializeField] private TextMeshProUGUI m_Attribute3;
-		[SerializeField] private Image m_SkillIconTemp;
+		[SerializeField] private TextMeshProUGUI m_AttributeHp;
+		[SerializeField] private TextMeshProUGUI m_AttributeAtt;
+		[SerializeField] private TextMeshProUGUI m_AttributeCap;
 		
 		
 	}

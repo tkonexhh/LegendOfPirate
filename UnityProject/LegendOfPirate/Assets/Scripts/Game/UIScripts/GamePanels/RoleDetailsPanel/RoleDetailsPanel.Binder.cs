@@ -70,12 +70,12 @@ namespace GameWish.Game
         #endregion
 
         #region RefreshPanelView
-        private void RefreshRoleIsUnclockView(bool isUnlock)
+        private void RefreshRoleIsUnclockView()
         {
-            m_StartRegion.gameObject.SetActive(isUnlock);
-            m_RoleLevel.gameObject.SetActive(isUnlock);
-            m_ExperienceBar.gameObject.SetActive(isUnlock);
-            m_EquipRegion.gameObject.SetActive(isUnlock);
+            m_StartRegion.gameObject.SetActive(!m_IsLocked);
+            m_RoleLevel.gameObject.SetActive(!m_IsLocked);
+            m_ExperienceBar.gameObject.SetActive(!m_IsLocked);
+            m_EquipRegion.gameObject.SetActive(!m_IsLocked);
         }
 
         private void RefreshRoleView()

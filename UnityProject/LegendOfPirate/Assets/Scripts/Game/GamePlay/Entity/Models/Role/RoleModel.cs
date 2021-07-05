@@ -236,9 +236,16 @@ namespace GameWish.Game
                roleData.SetRoleUnlocked();
            });
 
-            spiritCount.Subscribe(count =>
+            spiritCount.Where(count=>count<Define.ROLEGET_NEED_SPIRIT_COUNT).Subscribe(count =>
             {
                 roleData.SetRoleSpiritCount(spiritCount.Value);
+            });
+
+            spiritCount.Where(count => count >= Define.ROLEGET_NEED_SPIRIT_COUNT).Subscribe(count=> 
+            {
+                spiritCount.Value -= Define.ROLEGET_NEED_SPIRIT_COUNT;
+                UIMgr.S.OpenPanel(UIID.RoleGetPanel, this.id);
+                ModelMgr.S.GetModel<RoleGroupModel>().SetRoleUnlockedModel(this.id);
             });
 
             level.Subscribe(lv =>

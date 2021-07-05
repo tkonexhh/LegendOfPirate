@@ -16,6 +16,7 @@ namespace GameWish.Game
 
         public void OnInit(RoleModel roleModel)
         {
+     
             //if (roleModel.isLocked.Value)
             //{
                 NameTex.text = roleModel.name;

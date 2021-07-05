@@ -89,6 +89,19 @@ namespace GameWish.Game
                 return false;
         }
 
+        public int GetItemCountByID(int id) 
+        {
+            if (m_InventoryItemList != null && m_InventoryItemList.Count > 0)
+            {
+                return GetItemModelList().FirstOrDefault(item => item.GetId() == id).GetCount();
+            }
+            else 
+            {
+                return 0;
+            }
+
+        }
+
         /// <summary>
         /// 获取所有的Item
         /// </summary>

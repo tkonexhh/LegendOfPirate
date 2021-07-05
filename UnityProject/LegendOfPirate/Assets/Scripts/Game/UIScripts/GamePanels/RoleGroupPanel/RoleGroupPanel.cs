@@ -23,7 +23,10 @@ namespace GameWish.Game
 			base.OnPanelOpen(args);
 
 			OnOpenInit(args);
-		}
+            var toggles = m_ToggleGroup.GetComponentsInChildren<Toggle>();
+
+            toggles[0].isOn=true;
+        }
 		
 		protected override void OnPanelHideComplete()
 		{

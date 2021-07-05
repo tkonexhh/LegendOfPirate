@@ -95,6 +95,7 @@ namespace GameWish.Game
             #endregion
 
             GUILayout.EndVertical();
+
         }
     }
 
