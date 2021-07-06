@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8497913270995450126}
   - component: {fileID: 6474859493165954296}
   - component: {fileID: 3727897419028910906}
+  - component: {fileID: 5144493312438924330}
   m_Layer: 0
   m_Name: StartImg
   m_TagString: Untagged
@@ -75,3 +76,15 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
+--- !u!114 &5144493312438924330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811918996032494335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2284322aa79abe64f80d5bf7b9cf73ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

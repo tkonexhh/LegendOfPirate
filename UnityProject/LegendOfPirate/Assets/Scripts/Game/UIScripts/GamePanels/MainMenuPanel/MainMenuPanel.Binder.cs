@@ -59,8 +59,8 @@ namespace GameWish.Game
         }
         private void OpenRolePanel()
         {
-            //UIMgr.S.OpenPanel(UIID.RoleGroupPanel);
-            UIMgr.S.OpenPanel(UIID.RoleDetailsPanel);
+            UIMgr.S.OpenPanel(UIID.RoleGroupPanel);
+            //UIMgr.S.OpenPanel(UIID.RoleDetailsPanel);
         }
         private void OpenWareHousePanel()
         {

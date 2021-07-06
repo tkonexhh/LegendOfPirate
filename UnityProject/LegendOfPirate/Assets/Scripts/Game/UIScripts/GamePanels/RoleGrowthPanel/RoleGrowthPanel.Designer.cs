@@ -14,9 +14,11 @@ namespace GameWish.Game
 		
 		[SerializeField] private Button m_CloseBtn;
 		[SerializeField] private TextMeshProUGUI m_PanelTitle;
-		[SerializeField] private TextMeshProUGUI m_GrowthMsg;
 		[SerializeField] private RectTransform m_Content;
-		[SerializeField] private TextMeshProUGUI m_GrowthMsgTamp;
+		[SerializeField] private RectTransform m_GrowthMsgHp;
+		[SerializeField] private RectTransform m_GrowthMsgAtt;
+		[SerializeField] private RectTransform m_GrowthMsgCap;
+		[SerializeField] private TextMeshProUGUI m_GrowthMsg;
 		[SerializeField] private Image m_RoleImage;
 		
 		

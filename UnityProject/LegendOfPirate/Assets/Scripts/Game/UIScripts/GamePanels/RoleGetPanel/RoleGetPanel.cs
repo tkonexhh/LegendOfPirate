@@ -29,6 +29,8 @@ namespace GameWish.Game
 			InitPanelMsg();
 
 			InitListView();
+
+			
 		}
 		
 		protected override void OnPanelHideComplete()

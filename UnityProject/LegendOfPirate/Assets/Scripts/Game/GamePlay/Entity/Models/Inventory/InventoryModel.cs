@@ -89,6 +89,19 @@ namespace GameWish.Game
                 return false;
         }
 
+        public int GetItemCountByID(int id) 
+        {
+            if (m_InventoryItemList != null && m_InventoryItemList.Count > 0)
+            {
+                return GetItemModelList().FirstOrDefault(item => item.GetId() == id).GetCount();
+            }
+            else 
+            {
+                return 0;
+            }
+
+        }
+
         /// <summary>
         /// 获取所有的Item
         /// </summary>
@@ -139,7 +152,7 @@ namespace GameWish.Game
                 return;
             }
 
-            Log.e("Not Fint Item,ItemType = " + inventoryItemModel.GetItemType());
+            Log.e("Not Find Item,ItemType = " + inventoryItemModel.GetItemType());
         }
 
         private ReactiveDictionary<int, IInventoryItemModel> GetDicByItemType(InventoryItemType itemType)
@@ -150,7 +163,7 @@ namespace GameWish.Game
             }
             else
             {
-                Log.e("Key Not Found In Inventroy Dic : " + itemType.ToString());
+                Log.e("Key Not Found In InventroyDic : " + itemType.ToString());
 
                 return null;
             }

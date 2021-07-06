@@ -43,8 +43,8 @@ namespace GameWish.Game
         private void InitPanelMsg() 
         {
             m_RoleName.text = m_PanelData.roleModel.name;
-            m_Attribute1.text = string.Format("Health {0}", m_PanelData.roleModel.curHp);
-            m_Attribute2.text = string.Format("Attack {0}", m_PanelData.roleModel.curAtk);
+            m_AttributeHp.text = string.Format("Health:  {0}", m_PanelData.roleModel.curHp);
+            m_AttributeAtt.text = string.Format("Attack:  {0}", m_PanelData.roleModel.curAtk);
         }
 
         private void GetRoleModel(int id) 
@@ -63,10 +63,7 @@ namespace GameWish.Game
 
         private void OnClickAddListener()
         {
-            m_CloseBtn.onClick.AddListener(() => 
-            {
-                HideSelfWithAnim();
-            });
+            m_CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
 
         }
 

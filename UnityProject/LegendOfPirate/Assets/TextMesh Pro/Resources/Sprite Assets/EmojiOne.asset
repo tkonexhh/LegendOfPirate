@@ -52,6 +52,7 @@ MonoBehaviour:
   materialHashCode: 0
   m_Version: 1.1.0
   m_FaceInfo:
+    m_FaceIndex: 0
     m_FamilyName: 
     m_StyleName: 
     m_PointSize: 0
@@ -635,7 +636,8 @@ MonoBehaviour:
     unicode: 9785
     pivot: {x: 0.5, y: 0.5}
     sprite: {fileID: 0}
-  fallbackSpriteAssets: []
+  fallbackSpriteAssets:
+  - {fileID: 11400000, guid: 4950448206d0f06469995cd9aad69cd1, type: 2}
 --- !u!21 &1369835458
 Material:
   serializedVersion: 6

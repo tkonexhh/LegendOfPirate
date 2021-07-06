@@ -11,14 +11,14 @@ namespace GameWish.Game
     {
         public int id;
         public int level;
-        public EquipType type;
+        public EquipmentType type;
         public int count;
-        public EquipRarity rarity;
+        public EquipQualityType rarity;
 
         public RoleEquipData()
         { }
 
-        public RoleEquipData(int id, int level,EquipType type,int count,EquipRarity rarity)
+        public RoleEquipData(int id, int level, EquipmentType type,int count, EquipQualityType rarity)
         {
             this.id = id;
             this.level = level;

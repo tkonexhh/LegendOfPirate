@@ -33,8 +33,8 @@ namespace GameWish.Game
         private void InitRoleMsg(int roleId) 
         {
             m_RoleIndex = new IntReactiveProperty(m_PanelData.roleGroupModel.GetRoleIndexById(roleId));
-            m_PanelData.curRoleModel = m_PanelData.roleGroupModel.GetRoleModelWithUnlock(roleId);
-            InitEquipSubpart();
+            m_PanelData.curRoleModel = m_PanelData.roleGroupModel.GetRoleModel(roleId);
+     
         }
 
         #region RefreshPanelData
@@ -46,19 +46,19 @@ namespace GameWish.Game
         private void BindModelToUI()
         {
             m_PanelData.curRoleModel.level.SubscribeToTextMeshPro(m_RoleLevel, "Lv.{0}").AddTo(this);
-            m_PanelData.curRoleModel.equipList.ObserveCountChanged().Subscribe(count => OnEquipCountChange(count)).AddTo(this);
+            m_PanelData.curRoleModel.equipDic.ObserveCountChanged().Subscribe(count => OnEquipCountChange(count)).AddTo(this);
         }
 
         private void OnEquipCountChange(int count)
         {
-            var Equips = m_EquipRegion.GetComponentsInChildren<EquipSubpart>();
-            for (int i = 0; i < m_PanelData.curRoleModel.equipList.Count; i++) 
-            {
-                if (Equips[(int)m_PanelData.curRoleModel.equipList[i].equipType].IsLocked) 
-                {
-                    Equips[(int)m_PanelData.curRoleModel.equipList[i].equipType].UpdateEquipSubpart(m_PanelData.curRoleModel.equipList[i]);
-                }
-            }
+            //var Equips = m_EquipRegion.GetComponentsInChildren<EquipSubpart>();
+            //for (int i = 0; i < m_PanelData.curRoleModel.equipDic.Count; i++) 
+            //{
+            //    if (Equips[(int)m_PanelData.curRoleModel.equipDic[i].equipType].IsLocked) 
+            //    {
+            //        Equips[(int)m_PanelData.curRoleModel.equipDic[i].equipType].UpdateEquipSubpart(m_PanelData.curRoleModel.equipDic[i]);
+            //    }
+            //}
         }
 
         private void BindUIToModel()
@@ -66,32 +66,16 @@ namespace GameWish.Game
 
         }
 
-        private void InitEquipSubpart() 
-        {
-            var Equips = m_EquipRegion.GetComponentsInChildren<EquipSubpart>();
-            int equipModelIndex = 0;
-            for (int i = 0; i < Equips.Length; i++) 
-            {
-                if (i == (int)m_PanelData.curRoleModel.equipList[equipModelIndex].equipType)
-                {
-                    Equips[i].InitEquipSubpart(m_PanelData.curRoleModel.equipList[equipModelIndex]);
-                    equipModelIndex++;
-                }
-                else 
-                {
-                    Equips[i].InitEquipSubpart(null);
-                }
-            }
-        }
+
         #endregion
 
         #region RefreshPanelView
-        private void RefreshRoleIsUnclockView(bool isUnlock)
+        private void RefreshRoleIsUnclockView()
         {
-            m_StartRegion.gameObject.SetActive(isUnlock);
-            m_RoleLevel.gameObject.SetActive(isUnlock);
-            m_ExperienceBar.gameObject.SetActive(isUnlock);
-            m_EquipRegion.gameObject.SetActive(isUnlock);
+            m_StartRegion.gameObject.SetActive(!m_IsLocked);
+            m_RoleLevel.gameObject.SetActive(!m_IsLocked);
+            m_ExperienceBar.gameObject.SetActive(!m_IsLocked);
+            m_EquipRegion.gameObject.SetActive(!m_IsLocked);
         }
 
         private void RefreshRoleView()

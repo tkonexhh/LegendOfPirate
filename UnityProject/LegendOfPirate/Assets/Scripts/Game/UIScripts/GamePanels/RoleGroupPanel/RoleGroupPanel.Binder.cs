@@ -12,7 +12,7 @@ namespace GameWish.Game
     public class RoleGroupPanelData : UIPanelData
     {
         public RoleGroupModel roleGroupModel;
-
+        public int roleType;
         public RoleGroupPanelData()
         {
             //roleModelList = ModelMgr.S.GetModel<RoleGroupModel>().GetSortRoleItemList();
@@ -27,7 +27,7 @@ namespace GameWish.Game
         private void AllocatePanelData()
         {
             m_PanelData = UIPanelData.Allocate<RoleGroupPanelData>();
-           // m_PanelData.roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
+           m_PanelData.roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
            
         }
 
@@ -37,16 +37,7 @@ namespace GameWish.Game
             m_ScrollView.SetCellRenderer(OnCellRenderer);
             m_ScrollView.SetDataCount(roleModelList.Count);
         }
-        private void InitUIListener() 
-        {
 
-            m_CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
-            var toggles = m_ToggleGroup.GetComponentsInChildren<Toggle>();
-            for (int i = -1; i < toggles.Length - 1; i++) 
-            {
-                toggles[0].OnValueChangedAsObservable().Subscribe(_ => SetGroupList(i)).AddTo(this);
-            }
-        }
 
         private void OnCellRenderer(Transform root, int index)
         {
@@ -60,6 +51,14 @@ namespace GameWish.Game
 
         private void BindModelToUI()
         {
+            m_PanelData.roleGroupModel.roleItemList.ObserveCountChanged().Subscribe(count => OnRoleValueChange(count)).AddTo(this);
+            m_PanelData.roleGroupModel.roleUnlockedItemList.ObserveCountChanged().Subscribe(count => OnRoleValueChange(count)).AddTo(this);
+        }
+
+        private void OnRoleValueChange(int count)
+        {
+            roleModelList = m_PanelData.roleGroupModel.GetSortRoleItemList(m_PanelData.roleType);
+            m_ScrollView.SetDataCount(roleModelList.Count);
         }
 
         private void BindUIToModel()
@@ -68,16 +67,19 @@ namespace GameWish.Game
 
         private void SetGroupList(int type) 
         {
-            if (type < 0)
+            
+            if (type <= 0)
             {
                 roleModelList = ModelMgr.S.GetModel<RoleGroupModel>().GetSortRoleItemList();
                 m_ScrollView.SetDataCount(roleModelList.Count);
+                m_PanelData.roleType = 0;
             }
             else 
             {
                 var roleType = (RoleType)type;
                 roleModelList = ModelMgr.S.GetModel<RoleGroupModel>().GetRoleModelsByType(roleType);
                 m_ScrollView.SetDataCount(roleModelList.Count);
+                m_PanelData.roleType = type;
             }
         }
 

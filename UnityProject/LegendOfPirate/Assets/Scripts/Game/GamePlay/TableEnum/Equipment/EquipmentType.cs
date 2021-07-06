@@ -14,18 +14,18 @@ namespace GameWish.Game
 		/// <summary>
 		/// 武器
 		/// </summary>
-		Weapon,
+		Weapon=0,
 		/// <summary>
 		/// 装备
 		/// </summary>
-		Armor,
+		Armor=1,
 		/// <summary>
 		/// 饰品
 		/// </summary>
-		Jewelry,
+		Jewelry=2,
 		/// <summary>
 		/// 专属神器
 		/// </summary>
-		Hallow,
+		Hallow=3,
 	}
 }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
 using UniRx;
+using System;
 
 namespace GameWish.Game
 {
@@ -26,9 +27,15 @@ namespace GameWish.Game
 
 			BindModelToUI();
 			BindUIToModel();
+			AddPanelListener();
 		}
 
-		private void InitializePassValue(object[] args)
+        private void AddPanelListener()
+        {
+			m_CloseBtn.OnClickAsObservable().Subscribe(_ => { HideSelfWithAnim(); }).AddTo(this);
+        }
+
+        private void InitializePassValue(object[] args)
 		{
 			m_PanelData.roleID = (int)args[0];
 		}

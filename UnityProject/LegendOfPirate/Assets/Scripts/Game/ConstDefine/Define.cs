@@ -50,5 +50,8 @@ namespace GameWish.Game
         //Inventroy
         public const int INVENTORY_ITEM_MAX_COUNT = 9999;
 
+        //Role
+        public const int ROLEGET_NEED_SPIRIT_COUNT = 100;
+
     }
 }
