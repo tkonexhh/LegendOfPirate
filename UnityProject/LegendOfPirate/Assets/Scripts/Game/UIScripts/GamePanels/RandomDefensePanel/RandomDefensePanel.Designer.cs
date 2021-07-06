@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,34 +12,20 @@ namespace GameWish.Game
 	{
 		public const string Name = "RandomDefensePanel";
 		
-		[SerializeField]
-		public GFrame.Editor.GButton BlackExitBg;
-		[SerializeField]
-		public UnityEngine.UI.Image Bg;
-		[SerializeField]
-		public UnityEngine.UI.Image Icon;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI Level;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI Grade;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI Desc;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI DispatchTitle;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI AtkTitle;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI AtkValue;
-		[SerializeField]
-		public RectTransform DispatchTra;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI AwardTitle;
-		[SerializeField]
-		public RectTransform AwardTra;
-		[SerializeField]
-		public GFrame.Editor.GButton FightBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI FightBtnValue;
+		[SerializeField] private Button m_BlackExitBg;
+		[SerializeField] private Image m_Bg;
+		[SerializeField] private Image m_Icon;
+		[SerializeField] private TextMeshProUGUI m_Level;
+		[SerializeField] private TextMeshProUGUI m_Grade;
+		[SerializeField] private TextMeshProUGUI m_Desc;
+		[SerializeField] private TextMeshProUGUI m_DispatchTitle;
+		[SerializeField] private TextMeshProUGUI m_AtkTitle;
+		[SerializeField] private TextMeshProUGUI m_AtkValue;
+		[SerializeField] private RectTransform m_DispatchTra;
+		[SerializeField] private TextMeshProUGUI m_AwardTitle;
+		[SerializeField] private RectTransform m_AwardTra;
+		[SerializeField] private Button m_FightBtn;
+		[SerializeField] private TextMeshProUGUI m_FightBtnValue;
 		
 		
 	}

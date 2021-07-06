@@ -1216,7 +1216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1958,20 +1958,20 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  BlackExitBg: {fileID: 2889444790274728504}
-  Bg: {fileID: 229258740851149090}
-  Icon: {fileID: 5753162911774031654}
-  Level: {fileID: 5064725001805513692}
-  Grade: {fileID: 3707731038955946477}
-  Desc: {fileID: 5308509558144937659}
-  DispatchTitle: {fileID: 6797513831262648034}
-  AtkTitle: {fileID: 5394662467159493476}
-  AtkValue: {fileID: 3481824752939085105}
-  DispatchTra: {fileID: 8000150740805006853}
-  AwardTitle: {fileID: 2106655067347886612}
-  AwardTra: {fileID: 7177705580619384791}
-  FightBtn: {fileID: 3727559000242619679}
-  FightBtnValue: {fileID: 2482880348069227859}
+  m_BlackExitBg: {fileID: 2889444790274728504}
+  m_Bg: {fileID: 229258740851149090}
+  m_Icon: {fileID: 5753162911774031654}
+  m_Level: {fileID: 5064725001805513692}
+  m_Grade: {fileID: 3707731038955946477}
+  m_Desc: {fileID: 5308509558144937659}
+  m_DispatchTitle: {fileID: 6797513831262648034}
+  m_AtkTitle: {fileID: 5394662467159493476}
+  m_AtkValue: {fileID: 3481824752939085105}
+  m_DispatchTra: {fileID: 8000150740805006853}
+  m_AwardTitle: {fileID: 2106655067347886612}
+  m_AwardTra: {fileID: 7177705580619384791}
+  m_FightBtn: {fileID: 3727559000242619679}
+  m_FightBtnValue: {fileID: 2482880348069227859}
   m_MiddleDispatchRole: {fileID: 8905048085608861345, guid: ea82beca1b4adc9408b9d67f5e4d8192,
     type: 3}
   m_MiddleDownAwardRole: {fileID: 587151647648027882, guid: 5f8c66e5f06c1764a896d1a44809b8e7,

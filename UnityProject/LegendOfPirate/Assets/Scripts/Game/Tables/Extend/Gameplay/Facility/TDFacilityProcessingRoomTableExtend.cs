@@ -22,7 +22,7 @@ namespace GameWish.Game
 
             List<int> unlockPartIdList = ParsePartId(tdData.unlockPartID);
             processingRoomUnitProperties[level - 1] = new ProcessingRoomUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
-                tdData.upgradePreconditions, tdData.upgradeTime, tdData.modelResources, unlockPartIdList, tdData.unlockPartSpace, tdData.unlockSpaceCost);
+                tdData.upgradePreconditions, tdData.modelResources, unlockPartIdList, tdData.unlockPartSpace, tdData.unlockSpaceCost);
         }
 
         public static ProcessingRoomUnitConfig[] processingRoomUnitProperties = null;
@@ -66,10 +66,10 @@ namespace GameWish.Game
         public int unlockSpaceCost;
 
         public ProcessingRoomUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
-            int upgradeTime, string modelRes, List<int> unlockPartId, int unlockPartSpace, int unlockSpaceCost
+             string modelRes, List<int> unlockPartId, int unlockPartSpace, int unlockSpaceCost
             )
         {
-            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
+            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition,  modelRes);
             this.unlockPartIdList = unlockPartId;
             this.unlockPartSpace = unlockPartSpace;
             this.unlockSpaceCost = unlockSpaceCost;

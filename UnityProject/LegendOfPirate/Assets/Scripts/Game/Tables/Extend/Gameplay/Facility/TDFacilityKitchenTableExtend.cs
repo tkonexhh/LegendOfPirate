@@ -21,7 +21,7 @@ namespace GameWish.Game
             }
 
             kitchenUnitProperties[level - 1] = new KitchenUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
-                tdData.upgradePreconditions, tdData.upgradeTime, tdData.modelResources, tdData.unlockSpaceCost,tdData.unlockCookSpace);
+                tdData.upgradePreconditions,  tdData.modelResources, tdData.unlockSpaceCost,tdData.unlockCookSpace);
         }
 
         public static KitchenUnitConfig[] kitchenUnitProperties = null;
@@ -44,10 +44,10 @@ namespace GameWish.Game
         public int unlockSpaceCost;
         public int unlockSpaceCount;
         public KitchenUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
-            int upgradeTime, string modelRes, int unlockSpaceCost, int unlockSpaceCount
+             string modelRes, int unlockSpaceCost, int unlockSpaceCount
             )
         {
-            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
+            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition,  modelRes);
             this.unlockSpaceCost = unlockSpaceCost;
             this.unlockSpaceCount = unlockSpaceCount;
         }

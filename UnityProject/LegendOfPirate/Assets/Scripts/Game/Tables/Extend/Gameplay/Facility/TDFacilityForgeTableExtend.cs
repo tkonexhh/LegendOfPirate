@@ -22,7 +22,7 @@ namespace GameWish.Game
             }
 
             forgeUnitProperties[level - 1] = new ForgeUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
-                tdData.upgradePreconditions, tdData.upgradeTime, tdData.modelResources, tdData.unlockEquipmentID);
+                tdData.upgradePreconditions, tdData.modelResources, tdData.unlockEquipmentID);
         }
 
         public static ForgeUnitConfig[] forgeUnitProperties = null;
@@ -45,11 +45,11 @@ namespace GameWish.Game
         public string unlockEuipId;
 
         public ForgeUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
-            int upgradeTime, string modelRes, string unlockEquipId
+            string modelRes, string unlockEquipId
             )
         {
-            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
+            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, modelRes);
             this.unlockEuipId = unlockEquipId;
-        }
+        }   
     }
 }

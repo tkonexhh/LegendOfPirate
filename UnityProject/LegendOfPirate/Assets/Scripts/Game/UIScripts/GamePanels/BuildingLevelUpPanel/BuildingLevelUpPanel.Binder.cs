@@ -4,8 +4,8 @@ using Qarth.Extension;
 using Qarth;
 using UniRx;
 using GFrame;
-
-
+using System;
+using TMPro;
 namespace GameWish.Game
 {
 	public class BuildingLevelUpPanelData : UIPanelData
@@ -13,6 +13,7 @@ namespace GameWish.Game
 		public ShipUnitModel buidingModel;
 		public BuildingLevelUpData levelUpData;
 		public ShipUnitType unitType;
+		
 		public BuildingLevelUpPanelData()
 		{
 
@@ -37,7 +38,6 @@ namespace GameWish.Game
             {
                 m_PanelData.unitType = (ShipUnitType)args[0];
                 m_PanelData.buidingModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(m_PanelData.unitType);
-                m_PanelData.levelUpData = BuildingLevelUpDataFactory.S.GetBuildingLevelUpData(m_PanelData.unitType);
 			}
 			BindModelToUI();
         }
@@ -54,24 +54,33 @@ namespace GameWish.Game
 		
 		private void BindUIToModel()
 		{
-			CloseBtn.OnClickAsObservable().Subscribe(_ =>HideSelfWithAnim()).AddTo(this);
-			LevelUpBtn.OnClickAsObservable().Subscribe(_ => OnLevelUpBtnClick()).AddTo(this);
+
 		}
-		private void OnLevelChange(int level) 
+
+		private void InitEventListener() 
 		{
-			CleanLevelUpElement();
-			m_PanelData.buidingModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(m_PanelData.unitType);
-			Title.text = m_PanelData.levelUpData.buildingName + " to levelup";
-			LevelCount.text = string.Format("lv.{0}→lv.{1}", level, level + 1);
-			BuildingName.text = m_PanelData.levelUpData.buildingName;
-			for (int i = 0; i < m_PanelData.levelUpData.needElementCounts.Count&&i< m_PanelData.levelUpData.needElementIds.Count; i++) 
-			{
-				if (0 >= m_PanelData.levelUpData.needElementCounts[i]) continue;
-				var cobj = Instantiate(Element_Temp);
-				cobj.GetComponentInChildren<GTextMeshProUGUI>().text = string.Format("0/{0}", m_PanelData.levelUpData.needElementCounts[i]);
-				cobj.transform.SetParent(ElementList.transform);
-				cobj.GetComponent<RectTransform>().SetScaleXYZ(1, 1, 1);
-			}
+            m_CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
+            m_LevelUpBtn.OnClickAsObservable().Subscribe(_ => OnLevelUpBtnClick()).AddTo(this);
+			m_MaterialsList.SetCellRenderer(OnMaterialsListChange);
+
+        }
+
+        private void OnMaterialsListChange(Transform root, int index)
+        {
+			var tmp = root.GetComponentInChildren<TextMeshProUGUI>();
+			tmp.text = "0/"+ m_PanelData.levelUpData.needElementCounts[index].ToString();
+			//TODO 设置材料Icon 接入材料仓库
+			//root.GetComponentInChildren<GTextMeshProUGUI>().text = string.Format("0/{1}", m_PanelData.levelUpData.needElementCounts[index]);
+		}
+
+        private void OnLevelChange(int level) 
+		{
+			m_PanelData.levelUpData = BuildingLevelUpDataFactory.GetBuildingLevelUpData(m_PanelData.unitType);
+			//TODO 设置升级前后Icon
+			m_LevelCount.text = string.Format("lv.{0}→lv.{1}", level, level + 1);
+			m_BuildingName.text = m_PanelData.levelUpData.buildingName;
+			m_MaterialsList.SetDataCount(m_PanelData.levelUpData.needElementIds.Count);
+			m_Title.text = m_PanelData.levelUpData.buildingName + " to level up";
 		}
 		private void OnLevelUpBtnClick() 
 		{
@@ -79,11 +88,7 @@ namespace GameWish.Game
 			m_PanelData.buidingModel.OnLevelUpgrade(1);
 #endif
 		}
-		private void CleanLevelUpElement() 
-		{
-			ElementList.DestroyChildren();
-			
-		}
+		
     }
 
 }

@@ -16,7 +16,6 @@ namespace GameWish.Game
         private string m_UpgradeRes;   
         private EInt m_UpgradeCost = 0;   
         private EInt m_UpgradePreconditions = 0;   
-        private EInt m_UpgradeSpeed = 0;   
         private string m_SeedUnlock;   
         private string m_ModelResources;   
         private EInt m_PlantingSpeed = 0;  
@@ -42,11 +41,6 @@ namespace GameWish.Game
         /// 升级条件（主船等级）
         /// </summary>
         public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
-       
-        /// <summary>
-        /// 升级时间（s）
-        /// </summary>
-        public  int  upgradeSpeed {get { return m_UpgradeSpeed; } }
        
         /// <summary>
         /// 解锁种子（id）
@@ -91,15 +85,12 @@ namespace GameWish.Game
                     m_UpgradePreconditions = dataR.ReadInt();
                     break;
                 case 4:
-                    m_UpgradeSpeed = dataR.ReadInt();
-                    break;
-                case 5:
                     m_SeedUnlock = dataR.ReadString();
                     break;
-                case 6:
+                case 5:
                     m_ModelResources = dataR.ReadString();
                     break;
-                case 7:
+                case 6:
                     m_PlantingSpeed = dataR.ReadInt();
                     break;
                 default:
@@ -112,16 +103,15 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(8);
+          Dictionary<string, int> ret = new Dictionary<string, int>(7);
           
           ret.Add("Level", 0);
           ret.Add("UpgradeRes", 1);
           ret.Add("UpgradeCost", 2);
           ret.Add("UpgradePreconditions", 3);
-          ret.Add("UpgradeSpeed", 4);
-          ret.Add("SeedUnlock", 5);
-          ret.Add("ModelResources", 6);
-          ret.Add("PlantingSpeed", 7);
+          ret.Add("SeedUnlock", 4);
+          ret.Add("ModelResources", 5);
+          ret.Add("PlantingSpeed", 6);
           return ret;
         }
     } 

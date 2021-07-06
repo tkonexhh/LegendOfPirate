@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,30 +12,17 @@ namespace GameWish.Game
 	{
 		public const string Name = "BuildingLevelUpPanel";
 		
-		[SerializeField]
-		public UnityEngine.UI.Button CloseBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI Title;
-		[SerializeField]
-		public UnityEngine.UI.Image BuildingIcon;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI BuildingName;
-		[SerializeField]
-		public UnityEngine.UI.Image IconCur;
-		[SerializeField]
-		public UnityEngine.UI.Image IconResult;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI LevelCount;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI UpDateMsg;
-		[SerializeField]
-		public RectTransform ElementList;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI Timer;
-		[SerializeField]
-		public UnityEngine.UI.Image Element_Temp;
-		[SerializeField]
-		public GFrame.Editor.GButton LevelUpBtn;
+		[SerializeField] private Button m_CloseBtn;
+		[SerializeField] private TextMeshProUGUI m_Title;
+		[SerializeField] private Image m_BuildingIcon;
+		[SerializeField] private TextMeshProUGUI m_BuildingName;
+		[SerializeField] private Image m_IconCur;
+		[SerializeField] private Image m_IconResult;
+		[SerializeField] private TextMeshProUGUI m_LevelCount;
+		[SerializeField] private TextMeshProUGUI m_UpDateMsg;
+		[SerializeField] private Image m_ElementTemp;
+		[SerializeField] private Button m_LevelUpBtn;
+		[SerializeField] private IUListView m_MaterialsList;
 		
 		
 	}
