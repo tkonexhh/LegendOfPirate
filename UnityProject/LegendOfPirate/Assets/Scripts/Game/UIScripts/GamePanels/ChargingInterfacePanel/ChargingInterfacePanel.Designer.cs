@@ -18,11 +18,13 @@ namespace GameWish.Game
 		[SerializeField] private TextMeshProUGUI m_TotalDiamondsNumber;
 		[SerializeField] private TextMeshProUGUI m_TodayDiamondsNumber;
 		[SerializeField] private TextMeshProUGUI m_EveryDiamondsNumber;
+		[SerializeField] private RectTransform m_PurchasedState;
 		[SerializeField] private TextMeshProUGUI m_QuantityReceivedNumber;
 		[SerializeField] private TextMeshProUGUI m_ProfitValue;
 		[SerializeField] private TextMeshProUGUI m_VipDetailsRatio;
 		[SerializeField] private TextMeshProUGUI m_DueDate;
 		[SerializeField] private Button m_PurchaseBtn;
+		[SerializeField] private Button m_ObtainBtn;
 		[SerializeField] private Image m_VipIcon;
 		[SerializeField] private TextMeshProUGUI m_SelectionRefreshTime;
 		[SerializeField] private RectTransform m_SelectionItemReion;

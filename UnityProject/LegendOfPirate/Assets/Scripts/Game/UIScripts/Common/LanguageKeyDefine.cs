@@ -13,11 +13,29 @@ namespace GameWish.Game
         public const string Fixed_Title_Upgrade = "Fixed_Title_Upgrade";
         public const string Fixed_Title_Train= "Fixed_Title_Train";
         public const string Fixed_Title_Auto= "Fixed_Title_Auto";
+
+        public const string MONTH_JANUARY = "January";
+        public const string MONTH_FEBRUSRY = "February";
+        public const string MONTH_MARCH = "March";
+        public const string MONTH_APRIL = "April";
+        public const string MONTH_MAY = "May";
+        public const string MONTH_JUNE = "June";
+        public const string MONTH_JULY = "July";
+        public const string MONTH_AUGUST = "August";
+        public const string MONTH_SEPTEMBER = "September";
+        public const string MONTH_OCTOBER = "October";
+        public const string MONTH_NOVEMBER = "November";
+        public const string MONTH_DECEMBER = "December";
         #endregion
 
         #region TrainingRoom
         public const string Fixed_Title_TrainingRoom = "Fixed_Title_TrainingRoom";
         #endregion
-    }
 
+        #region InternalPurchase
+        public const string INTERNALPURCHASE_PROFITTITLE = "profit:{0}%";
+        public const string INTERNALPURCHASE_PRICE = "Only ${0} / 30 days";
+        public const string INTERNALPURCHASE_DUEDATE = "Due on {0} lafter purchase";
+        #endregion
+    }
 }

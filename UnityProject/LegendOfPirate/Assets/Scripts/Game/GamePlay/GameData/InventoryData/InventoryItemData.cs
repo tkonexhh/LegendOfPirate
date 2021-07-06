@@ -42,5 +42,4 @@ namespace GameWish.Game
             m_InventoryData.SetDataDirty();
         }
     }
-	
 }

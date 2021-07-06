@@ -45,7 +45,7 @@ namespace GameWish.Game
                 // Game play table        
                 //TDMainTaskTable.metaData,
                 //TDLevelConfigTable.metaData,
-                 #region Facility
+                #region Facility
                 TDFacilityKitchenTable.metaData,
                 TDFacilityFishingPlatformTable.metaData,
                 TDFacilityForgeTable.metaData,
@@ -57,15 +57,16 @@ namespace GameWish.Game
                 TDFacilityTrainingRoomTable.metaData,
                 TDFacilityWarshipTable.metaData,
                 #endregion
-
-                
+                #region InternalPurchase
+                TDMonthCardConfigTable.metaData,
+                TDDailySelectionConfigTable.metaData,
+                #endregion
                 #region Task
                 TDDailyTaskTable.metaData,
                 TDDailyTaskRewardTable.metaData,
                 TDMainTaskTable.metaData,
                 TDAchievementTaskTable.metaData,
                 #endregion
-
                 #region Synthesis
                 TDEquipmentSynthesisConfigTable.metaData,
                 TDFoodSynthesisConfigTable.metaData,
