@@ -1652,7 +1652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2973,7 +2973,6 @@ MonoBehaviour:
   m_ItemIcon: {fileID: 9130204511868555633}
   m_ItemDesc: {fileID: 3980046757641682989}
   m_UnitPriceValue: {fileID: 6738120370268747237}
-  m_Own: {fileID: 0}
   m_ReduceBtn: {fileID: 4354469242820752175}
   m_SellNumber: {fileID: 6908170151513055338}
   m_IncreaseBtn: {fileID: 5547836615199413946}
