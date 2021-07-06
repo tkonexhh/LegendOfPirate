@@ -240,6 +240,7 @@ namespace GameWish.Game
             spiritCount.Where(count=>count<Define.ROLEGET_NEED_SPIRIT_COUNT).Subscribe(count =>
             {
                 roleData.SetRoleSpiritCount(spiritCount.Value);
+                
             });
 
             spiritCount.Where(count => count >= Define.ROLEGET_NEED_SPIRIT_COUNT).Subscribe(count=> 

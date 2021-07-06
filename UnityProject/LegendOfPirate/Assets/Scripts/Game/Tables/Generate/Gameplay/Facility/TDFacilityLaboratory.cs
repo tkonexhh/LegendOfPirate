@@ -16,7 +16,6 @@ namespace GameWish.Game
         private string m_UpgradeRes;   
         private EInt m_UpgradeCost = 0;   
         private EInt m_UpgradePreconditions = 0;   
-        private EInt m_UpgradeTime = 0;   
         private string m_ModelResources;   
         private EInt m_UnlockPotionID = 0;   
         private EInt m_UnlockPartSpace = 0;   
@@ -43,11 +42,6 @@ namespace GameWish.Game
         /// 升级条件（主船等级）
         /// </summary>
         public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
-       
-        /// <summary>
-        /// 升级时间（s）
-        /// </summary>
-        public  int  upgradeTime {get { return m_UpgradeTime; } }
        
         /// <summary>
         /// 模型资源
@@ -97,18 +91,15 @@ namespace GameWish.Game
                     m_UpgradePreconditions = dataR.ReadInt();
                     break;
                 case 4:
-                    m_UpgradeTime = dataR.ReadInt();
-                    break;
-                case 5:
                     m_ModelResources = dataR.ReadString();
                     break;
-                case 6:
+                case 5:
                     m_UnlockPotionID = dataR.ReadInt();
                     break;
-                case 7:
+                case 6:
                     m_UnlockPartSpace = dataR.ReadInt();
                     break;
-                case 8:
+                case 7:
                     m_UnlockSpaceCost = dataR.ReadInt();
                     break;
                 default:
@@ -121,17 +112,16 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(9);
+          Dictionary<string, int> ret = new Dictionary<string, int>(8);
           
           ret.Add("Level", 0);
           ret.Add("UpgradeRes", 1);
           ret.Add("UpgradeCost", 2);
           ret.Add("UpgradePreconditions", 3);
-          ret.Add("UpgradeTime", 4);
-          ret.Add("ModelResources", 5);
-          ret.Add("UnlockPotionID", 6);
-          ret.Add("UnlockPartSpace", 7);
-          ret.Add("UnlockSpaceCost", 8);
+          ret.Add("ModelResources", 4);
+          ret.Add("UnlockPotionID", 5);
+          ret.Add("UnlockPartSpace", 6);
+          ret.Add("UnlockSpaceCost", 7);
           return ret;
         }
     } 

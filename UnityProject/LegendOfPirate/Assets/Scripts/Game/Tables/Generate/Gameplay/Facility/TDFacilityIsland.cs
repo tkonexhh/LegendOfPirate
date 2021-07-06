@@ -16,7 +16,6 @@ namespace GameWish.Game
         private string m_Name;   
         private string m_UpgradeRes;   
         private string m_UpgradeCost;   
-        private string m_UpgradeTime;   
         private string m_ResourceID;   
         private string m_OutputSpeed;   
         private string m_StorageLimits;  
@@ -42,11 +41,6 @@ namespace GameWish.Game
         /// 升级花费
         /// </summary>
         public  string  upgradeCost {get { return m_UpgradeCost; } }
-       
-        /// <summary>
-        /// 升级时间（s）
-        /// </summary>
-        public  string  upgradeTime {get { return m_UpgradeTime; } }
        
         /// <summary>
         /// 资源产出（id|概率%）
@@ -91,15 +85,12 @@ namespace GameWish.Game
                     m_UpgradeCost = dataR.ReadString();
                     break;
                 case 4:
-                    m_UpgradeTime = dataR.ReadString();
-                    break;
-                case 5:
                     m_ResourceID = dataR.ReadString();
                     break;
-                case 6:
+                case 5:
                     m_OutputSpeed = dataR.ReadString();
                     break;
-                case 7:
+                case 6:
                     m_StorageLimits = dataR.ReadString();
                     break;
                 default:
@@ -112,16 +103,15 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(8);
+          Dictionary<string, int> ret = new Dictionary<string, int>(7);
           
           ret.Add("Level", 0);
           ret.Add("Name", 1);
           ret.Add("UpgradeRes", 2);
           ret.Add("UpgradeCost", 3);
-          ret.Add("UpgradeTime", 4);
-          ret.Add("ResourceID", 5);
-          ret.Add("OutputSpeed", 6);
-          ret.Add("StorageLimits", 7);
+          ret.Add("ResourceID", 4);
+          ret.Add("OutputSpeed", 5);
+          ret.Add("StorageLimits", 6);
           return ret;
         }
     } 

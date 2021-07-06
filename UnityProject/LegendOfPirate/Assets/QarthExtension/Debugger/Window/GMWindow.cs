@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -68,10 +68,15 @@ namespace GameWish.Game
                 RoleModel roleModel = ModelMgr.S.GetModel<RoleGroupModel>().GetRoleModel(1001);
                 roleModel.AddSkill(10011);
             }
-
+            GUILayout.EndHorizontal();
+            if (GUILayout.Button("AddSkillForRole1001", GUILayout.Width(170f)))
+            {
+                RoleModel roleModel = ModelMgr.S.GetModel<RoleGroupModel>().GetRoleModel(1001);
+                roleModel.AddEquip(EquipmentType.Armor);
+            }
+            GUILayout.BeginHorizontal();
 
             GUILayout.EndHorizontal();
-
             #region 仓库
             GUILayout.BeginHorizontal();
             GUILayout.Label("仓库");
@@ -90,6 +95,19 @@ namespace GameWish.Game
                         inventoryModel.AddInventoryItemCount((InventoryItemType)i, j, j);
                     }
                 }
+            }
+            GUILayout.EndHorizontal();
+            #endregion
+
+            #region 随机防御
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("随机防御");
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("DefineEvent", GUILayout.Width(100f))) 
+            {
+                UIMgr.S.OpenPanel(UIID.RandomDefensePanel);
             }
             GUILayout.EndHorizontal();
             #endregion

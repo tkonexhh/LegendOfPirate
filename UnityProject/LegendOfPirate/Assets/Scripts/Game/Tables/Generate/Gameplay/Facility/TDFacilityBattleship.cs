@@ -8,40 +8,34 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDFacilityLibrary
+    public partial class TDFacilityBattleship
     {
         
        
-        private EInt m_Level = 0;   
-        private string m_UpgradeRes;   
-        private EInt m_UpgradeCost = 0;   
-        private EInt m_UpgradePreconditions = 0;   
+        private EInt m_WarshipId = 0;   
+        private EInt m_NextWarship = 0;   
+        private string m_Name;   
         private string m_ModelResources;   
-        private EInt m_Capacity = 0;   
-        private EInt m_SkillPoints = 0;   
-        private EInt m_ReadingSpeed = 0;  
+        private EInt m_UnlockAccountLevel = 0;   
+        private string m_StrengthenCost;   
+        private string m_AttributeValues;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
         /// <summary>
-        /// ID
+        /// 战船ID
         /// </summary>
-        public  int  level {get { return m_Level; } }
+        public  int  warshipId {get { return m_WarshipId; } }
        
         /// <summary>
-        /// 升级资源（id|数量）
+        /// 下一级战船
         /// </summary>
-        public  string  upgradeRes {get { return m_UpgradeRes; } }
+        public  int  nextWarship {get { return m_NextWarship; } }
        
         /// <summary>
-        /// 升级花费
+        /// 战船名称
         /// </summary>
-        public  int  upgradeCost {get { return m_UpgradeCost; } }
-       
-        /// <summary>
-        /// 升级条件（主船等级）
-        /// </summary>
-        public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
+        public  string  name {get { return m_Name; } }
        
         /// <summary>
         /// 模型资源
@@ -49,19 +43,19 @@ namespace GameWish.Game
         public  string  modelResources {get { return m_ModelResources; } }
        
         /// <summary>
-        /// 读书人数
+        /// 解锁等级条件（主船等级）
         /// </summary>
-        public  int  capacity {get { return m_Capacity; } }
+        public  int  unlockAccountLevel {get { return m_UnlockAccountLevel; } }
        
         /// <summary>
-        /// 技能点
+        /// 强化消耗（id|数量）
         /// </summary>
-        public  int  skillPoints {get { return m_SkillPoints; } }
+        public  string  strengthenCost {get { return m_StrengthenCost; } }
        
         /// <summary>
-        /// 读书时间（s）
+        /// 属性数值(参数|百分比%，参数：HP,ATK,Armor-护甲值)
         /// </summary>
-        public  int  readingSpeed {get { return m_ReadingSpeed; } }
+        public  string  attributeValues {get { return m_AttributeValues; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -79,28 +73,25 @@ namespace GameWish.Game
             { 
             
                 case 0:
-                    m_Level = dataR.ReadInt();
+                    m_WarshipId = dataR.ReadInt();
                     break;
                 case 1:
-                    m_UpgradeRes = dataR.ReadString();
+                    m_NextWarship = dataR.ReadInt();
                     break;
                 case 2:
-                    m_UpgradeCost = dataR.ReadInt();
+                    m_Name = dataR.ReadString();
                     break;
                 case 3:
-                    m_UpgradePreconditions = dataR.ReadInt();
-                    break;
-                case 4:
                     m_ModelResources = dataR.ReadString();
                     break;
+                case 4:
+                    m_UnlockAccountLevel = dataR.ReadInt();
+                    break;
                 case 5:
-                    m_Capacity = dataR.ReadInt();
+                    m_StrengthenCost = dataR.ReadString();
                     break;
                 case 6:
-                    m_SkillPoints = dataR.ReadInt();
-                    break;
-                case 7:
-                    m_ReadingSpeed = dataR.ReadInt();
+                    m_AttributeValues = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -112,16 +103,15 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(8);
+          Dictionary<string, int> ret = new Dictionary<string, int>(7);
           
-          ret.Add("Level", 0);
-          ret.Add("UpgradeRes", 1);
-          ret.Add("UpgradeCost", 2);
-          ret.Add("UpgradePreconditions", 3);
-          ret.Add("ModelResources", 4);
-          ret.Add("Capacity", 5);
-          ret.Add("SkillPoints", 6);
-          ret.Add("ReadingSpeed", 7);
+          ret.Add("WarshipId", 0);
+          ret.Add("NextWarship", 1);
+          ret.Add("Name", 2);
+          ret.Add("ModelResources", 3);
+          ret.Add("UnlockAccountLevel", 4);
+          ret.Add("StrengthenCost", 5);
+          ret.Add("AttributeValues", 6);
           return ret;
         }
     } 

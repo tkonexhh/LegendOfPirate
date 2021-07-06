@@ -18,5 +18,18 @@ namespace GameWish.Game
         {
             return Helper.String2IntArray(m_UnlockEquipmentID, ";");
         }
+
+        public List<ResPair> GetUpGradeCostRes()
+        {
+            List<ResPair> ret = new List<ResPair>();
+            var resPairString = m_UpgradeRes.Split(';');
+            foreach (var Str in resPairString)
+            {
+                var resMsg = Helper.String2IntArray(Str, "|");
+                ret.Add(new ResPair(resMsg[0], resMsg[1]));
+            }
+
+            return ret;
+        }
     }
 }

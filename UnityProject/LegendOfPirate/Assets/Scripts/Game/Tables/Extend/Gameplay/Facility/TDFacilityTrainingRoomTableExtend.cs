@@ -21,7 +21,7 @@ namespace GameWish.Game
             }
 
             trainingRoomUnitProperties[level - 1] = new TrainingRoomUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
-                tdData.upgradePreconditions, tdData.upgradeSpeed, tdData.modelResources, tdData.capacity, tdData.experience, tdData.trainingSpeed);
+                tdData.upgradePreconditions, tdData.modelResources, tdData.capacity, tdData.experience, tdData.trainingSpeed);
         }
 
         public static TrainingRoomUnitConfig[] trainingRoomUnitProperties = null;
@@ -46,10 +46,10 @@ namespace GameWish.Game
         public int trainingTime;
 
         public TrainingRoomUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
-            int upgradeTime, string modelRes, int capacity, int experience, int trainingTime
+            string modelRes, int capacity, int experience, int trainingTime
             )
         {
-            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
+            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, modelRes);
             this.capacity = capacity;
             this.experience = experience;
             this.trainingTime = trainingTime;

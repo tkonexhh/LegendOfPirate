@@ -20,7 +20,10 @@ namespace GameWish.Game
 		{
 			base.OnPanelOpen(args);
 			OpenDependPanel(EngineUI.MaskPanel, -1);
+			InitEventListener();
 			SetPanelData(args);
+
+	
 		}
 		
 		protected override void OnPanelHideComplete()

@@ -45,6 +45,7 @@ namespace GameWish.Game
 
         private void BindModelToUI()
         {
+          
             m_PanelData.curRoleModel.level.SubscribeToTextMeshPro(m_RoleLevel, "Lv.{0}").AddTo(this);
             m_PanelData.curRoleModel.equipDic.ObserveCountChanged().Subscribe(count => OnEquipCountChange(count)).AddTo(this);
         }

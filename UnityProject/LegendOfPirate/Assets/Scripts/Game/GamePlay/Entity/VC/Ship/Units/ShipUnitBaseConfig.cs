@@ -11,15 +11,13 @@ namespace GameWish.Game
         public int upgradeCoinCost;
         public UpgradeResCost[] upgradeResCosts;
         public int upgradePrecondition;
-        public int upgradeTime;
         public string modelRes;
 
-        public ShipUnitBaseConfig(int level, int upgradeCoinCost, string upgradeCost, int upgradePrecondition, int upgradeTime, string modelRes)
+        public ShipUnitBaseConfig(int level, int upgradeCoinCost, string upgradeCost, int upgradePrecondition, string modelRes)
         {
             this.level = level;
             this.upgradeCoinCost = upgradeCoinCost;
             this.upgradePrecondition = upgradePrecondition;
-            this.upgradeTime = upgradeTime;
             this.modelRes = modelRes;
 
             string[] costItmeStrs = upgradeCost.Split(';');

@@ -21,7 +21,7 @@ namespace GameWish.Game
             }
 
             libraryUnitProperties[level - 1] = new LibraryUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
-                tdData.upgradePreconditions, tdData.upgradeSpeed, tdData.modelResources, tdData.capacity, tdData.skillPoints, tdData.readingSpeed);
+                tdData.upgradePreconditions,  tdData.modelResources, tdData.capacity, tdData.skillPoints, tdData.readingSpeed);
         }
 
         public static LibraryUnitConfig[] libraryUnitProperties = null;
@@ -46,10 +46,10 @@ namespace GameWish.Game
         public int readingSpeed;
 
         public LibraryUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
-            int upgradeTime, string modelRes, int capacity, int skillPoints, int readingSpeed
+             string modelRes, int capacity, int skillPoints, int readingSpeed
             )
         {
-            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
+            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition,  modelRes);
             this.capacity = capacity;
             this.skillPoints = skillPoints;
             this.readingSpeed = readingSpeed;

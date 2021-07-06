@@ -80,7 +80,7 @@ namespace GameWish.Game
         public  int  effectObject {get { return m_EffectObject; } }
        
         /// <summary>
-        /// 增益值 参数|数值（Rate-比例单位%；Time-时间单位s；FixedValue-固定值）
+        /// 增益值 参数|数值（Rate-比例单位%；Time-时间单位s）
         /// </summary>
         public  string  buffRate {get { return m_BuffRate; } }
        

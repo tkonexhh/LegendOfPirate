@@ -22,7 +22,7 @@ namespace GameWish.Game
             }
 
             fishingUnitProperties[level - 1] = new FishingUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
-                tdData.upgradePreconditions, tdData.upgradeSpeed, tdData.modelResources, tdData.fishingRod, tdData.fishingSpeed,
+                tdData.upgradePreconditions,  tdData.modelResources, tdData.fishingRod, tdData.fishingSpeed,
                 tdData.capability, tdData.unlockRecipe);
         }
 
@@ -48,10 +48,10 @@ namespace GameWish.Game
         public UnlockFish[] unclockFishs;
 
         public FishingUnitConfig(int level, string upgradeRes, int upgradeCoinCost, int upgradePrecondition,
-            int upgradeTime, string modelRes, string fishingRodRes, int fishingSpeed, int capability, string unlockFish
+             string modelRes, string fishingRodRes, int fishingSpeed, int capability, string unlockFish
             )
         {
-            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, upgradeTime, modelRes);
+            baseProperty = new ShipUnitBaseConfig(level, upgradeCoinCost, upgradeRes, upgradePrecondition, modelRes);
             fishingRod = fishingRodRes;
             fishingTime = fishingSpeed;
 

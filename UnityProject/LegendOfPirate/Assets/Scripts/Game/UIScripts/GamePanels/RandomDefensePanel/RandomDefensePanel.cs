@@ -55,6 +55,7 @@ namespace GameWish.Game
         {
 			HideSelfWithAnim();
         }
+
         #endregion
 
         #region EventSystem
@@ -77,11 +78,11 @@ namespace GameWish.Game
 
 		public void CeateMiddleDispatchRole()
 		{
-			Instantiate(m_MiddleDispatchRole, DispatchTra.transform).SetActive(true);
+			Instantiate(m_MiddleDispatchRole, m_DispatchTra.transform).SetActive(true);
 		}
 		public void CeateMiddleDownAwardRole()
 		{
-			Instantiate(m_MiddleDownAwardRole, AwardTra.transform).SetActive(true);
+			Instantiate(m_MiddleDownAwardRole, m_AwardTra.transform).SetActive(true);
 		}
 		#endregion
 

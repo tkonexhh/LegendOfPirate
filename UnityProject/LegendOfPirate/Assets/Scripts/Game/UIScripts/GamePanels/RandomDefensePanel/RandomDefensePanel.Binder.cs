@@ -36,7 +36,7 @@ namespace GameWish.Game
 		}
 		private void OnClickAddListener()
 		{
-            BlackExitBg.OnClickAsObservable().Subscribe(_ =>
+            m_BlackExitBg.OnClickAsObservable().Subscribe(_ =>
             {
 				BlackExitBgEvent();
             });

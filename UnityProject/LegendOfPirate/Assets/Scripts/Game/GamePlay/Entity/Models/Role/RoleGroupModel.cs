@@ -94,7 +94,7 @@ namespace GameWish.Game
         {
             RoleModel role = roleItemList.FirstOrDefault(item => item.id == id);
             if (role.isLocked.Value) return;
-            role.isLocked.Value = true;
+            role.isLocked.Value = false;
             roleUnlockedItemList.Add(role);
         }
 

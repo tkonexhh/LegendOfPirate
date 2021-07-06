@@ -16,7 +16,6 @@ namespace GameWish.Game
         private string m_UpgradeRes;   
         private EInt m_UpgradeCost = 0;   
         private EInt m_UpgradePreconditions = 0;   
-        private EInt m_UpgradeSpeed = 0;   
         private string m_FishingRod;   
         private string m_ModelResources;   
         private EInt m_FishingSpeed = 0;   
@@ -44,11 +43,6 @@ namespace GameWish.Game
         /// 升级条件（主船等级）
         /// </summary>
         public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
-       
-        /// <summary>
-        /// 升级时间（s）
-        /// </summary>
-        public  int  upgradeSpeed {get { return m_UpgradeSpeed; } }
        
         /// <summary>
         /// 鱼竿名称
@@ -103,21 +97,18 @@ namespace GameWish.Game
                     m_UpgradePreconditions = dataR.ReadInt();
                     break;
                 case 4:
-                    m_UpgradeSpeed = dataR.ReadInt();
-                    break;
-                case 5:
                     m_FishingRod = dataR.ReadString();
                     break;
-                case 6:
+                case 5:
                     m_ModelResources = dataR.ReadString();
                     break;
-                case 7:
+                case 6:
                     m_FishingSpeed = dataR.ReadInt();
                     break;
-                case 8:
+                case 7:
                     m_UnlockRecipe = dataR.ReadString();
                     break;
-                case 9:
+                case 8:
                     m_Capability = dataR.ReadInt();
                     break;
                 default:
@@ -130,18 +121,17 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(10);
+          Dictionary<string, int> ret = new Dictionary<string, int>(9);
           
           ret.Add("Level", 0);
           ret.Add("UpgradeRes", 1);
           ret.Add("UpgradeCost", 2);
           ret.Add("UpgradePreconditions", 3);
-          ret.Add("UpgradeSpeed", 4);
-          ret.Add("FishingRod", 5);
-          ret.Add("ModelResources", 6);
-          ret.Add("FishingSpeed", 7);
-          ret.Add("UnlockRecipe", 8);
-          ret.Add("Capability", 9);
+          ret.Add("FishingRod", 4);
+          ret.Add("ModelResources", 5);
+          ret.Add("FishingSpeed", 6);
+          ret.Add("UnlockRecipe", 7);
+          ret.Add("Capability", 8);
           return ret;
         }
     } 

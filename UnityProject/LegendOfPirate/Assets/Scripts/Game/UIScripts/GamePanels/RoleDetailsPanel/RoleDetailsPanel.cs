@@ -32,14 +32,17 @@ namespace GameWish.Game
 
             RegisterEvents();
 
-            HandleTransmitValue(args);
+            // HandleTransmitValue(args);
+            var item = args[0] as RoleModel;
+            InitRoleMsg((item.id));
 
             BindModelToUI();
             BindUIToModel();
 
-            var item = args[0] as RoleModel;
-            InitRoleMsg((item.id));
+
             InitData();
+            if (!m_IsLocked) RefreshRoleIsUnclockView();
+
             OpenDependPanel(EngineUI.MaskPanel, -1);
         }
 
@@ -119,7 +122,7 @@ namespace GameWish.Game
            if(roleGroupModel.GetRoleModel(1001)==null) 
             roleGroupModel.AddSpiritRoleModel(1037, 100);
 
-            m_PanelData.curRoleModel = roleGroupModel.GetRoleModel(1001);
+           
             //if (args != null && args.Length > 0)
             //{
             //    if (args.Length >= 1)
@@ -136,7 +139,6 @@ namespace GameWish.Game
             m_IsLocked = m_PanelData.curRoleModel.isLocked.Value;
             m_PanelData.curRoleModel.AddEquip(EquipmentType.Weapon);
 
-            if(!m_IsLocked) RefreshRoleIsUnclockView();
 
             //if (!m_IsLocked)
             //{
