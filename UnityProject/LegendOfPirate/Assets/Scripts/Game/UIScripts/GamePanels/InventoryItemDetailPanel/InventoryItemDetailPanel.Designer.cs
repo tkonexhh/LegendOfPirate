@@ -10,7 +10,7 @@ namespace GameWish.Game
 	// Auto Generated Code. Don't Modify This Class 
 	public partial class InventoryItemDetailPanel
 	{
-		public const string Name = "ItemDetailsPanel";
+		public const string Name = "InventoryItemDetailPanel";
 		
 		[SerializeField] private Button m_ExitBtn;
 		[SerializeField] private Image m_Bg;
@@ -18,7 +18,6 @@ namespace GameWish.Game
 		[SerializeField] private Image m_ItemIcon;
 		[SerializeField] private TextMeshProUGUI m_ItemDesc;
 		[SerializeField] private TextMeshProUGUI m_UnitPriceValue;
-		[SerializeField] private TextMeshProUGUI m_Own;
 		[SerializeField] private Button m_ReduceBtn;
 		[SerializeField] private TextMeshProUGUI m_SellNumber;
 		[SerializeField] private Button m_IncreaseBtn;
