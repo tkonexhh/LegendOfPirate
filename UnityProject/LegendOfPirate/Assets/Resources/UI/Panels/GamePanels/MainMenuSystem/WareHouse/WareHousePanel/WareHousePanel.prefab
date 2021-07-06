@@ -483,10 +483,10 @@ RectTransform:
   m_Father: {fileID: 2956199908628788583}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 39}
-  m_SizeDelta: {x: 0, y: 72.399994}
+  m_AnchorMin: {x: 0, y: 0.028}
+  m_AnchorMax: {x: 1, y: 0.28500003}
+  m_AnchoredPosition: {x: 0.0000038146973, y: 0}
+  m_SizeDelta: {x: -0.0000076293945, y: 0.000002861023}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2464550147866843677
 CanvasRenderer:
@@ -514,7 +514,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 34.62
+  m_Spacing: -0.29
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -2062,7 +2062,7 @@ MonoBehaviour:
   m_ExitBtn: {fileID: 5572722752188150294}
   m_DiamondsValue: {fileID: 4378554305342144246}
   m_CoinIValue: {fileID: 8203431291846306278}
-  m_ItemTypeTog: {fileID: 2991273012739403319, guid: c4c0568b6d24ddf4cab871172ff130cf,
+  m_ItemTypeTog: {fileID: 962841217440928009, guid: c4c0568b6d24ddf4cab871172ff130cf,
     type: 3}
   m_ItemTogGroup: {fileID: 8915755861272589939}
   m_WareHouseUGList: {fileID: 1963468706928395206}

@@ -14,7 +14,6 @@ namespace GameWish.Game
         #region SerializeField
         [SerializeField] private TextMeshProUGUI m_ItemType;
         [SerializeField] private Toggle m_ItemTypeTog;
-        [SerializeField] private GameObject m_BgObj;
         [SerializeField] private GameObject m_SmallIcons;
         #endregion
         #region Data
@@ -40,23 +39,18 @@ namespace GameWish.Game
             OnRefresh();
         }
 
-        public void SetIconObj(bool show)
-        {
-            m_BgObj.SetActive(show);
-        }
         #endregion
 
         #region Private
         private void OnReset()
         {
             m_ItemTogIDis?.Dispose();
-            SetIconObj(false);
+            //SetIconObj(false);
         }
 
         private void BindUIToModel()
         {
             m_ItemTogIDis = m_ItemTypeTog.OnValueChangedAsObservable()
-                 .Where(on => on)
                  .Subscribe(on => m_WareHousePanel.OnRefreshItemListByType(m_InventoryItemType))
                  .AddTo(this);
         }
