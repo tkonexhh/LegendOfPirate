@@ -31,6 +31,7 @@ namespace GameWish.Game
         public Dictionary<EquipmentType, int> equipLimitDic;
         public ReactiveProperty<ShipRoleStateId> stateId;
         public TDRoleConfig tdRoleConfig;
+        public TDRoleStarUpConfig tdStarUpConfig;
 
         private RoleData roleData;
 

@@ -52,6 +52,7 @@ MonoBehaviour:
       - RoleEquipDetailsPanel
       - RoleEquipGetpanel
       - RoleEquipGetPanel
+      - RoleFragmentsPanel
       - RoleGetPanel
       - RoleGroupPanel
       - RoleGrowthPanel
