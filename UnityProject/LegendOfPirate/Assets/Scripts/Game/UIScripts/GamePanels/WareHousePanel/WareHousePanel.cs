@@ -23,7 +23,8 @@ namespace GameWish.Game
         public InventoryItemType openItemType = InventoryItemType.Equip;
         //private List<IInventoryItemModel> m_InventoryItemList = new List<IInventoryItemModel>();
         private List<WareHouseItemModel> m_WareHouseItemModels = new List<WareHouseItemModel>();
-
+        private List<ItemTypeTog> m_ItemTypeTogs = new List<ItemTypeTog>();
+        
         #endregion
 
         #region AbstractAnimPanel
@@ -91,6 +92,7 @@ namespace GameWish.Game
             {
                 ItemTypeTog itemTypeTog = Instantiate(m_ItemTypeTog, m_ItemTogGroup).GetComponent<ItemTypeTog>();
                 itemTypeTog.OnInit((InventoryItemType)i,this);
+                m_ItemTypeTogs.Add(itemTypeTog);
             }
         }
 

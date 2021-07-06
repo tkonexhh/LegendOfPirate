@@ -42,9 +42,9 @@ namespace GameWish.Game
         }
         private void BindUIToModel()
         {
-            m_InventoryItemModel.GetReactiveCount().SubscribeToTextMeshPro(m_Own);
+            //m_InventoryItemModel.GetReactiveCount().SubscribeToTextMeshPro(m_Own);
 
-            m_SellBtn.OnClickAsObservable().Subscribe(_ => { HandleSellBtnEvt(); });
+            m_SellBtn.OnClickAsObservable().Subscribe(_ => { HandleSellBtnEvt(); }).AddTo(this);
         }
     }
 }
