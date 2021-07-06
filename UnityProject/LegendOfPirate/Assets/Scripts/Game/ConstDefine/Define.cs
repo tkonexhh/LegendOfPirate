@@ -15,6 +15,7 @@ namespace GameWish.Game
 
         public const string DEFAULT_SOUND = "";
         public const string SYMBOL_SLASH = "/";
+        public const string SYMBOL_PERCENT= "%";
 
         public const string NAME_SPACE_PREFIX = "GameWish.Game.";
 

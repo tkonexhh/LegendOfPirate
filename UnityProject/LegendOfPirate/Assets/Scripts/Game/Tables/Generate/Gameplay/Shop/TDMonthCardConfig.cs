@@ -15,9 +15,9 @@ namespace GameWish.Game
         private EInt m_Id = 0;   
         private string m_Name;   
         private EFloat m_Price = 0.0f;   
-        private string m_DailyDiamond;   
-        private string m_FirstDiamond;   
-        private string m_RenewPrice;  
+        private EInt m_DailyDiamond = 0;   
+        private EInt m_FirstDiamond = 0;   
+        private EFloat m_RenewPrice = 0.0f;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -39,17 +39,17 @@ namespace GameWish.Game
         /// <summary>
         /// 每日钻石
         /// </summary>
-        public  string  dailyDiamond {get { return m_DailyDiamond; } }
+        public  int  dailyDiamond {get { return m_DailyDiamond; } }
        
         /// <summary>
         /// 首次钻石
         /// </summary>
-        public  string  firstDiamond {get { return m_FirstDiamond; } }
+        public  int  firstDiamond {get { return m_FirstDiamond; } }
        
         /// <summary>
         /// 续费价格
         /// </summary>
-        public  string  renewPrice {get { return m_RenewPrice; } }
+        public  float  renewPrice {get { return m_RenewPrice; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -76,13 +76,13 @@ namespace GameWish.Game
                     m_Price = dataR.ReadFloat();
                     break;
                 case 3:
-                    m_DailyDiamond = dataR.ReadString();
+                    m_DailyDiamond = dataR.ReadInt();
                     break;
                 case 4:
-                    m_FirstDiamond = dataR.ReadString();
+                    m_FirstDiamond = dataR.ReadInt();
                     break;
                 case 5:
-                    m_RenewPrice = dataR.ReadString();
+                    m_RenewPrice = dataR.ReadFloat();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);

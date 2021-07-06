@@ -26,7 +26,7 @@ namespace GameWish.Game
             }
             catch (Exception e)
             {
-                Log.e("e =" + e);
+                Log.e("e = " + e);
             }
         }
 
