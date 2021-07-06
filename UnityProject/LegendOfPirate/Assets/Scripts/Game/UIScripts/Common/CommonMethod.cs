@@ -9,8 +9,8 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class CommonMethod 
-	{
+    public class CommonMethod
+    {
         #region UI
         /// <summary>
         /// 根据表中的Key，获取相应的内容
@@ -78,6 +78,44 @@ namespace GameWish.Game
         #endregion
 
         #region Other Method
+
+        #region Public
+        public static string SplicingTime(int seconds)
+        {
+            TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(seconds));
+            string str = "";
+
+            if (ts.Hours > 0)
+            {
+                str = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+            }
+            if (ts.Hours == 0 && ts.Minutes > 0)
+            {
+                str = ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+            }
+            if (ts.Hours == 0 && ts.Minutes == 0)
+            {
+                str = "00:" + ts.Seconds.ToString("00");
+            }
+
+            return str;
+        }
+
+        public static DateTime GetDateTimeForString(string time)
+        {
+            try
+            {
+                DateTime dateTime;
+                DateTime.TryParse(time,out dateTime);
+                return dateTime;
+            }
+            catch (Exception e)
+            {
+                Log.e("e = " + e);
+                return default(DateTime);
+            }
+        }
+
         /// <summary>
         /// 获取万or亿or万亿
         /// </summary>
@@ -111,11 +149,68 @@ namespace GameWish.Game
             }
         }
 
+        /// <summary>
+        /// 格式 October 23,2021(string)
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static string GetFormatDate(DateTime dateTime)
+        {
+            string str = string.Empty;
+            switch (dateTime.Month)
+            {
+                case 1:
+                    str += LanguageKeyDefine.MONTH_JANUARY;
+                    break;  
+                case 2:
+                    str += LanguageKeyDefine.MONTH_FEBRUSRY;
+                    break;
+                case 3:
+                    str += LanguageKeyDefine.MONTH_MARCH;
+                    break;
+                case 4:
+                    str += LanguageKeyDefine.MONTH_APRIL;
+                    break;
+                case 5:
+                    str += LanguageKeyDefine.MONTH_MAY;
+                    break;
+                case 6:
+                    str += LanguageKeyDefine.MONTH_JUNE;
+                    break;
+                case 7:
+                    str += LanguageKeyDefine.MONTH_JULY;
+                    break;
+                case 8:
+                    str += LanguageKeyDefine.MONTH_AUGUST;
+                    break;
+                case 9:
+                    str += LanguageKeyDefine.MONTH_SEPTEMBER;
+                    break;
+                case 10:
+                    str += LanguageKeyDefine.MONTH_OCTOBER;
+                    break;
+                case 11:
+                    str += LanguageKeyDefine.MONTH_NOVEMBER;
+                    break;
+                case 12:
+                    str += LanguageKeyDefine.MONTH_DECEMBER;
+                    break;
+            }
+            str += " ";
+            str += dateTime.Day;
+            str += ",";
+            str += dateTime.Year;
+            return str;
+        }
+        #endregion
+        #region Private
         private static long GetThousand(long number)
         {
             string numStr = number.ToString();
             return long.Parse(numStr.Substring(numStr.Length - 4, 1));
         }
+       
+        #endregion
         #endregion
     }
 }

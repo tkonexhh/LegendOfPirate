@@ -89,6 +89,9 @@ namespace GameWish.Game
         WareHousePanel,
         InventoryItemDetailPanel,
         #endregion
+        #region 内购界面
+        ChargingInterfacePanel,
+        #endregion
 
         CongratulationPanel,
         LandUpgradePanel,

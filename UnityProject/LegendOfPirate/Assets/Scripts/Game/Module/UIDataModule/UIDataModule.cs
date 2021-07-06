@@ -75,6 +75,9 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.InventoryItemDetailPanel, null, "GamePanels/MainMenuSystem/WareHouse/InventoryItemDetailPanel/InventoryItemDetailPanel");
             UIDataTable.AddPanelData(UIID.WareHousePanel, null, "GamePanels/MainMenuSystem/WareHouse/WareHousePanel/WareHousePanel");
             #endregion
+            #region 内购界面
+            UIDataTable.AddPanelData(UIID.ChargingInterfacePanel, null, "GamePanels/MainMenuSystem/ChargingInterfacePanel/ChargingInterfacePanel");
+            #endregion
 
             #region 角色相关
             UIDataTable.AddPanelData(UIID.RoleGrowthPanel, null, "GamePanels/RolePanel/RoleGrowthPanel/RoleGrowthPanel");

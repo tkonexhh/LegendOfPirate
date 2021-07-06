@@ -25,6 +25,7 @@ MonoBehaviour:
       - BlackMarketPanel
       - BoostPanel
       - BuildingLevelUpPanel
+      - ChargingInterfacePanel
       - CongratulationPanel
       - DailyTaskPanel
       - EffectActivePanel

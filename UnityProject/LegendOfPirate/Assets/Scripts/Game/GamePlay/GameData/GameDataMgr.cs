@@ -37,6 +37,7 @@ namespace GameWish.Game
         private BattleDataHandler m_BattleDataHandler = null;
         private TaskDataHandler m_TaskDataHandler = null;
         private MainSeaLevelDataHandler m_MainSeaLevelDataHandler = null;
+        private InternalPurchaseDataHandler m_InternalPurchaseDataHandler = null;
 
         private int m_LoadDoneCount = 0;
         private Action m_OnLoadDoneCallback = null;
@@ -65,6 +66,7 @@ namespace GameWish.Game
             m_BattleDataHandler = new BattleDataHandler();
             m_TaskDataHandler = new TaskDataHandler();
             m_MainSeaLevelDataHandler = new MainSeaLevelDataHandler();
+            m_InternalPurchaseDataHandler = new InternalPurchaseDataHandler();
 
             //2.Add To List
             m_DataHanlderList.Add(m_PlayerInfoDataHandler);
@@ -82,6 +84,7 @@ namespace GameWish.Game
             m_DataHanlderList.Add(m_TaskDataHandler);
             m_DataHanlderList.Add(m_LaboratoryDataHandler);
             m_DataHanlderList.Add(m_MainSeaLevelDataHandler);
+            m_DataHanlderList.Add(m_InternalPurchaseDataHandler);
 
             //3.Set Callback
             m_PlayerInfoDataHandler.LoadData(OnLoadDone);
@@ -99,6 +102,7 @@ namespace GameWish.Game
             m_TaskDataHandler.LoadData(OnLoadDone);
             m_LaboratoryDataHandler.LoadData(OnLoadDone);
             m_MainSeaLevelDataHandler.LoadData(OnLoadDone);
+            m_InternalPurchaseDataHandler.LoadData(OnLoadDone);
 
             RegisterEvents();
         }

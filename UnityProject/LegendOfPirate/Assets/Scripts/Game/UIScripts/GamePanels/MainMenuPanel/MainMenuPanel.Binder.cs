@@ -44,6 +44,7 @@ namespace GameWish.Game
             m_StorageBtn.OnClickAsObservable().Subscribe(_ => { OpenWareHousePanel(); }).AddTo(this);
             m_TaskInfoBgBtn.OnClickAsObservable().Subscribe(_ => { OpenMainTaskPanel(); }).AddTo(this);
             m_MapBtn.OnClickAsObservable().Subscribe(_ => { OpenMainSealevelPanel(); }).AddTo(this);
+            m_ShopBtn.OnClickAsObservable().Subscribe(_ => { OpenChargingInterfacePanel(); }).AddTo(this);
         }
         private void InitPanelData()
         {
@@ -70,6 +71,10 @@ namespace GameWish.Game
         {
             CloseSelfPanel();
             UIMgr.S.OpenPanel(UIID.MainSeaLevelPanel);
+        }
+        private void OpenChargingInterfacePanel()
+        {
+            UIMgr.S.OpenPanel(UIID.ChargingInterfacePanel);
         }
         private void OpenMainTaskPanel()
         {
