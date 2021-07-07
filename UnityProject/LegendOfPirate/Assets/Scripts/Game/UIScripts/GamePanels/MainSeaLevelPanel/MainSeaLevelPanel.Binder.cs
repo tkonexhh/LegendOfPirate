@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
 using UniRx;
+using System;
 
 namespace GameWish.Game
 {

@@ -125,6 +125,8 @@ namespace GameWish.Game
             #endregion
             #region 黑市
             UIDataTable.AddPanelData(UIID.BlackMarketPanel, null, "GamePanels/LandManagement/BlackMarketPanel/BlackMarketPanel");
+            UIDataTable.AddPanelData(UIID.CommoditySellPanel, null, "GamePanels/LandManagement/BlackMarketPanel/CommoditySellPanel");
+            UIDataTable.AddPanelData(UIID.DiamondShortagePanel, null, "GamePanels/LandManagement/BlackMarketPanel/DiamondShortagePanel");
             #endregion
             #region 走私系统
             UIDataTable.AddPanelData(UIID.SmugglePanel, null, "GamePanels/LandManagement/SmugglePanel/SmugglePanel");

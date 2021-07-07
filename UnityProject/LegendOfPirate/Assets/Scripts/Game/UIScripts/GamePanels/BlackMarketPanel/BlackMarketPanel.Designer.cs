@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,32 +12,15 @@ namespace GameWish.Game
 	{
 		public const string Name = "BlackMarketPanel";
 		
-		[SerializeField]
-		public GFrame.Editor.GButton BgBtn;
-		[SerializeField]
-		public UnityEngine.UI.Image BusinessmanIcon;
-		[SerializeField]
-		public UnityEngine.UI.Image DailySelectionBg;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI DailySelection;
-		[SerializeField]
-		public UnityEngine.UI.Image BottomRegionBg;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI RefreshValue;
-		[SerializeField]
-		public GFrame.Editor.GButton ExitBtn;
-		[SerializeField]
-		public UnityEngine.UI.Image DiamondsIcon;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI DiamondsValue;
-		[SerializeField]
-		public UnityEngine.UI.Image DiamondsPlus;
-		[SerializeField]
-		public UnityEngine.UI.Image CoinIcon;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI CoinIValue;
-		[SerializeField]
-		public UnityEngine.UI.Image CoinIPLus;
+		[SerializeField] private TextMeshProUGUI m_DiamondsValue;
+		[SerializeField] private TextMeshProUGUI m_CoinIValue;
+		[SerializeField] private Image m_DailySelectionBg;
+		[SerializeField] private TextMeshProUGUI m_DailySelection;
+		[SerializeField] private TextMeshProUGUI m_RefreshCountDown;
+		[SerializeField] private Button m_RefreshBtn;
+		[SerializeField] private TextMeshProUGUI m_RefreshDiamonds;
+		[SerializeField] private RectTransform m_BlackMarketCommodityTra;
+		[SerializeField] private Button m_ExitBtn;
 		
 		
 	}

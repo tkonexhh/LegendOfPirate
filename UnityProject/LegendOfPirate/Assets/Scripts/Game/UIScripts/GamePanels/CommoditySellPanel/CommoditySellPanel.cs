@@ -3,16 +3,15 @@ using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
 using UniRx;
-using System;
 
 namespace GameWish.Game
 {
-    public partial class InventoryItemDetailPanel : AbstractAnimPanel
+    public partial class CommoditySellPanel : AbstractAnimPanel
     {
         #region Data
-        private IInventoryItemModel m_InventoryItemModel;
+        private MarketCommodityMoel m_MarketCommodityMoel;
         private IntReactiveProperty m_SelectedCount = new IntReactiveProperty(1);
-        #endregion 
+        #endregion
 
         #region AbstractAnimPanel
         protected override void OnUIInit()
@@ -58,7 +57,6 @@ namespace GameWish.Game
 
             ReleasePanelData();
         }
-
         #endregion
 
         #region OnClickAddListener
@@ -78,51 +76,54 @@ namespace GameWish.Game
 
         private void IncreaseBtnEvt()
         {
-            if (m_InventoryItemModel.IsNotNull())
+            if (m_MarketCommodityMoel.IsNotNull())
             {
-                m_SelectedCount.Value = Mathf.Min(m_InventoryItemModel.GetCount(), m_SelectedCount.Value + 1);
+                m_SelectedCount.Value = Mathf.Min(m_MarketCommodityMoel.commoditySurplus.Value, m_SelectedCount.Value + 1);
             }
             else
-                Debug.LogError("IInventoryItemModel is null; ItemType" + m_InventoryItemModel.GetItemType());
+                Debug.LogError("Commodity is null");
+        } 
+        
+        private void HandleSellEvt()
+        {
+            if (true)//TODO ×êÊ¯²»¹»
+            {
+                UIMgr.S.OpenPanel(UIID.DiamondShortagePanel);
+            }
+            HideSelfWithAnim();
+            m_MarketCommodityMoel.PurchaseCommodity(m_SelectedCount.Value);
         }
 
         private void MaxBtnEvt()
         {
-            if (m_InventoryItemModel.IsNotNull())
+            if (m_MarketCommodityMoel.IsNotNull())
             {
-                m_SelectedCount.Value = m_InventoryItemModel.GetCount();
+                m_SelectedCount.Value = m_MarketCommodityMoel.commoditySurplus.Value;
             }
             else
-                Debug.LogError("IInventoryItemModel is null;");
+                Debug.LogError("Commodity is null;");
         }
 
         private void MinBtnEvt()
         {
-            if (m_InventoryItemModel.IsNotNull())
+            if (m_MarketCommodityMoel.IsNotNull())
             {
                 m_SelectedCount.Value = 1;
             }
             else
-                Debug.LogError("IInventoryItemModel is null;");
-        }
-
-        private void HandleSellBtnEvt()
-        {
-            HideSelfWithAnim();
-            m_PanelData.inventoryModel.AddInventoryItemCount(m_InventoryItemModel, -m_SelectedCount.Value);
-            //TODO ¼ÓÇ®
+                Debug.LogError("Commodity is null;");
         }
 
         private void HandleMaxAndMinBtnActive(int val)
         {
-            if (m_InventoryItemModel.IsNotNull())
+            if (m_MarketCommodityMoel.IsNotNull())
             {
                 if (val == 1)
                 {
                     m_MinBtn.gameObject.SetActive(false);
                     m_MaxBtn.gameObject.SetActive(true);
                 }
-                else if (val == m_InventoryItemModel.GetCount())
+                else if (val == m_MarketCommodityMoel.commoditySurplus.Value)
                 {
                     m_MaxBtn.gameObject.SetActive(false);
                     m_MinBtn.gameObject.SetActive(true);
@@ -134,18 +135,20 @@ namespace GameWish.Game
                 }
             }
             else
-                Log.e("IInventoryItemModel is null;");
+                Log.e("Commodity is null;");
         }
         #endregion
 
-        #region Other Method
+        #region Private
         private void HandleTransmitValue(params object[] args)
         {
-            m_InventoryItemModel = args[0] as IInventoryItemModel;
+            m_MarketCommodityMoel = args[0] as MarketCommodityMoel;
         }
+
         private void InitData()
         {
-           
+            if (m_MarketCommodityMoel.commoditySurplus.Value == 0)
+                m_SelectedCount.Value = 0;
         }
         #endregion
     }

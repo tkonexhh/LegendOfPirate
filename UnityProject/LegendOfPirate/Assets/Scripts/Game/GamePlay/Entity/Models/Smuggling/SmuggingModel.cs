@@ -11,7 +11,6 @@ namespace GameWish.Game
 
         protected override void LoadDataFromDb()
         {
-            throw new System.NotImplementedException();
         }
     }
 

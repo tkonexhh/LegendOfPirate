@@ -462,9 +462,13 @@ namespace GameWish.Game
                 CreateDailyDBData(daily);
         }
 
+        /// <summary>
+        /// 获得随机日常商品
+        /// </summary>
+        /// <returns></returns>
         private int GetRandomDailyModel()
         {
-            int index = UnityEngine.Random.Range(1, TDDailySelectionConfigTable.dailySelectionProperties.Length);
+            int index = UnityEngine.Random.Range(1, TDDailySelectionConfigTable.dailySelectionProperties.Length+1);
 
             return index;
         }

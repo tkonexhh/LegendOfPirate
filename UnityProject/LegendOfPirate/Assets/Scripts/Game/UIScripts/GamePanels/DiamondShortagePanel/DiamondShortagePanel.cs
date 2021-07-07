@@ -6,8 +6,9 @@ using UniRx;
 
 namespace GameWish.Game
 {
-    public partial class MainSeaLevelPanel : AbstractAnimPanel
+    public partial class DiamondShortagePanel : AbstractAnimPanel
     {
+        #region AbstractAnimPanel
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -24,7 +25,8 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-            CreateLevel();
+
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
         }
 
         protected override void OnPanelHideComplete()
@@ -32,6 +34,8 @@ namespace GameWish.Game
             base.OnPanelHideComplete();
 
             CloseSelfPanel();
+
+            CloseDependPanel(EngineUI.MaskPanel);
         }
 
         protected override void OnClose()
@@ -46,6 +50,13 @@ namespace GameWish.Game
 
             ReleasePanelData();
         }
+        #endregion
 
+        #region OnClickAddListener
+        private void OnClickAddListener()
+        {
+            m_ExitBtn.OnClickAsObservable().Subscribe(_ => { HideSelfWithAnim(); }).AddTo(this);
+        }
+        #endregion
     }
 }
