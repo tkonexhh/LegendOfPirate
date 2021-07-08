@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6769989961003512533}
   - component: {fileID: 2501000733900477531}
   - component: {fileID: 3832327826995219796}
+  - component: {fileID: 1445233394761231773}
   m_Layer: 0
   m_Name: ResImg
   m_TagString: Untagged
@@ -76,6 +77,18 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
+--- !u!114 &1445233394761231773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7149140599218380341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2284322aa79abe64f80d5bf7b9cf73ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7733329919631016385
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,3 +223,4 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 

@@ -39,6 +39,7 @@ namespace GameWish.Game
         private MainSeaLevelDataHandler m_MainSeaLevelDataHandler = null;
         private InternalPurchaseDataHandler m_InternalPurchaseDataHandler = null;
         private SmugglingDataHandler m_SmugglingDataHandler = null;
+        private BattleShipFleetDataHandler m_BattleShipFleetDataHandler = null;
 
         private int m_LoadDoneCount = 0;
         private Action m_OnLoadDoneCallback = null;
@@ -69,6 +70,7 @@ namespace GameWish.Game
             m_MainSeaLevelDataHandler = new MainSeaLevelDataHandler();
             m_InternalPurchaseDataHandler = new InternalPurchaseDataHandler();
             m_SmugglingDataHandler = new SmugglingDataHandler();
+            m_BattleShipFleetDataHandler = new BattleShipFleetDataHandler();
 
             //2.Add To List
             m_DataHanlderList.Add(m_PlayerInfoDataHandler);
@@ -88,6 +90,7 @@ namespace GameWish.Game
             m_DataHanlderList.Add(m_MainSeaLevelDataHandler);
             m_DataHanlderList.Add(m_InternalPurchaseDataHandler);
             m_DataHanlderList.Add(m_SmugglingDataHandler);
+            m_DataHanlderList.Add(m_BattleShipFleetDataHandler);
             //3.Set Callback
             m_PlayerInfoDataHandler.LoadData(OnLoadDone);
             m_RoleGroupDataHandler.LoadData(OnLoadDone);
@@ -106,6 +109,7 @@ namespace GameWish.Game
             m_MainSeaLevelDataHandler.LoadData(OnLoadDone);
             m_InternalPurchaseDataHandler.LoadData(OnLoadDone);
             m_SmugglingDataHandler.LoadData(OnLoadDone);
+            m_BattleShipFleetDataHandler.LoadData(OnLoadDone);
             RegisterEvents();
         }
 

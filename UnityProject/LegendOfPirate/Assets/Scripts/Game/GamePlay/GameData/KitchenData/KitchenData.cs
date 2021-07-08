@@ -52,7 +52,7 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void OnPartSelected(int partId)
+        public void OnFoodSelected(int partId)
         {
             this.foodId = partId;
             kitchenSlotState = KitchenSlotState.Selected;

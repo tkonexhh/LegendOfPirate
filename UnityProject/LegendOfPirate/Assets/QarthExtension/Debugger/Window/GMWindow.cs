@@ -105,12 +105,40 @@ namespace GameWish.Game
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("DefineEvent", GUILayout.Width(100f))) 
+            if (GUILayout.Button("DefineEvent", GUILayout.Width(100f)))
             {
                 UIMgr.S.OpenPanel(UIID.RandomDefensePanel);
             }
             GUILayout.EndHorizontal();
             #endregion
+
+            #region 战船
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("战船");
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("MainShipLevelUp", GUILayout.Width(100f)))
+            {
+                ModelMgr.S.GetModel<ShipModel>().shipLevel.Value++;
+            }
+            GUILayout.EndHorizontal();
+            #endregion
+
+            #region 走私
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("走私");
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("OpenSmugglePanel", GUILayout.Width(100f)))
+            {
+                UIMgr.S.OpenPanel(UIID.SmugglePanel);
+            }
+            GUILayout.EndHorizontal();
+            #endregion
+
+
 
             GUILayout.EndVertical();
 

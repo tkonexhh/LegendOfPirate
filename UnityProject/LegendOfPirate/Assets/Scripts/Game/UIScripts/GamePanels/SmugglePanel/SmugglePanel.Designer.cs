@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,30 +12,19 @@ namespace GameWish.Game
 	{
 		public const string Name = "SmugglePanel";
 		
-		[SerializeField]
-		public UnityEngine.UI.Image Bg;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI Title;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI Desc;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI RefreshTitle;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI RefreshValue;
-		[SerializeField]
-		public RectTransform SmuggleTra;
-		[SerializeField]
-		public GFrame.Editor.GButton SetAllBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI SetAllBtnValue;
-		[SerializeField]
-		public GFrame.Editor.GButton GetAllBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI GetAllBtnValue;
-		[SerializeField]
-		public GFrame.Editor.GButton ExitBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI ExitBtnValue;
+		[SerializeField] private Image m_Bg;
+		[SerializeField] private TextMeshProUGUI m_Title;
+		[SerializeField] private TextMeshProUGUI m_Desc;
+		[SerializeField] private TextMeshProUGUI m_RefreshTitle;
+		[SerializeField] private TextMeshProUGUI m_RefreshValue;
+		[SerializeField] private IUListView m_ScrollView;
+		[SerializeField] private RectTransform m_SmuggleTra;
+		[SerializeField] private Button m_SetAllBtn;
+		[SerializeField] private TextMeshProUGUI m_SetAllBtnValue;
+		[SerializeField] private Button m_GetAllBtn;
+		[SerializeField] private TextMeshProUGUI m_GetAllBtnValue;
+		[SerializeField] private Button m_ExitBtn;
+		[SerializeField] private TextMeshProUGUI m_ExitBtnValue;
 		
 		
 	}

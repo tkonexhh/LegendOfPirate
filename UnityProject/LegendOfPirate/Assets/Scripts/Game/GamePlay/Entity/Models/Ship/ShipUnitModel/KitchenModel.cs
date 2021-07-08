@@ -92,7 +92,7 @@ namespace GameWish.Game
             kitchenSlotModelLst.First(slot => slot.kitchenSlotState.Value == KitchenSlotState.Locked).kitchenSlotState.Value = KitchenSlotState.Free;
         }
     }
-    public class KitchenSlotModel : Model
+    public class KitchenSlotModel 
     {
         public int slotId;
         public int foodId;
@@ -153,7 +153,7 @@ namespace GameWish.Game
         {
             foodId = id;
             kitchenSlotState.Value = KitchenSlotState.Selected;
-            m_DbItem.OnPartSelected(id);
+            m_DbItem.OnFoodSelected(id);
         }
 
         public void RefreshRemainTime()

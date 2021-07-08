@@ -65,6 +65,7 @@ namespace GameWish.Game
         LaboratoryRoomPanel,
         #endregion
         #region 战船升级
+        BattleShipPanel,
         WarshipUpgradePanel,
         #endregion
         #region 建筑升级

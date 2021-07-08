@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
 using UniRx;
+using System;
 
 namespace GameWish.Game
 {
@@ -41,11 +42,14 @@ namespace GameWish.Game
         private void OnClickAddListener()
         {
             m_RoleBtn.OnClickAsObservable().Subscribe(_ => { OpenRolePanel(); }).AddTo(this);
+            m_ShipBtn.OnClickAsObservable().Subscribe(_ => { OpenShipPanel(); }).AddTo(this);
             m_StorageBtn.OnClickAsObservable().Subscribe(_ => { OpenWareHousePanel(); }).AddTo(this);
             m_TaskInfoBgBtn.OnClickAsObservable().Subscribe(_ => { OpenMainTaskPanel(); }).AddTo(this);
             m_MapBtn.OnClickAsObservable().Subscribe(_ => { OpenMainSealevelPanel(); }).AddTo(this);
             m_ShopBtn.OnClickAsObservable().Subscribe(_ => { OpenChargingInterfacePanel(); }).AddTo(this);
         }
+
+
         private void InitPanelData()
         {
             UpdateTasksTitle(0, m_PanelData.mainTaskModel.GetCurTaskID());
@@ -79,6 +83,11 @@ namespace GameWish.Game
         private void OpenMainTaskPanel()
         {
             UIMgr.S.OpenPanel(UIID.MainTaskPanel);
+        }
+
+        private void OpenShipPanel()
+        {
+            UIMgr.S.OpenPanel(UIID.BattleShipPanel);
         }
 
         private void UpdateTasksTitle(int key, params object[] args)

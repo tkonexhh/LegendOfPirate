@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
 using UniRx;
+using System;
 
 namespace GameWish.Game
 {
@@ -12,21 +13,40 @@ namespace GameWish.Game
 		protected override void OnUIInit()
 		{
 			base.OnUIInit();
+			AllocatePanelData();
 		}
 		
 		protected override void OnPanelOpen(params object[] args)
 		{
 			base.OnPanelOpen(args);
-			
-			AllocatePanelData(args);
+
+			InitData();
+
+			InitPanelMsg();
 			
 			BindModelToUI();
 			BindUIToModel();
 
 			OnClickAddListener();
 		}
-		
-		protected override void OnPanelHideComplete()
+
+        private void InitData()
+        {
+
+        }
+
+        private void InitPanelMsg()
+        {
+			m_ScrollView.SetCellRenderer(OnOrderChange);
+			m_ScrollView.SetDataCount(m_PanelData.smuggleModel.orderModelList.Count);
+        }
+
+        private void OnOrderChange(Transform root, int index)
+        {
+           
+        }
+
+        protected override void OnPanelHideComplete()
 		{
 			base.OnPanelHideComplete();
 			

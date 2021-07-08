@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,67 +12,35 @@ namespace GameWish.Game
 	{
 		public const string Name = "WarshipUpgradePanel";
 		
-		[SerializeField]
-		public GFrame.Editor.GButton BgBtn;
-		[SerializeField]
-		public UnityEngine.UI.Image TitleBg;
-		[SerializeField]
-		public UnityEngine.UI.Image TitleIcon;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI TitileCont;
-		[SerializeField]
-		public UnityEngine.UI.Image LockBg;
-		[SerializeField]
-		public UnityEngine.UI.Image lockIcon;
-		[SerializeField]
-		public GFrame.Editor.GButton RightArrowBtn;
-		[SerializeField]
-		public GFrame.Editor.GButton LeftArrowBtn;
-		[SerializeField]
-		public UnityEngine.UI.Image WarShipIcon;
-		[SerializeField]
-		public UnityEngine.UI.Image CEBg;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI CEValue;
-		[SerializeField]
-		public UnityEngine.UI.Image LevelBg;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI CurLevel;
-		[SerializeField]
-		public UnityEngine.UI.Image LevelArrow;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI NextLevel;
-		[SerializeField]
-		public UnityEngine.UI.Image AggressivityIcon;
-		[SerializeField]
-		public UnityEngine.UI.Image AggressivityBarBg;
-		[SerializeField]
-		public UnityEngine.UI.Image AggressivityBar;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI CombatPowerGrowth;
-		[SerializeField]
-		public UnityEngine.UI.Image DefensivePowerIcon;
-		[SerializeField]
-		public UnityEngine.UI.Image DefensivePowerBarBg;
-		[SerializeField]
-		public UnityEngine.UI.Image DefensivePowerBar;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI DefensivePowerGrowth;
-		[SerializeField]
-		public UnityEngine.UI.Image UnlockTMPBg;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI UnlockValue;
-		[SerializeField]
-		public UnityEngine.UI.Image UpgradeRegionBg;
-		[SerializeField]
-		public RectTransform UpgradeResTra;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI UpgradeResTimeValue;
-		[SerializeField]
-		public GFrame.Editor.GButton UpgradeBtn;
-		[SerializeField]
-		public GFrame.Editor.GButton LeftDownExitBtn;
-		
-		
+		[SerializeField] private Button m_BgBtn;
+		[SerializeField] private Image m_TitleBg;
+		[SerializeField] private Image m_TitleIcon;
+		[SerializeField] private TextMeshProUGUI m_TitileName;
+		[SerializeField] private Image m_LockBg;
+		[SerializeField] private Image m_lockIcon;
+		[SerializeField] private Button m_RightArrowBtn;
+		[SerializeField] private Button m_LeftArrowBtn;
+		[SerializeField] private Image m_WarShipIcon;
+		[SerializeField] private Image m_CEBg;
+		[SerializeField] private TextMeshProUGUI m_CEValue;
+		[SerializeField] private Image m_LevelBg;
+		[SerializeField] private TextMeshProUGUI m_CurLevel;
+		[SerializeField] private Image m_LevelArrow;
+		[SerializeField] private TextMeshProUGUI m_NextLevel;
+		[SerializeField] private Image m_AggressivityIcon;
+		[SerializeField] private Image m_AggressivityBarBg;
+		[SerializeField] private Image m_AggressivityBar;
+		[SerializeField] private TextMeshProUGUI m_CombatPowerGrowth;
+		[SerializeField] private Image m_DefensivePowerIcon;
+		[SerializeField] private Image m_DefensivePowerBarBg;
+		[SerializeField] private Image m_DefensivePowerBar;
+		[SerializeField] private TextMeshProUGUI m_DefensivePowerGrowth;
+		[SerializeField] private Image m_UnlockTMPBg;
+		[SerializeField] private TextMeshProUGUI m_UnlockValue;
+		[SerializeField] private Image m_UpgradeRegionBg;
+		[SerializeField] private Button m_UpgradeBtn;
+		[SerializeField] private IUListView m_ScrollView;
+		[SerializeField] private Button m_LeftDownExitBtn;
+			
 	}
 }

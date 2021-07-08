@@ -8,8 +8,10 @@ namespace GameWish.Game
 {
 	public class SmugglePanelData : UIPanelData
 	{
+		public SmuggleModel smuggleModel;
 		public SmugglePanelData()
 		{
+			
 		}
 	}
 	
@@ -20,6 +22,7 @@ namespace GameWish.Game
 		private void AllocatePanelData(params object[] args)
 		{
 			 m_PanelData = UIPanelData.Allocate<SmugglePanelData>();
+			m_PanelData.smuggleModel = ModelMgr.S.GetModel<SmuggleModel>();
 		}
 		
 		private void ReleasePanelData()
@@ -29,15 +32,17 @@ namespace GameWish.Game
 		
 		private void BindModelToUI()
 		{
+
 		}
 		
 		private void BindUIToModel()
 		{
+
 		}
 
 		private void OnClickAddListener()
 		{
-			ExitBtn.OnClickAsObservable().Subscribe(_ =>
+			m_ExitBtn.OnClickAsObservable().Subscribe(_ =>
             {
 				ExitBtnEvent();
             });

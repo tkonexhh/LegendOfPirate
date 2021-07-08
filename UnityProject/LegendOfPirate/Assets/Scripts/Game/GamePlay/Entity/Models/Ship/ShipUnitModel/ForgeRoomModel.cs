@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using System;
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -240,6 +241,19 @@ namespace GameWish.Game
         {
             resCount = rescount;
             resId = resid;
+            
+        }
+
+        public static List<ResPair> StringToResPairLst(string rawString, char Spliter1=';', string Spliter2="|") 
+        {
+            List<ResPair> ret = new List<ResPair>();
+            var resPairStrings= rawString.Split(Spliter1);
+            foreach (var resPairString in resPairStrings) 
+            {
+                var resPairCount = Helper.String2IntArray(resPairString, Spliter2);
+                ret.Add(new ResPair(resPairCount[0], resPairCount[1]));
+            }
+            return ret;
         }
     }
 }

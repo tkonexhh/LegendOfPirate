@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
 using UniRx;
-
+using System;
+using TMPro;
 namespace GameWish.Game
 {
 	public partial class WarshipUpgradePanel : AbstractAnimPanel
@@ -13,41 +14,83 @@ namespace GameWish.Game
 		protected override void OnUIInit()
 		{
 			base.OnUIInit();
-		}
+
+            AllocatePanelData();
+        }
 		
 		protected override void OnPanelOpen(params object[] args)
 		{
 			base.OnPanelOpen(args);
 			RegisterEvents();
 
-			AllocatePanelData(args);
 			
+
 			BindModelToUI();
 			BindUIToModel();
 
 			OnClickAddListener();
 
-			InitData();
+			InitData(args);
+
+			InitPanelMsg();
+
+			AddPanelEventListener();
 
 		}
-		private void InitData()
+
+        private void InitData(params object[] args)
 		{
-			int countDown = 100;
-			//暂时写着，后移入对应的Mgr
-			m_CountdownActionNode = ActionNode.Allocate<ScheduleNode>();
+			//int countDown = 100;
+			////暂时写着，后移入对应的Mgr
+			//m_CountdownActionNode = ActionNode.Allocate<ScheduleNode>();
 
-			m_CountdownActionNode.SetParams(this, System.DateTime.Now, 100, 1)
-				.AddOnStartCallback((node) => { Debug.LogError("On countdown start"); })
-				.AddOnTickCallback((node) => {
-					UpgradeResTimeValue.text = DateFormatHelper.FormatTime(--countDown);
+			//m_CountdownActionNode.SetParams(this, System.DateTime.Now, 100, 1)
+			//	.AddOnStartCallback((node) => { Debug.LogError("On countdown start"); })
+			//	.AddOnTickCallback((node) => {
+			//		//m_UpgradeResTimeValue.text = DateFormatHelper.FormatTime(--countDown);
 
-					Debug.LogError("On countdown tick : " + Time.time);
-				})
-				.AddOnEndCallback((node) => { Debug.LogError("On countdown end"); ActionNode.Recycle2Cache(m_CountdownActionNode); })
-				.Execute();
+			//		Debug.LogError("On countdown tick : " + Time.time);
+			//	})
+			//	.AddOnEndCallback((node) => { Debug.LogError("On countdown end"); ActionNode.Recycle2Cache(m_CountdownActionNode); })
+			//	.Execute();
+
+			m_PanelData.battleShipModel = m_PanelData.battleShipFleetModel.GetBattleShipModel((int)args[0]);
+
+			if (m_PanelData.shipIndex == null)
+			{
+				m_PanelData.shipIndex = new IntReactiveProperty(m_PanelData.battleShipFleetModel.GetBattleShipIndexById((int)args[0]));
+			}
+			else 
+			{
+				m_PanelData.shipIndex.Value = (int)args[0];
+			}
+		}
+
+        private void InitPanelMsg()
+        {
+			m_TitileName.text = m_PanelData.battleShipModel.GetShipName();
+			//TODO 设置Sprite
+			m_ScrollView.SetCellRenderer(OnUpGradeResChange);
+			m_ScrollView.SetDataCount(m_PanelData.battleShipModel.GetShipConfig().strengthenCost.Count);
+
+
+		    
+        }
+
+        private void OnUpGradeResChange(Transform root, int index)
+        {
+			//TODO 设置ResSprite
+			root.GetComponentInChildren<TextMeshProUGUI>().text = m_PanelData.battleShipModel.GetShipConfig().strengthenCost[index].resCount.ToString();
+
 
 		}
-		protected override void OnPanelHideComplete()
+
+        private void AddPanelEventListener()
+        {
+            
+        }
+
+        protected override void OnPanelHideComplete()
 		{
 			base.OnPanelHideComplete();
 			

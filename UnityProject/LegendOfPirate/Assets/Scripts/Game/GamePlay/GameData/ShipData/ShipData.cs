@@ -23,6 +23,7 @@ namespace GameWish.Game
                     shipUnitDataList.Add(new ShipUnitData(item));
                 }
             }
+            shipLevel = 1;
         }
 
         public override void OnDataLoadFinish()

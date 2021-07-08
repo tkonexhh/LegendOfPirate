@@ -6,7 +6,7 @@ using Qarth;
 
 namespace GameWish.Game
 {
-	public class SmugglingDataHandler : DataHandlerBase<SmugglingData>, IDataHandler
+	public class SmugglingDataHandler : DataHandlerBase<SmuggleData>, IDataHandler
 	{
 		private const string DATA_NAME = "SmugglingData";
 

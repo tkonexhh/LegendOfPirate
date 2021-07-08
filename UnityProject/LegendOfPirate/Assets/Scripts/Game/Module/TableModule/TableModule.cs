@@ -55,7 +55,7 @@ namespace GameWish.Game
                 TDFacilityLibraryTable.metaData,
                 TDFacilityProcessingRoomTable.metaData,
                 TDFacilityTrainingRoomTable.metaData,
-                TDFacilityWarshipTable.metaData,
+                TDFacilityBattleshipTable.metaData,
                 #endregion
                 #region InternalPurchase
                 TDMonthCardConfigTable.metaData,

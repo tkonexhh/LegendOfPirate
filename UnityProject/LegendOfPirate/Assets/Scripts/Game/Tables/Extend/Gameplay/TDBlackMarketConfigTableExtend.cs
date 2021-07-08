@@ -7,9 +7,9 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDFacilityWarshipTable
+    public partial class TDBlackMarketConfigTable
     {
-        static void CompleteRowAdd(TDFacilityWarship tdData, int rowCount)
+        static void CompleteRowAdd(TDBlackMarketConfig tdData, int rowCount)
         {
 
         }

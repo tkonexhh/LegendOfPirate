@@ -7,7 +7,7 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDFacilityWarship
+    public partial class TDSmuggle
     {
         public void Reset()
         {

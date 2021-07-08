@@ -8,16 +8,16 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public static partial class TDFacilityWarshipTable
+    public static partial class TDSmuggleTable
     {
-        private static TDTableMetaData m_MetaData = new TDTableMetaData(TDFacilityWarshipTable.Parse, "FacilityWarship");
+        private static TDTableMetaData m_MetaData = new TDTableMetaData(TDSmuggleTable.Parse, "Smuggle");
         public static TDTableMetaData metaData
         {
             get { return m_MetaData; }
         }
         
-        private static Dictionary<int, TDFacilityWarship> m_DataCache = new Dictionary<int, TDFacilityWarship>();
-        private static List<TDFacilityWarship> m_DataList = new List<TDFacilityWarship >();
+        private static Dictionary<int, TDSmuggle> m_DataCache = new Dictionary<int, TDSmuggle>();
+        private static List<TDSmuggle> m_DataList = new List<TDSmuggle >();
         
         public static void Parse(byte[] fileData)
         {
@@ -25,27 +25,27 @@ namespace GameWish.Game
             m_DataList.Clear();
             DataStreamReader dataR = new DataStreamReader(fileData);
             int rowCount = dataR.GetRowCount();
-            int[] fieldIndex = dataR.GetFieldIndex(TDFacilityWarship.GetFieldHeadIndex());
+            int[] fieldIndex = dataR.GetFieldIndex(TDSmuggle.GetFieldHeadIndex());
     #if (UNITY_STANDALONE_WIN) || UNITY_EDITOR || UNITY_STANDALONE_OSX
-            dataR.CheckFieldMatch(TDFacilityWarship.GetFieldHeadIndex(), "FacilityWarshipTable");
+            dataR.CheckFieldMatch(TDSmuggle.GetFieldHeadIndex(), "SmuggleTable");
     #endif
             for (int i = 0; i < rowCount; ++i)
             {
-                TDFacilityWarship memberInstance = new TDFacilityWarship();
+                TDSmuggle memberInstance = new TDSmuggle();
                 memberInstance.ReadRow(dataR, fieldIndex);
                 OnAddRow(memberInstance);
                 memberInstance.Reset();
                 CompleteRowAdd(memberInstance, rowCount);
             }
-            Log.i(string.Format("Parse Success TDFacilityWarship"));
+            Log.i(string.Format("Parse Success TDSmuggle"));
         }
 
-        private static void OnAddRow(TDFacilityWarship memberInstance)
+        private static void OnAddRow(TDSmuggle memberInstance)
         {
-            int key = memberInstance.warshipId;
+            int key = memberInstance.id;
             if (m_DataCache.ContainsKey(key))
             {
-                Log.e(string.Format("Invaild,  TDFacilityWarshipTable Id already exists {0}", key));
+                Log.e(string.Format("Invaild,  TDSmuggleTable Id already exists {0}", key));
             }
             else
             {
@@ -67,7 +67,7 @@ namespace GameWish.Game
             }
         }
 
-        public static List<TDFacilityWarship> dataList
+        public static List<TDSmuggle> dataList
         {
             get 
             {
@@ -75,7 +75,7 @@ namespace GameWish.Game
             }    
         }
 
-        public static TDFacilityWarship GetData(int key)
+        public static TDSmuggle GetData(int key)
         {
             if (m_DataCache.ContainsKey(key))
             {
@@ -83,7 +83,7 @@ namespace GameWish.Game
             }
             else
             {
-                Log.w(string.Format("Can't find key {0} in TDFacilityWarship", key));
+                Log.w(string.Format("Can't find key {0} in TDSmuggle", key));
                 return null;
             }
         }

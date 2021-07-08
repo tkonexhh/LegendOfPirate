@@ -8,6 +8,9 @@ namespace GameWish.Game
 {
 	public class WarshipUpgradePanelData : UIPanelData
 	{
+		public BattleShipFleetModel battleShipFleetModel;
+		public BattleShipModel battleShipModel;
+		public IntReactiveProperty shipIndex;
 		public WarshipUpgradePanelData()
 		{
 		}
@@ -17,9 +20,10 @@ namespace GameWish.Game
 	{
 		private WarshipUpgradePanelData m_PanelData = null;
 		
-		private void AllocatePanelData(params object[] args)
+		private void AllocatePanelData()
 		{
-			 m_PanelData = UIPanelData.Allocate<WarshipUpgradePanelData>();
+	     	m_PanelData = UIPanelData.Allocate<WarshipUpgradePanelData>();
+			m_PanelData.battleShipFleetModel = ModelMgr.S.GetModel<BattleShipFleetModel>();
 		}
 		
 		private void ReleasePanelData()
@@ -41,23 +45,23 @@ namespace GameWish.Game
 
 		private void OnClickAddListener()
 		{
-			RightArrowBtn.OnClickAsObservable().Subscribe(_ =>
+			m_RightArrowBtn.OnClickAsObservable().Subscribe(_ =>
             {
                 Debug.LogError("RightArrowBtn");//TODO
             });
-			LeftArrowBtn.OnClickAsObservable().Subscribe(_ =>
+			m_LeftArrowBtn.OnClickAsObservable().Subscribe(_ =>
             {
                 Debug.LogError("LeftArrowBtn");//TODO
             });
-			LeftDownExitBtn.OnClickAsObservable().Subscribe(_ =>
+			m_LeftDownExitBtn.OnClickAsObservable().Subscribe(_ =>
             {
 				HideSelfWithAnim();
             });
-			UpgradeBtn.OnClickAsObservable().Subscribe(_ =>
+			m_UpgradeBtn.OnClickAsObservable().Subscribe(_ =>
             {
                 Debug.LogError("UpgradeBtn");//TODO
             });
-			BgBtn.OnClickAsObservable().Subscribe(_ =>
+			m_BgBtn.OnClickAsObservable().Subscribe(_ =>
 			{
 				BgBtnEvent();
 			});

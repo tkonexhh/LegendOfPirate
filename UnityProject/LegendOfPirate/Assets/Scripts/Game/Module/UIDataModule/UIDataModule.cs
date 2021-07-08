@@ -107,6 +107,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.LaboratoryRoomPanel, null, "GamePanels/WarshipManagement/LaboratoryRoomPanel/LaboratoryRoomPanel");
             #endregion
             #region 战船系统
+            UIDataTable.AddPanelData(UIID.BattleShipPanel,null, "GamePanels/WarshipManagement/BattleShipPanel/BattleShipPanel");
             UIDataTable.AddPanelData(UIID.WarshipUpgradePanel, null, "GamePanels/WarshipManagement/WarshipUpgradePanel/WarshipUpgradePanel");
             #endregion
 

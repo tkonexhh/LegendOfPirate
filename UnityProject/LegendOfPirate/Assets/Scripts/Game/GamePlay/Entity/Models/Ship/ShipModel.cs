@@ -33,6 +33,7 @@ namespace GameWish.Game
                 ShipUnitModel unitModel = ShipUnitModelFactory.CreateUnitModel(m_ShipData.shipUnitDataList[i]);
                 shipUnitModelList.Add(unitModel);
             }
+            shipLevel = new IntReactiveProperty(m_ShipData.shipLevel);
         }
 
         public ShipUnitModel GetShipUnitModel(ShipUnitType shipUnitType)

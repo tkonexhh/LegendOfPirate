@@ -21,6 +21,7 @@ MonoBehaviour:
       - AdDynamicShowPanel
       - AdStaticShowPanel
       - AlchemyRoomPanel
+      - BattleShipPanel
       - BattleWinPanel
       - BlackMarketPanel
       - BoostPanel
@@ -30,6 +31,7 @@ MonoBehaviour:
       - DailyTaskPanel
       - EffectActivePanel
       - EvolutionSolePanel
+      - FishingPanel
       - ForgePanel
       - ForgeRoomPanel
       - GardenPanel
