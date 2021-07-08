@@ -86,10 +86,10 @@ namespace GameWish.Game
         
         private void HandleSellEvt()
         {
-            if (true)//TODO 钻石不够
-            {
-                UIMgr.S.OpenPanel(UIID.DiamondShortagePanel);
-            }
+            //if (true)//TODO 钻石不够
+            //{
+            //    UIMgr.S.OpenPanel(UIID.DiamondShortagePanel);
+            //}
             HideSelfWithAnim();
             m_MarketCommodityMoel.PurchaseCommodity(m_SelectedCount.Value);
         }

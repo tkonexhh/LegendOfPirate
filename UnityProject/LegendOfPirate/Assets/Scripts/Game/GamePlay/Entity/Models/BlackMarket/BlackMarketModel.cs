@@ -78,7 +78,8 @@ namespace GameWish.Game
             {
                 BlackMarketRefreshConfig blackMarketRefreshConfig = TDBlackMarketRefreshConfigTable.GetBlackMarketConfig(m_BlackMarketData.GetRefreshCount()+1);
 
-                ModelMgr.S.GetModel<PlayerInfoData>().AddDiamond(-blackMarketRefreshConfig.cost);
+                //TODO ÏûºÄ×êÊ¯
+                //ModelMgr.S.GetModel<PlayerInfoData>().AddDiamond(-blackMarketRefreshConfig.cost);
 
                 m_BlackMarketData.SetRefreshCount();
 
