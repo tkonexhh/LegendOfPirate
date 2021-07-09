@@ -18,6 +18,9 @@ namespace GameWish.Game
         public void SetDefaultValue()
         {
             SetDataDirty();
+
+            //TODO ‘› ± π”√
+            GameDataMgr.S.SaveDataToLocal();
         }
 
         public override void InitWithEmptyData()
@@ -34,10 +37,9 @@ namespace GameWish.Game
         #region Public
         public void SetRefreshTime()
         {
-            if (DateTime.Now.Hour < Define.REFRESH_TIME_POINT)
-                marketData.refreshTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day - 1, Define.REFRESH_TIME_POINT, 0, 0);
-            else
-                marketData.refreshTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Define.REFRESH_TIME_POINT, 0, 0);
+            marketData.refreshTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Define.REFRESH_TIME_POINT, 0, 0);
+
+            SetDefaultValue();
         }
 
         public DateTime GetRefreshTime()
@@ -48,11 +50,15 @@ namespace GameWish.Game
         public void ResetRefreshCount()
         {
             marketData.refreshCount = 0;
+
+            SetDefaultValue();
         }
 
         public void SetRefreshCount()
         {
             marketData.refreshCount = Mathf.Min(TDBlackMarketRefreshConfigTable.GetMaxRefreshID(), marketData.refreshCount + 1);
+
+            SetDefaultValue();
         }
 
         public int GetRefreshCount()
@@ -62,10 +68,22 @@ namespace GameWish.Game
 
         public void AddCommodityDBData(int id, int commodityID, int surplus)
         {
-            if (!marketData.commodityDBDatas.Any(i => i.commodityID == id))
+            if (!marketData.commodityDBDatas.Any(i => i.commodityID == commodityID))
                 marketData.commodityDBDatas.Add(new CommodityDBData(id, commodityID, surplus));
             else
-                Log.e("ID is exit , id = " + id);
+                Log.e("ID is exit , id = " + commodityID);
+
+            SetDefaultValue();
+        }
+
+        public void AddCommodityDBData(CommodityDBData commodityDBData)
+        {
+            if (!marketData.commodityDBDatas.Any(i => i.commodityID == commodityDBData.commodityID))
+                marketData.commodityDBDatas.Add(commodityDBData);
+            else
+                Log.e("ID is exit , id = " + commodityDBData.commodityID);
+
+            SetDefaultValue();
         }
 
         public void ReduceCommodityNumber(int commodityID, int number)
@@ -75,11 +93,15 @@ namespace GameWish.Game
                 commodityDBData.surplus = Mathf.Max(Define.NUMBER_ZERO, commodityDBData.surplus - number);
             else
                 Log.e("Commodity not find , id = " + commodityID);
+
+            SetDefaultValue();
         }
 
         public void ClearAllCommodity()
         {
             marketData.commodityDBDatas.Clear();
+
+            SetDefaultValue();
         }
 
         public ReactiveCollection<CommodityDBData> GetCommodityDBDatas()

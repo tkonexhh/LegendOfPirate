@@ -36,10 +36,7 @@ namespace GameWish.Game
         public override void OnUpdate()
         {
             base.OnUpdate();
-            if (m_BlackMarketData.GetRefreshCount() < TDBlackMarketRefreshConfigTable.GetMaxRefreshID())
-            {
-                refreshCommodityCountDown.Value = GetRefreshCountDown();
-            }
+            refreshCommodityCountDown.Value = GetRefreshCountDown();
         }
         #endregion
 
@@ -74,8 +71,10 @@ namespace GameWish.Game
         /// <returns></returns>
         public bool RefreshCommoditys()
         {
+          
             if (m_BlackMarketData.GetRefreshCount()< TDBlackMarketRefreshConfigTable.GetMaxRefreshID())
             {
+           
                 BlackMarketRefreshConfig blackMarketRefreshConfig = TDBlackMarketRefreshConfigTable.GetBlackMarketConfig(m_BlackMarketData.GetRefreshCount()+1);
 
                 //TODO 消耗钻石
@@ -85,7 +84,7 @@ namespace GameWish.Game
 
                 ResetCommoditys();
 
-                BlackMarketRefreshConfig consume = TDBlackMarketRefreshConfigTable.GetBlackMarketConfig(m_BlackMarketData.GetRefreshCount() + 1);
+                BlackMarketRefreshConfig consume = TDBlackMarketRefreshConfigTable.GetBlackMarketConfig(m_BlackMarketData.GetRefreshCount());
 
                 RefreshNeedDiamonds.Value = consume.cost;
 
@@ -95,6 +94,8 @@ namespace GameWish.Game
             {
                 //TODO 等UI出图
                 RefreshNeedDiamonds.Value = 0;
+
+                FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.BLACKMARKET_REFRESHCOUMT_OVER);
 
                 return false;
             }
@@ -112,12 +113,21 @@ namespace GameWish.Game
             TimeSpan remaining = dueDate - DateTime.Now;
             if (remaining.TotalSeconds <= 0)
             {
-                m_BlackMarketData.ResetRefreshCount();
-                m_BlackMarketData.SetRefreshTime();
-                ResetCommoditys();
+                RefreshAllData();
                 return "0";
             }
             return CommonMethod.SplicingTime((int)remaining.TotalSeconds);
+        }
+
+        /// <summary>
+        /// 刷新所有需要刷新的数据
+        /// </summary>
+        private void RefreshAllData()
+        {
+            m_BlackMarketData.ResetRefreshCount();
+            m_BlackMarketData.SetRefreshTime();
+            ResetCommoditys();
+            RefreshNeedDiamonds.Value = GetRefreshNeedDiamonds();
         }
 
         /// <summary>
@@ -128,9 +138,7 @@ namespace GameWish.Game
             TimeSpan remaining = DateTime.Now - m_BlackMarketData.GetRefreshTime();
             if (remaining.Days > ONE_DAY)
             {
-                m_BlackMarketData.ResetRefreshCount();
-                m_BlackMarketData.SetRefreshTime();
-                ResetCommoditys();
+                RefreshAllData();
             }
         }
 
@@ -156,6 +164,7 @@ namespace GameWish.Game
         private void ResetCommoditys()
         {
             m_BlackMarketData.ClearAllCommodity();
+            m_BlackMarketCommoditys.Clear();
 
             for (int i = 0; i < BLACKMARKET_COMMODITY_NUMBER; i++)
                 CreateCommodityDBData();
@@ -193,7 +202,9 @@ namespace GameWish.Game
                 BlackMarketConfig config = GetRandomMarketConfig();
                 if (!m_BlackMarketCommoditys.Any(i => i.commodityID == config.marketConfigItem.id))
                 {
-                    m_BlackMarketData.AddCommodityDBData(config.id, config.marketConfigItem.id, config.marketConfigItem.count);
+                    CommodityDBData commodityDBData = new CommodityDBData(config);
+                    m_BlackMarketData.AddCommodityDBData(commodityDBData);
+                    m_BlackMarketCommoditys.Add(commodityDBData);
                 }
                 else
                     CreateCommodityDBData();

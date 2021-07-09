@@ -118,6 +118,14 @@ namespace GameWish.Game
 
         #region Daily Selection
 
+        public void AddDailyDBData(DailyDBData dailyDBData)
+        {
+            if (!consumptionDatas.dailyDataModels.Any(i => i.id == dailyDBData.id))
+                consumptionDatas.dailyDataModels.Add(dailyDBData);
+            else
+                Log.e("dailyData is exit , id = " + dailyDBData.id);
+        }
+
         public ReactiveCollection<DailyDBData> GetDailyDataModels()
         {
             return new ReactiveCollection<DailyDBData>(consumptionDatas.dailyDataModels);

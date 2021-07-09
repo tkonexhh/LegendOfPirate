@@ -26,6 +26,7 @@ namespace GameWish.Game
         private void Init()
         {
             AudioMgr.S.OnSingletonInit();
+            Application.runInBackground = true;
 
             EventSystem.S.Register(EngineEventID.OnApplicationQuit, ApplicationQuit);
             EventSystem.S.Register(EngineEventID.OnApplicationPauseChange, OnGamePauseChange);

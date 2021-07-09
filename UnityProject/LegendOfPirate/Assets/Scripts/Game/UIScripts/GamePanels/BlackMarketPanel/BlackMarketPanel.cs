@@ -60,6 +60,7 @@ namespace GameWish.Game
         private void OnClickAddListener()
         {
             m_RefreshBtn.OnClickAsObservable().Subscribe(_ => RefreshMarketCommoditys()).AddTo(this);
+            m_ExitBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
         }
 
         private void RefreshMarketCommoditys()
