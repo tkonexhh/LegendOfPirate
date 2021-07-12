@@ -16,11 +16,8 @@ namespace GameWish.Game
         public int level;
         public int curExp;
         public int starLevel;
-<<<<<<< HEAD
         public bool isSmuggling;
-=======
         public ManagementRoleState managementState;
->>>>>>> origin/lmm
         public Dictionary<EquipmentType, RoleEquipData> equipDic;
         public List<RoleSkillData> skillList;
 
