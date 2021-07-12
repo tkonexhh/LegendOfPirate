@@ -49,27 +49,33 @@ namespace GameWish.Game
         #region Private
         private void BindModelToUI()
         {
-            m_TraPosModel.unlockLevel.SubscribeToTextMeshPro(m_UnlockLevel).AddTo(this);
+            m_TraPosModel.unlockLevel.Select(val => LanguageKeyDefine.FIXED_TITLE_LV + val).SubscribeToTextMeshPro(m_UnlockLevel).AddTo(this);
             m_TraPosModel.trainingCountDown.SubscribeToTextMeshPro(m_Time).AddTo(this);
-            m_TraPosModel.isHaveRole.SubscribeToActive(m_RoleIconBg, m_Plug).ForEach(i=>i.AddTo(this));
+            m_TraPosModel.progressBar.Subscribe(ValueTuple => HandleTimeBar(ValueTuple)).AddTo(this);
+            m_TraPosModel.isHaveRole.SubscribeToActive(m_RoleIconBg, m_Plug).ForEach(i => i.AddTo(this));
             m_TraPosModel.GetTrainingSlotState().Subscribe(val => { HandleTrainingSlotState(val); }).AddTo(this);
+        }
+
+        private void HandleTimeBar(float valueTuple)
+        {
+            m_TimeBar.fillAmount = valueTuple;
         }
 
         private void HandleTrainingSlotState(TrainingSlotState val)
         {
             OnReset();
             switch (val)
-                {
-                    case TrainingSlotState.Free:
-                        m_Plug.gameObject.SetActive(true);
-                        break;
-                    case TrainingSlotState.Training:
-                        m_RoleIconBg.gameObject.SetActive(true);
-                        break;
-                    case TrainingSlotState.Locked:
-                        m_LockBg.gameObject.SetActive(true);
-                        break;
-                }
+            {
+                case TrainingSlotState.Free:
+                    m_Plug.gameObject.SetActive(true);
+                    break;
+                case TrainingSlotState.Training:
+                    m_RoleIconBg.gameObject.SetActive(true);
+                    break;
+                case TrainingSlotState.Locked:
+                    m_LockBg.gameObject.SetActive(true);
+                    break;
+            }
         }
         #endregion
         #endregion

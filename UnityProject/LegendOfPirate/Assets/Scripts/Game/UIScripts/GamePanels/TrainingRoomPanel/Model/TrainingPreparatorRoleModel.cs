@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using Qarth;
-
+using System;
 
 namespace GameWish.Game
 {
@@ -17,6 +17,9 @@ namespace GameWish.Game
         private TrainingPreparatorRole m_TrainingPreparatorRole;
 
         private ReactiveProperty<TrainingSlotModel> m_TrainingSlotModel = new ReactiveProperty<TrainingSlotModel>(null);
+
+        private IDisposable m_EmptyDis;
+        private IDisposable m_TrainingStateDis;
 
         public IReadOnlyReactiveProperty<bool> IsEmpty;
         public TrainingRoomModel TrainingRoomModel { get { return m_TrainingRoomModel; } }
@@ -32,19 +35,80 @@ namespace GameWish.Game
             m_TrainingSlotModel.Value = m_TrainingRoomModel.GetSlotModelByRoleID(m_RoleModel.id);
 
             IsEmpty = m_TrainingSlotModel.Select(val => val == null).ToReactiveProperty();
+
+            m_EmptyDis = IsEmpty.Subscribe(val => HandleTrainingStateBind(val));
         }
 
+        ~TrainingPreparatorRoleModel()
+        {
+            m_EmptyDis?.Dispose();
+        }
+
+        public void RefreshTrainingSlotModel()
+        {
+            m_TrainingSlotModel.Value = m_TrainingRoomModel.GetSlotModelByRoleID(m_RoleModel.id);
+        }
+
+        /// <summary>
+        /// 处理TrainingState的绑定
+        /// </summary>
+        /// <param name="val"></param>
+        private void HandleTrainingStateBind(bool val)
+        {
+            if (!val)
+                m_TrainingStateDis = TrainingSlotModel.trainState.Subscribe(state => HandleTrainState(state));
+            else
+                m_TrainingStateDis?.Dispose();
+        }
+
+        /// <summary>
+        /// 处理变为空闲时
+        /// </summary>
+        /// <param name="state"></param>
+        private void HandleTrainState(TrainingSlotState state)
+        {
+            if (state == TrainingSlotState.Free && TrainingSlotModel.heroId.Value == -1)
+            {
+                m_TrainingPreparatorRole.SetPrepRoleState(true);
+                BindSoltAndRole();
+            }
+        }
+
+        /// <summary>
+        /// 设置数据
+        /// </summary>
+        /// <param name="prepRole"></param>
         public void SetPrepRoleData(TrainingPreparatorRole prepRole)
         {
             this.m_TrainingPreparatorRole = prepRole;
         }
 
+        /// <summary>
+        /// 给role绑定slot数据
+        /// </summary>
+        /// <param name="trainingSlotModel"></param>
         public void BindSoltAndRole(TrainingSlotModel trainingSlotModel = null)
         {
             m_TrainingSlotModel.Value = trainingSlotModel;
         }
-     
 
+        /// <summary>
+        /// 取消选择状态
+        /// </summary>
+        public void CancelSelectedState()
+        {
+            if (!IsEmpty.Value)
+            {
+                TrainingRoomPanel.ReduceSelectedCount();
+                if (TrainingSlotModel.IsTraining())
+                    m_TrainingPreparatorRole.SetPrepRoleState(false);
+            }
+        }
+
+        /// <summary>
+        /// 获得角色ID
+        /// </summary>
+        /// <returns></returns>
         public int GetRoleID()
         {
             return m_RoleModel.id;

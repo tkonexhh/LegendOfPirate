@@ -48,6 +48,8 @@ namespace GameWish.Game
                     roleModels.Add(item);
                 }
             }
+            if (roleModels.Count == 0)
+                FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.COMMON_CONT_Ⅰ);
             return roleModels;
         }
 

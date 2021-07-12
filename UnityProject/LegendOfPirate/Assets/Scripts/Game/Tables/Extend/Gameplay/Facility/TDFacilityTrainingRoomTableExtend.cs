@@ -26,6 +26,11 @@ namespace GameWish.Game
                 tdData.upgradePreconditions, tdData.modelResources, tdData.capacity, tdData.experience, tdData.trainingSpeed);
         }
 
+        public static int GetMaxLevel()
+        {
+            return trainingRoomUnitProperties[trainingRoomUnitProperties.Length - 1].baseProperty.level;
+        }
+
         public static TrainingRoomUnitConfig GetConfig(int level)
         {
             if (level > trainingRoomUnitProperties.Length)

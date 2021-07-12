@@ -15,6 +15,8 @@ namespace GameWish.Game
         public const string Fixed_Title_Auto= "Fixed_Title_Auto";
 
         public const string COMMON_SAW_ADV= "看了一个广告";
+        public const string COMMON_CONT_Ⅰ= "There are no idle roles";
+        public const string COMMON_CONT_Ⅱ= "The level has reached the maximum";
 
         public const string MONTH_JANUARY = "January";
         public const string MONTH_FEBRUSRY = "February";
@@ -37,8 +39,8 @@ namespace GameWish.Game
 
         #region TrainingRoom
         public const string Fixed_Title_TrainingRoom = "Fixed_Title_TrainingRoom";
-        public const string TRAININGROOM_CONT_1 = "There is no free space";
-        public const string TRAININGROOM_CONT_2 = "Please select training role";
+        public const string TRAININGROOM_CONT_Ⅰ = "There is no free space";
+        public const string TRAININGROOM_CONT_Ⅱ = "Please select training role";
         #endregion
 
         #region InternalPurchase
