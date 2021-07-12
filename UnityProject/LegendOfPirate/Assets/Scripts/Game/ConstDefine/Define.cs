@@ -13,7 +13,8 @@ namespace GameWish.Game
         public const int DEFAULT_DIAMOND_NUM = 0;
         public const int DEFAULT_TIP_NUM = 5;
         public const int REFRESH_TIME_POINT = 6;
-        public const int NUMBER_ZERO = 0;
+        public const int INT_NUMBER_ZERO = 0;
+        public const string STRING_NUMBER_ZERO = "0";
 
         public const string DEFAULT_SOUND = "";
         public const string SYMBOL_SLASH = "/";

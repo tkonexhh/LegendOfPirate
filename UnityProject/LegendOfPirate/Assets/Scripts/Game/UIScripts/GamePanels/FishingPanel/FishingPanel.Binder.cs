@@ -37,7 +37,7 @@ namespace GameWish.Game
 		
 		private void BindModelToUI()
 		{
-			m_PanelData.roleGroupModel.roleItemList.ObserveCountChanged().Subscribe(count_=> OnRoleListChange()).AddTo(this);
+			m_PanelData.roleGroupModel.m_RoleItemList.ObserveCountChanged().Subscribe(count_=> OnRoleListChange()).AddTo(this);
 			m_PanelData.chooseRoleCount = new ReactiveProperty<int>();
 			m_PanelData.chooseRoleCount.Where(count=>count<=3).AsObservable().Subscribe(count => RoleCount.text = string.Format("{0}/3", count)).AddTo(this);
 			m_PanelData.fishingPlantfromModel.level.AsObservable().SubscribeToTextMeshPro(BuildingLevel,"Lv.{0}").AddTo(this); 
@@ -65,8 +65,8 @@ namespace GameWish.Game
 		}
 		private void SetRoleListUI() 
 		{
-			Content.SetWidth(Role_Tamp.GetComponent<RectTransform>().GetWidth() * m_PanelData.roleGroupModel.roleItemList.Count + 15f);
-			foreach (var item in m_PanelData.roleGroupModel.roleItemList) 
+			Content.SetWidth(Role_Tamp.GetComponent<RectTransform>().GetWidth() * m_PanelData.roleGroupModel.m_RoleItemList.Count + 15f);
+			foreach (var item in m_PanelData.roleGroupModel.m_RoleItemList) 
 			{
 				var copobj = Instantiate(Role_Tamp);
 				copobj.GetComponentInChildren<Image>().sprite = SpriteLoader.S.GetSpriteByName(item.resName);

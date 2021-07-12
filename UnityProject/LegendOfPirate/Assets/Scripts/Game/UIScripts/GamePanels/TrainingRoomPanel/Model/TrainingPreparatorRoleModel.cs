@@ -11,30 +11,44 @@ namespace GameWish.Game
 {
     public class TrainingPreparatorRoleModel
     {
-        public int roleID;
-        public BoolReactiveProperty isSelected;
-        public TrainingSlotModel trainingSlotModel;
-        public TrainingPreparatorRole traPrepRole;
-        public TrainingRoomPanel trainingRoomPanel;
+        private RoleModel m_RoleModel;
+        private TrainingRoomPanel m_TrainingRoomPanel;
+        private TrainingRoomModel m_TrainingRoomModel;
+        private TrainingPreparatorRole m_TrainingPreparatorRole;
 
-        public TrainingPreparatorRoleModel(TrainingSlotModel trainingSlotModel, TrainingRoomPanel trainingRoomPanel, bool selected)
+        private ReactiveProperty<TrainingSlotModel> m_TrainingSlotModel = new ReactiveProperty<TrainingSlotModel>(null);
+
+        public IReadOnlyReactiveProperty<bool> IsEmpty;
+        public TrainingRoomModel TrainingRoomModel { get { return m_TrainingRoomModel; } }
+        public TrainingSlotModel TrainingSlotModel { get { return m_TrainingSlotModel.Value; } }
+        public TrainingRoomPanel TrainingRoomPanel { get { return m_TrainingRoomPanel; } }
+        public TrainingPreparatorRole TrainingPreparatorRole { get { return m_TrainingPreparatorRole; } }
+        #region Public
+        public TrainingPreparatorRoleModel(RoleModel roleModel, TrainingRoomModel trainingRoomModel, TrainingRoomPanel trainingRoomPanel)
         {
-            this.trainingSlotModel = trainingSlotModel;
-            this.trainingRoomPanel = trainingRoomPanel;
-            this.isSelected = new BoolReactiveProperty(selected);
+            this.m_RoleModel = roleModel;
+            this.m_TrainingRoomPanel = trainingRoomPanel;
+            this.m_TrainingRoomModel = trainingRoomModel;
+            m_TrainingSlotModel.Value = m_TrainingRoomModel.GetSlotModelByRoleID(m_RoleModel.id);
+
+            IsEmpty = m_TrainingSlotModel.Select(val => val == null).ToReactiveProperty();
         }
-        public TrainingPreparatorRoleModel(int roleID, TrainingRoomPanel trainingRoomPanel, bool selected)
-        {
-            this.roleID = roleID;
-            this.trainingRoomPanel = trainingRoomPanel;
-            this.isSelected = new BoolReactiveProperty(selected);
-        }
+
         public void SetPrepRoleData(TrainingPreparatorRole prepRole)
         {
-            this.traPrepRole = prepRole;
+            this.m_TrainingPreparatorRole = prepRole;
         }
 
-      
-    }
+        public void BindSoltAndRole(TrainingSlotModel trainingSlotModel = null)
+        {
+            m_TrainingSlotModel.Value = trainingSlotModel;
+        }
+     
 
+        public int GetRoleID()
+        {
+            return m_RoleModel.id;
+        }
+        #endregion
+    }
 }

@@ -1,8 +1,10 @@
 using Qarth;
 using System;
+using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace GameWish.Game
 {
@@ -12,76 +14,86 @@ namespace GameWish.Game
         private Button m_PrepRole;
         [SerializeField]
         private Image m_Icon;
-        [SerializeField]
-        private Image m_State;
 
         #region Data
         private TrainingPreparatorRoleModel m_PrepRoleModel;
-        private IDisposable m_ImgStateSub;
-        private IDisposable m_TrainStateSub;
+        private List<IDisposable> m_Disposables = new List<IDisposable>();
+        private Vector2 m_DefaultSizeDelta;
+        private RectTransform m_Rect;
         #endregion
 
         public void OnRefresh(TrainingPreparatorRoleModel traPrepRoleModel)
         {
             OnReset();
-            if (traPrepRoleModel == null)
-            {
-                Debug.LogWarning("bottomTrainingRoleData is null");
-                return;
-            }
+
             m_PrepRoleModel = traPrepRoleModel;
+
             BindModelToUI();
         }
         private void BindModelToUI()
         {
-            m_PrepRole.OnClickAsObservable().Subscribe(_ =>
-            {
-                EventSystem.S.Send(EventID.OnTrainingSelectRole, m_PrepRoleModel);
-            }).AddTo(this);
+            IDisposable prepRole = m_PrepRole.OnClickAsObservable().Subscribe(_ => { HandleSelectedRole(); }).AddTo(this);
 
-            m_ImgStateSub = m_PrepRoleModel.isSelected.Subscribe(val =>
-            {
-                m_State.gameObject.SetActive(val);
-            }).AddTo(this);
-
-            BindTraState();
+            m_Disposables.Add(prepRole);
         }
-        #region IItemCom
+        #region Public
         public void OnReset()
         {
-            m_TrainStateSub?.Dispose();
-            m_ImgStateSub?.Dispose();
-            m_PrepRole.onClick.RemoveAllListeners();
-            m_State.gameObject.SetActive(false);
+            m_Rect = transform as RectTransform;
+            m_DefaultSizeDelta = new Vector2(100,100);
+
+            foreach (var item in m_Disposables)
+                item.Dispose();
+            m_Disposables.Clear();
         }
 
-        public void HandleSelectedRole(bool select, TrainingSlotModel trainingSlotModel = null)
+        public void HandleSelectedRole()
         {
-            m_PrepRoleModel.isSelected.Value = !m_PrepRoleModel.isSelected.Value;
-            m_ImgStateSub?.Dispose();
-            m_PrepRoleModel.trainingSlotModel = trainingSlotModel;
-            if (select)
+            if (m_PrepRoleModel.IsEmpty.Value)
             {
-                BindTraState();
+                TrainingSlotModel trainingSlotModel = m_PrepRoleModel.TrainingRoomModel.GetFreeSlot();
+                if (trainingSlotModel != null)
+                {
+                    Enlarge();
+                    m_PrepRoleModel.BindSoltAndRole(trainingSlotModel);
+                    trainingSlotModel.SetTemporaryRoleID(m_PrepRoleModel.GetRoleID());
+                    m_PrepRoleModel.TrainingRoomPanel.AddSelectedCount();
+                }
+                else
+                    FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_1);
+            }
+            else
+            {
+                Narrow();
+                m_PrepRoleModel.TrainingSlotModel.ClearTemporaryRoleID();
+                m_PrepRoleModel.BindSoltAndRole();
+                m_PrepRoleModel.TrainingRoomPanel.ReduceSelectedCount();
             }
         }
+        #endregion
 
-        private void BindTraState()
+        #region Private
+        private void Enlarge()
         {
-            m_ImgStateSub = m_PrepRoleModel.trainingSlotModel?.trainState.Subscribe(val =>
+            RectTransform rect = transform as RectTransform;
+            rect.sizeDelta = new Vector2(110, 110);//¡Ÿ ±
+
+            //m_PrepRoleModel.TrainingRoomPanel.AdjustViewportSize();
+        }
+
+        private void Narrow()
+        {
+            RectTransform rect = transform as RectTransform;
+            rect.sizeDelta = new Vector2(100,100);//¡Ÿ ±
+        }
+
+        private void OnDestroy()
+        {
+            if (!m_PrepRoleModel.IsEmpty.Value)
             {
-                switch (val)
-                {
-                    case TrainingSlotState.Free:
-                        m_PrepRole.enabled = true;
-                        m_State.gameObject.SetActive(false);
-                        break;
-                    case TrainingSlotState.Training:
-                        m_PrepRole.enabled = false;
-                        m_State.gameObject.SetActive(true);
-                        break;
-                }
-            }).AddTo(this);
+                m_PrepRoleModel.TrainingSlotModel.ClearTemporaryRoleID();
+                m_PrepRoleModel.BindSoltAndRole();
+            }
         }
         #endregion
     }

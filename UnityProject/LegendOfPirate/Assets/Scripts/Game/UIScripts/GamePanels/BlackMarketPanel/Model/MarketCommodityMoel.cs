@@ -55,7 +55,7 @@ namespace GameWish.Game
 
             ModelMgr.S.GetModel<BlackMarketModel>().PurchaseCommodity(commodityDBData.commodityID, number);
 
-            commoditySurplus.Value = Mathf.Max(Define.NUMBER_ZERO, commoditySurplus.Value - number);
+            commoditySurplus.Value = Mathf.Max(Define.INT_NUMBER_ZERO, commoditySurplus.Value - number);
         }
 
         public void SetDataModel(BlackMarketCommodity blackMarketCommodity)

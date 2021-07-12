@@ -10,41 +10,37 @@ namespace GameWish.Game
     {
         public List<TrainingSlotData> trainingItemList = new List<TrainingSlotData>();
 
+        #region IDataClass
+        public void SetDefaultValue()
+        {
+            SetDataDirty();
+
+            //TODO 暂时使用
+            GameDataMgr.S.SaveDataToLocal();
+        }
+
         public override void InitWithEmptyData()
         {
-            for (int i = 1; i <= Define.TRAINING_ROOM_MAX_SLOT; i++)
-            {
-                TrainingSlotData item = new TrainingSlotData(i);
-                trainingItemList.Add(item);
-            }
         }
 
         public override void OnDataLoadFinish()
         {
-            //for (int i = 0; i < trainingItemList.Count; i++)
-            //{
-            //    trainingItemList[i].SetTrainingData(this);
-            //}
+         
         }
+        #endregion
+        #region Public
+        public void AddTrainingSlotData(TrainingSlotData trainingSlotData)
+        {
+            if (!trainingItemList.Any(i => i.slotId == trainingSlotData.slotId))
+                trainingItemList.Add(trainingSlotData);
+            else
+                Log.e("SortId is exit , SortId = " + trainingSlotData.slotId);
 
-        //public void StartTrainingHero(int slotId, int heroId, DateTime time)
-        //{
-        //    TrainingDataItem? item = GetTrainDataItem(slotId);
-        //    if (item != null)
-        //    {
-        //        item.Value.OnStartTraining(heroId, time);
-        //    }
-        //}
+            SetDefaultValue();
+        }
+        #endregion
 
-        //public void EndTrainingHero(int slotId)
-        //{
-        //    TrainingDataItem? item = GetTrainDataItem(slotId);
-        //    if (item != null)
-        //    {
-        //        item.Value.OnEndTraining();
-        //    }
-        //}
-
+        #region Private
         private TrainingSlotData GetTrainDataItem(int slotId)
         {
             TrainingSlotData item = trainingItemList.FirstOrDefault(i => i.slotId == slotId);
@@ -55,7 +51,7 @@ namespace GameWish.Game
 
             return item;
         }
-
+        #endregion
 
         [Serializable]
         public class TrainingSlotData
@@ -87,21 +83,6 @@ namespace GameWish.Game
                 SetDataDirty();
             }
 
-            public void OnHeroSelected(int heroId)
-            {
-                this.heroId = heroId;
-                trainState = TrainingSlotState.HeroSelected;
-
-                SetDataDirty();
-            }
-
-            public void OnHeroUnselected()
-            {
-                trainState = TrainingSlotState.Free;
-
-                SetDataDirty();
-            }
-
             public void OnEndTraining()
             {
                 this.heroId = -1;
@@ -125,7 +106,8 @@ namespace GameWish.Game
                 {
                     m_TrainingData = GameDataMgr.S.GetData<TrainingData>();
                 }
-                m_TrainingData.SetDataDirty();
+
+                m_TrainingData.SetDefaultValue();
             }
         }
     }

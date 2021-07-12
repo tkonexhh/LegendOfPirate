@@ -37,6 +37,8 @@ namespace GameWish.Game
 
         #region TrainingRoom
         public const string Fixed_Title_TrainingRoom = "Fixed_Title_TrainingRoom";
+        public const string TRAININGROOM_CONT_1 = "There is no free space";
+        public const string TRAININGROOM_CONT_2 = "Please select training role";
         #endregion
 
         #region InternalPurchase

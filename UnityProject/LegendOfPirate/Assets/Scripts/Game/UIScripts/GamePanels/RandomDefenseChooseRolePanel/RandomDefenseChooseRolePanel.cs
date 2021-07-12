@@ -139,7 +139,7 @@ namespace GameWish.Game
         #region Other Method
         private void InitData()
 		{
-			m_SelectedRoles = m_PanelData.roleGroupModel.roleUnlockedItemList;
+			m_SelectedRoles = m_PanelData.roleGroupModel.m_RoleUnlockedItemList;
 			m_RandomDefenseChooseRoleUGridList.SetCellRenderer(OnBottomCellRenderer);
 
 			m_RandomDefenseChooseRoleUGridList.SetDataCount(m_SelectedRoles.Count);

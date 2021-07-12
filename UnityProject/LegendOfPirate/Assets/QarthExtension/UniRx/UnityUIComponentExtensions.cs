@@ -9,47 +9,87 @@ using System;
 
 namespace UniRx
 {
-	public static partial class UnityUIComponentExtensions
-	{
-		/// <summary>
-		/// 正向绑定active 
-		/// </summary>
-		/// <param name="source"></param>
-		/// <param name="obj"></param>
-		/// <returns></returns>
-		public static IDisposable SubscribeToPositiveActive(this IObservable<bool> source, Component obj)
-		{
-			return source.SubscribeWithState(obj.gameObject, (x, s) => s.SetActive(x));
-		}
+    public static partial class UnityUIComponentExtensions
+    {
+        /// <summary>
+        /// 对第一个变量正向绑定
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="obj1"></param>
+        /// <param name="obj2"></param>
+        /// <returns></returns>
+        public static List<IDisposable> SubscribeToActive(this IObservable<bool> source, GameObject obj1, GameObject obj2)
+        {
+            List<IDisposable> disposables = new List<IDisposable>();
+            disposables.Add(SubscribeToPositiveActive(source, obj1));
+            disposables.Add(SubscribeToNegativeActive(source, obj2));
+            return disposables;
+        }
 
-		public static IDisposable SubscribeToPositiveActive(this IObservable<bool> source, GameObject obj)
-		{
-			return source.SubscribeWithState(obj, (x, s) => s.SetActive(x));
-		}
+        public static List<IDisposable> SubscribeToActive(this IObservable<bool> source, Component obj1, Component obj2)
+        {
+            List<IDisposable> disposables = new List<IDisposable>();
+            disposables.Add(SubscribeToPositiveActive(source, obj1));
+            disposables.Add(SubscribeToNegativeActive(source, obj2));
+            return disposables;
+        }
 
-		/// <summary>
-		/// 反向绑定active 
-		/// </summary>
-		/// <param name="source"></param>
-		/// <param name="obj"></param>
-		/// <returns></returns>
-		public static IDisposable SubscribeToNegativeActive(this IObservable<bool> source, Component obj)
-		{
-			return source.SubscribeWithState(obj.gameObject, (x, s) => s.SetActive(!x));
-		}
+        /// <summary>
+        /// 正向绑定active 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static IDisposable SubscribeToPositiveActive(this IObservable<bool> source, Component obj)
+        {
+            return source.SubscribeWithState(obj.gameObject, (x, s) => s.SetActive(x));
+        }
 
-		public static IDisposable SubscribeToNegativeActive(this IObservable<bool> source, GameObject obj)
-		{
-			return source.SubscribeWithState(obj, (x, s) => s.SetActive(!x));
-		}
+        public static IDisposable SubscribeToPositiveActive(this IObservable<bool> source, GameObject obj)
+        {
+            return source.SubscribeWithState(obj, (x, s) => s.SetActive(x));
+        }
 
-		public static IDisposable SubscribeToPositiveInteractable(this IObservable<bool> source, Selectable selectable)
-		{
-			return source.SubscribeWithState(selectable, (x, s) => s.interactable = x);
-		}
-		public static IDisposable SubscribeToNegativeInteractable(this IObservable<bool> source, Selectable selectable)
-		{
-			return source.SubscribeWithState(selectable, (x, s) => s.interactable = !x);
-		}
-	}
+        /// <summary>
+        /// 反向绑定active 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static IDisposable SubscribeToNegativeActive(this IObservable<bool> source, Component obj)
+        {
+            return source.SubscribeWithState(obj.gameObject, (x, s) => s.SetActive(!x));
+        }
+
+        public static IDisposable SubscribeToNegativeActive(this IObservable<bool> source, GameObject obj)
+        {
+            return source.SubscribeWithState(obj, (x, s) => s.SetActive(!x));
+        }
+
+        public static IDisposable SubscribeToPositiveInteractable(this IObservable<bool> source, Selectable selectable)
+        {
+            return source.SubscribeWithState(selectable, (x, s) => s.interactable = x);
+        }
+
+        public static IDisposable SubscribeToNegativeInteractable(this IObservable<bool> source, Selectable selectable)
+        {
+            return source.SubscribeWithState(selectable, (x, s) => s.interactable = !x);
+        }
+
+        /// <summary>
+        /// 绑定带颜色得TMP
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="color"></param>
+        /// <param name="text"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
+        public static IDisposable SubscribeToColorTextMeshPro<T>(this IObservable<T> source, TMPro.TextMeshProUGUI text, string color, string format = "{0}")
+        {
+            if (!text.richText)
+                text.richText = true;
+            return source.SubscribeWithState(text, (x, t) => t.text = string.Format("<color=" + color + ">" + format + "</color>", x));
+        }
+    }
 }

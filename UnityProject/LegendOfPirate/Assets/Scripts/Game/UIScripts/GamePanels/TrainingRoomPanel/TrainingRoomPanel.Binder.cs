@@ -11,6 +11,7 @@ namespace GameWish.Game
     {
         public ShipModel shipModel;
         public TrainingRoomModel trainingRoomModel;
+        public RoleGroupModel roleGroupModel;
         public TrainingRoomPanelData()
         {
 
@@ -40,17 +41,10 @@ namespace GameWish.Game
         {
             m_PanelData = UIPanelData.Allocate<TrainingRoomPanelData>();
 
-            try
-            {
-                m_PanelData.shipModel = ModelMgr.S.GetModel<ShipModel>();
-
-                m_PanelData.trainingRoomModel = m_PanelData.shipModel.GetShipUnitModel(ShipUnitType.TrainingRoom) as TrainingRoomModel;
-           
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("e = " + e);
-            }
+            m_PanelData.shipModel = ModelMgr.S.GetModel<ShipModel>();
+            m_PanelData.roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
+            m_PanelData.trainingRoomModel = m_PanelData.shipModel.GetShipUnitModel(ShipUnitType.TrainingRoom) as TrainingRoomModel;
+            RolesZeroState = m_SelectedCount.Select(val => val <= 0).ToReactiveProperty();
         }
 
         private void ReleasePanelData()
@@ -60,45 +54,17 @@ namespace GameWish.Game
 
         private void BindModelToUI()
         {
-            m_SelectedCount
-                .Select(count => count + Define.SYMBOL_SLASH + m_PanelData.GetSlotLCount())
-                .SubscribeToTextMeshPro(RoleSelectNumberTMP);
-
-            m_PanelData.trainingRoomModel
-                       .level
-                       .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.FIXED_TITLE_LV) + level.ToString())
-                       .SubscribeToTextMeshPro(TrainingLevelTMP).AddTo(this);
-
-            foreach (var item in m_PanelData.trainingRoomModel.slotModelList)
-            {
-                item.trainState.Subscribe(_ => RefreshSelectedCount()).AddTo(this);
-            }
+            m_PanelData.trainingRoomModel.level.SubscribeToColorTextMeshPro(m_TrainingLevelTMP, ColorDefine.LEVEL_COLOR).AddTo(this);
+            RolesZeroState.SubscribeToPositiveActive(m_AutoSelectBtn).AddTo(this);
+            RolesZeroState.SubscribeToNegativeActive(m_SelectRoleState).AddTo(this);
         }
 
         private void BindUIToModel()
         {
-            TrainingUpgradeBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                m_PanelData.trainingRoomModel.OnLevelUpgrade(1);
-
-            }).AddTo(this);
-
-            AutoTrainBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-
-            }).AddTo(this);
-
-            TrainBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                foreach (var item in m_TraPosDatas)
-                {
-                    if (item.trainingSlotModel.trainState.Value == TrainingSlotState.HeroSelected)
-                    {
-                        item.trainingSlotModel.StartTraining(DateTime.Now);
-                        SelectedRoleSort();
-                    }
-                }
-            }).AddTo(this);
+            m_RoleAutoSelectBtn.OnClickAsObservable().Subscribe(_ => AutoSelectBtn()).AddTo(this);
+            m_RraintBtn.OnClickAsObservable().Subscribe(_ => RraintBtn()).AddTo(this);
+            m_AutoSelectBtn.OnClickAsObservable().Subscribe(_ => AutoSelectBtn()).AddTo(this);
+            m_TrainingUpgradeBtn.OnClickAsObservable().Subscribe(_ => TrainingUpgradeBtn()).AddTo(this);
         }
     }
 }

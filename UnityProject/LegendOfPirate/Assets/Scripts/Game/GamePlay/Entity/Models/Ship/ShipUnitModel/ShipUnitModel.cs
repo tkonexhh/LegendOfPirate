@@ -17,10 +17,11 @@ namespace GameWish.Game
             level = new IntReactiveProperty(shipUnitData.level);
         }
 
-        public virtual void OnLevelUpgrade(int delta)
+        public virtual void OnLevelUpgrade(int delta = 1)
         {
             if (delta == 0)
                 return;
+            //TODO 最大等级待定
             if (level.Value+delta<=Define.TRAINING_ROOM_MAX_LEVEL)
             {
                 level.Value += delta;

@@ -9,6 +9,8 @@ namespace GameWish.Game
 {
     public partial class TDFacilityTrainingRoomTable
     {
+        public static TrainingRoomUnitConfig[] trainingRoomUnitProperties = null;
+
         static void CompleteRowAdd(TDFacilityTrainingRoom tdData, int rowCount)
         {
             if (trainingRoomUnitProperties == null)
@@ -23,8 +25,6 @@ namespace GameWish.Game
             trainingRoomUnitProperties[level - 1] = new TrainingRoomUnitConfig(tdData.level, tdData.upgradeRes, tdData.upgradeCost,
                 tdData.upgradePreconditions, tdData.modelResources, tdData.capacity, tdData.experience, tdData.trainingSpeed);
         }
-
-        public static TrainingRoomUnitConfig[] trainingRoomUnitProperties = null;
 
         public static TrainingRoomUnitConfig GetConfig(int level)
         {

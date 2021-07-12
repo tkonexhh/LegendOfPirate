@@ -15,7 +15,7 @@ namespace GameWish.Game
 
 		public ReactiveCollection<RoleModel> GetRoleUnlockedItemList()
 		{
-			return roleGroupModel.roleUnlockedItemList;
+			return roleGroupModel.m_RoleUnlockedItemList;
 		}
 			
 	}

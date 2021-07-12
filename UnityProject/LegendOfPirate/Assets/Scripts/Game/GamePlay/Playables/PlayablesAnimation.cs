@@ -63,12 +63,12 @@ namespace GameWish.Game
             // currentPlayable.GetAnimationClip().isLooping
             //当前如果不是循环动画，播放完成了的话
 
-            if (!currentPlayable.GetAnimationClip().isLooping && currentPlayable.GetTime() >= currentPlayable.GetAnimationClip().length)
-            {
+            //if (!currentPlayable.GetAnimationClip().isLooping && currentPlayable.GetTime() >= currentPlayable.GetAnimationClip().length)
+            //{
 
-                if (onAnimComplete != null)
-                    onAnimComplete();
-            }
+            //    if (onAnimComplete != null)
+            //        onAnimComplete();
+            //}
             // Debug.LogError(currentPlayable;
         }
 
