@@ -10,9 +10,11 @@ namespace GameWish.Game
     [ModelAutoRegister]
     public class RoleGroupModel : DbModel
     {
-        public ReactiveCollection<RoleModel> roleItemList = new ReactiveCollection<RoleModel>();
-        public ReactiveCollection<RoleModel> roleUnlockedItemList = new ReactiveCollection<RoleModel>();
+        public ReactiveCollection<RoleModel> m_RoleItemList = new ReactiveCollection<RoleModel>();
+        public ReactiveCollection<RoleModel> m_RoleUnlockedItemList = new ReactiveCollection<RoleModel>();
         RoleGroupData roleGroupData;
+
+        public ReactiveCollection<RoleModel> RoleUnlockedItemList { get { return m_RoleUnlockedItemList; } }
 
         protected override void LoadDataFromDb()
         {
@@ -20,33 +22,77 @@ namespace GameWish.Game
             foreach (var item in roleGroupData.roleList)
             {
                 RoleModel itemModel = new RoleModel(item.id);
-                roleItemList.Add(itemModel);
+                m_RoleItemList.Add(itemModel);
 
                 if (itemModel.isLocked.Value)
                 {
-                    if (roleUnlockedItemList.Any(i => i.id == itemModel.id))
+                    if (m_RoleUnlockedItemList.Any(i => i.id == itemModel.id))
                         return;
-                    roleUnlockedItemList.Add(itemModel);
+                    m_RoleUnlockedItemList.Add(itemModel);
                 }
             }
         }
 
+        /// <summary>
+        /// 根据经营状态获取角色
+        /// </summary>
+        /// <param name="managementRoleState"></param>
+        /// <returns></returns>
+        public List<RoleModel> GetRolesByManagementState(ManagementRoleState managementRoleState = ManagementRoleState.None)
+        {
+            List<RoleModel> roleModels = new List<RoleModel>();
+            foreach (var item in m_RoleUnlockedItemList)
+            {
+                if (item.managementState == managementRoleState)
+                {
+                    roleModels.Add(item);
+                }
+            }
+            return roleModels;
+        }
+
         public List<RoleModel> GetRoleModelsByStarlevel(int startLevel)
         {
-            var ret = roleItemList.Where(role => role.starLevel.Value == startLevel).ToList();
+            var ret = m_RoleItemList.Where(role => role.starLevel.Value == startLevel).ToList();
             return ret;
         }
 
         public RoleModel GetRoleModel(int id)
         {
-            RoleModel role = roleItemList.FirstOrDefault(i => i.id == id);
+            RoleModel role = m_RoleItemList.FirstOrDefault(i => i.id == id);
             return role;
+        }
+
+        public void SetRoleManagementState(int id, ManagementRoleState managementRoleState)
+        {
+            RoleModel roleModel = GetUnlockedRoleModel(id);
+            if (roleModel != null)
+            {
+                roleModel.managementState = managementRoleState;
+                roleGroupData.SetRoleManagementState(id, managementRoleState);
+            }
+            else
+                Log.e("Not find role , id = " + id);
+        }
+
+        public RoleModel GetUnlockedRoleModel(int id)
+        {
+            RoleModel role = m_RoleUnlockedItemList.FirstOrDefault(i => i.id == id);
+            if (role != null)
+            {
+                return role;
+            }
+            else
+            {
+                Log.e("Not find role , id = " + id);
+                return null;
+            }
         }
 
         public int GetRoleIndexById(int id)
         {
             int ret = 0;
-            var roleList = roleItemList.Concat(roleUnlockedList);
+            var roleList = m_RoleItemList.Concat(roleUnlockedList);
             foreach (var item in roleList)
             {
                 if (item.id == id)
@@ -60,12 +106,12 @@ namespace GameWish.Game
 
         public RoleModel GetRoleModelByIndex(int index)
         {
-            return roleItemList.Concat(roleUnlockedList).ToList()[index];
+            return m_RoleItemList.Concat(roleUnlockedList).ToList()[index];
         }
 
         public List<RoleModel> GetRoleModelsByType(RoleType roleType)
         {
-            var rolesList = roleItemList.Concat(roleUnlockedList);
+            var rolesList = m_RoleItemList.Concat(roleUnlockedList);
             return roleUnlockedList.Where(r => r.GetRoleType() == roleType).ToList();
         }
 
@@ -77,25 +123,25 @@ namespace GameWish.Game
         public void AddSpiritRoleModel(int spiritId, int count)
         {
             int roleId = TDRoleConfigTable.GetSpiritIdToRoleId(spiritId);
-            if (roleItemList.Any(item => item.id == roleId))
+            if (m_RoleItemList.Any(item => item.id == roleId))
             {
-                roleItemList.FirstOrDefault(i => i.id == roleId).spiritCount.Value += count;
+                m_RoleItemList.FirstOrDefault(i => i.id == roleId).spiritCount.Value += count;
             }
             else
             {
                 roleGroupData.OnAddRoleItem(roleId);
                 RoleModel itemModel = new RoleModel(roleId);
-                roleItemList.Add(itemModel);
+                m_RoleItemList.Add(itemModel);
                 itemModel.AddSpiritCount(count);
             }
         }
 
         public void SetRoleUnlockedModel(int id)
         {
-            RoleModel role = roleItemList.FirstOrDefault(item => item.id == id);
+            RoleModel role = m_RoleItemList.FirstOrDefault(item => item.id == id);
             if (role.isLocked.Value) return;
             role.isLocked.Value = false;
-            roleUnlockedItemList.Add(role);
+            m_RoleUnlockedItemList.Add(role);
         }
 
 
@@ -107,14 +153,14 @@ namespace GameWish.Game
         /// <returns></returns>
         public List<RoleModel> GetSortRoleItemList()
         {
-            roleUnlockedList = roleUnlockedItemList.ToList();
-            if (roleUnlockedItemList.Count > 1)
+            roleUnlockedList = m_RoleUnlockedItemList.ToList();
+            if (m_RoleUnlockedItemList.Count > 1)
             {
                 roleUnlockedList.OrderBy(item => item.GetStarLevel())
                    .ThenBy(item => item.level);
             }
 
-            roleModelList = roleItemList.Where(i => i.isLocked.Value == false && i.spiritCount.Value != 0).ToList();
+            roleModelList = m_RoleItemList.Where(i => i.isLocked.Value == false && i.spiritCount.Value != 0).ToList();
             //foreach (var item in roleItemList)
             //{
             //    Log.e(string.Format("id,{0}  islocked:{1}    spiritcout{2}", item.id, item.isLocked.Value, item.spiritCount.Value));
@@ -130,19 +176,19 @@ namespace GameWish.Game
         public List<RoleModel> GetSortRoleItemList(int type)
         {
 
-            roleUnlockedList = roleUnlockedItemList.ToList();
-            if (roleUnlockedItemList.Count > 1)
+            roleUnlockedList = m_RoleUnlockedItemList.ToList();
+            if (m_RoleUnlockedItemList.Count > 1)
             {
                 roleUnlockedList.OrderBy(item => item.GetStarLevel())
                    .ThenBy(item => item.level);
             }
             if (type <= 0)
             {
-                roleModelList = roleItemList.Where(i => i.isLocked.Value = true && i.spiritCount.Value != 0).ToList();
+                roleModelList = m_RoleItemList.Where(i => i.isLocked.Value = true && i.spiritCount.Value != 0).ToList();
             }
             else
             {
-                roleModelList = roleItemList.Where(i => i.isLocked.Value = true && i.spiritCount.Value != 0 && (int)i.GetRoleType() == type).ToList();
+                roleModelList = m_RoleItemList.Where(i => i.isLocked.Value = true && i.spiritCount.Value != 0 && (int)i.GetRoleType() == type).ToList();
             }
             //foreach (var item in roleItemList)
             //{

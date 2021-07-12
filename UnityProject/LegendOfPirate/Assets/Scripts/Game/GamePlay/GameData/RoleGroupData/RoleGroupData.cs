@@ -30,7 +30,7 @@ namespace GameWish.Game
 
         #endregion
 
-        #region Public Set
+        #region Public
 
         public void OnAddRoleItem(int id)
         {
@@ -44,6 +44,31 @@ namespace GameWish.Game
 
                 SetDataDirty();
             }
+        }
+
+        public RoleData GetUnlockedRoleModel(int id)
+        {
+            RoleData role = roleList.FirstOrDefault(i => i.id == id);
+            if (role != null)
+            {
+                return role;
+            }
+            else
+            {
+                Log.e("Not find role , id = " + id);
+                return null;
+            }
+        }
+
+        public void SetRoleManagementState(int id, ManagementRoleState managementRoleState)
+        {
+            RoleData roleModel = GetUnlockedRoleModel(id);
+            if (roleModel != null)
+            {
+                roleModel.managementState = managementRoleState;
+            }
+            else
+                Log.e("Not find role , id = " + id);
         }
 
         public void OnRoleSkillUnlocked(int id)
@@ -70,8 +95,5 @@ namespace GameWish.Game
 
 
         #endregion
-
-
     }
-
 }
