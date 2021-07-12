@@ -86,20 +86,41 @@ namespace GameWish.Game
         private void AutoSelectBtn()
         {
             List<RoleModel> roleModels = ModelMgr.S.GetModel<RoleGroupModel>().GetRolesByManagementState();
+            if (roleModels.Count == 0)
+                return;
             m_PanelData.trainingRoomModel.TrainingRoleGroup(roleModels);
+            foreach (var item in roleModels)
+            {
+                TrainingPreparatorRoleModel training = m_PrepRoleDatas.Where(i => i.GetRoleID() == item.id).FirstOrDefault();
+           
+                training.RefreshTrainingSlotModel();
+            }
+
+            SortRefreshList();
         }  
+
         private void TrainingUpgradeBtn()
         {
             //TODO 比对材料得消耗
-            m_PanelData.trainingRoomModel.OnLevelUpgrade();
+            if (true)
+            {
+                m_PanelData.trainingRoomModel.OnLevelUpgrade();
+            }
         }
 
         private void RraintBtn()
         {
             if (!RolesZeroState.Value)
+            {
                 m_PanelData.trainingRoomModel.StartTraining();
+                foreach (var item in m_PrepRoleDatas)
+                {
+                    item.CancelSelectedState();
+                }
+                SortRefreshList();
+            }
             else
-                FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_2);
+                FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_Ⅱ);
         }
         #endregion
 
@@ -116,6 +137,24 @@ namespace GameWish.Game
         #endregion
 
         #region Private
+
+        private void SortRefreshList()
+        {
+            List<TrainingPreparatorRoleModel> trainRoleModels = new List<TrainingPreparatorRoleModel>();
+            foreach (var item in m_PrepRoleDatas)
+            {
+                if (!item.IsEmpty.Value && item.TrainingSlotModel.IsTraining())
+                {
+                    trainRoleModels.Add(item);
+                }
+            }
+            foreach (var item in trainRoleModels)
+                m_PrepRoleDatas.Remove(item);
+            m_PrepRoleDatas.AddRange(trainRoleModels);
+            trainRoleModels.Clear();
+            m_PrepRoleUList.SetDataCount(m_PrepRoleDatas.Count);
+        }
+
         private void InitData()
         {
             InitTraPosDatas();
@@ -125,6 +164,8 @@ namespace GameWish.Game
             m_PrepRoleUList.SetCellRenderer(OnPropRoleCellRenderer);
 
             //m_ScrollRectAdjustPos.EnableAutoAdjust(m_SimulationRoleID.Count);
+
+            SortRefreshList();
 
             m_TraPosUGList.SetDataCount(m_TraPosDatas.Count);
             m_PrepRoleUList.SetDataCount(m_PrepRoleDatas.Count);

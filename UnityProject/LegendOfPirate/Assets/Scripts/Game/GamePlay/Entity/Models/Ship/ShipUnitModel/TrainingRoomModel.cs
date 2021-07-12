@@ -32,6 +32,7 @@ namespace GameWish.Game
                 }
             }
         }
+
         #endregion
 
         #region public
@@ -43,6 +44,11 @@ namespace GameWish.Game
         public void TrainingRoleGroup(List<RoleModel> roles)
         {
             List<TrainingSlotModel> freeSlots = GetAllFreeSlot();
+            if (freeSlots.Count == 0)
+            {
+                FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_Ⅰ);
+                return;
+            }
             if (freeSlots.Count >= roles.Count)
             {
                 foreach (var item in roles)
@@ -51,7 +57,7 @@ namespace GameWish.Game
                     if (trainingSlotModel != null)
                         trainingSlotModel.StartTraining(item.id);
                     else
-                        FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_1);
+                        FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_Ⅰ);
                 }
             }
             else
@@ -241,6 +247,11 @@ namespace GameWish.Game
 
         #region Public Public
 
+        public bool IsTraining()
+        {
+            return trainState.Value == TrainingSlotState.Training;
+        }
+
         /// <summary>
         /// 是否空闲
         /// </summary>
@@ -357,6 +368,11 @@ namespace GameWish.Game
             trainState.Value = TrainingSlotState.Free;
 
             m_DbItem.OnUnlocked();
+        }
+
+        public int GetTotalTime()
+        {
+            return m_TrainingRoomMode.tableConfig.trainingTime; ;
         }
         #endregion
 

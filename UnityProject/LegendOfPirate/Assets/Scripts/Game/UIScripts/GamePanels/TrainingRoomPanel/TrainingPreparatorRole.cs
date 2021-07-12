@@ -29,25 +29,43 @@ namespace GameWish.Game
             m_PrepRoleModel = traPrepRoleModel;
 
             BindModelToUI();
+
+            if (!m_PrepRoleModel.IsEmpty.Value && m_PrepRoleModel.TrainingSlotModel.IsTraining())
+            {
+                SetPrepRoleState(false);
+            }
         }
+
         private void BindModelToUI()
         {
             IDisposable prepRole = m_PrepRole.OnClickAsObservable().Subscribe(_ => { HandleSelectedRole(); }).AddTo(this);
 
             m_Disposables.Add(prepRole);
         }
+
         #region Public
-        public void OnReset()
+        public void SetPrepRoleState(bool val)
+        {
+            m_PrepRole.interactable = val;
+            if (!val)
+                Narrow();
+        }
+
+        #endregion
+
+        #region Private
+        private void OnReset()
         {
             m_Rect = transform as RectTransform;
-            m_DefaultSizeDelta = new Vector2(100,100);
-
+            m_DefaultSizeDelta = new Vector2(100, 100);
+            SetPrepRoleState(true);
+            Narrow();
             foreach (var item in m_Disposables)
                 item.Dispose();
             m_Disposables.Clear();
         }
 
-        public void HandleSelectedRole()
+        private void HandleSelectedRole()
         {
             if (m_PrepRoleModel.IsEmpty.Value)
             {
@@ -55,12 +73,12 @@ namespace GameWish.Game
                 if (trainingSlotModel != null)
                 {
                     Enlarge();
-                    m_PrepRoleModel.BindSoltAndRole(trainingSlotModel);
                     trainingSlotModel.SetTemporaryRoleID(m_PrepRoleModel.GetRoleID());
+                    m_PrepRoleModel.BindSoltAndRole(trainingSlotModel);
                     m_PrepRoleModel.TrainingRoomPanel.AddSelectedCount();
                 }
                 else
-                    FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_1);
+                    FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_¢ñ);
             }
             else
             {
@@ -70,9 +88,7 @@ namespace GameWish.Game
                 m_PrepRoleModel.TrainingRoomPanel.ReduceSelectedCount();
             }
         }
-        #endregion
 
-        #region Private
         private void Enlarge()
         {
             RectTransform rect = transform as RectTransform;

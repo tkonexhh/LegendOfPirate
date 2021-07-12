@@ -23,5 +23,9 @@ namespace GameWish.Game
         /// Î´½âËø
         /// </summary>
         Locked = 2,
+        /// <summary>
+        /// Ñ¡ÖÐ×´Ì¬
+        /// </summary>
+        Select = 3,
     }
 }

@@ -10,7 +10,9 @@ namespace GameWish.Game
         public IReadOnlyReactiveProperty<string> trainingCountDown;
         public IReadOnlyReactiveProperty<bool> isHaveRole;
         public IntReactiveProperty unlockLevel;
+        public IReadOnlyReactiveProperty<float> progressBar;
 
+        public TrainingSlotModel TrainingSlotModel { get { return m_TrainingSlotModel; } }
         #region Public
         public TrainingPositionModel(TrainingSlotModel trainingSlotModel)
         {
@@ -19,6 +21,7 @@ namespace GameWish.Game
             trainingCountDown = m_TrainingSlotModel.trainRemainTime.Select(val => CommonMethod.SplicingTime((int)val)).ToReactiveProperty();
             isHaveRole = m_TrainingSlotModel.heroId.Select(val => val != -1).ToReactiveProperty();
             unlockLevel = new IntReactiveProperty(m_TrainingSlotModel.slotIDAndUnlockLevel);
+            progressBar = m_TrainingSlotModel.trainRemainTime.Select(val => val == 0 ? 1 : val / m_TrainingSlotModel.GetTotalTime()).ToReactiveProperty();
         }
 
         public void SetTraPosData(TrainingPosition traPos)
