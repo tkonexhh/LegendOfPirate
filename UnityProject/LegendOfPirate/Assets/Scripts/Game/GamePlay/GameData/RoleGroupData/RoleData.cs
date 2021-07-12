@@ -16,6 +16,7 @@ namespace GameWish.Game
         public int level;
         public int curExp;
         public int starLevel;
+        public ManagementRoleState managementState;
         public Dictionary<EquipmentType, RoleEquipData> equipDic;
         public List<RoleSkillData> skillList;
 
@@ -29,6 +30,7 @@ namespace GameWish.Game
             this.isLocked = false;
             this.level = 1;
             this.spiritCount = 0;
+            this.managementState = ManagementRoleState.None;
 
             this.curExp = 1;
             this.starLevel = 1;
@@ -39,7 +41,6 @@ namespace GameWish.Game
         }
 
         #region Public
-
         public void SetRoleUnlocked()
         {
             isLocked = true;

@@ -26,6 +26,7 @@ namespace GameWish.Game
         public FloatReactiveProperty curAtk;
         public IntReactiveProperty curExp;
         public IntReactiveProperty starLevel;
+        public ManagementRoleState managementState;
         public ReactiveDictionary<EquipmentType, RoleEquipModel> equipDic;
         public ReactiveCollection<RoleSkillModel> skillList;
         public Dictionary<EquipmentType, int> equipLimitDic;
@@ -36,7 +37,6 @@ namespace GameWish.Game
         private RoleData roleData;
 
 
-
         public RoleModel(int roleId)
         {
             #region FormData
@@ -45,7 +45,7 @@ namespace GameWish.Game
             isLocked = new BoolReactiveProperty(roleData.isLocked);
             spiritCount = new IntReactiveProperty(roleData.spiritCount);
             level = new IntReactiveProperty(roleData.level);
-
+            this.managementState = roleData.managementState;
 
             curExp = new IntReactiveProperty(roleData.curExp);
             starLevel = new IntReactiveProperty(roleData.starLevel);
@@ -150,6 +150,12 @@ namespace GameWish.Game
         #endregion
 
         #region Public Set
+
+        public void SetManagementState(ManagementRoleState managementRoleState)
+        {
+            managementState = managementRoleState;
+        }
+
         public void AddSkill(int skillId)
         {
             RoleSkillData skilldata = roleData.AddRoleSkill(skillId);
