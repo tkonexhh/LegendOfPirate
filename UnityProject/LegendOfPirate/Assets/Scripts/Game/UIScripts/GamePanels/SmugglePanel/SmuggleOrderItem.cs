@@ -46,7 +46,7 @@ namespace GameWish.Game
                 m_RoleItemList.Add(item);
             }
 
-            m_OrderId = index;
+            m_OrderId = 1+index;
 
             AddListener();
 

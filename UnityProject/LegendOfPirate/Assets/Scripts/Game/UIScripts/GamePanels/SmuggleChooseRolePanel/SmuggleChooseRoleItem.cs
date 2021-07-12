@@ -30,6 +30,7 @@ namespace GameWish.Game
         private void OnRoleButonClick()
         {
 			m_RoleModel.SelectToSmuggle();
+	
 			m_SmuggleOrderModel.AddRoleModel(m_RoleModel.id);
         }
     }

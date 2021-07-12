@@ -63,6 +63,10 @@ namespace GameWish.Game
                 TDDailySelectionConfigTable.metaData,
                 TDPayShopConfigTable.metaData,
                 #endregion
+                #region Blackregion
+                TDBlackMarketConfigTable.metaData,
+                TDBlackMarketRefreshConfigTable.metaData,
+                #endregion
                 #region Task
                 TDDailyTaskTable.metaData,
                 TDDailyTaskRewardTable.metaData,

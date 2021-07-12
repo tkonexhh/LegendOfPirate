@@ -55,9 +55,9 @@ namespace GameWish.Game
         {
             RoleGroupModel roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
             RoleModel roleModel;
-            for (int i = 0; i < roleGroupModel.m_RoleItemList.Count; i++)
+            for (int i = 0; i < roleGroupModel.roleItemList.Count; i++)
             {
-                roleModel = roleGroupModel.m_RoleItemList[i];
+                roleModel = roleGroupModel.roleItemList[i];
                 ShipRoleController shipRoleController = m_RoleFactory.CreateController(roleModel);
   
                 AddRole(roleModel.id, shipRoleController);

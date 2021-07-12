@@ -30,11 +30,13 @@ namespace GameWish.Game
 
         public static int GetMaxRefreshID()
         {
+            
             return marketRefreshProperties[marketRefreshProperties.Length - 1].id;
         }
 
         public static BlackMarketRefreshConfig GetBlackMarketConfig(int id)
         {
+
             foreach (var item in marketRefreshProperties)
             {
                 if (item.id == id)

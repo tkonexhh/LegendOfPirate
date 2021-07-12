@@ -41,7 +41,11 @@ namespace GameWish.Game
 
         private void RefreshSelectedRole()
         {
-         
+            var RoleItems = m_WarShipSelectedRegion.GetComponentsInChildren<SmuggleSelectRoleItem>();
+            for (int i = 0; i < m_PanelData.orderModel.roleList.Count; i++) 
+            {
+                RoleItems[i].RefreshItem(m_PanelData.orderModel.roleList[i].id);
+            }
         }
 
         private void BindUIToModel()
@@ -49,10 +53,20 @@ namespace GameWish.Game
         }
         private void OnClickAddListener()
         {
-           m_BgBtn.OnClickAsObservable().Subscribe(_ =>
+            InitRoleSelectItem();
+            m_BgBtn.OnClickAsObservable().Subscribe(_ =>
             {
                 ExitBtnEvent();
             });
+        }
+
+        private void InitRoleSelectItem()
+        {
+            var RoleItems = m_WarShipSelectedRegion.GetComponentsInChildren<SmuggleSelectRoleItem>();
+            foreach (var item in RoleItems) 
+            {
+                item.InitItem();
+            }
         }
     }
 }

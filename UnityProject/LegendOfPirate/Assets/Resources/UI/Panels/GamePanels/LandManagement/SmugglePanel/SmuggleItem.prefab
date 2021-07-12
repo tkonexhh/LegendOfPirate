@@ -91,8 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roleAddttion: 0
-  m_RoleImage: {fileID: 0}
-  m_RoleBounsTMP: {fileID: 0}
+  m_RoleImage: {fileID: 2022615883963837137}
+  m_RoleBounsTMP: {fileID: 4862957761077829461}
 --- !u!1 &411019856206979918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,8 +1419,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roleAddttion: 0
-  m_RoleImage: {fileID: 0}
-  m_RoleBounsTMP: {fileID: 0}
+  m_RoleImage: {fileID: 195063156032641006}
+  m_RoleBounsTMP: {fileID: 5834740048493002185}
 --- !u!1 &3936870552734389043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,8 +2132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roleAddttion: 0
-  m_RoleImage: {fileID: 0}
-  m_RoleBounsTMP: {fileID: 0}
+  m_RoleImage: {fileID: 5818676774577869210}
+  m_RoleBounsTMP: {fileID: 8506051646687976393}
 --- !u!1 &4822502600022111578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,8 +2495,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roleAddttion: 0
-  m_RoleImage: {fileID: 0}
-  m_RoleBounsTMP: {fileID: 0}
+  m_RoleImage: {fileID: 8313963654578158872}
+  m_RoleBounsTMP: {fileID: 3449175128137513711}
 --- !u!1 &5451195309057728516
 GameObject:
   m_ObjectHideFlags: 0
@@ -3796,8 +3796,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roleAddttion: 0
-  m_RoleImage: {fileID: 0}
-  m_RoleBounsTMP: {fileID: 0}
+  m_RoleImage: {fileID: 2178317990716193654}
+  m_RoleBounsTMP: {fileID: 5106519817601704308}
 --- !u!1 &9013706790629835924
 GameObject:
   m_ObjectHideFlags: 0

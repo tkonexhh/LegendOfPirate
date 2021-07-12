@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -150,3 +150,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806657279313bd7469381922375cc81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Button: {fileID: 5517480698878043055}
+  m_Image: {fileID: 5412148445895269006}

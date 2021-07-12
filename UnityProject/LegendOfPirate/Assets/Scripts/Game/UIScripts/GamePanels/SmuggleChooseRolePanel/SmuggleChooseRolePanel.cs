@@ -14,6 +14,7 @@ namespace GameWish.Game
 		{
 			base.OnUIInit();
 			AllocatePanelData();
+
 		}
 		
 		protected override void OnPanelOpen(params object[] args)
@@ -47,7 +48,7 @@ namespace GameWish.Game
 
         private void OnRoleListChange(Transform root, int index)
         {
-
+			root.GetComponent<SmuggleChooseRoleItem>().InitItem(index, m_PanelData.orderModel);
         }
 
         protected override void OnPanelHideComplete()

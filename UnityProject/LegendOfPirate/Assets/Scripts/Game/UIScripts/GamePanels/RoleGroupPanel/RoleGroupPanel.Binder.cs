@@ -51,8 +51,8 @@ namespace GameWish.Game
 
         private void BindModelToUI()
         {
-            m_PanelData.roleGroupModel.m_RoleItemList.ObserveCountChanged().Subscribe(count => OnRoleValueChange(count)).AddTo(this);
-            m_PanelData.roleGroupModel.m_RoleUnlockedItemList.ObserveCountChanged().Subscribe(count => OnRoleValueChange(count)).AddTo(this);
+            m_PanelData.roleGroupModel.roleItemList.ObserveCountChanged().Subscribe(count => OnRoleValueChange(count)).AddTo(this);
+            m_PanelData.roleGroupModel.roleUnlockedItemList.ObserveCountChanged().Subscribe(count => OnRoleValueChange(count)).AddTo(this);
         }
 
         private void OnRoleValueChange(int count)

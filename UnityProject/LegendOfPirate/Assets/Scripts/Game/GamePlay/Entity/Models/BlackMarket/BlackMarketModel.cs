@@ -148,13 +148,13 @@ namespace GameWish.Game
         /// <returns></returns>
         private int GetRefreshNeedDiamonds()
         {
-            if (m_BlackMarketData.GetRefreshCount() < TDBlackMarketRefreshConfigTable.GetMaxRefreshID())
-            {
-                BlackMarketRefreshConfig consume = TDBlackMarketRefreshConfigTable.GetBlackMarketConfig(m_BlackMarketData.GetRefreshCount() + 1);
+            //if (m_BlackMarketData.GetRefreshCount() < TDBlackMarketRefreshConfigTable.GetMaxRefreshID())
+            //{
+            //    BlackMarketRefreshConfig consume = TDBlackMarketRefreshConfigTable.GetBlackMarketConfig(m_BlackMarketData.GetRefreshCount() + 1);
 
-                return consume.cost;
-            }
-            //TODO днЪБ
+            //    return consume.cost;
+            //}
+            ////TODO днЪБ
             return 0;
         }
 
