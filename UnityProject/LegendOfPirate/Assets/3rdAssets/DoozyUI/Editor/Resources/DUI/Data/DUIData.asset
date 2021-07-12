@@ -27,8 +27,10 @@ MonoBehaviour:
       - BoostPanel
       - BuildingLevelUpPanel
       - ChargingInterfacePanel
+      - CommoditySellPanel
       - CongratulationPanel
       - DailyTaskPanel
+      - DiamondShortagePanel
       - EffectActivePanel
       - EvolutionSolePanel
       - FishingPanel

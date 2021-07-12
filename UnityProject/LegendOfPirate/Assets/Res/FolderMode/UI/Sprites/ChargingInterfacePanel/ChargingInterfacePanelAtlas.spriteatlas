@@ -57,7 +57,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 01506ac4eb56d064bb1520af5830e28b, type: 3}
   - {fileID: 21300000, guid: 84d55645365d84b489b200831135ce95, type: 3}
   - {fileID: 21300000, guid: 7c84e7751d95bb9499bd4806693d37e0, type: 3}
-  - {fileID: 21300000, guid: 24ceaab52a79f474cad6739a23a93349, type: 3}
   - {fileID: 21300000, guid: 96c40bf5a12e5b448a4a45287cdd3d38, type: 3}
   - {fileID: 21300000, guid: 38cf5236d34e87b4faba5934f72e0f13, type: 3}
   - {fileID: 21300000, guid: 3501c8662fe0cb547bc42c201cafa264, type: 3}
@@ -100,7 +99,6 @@ SpriteAtlas:
   - shop- Background
   - shop-Tagsx2
   - shop-diamonds2
-  - shop-Title4
   - Shop-PurpleFrame
   - shop-Bottom1
   - shop-Title5

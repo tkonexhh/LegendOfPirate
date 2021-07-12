@@ -8,15 +8,16 @@ namespace GameWish.Game
     [ModelAutoRegister]
     public class BattleShipFleetModel : DbModel
     {
+        public IntReactiveProperty UnlockedShipCount=new IntReactiveProperty();
         public List<BattleShipModel> battleShipModels = new List<BattleShipModel>();
         private BattleShipFleetData dbData;
-
+        
         protected override void LoadDataFromDb()
         {
             dbData = GameDataMgr.S.GetData<BattleShipFleetData>();
             foreach (var item in dbData.fleetDataList)
             {
-                battleShipModels.Add(new BattleShipModel(item));
+                battleShipModels.Add(new BattleShipModel(item,this));
             }
         }
 
@@ -50,6 +51,7 @@ namespace GameWish.Game
             }
             return ret;
         }
+
     }
 
     public class BattleShipModel
@@ -58,9 +60,11 @@ namespace GameWish.Game
         public BoolReactiveProperty isLocked;
         private BattleShipData shipData;
         private BattleShipUnitConfig config;
+        private BattleShipFleetModel m_ShipFleetModel;
 
-        public BattleShipModel(BattleShipData shipData)
+        public BattleShipModel(BattleShipData shipData,BattleShipFleetModel battleShipFleetModel)
         {
+            m_ShipFleetModel = battleShipFleetModel;
             this.shipLevel = new IntReactiveProperty(shipData.battleShipLevel);
             this.shipData = shipData;
             this.isLocked = new BoolReactiveProperty(shipData.isLocked);
@@ -120,10 +124,15 @@ namespace GameWish.Game
         {
             isLocked.Subscribe(islock =>
             {
-                if (!islock) shipData.UnlockBattleShip();
+                if (!islock)
+                {
+                    shipData.UnlockBattleShip();
+                    m_ShipFleetModel.UnlockedShipCount.Value++;
+
+                } 
             });
 
-            var shipModel = ModelMgr.S.GetModel<ShipModel>();  
+
         }
 
         #endregion

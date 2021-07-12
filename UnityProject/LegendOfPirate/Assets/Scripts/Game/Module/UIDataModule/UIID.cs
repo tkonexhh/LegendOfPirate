@@ -83,6 +83,8 @@ namespace GameWish.Game
         #endregion
         #region 黑市
         BlackMarketPanel,
+        CommoditySellPanel,
+        DiamondShortagePanel,
         #endregion
 
         //主菜单

@@ -21,8 +21,8 @@ namespace GameWish.Game
 		
 		private void AllocatePanelData(params object[] args)
 		{
-			 m_PanelData = UIPanelData.Allocate<SmugglePanelData>();
-			m_PanelData.smuggleModel = ModelMgr.S.GetModel<SmuggleModel>();
+		    m_PanelData = UIPanelData.Allocate<SmugglePanelData>();
+		 	m_PanelData.smuggleModel = ModelMgr.S.GetModel<SmuggleModel>();
 		}
 		
 		private void ReleasePanelData()
@@ -32,7 +32,7 @@ namespace GameWish.Game
 		
 		private void BindModelToUI()
 		{
-
+	
 		}
 		
 		private void BindUIToModel()

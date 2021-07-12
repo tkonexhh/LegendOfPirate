@@ -54,6 +54,7 @@ namespace GameWish.Game
         {
             UpdateTasksTitle(0, m_PanelData.mainTaskModel.GetCurTaskID());
         }
+
         private void RegisterEvents()
         {
             EventSystem.S.Register(EventID.MainTaskRefresh, UpdateTasksTitle);
@@ -78,7 +79,8 @@ namespace GameWish.Game
         }
         private void OpenChargingInterfacePanel()
         {
-            UIMgr.S.OpenPanel(UIID.ChargingInterfacePanel);
+            //UIMgr.S.OpenPanel(UIID.ChargingInterfacePanel);
+            UIMgr.S.OpenPanel(UIID.BlackMarketPanel);
         }
         private void OpenMainTaskPanel()
         {

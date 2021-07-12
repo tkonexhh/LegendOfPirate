@@ -206,6 +206,7 @@ namespace GameWish.Game
         public void RefreshAllDailyData()
         {
             m_DailyModels.Clear();
+            m_InternalPurchaseData.ClearAllDailyID();
             CreateDailyDBData(DailSelectionType.Adv);
             CreateDailyDBData(DailSelectionType.Daily);
             CreateDailyDBData(DailSelectionType.Daily);
@@ -456,15 +457,21 @@ namespace GameWish.Game
             int id = GetRandomDailyModel();
             if (!m_DailyModels.Any(i => i.id == id))
             {
-                m_DailyModels.Add(new DailyDBData(id, daily));
+                DailyDBData newDaily = new DailyDBData(id, daily);
+                m_DailyModels.Add(newDaily);
+                m_InternalPurchaseData.AddDailyDBData(newDaily);
             }
             else
                 CreateDailyDBData(daily);
         }
 
+        /// <summary>
+        /// 获得随机日常商品
+        /// </summary>
+        /// <returns></returns>
         private int GetRandomDailyModel()
         {
-            int index = UnityEngine.Random.Range(1, TDDailySelectionConfigTable.dailySelectionProperties.Length);
+            int index = UnityEngine.Random.Range(1, TDDailySelectionConfigTable.dailySelectionProperties.Length+1);
 
             return index;
         }

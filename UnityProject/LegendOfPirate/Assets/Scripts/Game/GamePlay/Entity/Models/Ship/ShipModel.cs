@@ -10,7 +10,7 @@ namespace GameWish.Game
     [ModelAutoRegister]
     public class ShipModel : DbModel
 	{
-        public IntReactiveProperty shipLevel;
+        public IntReactiveProperty shipLevel=new IntReactiveProperty();
         public ReactiveCollection<ShipUnitModel> shipUnitModelList = null;
 
         private ShipData m_ShipData = null;
@@ -33,7 +33,7 @@ namespace GameWish.Game
                 ShipUnitModel unitModel = ShipUnitModelFactory.CreateUnitModel(m_ShipData.shipUnitDataList[i]);
                 shipUnitModelList.Add(unitModel);
             }
-            shipLevel = new IntReactiveProperty(m_ShipData.shipLevel);
+            shipLevel.Value = m_ShipData.shipLevel;
         }
 
         public ShipUnitModel GetShipUnitModel(ShipUnitType shipUnitType)

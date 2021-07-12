@@ -39,7 +39,7 @@ namespace GameWish.Game
 			m_SmuggleData = null;
 			this.orderId = orderid;
 			smuggingStartTime = default(DateTime);
-			orderState = OrderState.Locked;
+			orderState = OrderState.Free;
 			heroId = -1;
 		}
 

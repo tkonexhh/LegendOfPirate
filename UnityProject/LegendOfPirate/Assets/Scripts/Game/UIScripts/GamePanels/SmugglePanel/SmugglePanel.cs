@@ -37,13 +37,15 @@ namespace GameWish.Game
 
         private void InitPanelMsg()
         {
+			
 			m_ScrollView.SetCellRenderer(OnOrderChange);
+			Debug.LogError(m_PanelData.smuggleModel.orderModelList.Count);
 			m_ScrollView.SetDataCount(m_PanelData.smuggleModel.orderModelList.Count);
         }
 
         private void OnOrderChange(Transform root, int index)
         {
-           
+			root.GetComponent<SmuggleOrderItem>().SetInit(index);
         }
 
         protected override void OnPanelHideComplete()

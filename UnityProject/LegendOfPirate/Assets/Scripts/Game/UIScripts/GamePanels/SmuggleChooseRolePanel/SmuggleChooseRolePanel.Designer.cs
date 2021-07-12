@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,30 +12,17 @@ namespace GameWish.Game
 	{
 		public const string Name = "SmuggleChooseRolePanel";
 		
-		[SerializeField]
-		public GFrame.Editor.GButton BgBtn;
-		[SerializeField]
-		public UnityEngine.UI.Image WarShipBg;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI WarShipAddtion;
-		[SerializeField]
-		public UnityEngine.UI.Image WarShipIcon;
-		[SerializeField]
-		public RectTransform WarShipSelectedRegion;
-		[SerializeField]
-		public GFrame.Editor.GButton LeftArrowBtn;
-		[SerializeField]
-		public GFrame.Editor.GButton RightArrowBtn;
-		[SerializeField]
-		public RectTransform RoleListTra;
-		[SerializeField]
-		public GFrame.Editor.GButton SmuggleBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI SmuggleBtnValue;
-		[SerializeField]
-		public GFrame.Editor.GButton AutoBtn;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI AutoBtnValue;
+		[SerializeField] private Button m_BgBtn;
+		[SerializeField] private TextMeshProUGUI m_WarShipAddtion;
+		[SerializeField] private Image m_WarShipIcon;
+		[SerializeField] private RectTransform m_WarShipSelectedRegion;
+		[SerializeField] private Button m_LeftArrowBtn;
+		[SerializeField] private Button m_RightArrowBtn;
+		[SerializeField] private IUListView m_AllRoleList;
+		[SerializeField] private Button m_SmuggleBtn;
+		[SerializeField] private TextMeshProUGUI m_SmuggleBtnValue;
+		[SerializeField] private Button m_AutoBtn;
+		[SerializeField] private TextMeshProUGUI m_AutoBtnValue;
 		
 		
 	}

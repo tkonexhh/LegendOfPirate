@@ -39,6 +39,7 @@ namespace GameWish.Game
                 TDRoleConfigTable.metaData,
                 TDRoleSkillConfigTable.metaData,
                 TDMarinLevelConfigTable.metaData,
+                TDSmuggleTable.metaData,
                 
 
                

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7415709213743121788}
+  - component: {fileID: 2455908380246214028}
   m_Layer: 0
   m_Name: TopWarShipRole
   m_TagString: Untagged
@@ -37,6 +38,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2455908380246214028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4301500639387675156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d85b93175af88d648b901da067936be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RoleIcon: {fileID: 2329157715766823989}
+  m_ItemButton: {fileID: 5042944266050497556}
+  m_AddtionTxt: {fileID: 7502237010810444288}
 --- !u!1 &4432126879662903625
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +187,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  I18Nkey: 
 --- !u!1 &8477187937926365901
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +199,7 @@ GameObject:
   - component: {fileID: 7155928209722205727}
   - component: {fileID: 7140488176048696586}
   - component: {fileID: 2329157715766823989}
+  - component: {fileID: 5042944266050497556}
   m_Layer: 0
   m_Name: Icon
   m_TagString: Untagged
@@ -246,3 +264,51 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   I18Nkey: 
+--- !u!114 &5042944266050497556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8477187937926365901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9462c512071144765bbcb38e86a321e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2329157715766823989}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  scaleAnim: 0
+  clickDownScale: {x: 0.95, y: 0.95, z: 0.95}
+  normalScale: {x: 1, y: 1, z: 1}
+  sound: 0
+  clickEffect: 

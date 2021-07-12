@@ -12,10 +12,14 @@ namespace GameWish.Game
         public const int DEFAULT_COIN_NUM = 0;
         public const int DEFAULT_DIAMOND_NUM = 0;
         public const int DEFAULT_TIP_NUM = 5;
+        public const int REFRESH_TIME_POINT = 6;
+        public const int NUMBER_ZERO = 0;
 
         public const string DEFAULT_SOUND = "";
         public const string SYMBOL_SLASH = "/";
         public const string SYMBOL_PERCENT= "%";
+        public const string DOLLAR_SIGN= "$";
+
 
         public const string NAME_SPACE_PREFIX = "GameWish.Game.";
 

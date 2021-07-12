@@ -16,6 +16,7 @@ namespace GameWish.Game
         public int level;
         public int curExp;
         public int starLevel;
+        public bool isSmuggling;
         public Dictionary<EquipmentType, RoleEquipData> equipDic;
         public List<RoleSkillData> skillList;
 
@@ -132,6 +133,18 @@ namespace GameWish.Game
             }
 
             return equip;
+        }
+
+        public void StartSmuggle() 
+        {
+            isSmuggling = true;
+            SetDataDirty();
+        }
+
+        public void EndSmuggle() 
+        {
+            isSmuggling = false;
+            SetDataDirty();
         }
         #endregion
 

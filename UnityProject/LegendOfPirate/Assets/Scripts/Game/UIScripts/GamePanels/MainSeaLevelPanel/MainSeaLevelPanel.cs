@@ -19,7 +19,6 @@ namespace GameWish.Game
             BindUIToModel();
 
             OnClickAddListener();
-
         }
 
         protected override void OnPanelOpen(params object[] args)

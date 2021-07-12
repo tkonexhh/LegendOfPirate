@@ -155,5 +155,19 @@ namespace GameWish.Game
             }
             return (roleUnlockedList.Concat(roleModelList).ToList());
         }
+        List<RoleModel> roleSmugglableList = new List<RoleModel>();
+        public List<RoleModel> GetRoleItemSmugglable()
+        {
+            roleSmugglableList.Clear();
+            roleUnlockedItemList.ToList().ForEach(item => 
+            {
+                if (!item.isSmuggleSelect.Value) 
+                {
+                    roleSmugglableList.Add(item);
+                }
+            });
+          
+            return roleSmugglableList;
+        }
     }
 }

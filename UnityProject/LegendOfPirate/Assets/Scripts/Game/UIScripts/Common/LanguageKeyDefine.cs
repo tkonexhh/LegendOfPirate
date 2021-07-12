@@ -31,8 +31,8 @@ namespace GameWish.Game
         #endregion
 
         #region ChargingInterfacePanel
-        public const string CHARGINGINTERFACE_PURCHASED = "ÒÑ¹ºÂò";
-        public const string CHARGINGINTERFACE_SUCCESSFULPURCHASED = "¹ºÂò³É¹¦";
+        public const string CHARGINGINTERFACE_PURCHASED = "Purchased";
+        public const string CHARGINGINTERFACE_SUCCESSFULPURCHASED = "Successful Purchase";
         #endregion
 
         #region TrainingRoom
@@ -44,6 +44,10 @@ namespace GameWish.Game
         public const string INTERNALPURCHASE_PRICE = "Only ${0} / 30 days";
         public const string INTERNALPURCHASE_DUEDATE = "Due on {0} lafter purchase";
         public const string INTERNALPURCHASE_DAILY_COUNTDOWN = "Refresh {0}";
+        #endregion
+
+        #region Black Market
+        public const string BLACKMARKET_REFRESHCOUMT_OVER = "The number of refreshes has been used up";
         #endregion
     }
 }

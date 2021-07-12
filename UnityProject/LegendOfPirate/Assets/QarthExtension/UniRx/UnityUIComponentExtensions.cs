@@ -22,6 +22,11 @@ namespace UniRx
 			return source.SubscribeWithState(obj.gameObject, (x, s) => s.SetActive(x));
 		}
 
+		public static IDisposable SubscribeToPositiveActive(this IObservable<bool> source, GameObject obj)
+		{
+			return source.SubscribeWithState(obj, (x, s) => s.SetActive(x));
+		}
+
 		/// <summary>
 		/// ·´Ïò°ó¶¨active 
 		/// </summary>
@@ -31,6 +36,11 @@ namespace UniRx
 		public static IDisposable SubscribeToNegativeActive(this IObservable<bool> source, Component obj)
 		{
 			return source.SubscribeWithState(obj.gameObject, (x, s) => s.SetActive(!x));
+		}
+
+		public static IDisposable SubscribeToNegativeActive(this IObservable<bool> source, GameObject obj)
+		{
+			return source.SubscribeWithState(obj, (x, s) => s.SetActive(!x));
 		}
 
 		public static IDisposable SubscribeToPositiveInteractable(this IObservable<bool> source, Selectable selectable)

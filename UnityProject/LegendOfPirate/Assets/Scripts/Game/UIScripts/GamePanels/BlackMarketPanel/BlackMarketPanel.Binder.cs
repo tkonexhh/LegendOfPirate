@@ -8,6 +8,7 @@ namespace GameWish.Game
 {
 	public class BlackMarketPanelData : UIPanelData
 	{
+		public BlackMarketModel blackMarketModel; 
 		public BlackMarketPanelData()
 		{
 		}
@@ -20,6 +21,8 @@ namespace GameWish.Game
 		private void AllocatePanelData(params object[] args)
 		{
 			 m_PanelData = UIPanelData.Allocate<BlackMarketPanelData>();
+
+			m_PanelData.blackMarketModel = ModelMgr.S.GetModel<BlackMarketModel>();
 		}
 		
 		private void ReleasePanelData()
@@ -29,20 +32,13 @@ namespace GameWish.Game
 		
 		private void BindModelToUI()
 		{
+			m_PanelData.blackMarketModel.RefreshNeedDiamonds.SubscribeToTextMeshPro(m_RefreshDiamonds).AddTo(this);
+			m_PanelData.blackMarketModel.refreshCommodityCountDown.SubscribeToTextMeshPro(m_RefreshCountDown).AddTo(this);
+			m_PanelData.blackMarketModel.BlackMarketCommoditys.ObserveCountChanged().Subscribe(count=> MonitoringDataList(count)).AddTo(this);
 		}
 		
 		private void BindUIToModel()
 		{
 		}
-
-		private void OnClickAddListener()
-		{
-			ExitBtn.OnClickAsObservable().Subscribe(_ =>
-			{
-				ExitBtnEvent();
-			});
-		
-		}
-
 	}
 }

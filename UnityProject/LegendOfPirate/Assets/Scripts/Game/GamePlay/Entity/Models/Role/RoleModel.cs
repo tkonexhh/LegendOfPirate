@@ -21,6 +21,7 @@ namespace GameWish.Game
         public string resName;
         public BoolReactiveProperty isLocked;
         public IntReactiveProperty spiritCount;
+        public BoolReactiveProperty isSmuggleSelect;
 
         public IntReactiveProperty curHp;
         public FloatReactiveProperty curAtk;
@@ -30,6 +31,7 @@ namespace GameWish.Game
         public ReactiveCollection<RoleSkillModel> skillList;
         public Dictionary<EquipmentType, int> equipLimitDic;
         public ReactiveProperty<ShipRoleStateId> stateId;
+
         public TDRoleConfig tdRoleConfig;
         public TDRoleStarUpConfig tdStarUpConfig;
 
@@ -45,7 +47,7 @@ namespace GameWish.Game
             isLocked = new BoolReactiveProperty(roleData.isLocked);
             spiritCount = new IntReactiveProperty(roleData.spiritCount);
             level = new IntReactiveProperty(roleData.level);
-
+            isSmuggleSelect = new BoolReactiveProperty(roleData.isSmuggling);
 
             curExp = new IntReactiveProperty(roleData.curExp);
             starLevel = new IntReactiveProperty(roleData.starLevel);
@@ -226,6 +228,17 @@ namespace GameWish.Game
             curExp.Value += value;
         }
 
+        public void SelectToSmuggle() 
+        {
+            isSmuggleSelect.Value = true;
+            roleData.StartSmuggle();
+        }
+
+        public void UnSelectToSmuggle() 
+        {
+            isSmuggleSelect.Value = false;
+            roleData.EndSmuggle();
+        }
         #endregion
 
         #region Private
