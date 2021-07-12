@@ -94,6 +94,7 @@ namespace GameWish.Game
             if (!roleList.Any(role => role.id == roleId)) return;
             var findedRole = roleList.First(role => role.id == roleId);
             roleList.Remove(findedRole);
+            needRefresh.Value = true;
         }
 
         private void ModelSubscribe()

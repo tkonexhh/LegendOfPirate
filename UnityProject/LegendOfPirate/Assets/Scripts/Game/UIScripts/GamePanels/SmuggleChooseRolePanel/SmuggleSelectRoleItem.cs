@@ -13,10 +13,12 @@ namespace GameWish.Game
 		[SerializeField] private Button m_ItemButton;
 		[SerializeField] private TextMeshProUGUI m_AddtionTxt;
 		private int m_RoleId=-1;
+		private SmuggleOrderModel m_SmuggleOrderModel;
 
-		public void InitItem() 
+		public void InitItem(SmuggleOrderModel smuggleOrderModel) 
 		{
 			m_ItemButton.OnClickAsObservable().Subscribe(_ => OnRoleSelectedItemClick()).AddTo(this);
+			m_SmuggleOrderModel = smuggleOrderModel;
 		}
 
         public void RefreshItem(int roleId) 
@@ -41,8 +43,8 @@ namespace GameWish.Game
         {
 			if (m_RoleId > 0) 
 			{
-				var smuggleOrderModel= ModelMgr.S.GetModel<SmuggleOrderModel>();
-				smuggleOrderModel.RemoveRoleModel(m_RoleId);
+				m_SmuggleOrderModel.RemoveRoleModel(m_RoleId);
+				m_AddtionTxt.gameObject.SetActive(false);
 			}
         }
     }

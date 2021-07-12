@@ -58,7 +58,7 @@ namespace GameWish.Game
             m_ListenerList.Add(m_SmuggleOrderModel.orderState.AsObservable().Subscribe(state => OnOrderStateChang(state)).AddTo(this));
             m_ListenerList.Add(m_SmuggleOrderModel.needRefresh.AsObservable().Where(needRresh => needRresh).Subscribe(_ => ReFreshRoleLst()).AddTo(this));
             m_ListenerList.Add(m_ChoiceRoleBtn.OnClickAsObservable().Subscribe(_ => UIMgr.S.OpenPanel(UIID.SmuggleChooseRolePanel, m_OrderId)).AddTo(this));
-
+            
         }
 
         private void UnlockOrder()
@@ -73,12 +73,22 @@ namespace GameWish.Game
         private void ReFreshRoleLst()
         {
             int totalAddition = 0;
-            for (int i = 0; i < m_SmuggleOrderModel.roleList.Count; i++)
+
+
+            for (int i = 0; i < m_RoleItemList.Count; i++) 
             {
-                m_RoleItemList[i].SetRoleItemData(m_SmuggleOrderModel.roleList[i]);
-                totalAddition += m_RoleItemList[i].roleAddttion;
+                if (i < m_SmuggleOrderModel.roleList.Count)
+                {
+                    m_RoleItemList[i].SetRoleItemData(m_SmuggleOrderModel.roleList[i]);
+                    totalAddition += m_RoleItemList[i].roleAddttion;
+                }
+                else 
+                {
+                    m_RoleItemList[i].SetRoleItemData(null);
+                }
             }
             m_AwardAddition.text = string.Format("+{0}%", totalAddition);
+            m_SmuggleOrderModel.needRefresh.Value = false;
 
         }
 

@@ -32,7 +32,7 @@ namespace GameWish.Game
 		
 		private void BindModelToUI()
 		{
-	
+	    
 		}
 		
 		private void BindUIToModel()

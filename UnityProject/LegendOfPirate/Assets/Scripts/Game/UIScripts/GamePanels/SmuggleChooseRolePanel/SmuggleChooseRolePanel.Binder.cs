@@ -65,7 +65,7 @@ namespace GameWish.Game
             var RoleItems = m_WarShipSelectedRegion.GetComponentsInChildren<SmuggleSelectRoleItem>();
             foreach (var item in RoleItems) 
             {
-                item.InitItem();
+                item.InitItem(m_PanelData.orderModel);
             }
         }
     }

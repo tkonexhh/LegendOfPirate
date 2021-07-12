@@ -39,7 +39,6 @@ namespace GameWish.Game
         {
 			
 			m_ScrollView.SetCellRenderer(OnOrderChange);
-			Debug.LogError(m_PanelData.smuggleModel.orderModelList.Count);
 			m_ScrollView.SetDataCount(m_PanelData.smuggleModel.orderModelList.Count);
         }
 
