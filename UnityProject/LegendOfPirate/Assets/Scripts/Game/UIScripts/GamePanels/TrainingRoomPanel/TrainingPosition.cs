@@ -3,28 +3,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using System;
 
 namespace GameWish.Game
 {
     public class TrainingPosition : UListItemView
-	{
-        [SerializeField]
-        private Image m_Plug;
-        [SerializeField]
-        private Image m_RoleIconBg;
-        [SerializeField]
-        private Image m_RoleIcon;
-        [SerializeField]
-        private TextMeshProUGUI m_Time;
-        [SerializeField]
-        private Image m_TimeBarBg;
-        [SerializeField]
-        private Image m_TimeBar;
-        [SerializeField]
-        private Image m_LockBg;
-        [SerializeField]
-        private Image m_Lock;
-
+    {
+        #region SerializeField
+        [SerializeField, Header("Unselected")] private Image m_Plug;
+        [SerializeField, Header("Selected")] private Image m_RoleIconBg;
+        [SerializeField] private Image m_RoleIcon;
+        [SerializeField] private TextMeshProUGUI m_Time;
+        [SerializeField] private Image m_TimeBarBg;
+        [SerializeField] private Image m_TimeBar;
+        [SerializeField] private Image m_RedPoint;
+        [SerializeField, Header("Lock")] private Image m_LockBg;
+        [SerializeField] private Image m_Lock;
+        [SerializeField] private TextMeshProUGUI m_UnlockLevel;
+        #endregion
         #region Data
         private TrainingPositionModel m_TraPosModel;
         #endregion
@@ -35,9 +31,10 @@ namespace GameWish.Game
             m_Plug.gameObject.SetActive(false);
             m_LockBg.gameObject.SetActive(false);
         }
-
+        #region Public
         public void OnRefresh(TrainingPositionModel traPosModel)
         {
+            OnReset();
             if (traPosModel == null)
             {
                 Debug.LogWarning("traPosModel is null");
@@ -48,14 +45,20 @@ namespace GameWish.Game
 
             BindModelToUI();
         }
-
+        #endregion
+        #region Private
         private void BindModelToUI()
         {
-            m_TraPosModel.trainingSlotModel.trainRemainTime.Select(x => (int)x).SubscribeToTextMeshPro(m_Time).AddTo(this);
+            m_TraPosModel.unlockLevel.SubscribeToTextMeshPro(m_UnlockLevel).AddTo(this);
+            m_TraPosModel.trainingCountDown.SubscribeToTextMeshPro(m_Time).AddTo(this);
+            m_TraPosModel.isHaveRole.SubscribeToActive(m_RoleIconBg, m_Plug).ForEach(i=>i.AddTo(this));
+            m_TraPosModel.GetTrainingSlotState().Subscribe(val => { HandleTrainingSlotState(val); }).AddTo(this);
+        }
 
-            m_TraPosModel.trainingSlotModel.trainState.Subscribe(val => {
-                OnReset();
-                switch (val)
+        private void HandleTrainingSlotState(TrainingSlotState val)
+        {
+            OnReset();
+            switch (val)
                 {
                     case TrainingSlotState.Free:
                         m_Plug.gameObject.SetActive(true);
@@ -66,14 +69,9 @@ namespace GameWish.Game
                     case TrainingSlotState.Locked:
                         m_LockBg.gameObject.SetActive(true);
                         break;
-                    case TrainingSlotState.HeroSelected:
-                        m_RoleIconBg.gameObject.SetActive(true);
-                        m_Time.text = "选择";
-                        break;
                 }
-            }).AddTo(this);
         }
         #endregion
+        #endregion
     }
-
 }

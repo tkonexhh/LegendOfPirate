@@ -90,7 +90,7 @@ namespace GameWish.Game
         {
             CommodityDBData commodityDBData = marketData.commodityDBDatas.FirstOrDefault(i => i.commodityID == commodityID);
             if (commodityDBData != null)
-                commodityDBData.surplus = Mathf.Max(Define.NUMBER_ZERO, commodityDBData.surplus - number);
+                commodityDBData.surplus = Mathf.Max(Define.INT_NUMBER_ZERO, commodityDBData.surplus - number);
             else
                 Log.e("Commodity not find , id = " + commodityID);
 

@@ -39,13 +39,6 @@ namespace GameWish.Game
         OnRandomDefenseChooseSelectedRole,
         #endregion
 
-        #region TrainingRoom
-        /// <summary>
-        /// 选择角色
-        /// </summary>
-        OnTrainingSelectRole,
-        #endregion
-
         #region Library
         /// <summary>
         /// 选择角色
@@ -80,5 +73,4 @@ namespace GameWish.Game
         MainTaskRefresh,
         #endregion
     }
-
 }
