@@ -30,10 +30,11 @@ namespace GameWish.Game
 
             BindModelToUI();
 
+            if (m_PrepRoleModel.IsClick())
+                Enlarge();
+
             if (!m_PrepRoleModel.IsEmpty.Value && m_PrepRoleModel.TrainingSlotModel.IsTraining())
-            {
                 SetPrepRoleState(false);
-            }
         }
 
         private void BindModelToUI()
@@ -105,7 +106,7 @@ namespace GameWish.Game
 
         private void OnDestroy()
         {
-            if (!m_PrepRoleModel.IsEmpty.Value)
+            if (!m_PrepRoleModel.IsEmpty.Value && m_PrepRoleModel.TrainingSlotModel.IsFree())
             {
                 m_PrepRoleModel.TrainingSlotModel.ClearTemporaryRoleID();
                 m_PrepRoleModel.BindSoltAndRole();
