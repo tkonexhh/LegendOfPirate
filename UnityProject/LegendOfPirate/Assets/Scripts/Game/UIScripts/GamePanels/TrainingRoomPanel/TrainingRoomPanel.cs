@@ -46,6 +46,13 @@ namespace GameWish.Game
             m_PanelData.roleGroupModel.AddSpiritRoleModel(1037, 100);
             m_PanelData.roleGroupModel.AddSpiritRoleModel(1038, 100);
             m_PanelData.roleGroupModel.AddSpiritRoleModel(1039, 100);
+            m_PanelData.roleGroupModel.AddSpiritRoleModel(1040, 100);
+            m_PanelData.roleGroupModel.AddSpiritRoleModel(1041, 100);
+            m_PanelData.roleGroupModel.AddSpiritRoleModel(1042, 100);
+            m_PanelData.roleGroupModel.AddSpiritRoleModel(1043, 100);
+            m_PanelData.roleGroupModel.AddSpiritRoleModel(1044, 100);
+            m_PanelData.roleGroupModel.AddSpiritRoleModel(1045, 100);
+            m_PanelData.roleGroupModel.AddSpiritRoleModel(1046, 100);
             #endregion
 
             BindModelToUI();
@@ -134,6 +141,14 @@ namespace GameWish.Game
         {
             m_SelectedCount.Value--;
         }
+
+        public void SetDataCount()
+        {
+            SortRefreshList();
+
+            m_PrepRoleUList.SetDataCount(m_PrepRoleDatas.Count);
+        }
+
         #endregion
 
         #region Private
