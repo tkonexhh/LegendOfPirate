@@ -44,6 +44,15 @@ namespace GameWish.Game
             m_EmptyDis?.Dispose();
         }
 
+        public bool IsClick()
+        {
+            if (!IsEmpty.Value && TrainingSlotModel.IsFree() && TrainingSlotModel.heroId.Value != -1)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public void RefreshTrainingSlotModel()
         {
             m_TrainingSlotModel.Value = m_TrainingRoomModel.GetSlotModelByRoleID(m_RoleModel.id);
@@ -69,8 +78,9 @@ namespace GameWish.Game
         {
             if (state == TrainingSlotState.Free && TrainingSlotModel.heroId.Value == -1)
             {
-                m_TrainingPreparatorRole.SetPrepRoleState(true);
+                //m_TrainingPreparatorRole?.SetPrepRoleState(true);
                 BindSoltAndRole();
+                TrainingRoomPanel.SetDataCount();
             }
         }
 

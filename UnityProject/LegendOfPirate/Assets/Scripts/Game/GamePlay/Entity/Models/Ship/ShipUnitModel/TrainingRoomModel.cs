@@ -330,6 +330,7 @@ namespace GameWish.Game
         /// </summary>
         public void EndTraining()
         {
+            m_DbItem.OnEndTraining();
             ModelMgr.S.GetModel<RoleGroupModel>().SetRoleManagementState(heroId.Value, ManagementRoleState.None);
 
             heroId.Value = -1;
@@ -338,7 +339,6 @@ namespace GameWish.Game
             m_StartTime = default(DateTime);
             m_EndTime = default(DateTime);
 
-            m_DbItem.OnEndTraining();
             //TODO...   增加人物经验
             //ModelMgr.S.GetModel<RoleGroupModel>().GetRoleModel(heroId).AddCurExp(m_TrainingRoomMode.tableConfig.experience);
         }
