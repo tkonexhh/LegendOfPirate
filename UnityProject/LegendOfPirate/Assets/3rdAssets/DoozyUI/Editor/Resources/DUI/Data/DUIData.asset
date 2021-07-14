@@ -50,6 +50,7 @@ MonoBehaviour:
       - OfflinePanel
       - OfflineRewardPanel
       - ProgressRoomPanel
+      - PubPanel
       - RandomDefenseChooseRolePanel
       - RandomDefensePanel
       - RatePanel

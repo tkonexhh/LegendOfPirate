@@ -86,6 +86,9 @@ namespace GameWish.Game
         CommoditySellPanel,
         DiamondShortagePanel,
         #endregion
+        #region 酒馆
+        PubPanel,
+        #endregion
 
         //主菜单
         #region 仓库

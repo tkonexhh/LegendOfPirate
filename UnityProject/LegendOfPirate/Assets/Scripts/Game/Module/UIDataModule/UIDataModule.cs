@@ -129,6 +129,9 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.CommoditySellPanel, null, "GamePanels/LandManagement/BlackMarketPanel/CommoditySellPanel");
             UIDataTable.AddPanelData(UIID.DiamondShortagePanel, null, "GamePanels/LandManagement/BlackMarketPanel/DiamondShortagePanel");
             #endregion
+            #region 酒馆
+            UIDataTable.AddPanelData(UIID.PubPanel, null, "GamePanels/LandManagement/PubPanel/PubPanel");
+            #endregion
             #region 走私系统
             UIDataTable.AddPanelData(UIID.SmugglePanel, null, "GamePanels/LandManagement/SmugglePanel/SmugglePanel");
             UIDataTable.AddPanelData(UIID.SmuggleChooseRolePanel, null, "GamePanels/LandManagement/SmuggleChooseRolePanel/SmuggleChooseRolePanel");

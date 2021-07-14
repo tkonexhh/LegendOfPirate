@@ -15,7 +15,7 @@ namespace GameWish.Game
         public MarketData marketData = new MarketData();
 
         #region IData
-        public void SetDefaultValue()
+        public void SaveManually()
         {
             SetDataDirty();
 
@@ -39,7 +39,7 @@ namespace GameWish.Game
         {
             marketData.refreshTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Define.REFRESH_TIME_POINT, 0, 0);
 
-            SetDefaultValue();
+            SaveManually();
         }
 
         public DateTime GetRefreshTime()
@@ -51,14 +51,14 @@ namespace GameWish.Game
         {
             marketData.refreshCount = 0;
 
-            SetDefaultValue();
+            SaveManually();
         }
 
         public void SetRefreshCount()
         {
             marketData.refreshCount = Mathf.Min(TDBlackMarketRefreshConfigTable.GetMaxRefreshID(), marketData.refreshCount + 1);
 
-            SetDefaultValue();
+            SaveManually();
         }
 
         public int GetRefreshCount()
@@ -73,7 +73,7 @@ namespace GameWish.Game
             else
                 Log.e("ID is exit , id = " + commodityID);
 
-            SetDefaultValue();
+            SaveManually();
         }
 
         public void AddCommodityDBData(CommodityDBData commodityDBData)
@@ -83,7 +83,7 @@ namespace GameWish.Game
             else
                 Log.e("ID is exit , id = " + commodityDBData.commodityID);
 
-            SetDefaultValue();
+            SaveManually();
         }
 
         public void ReduceCommodityNumber(int commodityID, int number)
@@ -94,14 +94,14 @@ namespace GameWish.Game
             else
                 Log.e("Commodity not find , id = " + commodityID);
 
-            SetDefaultValue();
+            SaveManually();
         }
 
         public void ClearAllCommodity()
         {
             marketData.commodityDBDatas.Clear();
 
-            SetDefaultValue();
+            SaveManually();
         }
 
         public ReactiveCollection<CommodityDBData> GetCommodityDBDatas()

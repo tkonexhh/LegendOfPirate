@@ -41,6 +41,7 @@ namespace GameWish.Game
         private BlackMarketDataHandler m_BlackMarketDataHandler = null;
         private SmugglingDataHandler m_SmugglingDataHandler = null;
         private BattleShipFleetDataHandler m_BattleShipFleetDataHandler = null;
+        private PubDataHandler m_PubDataHandler = null;
 
         private int m_LoadDoneCount = 0;
         private Action m_OnLoadDoneCallback = null;
@@ -73,6 +74,7 @@ namespace GameWish.Game
             m_BlackMarketDataHandler = new BlackMarketDataHandler();
             m_SmugglingDataHandler = new SmugglingDataHandler();
             m_BattleShipFleetDataHandler = new BattleShipFleetDataHandler();
+            m_PubDataHandler = new PubDataHandler();
 
             //2.Add To List
             m_DataHanlderList.Add(m_PlayerInfoDataHandler);
@@ -94,6 +96,7 @@ namespace GameWish.Game
             m_DataHanlderList.Add(m_BlackMarketDataHandler);
             m_DataHanlderList.Add(m_SmugglingDataHandler);
             m_DataHanlderList.Add(m_BattleShipFleetDataHandler);
+            m_DataHanlderList.Add(m_PubDataHandler);
 
             m_PlayerInfoDataHandler.LoadData(OnLoadDone);
             m_RoleGroupDataHandler.LoadData(OnLoadDone);
@@ -114,6 +117,7 @@ namespace GameWish.Game
             m_BlackMarketDataHandler.LoadData(OnLoadDone);
             m_SmugglingDataHandler.LoadData(OnLoadDone);
             m_BattleShipFleetDataHandler.LoadData(OnLoadDone);
+            m_PubDataHandler.LoadData(OnLoadDone);
             RegisterEvents();
         }
 
