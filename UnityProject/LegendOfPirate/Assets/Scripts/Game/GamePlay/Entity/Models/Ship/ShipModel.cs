@@ -23,6 +23,14 @@ namespace GameWish.Game
             }
         }
 
+        public override void OnDestroyed()
+        {
+            for (int i = 0; i < shipUnitModelList.Count; i++)
+            {
+                shipUnitModelList[i].OnDestroyed();
+            }
+        }
+
         protected override void LoadDataFromDb()
         {
             m_ShipData = GameDataMgr.S.GetData<ShipData>();

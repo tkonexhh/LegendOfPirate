@@ -8,85 +8,103 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class LibraryPreparatorRole : UListItemView
-	{
-        [SerializeField]
-        private Button m_BottomTrainingRole;
-        [SerializeField]
-        private Image m_Icon;
-        [SerializeField]
-        private Image m_State;
+    public class LibraryPreparatorRole : UListItemView
+    {
+        #region SerializeField
+        [SerializeField] private Button m_LibraryRole;
+        [SerializeField] private Image m_Icon;
+        #endregion
         #region Data
         private LibraryPreparatorRoleModel m_BottomLibraryData;
 
-        private IDisposable m_LibSlotState;
+        private IDisposable m_BindSlotDis;
+        private List<IDisposable> m_DisCache = new List<IDisposable>();
         #endregion
-        public void OnInit(LibraryPreparatorRoleModel bottom)
+        public void OnRefresh(LibraryPreparatorRoleModel bottom)
         {
             OnReset();
-            if (bottom == null)
-            {
-                Debug.LogWarning("bottomTrainingRoleData is null");
-                return;
-            }
+
             m_BottomLibraryData = bottom;
 
             BindModelToUI();
 
-            OnClickAddListener();
+            BindUIToModel();
+        }
 
-            OnRefresh();
-        }
-        private void OnClickAddListener()
+        private void BindUIToModel()
         {
-            m_BottomTrainingRole.OnClickAsObservable().Subscribe(_ =>
-            {
-                EventSystem.S.Send(EventID.OnLibrarySelectRole, m_BottomLibraryData);
-            }).AddTo(this);
+            m_LibraryRole.OnClickAsObservable().Subscribe(_ => { m_BottomLibraryData.OnClickRoleModel(); }).AddTo(this);
         }
+
         private void BindModelToUI()
         {
-            m_LibSlotState = m_BottomLibraryData.librarySlotModel?.libraryState.Subscribe(val => {
-                switch (val)
-                {
-                    case LibrarySlotState.Free:
-                        m_BottomTrainingRole.enabled = true;
-                        m_State.enabled = false;
-                        break;
-                    case LibrarySlotState.Reading:
-                        m_BottomTrainingRole.enabled = false;
-                        m_State.enabled = true;
-                        break;
-                    case LibrarySlotState.Locked:
-                        m_BottomTrainingRole.enabled = false;
-                        m_State.enabled = false;
-                        break;
-                    case LibrarySlotState.HeroSelected:
-                        m_BottomTrainingRole.enabled = true;
-                        m_State.enabled = true;
-                        break;
-                }
-            }).AddTo(this);
+            m_BindSlotDis = m_BottomLibraryData.IsBindSlot.Subscribe(val => HandleBindSlot(val)).AddTo(this);
         }
-        public void HandleSelectedRole(bool select, LibrarySlotModel librarySlotModel = null)
+
+        private void HandleBindSlot(bool val)
         {
-            m_BottomLibraryData.librarySlotModel = librarySlotModel;
-            m_LibSlotState?.Dispose();
-            if (select)
+            if (val)
             {
-                BindModelToUI();
+                IDisposable libraryStateDis = m_BottomLibraryData.LibrarySlotModel.libraryState.Subscribe(state => HandleLibraryState(state)).AddTo(this);
+                m_DisCache.Add(libraryStateDis);
+            }
+            else
+            {
+                ClearCache();
             }
         }
 
-        private void OnRefresh()
+        private void HandleLibraryState(LibrarySlotState state)
         {
-         
+            switch (state)
+            {
+                case LibrarySlotState.Free:
+                    m_LibraryRole.interactable = true;
+                    Narrow();
+                    break;
+                case LibrarySlotState.Reading:
+                    m_LibraryRole.interactable = false;
+                    break;
+                case LibrarySlotState.Locked:
+                    break;
+                case LibrarySlotState.HeroSelected:
+                    Enlarge();
+                    break;
+            }
         }
+
+        private void Enlarge()
+        {
+            RectTransform rect = transform as RectTransform;
+            rect.sizeDelta = new Vector2(110, 110);//¡Ÿ ±
+
+            //m_PrepRoleModel.TrainingRoomPanel.AdjustViewportSize();
+        }
+
+        private void Narrow()
+        {
+            RectTransform rect = transform as RectTransform;
+            rect.sizeDelta = new Vector2(100, 100);//¡Ÿ ±
+        }
+
+        private void ClearCache()
+        {
+            foreach (var item in m_DisCache)
+                item.Dispose();
+        }
+
+        private void OnDestroy()
+        {
+            m_BottomLibraryData.ClearRoleSelect();
+        }
+
         private void OnReset()
         {
-            m_LibSlotState?.Dispose();
-            m_BottomTrainingRole.onClick.RemoveAllListeners();
-            m_State.enabled = false;
+            RectTransform rect = transform as RectTransform;
+            rect.sizeDelta = new Vector2(100, 100);//¡Ÿ ±
+            m_LibraryRole.interactable = true;
+            m_BindSlotDis?.Dispose();
+            m_LibraryRole.onClick.RemoveAllListeners();
         }
     }
 }

@@ -9,7 +9,8 @@ namespace GameWish.Game
 	{
 		public const string TestKey = "";
         #region Common
-        public const string FIXED_TITLE_LV = "Fixed_Title_Lv";
+        public const string FIXED_TITLE_LV_¢ñ = "LV:{0}";
+        public const string FIXED_TITLE_LV_¢ò = "LV{0}";
         public const string Fixed_Title_Upgrade = "Fixed_Title_Upgrade";
         public const string Fixed_Title_Train= "Fixed_Title_Train";
         public const string Fixed_Title_Auto= "Fixed_Title_Auto";
@@ -41,6 +42,12 @@ namespace GameWish.Game
         public const string Fixed_Title_TrainingRoom = "Fixed_Title_TrainingRoom";
         public const string TRAININGROOM_CONT_¢ñ = "There is no free space";
         public const string TRAININGROOM_CONT_¢ò = "Please select training role";
+        #endregion
+
+        #region LibraryRoom
+        public const string LIBRARYROOM_CONT_¢ñ = "There is no free space";
+        public const string LIBRARYROOM_CONT_¢ò = "Please select libraryRoom role";
+        public const string LIBRARYROOM_CONT_¢ó = "There is no free role";
         #endregion
 
         #region InternalPurchase

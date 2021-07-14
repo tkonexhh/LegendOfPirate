@@ -18,6 +18,10 @@ namespace GameWish.Game
             level = new IntReactiveProperty(shipUnitData.level);
         }
 
+        /// <summary>
+        /// 升级事件
+        /// </summary>
+        /// <param name="delta"></param>
         public virtual void OnLevelUpgrade(int delta = 1)
         {
             if (delta == 0)
@@ -29,7 +33,6 @@ namespace GameWish.Game
                 return;
             }
            
-            //TODO 最大等级待定
             if (level.Value + delta <= GetMaxLevel())
             {
                 level.Value += delta;
@@ -62,7 +65,7 @@ namespace GameWish.Game
                 case ShipUnitType.Laboratory:
                     break;
                 case ShipUnitType.Library:
-                    break;
+                    return TDFacilityLibraryTable.GetMaxLevel();
                 case ShipUnitType.ProcessingRoom:
                     break;
                 case ShipUnitType.TrainingRoom:

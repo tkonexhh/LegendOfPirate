@@ -33,6 +33,10 @@ namespace GameWish.Game
 
         public void OnDestroyed()
         {
+            for (int i = 0; i < m_ModelList.Count; i++)
+            {
+                m_ModelList[i].OnDestroyed();
+            }
         }
 
         #endregion

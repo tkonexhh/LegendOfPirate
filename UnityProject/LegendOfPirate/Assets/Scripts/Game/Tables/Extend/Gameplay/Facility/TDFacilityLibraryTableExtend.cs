@@ -26,6 +26,11 @@ namespace GameWish.Game
 
         public static LibraryUnitConfig[] libraryUnitProperties = null;
 
+        public static int GetMaxLevel()
+        {
+            return libraryUnitProperties[libraryUnitProperties.Length - 1].baseProperty.level;
+        }
+
         public static LibraryUnitConfig GetConfig(int level)
         {
             if (level > libraryUnitProperties.Length)

@@ -139,7 +139,7 @@ namespace GameWish.Game
                         return;
 
                     if (item.trainState.Value == TrainingSlotState.Locked)
-                    {
+                    {   
                         item.OnTrainingRoomLevelUp();
                         unlockNumber++;
                     }

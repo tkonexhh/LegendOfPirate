@@ -11,7 +11,7 @@ namespace GameWish.Game
         public List<TrainingSlotData> trainingItemList = new List<TrainingSlotData>();
 
         #region IDataClass
-        public void SetDefaultValue()
+        public void SaveManually()
         {
             SetDataDirty();
 
@@ -36,7 +36,7 @@ namespace GameWish.Game
             else
                 Log.e("SortId is exit , SortId = " + trainingSlotData.slotId);
 
-            SetDefaultValue();
+            SaveManually();
         }
         #endregion
 
@@ -107,7 +107,7 @@ namespace GameWish.Game
                     m_TrainingData = GameDataMgr.S.GetData<TrainingData>();
                 }
 
-                m_TrainingData.SetDefaultValue();
+                m_TrainingData.SaveManually();
             }
         }
     }
