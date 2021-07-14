@@ -87,7 +87,7 @@ namespace GameWish.Game
         {
             if (val == 0)
                 val++;
-            return CommonMethod.GetStringForTableKey(LanguageKeyDefine.FIXED_TITLE_LV) + val;
+            return CommonMethod.GetStringForTableKey(LanguageKeyDefine.FIXED_TITLE_LV_¢ñ) + val;
         }
 
         private string HandleSkillDifferentStates(int level)
