@@ -30,13 +30,6 @@ namespace GameWish.Game
             ModelMgr.S.GetModel<RoleGroupModel>().AddSpiritRoleModel(1037, 100);
             ModelMgr.S.GetModel<RoleGroupModel>().AddSpiritRoleModel(1038, 100);
             ModelMgr.S.GetModel<RoleGroupModel>().AddSpiritRoleModel(1039, 100);
-            ModelMgr.S.GetModel<RoleGroupModel>().AddSpiritRoleModel(1040, 100);
-            ModelMgr.S.GetModel<RoleGroupModel>().AddSpiritRoleModel(1041, 100);
-            ModelMgr.S.GetModel<RoleGroupModel>().AddSpiritRoleModel(1042, 100);
-            ModelMgr.S.GetModel<RoleGroupModel>().AddSpiritRoleModel(1043, 100);
-            ModelMgr.S.GetModel<RoleGroupModel>().AddSpiritRoleModel(1044, 100);
-            ModelMgr.S.GetModel<RoleGroupModel>().AddSpiritRoleModel(1045, 100);
-            ModelMgr.S.GetModel<RoleGroupModel>().AddSpiritRoleModel(1046, 100);
             #endregion
 
             AllocatePanelData();
@@ -130,11 +123,11 @@ namespace GameWish.Game
         {
             if (m_RoleModelList!=null)
             {
-                LibraryPreparatorRoleModel bottomLibRoleM = m_RoleModelList[index];
+                LibraryPreparatorRoleModel bottomLibRoleModel = m_RoleModelList[index];
 
                 LibraryPreparatorRole bottom = root.GetComponent<LibraryPreparatorRole>();
 
-                bottom.OnRefresh(bottomLibRoleM);
+                bottom.OnRefresh(bottomLibRoleModel);
             }
             else
                 Log.e("Error : RoleModelList is null !");

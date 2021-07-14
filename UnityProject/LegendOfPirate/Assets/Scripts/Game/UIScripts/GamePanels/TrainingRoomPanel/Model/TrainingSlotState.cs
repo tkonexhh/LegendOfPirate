@@ -24,8 +24,8 @@ namespace GameWish.Game
         /// </summary>
         Locked = 2,
         /// <summary>
-        /// 选中状态
+        /// 选择但是未开始
         /// </summary>
-        Select = 3,
+        HeroSelected = 3,
     }
 }

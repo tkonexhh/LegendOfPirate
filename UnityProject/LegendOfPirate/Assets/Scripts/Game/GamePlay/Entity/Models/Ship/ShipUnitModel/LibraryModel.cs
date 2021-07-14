@@ -219,7 +219,6 @@ namespace GameWish.Game
         public void AddSelectedNumer()
         {
             selectedNumer.Value++;
-            Log.e("selectedNumer" + selectedNumer.Value);
         }
 
         /// <summary>
@@ -227,8 +226,7 @@ namespace GameWish.Game
         /// </summary>
         public void ReduceSelectedNumer()
         {
-            selectedNumer.Value--;
-            Log.e("selectedNumer" + selectedNumer.Value);
+            selectedNumer.Value = Mathf.Max(Define.DEFAULT_DIAMOND_NUM, selectedNumer.Value-1);
         }
 
         /// <summary>

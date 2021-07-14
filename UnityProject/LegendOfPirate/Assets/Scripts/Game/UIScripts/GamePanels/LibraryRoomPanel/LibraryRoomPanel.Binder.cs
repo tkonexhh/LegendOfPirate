@@ -60,8 +60,6 @@ namespace GameWish.Game
             }
         }
 
-      
-
         private void BindUIToModel()
         {
             m_LibraryUpgradeBtn.OnClickAsObservable().Subscribe(_ => UpgradeBtn()).AddTo(this);

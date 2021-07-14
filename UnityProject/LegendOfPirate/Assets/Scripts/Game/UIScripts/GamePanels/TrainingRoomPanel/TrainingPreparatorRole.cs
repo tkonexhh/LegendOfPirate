@@ -10,83 +10,66 @@ namespace GameWish.Game
 {
     public class TrainingPreparatorRole : UListItemView
     {
-        [SerializeField]
-        private Button m_PrepRole;
-        [SerializeField]
-        private Image m_Icon;
-
-        #region Data
-        private TrainingPreparatorRoleModel m_PrepRoleModel;
-        private List<IDisposable> m_Disposables = new List<IDisposable>();
-        private Vector2 m_DefaultSizeDelta;
-        private RectTransform m_Rect;
+        #region SerializeField
+        [SerializeField] private Button m_TrainingRoleBtn;
+        [SerializeField] private Image m_Icon;
         #endregion
+        #region Data
+        private TrainingPreparatorRoleModel m_BottomTrainingData;
 
-        public void OnRefresh(TrainingPreparatorRoleModel traPrepRoleModel)
+        private IDisposable m_BindSlotDis;
+        private List<IDisposable> m_DisCache = new List<IDisposable>();
+        #endregion
+        public void OnRefresh(TrainingPreparatorRoleModel bottom)
         {
             OnReset();
 
-            m_PrepRoleModel = traPrepRoleModel;
+            m_BottomTrainingData = bottom;
 
             BindModelToUI();
 
-            if (m_PrepRoleModel.IsClick())
-                Enlarge();
+            BindUIToModel();
+        }
 
-            if (!m_PrepRoleModel.IsEmpty.Value && m_PrepRoleModel.TrainingSlotModel.IsTraining())
-                SetPrepRoleState(false);
+        private void BindUIToModel()
+        {
+            m_TrainingRoleBtn.OnClickAsObservable().Subscribe(_ => { m_BottomTrainingData.OnClickRoleModel(); }).AddTo(this);
         }
 
         private void BindModelToUI()
         {
-            IDisposable prepRole = m_PrepRole.OnClickAsObservable().Subscribe(_ => { HandleSelectedRole(); }).AddTo(this);
-
-            m_Disposables.Add(prepRole);
+            m_BindSlotDis = m_BottomTrainingData.IsBindSlot.Subscribe(val => HandleBindSlot(val)).AddTo(this);
         }
 
-        #region Public
-        public void SetPrepRoleState(bool val)
+        private void HandleBindSlot(bool val)
         {
-            m_PrepRole.interactable = val;
-            if (!val)
-                Narrow();
-        }
-
-        #endregion
-
-        #region Private
-        private void OnReset()
-        {
-            m_Rect = transform as RectTransform;
-            m_DefaultSizeDelta = new Vector2(100, 100);
-            SetPrepRoleState(true);
-            Narrow();
-            foreach (var item in m_Disposables)
-                item.Dispose();
-            m_Disposables.Clear();
-        }
-
-        private void HandleSelectedRole()
-        {
-            if (m_PrepRoleModel.IsEmpty.Value)
+            if (val)
             {
-                TrainingSlotModel trainingSlotModel = m_PrepRoleModel.TrainingRoomModel.GetFreeSlot();
-                if (trainingSlotModel != null)
-                {
-                    Enlarge();
-                    trainingSlotModel.SetTemporaryRoleID(m_PrepRoleModel.GetRoleID());
-                    m_PrepRoleModel.BindSoltAndRole(trainingSlotModel);
-                    m_PrepRoleModel.TrainingRoomPanel.AddSelectedCount();
-                }
-                else
-                    FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_¢Ò);
+                IDisposable TrainingStateDis = m_BottomTrainingData.TrainingSlotModel.trainingState.Subscribe(state => HandleTrainingState(state)).AddTo(this);
+                m_DisCache.Add(TrainingStateDis);
             }
             else
             {
-                Narrow();
-                m_PrepRoleModel.TrainingSlotModel.ClearTemporaryRoleID();
-                m_PrepRoleModel.BindSoltAndRole();
-                m_PrepRoleModel.TrainingRoomPanel.ReduceSelectedCount();
+                ClearCache();
+            }
+        }
+
+        private void HandleTrainingState(TrainingSlotState state)
+        {
+            switch (state)
+            {
+                case TrainingSlotState.Free:
+                    m_TrainingRoleBtn.interactable = true;
+                    Narrow();
+                    break;
+                case TrainingSlotState.Training:
+                    m_TrainingRoleBtn.interactable = false;
+                    break;
+                case TrainingSlotState.Locked:
+                    break;
+                case TrainingSlotState.HeroSelected:
+                    Enlarge();
+                    break;
             }
         }
 
@@ -101,17 +84,27 @@ namespace GameWish.Game
         private void Narrow()
         {
             RectTransform rect = transform as RectTransform;
-            rect.sizeDelta = new Vector2(100,100);//¡Ÿ ±
+            rect.sizeDelta = new Vector2(100, 100);//¡Ÿ ±
+        }
+
+        private void ClearCache()
+        {
+            foreach (var item in m_DisCache)
+                item.Dispose();
         }
 
         private void OnDestroy()
         {
-            if (!m_PrepRoleModel.IsEmpty.Value && m_PrepRoleModel.TrainingSlotModel.IsFree())
-            {
-                m_PrepRoleModel.TrainingSlotModel.ClearTemporaryRoleID();
-                m_PrepRoleModel.BindSoltAndRole();
-            }
+            m_BottomTrainingData.ClearRoleSelect();
         }
-        #endregion
+
+        private void OnReset()
+        {
+            RectTransform rect = transform as RectTransform;
+            rect.sizeDelta = new Vector2(100, 100);//¡Ÿ ±
+            m_TrainingRoleBtn.interactable = true;
+            m_BindSlotDis?.Dispose();
+            m_TrainingRoleBtn.onClick.RemoveAllListeners();
+        }
     }
 }

@@ -59,7 +59,7 @@ namespace GameWish.Game
         public  int  materialPrice {get { return m_MaterialPrice; } }
        
         /// <summary>
-        /// 产出途径(1-资源岛，2-战斗奖励，3-菜园，4-钓鱼台，5-加工室,6-商城，7-活动)
+        /// 产出途径(1-资源岛Resource Island，2-战斗奖励Battle Rewards，3-菜园Planting，4-钓鱼台Fishing，5-加工室Processing,6-商城Store，7-活动Activity，8-远征任务Expeditionary Mission)
         /// </summary>
         public  int  outputWay {get { return m_OutputWay; } }
        

@@ -10,77 +10,100 @@ namespace GameWish.Game
 {
     public class TrainingRoomModel : ShipUnitModel
     {
-        private float m_RefreshTime = 0;
-        private float m_RefreshInterval = 0.3f;
-
-        public TrainingRoomUnitConfig tableConfig;
-        public List<TrainingSlotModel> slotModelList = new List<TrainingSlotModel>();
+        private List<TrainingSlotModel> m_SlotModelList = new List<TrainingSlotModel>();
+        private List<TrainingPreparatorRoleModel> m_RoleModelList = new List<TrainingPreparatorRoleModel>();
 
         private TrainingData m_DbData;
+        private TrainingRoomUnitConfig m_TableConfig;
+
+        public IntReactiveProperty selectedNumer;
+        public IReadOnlyReactiveProperty<bool> IsShowReadBtn;
+
+        public TrainingData DBData { get { return m_DbData; } }
+        public TrainingRoomUnitConfig TableConfig { get { return m_TableConfig; } }
+        public List<TrainingSlotModel> TrainingSlotModels { get { return m_SlotModelList; } }
+        public List<TrainingPreparatorRoleModel> RoleModelList { get { return m_RoleModelList; } }
 
         #region Model
+        public override void OnDestroyed()
+        {
+            base.OnDestroyed();
+            foreach (var item in m_SlotModelList)
+            {
+                item.OnDestroyed();
+            }
+        }
+
         public override void OnUpdate()
         {
-            m_RefreshTime += Time.deltaTime;
-            if (m_RefreshTime >= m_RefreshInterval)
+            foreach (var item in m_SlotModelList)
             {
-                m_RefreshTime = 0;
-
-                for (int i = 0; i < slotModelList.Count; i++)
-                {
-                    slotModelList[i].RefreshRemainTime();
-                }
+                item.OnUpdate();
             }
         }
 
+        public TrainingRoomModel(ShipUnitData shipUnitData) : base(shipUnitData)
+        {
+            m_DbData = GameDataMgr.S.GetData<TrainingData>();
+            m_TableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
+
+            InitTrainingData();
+
+            RefreshCurRoleModels();
+
+            level.Subscribe(val => HandleShipUnitUpgrade());
+
+            PrepareResponseProperties();
+        }
         #endregion
 
-        #region public
-
+        #region Public
         /// <summary>
-        /// 训练一组人
+        /// 清除缓存数据
         /// </summary>
-        /// <param name="roles"></param>
-        public void TrainingRoleGroup(List<RoleModel> roles)
+        public void ClearCacheData()
         {
-            List<TrainingSlotModel> freeSlots = GetAllFreeSlot();
-            if (freeSlots.Count == 0)
+            ResetSelectedNumber();
+            foreach (var item in RoleModelList)
             {
-                FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_Ⅰ);
-                return;
-            }
-            if (freeSlots.Count >= roles.Count)
-            {
-                foreach (var item in roles)
-                {
-                    TrainingSlotModel trainingSlotModel = GetFreeSlot();
-                    if (trainingSlotModel != null)
-                        trainingSlotModel.StartTraining(item.id);
-                    else
-                        FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_Ⅰ);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < freeSlots.Count; i++)
-                {
-                    freeSlots[i].StartTraining(roles[i].id);
-                }
+                item.ClearRoleSelect();
             }
         }
 
         /// <summary>
-        /// 开始训练
+        /// 根据角色ID 拿到RoleModel
         /// </summary>
-        public void StartTraining()
+        /// <param name="roleID"></param>
+        /// <returns></returns>
+        public TrainingPreparatorRoleModel GetTrainingRoleByRoleID(int roleID)
         {
-            foreach (var item in slotModelList)
+            TrainingPreparatorRoleModel TrainingPreparatorRoleModel = null;
+            foreach (var item in m_RoleModelList)
             {
-                if (item.IsReadyTraining())
+                if (item.GetRoleID() == roleID)
                 {
-                    item.StartTraining();
+                    TrainingPreparatorRoleModel = item;
                 }
             }
+            return TrainingPreparatorRoleModel;
+        }
+
+        /// <summary>
+        /// 根据slotID 拿到 roleModel
+        /// </summary>
+        /// <param name="slotID"></param>
+        /// <returns></returns>
+        public TrainingPreparatorRoleModel GetTrainingRoleBySlotID(int slotID)
+        {
+            TrainingPreparatorRoleModel TrainingPreparatorRoleModel = null;
+            foreach (var item in m_RoleModelList)
+            {
+                if (item.IsBindSlot.Value && item.TrainingSlotModel.DBItem.slotId == slotID)
+                {
+                    TrainingPreparatorRoleModel = item;
+                }
+            }
+            return TrainingPreparatorRoleModel;
         }
 
         /// <summary>
@@ -89,15 +112,15 @@ namespace GameWish.Game
         /// <param name="roleID"></param>
         public TrainingSlotModel GetSlotModelByRoleID(int roleID)
         {
-            TrainingSlotModel trainingSlotModel = null;
-            foreach (var item in slotModelList)
+            TrainingSlotModel TrainingSlotModel = null;
+            foreach (var item in m_SlotModelList)
             {
-                if (item.heroId.Value == roleID)
+                if (item.heroID.Value == roleID)
                 {
-                    trainingSlotModel = item;
+                    TrainingSlotModel = item;
                 }
             }
-            return trainingSlotModel;
+            return TrainingSlotModel;
         }
 
         /// <summary>
@@ -107,9 +130,9 @@ namespace GameWish.Game
         public TrainingSlotModel GetFreeSlot()
         {
             TrainingSlotModel trainingSlotModel = null;
-            foreach (var item in slotModelList)
+            foreach (var item in m_SlotModelList)
             {
-                if (item.trainState.Value == TrainingSlotState.Free && item.heroId.Value == -1)
+                if (item.IsFree())
                 {
                     trainingSlotModel = item;
                     break;
@@ -118,71 +141,250 @@ namespace GameWish.Game
             return trainingSlotModel;
         }
 
-        public TrainingRoomModel(ShipUnitData shipUnitData) : base(shipUnitData)
+        /// <summary>
+        /// 获得空闲和选中的空位
+        /// </summary>
+        /// <returns></returns>
+        public TrainingSlotModel GetFreeAndHeroSelectedSlot()
         {
-            m_DbData = GameDataMgr.S.GetData<TrainingData>();
-            tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
-
-            InitTrainData();
-
-            level.Subscribe(val =>
+            TrainingSlotModel trainingSlotModel = null;
+            foreach (var item in m_SlotModelList)
             {
-                int number = GetUnlockSlotNumber();
-                tableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
-
-                int surplus = tableConfig.capacity - number;
-                int unlockNumber = 0;
-
-                foreach (var item in slotModelList)
+                if (item.IsFree() || item.IsHeroSelected())
                 {
-                    if (unlockNumber == surplus)
-                        return;
-
-                    if (item.trainState.Value == TrainingSlotState.Locked)
-                    {   
-                        item.OnTrainingRoomLevelUp();
-                        unlockNumber++;
-                    }
+                    trainingSlotModel = item;
+                    break;
                 }
-            });
+            }
+            return trainingSlotModel;
+        }
+
+        /// <summary>
+        /// 刷新当前的角色列表
+        /// </summary>
+        public void RefreshCurRoleModels()
+        {
+            if (m_RoleModelList.Count > 0)
+                m_RoleModelList.Clear();
+
+            foreach (var item in ModelMgr.S.GetModel<RoleGroupModel>().RoleUnlockedItemList)
+            {
+                m_RoleModelList.Add(new TrainingPreparatorRoleModel(item, this));
+            }
+            SortRefreshList();
+        }
+
+        /// <summary>
+        /// 自动选择
+        /// </summary>
+        public void AutoSelectRole()
+        {
+            foreach (var item in m_RoleModelList)
+            {
+                if (item.IsBindSlot.Value)
+                {
+                    item.ClearRoleSelect();
+                }
+            }
+
+            List<RoleModel> roleModels = ModelMgr.S.GetModel<RoleGroupModel>().GetRolesByManagementState();
+            int freeNumber = GetNumberBySlotState(TrainingSlotState.Free);
+            if (roleModels.Count == 0)
+            {
+                FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_Ⅲ);
+                return;
+            }
+            if (freeNumber == 0)
+            {
+                FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_Ⅰ);
+                return;
+            }
+
+            int surplus = roleModels.Count > freeNumber ? freeNumber : roleModels.Count;
+            for (int i = 0; i < surplus; i++)
+            {
+                TrainingSlotModel TrainingSlotModel = GetFreeAndHeroSelectedSlot();
+                TrainingPreparatorRoleModel TrainingPreparatorRoleModel = GetTrainingRoleByRoleID(roleModels[i].id);
+
+                if (TrainingSlotModel != null && TrainingPreparatorRoleModel != null)
+                {
+                    TrainingPreparatorRoleModel.AutoSelectRole(TrainingSlotModel);
+                    TrainingSlotModel.AutoSelectAndStart(roleModels[i].id);
+                }
+                else
+                    Log.e("Error : Auto select");
+            }
+
+            SortRefreshList();
+        }
+
+        /// <summary>
+        /// 开始训练
+        /// </summary>
+        public void StartLearn()
+        {
+            foreach (var item in m_SlotModelList)
+            {
+                item.StartRead();
+            }
+
+            SortRefreshList();
+        }
+
+        /// <summary>
+        /// 增加选择的数量
+        /// </summary>
+        public void AddSelectedNumer()
+        {
+            selectedNumer.Value++;
+        }
+
+        /// <summary>
+        /// 减少选择的数量 
+        /// </summary>
+        public void ReduceSelectedNumer()
+        {
+            selectedNumer.Value = Mathf.Max(Define.DEFAULT_DIAMOND_NUM, selectedNumer.Value - 1);
+        }
+
+        /// <summary>
+        /// 重置选择数据
+        /// </summary>
+        public void ResetSelectedNumber()
+        {
+            selectedNumer.Value = 0;
+        }
+
+        /// <summary>
+        /// 获得选择了角色的数量
+        /// </summary>
+        /// <returns></returns>
+        public int GetSelectedNumber()
+        {
+            int number = 0;
+            foreach (var item in RoleModelList)
+            {
+                if (item.IsHeroSelect())
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public void SortRefreshList()
+        {
+            List<TrainingPreparatorRoleModel> TrainingRoleModels = new List<TrainingPreparatorRoleModel>();
+            foreach (var item in m_RoleModelList)
+            {
+                if (item.IsBindSlot.Value && item.TrainingSlotModel.IsReading())
+                {
+                    TrainingRoleModels.Add(item);
+                }
+            }
+            foreach (var item in TrainingRoleModels)
+                m_RoleModelList.Remove(item);
+            m_RoleModelList.AddRange(TrainingRoleModels);
+            TrainingRoleModels.Clear();
         }
         #endregion
 
         #region Private
-
-        private List<TrainingSlotModel> GetAllFreeSlot()
+        /// <summary>
+        /// 准备响应式属性
+        /// </summary>
+        private void PrepareResponseProperties()
         {
-            List<TrainingSlotModel> freeSlots = new List<TrainingSlotModel>();
-            foreach (var item in slotModelList)
-            {
-                if (item.IsFree())
-                {
-                    freeSlots.Add(item);
-                }
-            }
-            return freeSlots;
+            selectedNumer = new IntReactiveProperty(GetSelectedNumber());
+
+            IsShowReadBtn = selectedNumer.Select(val => val > 0).ToReactiveProperty();
         }
 
-        private void InitTrainData()
+        /// <summary>
+        /// 处理升级事件
+        /// </summary>
+        private void HandleShipUnitUpgrade()
         {
-            if (m_DbData.trainingItemList.Count == 0)
+            int number = GetUnlockSlotNumber();
+            m_TableConfig = TDFacilityTrainingRoomTable.GetConfig(level.Value);
+
+            int surplus = m_TableConfig.capacity - number;
+            int unlockNumber = 0;
+
+            foreach (var item in m_SlotModelList)
+            {
+                if (unlockNumber == surplus)
+                    return;
+
+                if (item.trainingState.Value == TrainingSlotState.Locked)
+                {
+                    item.UnlockTrainingSolt();
+                    unlockNumber++;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 获取各个状态的数量
+        /// </summary>
+        /// <param name="TrainingSlotState"></param>
+        /// <returns></returns>
+        public int GetNumberBySlotState(TrainingSlotState TrainingSlotState)
+        {
+            int number = 0;
+            foreach (var item in m_SlotModelList)
+            {
+                if (item.trainingState.Value == TrainingSlotState)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
+        /// <summary>
+        /// 已解锁的坑位数量
+        /// </summary>
+        /// <returns></returns>
+        private int GetUnlockSlotNumber()
+        {
+            int number = 0;
+            foreach (var item in m_SlotModelList)
+            {
+                if (item.trainingState.Value != TrainingSlotState.Locked)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
+        /// <summary>
+        /// 初始化数据
+        /// </summary>
+        private void InitTrainingData()
+        {
+            if (m_DbData.TrainingItemList.Count == 0)
             {
                 foreach (var item in TDFacilityTrainingRoomTable.trainingRoomUnitProperties)
                 {
-                    TrainingSlotData slot = new TrainingSlotData(item.baseProperty.level);
+                    TrainingDBData slot = new TrainingDBData(item.baseProperty.level);
                     m_DbData.AddTrainingSlotData(slot);
                     TrainingSlotModel slotModel = new TrainingSlotModel(this, slot);
-                    slotModelList.Add(slotModel);
+                    m_SlotModelList.Add(slotModel);
                 }
             }
             else
             {
-                if (m_DbData.trainingItemList.Count == TDFacilityTrainingRoomTable.trainingRoomUnitProperties.Length)
+                if (m_DbData.TrainingItemList.Count == TDFacilityTrainingRoomTable.trainingRoomUnitProperties.Length)
                 {
-                    for (int i = 0; i < m_DbData.trainingItemList.Count; i++)
+                    for (int i = 0; i < m_DbData.TrainingItemList.Count; i++)
                     {
-                        TrainingSlotModel slotModel = new TrainingSlotModel(this, m_DbData.trainingItemList[i]);
-                        slotModelList.Add(slotModel);
+                        TrainingSlotModel slotModel = new TrainingSlotModel(this, m_DbData.TrainingItemList[i]);
+                        m_SlotModelList.Add(slotModel);
                     }
                 }
                 else
@@ -190,198 +392,6 @@ namespace GameWish.Game
                     Log.e("Error : Count Different ! ");
                 }
             }
-        }
-
-        private int GetUnlockSlotNumber()
-        {
-            int number = 0;
-            foreach (var item in slotModelList)
-            {
-                if (item.trainState.Value != TrainingSlotState.Locked)
-                {
-                    number++;
-                }
-            }
-            return number;
-        }
-        #endregion
-    }
-
-    public class TrainingSlotModel : Model
-    {
-        public int slotIDAndUnlockLevel;
-
-        public IntReactiveProperty heroId = new IntReactiveProperty(-1);
-        public FloatReactiveProperty trainRemainTime = new FloatReactiveProperty(0);
-
-        public ReactiveProperty<TrainingSlotState> trainState;
-
-        private DateTime m_StartTime = default(DateTime);
-        private DateTime m_EndTime = default(DateTime);
-
-        private TrainingRoomModel m_TrainingRoomMode;
-        private TrainingData.TrainingSlotData m_DbItem;
-        private RoleGroupModel m_RoleGroupModel;
-
-        public TrainingSlotModel(TrainingRoomModel trainingRoomModel, TrainingData.TrainingSlotData dbItem)
-        {
-            m_TrainingRoomMode = trainingRoomModel;
-            m_DbItem = dbItem;
-
-            this.slotIDAndUnlockLevel = dbItem.slotId;
-            this.heroId.Value = dbItem.heroId;
-            this.trainState = new ReactiveProperty<TrainingSlotState>(dbItem.trainState);
-
-            switch (trainState.Value)
-            {
-                case TrainingSlotState.Free:
-                    break;
-                case TrainingSlotState.Training:
-                    SetTime(dbItem.trainingStartTime);
-                    RefreshRemainTime();
-                    break;
-                case TrainingSlotState.Locked:
-                    break;
-            }
-        }
-
-        #region Public Public
-
-        public bool IsTraining()
-        {
-            return trainState.Value == TrainingSlotState.Training;
-        }
-
-        /// <summary>
-        /// 是否空闲
-        /// </summary>
-        /// <returns></returns>
-        public bool IsFree()
-        {
-            return trainState.Value == TrainingSlotState.Free;
-        }
-
-        /// <summary>
-        /// 是否准好训练
-        /// </summary>
-        /// <returns></returns>
-        public bool IsReadyTraining()
-        {
-            if (heroId.Value!=-1 && IsFree())
-            {
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// 临时设置角色
-        /// </summary>
-        /// <param name="id"></param>
-        public void SetTemporaryRoleID(int id)
-        {
-            if (IsFree())
-            {
-                heroId.Value = id;
-            }
-        }
-
-        /// <summary>
-        /// 清除临时角色
-        /// </summary>
-        public void ClearTemporaryRoleID()
-        {
-            if (IsFree())
-            {
-                heroId.Value = - 1;
-            }
-        }
-
-        /// <summary>
-        /// 开始训练
-        /// </summary>
-        /// <param name="startTime"></param>
-        public void StartTraining()
-        {
-            if (heroId.Value != -1)
-            {
-                DateTime dateTime = DateTime.Now;
-
-                SetTime(dateTime);
-
-                trainState.Value = TrainingSlotState.Training;
-
-                ModelMgr.S.GetModel<RoleGroupModel>().SetRoleManagementState(heroId.Value, ManagementRoleState.TrainingRoom);
-
-                m_DbItem.OnStartTraining(heroId.Value, dateTime);
-            }
-            else
-                Log.e("Error : id = -1");
-        }
-
-        public void StartTraining(int id)
-        {
-            heroId.Value = id;
-            StartTraining();
-        }
-
-        /// <summary>
-        /// 结束训练
-        /// </summary>
-        public void EndTraining()
-        {
-            m_DbItem.OnEndTraining();
-            ModelMgr.S.GetModel<RoleGroupModel>().SetRoleManagementState(heroId.Value, ManagementRoleState.None);
-
-            heroId.Value = -1;
-            trainRemainTime.Value = 0f;
-            trainState.Value = TrainingSlotState.Free;
-            m_StartTime = default(DateTime);
-            m_EndTime = default(DateTime);
-
-            //TODO...   增加人物经验
-            //ModelMgr.S.GetModel<RoleGroupModel>().GetRoleModel(heroId).AddCurExp(m_TrainingRoomMode.tableConfig.experience);
-        }
-
-        /// <summary>
-        /// 刷新训练时间
-        /// </summary>
-        public void RefreshRemainTime()
-        {
-            if (m_DbItem.trainState != TrainingSlotState.Training)
-                return;
-
-            double remainTime = (m_EndTime - DateTime.Now).TotalSeconds;
-
-            trainRemainTime.Value = (float)remainTime;
-            if (trainRemainTime.Value <= 0f)
-            {
-                EndTraining();
-            }
-        }
-
-        /// <summary>
-        /// 训练室升级
-        /// </summary>
-        public void OnTrainingRoomLevelUp()
-        {
-            trainState.Value = TrainingSlotState.Free;
-
-            m_DbItem.OnUnlocked();
-        }
-
-        public int GetTotalTime()
-        {
-            return m_TrainingRoomMode.tableConfig.trainingTime; ;
-        }
-        #endregion
-
-        #region Private
-        private void SetTime(DateTime startTime)
-        {
-            m_StartTime = startTime;
-            int totalTime = m_TrainingRoomMode.tableConfig.trainingTime;
-            m_EndTime = m_StartTime + TimeSpan.FromSeconds(totalTime);
         }
         #endregion
     }

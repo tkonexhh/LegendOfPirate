@@ -9,27 +9,31 @@ namespace GameWish.Game
 {
     public partial class TrainingRoomPanel : AbstractAnimPanel
     {
-        #region SerializeField
         [SerializeField]
-        private ScrollRectAutoAdjustPosition m_ScrollRectAdjustPos;
+        private UGridListView m_TrainingPosUGList;
         [SerializeField]
-        private UGridListView m_TraPosUGList;
-        [SerializeField]
-        private USimpleListView m_PrepRoleUList;
-        #endregion
+        private USimpleListView m_TrainingPrepRoleUList;
 
         #region Data
-        private  IntReactiveProperty m_SelectedCount = new IntReactiveProperty(0);
-        private IReadOnlyReactiveProperty<bool> RolesZeroState;
-
-        private List<TrainingPreparatorRoleModel> m_PrepRoleDatas = new List<TrainingPreparatorRoleModel>();
-        private List<TrainingPositionModel> m_TraPosDatas = new List<TrainingPositionModel>();
+        private List<TrainingSlotModel> m_TrainingSlotModels;
+        private List<TrainingPreparatorRoleModel> m_RoleModelList;
         #endregion
 
         #region AbstractAnimPanel
         protected override void OnUIInit()
         {
             base.OnUIInit();
+
+            #region TEST
+            ModelMgr.S.GetModel<RoleGroupModel>().AddSpiritRoleModel(1037, 100);
+            ModelMgr.S.GetModel<RoleGroupModel>().AddSpiritRoleModel(1038, 100);
+            ModelMgr.S.GetModel<RoleGroupModel>().AddSpiritRoleModel(1039, 100);
+            #endregion
+
+            AllocatePanelData();
+
+            BindModelToUI();
+            BindUIToModel();
 
             OnClickAddListener();
         }
@@ -40,25 +44,13 @@ namespace GameWish.Game
 
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
 
-            AllocatePanelData();
-
-            #region TEST
-            m_PanelData.roleGroupModel.AddSpiritRoleModel(1037, 100);
-            m_PanelData.roleGroupModel.AddSpiritRoleModel(1038, 100);
-            m_PanelData.roleGroupModel.AddSpiritRoleModel(1039, 100);
-            m_PanelData.roleGroupModel.AddSpiritRoleModel(1040, 100);
-            m_PanelData.roleGroupModel.AddSpiritRoleModel(1041, 100);
-            m_PanelData.roleGroupModel.AddSpiritRoleModel(1042, 100);
-            m_PanelData.roleGroupModel.AddSpiritRoleModel(1043, 100);
-            m_PanelData.roleGroupModel.AddSpiritRoleModel(1044, 100);
-            m_PanelData.roleGroupModel.AddSpiritRoleModel(1045, 100);
-            m_PanelData.roleGroupModel.AddSpiritRoleModel(1046, 100);
-            #endregion
-
-            BindModelToUI();
-            BindUIToModel();
-
             InitData();
+        }
+        protected override void BeforDestroy()
+        {
+            base.BeforDestroy();
+
+            ReleasePanelData();
         }
 
         protected override void OnPanelHideComplete()
@@ -69,159 +61,88 @@ namespace GameWish.Game
 
             CloseDependPanel(EngineUI.MaskPanel);
         }
-
-        protected override void BeforDestroy()
-        {
-            base.BeforDestroy();
-
-            ReleasePanelData();
-        }
-
         protected override void OnClose()
         {
             base.OnClose();
+
+            ReleasePanelData();
+
+            m_PanelData.trainingModel.ClearCacheData();
         }
         #endregion
 
         #region OnClickAddListener
-        private void OnClickAddListener()
+        private void RefreshCommand()
         {
-            m_BgBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
-            m_ExitBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
+            m_TrainingPrepRoleUList.SetDataCount(m_RoleModelList.Count);
         }
 
-        private void AutoSelectBtn()
+        private void UpgradeBtn()
         {
-            List<RoleModel> roleModels = ModelMgr.S.GetModel<RoleGroupModel>().GetRolesByManagementState();
-            if (roleModels.Count == 0)
-                return;
-            m_PanelData.trainingRoomModel.TrainingRoleGroup(roleModels);
-            foreach (var item in roleModels)
-            {
-                TrainingPreparatorRoleModel training = m_PrepRoleDatas.Where(i => i.GetRoleID() == item.id).FirstOrDefault();
-           
-                training.RefreshTrainingSlotModel();
-            }
-
-            SortRefreshList();
-        }  
-
-        private void TrainingUpgradeBtn()
-        {
-            //TODO 比对材料得消耗
-            if (true)
-            {
-                m_PanelData.trainingRoomModel.OnLevelUpgrade();
-            }
+            m_PanelData.trainingModel.OnLevelUpgrade();
         }
 
         private void RraintBtn()
         {
-            if (!RolesZeroState.Value)
-            {
-                m_PanelData.trainingRoomModel.StartTraining();
-                foreach (var item in m_PrepRoleDatas)
-                {
-                    item.CancelSelectedState();
-                }
-                SortRefreshList();
-            }
-            else
-                FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.TRAININGROOM_CONT_Ⅱ);
-        }
-        #endregion
+            m_PanelData.trainingModel.StartLearn();
 
-        #region Public
-        public void AddSelectedCount()
-        {
-            m_SelectedCount.Value++;
+            m_TrainingPrepRoleUList.SetDataCount(m_RoleModelList.Count);
+
+            m_PanelData.trainingModel.ResetSelectedNumber();
         }
 
-        public void ReduceSelectedCount()
+        private void AutoSelectBtn()
         {
-            m_SelectedCount.Value--;
+            m_PanelData.trainingModel.AutoSelectRole();
+
+            m_TrainingPrepRoleUList.SetDataCount(m_RoleModelList.Count);
+
+            m_PanelData.trainingModel.ResetSelectedNumber();
         }
 
-        public void SetDataCount()
+        private void OnClickAddListener()
         {
-            SortRefreshList();
-
-            m_PrepRoleUList.SetDataCount(m_PrepRoleDatas.Count);
+            m_ExitBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
         }
 
         #endregion
 
-        #region Private
-
-        private void SortRefreshList()
-        {
-            List<TrainingPreparatorRoleModel> trainRoleModels = new List<TrainingPreparatorRoleModel>();
-            foreach (var item in m_PrepRoleDatas)
-            {
-                if (!item.IsEmpty.Value && item.TrainingSlotModel.IsTraining())
-                {
-                    trainRoleModels.Add(item);
-                }
-            }
-            foreach (var item in trainRoleModels)
-                m_PrepRoleDatas.Remove(item);
-            m_PrepRoleDatas.AddRange(trainRoleModels);
-            trainRoleModels.Clear();
-            m_PrepRoleUList.SetDataCount(m_PrepRoleDatas.Count);
-        }
-
+        #region Other Method
         private void InitData()
         {
-            InitTraPosDatas();
-            InitPrepRoleDatas();
+            m_TrainingPosUGList.SetCellRenderer(OnReadPosCellRenderer);
+            m_TrainingPrepRoleUList.SetCellRenderer(OnLibPrepCellRenderer);
 
-            m_TraPosUGList.SetCellRenderer(OnTraPosCellRenderer);
-            m_PrepRoleUList.SetCellRenderer(OnPropRoleCellRenderer);
-
-            //m_ScrollRectAdjustPos.EnableAutoAdjust(m_SimulationRoleID.Count);
-
-            SortRefreshList();
-
-            m_TraPosUGList.SetDataCount(m_TraPosDatas.Count);
-            m_PrepRoleUList.SetDataCount(m_PrepRoleDatas.Count);
+            m_TrainingPosUGList.SetDataCount(m_TrainingSlotModels.Count);
+            m_TrainingPrepRoleUList.SetDataCount(m_RoleModelList.Count);
         }
 
-        private void InitTraPosDatas()
+        private void OnLibPrepCellRenderer(Transform root, int index)
         {
-            foreach (var item in m_PanelData.trainingRoomModel.slotModelList)
+            if (m_RoleModelList != null)
             {
-                m_TraPosDatas.Add(new TrainingPositionModel(item));
+                TrainingPreparatorRoleModel bottomLibRoleModel = m_RoleModelList[index];
+
+                TrainingPreparatorRole bottom = root.GetComponent<TrainingPreparatorRole>();
+
+                bottom.OnRefresh(bottomLibRoleModel);
             }
+            else
+                Log.e("Error : RoleModelList is null !");
         }
 
-        private void InitPrepRoleDatas()
+        private void OnReadPosCellRenderer(Transform root, int index)
         {
-            foreach (var item in m_PanelData.roleGroupModel.RoleUnlockedItemList)
+            if (m_TrainingSlotModels != null)
             {
-                m_PrepRoleDatas.Add(new TrainingPreparatorRoleModel(item, m_PanelData.trainingRoomModel,this));
+                TrainingSlotModel trainingSlotModel = m_TrainingSlotModels[index];
+
+                TrainingPosition trainingPos = root.GetComponent<TrainingPosition>();
+
+                trainingPos.OnRefresh(trainingSlotModel);
             }
-        }
-
-        private void OnPropRoleCellRenderer(Transform root, int index)
-        {
-            TrainingPreparatorRoleModel prepRoleModel = m_PrepRoleDatas[index];
-
-            TrainingPreparatorRole prepRole = root.GetComponent<TrainingPreparatorRole>();
-
-            prepRoleModel.SetPrepRoleData(prepRole);
-
-            prepRole.OnRefresh(prepRoleModel);
-        }
-
-        private void OnTraPosCellRenderer(Transform root, int index)
-        {
-            TrainingPositionModel traPosModel = m_TraPosDatas[index];
-
-            TrainingPosition traPos = root.GetComponent<TrainingPosition>();
-
-            traPosModel.SetTraPosData(traPos);
-
-            traPos.OnRefresh(traPosModel);
+            else
+                Log.e("Error : trainingSlotModels is null !");
         }
         #endregion
     }

@@ -3049,9 +3049,8 @@ MonoBehaviour:
   m_RightArrowBtn: {fileID: 4523738736209528621}
   m_ExitBtn: {fileID: 1625818057944046771}
   m_BottomTrainingRoleTra: {fileID: 7161235670849181909}
-  m_ScrollRectAdjustPos: {fileID: 0}
-  m_TraPosUGList: {fileID: 3967908146598473902}
-  m_PrepRoleUList: {fileID: 5748566756126989049}
+  m_TrainingPosUGList: {fileID: 3967908146598473902}
+  m_TrainingPrepRoleUList: {fileID: 5748566756126989049}
 --- !u!1 &7561815362281361095
 GameObject:
   m_ObjectHideFlags: 0

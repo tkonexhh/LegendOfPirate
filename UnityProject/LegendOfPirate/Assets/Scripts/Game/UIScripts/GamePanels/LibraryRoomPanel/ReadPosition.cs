@@ -29,7 +29,7 @@ namespace GameWish.Game
         private List<IDisposable> m_Cancelleds = new List<IDisposable>();
         #endregion
 
-        #region Other Method
+        #region Public
         public void OnRefresh(LibrarySlotModel librarySlotModel)
         {
             OnReset();
@@ -38,6 +38,9 @@ namespace GameWish.Game
 
             BindModleToUI();
         }
+        #endregion
+
+        #region Private
 
         private void BindModleToUI()
         {
@@ -54,7 +57,7 @@ namespace GameWish.Game
                     m_Plug.gameObject.SetActive(true);
                     break;
                 case LibrarySlotState.Reading:
-                    IDisposable learnCountDownDis = m_LibrarySlotModel.learnCountDown.SubscribeToTextMeshPro(m_Time).AddTo(this);
+                    IDisposable learnCountDownDis = m_LibrarySlotModel.readCountDown.SubscribeToTextMeshPro(m_Time).AddTo(this);
                     IDisposable timeProgressBarDis = m_LibrarySlotModel.timeProgressBar.Subscribe(bar=>HandleTimeBar(bar)).AddTo(this);
                   
                     m_Cancelleds.Add(learnCountDownDis);

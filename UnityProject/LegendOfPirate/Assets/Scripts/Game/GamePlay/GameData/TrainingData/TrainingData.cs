@@ -5,17 +5,18 @@ using UnityEngine;
 using System.Linq;
 
 namespace GameWish.Game
-{   
+{
     public class TrainingData : IDataClass
     {
-        public List<TrainingSlotData> trainingItemList = new List<TrainingSlotData>();
+        public List<TrainingDBData> trainingItemList = new List<TrainingDBData>();
+
+        public List<TrainingDBData> TrainingItemList { get { return trainingItemList; } }
 
         #region IDataClass
         public void SaveManually()
         {
             SetDataDirty();
 
-            //TODO 暂时使用
             GameDataMgr.S.SaveDataToLocal();
         }
 
@@ -25,90 +26,64 @@ namespace GameWish.Game
 
         public override void OnDataLoadFinish()
         {
-         
+
         }
         #endregion
+
         #region Public
-        public void AddTrainingSlotData(TrainingSlotData trainingSlotData)
+        /// <summary>
+        /// 添加数据
+        /// </summary>
+        /// <param name="slot"></param>
+        public void AddTrainingSlotData(TrainingDBData slot)
         {
-            if (!trainingItemList.Any(i => i.slotId == trainingSlotData.slotId))
-                trainingItemList.Add(trainingSlotData);
+            if (!trainingItemList.Any(i => i.slotId == slot.slotId))
+                trainingItemList.Add(slot);
             else
-                Log.e("SortId is exit , SortId = " + trainingSlotData.slotId);
+                Log.e("SortId is exit , SortId = " + slot.slotId);
+
+            SaveManually();
+        }
+
+        /// <summary>
+        /// 设置坑位的状态
+        /// </summary>
+        /// <param name="slotID"></param>
+        /// <param name="traingSlotState"></param>
+        public void SetTrainingSlotState(int slotID, TrainingSlotState traingSlotState)
+        {
+            TrainingDBData trainingDBData = trainingItemList.FirstOrDefault(i => i.slotId == slotID);
+            if (trainingDBData != null)
+            {
+                if (traingSlotState == TrainingSlotState.Training)
+                    trainingDBData.trainingStartTime = DateTime.Now;
+                else if (traingSlotState == TrainingSlotState.Free)
+                    trainingDBData.trainingStartTime = default(DateTime);
+                trainingDBData.trainingState = traingSlotState;
+            }
+            else
+                Log.e("SortID is exit , SortID = " + slotID);
+
+            SaveManually();
+        }
+
+        /// <summary>
+        /// 设置训练角色的ID
+        /// </summary>
+        /// <param name="slotID"></param>
+        /// <param name="heroID"></param>
+        public void SetTrainingRoleID(int slotID, int heroID)
+        {
+            TrainingDBData trainingDBData = trainingItemList.FirstOrDefault(i => i.slotId == slotID);
+            if (trainingDBData != null)
+            {
+                trainingDBData.heroId = heroID;
+            }
+            else
+                Log.e("SortID is exit , SortID = " + slotID);
 
             SaveManually();
         }
         #endregion
-
-        #region Private
-        private TrainingSlotData GetTrainDataItem(int slotId)
-        {
-            TrainingSlotData item = trainingItemList.FirstOrDefault(i => i.slotId == slotId);
-            if (item == null)
-            {
-                Log.e("TrainingDataItem Not Found: " + slotId);
-            }
-
-            return item;
-        }
-        #endregion
-
-        [Serializable]
-        public class TrainingSlotData
-        {
-            public int slotId;
-            public int heroId;
-            public DateTime trainingStartTime;
-            public TrainingSlotState trainState;
-
-            private TrainingData m_TrainingData;
-
-            public TrainingSlotData() { }
-
-            public TrainingSlotData(int slot)
-            {
-                m_TrainingData = null;
-                slotId = slot;
-                heroId = -1;
-                trainingStartTime = default(DateTime);
-                trainState = TrainingSlotState.Locked;
-            }
-
-            public void OnStartTraining(int heroId, DateTime time)
-            {
-                this.heroId = heroId;
-                this.trainingStartTime = time;
-                trainState = TrainingSlotState.Training;
-
-                SetDataDirty();
-            }
-
-            public void OnEndTraining()
-            {
-                this.heroId = -1;
-                this.trainingStartTime = default(DateTime);
-                trainState = TrainingSlotState.Free;
-
-                SetDataDirty();
-            }
-
-            public void OnUnlocked()
-            {
-                trainState = TrainingSlotState.Free;
-
-                //m_TrainingData.SetDataDirty();
-                SetDataDirty();
-            }
-
-            private void SetDataDirty()
-            {
-                if (m_TrainingData == null)
-                {
-                    m_TrainingData = GameDataMgr.S.GetData<TrainingData>();
-                }
-
-                m_TrainingData.SaveManually();
-            }
-        }
     }
 }

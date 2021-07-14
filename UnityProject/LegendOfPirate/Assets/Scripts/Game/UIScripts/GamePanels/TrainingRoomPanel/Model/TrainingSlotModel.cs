@@ -9,71 +9,71 @@ using System;
 
 namespace GameWish.Game
 {
-    public class LibrarySlotModel : Model
+    public class TrainingSlotModel : Model
     {
-        private LibraryModel m_LibraryModel;
-        private LibraryDBData m_DbItem;
+        private TrainingRoomModel m_TrainingModel;
+        private TrainingDBData m_DbItem;
 
-        private DateTime m_ReadEndTime;
+        private DateTime m_TrainingEndTime;
 
-        public ReactiveProperty<LibrarySlotState> libraryState;
+        public ReactiveProperty<TrainingSlotState> trainingState;
         public IntReactiveProperty heroID;
         public StringReactiveProperty unlockLevel;
-        public StringReactiveProperty readCountDown;
+        public StringReactiveProperty trainingCountDown;
         public FloatReactiveProperty timeProgressBar;
 
         public ReactiveCommand refreshCommand = new ReactiveCommand();
-        public LibraryDBData DBItem { get { return m_DbItem; } }
+        public TrainingDBData DBItem { get { return m_DbItem; } }
 
         public override void OnUpdate()
         {
             base.OnUpdate();
             if (IsReading())
             {
-                readCountDown.Value = GetLearnCountDown();
+                trainingCountDown.Value = GetLearnCountDown();
                 timeProgressBar.Value = GetTimeProgressBar();
             }
         }
 
-        public LibrarySlotModel(LibraryModel libraryModel, LibraryDBData dbItem)
+        public TrainingSlotModel(TrainingRoomModel TrainingModel, TrainingDBData dbItem)
         {
-            m_LibraryModel = libraryModel;
+            m_TrainingModel = TrainingModel;
             m_DbItem = dbItem;
 
             RefreshEndTime();
 
-            libraryState = new ReactiveProperty<LibrarySlotState>(m_DbItem.libraryState);
+            trainingState = new ReactiveProperty<TrainingSlotState>(m_DbItem.trainingState);
             heroID = new IntReactiveProperty(m_DbItem.heroId);
             unlockLevel = new StringReactiveProperty(GetUnlockLevelStr());
-            readCountDown = new StringReactiveProperty(Define.DEFAULT_SOUND);
+            trainingCountDown = new StringReactiveProperty(Define.DEFAULT_SOUND);
             timeProgressBar = new FloatReactiveProperty(1);
         }
 
         #region Public
         public bool IsHeroSelected()
         {
-            return libraryState.Value == LibrarySlotState.HeroSelected;
+            return trainingState.Value == TrainingSlotState.HeroSelected;
         }
 
         public bool IsReading()
         {
-            return libraryState.Value == LibrarySlotState.Reading;
+            return trainingState.Value == TrainingSlotState.Training;
         }
 
         public bool IsFree()
         {
-            return libraryState.Value == LibrarySlotState.Free;
+            return trainingState.Value == TrainingSlotState.Free;
         }
 
         /// <summary>
         /// …Ë÷√◊¥Ã¨
         /// </summary>
-        /// <param name="librarySlotState"></param>
-        public void SetLibrarySlotState(LibrarySlotState librarySlotState)
+        /// <param name="TrainingSlotState"></param>
+        public void SetTrainingSlotState(TrainingSlotState TrainingSlotState)
         {
-            libraryState.Value = librarySlotState;
+            trainingState.Value = TrainingSlotState;
 
-            m_LibraryModel.DBData.SetLibrarySlotState(m_DbItem.slotId, libraryState.Value);
+            m_TrainingModel.DBData.SetTrainingSlotState(m_DbItem.slotId, trainingState.Value);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace GameWish.Game
         {
             heroID.Value = id;
 
-            libraryState.Value = LibrarySlotState.HeroSelected;
+            trainingState.Value = TrainingSlotState.HeroSelected;
         }
 
         /// <summary>
@@ -94,14 +94,14 @@ namespace GameWish.Game
         {
             heroID.Value = -1;
 
-            libraryState.Value = LibrarySlotState.Free;
+            trainingState.Value = TrainingSlotState.Free;
         }
 
         public void AutoSelectAndStart(int id)
         {
             heroID.Value = id;
 
-            libraryState.Value = LibrarySlotState.HeroSelected;
+            trainingState.Value = TrainingSlotState.HeroSelected;
 
             StartRead();
         }
@@ -113,13 +113,13 @@ namespace GameWish.Game
         {
             if (IsHeroSelected())
             {
-                SetLibrarySlotState(LibrarySlotState.Reading);
+                SetTrainingSlotState(TrainingSlotState.Training);
 
-                m_LibraryModel.DBData.SetLibrarySlotState(m_DbItem.slotId, libraryState.Value);
+                m_TrainingModel.DBData.SetTrainingSlotState(m_DbItem.slotId, trainingState.Value);
 
-                m_LibraryModel.DBData.SetReadRoleID(m_DbItem.slotId, heroID.Value);
+                m_TrainingModel.DBData.SetTrainingRoleID(m_DbItem.slotId, heroID.Value);
 
-                ModelMgr.S.GetModel<RoleGroupModel>().SetRoleManagementState(heroID.Value, ManagementRoleState.LibraryRoom);
+                ModelMgr.S.GetModel<RoleGroupModel>().SetRoleManagementState(heroID.Value, ManagementRoleState.TrainingRoom);
 
                 RefreshEndTime();
             }
@@ -128,11 +128,11 @@ namespace GameWish.Game
         /// <summary>
         /// Õº È “…˝º∂
         /// </summary>
-        public void UnlockLibrarySolt()
+        public void UnlockTrainingSolt()
         {
-            libraryState.Value = LibrarySlotState.Free;
+            trainingState.Value = TrainingSlotState.Free;
 
-            m_LibraryModel.DBData.SetLibrarySlotState(m_DbItem.slotId, libraryState.Value);
+            m_TrainingModel.DBData.SetTrainingSlotState(m_DbItem.slotId, trainingState.Value);
         }
         #endregion
 
@@ -142,8 +142,8 @@ namespace GameWish.Game
         /// </summary>
         private void RefreshEndTime()
         {
-            int totalTime = m_LibraryModel.TableConfig.readingSpeed;
-            m_ReadEndTime = m_DbItem.readingStartTime + TimeSpan.FromSeconds(totalTime);
+            int totalTime = m_TrainingModel.TableConfig.trainingTime;
+            m_TrainingEndTime = m_DbItem.trainingStartTime + TimeSpan.FromSeconds(totalTime);
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace GameWish.Game
         /// <returns></returns>
         private string GetLearnCountDown()
         {
-            TimeSpan remain = m_ReadEndTime - DateTime.Now;
+            TimeSpan remain = m_TrainingEndTime - DateTime.Now;
             if (remain.TotalSeconds <= 0)
             {
                 EndRead();
@@ -167,15 +167,15 @@ namespace GameWish.Game
         private void EndRead()
         {
             ModelMgr.S.GetModel<RoleGroupModel>().SetRoleManagementState(heroID.Value);
-            LibraryPreparatorRoleModel libraryPreparatorRole = m_LibraryModel.GetLibraryRoleBySlotID(m_DbItem.slotId);
-            SetLibrarySlotState(LibrarySlotState.Free);
+            TrainingPreparatorRoleModel TrainingPreparatorRole = m_TrainingModel.GetTrainingRoleBySlotID(m_DbItem.slotId);
+            SetTrainingSlotState(TrainingSlotState.Free);
             heroID.Value = -1;
-            m_LibraryModel.DBData.SetReadRoleID(m_DbItem.slotId, heroID.Value);
-            if (libraryPreparatorRole != null)
+            m_TrainingModel.DBData.SetTrainingRoleID(m_DbItem.slotId, heroID.Value);
+            if (TrainingPreparatorRole != null)
             {
-                libraryPreparatorRole.EndTask();
+                TrainingPreparatorRole.EndTask();
 
-                m_LibraryModel.SortRefreshList();
+                m_TrainingModel.SortRefreshList();
                 refreshCommand.Execute();
             }
             else
@@ -188,13 +188,13 @@ namespace GameWish.Game
         /// <returns></returns>
         private float GetTimeProgressBar()
         {
-            TimeSpan remain = m_ReadEndTime - DateTime.Now;
+            TimeSpan remain = m_TrainingEndTime - DateTime.Now;
 
             if (remain.TotalSeconds <= 0)
             {
                 return 0;
             }
-            return (float)remain.TotalSeconds / m_LibraryModel.TableConfig.readingSpeed;
+            return (float)remain.TotalSeconds / m_TrainingModel.TableConfig.trainingTime;
         }
 
         /// <summary>

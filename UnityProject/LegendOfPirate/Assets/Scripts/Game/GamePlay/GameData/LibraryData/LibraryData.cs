@@ -8,7 +8,6 @@ namespace GameWish.Game
 {
     public class LibraryData : IDataClass
     {
-        public int level;
         public List<LibraryDBData> libraryItemList = new List<LibraryDBData>();
 
         public List<LibraryDBData> LibraryItemList { get { return libraryItemList; } }
@@ -35,14 +34,10 @@ namespace GameWish.Game
         #endregion
 
         #region Public
-
-        public void OnUpgradeUnit(int level)
-        {
-            this.level = level;
-
-            SaveManually();
-        }
-
+        /// <summary>
+        /// 添加数据
+        /// </summary>
+        /// <param name="slot"></param>
         public void AddTrainingSlotData(LibraryDBData slot)
         {
             if (!libraryItemList.Any(i => i.slotId == slot.slotId))
@@ -64,9 +59,9 @@ namespace GameWish.Game
             if (libraryDBData != null)
             {
                 if (librarySlotState == LibrarySlotState.Reading)
-                    libraryDBData.ReadingStartTime = DateTime.Now;
+                    libraryDBData.readingStartTime = DateTime.Now;
                 else if (librarySlotState == LibrarySlotState.Free)
-                    libraryDBData.ReadingStartTime = default(DateTime);
+                    libraryDBData.readingStartTime = default(DateTime);
                 libraryDBData.libraryState = librarySlotState;
             }
             else
@@ -79,30 +74,19 @@ namespace GameWish.Game
         /// 设置阅读角色的ID
         /// </summary>
         /// <param name="slotID"></param>
-        /// <param name="heroID"></param>
-        public void SetReadHeroID(int slotID, int heroID)
+        /// <param name="roleID"></param>
+        public void SetReadRoleID(int slotID, int roleID)
         {
             LibraryDBData libraryDBData = libraryItemList.FirstOrDefault(i => i.slotId == slotID);
             if (libraryDBData != null)
             {
-                libraryDBData.heroId = heroID;
+                libraryDBData.heroId = roleID;
             }
             else
                 Log.e("SortID is exit , SortID = " + slotID);
 
             SaveManually();
         }
-
         #endregion
-
-        private LibraryDBData GetLibraryDataItem(int slotId)
-        {
-            LibraryDBData item = libraryItemList.FirstOrDefault(i => i.slotId == slotId);
-            if (item == null)
-            {
-                Log.e("LibraryDataItem Not Found: " + slotId);
-            }
-            return item;
-        }
     }
 }

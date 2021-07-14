@@ -37,11 +37,19 @@ namespace GameWish.Game
 
         #region Public
 
+        /// <summary>
+        /// 获得角色ID
+        /// </summary>
+        /// <returns></returns>
         public int GetRoleID()
         {
             return m_RoleModel.id;
         }
 
+        /// <summary>
+        /// 是否选择状态
+        /// </summary>
+        /// <returns></returns>
         public bool IsHeroSelect()
         {
             return IsBindSlot.Value ? (LibrarySlotModel.IsHeroSelected()) : false;
@@ -59,6 +67,9 @@ namespace GameWish.Game
             }
         }
 
+        /// <summary>
+        /// 点击角色
+        /// </summary>
         public void OnClickRoleModel()
         {
             if (IsBindSlot.Value)
@@ -81,11 +92,17 @@ namespace GameWish.Game
             }
         }
 
-        public void EndRead()
+        /// <summary>
+        /// 结束阅读
+        /// </summary>
+        public void EndTask()
         {
             m_LibrarySlotModel.Value = null;
         }
 
+        /// <summary>
+        /// 清除选择的角色
+        /// </summary>
         public void ClearRoleSelect()
         {
             if (IsBindSlot.Value && LibrarySlotModel.IsHeroSelected())

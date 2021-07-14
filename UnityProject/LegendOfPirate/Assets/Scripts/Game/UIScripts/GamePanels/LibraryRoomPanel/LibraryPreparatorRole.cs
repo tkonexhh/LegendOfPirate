@@ -11,7 +11,7 @@ namespace GameWish.Game
     public class LibraryPreparatorRole : UListItemView
     {
         #region SerializeField
-        [SerializeField] private Button m_LibraryRole;
+        [SerializeField] private Button m_LibraryRoleBtn;
         [SerializeField] private Image m_Icon;
         #endregion
         #region Data
@@ -33,7 +33,7 @@ namespace GameWish.Game
 
         private void BindUIToModel()
         {
-            m_LibraryRole.OnClickAsObservable().Subscribe(_ => { m_BottomLibraryData.OnClickRoleModel(); }).AddTo(this);
+            m_LibraryRoleBtn.OnClickAsObservable().Subscribe(_ => { m_BottomLibraryData.OnClickRoleModel(); }).AddTo(this);
         }
 
         private void BindModelToUI()
@@ -59,11 +59,11 @@ namespace GameWish.Game
             switch (state)
             {
                 case LibrarySlotState.Free:
-                    m_LibraryRole.interactable = true;
+                    m_LibraryRoleBtn.interactable = true;
                     Narrow();
                     break;
                 case LibrarySlotState.Reading:
-                    m_LibraryRole.interactable = false;
+                    m_LibraryRoleBtn.interactable = false;
                     break;
                 case LibrarySlotState.Locked:
                     break;
@@ -102,9 +102,9 @@ namespace GameWish.Game
         {
             RectTransform rect = transform as RectTransform;
             rect.sizeDelta = new Vector2(100, 100);//¡Ÿ ±
-            m_LibraryRole.interactable = true;
+            m_LibraryRoleBtn.interactable = true;
             m_BindSlotDis?.Dispose();
-            m_LibraryRole.onClick.RemoveAllListeners();
+            m_LibraryRoleBtn.onClick.RemoveAllListeners();
         }
     }
 }

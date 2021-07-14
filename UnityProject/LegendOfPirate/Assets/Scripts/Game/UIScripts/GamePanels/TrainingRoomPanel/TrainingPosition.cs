@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using System;
+using System.Collections.Generic;
 
 namespace GameWish.Game
 {
@@ -21,50 +22,82 @@ namespace GameWish.Game
         [SerializeField] private Image m_Lock;
         [SerializeField] private TextMeshProUGUI m_UnlockLevel;
         #endregion
+
         #region Data
-        private TrainingPositionModel m_TraPosModel;
+        private TrainingSlotModel m_TrainingSlotModel;
+        private IDisposable m_TrainingStateDis;
+        private List<IDisposable> m_Cancelleds = new List<IDisposable>();
         #endregion
-        #region Method
-        private void OnReset()
-        {
-            m_RoleIconBg.gameObject.SetActive(false);
-            m_Plug.gameObject.SetActive(false);
-            m_LockBg.gameObject.SetActive(false);
-        }
+
         #region Public
-        public void OnRefresh(TrainingPositionModel traPosModel)
+        public void OnRefresh(TrainingSlotModel TrainingSlotModel)
         {
             OnReset();
-            if (traPosModel == null)
-            {
-                Debug.LogWarning("traPosModel is null");
-                return;
-            }
 
-            m_TraPosModel = traPosModel;
+            m_TrainingSlotModel = TrainingSlotModel;
 
-            BindModelToUI();
+            BindModleToUI();
         }
         #endregion
+
         #region Private
-        private void BindModelToUI()
+
+        private void BindModleToUI()
         {
-            m_TraPosModel.unlockLevel.Select(val => LanguageKeyDefine.FIXED_TITLE_LV_Ⅰ + val).SubscribeToTextMeshPro(m_UnlockLevel).AddTo(this);
-            m_TraPosModel.trainingCountDown.SubscribeToTextMeshPro(m_Time).AddTo(this);
-            m_TraPosModel.progressBar.Subscribe(ValueTuple => HandleTimeBar(ValueTuple)).AddTo(this);
-            m_TraPosModel.isHaveRole.SubscribeToActive(m_RoleIconBg, m_Plug).ForEach(i => i.AddTo(this));
-            m_TraPosModel.GetTrainingSlotState().Subscribe(val => { HandleTrainingSlotState(val); }).AddTo(this);
+            m_TrainingStateDis = m_TrainingSlotModel.trainingState.Subscribe(val => HandleTrainingState(val)).AddTo(this);
         }
 
-        private void HandleTimeBar(float valueTuple)
+        private void HandleTrainingState(TrainingSlotState val)
         {
-            m_TimeBar.fillAmount = valueTuple;
+            ControlActiveChange(val);
+            ClearAllDisciple();
+            switch (val)
+            {
+                case TrainingSlotState.Free:
+                    m_Plug.gameObject.SetActive(true);
+                    break;
+                case TrainingSlotState.Training:
+                    IDisposable learnCountDownDis = m_TrainingSlotModel.trainingCountDown.SubscribeToTextMeshPro(m_Time).AddTo(this);
+                    IDisposable timeProgressBarDis = m_TrainingSlotModel.timeProgressBar.Subscribe(bar => HandleTimeBar(bar)).AddTo(this);
+
+                    m_Cancelleds.Add(learnCountDownDis);
+                    m_Cancelleds.Add(timeProgressBarDis);
+                    break;
+                case TrainingSlotState.Locked:
+                    IDisposable unlockLevelDis = m_TrainingSlotModel.unlockLevel.SubscribeToTextMeshPro(m_UnlockLevel).AddTo(this);
+                    m_Cancelleds.Add(unlockLevelDis);
+                    break;
+                case TrainingSlotState.HeroSelected:
+                    IDisposable heroIDDis = m_TrainingSlotModel.heroID.Subscribe(id => HandleHeroID(id)).AddTo(this);
+                    m_Cancelleds.Add(heroIDDis);
+                    break;
+                default:
+                    break;
+            }
         }
 
-        private void HandleTrainingSlotState(TrainingSlotState val)
+        private void HandleTimeBar(float val)
+        {
+            m_TimeBar.fillAmount = val;
+        }
+
+        private void HandleHeroID(int val)
+        {
+            //TODO 根据ID加载头像
+            if (val == -1)
+            {
+                m_RoleIcon.gameObject.SetActive(false);
+            }
+            else
+            {
+                m_RoleIcon.gameObject.SetActive(true);
+            }
+        }
+
+        private void ControlActiveChange(TrainingSlotState trainingSlotState)
         {
             OnReset();
-            switch (val)
+            switch (trainingSlotState)
             {
                 case TrainingSlotState.Free:
                     m_Plug.gameObject.SetActive(true);
@@ -75,9 +108,29 @@ namespace GameWish.Game
                 case TrainingSlotState.Locked:
                     m_LockBg.gameObject.SetActive(true);
                     break;
+                case TrainingSlotState.HeroSelected:
+                    m_RoleIconBg.gameObject.SetActive(true);
+                    break;
+                default:
+                    break;
             }
         }
-        #endregion
+
+        private void OnReset()
+        {
+            m_RoleIcon.gameObject.SetActive(true);
+            m_RedPoint.gameObject.SetActive(false);
+            m_Plug.gameObject.SetActive(false);
+            m_RoleIconBg.gameObject.SetActive(false);
+            m_LockBg.gameObject.SetActive(false);
+            ClearAllDisciple();
+        }
+
+        private void ClearAllDisciple()
+        {
+            foreach (var item in m_Cancelleds)
+                item.Dispose();
+        }
         #endregion
     }
 }

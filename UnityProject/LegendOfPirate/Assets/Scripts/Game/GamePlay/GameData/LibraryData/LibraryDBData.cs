@@ -11,7 +11,7 @@ namespace GameWish.Game
     {
         public int slotId;
         public int heroId;
-        public DateTime ReadingStartTime;
+        public DateTime readingStartTime;
         public LibrarySlotState libraryState;
 
         public LibraryDBData() { }
@@ -20,7 +20,7 @@ namespace GameWish.Game
         {
             slotId = slot;
             heroId = -1;
-            ReadingStartTime = default(DateTime);
+            readingStartTime = default(DateTime);
             libraryState = LibrarySlotState.Locked;
         }
     }

@@ -10,28 +10,12 @@ namespace GameWish.Game
     public class TrainingRoomPanelData : UIPanelData
     {
         public ShipModel shipModel;
-        public TrainingRoomModel trainingRoomModel;
+        public TrainingRoomModel trainingModel;
         public RoleGroupModel roleGroupModel;
         public TrainingRoomPanelData()
         {
 
         }
-
-        #region Public
-        /// <summary>
-        /// 获取当前等级可训练的槽位数
-        /// </summary>
-        /// <returns></returns>
-        public int GetTrainingRoomCapacity()
-        {
-            return trainingRoomModel.tableConfig.capacity;
-        }
-
-        public int GetSlotLCount()
-        {
-            return trainingRoomModel.slotModelList.Count;
-        }
-        #endregion
     }
     public partial class TrainingRoomPanel
     {
@@ -41,10 +25,22 @@ namespace GameWish.Game
         {
             m_PanelData = UIPanelData.Allocate<TrainingRoomPanelData>();
 
-            m_PanelData.shipModel = ModelMgr.S.GetModel<ShipModel>();
-            m_PanelData.roleGroupModel = ModelMgr.S.GetModel<RoleGroupModel>();
-            m_PanelData.trainingRoomModel = m_PanelData.shipModel.GetShipUnitModel(ShipUnitType.TrainingRoom) as TrainingRoomModel;
-            RolesZeroState = m_SelectedCount.Select(val => val <= 0).ToReactiveProperty();
+            try
+            {
+                m_PanelData.shipModel = ModelMgr.S.GetModel<ShipModel>();
+
+                m_PanelData.trainingModel = m_PanelData.shipModel.GetShipUnitModel(ShipUnitType.TrainingRoom) as TrainingRoomModel;
+
+                m_TrainingSlotModels = m_PanelData.trainingModel.TrainingSlotModels;
+
+                m_PanelData.trainingModel.RefreshCurRoleModels();
+
+                m_RoleModelList = m_PanelData.trainingModel.RoleModelList;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("e = " + e);
+            }
         }
 
         private void ReleasePanelData()
@@ -54,17 +50,22 @@ namespace GameWish.Game
 
         private void BindModelToUI()
         {
-            m_PanelData.trainingRoomModel.level.SubscribeToColorTextMeshPro(m_TrainingLevelTMP, ColorDefine.LEVEL_COLOR).AddTo(this);
-            RolesZeroState.SubscribeToPositiveActive(m_AutoSelectBtn).AddTo(this);
-            RolesZeroState.SubscribeToNegativeActive(m_SelectRoleState).AddTo(this);
+            m_PanelData.trainingModel.level.SubscribeToTextMeshPro(m_TrainingLevelTMP).AddTo(this);
+
+            m_PanelData.trainingModel.IsShowReadBtn.SubscribeToActive(m_SelectRoleState, m_AutoSelectBtn).ForEach(i => i.AddTo(this));
+
+            foreach (var item in m_PanelData.trainingModel.TrainingSlotModels)
+            {
+                item.refreshCommand.Subscribe(_ => RefreshCommand()).AddTo(this);
+            }
         }
 
         private void BindUIToModel()
         {
-            m_RoleAutoSelectBtn.OnClickAsObservable().Subscribe(_ => AutoSelectBtn()).AddTo(this);
+            m_TrainingUpgradeBtn.OnClickAsObservable().Subscribe(_ => UpgradeBtn()).AddTo(this);
             m_RraintBtn.OnClickAsObservable().Subscribe(_ => RraintBtn()).AddTo(this);
+            m_RoleAutoSelectBtn.OnClickAsObservable().Subscribe(_ => AutoSelectBtn()).AddTo(this);
             m_AutoSelectBtn.OnClickAsObservable().Subscribe(_ => AutoSelectBtn()).AddTo(this);
-            m_TrainingUpgradeBtn.OnClickAsObservable().Subscribe(_ => TrainingUpgradeBtn()).AddTo(this);
         }
     }
 }

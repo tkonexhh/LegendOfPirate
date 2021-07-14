@@ -213,5 +213,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c180bff0b29870a47827611d27e04305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PrepRole: {fileID: 4221777576019894453}
+  m_TrainingRoleBtn: {fileID: 4221777576019894453}
   m_Icon: {fileID: 2258870528914417593}
