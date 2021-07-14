@@ -17,6 +17,7 @@ namespace GameWish.Game
         public const string STRING_NUMBER_ZERO = "0";
 
         public const string DEFAULT_SOUND = "";
+        public const string DEFAULT_NULL = "";
         public const string SYMBOL_SLASH = "/";
         public const string SYMBOL_PERCENT= "%";
         public const string DOLLAR_SIGN= "$";

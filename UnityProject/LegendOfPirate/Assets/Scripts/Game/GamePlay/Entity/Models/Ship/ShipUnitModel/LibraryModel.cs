@@ -8,176 +8,392 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-
     public class LibraryModel : ShipUnitModel
     {
-        public LibraryUnitConfig tableConfig; 
-        public List<LibrarySlotModel> slotModelList = new List<LibrarySlotModel>();
+        private List<LibrarySlotModel> m_SlotModelList = new List<LibrarySlotModel>();
+        private List<LibraryPreparatorRoleModel> m_RoleModelList = new List<LibraryPreparatorRoleModel>();
 
+        //ReactiveCommand
         private LibraryData m_DbData;
+        private LibraryUnitConfig m_TableConfig;
+
+        public IntReactiveProperty selectedNumer;
+        public IReadOnlyReactiveProperty<bool> IsShowReadBtn;
+
+        public LibraryData DBData { get { return m_DbData; } }
+        public LibraryUnitConfig TableConfig { get { return m_TableConfig; } }
+        public List<LibrarySlotModel> LibrarySlotModels { get { return m_SlotModelList; } }
+        public List<LibraryPreparatorRoleModel> RoleModelList { get { return m_RoleModelList; } }
 
         public LibraryModel(ShipUnitData shipUnitData) : base(shipUnitData)
         {
-            tableConfig = TDFacilityLibraryTable.GetConfig(level.Value);
-
-            level.Subscribe(val => {
-                tableConfig = TDFacilityLibraryTable.GetConfig(level.Value);
-                for (int i = 0; i < slotModelList.Count; i++)
-                {
-                    slotModelList[i].OnLibraryLevelUp();
-                }
-            });
-
             m_DbData = GameDataMgr.S.GetData<LibraryData>();
-            for (int i = 0; i < m_DbData.libraryItemList.Count; i++)
+            m_TableConfig = TDFacilityLibraryTable.GetConfig(level.Value);
+
+            InitLibraryData();
+
+            RefreshCurRoleModels();
+
+            level.Subscribe(val => HandleShipUnitUpgrade());
+
+            PrepareResponseProperties();
+        }
+
+        #region Public
+        /// <summary>
+        /// 清除缓存数据
+        /// </summary>
+        public void ClearCacheData()
+        {
+            ResetSelectedNumber();
+            foreach (var item in RoleModelList)
             {
-                LibrarySlotModel slotModel = new LibrarySlotModel(this, m_DbData.libraryItemList[i]);
-                slotModelList.Add(slotModel);
+                item.ClearRoleSelect();
             }
         }
 
-        private float m_RefreshTime = 0;
-        private float m_RefreshInterval = 0.3f;
-        public override void OnUpdate()
+        /// <summary>
+        /// 根据角色ID 拿到RoleModel
+        /// </summary>
+        /// <param name="roleID"></param>
+        /// <returns></returns>
+        public LibraryPreparatorRoleModel GetLibraryRoleByRoleID(int roleID)
         {
-            m_RefreshTime += Time.deltaTime;
-            if (m_RefreshTime >= m_RefreshInterval)
+            LibraryPreparatorRoleModel libraryPreparatorRoleModel = null;
+            foreach (var item in m_RoleModelList)
             {
-                m_RefreshTime = 0;
-
-                for (int i = 0; i < slotModelList.Count; i++)
+                if (item.GetRoleID() == roleID)
                 {
-                    slotModelList[i].RefreshRemainTime();
+                    libraryPreparatorRoleModel = item;
+                }
+            }
+            return libraryPreparatorRoleModel;
+        }
+
+        /// <summary>
+        /// 根据slotID 拿到 roleModel
+        /// </summary>
+        /// <param name="slotID"></param>
+        /// <returns></returns>
+        public LibraryPreparatorRoleModel GetLibraryRoleBySlotID(int slotID)
+        {
+            LibraryPreparatorRoleModel libraryPreparatorRoleModel = null;
+            foreach (var item in m_RoleModelList)
+            {
+                if (item.IsBindSlot.Value && item.LibrarySlotModel.DBItem.slotId == slotID)
+                {
+                    libraryPreparatorRoleModel = item;
+                }
+            }
+            return libraryPreparatorRoleModel;
+        }
+
+        /// <summary>
+        /// 根据角色ID获取训练得坑位
+        /// </summary>
+        /// <param name="roleID"></param>
+        public LibrarySlotModel GetSlotModelByRoleID(int roleID)
+        {
+            LibrarySlotModel librarySlotModel = null;
+            foreach (var item in m_SlotModelList)
+            {
+                if (item.heroID.Value == roleID)
+                {
+                    librarySlotModel = item;
+                }
+            }
+            return librarySlotModel;
+        }
+
+        /// <summary>
+        /// 获取一个空闲得坑位
+        /// </summary>
+        /// <returns></returns>
+        public LibrarySlotModel GetFreeSlot()
+        {
+            LibrarySlotModel trainingSlotModel = null;
+            foreach (var item in m_SlotModelList)
+            {
+                if (item.IsFree())
+                {
+                    trainingSlotModel = item;
+                    break;
+                }
+            }
+            return trainingSlotModel;
+        }
+
+        /// <summary>
+        /// 获得空闲和选中的空位
+        /// </summary>
+        /// <returns></returns>
+        public LibrarySlotModel GetFreeAndHeroSelectedSlot()
+        {
+            LibrarySlotModel trainingSlotModel = null;
+            foreach (var item in m_SlotModelList)
+            {
+                if (item.IsFree() || item.IsHeroSelected())
+                {
+                    trainingSlotModel = item;
+                    break;
+                }
+            }
+            return trainingSlotModel;
+        }
+
+        /// <summary>
+        /// 刷新当前的角色列表
+        /// </summary>
+        public void RefreshCurRoleModels()
+        {
+            if (m_RoleModelList.Count > 0)
+                m_RoleModelList.Clear();
+
+            foreach (var item in ModelMgr.S.GetModel<RoleGroupModel>().RoleUnlockedItemList)
+            {
+                m_RoleModelList.Add(new LibraryPreparatorRoleModel(item, this));
+            }
+            SortRefreshList();
+        }
+
+        /// <summary>
+        /// 自动选择
+        /// </summary>
+        public void AutoSelectRole()
+        {
+            foreach (var item in m_RoleModelList)
+            {
+                if (item.IsBindSlot.Value)
+                {
+                    item.ClearRoleSelect();
+                }
+            }
+
+            List<RoleModel> roleModels = ModelMgr.S.GetModel<RoleGroupModel>().GetRolesByManagementState();
+            int freeNumber = GetNumberBySlotState(LibrarySlotState.Free);
+            if (roleModels.Count == 0)
+            {
+                FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.LIBRARYROOM_CONT_Ⅲ);
+                return;
+            }
+            if (freeNumber == 0)
+            {
+                FloatMessageTMP.S.ShowMsg(LanguageKeyDefine.LIBRARYROOM_CONT_Ⅰ);
+                return;
+            }
+
+            int surplus = roleModels.Count > freeNumber ? freeNumber : roleModels.Count;
+            for (int i = 0; i < surplus; i++)
+            {
+                LibrarySlotModel librarySlotModel = GetFreeAndHeroSelectedSlot();
+                LibraryPreparatorRoleModel libraryPreparatorRoleModel = GetLibraryRoleByRoleID(roleModels[i].id);
+
+                if (librarySlotModel != null && libraryPreparatorRoleModel != null)
+                {
+                    libraryPreparatorRoleModel.AutoSelectRole(librarySlotModel);
+                    librarySlotModel.AutoSelectAndStart(roleModels[i].id);
+                }
+                else
+                    Log.e("Error : Auto select");
+            }
+
+            SortRefreshList();
+        }
+
+        /// <summary>
+        /// 开始训练
+        /// </summary>
+        public void StartLearn()
+        {
+            foreach (var item in m_SlotModelList)
+            {
+                item.StartRead();
+            }
+
+            SortRefreshList();
+        }
+
+        /// <summary>
+        /// 增加选择的数量
+        /// </summary>
+        public void AddSelectedNumer()
+        {
+            selectedNumer.Value++;
+            Log.e("selectedNumer" + selectedNumer.Value);
+        }
+
+        /// <summary>
+        /// 减少选择的数量 
+        /// </summary>
+        public void ReduceSelectedNumer()
+        {
+            selectedNumer.Value--;
+            Log.e("selectedNumer" + selectedNumer.Value);
+        }
+
+        /// <summary>
+        /// 重置选择数据
+        /// </summary>
+        public void ResetSelectedNumber()
+        {
+            selectedNumer.Value = 0;
+        }
+
+        /// <summary>
+        /// 获得选择了角色的数量
+        /// </summary>
+        /// <returns></returns>
+        public int GetSelectedNumber()
+        {
+            int number = 0;
+            foreach (var item in RoleModelList)
+            {
+                if (item.IsHeroSelect())
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public void SortRefreshList()
+        {
+            List<LibraryPreparatorRoleModel> libraryRoleModels = new List<LibraryPreparatorRoleModel>();
+            foreach (var item in m_RoleModelList)
+            {
+                if (item.IsBindSlot.Value && item.LibrarySlotModel.IsReading())
+                {
+                    libraryRoleModels.Add(item);
+                }
+            }
+            foreach (var item in libraryRoleModels)
+                m_RoleModelList.Remove(item);
+            m_RoleModelList.AddRange(libraryRoleModels);
+            libraryRoleModels.Clear();
+        }
+        #endregion
+
+        #region Private
+        /// <summary>
+        /// 准备响应式属性
+        /// </summary>
+        private void PrepareResponseProperties()
+        {
+            selectedNumer = new IntReactiveProperty(GetSelectedNumber());
+
+            IsShowReadBtn = selectedNumer.Select(val => val > 0).ToReactiveProperty();
+        }
+
+        /// <summary>
+        /// 处理升级事件
+        /// </summary>
+        private void HandleShipUnitUpgrade()
+        {
+            int number = GetUnlockSlotNumber();
+            m_TableConfig = TDFacilityLibraryTable.GetConfig(level.Value);
+
+            int surplus = m_TableConfig.capacity - number;
+            int unlockNumber = 0;
+
+            foreach (var item in m_SlotModelList)
+            {
+                if (unlockNumber == surplus)
+                    return;
+
+                if (item.libraryState.Value == LibrarySlotState.Locked)
+                {
+                    item.UnlockLibrarySolt();
+                    unlockNumber++;
                 }
             }
         }
-    }
 
-   public class LibrarySlotModel : Model
-    {
-
-        public int slotId;
-        public int heroId = -1;
-        public FloatReactiveProperty libraryRemainTime = new FloatReactiveProperty(-1);
-
-        public ReactiveProperty<LibrarySlotState> libraryState;
-
-        private DateTime m_StartTime = default(DateTime);
-        private DateTime m_EndTime = default(DateTime);
-
-        private LibraryModel m_LibraryMode;
-        private LibraryData.LibraryDataItem m_DbItem;
-
-        public LibrarySlotModel(LibraryModel libraryModel, LibraryData.LibraryDataItem dbItem)
+        /// <summary>
+        /// 获取各个状态的数量
+        /// </summary>
+        /// <param name="librarySlotState"></param>
+        /// <returns></returns>
+        public int GetNumberBySlotState(LibrarySlotState librarySlotState)
         {
-            m_LibraryMode = libraryModel;
-            m_DbItem = dbItem;
-
-            this.slotId = dbItem.slotId;
-            this.heroId = dbItem.heroId;
-            this.libraryState = new ReactiveProperty<LibrarySlotState>(dbItem.libraryState);
-
-            switch (libraryState.Value)
+            int number = 0;
+            foreach (var item in m_SlotModelList)
             {
-                case LibrarySlotState.Free:
-                    break;
-                case LibrarySlotState.Reading:
-                    SetTime(dbItem.ReadingStartTime);
-                    RefreshRemainTime();
-                    break;
-                case LibrarySlotState.Locked:
-                    break;
+                if (item.libraryState.Value == librarySlotState)
+                {
+                    number++;
+                }
             }
+            return number;
         }
 
-        #region Public Set
-        public void StartReading(DateTime startTime)
+        /// <summary>
+        /// 已解锁的坑位数量
+        /// </summary>
+        /// <returns></returns>
+        private int GetUnlockSlotNumber()
         {
-            SetTime(startTime);
-
-            libraryState.Value = LibrarySlotState.Reading;
-
-            m_DbItem.OnStartReading(heroId, startTime);
-        }
-
-        public void EndReading()
-        {
-            heroId = -1;
-            libraryRemainTime.Value = -1f;
-            libraryState.Value = LibrarySlotState.Free;
-            m_StartTime = default(DateTime);
-            m_EndTime = default(DateTime);
-
-            m_DbItem.OnEndTraining();
-            //TODO...   增加人物经验
-            //ModelMgr.S.GetModel<RoleGroupModel>().GetRoleModel(heroId).AddCurExp(m_TrainingRoomMode.tableConfig.experience);
-
-        }
-
-        public void OnHeroUnselected()
-        {
-            heroId = -1;
-            libraryState.Value = LibrarySlotState.Free;
-            m_DbItem.OnHeroUnselected();
-        }
-
-        public void OnHeroSelected(int id)
-        {
-            heroId = id;
-            libraryState.Value = LibrarySlotState.HeroSelected;
-            m_DbItem.OnHeroSelected(id);
-        }
-
-        public void RefreshRemainTime()
-        {
-            if (m_DbItem.libraryState != LibrarySlotState.Reading)
-                return;
-
-            double remainTime = (m_EndTime - DateTime.Now).TotalSeconds;
-
-            libraryRemainTime.Value = (float)remainTime;
-            if (libraryRemainTime.Value <= 0f)
+            int number = 0;
+            foreach (var item in m_SlotModelList)
             {
-                EndReading();
+                if (item.libraryState.Value != LibrarySlotState.Locked)
+                {
+                    number++;
+                }
             }
+            return number;
         }
 
-        public void OnLibraryLevelUp()
+        /// <summary>
+        /// 初始化数据
+        /// </summary>
+        private void InitLibraryData()
         {
-            if (libraryState.Value == LibrarySlotState.Locked && m_LibraryMode.tableConfig.capacity >= slotId)
+            if (m_DbData.LibraryItemList.Count == 0)
             {
-                libraryState.Value = LibrarySlotState.Free;
-
-                m_DbItem.OnUnlocked();
+                foreach (var item in TDFacilityLibraryTable.libraryUnitProperties)
+                {
+                    LibraryDBData slot = new LibraryDBData(item.baseProperty.level);
+                    m_DbData.AddTrainingSlotData(slot);
+                    LibrarySlotModel slotModel = new LibrarySlotModel(this, slot);
+                    m_SlotModelList.Add(slotModel);
+                }
+            }
+            else
+            {
+                if (m_DbData.LibraryItemList.Count == TDFacilityLibraryTable.libraryUnitProperties.Length)
+                {
+                    for (int i = 0; i < m_DbData.LibraryItemList.Count; i++)
+                    {
+                        LibrarySlotModel slotModel = new LibrarySlotModel(this, m_DbData.LibraryItemList[i]);
+                        m_SlotModelList.Add(slotModel);
+                    }
+                }
+                else
+                {
+                    Log.e("Error : Count Different ! ");
+                }
             }
         }
         #endregion
 
-        private void SetTime(DateTime startTime)
+        public override void OnDestroyed()
         {
-            m_StartTime = startTime;
-            int totalTime = m_LibraryMode.tableConfig.readingSpeed;
-            m_EndTime = m_StartTime + TimeSpan.FromSeconds(totalTime);
+            base.OnDestroyed();
+            foreach (var item in m_SlotModelList)
+            {
+                item.OnDestroyed();
+            }
         }
-    }
 
-    public enum LibrarySlotState
-    {
-        /// <summary>
-        /// 空闲中
-        /// </summary>
-        Free = 0,
-        /// <summary>
-        /// 训练中
-        /// </summary>
-        Reading = 1,
-        /// <summary>
-        /// 未解锁
-        /// </summary>
-        Locked = 2,
-        /// <summary>
-        /// 选择但是未开始
-        /// </summary>
-        HeroSelected = 3,
+        public override void OnUpdate()
+        {
+            foreach (var item in m_SlotModelList)
+            {
+                item.OnUpdate();
+            }
+        }
     }
 }

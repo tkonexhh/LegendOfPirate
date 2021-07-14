@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth.Extension;
 using Qarth;
-using GFrame.Editor;
+using TMPro;
 
 namespace GameWish.Game
 {
@@ -12,34 +12,23 @@ namespace GameWish.Game
 	{
 		public const string Name = "LibraryRoomPanel";
 		
-		[SerializeField]
-		public GFrame.Editor.GButton BgBtn;
-		[SerializeField]
-		public UnityEngine.UI.Image TitleBg;
-		[SerializeField]
-		public UnityEngine.UI.Image TitleIcon;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI LibraryLevelTMP;
-		[SerializeField]
-		public GFrame.Editor.GButton LibraryUpgradeBtn;
-		[SerializeField]
-		public UnityEngine.UI.Image MiddleLibraryRoleTra;
-		[SerializeField]
-		public UnityEngine.UI.Image BottomRegionBg;
-		[SerializeField]
-		public GFrame.Editor.GButton LeftArrowBtn;
-		[SerializeField]
-		public GFrame.Editor.GButton RightArrowBtn;
-		[SerializeField]
-		public UnityEngine.UI.Image RoleSelectNumberIcon;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI RoleSelectNumberTMP;
-		[SerializeField]
-		public GFrame.Editor.GButton TrainBtn;
-		[SerializeField]
-		public GFrame.Editor.GButton AutoTrainBtn;
-		[SerializeField]
-		public RectTransform BottomLibraryRoleTra;
+		[SerializeField] private Button m_BgBtn;
+		[SerializeField] private TextMeshProUGUI m_DiamondsValue;
+		[SerializeField] private TextMeshProUGUI m_CoinIValue;
+		[SerializeField] private Image m_TitleBg;
+		[SerializeField] private Image m_TitleIcon;
+		[SerializeField] private TextMeshProUGUI m_TitileCont;
+		[SerializeField] private TextMeshProUGUI m_LibraryLevelTMP;
+		[SerializeField] private Button m_LibraryUpgradeBtn;
+		[SerializeField] private IUListView m_MiddleUGridListView;
+		[SerializeField] private Button m_AutoSelectBtn;
+		[SerializeField] private Image m_SelectRoleState;
+		[SerializeField] private Button m_RoleAutoSelectBtn;
+		[SerializeField] private Button m_RraintBtn;
+		[SerializeField] private Button m_LeftArrowBtn;
+		[SerializeField] private Button m_RightArrowBtn;
+		[SerializeField] private Button m_ExitBtn;
+		[SerializeField] private RectTransform m_BottomLibraryRoleTra;
 		
 		
 	}

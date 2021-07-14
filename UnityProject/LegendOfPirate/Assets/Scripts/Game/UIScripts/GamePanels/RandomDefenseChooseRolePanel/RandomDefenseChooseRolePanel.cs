@@ -75,6 +75,7 @@ namespace GameWish.Game
 
 		private ReactiveCollection<RoleModel> m_SelectedRoles = new ReactiveCollection<RoleModel>();
 		#endregion
+
 		#region AbstractAnimPanel
 
 		protected override void OnUIInit()
@@ -115,6 +116,7 @@ namespace GameWish.Game
 			UnregisterEvents();
 		}
 		#endregion
+
 		#region ButtonEvent
 	
 		public void BgBtnEvent()
@@ -123,6 +125,7 @@ namespace GameWish.Game
 		}
 
 		#endregion
+
 		#region EventSystem
 		private void HandlerEvent(int key, object[] param)
 		{
@@ -136,6 +139,7 @@ namespace GameWish.Game
 
     
         #endregion
+
         #region Other Method
         private void InitData()
 		{

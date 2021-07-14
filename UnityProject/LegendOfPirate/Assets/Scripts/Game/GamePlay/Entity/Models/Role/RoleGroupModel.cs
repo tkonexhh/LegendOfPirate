@@ -65,7 +65,7 @@ namespace GameWish.Game
             return role;
         }
 
-        public void SetRoleManagementState(int id, ManagementRoleState managementRoleState)
+        public void SetRoleManagementState(int id, ManagementRoleState managementRoleState = ManagementRoleState.None)
         {
             RoleModel roleModel = GetUnlockedRoleModel(id);
             if (roleModel != null)

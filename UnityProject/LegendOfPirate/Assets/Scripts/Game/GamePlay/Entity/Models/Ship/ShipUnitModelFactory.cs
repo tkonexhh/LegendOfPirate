@@ -39,7 +39,6 @@ namespace GameWish.Game
                     unitModel = new ForgeRoomModel(shipUnitData);
                     break;
             }
-
             return unitModel;
         }
 	}

@@ -15,11 +15,6 @@ namespace GameWish.Game
         public LibraryRoomPanelData()
         {
         }
-
-        public int GetLibSlotMCount()
-        {
-            return libraryModel.slotModelList.Count;
-        }
     }
 
     public partial class LibraryRoomPanel
@@ -35,6 +30,12 @@ namespace GameWish.Game
                 m_PanelData.shipModel = ModelMgr.S.GetModel<ShipModel>();
 
                 m_PanelData.libraryModel = m_PanelData.shipModel.GetShipUnitModel(ShipUnitType.Library) as LibraryModel;
+
+                m_LibrarySlotModels = m_PanelData.libraryModel.LibrarySlotModels;
+
+                m_PanelData.libraryModel.RefreshCurRoleModels();
+
+                m_RoleModelList = m_PanelData.libraryModel.RoleModelList;
             }
             catch (Exception e)
             {
@@ -49,37 +50,24 @@ namespace GameWish.Game
 
         private void BindModelToUI()
         {
-            m_PanelData.libraryModel
-             .level
-             .Select(level => CommonMethod.GetStringForTableKey(LanguageKeyDefine.FIXED_TITLE_LV) + level.ToString())
-             .SubscribeToTextMeshPro(LibraryLevelTMP).AddTo(this);
+            m_PanelData.libraryModel.level.SubscribeToTextMeshPro(m_LibraryLevelTMP).AddTo(this);
 
-            m_SelectedCount.Select(count => count + Define.SYMBOL_SLASH + m_PanelData.GetLibSlotMCount()).SubscribeToTextMeshPro(RoleSelectNumberTMP).AddTo(this);
+            m_PanelData.libraryModel.IsShowReadBtn.SubscribeToActive(m_SelectRoleState, m_AutoSelectBtn).ForEach(i => i.AddTo(this));
 
-            foreach (var item in m_PanelData.libraryModel.slotModelList)
+            foreach (var item in m_PanelData.libraryModel.LibrarySlotModels)
             {
-                item.libraryState.Subscribe(_=> RefreshSelectedCount()).AddTo(this);
+                item.refreshCommand.Subscribe(_ => RefreshCommand()).AddTo(this);
             }
         }
 
+      
+
         private void BindUIToModel()
         {
-            LibraryUpgradeBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                m_PanelData.libraryModel.OnLevelUpgrade(1);
-            }).AddTo(this);
-
-            TrainBtn.OnClickAsObservable().Subscribe(_ =>
-            {
-                foreach (var item in m_ReadPosDatas)
-                {
-                    if (item.librarySlotModel.libraryState.Value == LibrarySlotState.HeroSelected)
-                    {
-                        item.librarySlotModel.StartReading(DateTime.Now);
-                        SelectedRoleSort();
-                    }
-                }
-            }).AddTo(this);
+            m_LibraryUpgradeBtn.OnClickAsObservable().Subscribe(_ => UpgradeBtn()).AddTo(this);
+            m_RraintBtn.OnClickAsObservable().Subscribe(_ => RraintBtn()).AddTo(this);
+            m_RoleAutoSelectBtn.OnClickAsObservable().Subscribe(_ => AutoSelectBtn()).AddTo(this);
+            m_AutoSelectBtn.OnClickAsObservable().Subscribe(_ => AutoSelectBtn()).AddTo(this);
         }
     }
 }
