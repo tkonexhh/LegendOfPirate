@@ -31,14 +31,14 @@ namespace GameWish.Game
         public int rewardId;
         public float coefficient;
 
-        public SmuggleUnitConfig(int orderId, string addressName, string spriteName, int time, int rewardId, string confficientString)
+        public SmuggleUnitConfig(int orderId, string addressName, string spriteName, int time, int rewardId, float confficientString)
         {
             this.orderId = orderId;
             this.addressName = addressName;
             this.spriteName = spriteName;
             this.time = time;
             this.rewardId = rewardId;
-            this.coefficient = Helper.String2Float(confficientString);
+            this.coefficient = confficientString;
         }
     }
 }
