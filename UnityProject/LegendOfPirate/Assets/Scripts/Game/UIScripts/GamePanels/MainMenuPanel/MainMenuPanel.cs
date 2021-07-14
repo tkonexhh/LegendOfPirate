@@ -39,6 +39,5 @@ namespace GameWish.Game
 
             UnregisterEvents();
         }
-
     }
 }
