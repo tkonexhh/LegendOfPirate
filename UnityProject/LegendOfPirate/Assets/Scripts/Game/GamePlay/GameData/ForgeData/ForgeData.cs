@@ -4,79 +4,60 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameWish.Game
-{   
+{
     public class ForgeData : IDataClass
     {
-        public ForgeDataItem forgeDataItem = new ForgeDataItem();
+        public ForgeDBData forgeDataItem = new ForgeDBData();
+
+        public ForgeDBData ForgeDataItem { get { return forgeDataItem; } }
+
+        #region IDataClass
+        public void SaveManually()
+        {
+            SetDataDirty();
+
+            GameDataMgr.S.SaveDataToLocal();
+        }
+
         public override void InitWithEmptyData()
         {
-            forgeDataItem = new ForgeDataItem(ForgeStage.Free);
+
         }
 
         public override void OnDataLoadFinish()
         {
 
         }
-    }
+        #endregion
 
-    [Serializable]
-    public class ForgeDataItem 
-    {
-        public int equipmentId;
-        public DateTime forgingStartTime;
-        public ForgeStage forgeState;
-
-        public ForgeDataItem() { }
-
-        public ForgeDataItem(ForgeStage state)
+        #region public
+        /// <summary>
+        /// 设置锻造数据
+        /// </summary>
+        /// <param name="forgeEquipModel"></param>
+        public void SetForgeEquip(ForgeEquipModel forgeEquipModel = null)
         {
-            equipmentId = TDEquipmentSynthesisConfigTable.dataList[0].id;
-            forgingStartTime = default(DateTime);
-            forgeState = ForgeStage.Free;
+            if (forgeEquipModel != null)
+            {
+                forgeDataItem.equipmentId = forgeEquipModel.ID;
+                forgeDataItem.forgeState = ForgeStage.Forging;
+                forgeDataItem.forgeEndTime = DateTime.Now + TimeSpan.FromSeconds(forgeEquipModel.EquipmentSynthesisConfig.makeTime);
+            }
+            else
+                ClearForgeDBData();
         }
 
-        public void OnStartForge(int Weaponid, DateTime time)
-        {
-            this.equipmentId = Weaponid;
-            this.forgingStartTime = time;
-            forgeState = ForgeStage.Forging;
+        #endregion
 
-            GameDataMgr.S.GetData<ForgeData>().SetDataDirty();
+        #region Private
+        private void ClearForgeDBData()
+        {
+            forgeDataItem.equipmentId = 0;
+            forgeDataItem.forgeState = ForgeStage.Free;
+            forgeDataItem.forgeEndTime = default(DateTime);
         }
 
-        public void OnForgeFinish()
-        {
-            this.forgingStartTime = default(DateTime);
-            forgeState = ForgeStage.ForgeComplate;
+        #endregion
 
-            GameDataMgr.S.GetData<ForgeData>().SetDataDirty();
-        }
-
-        public int OnGetWeapon()
-        {
-            int ret = equipmentId;
-            equipmentId = TDEquipmentSynthesisConfigTable.dataList[0].id;
-            forgeState = ForgeStage.Free;
-
-            GameDataMgr.S.GetData<ForgeData>().SetDataDirty();
-
-            return ret;
-        }
-
-        public void OnWeaponSelect(int weaponid)
-        {
-            this.equipmentId = weaponid;
-            forgeState = ForgeStage.Select;
-
-            GameDataMgr.S.GetData<ForgeData>().SetDataDirty();
-        }
-
-        public void OnWeaponUnSelect()
-        {
-            equipmentId = TDEquipmentSynthesisConfigTable.dataList[0].id;
-            forgeState = ForgeStage.Free;
-
-            GameDataMgr.S.GetData<ForgeData>().SetDataDirty();
-        }
     }
 }

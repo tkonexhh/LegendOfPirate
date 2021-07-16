@@ -9,134 +9,99 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class ForgePanelData : UIPanelData
-	{
-		public ForgeRoomModel forgeRoomModel;
-		public List<ForgeRoomWeaponSlot> lockerList;
-		public ForgePanelData()
-		{
-			lockerList = new List<ForgeRoomWeaponSlot>();
-		}
-		public int GetSlotCount() 
-		{
-			return forgeRoomModel.forgeWeaponSlotModels.Count;
-		}
-	}
-	
-	public partial class ForgeRoomPanel
-	{
-		private ForgePanelData m_PanelData = null;
-
-		private void AllocatePanelData(params object[] args)
-		{
-			m_PanelData = UIPanelData.Allocate<ForgePanelData>();
-			m_PanelData.forgeRoomModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.ForgeRoom) as ForgeRoomModel;
-			var plantSlots = m_Content.GetComponentsInChildren<Toggle>();
-          
-        }
-
-	    private void ReleasePanelData()
-		{
-			ObjectPool<ForgePanelData>.S.Recycle(m_PanelData);
-			m_PanelData.lockerList.Clear();
-		}
-		
-		private void BindModelToUI()
-		{
-			m_PanelData.forgeRoomModel.level.SubscribeToTextMeshPro(m_BuildingLevel,"Lv.{0}").AddTo(this);
-			m_PanelData.forgeRoomModel.level.Subscribe(level => OnBuildingLevelUp(level)).AddTo(this);
-			m_PanelData.forgeRoomModel.forgeModel.forgeState.AsObservable().Subscribe(state =>OnForgeStateChange(state)).AddTo(this);
-			m_PanelData.forgeRoomModel.forgeModel.equipmentId.Subscribe(equipmentid =>OnSelectEquipmentChange(equipmentid)).AddTo(this);
-			m_PanelData.forgeRoomModel.forgeModel.forgeRemainTime.Where(time => time > 0).Subscribe(timer =>OnTimerUpdate(timer)).AddTo(this);
-			m_PanelData.forgeRoomModel.forgeModel.forgeRemainTime.Where(time => time <= 0 && m_PanelData.forgeRoomModel.forgeModel.forgeState.Value == ForgeStage.Forging).Subscribe(_ => OnTimeUp()).AddTo(this);
-		}
-		
-		private void BindUIToModel()
-		{
-
-            
-        }
-
-		private void InitPanelBtn()
-		{
-            m_CloseBtn.OnClickAsObservable().Subscribe(_ => HideSelfWithAnim()).AddTo(this);
-            m_LevelUpBtn.OnClickAsObservable().Subscribe(_ => OnLevelBtnClick()).AddTo(this);
-            m_ForgeBtn.OnClickAsObservable().Subscribe(_ => OnForgeBtnClick()).AddTo(this);
-        }
-
-		private void OnForgeBtnClick()
+    public class ForgePanelData : UIPanelData
+    {
+        public ForgeRoomModel forgeRoomModel;
+        public ForgePanelData()
         {
-            switch (m_PanelData.forgeRoomModel.forgeModel.forgeState.Value)
+        }
+    }
+
+    public partial class ForgeRoomPanel
+    {
+        private ForgePanelData m_PanelData = null;
+
+        private void AllocatePanelData(params object[] args)
+        {
+            m_PanelData = UIPanelData.Allocate<ForgePanelData>();
+            m_PanelData.forgeRoomModel = ModelMgr.S.GetModel<ShipModel>().GetShipUnitModel(ShipUnitType.ForgeRoom) as ForgeRoomModel;
+            m_ForgeEquipModels = m_PanelData.forgeRoomModel.ForgeEquipModels;
+        }
+
+        private void ReleasePanelData()
+        {
+            ObjectPool<ForgePanelData>.S.Recycle(m_PanelData);
+        }
+
+        private void BindUIToModel()
+        {
+            m_ForgeUpgradeBtn.OnClickAsObservable().Subscribe(_ => ForgeUpgradeBtn()).AddTo(this);
+        }
+
+        private void BindModelToUI()
+        {
+            m_PanelData.forgeRoomModel.level.SubscribeToTextMeshPro(m_ForgeLevelTMP).AddTo(this);
+            m_PanelData.forgeRoomModel.ForgeStageReactive.Subscribe(state => HandleForgeStageReactive(state)).AddTo(this);
+            m_PanelData.forgeRoomModel.onlyReadCurSelectedModel.SubscribeToPositiveActive(m_SelectEquipState).AddTo(this);
+            //m_PanelData.forgeRoomModel.upgradeMaterialsIcon.SubscribeToSprite(m_SelectEquipState).AddTo(this);
+            m_PanelData.forgeRoomModel.forgeCountDown.SubscribeToTextMeshPro(m_ForgeTime).AddTo(this);
+            m_PanelData.forgeRoomModel.upgradeMaterials.SubscribeToTextMeshPro(m_MaterialValue).AddTo(this);
+            m_PanelData.forgeRoomModel.progressBar.SubscribeToFillAmount(m_ProgressBar).AddTo(this);
+            m_PanelData.forgeRoomModel.EquipAdditions.Subscribe(val => HandleAttribute(val)).AddTo(this);
+        }
+
+        private void HandleAttribute(EquipAttributeValue[] val)
+        {
+            if (val!=null)
             {
-                case ForgeStage.Free:
-					FloatMessageTMP.S.ShowMsg("Select Equipment");
-					break;
-                case ForgeStage.Select:
-					m_PanelData.forgeRoomModel.forgeModel.OnStartForge(DateTime.Now);
-					var slots =m_Content.GetComponentsInChildren<Toggle>();
-					foreach (var item in slots) 
-					{
-						item.isOn = false;
-					}
-					m_Timer.gameObject.SetActive(true);
-					break;
-                case ForgeStage.ForgeComplate:
-					m_PanelData.forgeRoomModel.forgeModel.OnGetWeapon();
-                    break;
+                for (int i = 0; i < val.Length; i++)
+                {
+                    m_AttrItems[i].ShowAttr(val[i]);
+                }
+                for (int i = val.Length; i < ATTRITEM_NUMBER; i++)
+                {
+                    m_AttrItems[i].HideSelf();
+                }
+            }
+            else
+            {
+                foreach (var item in m_AttrItems)
+                {
+                    item.HideSelf();
+                }
             }
         }
-        private void OnLevelBtnClick()
+
+        private void HandleForgeStageReactive(ForgeStage state)
         {
-            UIMgr.S.OpenTopPanel(UIID.BuildingLevelUpPanel, null, ShipUnitType.ForgeRoom);
-        }
-
-        private void OnBuildingLevelUp(int level) 
-		{
-
-		}
-
-		private void OnSelectEquipmentChange(int equipmentId) 
-		{
-			var equipmemtMsg = m_PanelData.forgeRoomModel.forgeModel.makeEquipmentMsgModel;
-			m_WeaponName.text = equipmemtMsg.equipmentName;
-			m_ForgeElement1.GetComponentInChildren<TextMeshProUGUI>().text = string.Format("0/{0}", equipmemtMsg.makeResList[0].resCount);
-			m_ForgeElement2.GetComponentInChildren<TextMeshProUGUI>().text = string.Format("0/{0}", equipmemtMsg.makeResList[1].resCount);
-			m_WeaponMsg.text = equipmemtMsg.equipmentConfig.desc;
-		}
-		public void OnForgeStateChange(ForgeStage forgestage) 
-		{
-            switch (forgestage)
+            HideAllObj();
+            switch (state)
             {
                 case ForgeStage.Free:
-					m_ForgeBtn.interactable = true;
-					m_ForgeBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Forge";
-					break;
+                    m_TipState.gameObject.SetActive(true);
+                    break;
                 case ForgeStage.Forging:
-					m_ForgeBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Forging";
-					m_ForgeBtn.interactable = false;
-					m_Timer.gameObject.SetActive(true);
-					break;
-                case ForgeStage.Select:
-                    m_ForgeBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Forge";
-                    m_ForgeBtn.interactable = true;
+                    m_ForgingEquipIcon.gameObject.SetActive(true);
                     break;
-                case ForgeStage.ForgeComplate:
-                    m_ForgeBtn.GetComponentInChildren<TextMeshProUGUI>().text = "GetEquipment";
-                    m_ForgeBtn.interactable = true;
+                case ForgeStage.Lock:
+                    //m_SelectEquipIcon.gameObject.SetActive(true);
+                    break;
+                case ForgeStage.Selected:
+                    m_SelectEquipIcon.gameObject.SetActive(true);
                     break;
             }
         }
 
-		private void OnTimerUpdate(float time) 
-		{
-			m_TimerFill.fillAmount = (m_PanelData.forgeRoomModel.forgeModel.makeEquipmentMsgModel.makeTime-time) /
-			m_PanelData.forgeRoomModel.forgeModel.makeEquipmentMsgModel.makeTime;
-			m_TimerText.text = string.Format("{0:f2}",  time);
-		}
-		private void OnTimeUp() 
-		{
-			m_PanelData.forgeRoomModel.forgeModel.OnForgeFinish();
-			m_Timer.gameObject.SetActive(false);
-		}
+        private void HideAllObj()
+        {
+            m_TipState.gameObject.SetActive(false);
+            m_ForgingEquipIcon.gameObject.SetActive(false);
+            m_SelectEquipIcon.gameObject.SetActive(false);
+        }
+
+        private void ForgeUpgradeBtn()
+        {
+            m_PanelData.forgeRoomModel.OnLevelUpgrade();
+        }
     }
 }

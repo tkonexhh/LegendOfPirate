@@ -4,256 +4,269 @@ using UnityEngine;
 using UniRx;
 using System;
 using Qarth;
+using System.Linq;
 
 namespace GameWish.Game
 {
     public class ForgeRoomModel : ShipUnitModel
     {
-
-        public ForgeUnitConfig tableConfig;
-        public ForgeSlotModel forgeModel;
-        public ReactiveCollection<ForgeEquipmentSlotModel> forgeWeaponSlotModels = new ReactiveCollection<ForgeEquipmentSlotModel>();
-
         private ForgeData m_DbData;
+        private ForgeUnitConfig m_TableConfig;
+
+        private ReactiveCollection<ForgeEquipModel> m_ForgeEquipModels = new ReactiveCollection<ForgeEquipModel>();
+        private ReactiveCommand<EquipAttributeValue[]> m_EquipAdditions = new ReactiveCommand<EquipAttributeValue[]>();
+        private ReactiveProperty<ForgeEquipModel> m_CurSelectedModel = new ReactiveProperty<ForgeEquipModel>(null);
+        private ReactiveProperty<ForgeStage> m_ForgeStage = new ReactiveProperty<ForgeStage>();
+
+        public ReactiveCollection<ForgeEquipModel> ForgeEquipModels { get { return m_ForgeEquipModels; } }
+        public ReactiveProperty<ForgeEquipModel> CurSelectedModel { get { return m_CurSelectedModel; } }
+        public ReactiveProperty<ForgeStage> ForgeStageReactive { get { return m_ForgeStage; } }
+        public ReactiveCommand<EquipAttributeValue[]> EquipAdditions { get { return m_EquipAdditions; } }
+
+        public StringReactiveProperty forgeCountDown = new StringReactiveProperty(Define.DEFAULT_NULL);
+        public FloatReactiveProperty progressBar = new FloatReactiveProperty(1);
+
+        public IReadOnlyReactiveProperty<bool> onlyReadCurSelectedModel;
+        public IReadOnlyReactiveProperty<string> upgradeMaterials;
+        public IReadOnlyReactiveProperty<Sprite> upgradeMaterialsIcon;
+
         public ForgeRoomModel(ShipUnitData shipUnitData) : base(shipUnitData)
         {
-            tableConfig = TDFacilityForgeTable.GetConfig(level.Value);
+            m_TableConfig = TDFacilityForgeTable.GetConfig(level.Value);
             m_DbData = GameDataMgr.S.GetData<ForgeData>();
-            forgeModel = new ForgeSlotModel(this, m_DbData.forgeDataItem);
-            forgeModel.equipmentId.Value = 0;
-            forgeModel.forgeState.Value = ForgeStage.Free;
-            for (int i = 0; i < TDFacilityForgeTable.dataList.Count; i++) 
+
+            onlyReadCurSelectedModel = m_CurSelectedModel.Select(val => HandleOnlyReadCurSelectedModel(val)).ToReactiveProperty();
+            upgradeMaterials = m_CurSelectedModel.Select(val => HandleUpgradeMaterials(val)).ToReactiveProperty();
+            //upgradeMaterialsIcon = m_CurSelectedModel.Select(val => HandleUpgradeMaterialsIcon(val)).ToReactiveProperty();
+            
+            m_ForgeEquipModels.Clear();
+
+            HandleLoadingData();
+
+            InitForgeEquipModels();
+
+            level.Subscribe(level => { HandleForgeLevel(level); });
+        }
+
+        private Sprite HandleUpgradeMaterialsIcon(ForgeEquipModel val)
+        {
+            if (val != null)
             {
-                ForgeEquipmentSlotModel item = default(ForgeEquipmentSlotModel);
-                if (level.Value >= TDFacilityForgeTable.dataList[i].level)
-                {
-                    foreach (int equipid in TDFacilityForgeTable.dataList[i].GetUnlockEquipment()) 
-                    {
-                        item = new ForgeEquipmentSlotModel(this, i, false,equipid);
-                        forgeWeaponSlotModels.Add(item);
-                    }
-                }
-                else 
-                {
-                    foreach (int equipid in TDFacilityForgeTable.dataList[i].GetUnlockEquipment())
-                    {
-                        item = new ForgeEquipmentSlotModel(this, i, true, equipid);
-                        forgeWeaponSlotModels.Add(item);
-                    }
-                }
-              
+                return SpriteHandler.S.GetSprite("##","##");
+            }
+            else
+            {
+                return SpriteHandler.S.GetSprite("##", "##");
             }
         }
 
-        private float m_RefreshTime = 0;
-        private float m_RefreshInterval = 0.3f;
+        private string HandleUpgradeMaterials(ForgeEquipModel val)
+        {
+            if (val != null)
+            {
+                return string.Format(LanguageKeyDefine.FORGE_MATERIAL_Ⅰ, "#123145", 3, "#FFFFFF", val.EquipmentSynthesisConfig.makeRes.number);
+            }
+            else
+            {
+                return Define.DEFAULT_NULL;
+            }
+        }
+
+        private bool HandleOnlyReadCurSelectedModel(ForgeEquipModel val)
+        {
+            if (val != null && val.forgeState.Value != ForgeStage.Forging)
+            {
+                return true;
+            }
+            return false;
+        }
 
         public override void OnUpdate()
         {
-            m_RefreshTime += Time.deltaTime;
-            if (m_RefreshTime >= m_RefreshInterval)
+            if (ForgeStageReactive.Value == ForgeStage.Forging)
             {
-                m_RefreshTime = 0;
-                forgeModel.RefreshRemainTime();
+                try
+                {
+                    int remainSeconds = GetForgeCountDown();
+                    if (remainSeconds > 0)
+                    {
+                        EquipmentSynthesisConfig config = TDEquipmentSynthesisConfigTable.GetEquipmentSynthesisConfigByID(m_DbData.forgeDataItem.equipmentId);
+                        forgeCountDown.Value = string.Format(LanguageKeyDefine.COMMON_TIME, CommonMethod.SplicingTime(remainSeconds));
+                        progressBar.Value = (float)remainSeconds / config.makeTime;
+                    }
+                    else
+                    {
+                        TimeEmpty();
+                    }
+                }
+                catch (Exception)
+                {
+                    TimeEmpty();
+                }
             }
         }
 
-        public override void OnLevelUpgrade(int delta)
+        #region Public
+        /// <summary>
+        /// 锻造装备
+        /// </summary>
+        public void ForgeEquip()
         {
-            base.OnLevelUpgrade(delta);
-
-            tableConfig = TDFacilityForgeTable.GetConfig(level.Value);
-
-            for (int i = 0; i < forgeWeaponSlotModels.Count; i++)
+            if (m_CurSelectedModel.Value != null)
             {
-                forgeWeaponSlotModels[i].OnForgeRoomLevelUp();
+                m_DbData.SetForgeEquip(m_CurSelectedModel.Value);
+                m_CurSelectedModel.Value.CancelSelected();
+                ForgeStageReactive.Value = ForgeStage.Forging;
             }
+            else
+                Log.e("Error : It shouldn't be");
         }
 
-        public ForgeEquipmentSlotModel GetWeaponSlotModel(int slotindex) 
+        /// <summary>
+        /// 根据ID获得EquipModel
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ForgeEquipModel GetEquipModelByID(int id)
         {
-            if (forgeWeaponSlotModels != null)
+            ForgeEquipModel forgeEquipModel = ForgeEquipModels.FirstOrDefault(i => i.ID == id);
+            if (forgeEquipModel != null)
             {
-                return forgeWeaponSlotModels[slotindex];
+                return forgeEquipModel;
             }
             else
             {
-                return default(ForgeEquipmentSlotModel);
+                Log.e("Error : Not find ID = " + id);
+                return null;
             }
         }
-    }
-    public class ForgeSlotModel : Model 
-    {
-        public IntReactiveProperty equipmentId;
-        public DateTime startTime;
-        public FloatReactiveProperty forgeRemainTime = new FloatReactiveProperty(-1);
 
-        public ReactiveProperty<ForgeStage> forgeState;
-        public ForgeEquipmentMsgModel makeEquipmentMsgModel;
-
-        private DateTime m_StartTime = default(DateTime);
-        private DateTime m_EndTime = default(DateTime);
-
-        private ForgeRoomModel m_ForgeRoomModel;
-        private ForgeDataItem m_DbItem;
-
-
-        public ForgeSlotModel(ForgeRoomModel forgeRoomModel, ForgeDataItem forgeDataItem) 
+        /// <summary>
+        /// 取消选择
+        /// </summary>
+        public void CancaleSelect()
         {
-            m_ForgeRoomModel = forgeRoomModel;
-            m_DbItem = forgeDataItem;
-
-            this.equipmentId =  new IntReactiveProperty( forgeDataItem.equipmentId);
-            this.forgeState = new ReactiveProperty<ForgeStage>(forgeDataItem.forgeState);
-            this.makeEquipmentMsgModel = new ForgeEquipmentMsgModel(forgeDataItem.equipmentId);
-            switch (forgeState.Value)
+            if (onlyReadCurSelectedModel.Value)
             {
-                case ForgeStage.Free:
-                    break;
-                case ForgeStage.Forging:
-                    SetTime(m_DbItem.forgingStartTime);
-                    RefreshRemainTime();
-                    break;
-                case ForgeStage.Select:
-                    break;
-                case ForgeStage.ForgeComplate:
-                    break;
+                m_CurSelectedModel.Value = null;
+                m_EquipAdditions.Execute(null);
+                ForgeStageReactive.Value = ForgeStage.Free;
             }
+            else
+                Log.e("Error : CurSelectedModel is null");
         }
 
-        private void SetTime(DateTime forgingStartTime)
+        /// <summary>
+        /// 设置当前选中的Model
+        /// </summary>
+        /// <param name="id"></param>
+        public void SetCurSelectedModel(ForgeEquipModel forgeEquipModel)
         {
-            m_StartTime = forgingStartTime;
-            m_EndTime = forgingStartTime + TimeSpan.FromSeconds(TDEquipmentSynthesisConfigTable.GetEquipmentSynthesisById(equipmentId.Value).makeTime);
-        }
+            m_CurSelectedModel.Value = null;
+            m_CurSelectedModel.Value = forgeEquipModel;
+            ForgeStageReactive.Value = ForgeStage.Selected;
 
-        #region Public 
-        public void OnStartForge(DateTime startTime)
-        {
-            forgeState.Value = ForgeStage.Forging;
-            SetTime(startTime);
-            m_DbItem.OnStartForge(equipmentId.Value, startTime);
-        }
-
-        public void OnWeaponSelect(int id)
-        {
-            makeEquipmentMsgModel.ResetEquipmentMsg(id);
-            equipmentId.Value = id;
-            forgeState.Value = ForgeStage.Select;
-            m_DbItem.OnWeaponSelect(id);
-        }
-
-        public void OnWeaponUnSelect()
-        {
-            equipmentId.Value = -1;
-            forgeState.Value = ForgeStage.Free;
-            m_DbItem.OnWeaponUnSelect();
-        }
-
-        public void OnForgeFinish()
-        {
-            forgeRemainTime.Value = -1;
-            forgeState.Value = ForgeStage.ForgeComplate;
-            m_StartTime = default(DateTime);
-            m_EndTime = default(DateTime);
-            m_DbItem.OnForgeFinish();
-        }
-
-        public void OnGetWeapon()
-        {
-            equipmentId.Value = -1;
-            forgeState.Value = ForgeStage.Free;
-            m_DbItem.OnGetWeapon();
-        }
-
-
-        public void RefreshRemainTime()
-        {
-            double remainTime = (m_EndTime - DateTime.Now).TotalSeconds;
-
-            forgeRemainTime.Value = (float)remainTime;
+            m_EquipAdditions.Execute(forgeEquipModel.EquipmentUnitConfig.equipAttributeValues);
         }
         #endregion
 
-    }
-    public class ForgeEquipmentSlotModel 
-    {
-        public BoolReactiveProperty slotIsUnlock;
-        public string equipmentName;
-        public int slotId;
-        public int unlockLevel;
-        public int equipmentId;
+        #region Private
 
-
-        private ForgeRoomModel m_ForgeRoomModel;
-        public ForgeEquipmentSlotModel(ForgeRoomModel forgeRoomModel, int slotid, bool unlockStage,int equipmentId)
+        /// <summary>
+        /// 结束锻造
+        /// </summary>
+        private void EndForge()
         {
-            this.slotId = slotid;
-            this.unlockLevel = TDFacilityForgeTable.dataList[slotid].level;
-            this.equipmentName = TDEquipmentConfigTable.GetEquipmentNameById(equipmentId);
-            this.equipmentId = equipmentId;
-
-            m_ForgeRoomModel = forgeRoomModel;
-            slotIsUnlock = new BoolReactiveProperty(unlockStage);
+            m_CurSelectedModel.Value = null;
+            ForgeStageReactive.Value = ForgeStage.Free;
+            m_DbData.SetForgeEquip();
+            m_EquipAdditions.Execute(null);
         }
-        public void OnForgeRoomLevelUp()
+
+        /// <summary>
+        /// 获得倒计时
+        /// </summary>
+        /// <returns></returns>
+        private int GetForgeCountDown()
         {
-            if (m_ForgeRoomModel.level.Value >= unlockLevel)
+            TimeSpan remainTim = m_DbData.ForgeDataItem.forgeEndTime - DateTime.Now;
+            if (remainTim.TotalSeconds <= 0)
             {
-                slotIsUnlock.Value = false;
+                EndForge();
+                return 0;
             }
-            else
+            return (int)remainTim.TotalSeconds;
+        }
+
+        /// <summary>
+        /// 处理加载数据
+        /// </summary>
+        private void HandleLoadingData()
+        {
+            ForgeStageReactive.Value = m_DbData.ForgeDataItem.forgeState;
+
+            if (m_DbData.ForgeDataItem.forgeState == ForgeStage.Forging)
             {
-                slotIsUnlock.Value = true;
+                m_ForgeEquipModels.Add(new ForgeEquipModel(m_DbData.ForgeDataItem.equipmentId, m_DbData.ForgeDataItem.forgeState, this));
             }
         }
-    }
 
-    public class ForgeEquipmentMsgModel
-    {
-        public int makeTime;
-        public List<ResPair> makeResList;
-        public string equipmentName;
-        public TDEquipmentSynthesisConfig equipmentConfig;
-
-        public ForgeEquipmentMsgModel(int equipmentId) 
+        /// <summary>
+        /// 倒计时为零时，制空时间
+        /// </summary>
+        private void TimeEmpty()
         {
-            equipmentConfig = TDEquipmentSynthesisConfigTable.GetEquipmentSynthesisById(equipmentId);
-            makeTime = equipmentConfig.makeTime;
-            makeResList = equipmentConfig.GetEquipmentResPairs();
-            equipmentName = TDEquipmentConfigTable.GetEquipmentNameById(equipmentId);
-           
-        }
-        public void  ResetEquipmentMsg(int equipmentId) 
-        {
-            equipmentConfig = TDEquipmentSynthesisConfigTable.GetEquipmentSynthesisById(equipmentId);
-            makeTime = equipmentConfig.makeTime;
-            makeResList = equipmentConfig.GetEquipmentResPairs();
-            equipmentName = TDEquipmentConfigTable.GetEquipmentNameById(equipmentId);
-        }
-    }
-    public struct ResPair 
-    {
-        public int resId;
-        public int resCount;
-        
-        public ResPair(int resid,int rescount) 
-        {
-            resCount = rescount;
-            resId = resid;
-            
+            forgeCountDown.Value = string.Format(LanguageKeyDefine.COMMON_TIME, CommonMethod.SplicingTime(0));
+            progressBar.Value = 0;
         }
 
-        public static List<ResPair> StringToResPairLst(string rawString, char Spliter1=';', string Spliter2="|") 
+        /// <summary>
+        /// 初始化数据
+        /// </summary>
+        private void InitForgeEquipModels()
         {
-            List<ResPair> ret = new List<ResPair>();
-            var resPairStrings= rawString.Split(Spliter1);
-            foreach (var resPairString in resPairStrings) 
+            foreach (var item in TDFacilityForgeTable.forgeUnitProperties)
             {
-                var resPairCount = Helper.String2IntArray(resPairString, Spliter2);
-                ret.Add(new ResPair(resPairCount[0], resPairCount[1]));
+                if (level.Value >= item.baseProperty.level)
+                {
+                    CheckAddEquipModel(item.unlockEuipIDs, ForgeStage.Free);
+                }
+                else
+                    CheckAddEquipModel(item.unlockEuipIDs, ForgeStage.Lock);
             }
-            return ret;
         }
+
+        /// <summary>
+        /// 处理升级情况
+        /// </summary>
+        /// <param name="level"></param>
+        private void HandleForgeLevel(int level)
+        {
+            m_TableConfig = TDFacilityForgeTable.GetConfig(level);
+            foreach (var id in m_TableConfig.unlockEuipIDs)
+            {
+                ForgeEquipModel forgeEquipModel = m_ForgeEquipModels.FirstOrDefault(i => i.ID == id);
+                if (forgeEquipModel!=null)
+                    forgeEquipModel.SetForgeStage(ForgeStage.Free);
+                else
+                    Log.e("Error : Not find ID = " + id);
+            }
+        }
+
+        /// <summary>
+        /// 检查生成Model
+        /// </summary>
+        /// <param name="items"></param>
+        private void CheckAddEquipModel(List<int> items, ForgeStage forgeStage)
+        {
+            foreach (var id in items)
+            {
+                if (!m_ForgeEquipModels.Any(i => i.ID == id))
+                {
+                    m_ForgeEquipModels.Add(new ForgeEquipModel(id, forgeStage, this));
+                }
+            }
+        }
+        #endregion
     }
 }

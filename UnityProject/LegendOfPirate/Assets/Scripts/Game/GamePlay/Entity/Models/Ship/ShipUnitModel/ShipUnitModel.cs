@@ -71,6 +71,7 @@ namespace GameWish.Game
                 case ShipUnitType.TrainingRoom:
                     return TDFacilityTrainingRoomTable.GetMaxLevel();
                 case ShipUnitType.ForgeRoom:
+                    return TDFacilityForgeTable.GetMaxLevel();
                     break;
             }
             return 9;
