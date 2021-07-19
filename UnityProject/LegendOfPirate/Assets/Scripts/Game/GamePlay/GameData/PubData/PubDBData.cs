@@ -13,7 +13,7 @@ namespace GameWish.Game
 
 		public PubDBData()
 		{
-			lastRefreshTime = default(DateTime);
+			lastRefreshTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 6, 0, 0);
 			remainingTimes = PubModel.DAILY_LIMIT;
 		}
 	}

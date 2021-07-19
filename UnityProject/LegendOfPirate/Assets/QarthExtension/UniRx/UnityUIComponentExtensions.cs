@@ -50,6 +50,11 @@ namespace UniRx
             return source.SubscribeWithState(obj, (x, s) => s.SetActive(x));
         }
 
+        public static IDisposable SubscribeToSprite(this IObservable<Sprite> source, Image obj)
+        {
+            return source.SubscribeWithState(obj, (x, s) => s.sprite = x);
+        }
+
         /// <summary>
         /// 反向绑定active 
         /// </summary>
@@ -74,6 +79,17 @@ namespace UniRx
         public static IDisposable SubscribeToNegativeInteractable(this IObservable<bool> source, Selectable selectable)
         {
             return source.SubscribeWithState(selectable, (x, s) => s.interactable = !x);
+        }
+
+        /// <summary>
+        /// 进度条  fillAmount使用
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="image"></param>
+        /// <returns></returns>
+        public static IDisposable SubscribeToFillAmount(this IObservable<float> source, Image image)
+        {
+            return source.SubscribeWithState(image, (x, s) => s.fillAmount = x);
         }
 
         /// <summary>

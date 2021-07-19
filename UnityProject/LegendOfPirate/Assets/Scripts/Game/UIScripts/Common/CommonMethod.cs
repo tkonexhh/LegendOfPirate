@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UniRx;
 using UnityEngine;
 
 
@@ -74,6 +75,29 @@ namespace GameWish.Game
             }, curValue, targetValue, 1.0f));
             //将更新后的值记录下来, 用于下一次滚动动画
             curValue = targetValue;
+        }
+
+        /// <summary>
+        /// 倒计时
+        /// </summary>
+        /// <param name="seconds"></param>
+        /// <param name="stringReactiveProperty"></param>
+        /// <returns></returns>
+        public IEnumerator CountDown(int seconds, StringReactiveProperty stringReactiveProperty)
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(1);
+                stringReactiveProperty.Value = SplicingTime(seconds);
+                seconds--;
+                if (seconds<=0)
+                {
+                    yield return new WaitForSeconds(1);
+                    stringReactiveProperty.Value = SplicingTime(0);
+                    break;
+                }
+            }
+
         }
         #endregion
 

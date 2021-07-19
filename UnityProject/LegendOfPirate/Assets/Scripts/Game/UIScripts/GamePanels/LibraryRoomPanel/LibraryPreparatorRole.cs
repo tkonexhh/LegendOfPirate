@@ -76,15 +76,13 @@ namespace GameWish.Game
         private void Enlarge()
         {
             RectTransform rect = transform as RectTransform;
-            rect.sizeDelta = new Vector2(110, 110);//¡Ÿ ±
-
-            //m_PrepRoleModel.TrainingRoomPanel.AdjustViewportSize();
+            rect.sizeDelta = new Vector2(110, 110);
         }
 
         private void Narrow()
         {
             RectTransform rect = transform as RectTransform;
-            rect.sizeDelta = new Vector2(100, 100);//¡Ÿ ±
+            rect.sizeDelta = new Vector2(100, 100);
         }
 
         private void ClearCache()

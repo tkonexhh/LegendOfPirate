@@ -73,6 +73,9 @@ namespace GameWish.Game
                 TDMainTaskTable.metaData,
                 TDAchievementTaskTable.metaData,
                 #endregion
+                #region Pub
+                TDPubTable.metaData,
+                #endregion
                 #region Synthesis
                 TDEquipmentSynthesisConfigTable.metaData,
                 TDFoodSynthesisConfigTable.metaData,

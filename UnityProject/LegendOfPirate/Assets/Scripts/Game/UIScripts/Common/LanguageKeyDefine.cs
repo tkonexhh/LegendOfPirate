@@ -16,6 +16,7 @@ namespace GameWish.Game
         public const string Fixed_Title_Auto= "Fixed_Title_Auto";
 
         public const string COMMON_SAW_ADV= "看了一个广告";
+        public const string COMMON_TIME= "Time:{0}";
         public const string COMMON_CONT_Ⅰ= "There are no idle roles";
         public const string COMMON_CONT_Ⅱ= "The level has reached the maximum";
 
@@ -58,6 +59,14 @@ namespace GameWish.Game
         public const string INTERNALPURCHASE_DAILY_COUNTDOWN = "Refresh {0}";
         #endregion
 
+        #region Pub
+        public const string PUB_CONT_Ⅰ = "Insufficient number of lucky draw";
+        #endregion
+
+        #region Forge
+        public const string FORGE_CONT_Ⅰ = "Forging";
+        public const string FORGE_MATERIAL_Ⅰ = "<color={0}>{1}</color>/<color={2}>{3}</color>";
+        #endregion
         #region Black Market
         public const string BLACKMARKET_REFRESHCOUMT_OVER = "The number of refreshes has been used up";
         #endregion

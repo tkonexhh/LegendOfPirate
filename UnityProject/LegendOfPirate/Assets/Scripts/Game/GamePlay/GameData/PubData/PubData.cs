@@ -35,7 +35,26 @@ namespace GameWish.Game
         #endregion
 
         #region Public
+        public void ReduceLuckyDrawNumber(int delta)
+        {
+            pubDBData.remainingTimes = Mathf.Max(Define.INT_NUMBER_ZERO, pubDBData.remainingTimes - delta);
 
+            SaveManually();
+        }
+
+        public void RefreshRemainingTimes()
+        {
+            pubDBData.remainingTimes = PubModel.DAILY_LIMIT;
+
+            SaveManually();
+        }
+
+        public void RefreshLastTime()
+        {
+            pubDBData.lastRefreshTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 6, 0, 0);
+
+            SaveManually();
+        }
         #endregion
     }
 }
