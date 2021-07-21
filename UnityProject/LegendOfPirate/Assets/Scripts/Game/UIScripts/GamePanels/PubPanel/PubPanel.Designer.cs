@@ -12,8 +12,11 @@ namespace GameWish.Game
 	{
 		public const string Name = "PubPanel";
 		
+		[SerializeField] private TextMeshProUGUI m_RemainTimes;
 		[SerializeField] private Button m_RecruitBtn;
+		[SerializeField] private TextMeshProUGUI m_RraintTimes;
 		[SerializeField] private Button m_TenRecruitBtn;
+		[SerializeField] private TextMeshProUGUI m_RecruitTimes;
 		[SerializeField] private Button m_ExitBtn;
 		[SerializeField] private TextMeshProUGUI m_DiamondsValue;
 		[SerializeField] private TextMeshProUGUI m_CoinIValue;

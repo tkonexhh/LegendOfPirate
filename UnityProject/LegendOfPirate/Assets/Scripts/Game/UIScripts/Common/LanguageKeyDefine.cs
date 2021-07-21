@@ -58,6 +58,10 @@ namespace GameWish.Game
         public const string INTERNALPURCHASE_DAILY_COUNTDOWN = "Refresh {0}";
         #endregion
 
+        #region Pub
+        public const string PUB_CONT_¢ñ = "Insufficient number of lucky draw";
+        #endregion
+
         #region Black Market
         public const string BLACKMARKET_REFRESHCOUMT_OVER = "The number of refreshes has been used up";
         #endregion
