@@ -29,6 +29,7 @@ namespace GameWish.Game
 		[SerializeField] private TextMeshProUGUI m_SelectionRefreshTime;
 		[SerializeField] private RectTransform m_SelectionItemReion;
 		[SerializeField] private RectTransform m_PurchaseDiamondsRegion;
+		[SerializeField] private Button m_ExitBtn;
 		
 		
 	}

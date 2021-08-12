@@ -60,6 +60,7 @@ namespace GameWish.Game
                 #region InternalPurchase
                 TDMonthCardConfigTable.metaData,
                 TDDailySelectionConfigTable.metaData,
+                TDPayShopConfigTable.metaData,
                 #endregion
                 #region Task
                 TDDailyTaskTable.metaData,

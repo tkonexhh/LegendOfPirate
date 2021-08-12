@@ -49,7 +49,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 6ffc0b30e595c294690aaa1bcd7ee430, type: 3}
   - {fileID: 21300000, guid: f31e0931a000a584ba7a6dd39c4de73f, type: 3}
   - {fileID: 21300000, guid: 8b4fa261596c37749987b2aa4a186cfb, type: 3}
-  - {fileID: 21300000, guid: 8157aec2d6455a34c8da9870175811e2, type: 3}
   - {fileID: 21300000, guid: 8dc9f8132bb1b4f4b9698c7678a4b59c, type: 3}
   - {fileID: 21300000, guid: eb36e724a08e7c54ba396948a3e2d6ea, type: 3}
   - {fileID: 21300000, guid: 8586ee2474b0da24487b8b64037fbe59, type: 3}
@@ -83,6 +82,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0df1a1edc8ff10a449b9ec3f13697de2, type: 3}
   - {fileID: 21300000, guid: 8f83851ee9c4cf34499f4ce8cb3059e5, type: 3}
   - {fileID: 21300000, guid: ca60d74e67fe5e64ca98cd65b1a2d494, type: 3}
+  - {fileID: 21300000, guid: b249ec8e6932a664385c3c66ec504600, type: 3}
   - {fileID: 21300000, guid: fd5e65ce02bd8814486adffd270b93ef, type: 3}
   - {fileID: 21300000, guid: 4b129d6f121b8e443a00dbf308d958c4, type: 3}
   - {fileID: 21300000, guid: 335fb29fa80fa294faa2e3edf26c5be4, type: 3}
@@ -92,7 +92,6 @@ SpriteAtlas:
   - shop-Bottom5
   - shop-vip
   - shop-Bottom3
-  - Lark20210630-170354
   - shop-diamonds3
   - shop-diamonds7
   - shop-Cue The background2
@@ -126,6 +125,7 @@ SpriteAtlas:
   - shop-Push Button
   - shop-Advertising
   - shop-Push Button2
+  - shop-exit
   - shop-diamonds9
   - shop-Title1
   - shop-diamonds5

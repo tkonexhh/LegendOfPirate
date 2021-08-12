@@ -62,14 +62,19 @@ namespace GameWish.Game
 
 			m_PanelData.internalPurchaseModel.deceivedDiamondsNumber.SubscribeToTextMeshPro(m_QuantityReceivedNumber).AddTo(this);
 
-			m_PanelData.internalPurchaseModel.refreshCountdown.SubscribeToTextMeshPro(m_VipDiamondsCountDown).AddTo(this);
+			m_PanelData.internalPurchaseModel.vipRefreshCountdown.SubscribeToTextMeshPro(m_VipDiamondsCountDown).AddTo(this);
+			#endregion
+			#region Daily
+			m_PanelData.internalPurchaseModel.dailyRefreshCountdown.Select(val=> MachiningDailyRefresh(val)).SubscribeToTextMeshPro(m_SelectionRefreshTime).AddTo(this);
+			m_PanelData.internalPurchaseModel.DailyModels.ObserveCountChanged().Subscribe(val => HandleRefreshDailyModels(val)).AddTo(this);
 			#endregion
 		}
 
-		private void BindUIToModel()
+        private void BindUIToModel()
 		{
 			m_PurchaseBtn.OnClickAsObservable().Subscribe(_ => { HandlePurchaseBtn(); }).AddTo(this);
 			m_ObtainBtn.OnClickAsObservable().Subscribe(_ => { HandleObtainBtn(); }).AddTo(this);
+			m_ExitBtn.OnClickAsObservable().Subscribe(_ => { HideSelfWithAnim(); }).AddTo(this);
 		}
 	}
 }

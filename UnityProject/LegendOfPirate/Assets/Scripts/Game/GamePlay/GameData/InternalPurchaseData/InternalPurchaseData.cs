@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UniRx;
 using Qarth;
 using System;
+using System.Linq;
 
 namespace GameWish.Game
 {
@@ -31,6 +32,12 @@ namespace GameWish.Game
         #endregion
 
         #region Public
+        public ConsumptionData GetConsumptionData()
+        {
+            return consumptionDatas;
+        }
+
+        #region Vip
         public void SetReceiveToday(bool state)
         {
             consumptionDatas.receiveToday = state;
@@ -93,6 +100,8 @@ namespace GameWish.Game
             consumptionDatas.lastCollectionTime = default(DateTime);
             consumptionDatas.vipState = false;
             consumptionDatas.receiveToday = false;
+
+            SetDataDirty();
         }
 
         public void OnReset()
@@ -102,12 +111,40 @@ namespace GameWish.Game
             consumptionDatas.deceivedDiamondsNumber = 0;
             consumptionDatas.dailyCollectionTimes = 0;
             consumptionDatas.firstCollectionTimes = 0;
-        } 
 
-        public ConsumptionData GetConsumptionData()
-        {
-            return consumptionDatas;
+            SetDataDirty();
         }
+        #endregion
+
+        #region Daily Selection
+
+        public ReactiveCollection<DailyDBData> GetDailyDataModels()
+        {
+            return new ReactiveCollection<DailyDBData>(consumptionDatas.dailyDataModels);
+        }
+
+        public void SetDailyInitialTime()
+        {
+            consumptionDatas.dailyInitialTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 6, 0, 0);
+        }
+
+        public void SetDailyPurchaseState(int id, PurchaseState purchaseState)
+        {
+            DailyDBData dailyDBData = consumptionDatas.dailyDataModels.FirstOrDefault(i => i.id == id);
+            if (dailyDBData != null)
+                dailyDBData.purchaseState = purchaseState;
+            else
+                Log.e("Not find id = " + id);
+
+            SetDataDirty();
+        }
+
+        public void ClearAllDailyID()
+        {
+            consumptionDatas.dailyDataModels.Clear();
+        }
+
+        #endregion
 
         #endregion
 

@@ -13,8 +13,9 @@ namespace GameWish.Game
 	/// 消费数据
 	/// </summary>
 	[Serializable]
-	public class ConsumptionData 
+	public class ConsumptionData
 	{
+		#region Vip
 		/// <summary>
 		/// 是否是Vip
 		/// </summary>
@@ -47,8 +48,20 @@ namespace GameWish.Game
 		/// 已经领取的钻石
 		/// </summary>
 		public int deceivedDiamondsNumber;
+		#endregion
 
-		public ConsumptionData() 
+		#region DailySelection
+		/// <summary>
+		/// 日常奖励初始时间
+		/// </summary>
+		public DateTime dailyInitialTime;
+		/// <summary>
+		/// 记录的日常奖励数据
+		/// </summary>
+		public List<DailyDBData> dailyDataModels = new List<DailyDBData>();
+		#endregion
+
+		public ConsumptionData()
 		{
 			vipPurchaseTime = default(DateTime);
 			lastCollectionTime = default(DateTime);
@@ -58,6 +71,23 @@ namespace GameWish.Game
 			dailyCollectionTimes = 0;
 			firstCollectionTimes = 0;
 			deceivedDiamondsNumber = 0;
+
+			dailyInitialTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 6, 0, 0);
+		}
+	}
+
+	public class DailyDBData
+	{
+		public int id;
+		public PurchaseState purchaseState;
+		public DailSelectionType dailSelectionType;
+		public DailyDBData()
+		{ }
+		public DailyDBData(int id, DailSelectionType dailSelectionType)
+		{
+			this.id = id;
+			this.dailSelectionType = dailSelectionType;
+			this.purchaseState = PurchaseState.NotPurchased;
 		}
 	}
 }

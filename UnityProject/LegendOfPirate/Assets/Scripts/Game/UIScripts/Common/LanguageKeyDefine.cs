@@ -14,6 +14,8 @@ namespace GameWish.Game
         public const string Fixed_Title_Train= "Fixed_Title_Train";
         public const string Fixed_Title_Auto= "Fixed_Title_Auto";
 
+        public const string COMMON_SAW_ADV= "看了一个广告";
+
         public const string MONTH_JANUARY = "January";
         public const string MONTH_FEBRUSRY = "February";
         public const string MONTH_MARCH = "March";
@@ -28,6 +30,11 @@ namespace GameWish.Game
         public const string MONTH_DECEMBER = "December";
         #endregion
 
+        #region ChargingInterfacePanel
+        public const string CHARGINGINTERFACE_PURCHASED = "已购买";
+        public const string CHARGINGINTERFACE_SUCCESSFULPURCHASED = "购买成功";
+        #endregion
+
         #region TrainingRoom
         public const string Fixed_Title_TrainingRoom = "Fixed_Title_TrainingRoom";
         #endregion
@@ -36,6 +43,7 @@ namespace GameWish.Game
         public const string INTERNALPURCHASE_PROFITTITLE = "profit:{0}%";
         public const string INTERNALPURCHASE_PRICE = "Only ${0} / 30 days";
         public const string INTERNALPURCHASE_DUEDATE = "Due on {0} lafter purchase";
+        public const string INTERNALPURCHASE_DAILY_COUNTDOWN = "Refresh {0}";
         #endregion
     }
 }
