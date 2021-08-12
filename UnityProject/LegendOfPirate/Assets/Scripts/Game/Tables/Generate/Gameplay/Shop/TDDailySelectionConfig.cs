@@ -14,6 +14,7 @@ namespace GameWish.Game
        
         private EInt m_Id = 0;   
         private string m_Name;   
+        private EInt m_Number = 0;   
         private EFloat m_Price = 0.0f;   
         private string m_Content;   
         private string m_IconName;  
@@ -29,6 +30,11 @@ namespace GameWish.Game
         /// 物品名称
         /// </summary>
         public  string  name {get { return m_Name; } }
+       
+        /// <summary>
+        /// 数量
+        /// </summary>
+        public  int  number {get { return m_Number; } }
        
         /// <summary>
         /// 价格
@@ -67,12 +73,15 @@ namespace GameWish.Game
                     m_Name = dataR.ReadString();
                     break;
                 case 2:
-                    m_Price = dataR.ReadFloat();
+                    m_Number = dataR.ReadInt();
                     break;
                 case 3:
-                    m_Content = dataR.ReadString();
+                    m_Price = dataR.ReadFloat();
                     break;
                 case 4:
+                    m_Content = dataR.ReadString();
+                    break;
+                case 5:
                     m_IconName = dataR.ReadString();
                     break;
                 default:
@@ -85,13 +94,14 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(5);
+          Dictionary<string, int> ret = new Dictionary<string, int>(6);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
-          ret.Add("Price", 2);
-          ret.Add("Content", 3);
-          ret.Add("IconName", 4);
+          ret.Add("Number", 2);
+          ret.Add("Price", 3);
+          ret.Add("Content", 4);
+          ret.Add("IconName", 5);
           return ret;
         }
     } 

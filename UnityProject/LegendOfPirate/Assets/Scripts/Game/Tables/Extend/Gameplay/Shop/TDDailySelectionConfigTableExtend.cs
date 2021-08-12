@@ -4,6 +4,8 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using Qarth;
+using Random = UnityEngine.Random;
+using System.Linq;
 
 namespace GameWish.Game
 {
@@ -26,6 +28,19 @@ namespace GameWish.Game
                 Log.e("e : " + e);
             }
         }
+
+        public static DailySelectionConfig GetDailySelectionConfig(int id)
+        {
+            foreach (var item in dailySelectionProperties)
+            {
+                if (item.id == id)
+                {
+                    return item;
+                }
+            }
+            Log.e("Error : Not find id = " + id);
+            return default(DailySelectionConfig);
+        }
     }
 
     #region Struce
@@ -45,6 +60,7 @@ namespace GameWish.Game
     public struct DailySelectionConfig
     {
         public int id;
+        public int number;
         public string itemName;
         public float price;
         public DailyConfigItem dailySelectionItem;
@@ -53,6 +69,7 @@ namespace GameWish.Game
         public DailySelectionConfig(TDDailySelectionConfig tdData)
         {
             this.id = tdData.id;
+            this.number = tdData.number;
             this.itemName = tdData.name;
             this.price = tdData.price;
             this.dailySelectionItem = new DailyConfigItem(tdData.content);
