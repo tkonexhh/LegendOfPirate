@@ -35,24 +35,10 @@ namespace GameWish.Game
             m_DailySelectionModel = dailySelectionModel;
 
             BindModelToUI();
-
-            OnRefresh();
         }
         #endregion
 
         #region Private
-        private void OnRefresh()
-        {
-            //switch (m_DailySelectionModel.dailyDBData.purchaseState)
-            //{
-            //    case PurchaseState.Purchased:
-            //        m_PurchaseStateTog.isOn = true;
-            //        break;
-            //    case PurchaseState.NotPurchased:
-            //        m_PurchaseStateTog.isOn = false;
-            //        break;
-            //}
-        }
         private void OnClickAsObservable()
         {
             m_DailySelectionItemBtn.OnClickAsObservable().Subscribe(_ => HandleDailyBtn()).AddTo(this);
@@ -83,11 +69,11 @@ namespace GameWish.Game
 
         private void BindModelToUI()
         {
-            m_DailySelectionModel.priceValue.SubscribeToTextMeshPro(m_PriceValue);
-            m_DailySelectionModel.number.SubscribeToTextMeshPro(m_SelectionItemNumber);
-            m_DailySelectionModel.title.SubscribeToTextMeshPro(m_SelectionItemTitle);
-            m_DailySelectionModel.dailSelectionType.Subscribe(val => { HandleDailyType(val); });
-            m_DailySelectionModel.purchasedState.Subscribe(val => { HandlePurchasedType(val); });
+            m_DailySelectionModel.priceValue.SubscribeToTextMeshPro(m_PriceValue).AddTo(this);
+            m_DailySelectionModel.number.SubscribeToTextMeshPro(m_SelectionItemNumber).AddTo(this);
+            m_DailySelectionModel.title.SubscribeToTextMeshPro(m_SelectionItemTitle).AddTo(this);
+            m_DailySelectionModel.dailSelectionType.Subscribe(val => { HandleDailyType(val); }).AddTo(this);
+            m_DailySelectionModel.purchasedState.Subscribe(val => { HandlePurchasedType(val); }).AddTo(this);
         }
 
         private void HandlePurchasedType(PurchaseState val)

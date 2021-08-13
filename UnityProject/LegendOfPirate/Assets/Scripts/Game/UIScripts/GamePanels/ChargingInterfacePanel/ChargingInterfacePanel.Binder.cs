@@ -43,8 +43,8 @@ namespace GameWish.Game
 			m_PanelData.internalPurchaseModel.vipState.SubscribeToNegativeActive(m_NotPurchasedState).AddTo(this);
 			m_PanelData.internalPurchaseModel.vipState.SubscribeToNegativeActive(m_PurchaseBtn).AddTo(this);
 
-			m_PanelData.internalPurchaseModel.receiveToday.SubscribeToNegativeInteractable(m_ObtainBtn);
-			m_PanelData.internalPurchaseModel.receiveToday.SubscribeToPositiveActive(m_VipDiamondsCountDown);
+			m_PanelData.internalPurchaseModel.receiveToday.SubscribeToNegativeInteractable(m_ObtainBtn).AddTo(this);
+			m_PanelData.internalPurchaseModel.receiveToday.SubscribeToPositiveActive(m_VipDiamondsCountDown).AddTo(this);
 
 			m_PanelData.internalPurchaseModel.purchaseProfit.Select(val=> MachiningPurchaseProfit(val)).SubscribeToTextMeshPro(m_ProfitValue).AddTo(this);
 		
